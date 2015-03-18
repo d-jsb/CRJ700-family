@@ -1051,7 +1051,7 @@
 	<property>environment/wind-from-heading-deg</property>
 	<axis-alignment>yz-plane</axis-alignment>
 	<alignment>right-center</alignment>
-	<character-size>0.006</character-size>
+	<character-size>0.007</character-size>
 	<character-aspect-ratio>1.5</character-aspect-ratio>
 	<font>helvetica_bold.txf</font>
 	<format>%03.f</format>
@@ -1071,7 +1071,7 @@
 	<property>environment/wind-speed-kt</property>
 	<axis-alignment>yz-plane</axis-alignment>
 	<alignment>left-center</alignment>
-	<character-size>0.006</character-size>
+	<character-size>0.007</character-size>
 	<character-aspect-ratio>1.5</character-aspect-ratio>
 	<font>helvetica_bold.txf</font>
 	<format>/%2.f</format>
