@@ -1693,7 +1693,7 @@
 	<type>rotate</type>
 	<object-name>NAV1Ptr</object-name>
 	<object-name>NAV1Track</object-name>
-	<property>instrumentation/nav[0]/heading-deg</property>
+	<property>instrumentation/nav[0]/radials/selected-deg</property>
 	<axis>
 	    <x>-1</x>
 	    <y>0</y>
@@ -1728,7 +1728,7 @@
 	<type>rotate</type>
 	<object-name>NAV2Ptr</object-name>
 	<object-name>NAV2Track</object-name>
-	<property>instrumentation/nav[1]/heading-deg</property>
+	<property>instrumentation/nav[1]/radials/selected-deg</property>
 	<axis>
 	    <x>-1</x>
 	    <y>0</y>
