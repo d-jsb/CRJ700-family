@@ -17,6 +17,7 @@
 		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator/indicated-speed-fpm</indicated-vertical-speed-fpm>
 		<radar-altitude-ft>instrumentation/radar-altimeter/radar-altitude-ft</radar-altitude-ft>
 		<altimeter-setting-inhg>instrumentation/altimeter/setting-inhg</altimeter-setting-inhg>
+		<altimeter-setting-hpa>instrumentation/altimeter/setting-hpa</altimeter-setting-hpa>
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
 	</params>
 	<ft-to-m type="float">0.3048</ft-to-m>
@@ -645,6 +646,15 @@ G</text>
 			</and>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Altimeter setting</object-name>
+		<condition>
+			<not>
+				<property>instrumentation/use-QNH</property>
+			</not>
+		</condition>
+	</animation>	
 	<text>
 		<name>Altimeter setting</name>
 		<type>number-value</type>
@@ -655,6 +665,33 @@ G</text>
 		<character-aspect-ratio>1.5</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
 		<format>%02.2f IN</format>
+		<offsets>
+			<x-m>0.0003</x-m>
+			<y-m>0.06691</y-m>
+			<z-m>-0.02112</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<animation>
+		<type>select</type>
+		<object-name>Altimeter setting hpa</object-name>
+		<condition>
+			<property>instrumentation/use-QNH</property>
+		</condition>
+	</animation>	
+	<text>
+		<name>Altimeter setting hpa</name>
+		<type>number-value</type>
+		<property alias="../../params/altimeter-setting-hpa" />
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>%04.0f hPa</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06691</y-m>
