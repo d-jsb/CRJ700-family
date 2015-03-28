@@ -311,6 +311,9 @@
                 <thrust-mode type="int">0</thrust-mode>
             </engine>
         </engines>
+		<electric>
+			<battery-switch type="bool">true</battery-switch>            
+		</electric>
         <flight>
             <ground-lift-dump type="int">1</ground-lift-dump>
         </flight>
@@ -732,8 +735,10 @@
             </mfd>
         </efis>
         <nd>
-            <radar-texture-path type="string">Aircraft/777/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-            <symbol-texture-path type="string">Aircraft/777/Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
+            <!--radar-texture-path type="string">Aircraft/777/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+            <symbol-texture-path type="string">Aircraft/777/Models/Instruments/MFD/nd_symbols.png</symbol-texture-path-->
+            <radar-texture-path type="string">Aircraft/CRJ700-family/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+            <symbol-texture-path type="string">Aircraft/CRJ700-family/Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
             <symbol-texture-size type="int">512</symbol-texture-size>
             <font>
                 <color>
@@ -780,11 +785,17 @@
         </interactive_cdu>
         <CRJ700>
             <file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
+            <!--
+			<file>Aircraft/CRJ700-family/Nasal/engines.nas</file>
+			-->
             <file>Aircraft/CRJ700-family/Nasal/wiper.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/doors.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/effects.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/electrical.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/instrumentation.nas</file>
+            <!--
+			<file>Aircraft/CRJ700-family/Nasal/systems.nas</file>
+			-->
             <file>Aircraft/CRJ700-family/Nasal/multiplayer.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/vnav.nas</file>
             <file>Aircraft/CRJ700-family/Nasal/master.nas</file>
