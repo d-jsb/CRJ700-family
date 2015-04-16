@@ -67,9 +67,9 @@
 	    <y-m>-0.518</y-m>
 	    <z-m>0.835</z-m>-->
 
-	    <x-m>-1.901</x-m>
-	    <y-m>-0.518</y-m>
-	    <z-m>0.855</z-m>
+	    <x-m>-1.9025</x-m>
+	    <y-m>-0.51396</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -87,9 +87,14 @@
 	    </params>
 	</overlay>
 	<offsets>
+		<!--
 	    <x-m>-1.896</x-m>
 	    <y-m>-0.342</y-m>
 	    <z-m>0.835</z-m>
+		-->
+	    <x-m>-1.9025</x-m>
+	    <y-m>-0.34116</y-m>
+	    <z-m>0.87135</z-m>		
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -244,9 +249,9 @@
 	    </params>
 	</overlay>
 	<offsets>
-	    <x-m>-1.896</x-m>
-	    <y-m>0.518</y-m>
-	    <z-m>0.835</z-m>
+	    <x-m>-1.9025</x-m>
+	    <y-m>0.51396</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -264,9 +269,9 @@
 	    </params>
 	</overlay>
 	<offsets>
-	    <x-m>-1.896</x-m>
-	    <y-m>0.342</y-m>
-	    <z-m>0.835</z-m>
+	    <x-m>-1.9025</x-m>
+	    <y-m>0.34116</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -2657,9 +2662,9 @@
 			</and>
 		</condition>
 		<emission>	
-			<red alias="../../../button-emit-red/red" />
-			<green alias="../../../button-emit-red/green" />
-			<blue alias="../../../button-emit-red/blue" />
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
 			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
 		</emission>
     </animation>
