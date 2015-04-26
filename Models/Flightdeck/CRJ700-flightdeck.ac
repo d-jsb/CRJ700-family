@@ -1,21 +1,21 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1.0000 1.0000 1.0000  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.5000 0.5000 0.5000  shi 10 trans 0.0000
-MATERIAL "ClearPlastic" rgb 0.8000 0.8000 0.8000  amb 0.5000 0.5000 0.5000  emis 0.0000 0.0000 0.0000  spec 0.1024 0.1024 0.1024  shi 50 trans 0.5000
+MATERIAL "ClearPlastic" rgb 0.8000 0.8000 0.8000  amb 0.5000 0.5000 0.5000  emis 0.0000 0.0000 0.0000  spec 0.1024 0.1024 0.1024  shi 50 trans 0.7000
 MATERIAL "ButtonFrame" rgb 0.0509 0.0509 0.0509  amb 1.0000 1.0000 1.0000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
-MATERIAL "ButtonLightRed" rgb 0.2140 0.0000 0.0000  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
+MATERIAL "ButtonLightRed" rgb 0.6921 0.0000 0.0000  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
 MATERIAL "DefaultWhite.003" rgb 1.0000 1.0000 1.0000  amb 1.0000 1.0000 1.0000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
 MATERIAL "Metal" rgb 0.2419 0.2419 0.2419  amb 0.5000 0.5000 0.5000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
-MATERIAL "ButtonLightAmber.Glareshield" rgb 0.4480 0.1408 0.0043  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
-MATERIAL "ButtonLightGreen.Glareshield" rgb 0.0000 0.4480 0.0581  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.0935 0.0935 0.0935  shi 50 trans 0.0000
-MATERIAL "ButtonLightRed.Glareshield" rgb 0.4480 0.0000 0.0000  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
-MATERIAL "ButtonLightGreen" rgb 0.0000 0.2140 0.0304  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.0935 0.0935 0.0935  shi 50 trans 0.0000
+MATERIAL "ButtonLightAmber.Glareshield" rgb 0.6921 0.2134 0.0055  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
+MATERIAL "ButtonLightGreen.Glareshield" rgb 0.0000 0.6921 0.0861  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.0935 0.0935 0.0935  shi 50 trans 0.0000
+MATERIAL "ButtonLightRed.Glareshield" rgb 0.6921 0.0000 0.0000  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
+MATERIAL "ButtonLightGreen" rgb 0.0000 0.6921 0.0861  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.0935 0.0935 0.0935  shi 50 trans 0.0000
 MATERIAL "Material.001" rgb 0.8000 0.8000 0.8000  amb 0.5000 0.5000 0.5000  emis 0.0000 0.0000 0.0000  spec 0.3200 0.3200 0.3200  shi 50 trans 0.3547
-MATERIAL "ButtonLightWhite" rgb 0.2140 0.2140 0.2140  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
-MATERIAL "ButtonLightAmber" rgb 0.2140 0.0702 0.0030  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
+MATERIAL "ButtonLightWhite" rgb 0.5225 0.5225 0.5225  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
+MATERIAL "ButtonLightAmber" rgb 0.6921 0.2134 0.0055  amb 0.1000 0.1000 0.1000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
 MATERIAL "DefaultWhite.021" rgb 1.0000 1.0000 1.0000  amb 1.0000 1.0000 1.0000  emis 0.0000 0.0000 0.0000  spec 0.3200 0.3200 0.3200  shi 50 trans 0.0000
 MATERIAL "DarkMetal" rgb 0.1669 0.1669 0.1669  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
 OBJECT world
-name "Blender_export__CRJ700-flightdeck-add-emerflap.ac"
+name "Blender_export__CRJ700-flightdeck.ac"
 kids 130
 OBJECT poly
 name "AftCargoCover"

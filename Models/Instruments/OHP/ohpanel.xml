@@ -67,53 +67,53 @@
 	    <repeatable type="bool">false</repeatable>
 	    <binding>
 		<command>property-toggle</command>
-		<property>controls/electric/external-power</property>
+		<property>controls/electric/dc-service-switch</property>
 	    </binding>
 	</action>
     </animation>
     <animation>
-	<type>rotate</type>
-	<object-name>DCSwitch</object-name>
-	<property>controls/electric/external-power</property>
-	<factor alias="../../switch-rotate-deg" />
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>0</x-m>
-	    <y-m>0</y-m>
-	    <z-m>0.139</z-m>
-	</center>
+		<type>rotate</type>
+		<object-name>DCSwitch</object-name>
+		<property>controls/electric/dc-service-switch</property>
+		<factor alias="../../switch-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0.139</z-m>
+		</center>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>BatterySwitch</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>pick</type>
+		<object-name>BatterySwitch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-toggle</command>
+			<property>controls/electric/battery-switch</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>BatterySwitch</object-name>
 		<property>controls/electric/battery-switch</property>
-	    </binding>
-	</action>
-    </animation>
-    <animation>
-	<type>rotate</type>
-	<object-name>BatterySwitch</object-name>
-	<property>controls/electric/battery-switch</property>
-	<factor alias="../../switch-rotate-deg" />
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>0.002</x-m>
-	    <y-m>-0.183</y-m>
-	    <z-m>0.136</z-m>
-	</center>
+		<factor alias="../../switch-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0.002</x-m>
+			<y-m>-0.183</y-m>
+			<z-m>0.136</z-m>
+		</center>
     </animation>
 	<!-- AC switch -->
     <animation>
@@ -126,7 +126,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electric/ac-in-use</property>
+				<property>controls/electric/ac-service-in-use</property>
 			</binding>
 		</action>
     </animation>
@@ -135,7 +135,7 @@
 		<object-name>ACBtn</object-name>
 		<object-name>ACAvailLight</object-name>
 		<object-name>ACInUseLight</object-name>
-		<property>controls/electric/ac-in-use</property>
+		<property>controls/electric/ac-service-in-use</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -149,7 +149,10 @@
 		<condition>
 			<or>
 				<property>controls/lighting/lt-test</property>
-				<property>controls/electric/ac-avail</property>
+				<and>
+					<property>controls/electric/ac-service-avail</property>
+					<not><property>controls/electric/ac-service-in-use</property></not>
+				</and>
 			</or>
 		</condition>
 		<emission>	
@@ -166,8 +169,8 @@
 			<or>
 				<property>controls/lighting/lt-test</property>
 				<and>
-					<property>controls/electric/ac-avail</property>
-					<property>controls/electric/ac-in-use</property>
+					<property>controls/electric/ac-service-avail</property>
+					<property>controls/electric/ac-service-in-use</property>
 				</and>
 			</or>
 		</condition>
@@ -441,7 +444,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electric/auto-xfer1-off</property>
+				<property>controls/electric/auto-xfer1</property>
 			</binding>
 		</action>
     </animation>
@@ -450,7 +453,7 @@
 		<object-name>IDG1TransferBtn</object-name>
 		<object-name>IDG1TransferOff</object-name>
 		<object-name>IDG1TransferFail</object-name>
-		<property>controls/electric/auto-xfer1-off</property>
+		<condition><not><property>controls/electric/auto-xfer1</property></not></condition>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -469,7 +472,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/electric/auto-xfer1-off</property>
+					<not><property>controls/electric/auto-xfer1</property></not>
 				</or>
 			</and>
 		</condition>
@@ -491,7 +494,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<!-- FIXME -->
 				</or>
 			</and>
 		</condition>
@@ -513,7 +516,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electric/auto-xfer2-off</property>
+				<property>controls/electric/auto-xfer2</property>
 			</binding>
 		</action>
     </animation>
@@ -522,7 +525,7 @@
 		<object-name>IDG2TransferBtn</object-name>
 		<object-name>IDG2TransferOff</object-name>
 		<object-name>IDG2TransferFail</object-name>
-		<property>controls/electric/auto-xfer2-off</property>
+		<condition><not><property>controls/electric/auto-xfer2</property></not></condition>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -541,7 +544,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/electric/auto-xfer2-off</property>
+					<not><property>controls/electric/auto-xfer2</property></not>
 				</or>
 			</and>
 		</condition>

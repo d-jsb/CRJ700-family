@@ -184,6 +184,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>Panel light test</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>controls/lighting/lt-test</property>
+						</binding>
+					</item>
+					<item>
 						<label>Failures</label>
 						<binding>
 							<command>nasal</command>
@@ -331,16 +338,17 @@
 			</engine>
 		</engines>
 		<electric>
+			<dc-service-switch type="bool">false</dc-service-switch>
 			<battery-switch type="bool">true</battery-switch>
-			<ac-avail type="bool">true</ac-avail>
-			<ac-in-use type="bool">false</ac-in-use>
+			<ac-service-avail type="bool">true</ac-service-avail>
+			<ac-service-in-use type="bool">false</ac-service-in-use>
+			<auto-xfer1 type="bool">true</auto-xfer1>
+			<auto-xfer2 type="bool">true</auto-xfer2>
+			<ac-ess-xfer type="bool">false</ac-ess-xfer>
 			<idg1-cover type="bool">false</idg1-cover>
 			<idg2-cover type="bool">false</idg2-cover>
 			<idg1-disc type="bool">false</idg1-disc>
 			<idg2-disc type="bool">false</idg2-disc>
-			<ac-ess-xfer type="bool">false</ac-ess-xfer>
-			<auto-xfer1-off type="bool">false</auto-xfer1-off>
-			<auto-xfer2-off type="bool">false</auto-xfer2-off>
 		</electric>
 		<flight>
 			<ground-lift-dump type="int">1</ground-lift-dump>

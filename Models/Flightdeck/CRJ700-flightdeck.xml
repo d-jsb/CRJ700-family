@@ -865,6 +865,30 @@
     </animation>
     <animation>
 		<type>material</type>
+		<object-name>StallLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>sim/alarms/stall-warning</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+	
+	<!-- GPWS -->
+    <animation>
+		<type>material</type>
 		<object-name>GPWS1Lt</object-name>
 		<condition>
 			<and>

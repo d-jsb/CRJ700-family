@@ -132,7 +132,7 @@ var pilot_send_S_properties =
 	"controls/lighting/landing-lights[1]",
 	"controls/lighting/landing-lights[2]",
 	"controls/lighting/taxi-lights",
-	"controls/electric/external-power",
+	"controls/electric/dc-service-switch",
 	"controls/electric/battery-switch",
 	"controls/electric/engine[0]/generator",
 	"controls/electric/APU-generator",
