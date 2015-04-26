@@ -57,6 +57,10 @@
 			</signals>
 			<!-- APU -->
 			<signal>
+				<type>bool</type>
+				<property>controls/APU/electronic-control-unit</property>
+			</signal>
+			<signal>
 				<type>float</type>
 				<property>engines/apu/egt-degc</property>
 			</signal>
