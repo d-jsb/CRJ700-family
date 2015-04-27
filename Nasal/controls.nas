@@ -273,3 +273,45 @@ var incThrustModes = func(v)
         }
     }
 };
+
+#-- slats/flaps handling -- 
+# wrap default handler: 
+# flaps cmd > 0.022 (= 1 deg) will be postponed until slats are fully extended
+# flaps cmd = 0 will retract flaps and only after this retract slats to 0
+
+var _flapsDown = controls.flapsDown;
+
+controls.flapsDown = func(step) {
+	_flapsDown(step);
+    var  curr = getprop("sim/flaps/current-setting");
+	print("Flaps (" ~ step ~") "~ curr);
+	if (curr == 1) {
+		setprop("controls/flight/slats-cmd", 1);		#0->1 extend; otherwise no op
+	}
+	if (getprop("surface-positions/slat-pos-norm") == 1.0) {
+		setprop("controls/flight/flaps-cmd", getprop("controls/flight/flaps"));
+	}
+	if (getprop("surface-positions/flap-pos-norm") <= 0.022) {
+		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);
+	}
+
+};
+
+# monitor slats; trigger flaps handler when slats are fully extended
+setlistener("surface-positions/slat-pos-norm", func (n) {
+	var pos = n.getValue();
+	if (pos == 1.0) {
+		print("slats " ~ pos);
+		flapsDown(0);
+	}	
+}, 0, 0);			
+
+# monitor flaps; trigger flaps handler to retract slats
+setlistener("surface-positions/flap-pos-norm", func (n) {
+	var pos = n.getValue();
+	
+	if (pos <= 0.022) {
+		print("flaps " ~ pos);
+		flapsDown(0);
+	}	
+}, 0, 0);			

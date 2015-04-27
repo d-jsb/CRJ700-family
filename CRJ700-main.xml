@@ -352,6 +352,8 @@
 		</electric>
 		<flight>
 			<ground-lift-dump type="int">1</ground-lift-dump>
+			<flaps-cmd>0</flaps-cmd>
+			<slats-cmd type="bool">0</slats-cmd>
 		</flight>
 		<fuel>
 			<xflow-left type="bool">0</xflow-left>

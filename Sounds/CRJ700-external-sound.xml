@@ -240,8 +240,25 @@
 	    <name>Flaps in transit</name>
 	    <path>Aircraft/CRJ700-family/Sounds/flaps.wav</path>
 	    <mode>in-transit</mode>
-	    <property>surface-positions/flap-pos-norm</property>
+		<property>surface-positions/flap-pos-norm</property>
 	</flaps>
+	<flapsStop>
+	    <name>Flaps stopping</name>
+	    <path>Aircraft/CRJ700-family/Sounds/flaps-stop.wav</path>
+	    <mode>once</mode>
+		<property>controls/flight/flap-stop-snd</property>
+	</flapsStop>
+	<slats>
+	    <name>Slats in transit</name>
+	    <path>Aircraft/CRJ700-family/Sounds/slats.wav</path>
+	    <mode>in-transit</mode>		
+		<property>surface-positions/slat-pos-norm</property>
+	    <position>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+	    </position>
+	</slats>
 	
 	<!-- Speedbrakes/spoilers -->
 	<speedbrake>
