@@ -278,23 +278,36 @@ var incThrustModes = func(v)
 # wrap default handler: 
 # flaps cmd > 0.022 (= 1 deg) will be postponed until slats are fully extended
 # flaps cmd = 0 will retract flaps and only after this retract slats to 0
+# flap-stop1.wav 1.326s ~3.567deg (norm: 0.079273)
+# time for 0-45: 16.72s -> 1deg = 0.3717111s
 
+#var stoptime = 0.0793;
+var stoptime = 0.1;
+var step1_norm = 0.022;
 var _flapsDown = controls.flapsDown;
 
 controls.flapsDown = func(step) {
 	_flapsDown(step);
-    var  curr = getprop("sim/flaps/current-setting");
-	print("Flaps (" ~ step ~") "~ curr);
+    var curr = getprop("sim/flaps/current-setting");
+	var f_pos = getprop("surface-positions/flap-pos-norm");
+	setprop("controls/flight/flaps-stop-snd",0);
 	if (curr == 1) {
 		setprop("controls/flight/slats-cmd", 1);		#0->1 extend; otherwise no op
 	}
+	#if slats are extended move flaps
 	if (getprop("surface-positions/slat-pos-norm") == 1.0) {
-		setprop("controls/flight/flaps-cmd", getprop("controls/flight/flaps"));
+		var f_cmd = getprop("controls/flight/flaps");
+		setprop("controls/flight/flaps-cmd", f_cmd);
+
+		# 1deg move is to short for sound so skip it
+		var diff = f_pos - f_cmd;
+		if (diff < 0) diff = -diff;
+		if (diff > step1_norm)	
+			setprop("controls/flight/flaps-start-snd",1);
 	}
-	if (getprop("surface-positions/flap-pos-norm") <= 0.022) {
+	if (f_pos <= step1_norm) {
 		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);
 	}
-
 };
 
 # monitor slats; trigger flaps handler when slats are fully extended
@@ -302,16 +315,27 @@ setlistener("surface-positions/slat-pos-norm", func (n) {
 	var pos = n.getValue();
 	if (pos == 1.0) {
 		print("slats " ~ pos);
-		flapsDown(0);
+		settimer(func { flapsDown(0); }, 1);
 	}	
 }, 0, 0);			
 
 # monitor flaps; trigger flaps handler to retract slats
 setlistener("surface-positions/flap-pos-norm", func (n) {
 	var pos = n.getValue();
-	
-	if (pos <= 0.022) {
+	var target = getprop("controls/flight/flaps");
+	var diff = target - pos;
+	if (diff < 0) diff = -diff;
+	if (diff < stoptime) {
+		setprop("controls/flight/flaps-start-snd",0);
+		if (diff > step1_norm){
+			setprop("controls/flight/flaps-stop-snd",1);
+		}
+	}
+	else {
+		setprop("controls/flight/flaps-stop-snd",0);
+	}
+	if (pos <= step1_norm) {
 		print("flaps " ~ pos);
-		flapsDown(0);
+		settimer(func { flapsDown(0); }, 1);
 	}	
 }, 0, 0);			

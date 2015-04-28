@@ -353,6 +353,8 @@
 		<flight>
 			<ground-lift-dump type="int">1</ground-lift-dump>
 			<flaps-cmd>0</flaps-cmd>
+			<flaps-start-snd type="bool">false</flaps-start-snd>
+			<flaps-stop-snd type="bool">false</flaps-stop-snd>
 			<slats-cmd type="bool">0</slats-cmd>
 		</flight>
 		<fuel>
@@ -845,6 +847,10 @@
 	<surface-positions>
 		<left-wiper-pos-norm type="float">0</left-wiper-pos-norm>
 		<right-wiper-pos-norm type="float">0</right-wiper-pos-norm>
+		<flap-pos-norm>0</flap-pos-norm>
+		<slat-pos-norm>0</slat-pos-norm>
+		<left-speedbrake-pos-norm>0</left-speedbrake-pos-norm>
+		<right-speedbrake-pos-norm>0</right-speedbrake-pos-norm>
 	</surface-positions>
 
 	<systems>
