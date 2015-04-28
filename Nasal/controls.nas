@@ -290,23 +290,24 @@ controls.flapsDown = func(step) {
 	_flapsDown(step);
     var curr = getprop("sim/flaps/current-setting");
 	var f_pos = getprop("surface-positions/flap-pos-norm");
-	setprop("controls/flight/flaps-stop-snd",0);
-	if (curr == 1) {
-		setprop("controls/flight/slats-cmd", 1);		#0->1 extend; otherwise no op
+	var s_pos = getprop("surface-positions/slat-pos-norm");
+	print("Flaps CMD: "~curr~" f:"~f_pos~" s:"~s_pos);
+
+	if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
+	# command slats if flaps are retracted (and slats are not moving; <- reality check needed)
+	#if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
+	if (f_pos <= step1_norm) {
+		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
 	}
-	#if slats are extended move flaps
-	if (getprop("surface-positions/slat-pos-norm") == 1.0) {
+	#command flaps if slats are extended 
+	if (s_pos == 1.0) {
 		var f_cmd = getprop("controls/flight/flaps");
 		setprop("controls/flight/flaps-cmd", f_cmd);
-
-		# 1deg move is to short for sound so skip it
+		# flap sound; 1deg move is to short so skip it
 		var diff = f_pos - f_cmd;
 		if (diff < 0) diff = -diff;
 		if (diff > step1_norm)	
 			setprop("controls/flight/flaps-start-snd",1);
-	}
-	if (f_pos <= step1_norm) {
-		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);
 	}
 };
 
@@ -314,8 +315,12 @@ controls.flapsDown = func(step) {
 setlistener("surface-positions/slat-pos-norm", func (n) {
 	var pos = n.getValue();
 	if (pos == 1.0) {
-		print("slats " ~ pos);
+		#print("slats " ~ pos);
 		settimer(func { flapsDown(0); }, 1);
+	}	
+	if (pos == 0) {
+		#print("slats " ~ pos);
+		flapsDown(0);
 	}	
 }, 0, 0);			
 
@@ -323,6 +328,7 @@ setlistener("surface-positions/slat-pos-norm", func (n) {
 setlistener("surface-positions/flap-pos-norm", func (n) {
 	var pos = n.getValue();
 	var target = getprop("controls/flight/flaps");
+	# calculate when to switch flaps sound
 	var diff = target - pos;
 	if (diff < 0) diff = -diff;
 	if (diff < stoptime) {
@@ -331,11 +337,8 @@ setlistener("surface-positions/flap-pos-norm", func (n) {
 			setprop("controls/flight/flaps-stop-snd",1);
 		}
 	}
-	else {
-		setprop("controls/flight/flaps-stop-snd",0);
-	}
+	# call cmd handler to check slats
 	if (pos <= step1_norm) {
-		print("flaps " ~ pos);
-		settimer(func { flapsDown(0); }, 1);
+		flapsDown(0);
 	}	
 }, 0, 0);			
