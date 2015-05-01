@@ -339,6 +339,6 @@ setlistener("surface-positions/flap-pos-norm", func (n) {
 	}
 	# call cmd handler to check slats
 	if (pos <= step1_norm) {
-		flapsDown(0);
+		settimer(func { flapsDown(0); }, 1);
 	}	
 }, 0, 0);			

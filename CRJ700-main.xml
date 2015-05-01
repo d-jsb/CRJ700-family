@@ -355,7 +355,7 @@
 			<flaps-cmd>0</flaps-cmd>
 			<flaps-start-snd type="bool">false</flaps-start-snd>
 			<flaps-stop-snd type="bool">false</flaps-stop-snd>
-			<slats-cmd type="bool">0</slats-cmd>
+			<slats-cmd>0</slats-cmd>
 		</flight>
 		<fuel>
 			<xflow-left type="bool">0</xflow-left>

@@ -43,6 +43,168 @@
 		</white>
 	</colors>
 
+	<animation>
+		<name>Page1Text</name>
+		<object-name>Page 1 message 1</object-name>
+		<object-name>Page 1 message 2</object-name>
+		<object-name>Page 1 message 3</object-name>
+		<object-name>Page 1 message 4</object-name>
+		<object-name>Page 1 message 5</object-name>
+		<object-name>Page 1 message 6</object-name>
+		<object-name>Page 1 message 7</object-name>
+		<object-name>Page 1 message 8</object-name>
+		<object-name>Page 1 message 9</object-name>
+		<object-name>Page 1 message 10</object-name>
+		<object-name>Page 1 message 11</object-name>
+		<object-name>Page 1 message 12</object-name>
+		<object-name>N1</object-name>
+		<object-name>N1 TO/GA</object-name>
+		<object-name>N1 CLB</object-name>
+		<object-name>N11 APR</object-name>
+		<object-name>N12 APR</object-name>
+		<object-name>N11 REV</object-name>
+		<object-name>N12 REV</object-name>
+		<object-name>N11 text</object-name>
+		<object-name>N12 text</object-name>
+		<object-name>ITT</object-name>
+		<object-name>ITT1 text</object-name>
+		<object-name>ITT2 text</object-name>
+		<object-name>N2</object-name>
+		<object-name>N21 text</object-name>
+		<object-name>N22 text</object-name>
+		<object-name>FF1</object-name>
+		<object-name>FF2</object-name>
+		<object-name>Oil temp 1</object-name>
+		<object-name>Oil temp 2</object-name>
+		<object-name>Oil temp2</object-name>
+		<object-name>Oil pressure 1</object-name>
+		<object-name>Oil pressure 2</object-name>
+		<object-name>FF</object-name>
+		<object-name>Oil temp</object-name>
+		<object-name>Oil pressure</object-name>
+		<object-name>Gear</object-name>
+		<object-name>Flap/slat indicator</object-name>
+		<object-name>Fuel</object-name>
+		<object-name>Left tank fuel</object-name>
+		<object-name>Center tank fuel</object-name>
+		<object-name>Right tank fuel</object-name>
+		<object-name>Total fuel</object-name>
+		<object-name>Total fuel 2</object-name>
+	</animation>
+	<animation>
+		<name>Page1Obj</name>
+		<object-name>Flaps45</object-name>
+		<object-name>GearLInd</object-name>
+		<object-name>GearNInd</object-name>
+		<object-name>GearRInd</object-name>
+		<object-name>ITT1</object-name>
+		<object-name>ITT2</object-name>
+		<object-name>N11</object-name>
+		<object-name>N12</object-name>
+		<object-name>N21</object-name>
+		<object-name>N22</object-name>
+		<object-name>OilPress1</object-name>
+		<object-name>OilPress2</object-name>
+		<object-name>Slats5</object-name>
+		<object-name>Slats10</object-name>
+		<object-name>Slats15</object-name>
+		<object-name>Slats20</object-name>
+		<object-name>Slats25</object-name>
+		<object-name>Symbols1</object-name>	
+	</animation>
+	<animation>
+		<name>Page2Text</name>
+		<object-name>Page 2 message 1</object-name>
+		<object-name>Page 2 message 2</object-name>
+		<object-name>Page 2 message 3</object-name>
+		<object-name>Page 2 message 4</object-name>
+		<object-name>Page 2 message 5</object-name>
+		<object-name>Page 2 message 6</object-name>
+		<object-name>Page 2 message 7</object-name>
+		<object-name>Page 2 message 8</object-name>
+		<object-name>Page 2 message 9</object-name>
+		<object-name>Page 2 message 10</object-name>
+		<object-name>Page 2 message 11</object-name>
+		<object-name>Page 2 message 12</object-name>
+		<object-name>Page 2 message 13</object-name>
+		<object-name>Flight number</object-name>
+		<object-name>Aileron trim</object-name>
+		<object-name>Trim</object-name>
+		<object-name>Aileron trim left</object-name>
+		<object-name>Aileron trim right</object-name>
+		<object-name>Stabilizer trim</object-name>
+		<object-name>Stabilizer trim nose up</object-name>
+		<object-name>Stabilizer trim value</object-name>
+		<object-name>Stabilizer trim nose down</object-name>
+		<object-name>Rudder trim nose left</object-name>
+		<object-name>Rudder trim</object-name>
+		<object-name>Rudder trim nose right</object-name>
+		<object-name>APU</object-name>
+		<object-name>APU RPM</object-name>
+		<object-name>APU EGT</object-name>
+		<object-name>APU RPM text</object-name>
+		<object-name>APU EGT text</object-name>
+		<object-name>Parking brake</object-name>
+		<object-name>APU starting</object-name>
+		<object-name>APU running</object-name>
+		<object-name>Engine 1 shut down</object-name>
+		<object-name>Engine 2 shut down</object-name>
+		<object-name>Ram air turbine deployed</object-name>
+		<object-name>Engine 1 extinguisher</object-name>
+		<object-name>Engine 2 extinguisher</object-name>
+		<object-name>APU extinguisher</object-name>
+	</animation>
+	<animation>
+		<name>Page2Obj</name>
+		<object-name>APUEGT</object-name>
+		<object-name>APURPM</object-name>
+		<object-name>APUReadings</object-name>
+		<object-name>AileronTrim</object-name>
+		<object-name>ElevatorTrim</object-name>
+		<object-name>RudderTrim</object-name>
+		<object-name>Symbols2</object-name>	
+	</animation>
+	<animation>
+		<name>Page3Text</name>
+		<object-name>Page 3 title</object-name>
+		<object-name>Service configuration</object-name>
+		<object-name>Service bus</object-name>
+		<object-name>Bus 1</object-name>
+		<object-name>Bus 2</object-name>
+		<object-name>ESS bus</object-name>
+		<object-name>Generator 1</object-name>
+		<object-name>APU generator</object-name>
+		<object-name>Generator 2</object-name>
+		<object-name>External power</object-name>
+		<object-name>Generator 1 amperage</object-name>
+		<object-name>APU generator amperage</object-name>
+		<object-name>Generator 2 amperage</object-name>
+		<object-name>External power amperage</object-name>
+	</animation>
+	<animation>
+		<name>Page3Obj</name>
+		<object-name>ElecAPUGen</object-name>
+		<object-name>ElecBus1</object-name>
+		<object-name>ElecBus2</object-name>
+		<object-name>ElecExtAC</object-name>
+		<object-name>ElecGen1</object-name>
+		<object-name>ElecGen2</object-name>
+		<object-name>ElecSeg1</object-name>
+		<object-name>ElecSeg2</object-name>
+		<object-name>ElecSeg3</object-name>
+		<object-name>ElecSeg4</object-name>
+		<object-name>ElecSeg5</object-name>
+		<object-name>ElecServBus</object-name>
+		<object-name>Symbols3</object-name>	
+	</animation>
+
+	<animation>
+		<name>LCD</name>
+		<object-name>Page1Obj</object-name>
+		<object-name>Page2Obj</object-name>
+		<object-name>Page3Obj</object-name>
+		<object-name>Screen</object-name>
+	</animation>
 	<!-- Visible only within 1/2 km -->
 	<animation>
 		<type>range</type>
@@ -680,27 +842,7 @@
 			</or>
 		</condition>
 	</animation>
-	<text>
-		<name>Flap/slat indicator</name>
-		<type>number-value</type>
-		<property>controls/flight/flaps</property>
-		<scale>45</scale>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>SLATS / FLAPS %-2.f</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.03787</y-m>
-			<z-m>-0.04147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+
 	<text>
 		<name>Fuel</name>
 		<type>literal</type>
@@ -2782,113 +2924,6 @@ APU</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
-	<animation>
-		<name>Page1Text</name>
-		<object-name>Page 1 message 1</object-name>
-		<object-name>Page 1 message 2</object-name>
-		<object-name>Page 1 message 3</object-name>
-		<object-name>Page 1 message 4</object-name>
-		<object-name>Page 1 message 5</object-name>
-		<object-name>Page 1 message 6</object-name>
-		<object-name>Page 1 message 7</object-name>
-		<object-name>Page 1 message 8</object-name>
-		<object-name>Page 1 message 9</object-name>
-		<object-name>Page 1 message 10</object-name>
-		<object-name>Page 1 message 11</object-name>
-		<object-name>Page 1 message 12</object-name>
-		<object-name>N1</object-name>
-		<object-name>N1 TO/GA</object-name>
-		<object-name>N1 CLB</object-name>
-		<object-name>N11 APR</object-name>
-		<object-name>N12 APR</object-name>
-		<object-name>N11 REV</object-name>
-		<object-name>N12 REV</object-name>
-		<object-name>N11 text</object-name>
-		<object-name>N12 text</object-name>
-		<object-name>ITT</object-name>
-		<object-name>ITT1 text</object-name>
-		<object-name>ITT2 text</object-name>
-		<object-name>N2</object-name>
-		<object-name>N21 text</object-name>
-		<object-name>N22 text</object-name>
-		<object-name>FF1</object-name>
-		<object-name>FF2</object-name>
-		<object-name>Oil temp 1</object-name>
-		<object-name>Oil temp 2</object-name>
-		<object-name>Oil temp2</object-name>
-		<object-name>Oil pressure 1</object-name>
-		<object-name>Oil pressure 2</object-name>
-		<object-name>FF</object-name>
-		<object-name>Oil temp</object-name>
-		<object-name>Oil pressure</object-name>
-		<object-name>Gear</object-name>
-		<object-name>Flap/slat indicator</object-name>
-		<object-name>Fuel</object-name>
-		<object-name>Left tank fuel</object-name>
-		<object-name>Center tank fuel</object-name>
-		<object-name>Right tank fuel</object-name>
-		<object-name>Total fuel</object-name>
-		<object-name>Total fuel 2</object-name>
-	</animation>
-	<animation>
-		<name>Page2Text</name>
-		<object-name>Page 2 message 1</object-name>
-		<object-name>Page 2 message 2</object-name>
-		<object-name>Page 2 message 3</object-name>
-		<object-name>Page 2 message 4</object-name>
-		<object-name>Page 2 message 5</object-name>
-		<object-name>Page 2 message 6</object-name>
-		<object-name>Page 2 message 7</object-name>
-		<object-name>Page 2 message 8</object-name>
-		<object-name>Page 2 message 9</object-name>
-		<object-name>Page 2 message 10</object-name>
-		<object-name>Page 2 message 11</object-name>
-		<object-name>Page 2 message 12</object-name>
-		<object-name>Page 2 message 13</object-name>
-		<object-name>Flight number</object-name>
-		<object-name>Aileron trim</object-name>
-		<object-name>Trim</object-name>
-		<object-name>Aileron trim left</object-name>
-		<object-name>Aileron trim right</object-name>
-		<object-name>Stabilizer trim</object-name>
-		<object-name>Stabilizer trim nose up</object-name>
-		<object-name>Stabilizer trim value</object-name>
-		<object-name>Stabilizer trim nose down</object-name>
-		<object-name>Rudder trim nose left</object-name>
-		<object-name>Rudder trim</object-name>
-		<object-name>Rudder trim nose right</object-name>
-		<object-name>APU</object-name>
-		<object-name>APU RPM</object-name>
-		<object-name>APU EGT</object-name>
-		<object-name>APU RPM text</object-name>
-		<object-name>APU EGT text</object-name>
-		<object-name>Parking brake</object-name>
-		<object-name>APU starting</object-name>
-		<object-name>APU running</object-name>
-		<object-name>Engine 1 shut down</object-name>
-		<object-name>Engine 2 shut down</object-name>
-		<object-name>Ram air turbine deployed</object-name>
-		<object-name>Engine 1 extinguisher</object-name>
-		<object-name>Engine 2 extinguisher</object-name>
-		<object-name>APU extinguisher</object-name>
-	</animation>
-	<animation>
-		<name>Page3Text</name>
-		<object-name>Page 3 title</object-name>
-		<object-name>Service configuration</object-name>
-		<object-name>Service bus</object-name>
-		<object-name>Bus 1</object-name>
-		<object-name>Bus 2</object-name>
-		<object-name>ESS bus</object-name>
-		<object-name>Generator 1</object-name>
-		<object-name>APU generator</object-name>
-		<object-name>Generator 2</object-name>
-		<object-name>External power</object-name>
-		<object-name>Generator 1 amperage</object-name>
-		<object-name>APU generator amperage</object-name>
-		<object-name>Generator 2 amperage</object-name>
-		<object-name>External power amperage</object-name>
-	</animation>
 
 	<animation>
 		<type>select</type>
@@ -2903,7 +2938,7 @@ APU</text>
 
 	<animation>
 		<type>select</type>
-		<object-name>Page1</object-name>
+		<object-name>Page1Obj</object-name>
 		<object-name>Page1Text</object-name>
 		<condition>
 			<equals>
@@ -2913,8 +2948,8 @@ APU</text>
 		</condition>
 	</animation>
 	<animation>
-		<type>select</type>
-		<object-name>Page2</object-name>
+		<type>select</type>		
+		<object-name>Page2Obj</object-name>
 		<object-name>Page2Text</object-name>
 		<condition>
 			<equals>
@@ -2925,7 +2960,7 @@ APU</text>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Page3</object-name>
+		<object-name>Page3Obj</object-name>
 		<object-name>Page3Text</object-name>
 		<condition>
 			<equals>
@@ -3192,55 +3227,101 @@ APU</text>
 		</condition>
 	</animation>
 
+	<text>
+		<name>Flap/slat indicator</name>
+		<type>number-value</type>
+		<!--property>controls/flight/flaps</property-->
+		<property>surface-positions/flap-pos-norm</property>
+		<scale>45</scale>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>SLATS / FLAPS %-2.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.03787</y-m>
+			<z-m>-0.04147</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- slats -->
 	<animation>
 		<type>select</type>
-		<object-name>Flaps1</object-name>
+		<object-name>Slats5</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>surface-positions/flap-pos-norm</property>
-				<value>0.022</value>
+				<property>surface-positions/slat-pos-norm</property>
+				<value>0.20</value>
 			</greater-than-equals>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Flaps8</object-name>
+		<object-name>Slats10</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>surface-positions/flap-pos-norm</property>
-				<value>0.177</value>
+				<property>surface-positions/slat-pos-norm</property>
+				<value>0.40</value>
 			</greater-than-equals>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Flaps20</object-name>
+		<object-name>Slats15</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>surface-positions/flap-pos-norm</property>
-				<value>0.444</value>
+				<property>surface-positions/slat-pos-norm</property>
+				<value>0.60</value>
 			</greater-than-equals>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Flaps30</object-name>
+		<object-name>Slats20</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>surface-positions/flap-pos-norm</property>
-				<value>0.666</value>
+				<property>surface-positions/slat-pos-norm</property>
+				<value>0.80</value>
 			</greater-than-equals>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Flaps45</object-name>
+		<object-name>Slats25</object-name>
 		<condition>
-			<equals>
-				<property>surface-positions/flap-pos-norm</property>
+			<greater-than-equals>
+				<property>surface-positions/slat-pos-norm</property>
 				<value>1</value>
-			</equals>
+			</greater-than-equals>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>Flaps45</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>-0.02571</factor>
+		<offset-m>0.02571</offset-m>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>scale</type>
+		<object-name>Flaps45</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<y-factor>1</y-factor>
+		<x-min>1</x-min>
+		<x-max>1</x-max>
+		<z-min>1</z-min>
+		<z-max>1</z-max>
 	</animation>
 
 	<animation>
