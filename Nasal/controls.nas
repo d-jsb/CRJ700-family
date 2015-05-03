@@ -300,7 +300,7 @@ controls.flapsDown = func(step) {
 		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
 	}
 	#command flaps if slats are extended 
-	if (s_pos == 1.0) {
+	if (s_pos == 1.0 or f_pos <= step1_norm) {
 		var f_cmd = getprop("controls/flight/flaps");
 		setprop("controls/flight/flaps-cmd", f_cmd);
 		# flap sound; 1deg move is to short so skip it
