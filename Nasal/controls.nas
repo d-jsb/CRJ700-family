@@ -294,13 +294,13 @@ controls.flapsDown = func(step) {
 	print("Flaps CMD: "~curr~" f:"~f_pos~" s:"~s_pos);
 
 	if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
-	# command slats if flaps are retracted (and slats are not moving; <- reality check needed)
+	# command slats if flaps are retracted (1deg counts as retracted to have EICAS show "1" while extending flaps) (and slats are not moving; <- reality check needed)
 	#if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
 	if (f_pos <= step1_norm) {
 		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
 	}
 	#command flaps if slats are extended 
-	if (s_pos == 1.0 or f_pos <= step1_norm) {
+	if (s_pos == 1.0) {
 		var f_cmd = getprop("controls/flight/flaps");
 		setprop("controls/flight/flaps-cmd", f_cmd);
 		# flap sound; 1deg move is to short so skip it
