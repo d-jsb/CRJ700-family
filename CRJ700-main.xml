@@ -39,6 +39,23 @@
 				<cabin-lightmap type="float">0.0</cabin-lightmap>
 			</lights>
 			<yokes type="bool">true</yokes>
+			<door-positions>
+				<avionic>
+					<position-norm type="float">0</position-norm>
+				</avionic>
+				<emer-l1>
+					<position-norm type="float">0</position-norm>
+				</emer-l1>
+				<emer-l2>
+					<position-norm type="float">0</position-norm>
+				</emer-l2>
+				<emer-r1>
+					<position-norm type="float">0</position-norm>
+				</emer-r1>
+				<emer-r2>
+					<position-norm type="float">0</position-norm>
+				</emer-r2>
+			</door-positions>
 		</model>
 
 		<instrumentation>

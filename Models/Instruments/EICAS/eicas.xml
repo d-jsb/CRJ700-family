@@ -168,8 +168,8 @@
 		<object-name>Symbols2</object-name>	
 	</animation>
 	<animation>
-		<name>Page3Text</name>
-		<object-name>Page 3 title</object-name>
+		<name>PageACText</name>
+		<object-name>PageACTitle</object-name>
 		<object-name>Service configuration</object-name>
 		<object-name>Service bus</object-name>
 		<object-name>Bus 1</object-name>
@@ -185,7 +185,7 @@
 		<object-name>External power amperage</object-name>
 	</animation>
 	<animation>
-		<name>Page3Obj</name>
+		<name>PageACObj</name>
 		<object-name>ElecAPUGen</object-name>
 		<object-name>ElecBus1</object-name>
 		<object-name>ElecBus2</object-name>
@@ -198,14 +198,42 @@
 		<object-name>ElecSeg4</object-name>
 		<object-name>ElecSeg5</object-name>
 		<object-name>ElecServBus</object-name>
-		<object-name>Symbols3</object-name>	
+		<object-name>SymbolsAC</object-name>	
+	</animation>
+	<animation>
+		<name>PageDCObj</name>
+		<object-name>Page DC</object-name>
+	</animation>
+	<animation>
+		<name>PageDCText</name>
+		<object-name>PageDCTitle</object-name>
+	</animation>
+	<animation>
+		<name>PageDoorsObj</name>
+		<object-name>DoorBackground</object-name>
+		<object-name>DoorAftCargo</object-name>
+		<object-name>DoorAvionic</object-name>
+		<object-name>DoorBackground</object-name>
+		<object-name>DoorCTRCargo</object-name>
+		<object-name>DoorEmerL1</object-name>
+		<object-name>DoorEmerL2</object-name>
+		<object-name>DoorEmerR1</object-name>
+		<object-name>DoorEmerR2</object-name>
+		<object-name>DoorFwdCargo</object-name>
+		<object-name>DoorPassenger</object-name>
+		<object-name>DoorService</object-name>		
+	</animation>
+	<animation>
+		<name>PageDoorsText</name>
+		<object-name>PageDoorsTitle</object-name>
 	</animation>
 
 	<animation>
 		<name>LCD</name>
 		<object-name>Page1Obj</object-name>
 		<object-name>Page2Obj</object-name>
-		<object-name>Page3Obj</object-name>
+		<object-name>PageACObj</object-name>
+		<object-name>PageDoorsObj</object-name>
 		<object-name>Screen</object-name>
 	</animation>
 	<!-- Visible only within 1/2 km -->
@@ -1413,7 +1441,7 @@
 	<!-- End page 2 text -->
 	<!-- Begin page 3 text -->
 	<text>
-		<name>Page 3 title</name>
+		<name>PageACTitle</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
@@ -1703,6 +1731,49 @@ APU</text>
 		</font-resolution>
 	</text>
 	<!-- End page 3 text -->
+	<!-- Begin page 4 text -->
+	<text>
+		<name>PageDCTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DC ELECTRICAL</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- End page 4 text -->
+	<!-- Begin page 5 text -->
+	<text>
+		<name>PageDoorsTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DOORS</text>
+		<offsets>
+			<x-m>0.0003</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- End page 5 text -->
+	
 	<!-- Begin page 1 messages -->
 	<text>
 		<name>Page 1 message 1</name>
@@ -2918,6 +2989,7 @@ APU</text>
 		<type>material</type>
 		<object-name>N1 TO/GA</object-name>
 		<object-name>N1 CLB</object-name>
+		<object-name>DOORS</object-name>
 		<ambient>
 			<red alias="../../../colors/blue/red" />
 			<green alias="../../../colors/blue/green" />
@@ -3015,7 +3087,7 @@ APU</text>
 		<object-name>APU running</object-name>
 		<object-name>Engine 1 shut down</object-name>
 		<object-name>Engine 2 shut down</object-name>
-		<object-name>Page 3 title</object-name>
+		<object-name>PageACTitle</object-name>
 		<object-name>Service bus</object-name>
 		<object-name>Bus 1</object-name>
 		<object-name>Bus 2</object-name>
@@ -3077,8 +3149,8 @@ APU</text>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Page3Obj</object-name>
-		<object-name>Page3Text</object-name>
+		<object-name>PageACObj</object-name>
+		<object-name>PageACText</object-name>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
@@ -3086,6 +3158,29 @@ APU</text>
 			</equals>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PageDCObj</object-name>
+		<object-name>PageDCText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>4</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PageDoorsObj</object-name>
+		<object-name>PageDoorsText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>5</value>
+			</equals>
+		</condition>
+	</animation>
+
 	<animation>
 		<type>pick</type>
 		<object-name>LeftControl</object-name>
@@ -3110,7 +3205,7 @@ APU</text>
 				<command>property-adjust</command>
 				<property alias="../../../../params/page" />
 				<step>1</step>
-				<max>3</max>
+				<max>5</max>
 			</binding>
 		</action>
 	</animation>
@@ -3547,7 +3642,7 @@ APU</text>
 			<z-m>-0.05301</z-m>
 		</center>
 	</animation>
-
+	<!-- AC -->
 	<animation>
 		<type>select</type>
 		<object-name>ElecBus1</object-name>
@@ -3748,6 +3843,78 @@ APU</text>
 		</condition>
 	</animation>
 
+	<!-- doors page	-->
+
+	<animation>
+		<type>select</type>
+		<object-name>DoorAftCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorAvionic</object-name>
+		<condition>
+			<property>sim/model/door-positions/avionic/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorCTRCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerL1</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l1/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerL2</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l2/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerR1</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r1/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerR2</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r2/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorFwdCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorPassenger</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-left/position-norm</property>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>DoorService</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-right/position-norm</property>
+		</condition>
+	</animation>	
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
@@ -3781,7 +3948,7 @@ APU</text>
 		<object-name>N22</object-name>
 		<object-name>Symbols1</object-name>
 		<object-name>Symbols2</object-name>
-		<object-name>Symbols3</object-name>
+		<object-name>SymbolsAC</object-name>
 		<object-name>GearLInd</object-name>
 		<object-name>GearNInd</object-name>
 		<object-name>GearRInd</object-name>
