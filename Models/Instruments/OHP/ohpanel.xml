@@ -1568,10 +1568,7 @@
 					<property>controls/lighting/lt-test</property>
 					<and>
 						<property>controls/APU/off-on</property>
-						<greater-than-equals>
-							<property>engines/apu/rpm</property>
-							<value>99</value>
-						</greater-than-equals>
+						<property>engines/apu/running</property>
 					</and>
 				</or>					
 			</and>

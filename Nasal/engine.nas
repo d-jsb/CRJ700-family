@@ -151,9 +151,8 @@ Engine.Apu = func(n)
 	apu.stop = func
 	{
 		read_props();
-## do not check off-on so ecu.off can stop APU 
-#        if (!apu.controls.on)
-#        {
+        if (!apu.controls.on)
+        {
 			print("APU off");
 #			apu.running = 0; # done by rpm listener
 			#-- spin down (20s) --
@@ -170,11 +169,12 @@ Engine.Apu = func(n)
 				interpolate(apu.egt_node, 197,4, outside_temperature, (197 - outside_temperature)/2);
 			}
 			else {
-				cooling_time = math.min((apu.egt - outside_temperature)/2, 0);
+				cooling_time = (apu.egt - outside_temperature)/2;
+				if (cooling_time < 1) cooling_time = 1;
 				print("APU cool down to " ~ outside_temperature ~ " in " ~ cooling_time ~ "s");
 				interpolate(apu.egt_node, outside_temperature, cooling_time);
 			}
-#        }
+        }
 #        write_props();	
 	}
 	
@@ -203,28 +203,23 @@ Engine.Apu = func(n)
 	{
 		if (node.getBoolValue())
 		{
-			# init values
+			# init value
 			apu.egt_node.setValue(getprop("/environment/temperature-degc"));
 		}
 		else
 		{
-			# just in case the pilot did not stop it via the start/stop button
-			apu.stop();
+			# unset start/stop switch, in case the pilot didn't
+			apu.controls.on = 0;
+			apu.controls.on_node.setBoolValue(apu.controls.on);
 		}
 	});
 	
 	setlistener(apu.controls.on_node, func (node)
 	{
         if (node.getBoolValue())
-		{
-			print("APU start ...");
 			apu.start();
-		}
 		else 
-		{
-			print("APU stop ...");
 			apu.stop();
-		}			
 	});
 	
 	setlistener(apu.on_fire_node, func (node) 
@@ -247,35 +242,23 @@ Engine.Apu = func(n)
 	});
 	
 	#-- monitor RPM to set running (available) flag; 
-	#not implemented: avail 2s after rpm reaches 99% 
-	var timer_id = 0;
 	var timer = 0;
 	setlistener(apu.rpm_node, func(node)
 	{
 		rpm = node.getValue();
 		if (rpm < 99)
-		{
 			apu.running_node.setBoolValue(0);
-			
-		}
 		elsif (99 <= rpm and rpm <= 106)
 		{
-			timer_id += 1;
-			var id = timer_id;
 			if (timer == 0)
 			{
 				timer = 1;
 				settimer(func 
 				{
-					print("APU avail 2s timer " ~ id ~ ", " ~ timer_id);
-					if (id == timer_id)
-					{
-						apu.running_node.setBoolValue(1);
-					}
+					apu.running_node.setBoolValue(1);
 					timer=0;
 				}, 2);
 			}
-
 		}
 	});
 	
