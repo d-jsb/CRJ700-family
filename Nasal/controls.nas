@@ -282,8 +282,11 @@ var incThrustModes = func(v)
 # time for 0-45: 16.72s -> 1deg = 0.3717111s
 
 #var stoptime = 0.0793;
+#Calculated time did not match sound to 3D animation on my PC - needs testing on other PCs
 var stoptime = 0.1;
 var step1_norm = 0.022;
+#It is said some models have no slats, so slats can be switched on/off in CRJ*-set.xml files
+var has_slats = getprop("sim/model/has-slats");
 var _flapsDown = controls.flapsDown;
 
 controls.flapsDown = func(step) {
@@ -291,16 +294,16 @@ controls.flapsDown = func(step) {
     var curr = getprop("sim/flaps/current-setting");
 	var f_pos = getprop("surface-positions/flap-pos-norm");
 	var s_pos = getprop("surface-positions/slat-pos-norm");
-	print("Flaps CMD: "~curr~" f:"~f_pos~" s:"~s_pos);
+	#print("Flaps CMD ("~has_slats~"): "~curr~" f:"~f_pos~" s:"~s_pos);
 
 	if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
 	# command slats if flaps are retracted (1deg counts as retracted to have EICAS show "1" while extending flaps) (and slats are not moving; <- reality check needed)
 	#if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
-	if (f_pos <= step1_norm) {
+	if (has_slats and f_pos <= step1_norm) {
 		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
 	}
-	#command flaps if slats are extended 
-	if (s_pos == 1.0) {
+	#command flaps if slats are extended or model has no slats 
+	if (s_pos == 1.0 or !has_slats) {
 		var f_cmd = getprop("controls/flight/flaps");
 		setprop("controls/flight/flaps-cmd", f_cmd);
 		# flap sound; 1deg move is to short so skip it
