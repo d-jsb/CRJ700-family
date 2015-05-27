@@ -13,7 +13,10 @@
 		<gain>1</gain>
 		<enable>
 			<condition>
-				<property>autopilot/internal/autoflight-engaged</property>
+				<and>
+					<property>autopilot/internal/autoflight-engaged</property>
+					<property>systems/hydraulic/outputs/aileron</property>
+				</and>				
 			</condition>
 		</enable>
 		<input>
@@ -49,6 +52,7 @@
 							</expression>
 						</greater-than-equals>
 					</or>
+					<property>systems/hydraulic/outputs/aileron</property>
 				</and>
 			</condition>
 		</enable>
@@ -84,6 +88,7 @@
 							</abs>
 						</expression>
 					</greater-than>
+					<property>systems/hydraulic/outputs/aileron</property>
 				</and>
 			</condition>
 		</enable>
@@ -124,6 +129,7 @@
 							</expression>
 						</greater-than-equals>
 					</or>
+					<property>systems/hydraulic/outputs/rudder</property>
 				</and>
 			</condition>
 		</enable>
@@ -169,6 +175,7 @@
 							</abs>
 						</expression>
 					</greater-than>
+					<property>systems/hydraulic/outputs/rudder</property>
 				</and>
 			</condition>
 		</enable>
@@ -226,6 +233,7 @@
 							</expression>
 						</greater-than-equals>
 					</or>
+					<property>systems/hydraulic/outputs/rudder</property>
 				</and>
 			</condition>
 		</enable>
@@ -268,6 +276,7 @@
 							</abs>
 						</expression>
 					</greater-than>
+					<property>systems/hydraulic/outputs/rudder</property>
 				</and>
 			</condition>
 		</enable>
@@ -285,23 +294,26 @@
 		<gain>1</gain>
 		<enable>
 			<condition>
-				<or>
-					<not>
-						<property>fcs/copilot/active</property>
-					</not>
-					<greater-than-equals>
-						<expression>
-							<abs>
-								<property>controls/flight/elevator</property>
-							</abs>
-						</expression>
-						<expression>
-							<abs>
-								<property>fcs/copilot/elevator-cmd-norm</property>
-							</abs>
-						</expression>
-					</greater-than-equals>
-				</or>
+				<and>
+					<property>systems/hydraulic/outputs/elevator</property>
+					<or>
+						<not>
+							<property>fcs/copilot/active</property>
+						</not>
+						<greater-than-equals>
+							<expression>
+								<abs>
+									<property>controls/flight/elevator</property>
+								</abs>
+							</expression>
+							<expression>
+								<abs>
+									<property>fcs/copilot/elevator-cmd-norm</property>
+								</abs>
+							</expression>
+						</greater-than-equals>
+					</or>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -317,6 +329,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>systems/hydraulic/outputs/elevator</property>
 					<property>fcs/copilot/active</property>
 					<greater-than>
 						<expression>
@@ -413,8 +426,27 @@
 		<type>noise-spike</type>
 		<debug type="bool">false</debug>
 		<max-rate-of-change>1</max-rate-of-change>
+		<enable>
+			<condition>
+				<or>
+					<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+					<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+				</or>
+			</condition>
+		</enable>
 		<input>
-			<property>controls/flight/spoilers-ground-cmd</property>
+			<expression>
+				<product>
+					<property>controls/flight/spoilers-ground-cmd</property>
+					<div>
+						<sum>
+							<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+							<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+						</sum>
+						<value>2</value>
+					</div>
+				</product>
+			</expression>
 		</input>
 		<output>surface-positions/spoiler-ground-pos-norm</output>
 	</filter>
@@ -424,6 +456,14 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
+		<enable>
+			<condition>
+				<or>
+					<property>systems/hydraulic/outputs/ob-spoileron</property>
+					<property>systems/hydraulic/outputs/ib-spoileron</property>
+				</or>
+			</condition>
+		</enable>
 		<input>
 			<expression>
 				<table>
@@ -441,6 +481,14 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
+		<enable>
+			<condition>
+				<or>
+					<property>systems/hydraulic/outputs/ob-spoileron</property>
+					<property>systems/hydraulic/outputs/ib-spoileron</property>
+				</or>
+			</condition>
+		</enable>
 		<input>
 			<expression>
 				<table>
@@ -899,6 +947,7 @@
 					</not>
 					<property>gear/gear[0]/wow</property>
 				</and>
+				<property>systems/hydraulic/outputs/nwsteering</property>
 			</condition>
 		</enable>
 		<input>
@@ -925,6 +974,7 @@
 					</less-than-equals>
 					<property>controls/gear/enable-tiller</property>
 					<property>gear/gear[0]/wow</property>
+					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -951,6 +1001,7 @@
 					</greater-than>
 					<property>controls/gear/enable-tiller</property>
 					<property>gear/gear[0]/wow</property>
+					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -985,6 +1036,7 @@
 							</expression>
 						</greater-than-equals>
 					</or>
+					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -1017,6 +1069,7 @@
 							</expression>
 						</greater-than>
 					</and>
+					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -1043,12 +1096,42 @@
 		<output>fcs/nose-gear-steer-deg</output>
 	</filter>
 
+	<!-- gear hydraulic -->
+	<filter>
+		<name>Gear hydraulic</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<property>systems/hydraulic/outputs/landing-gear</property>
+			</condition>
+		</enable>
+		<input>
+			<property>controls/gear/gear-down</property>
+		</input>
+		<output>fcs/gear-down</output>
+	</filter>
+	
 	<!-- Brakes -->
 	<filter>
 		<name>Left brake controller</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
-		<gain>1</gain>
+		<gain>
+			<expression>
+				<sum>
+					<product>
+						<property>systems/hydraulic/outputs/ob-brakes</property>
+						<value>0.5</value>
+					</product>
+					<product>
+						<property>systems/hydraulic/outputs/ib-brakes</property>
+						<value>0.5</value>
+					</product>
+				</sum>
+			</expression>
+		</gain>
 		<input>
 			<expression>
 				<max>
@@ -1063,7 +1146,20 @@
 		<name>Right brake controller</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
-		<gain>1</gain>
+		<gain>
+			<expression>
+				<sum>
+					<product>
+						<property>systems/hydraulic/outputs/ob-brakes</property>
+						<value>0.5</value>
+					</product>
+					<product>
+						<property>systems/hydraulic/outputs/ib-brakes</property>
+						<value>0.5</value>
+					</product>
+				</sum>
+			</expression>
+		</gain>
 		<input>
 			<expression>
 				<max>

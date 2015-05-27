@@ -17,7 +17,7 @@
 		<control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.7" />
 		<control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.7" />
 		<control-setting axis="/controls/flight/flaps" value="1.0" />
-		<control-setting axis="/controls/gear/gear-down" value="1.0" />
+		<control-setting axis="/fcs/gear-down" value="1.0" />
 		<solve-weight idx="0" weight="600.0" />
 		<solve-weight idx="1" weight="10.0" />
 	</approach>
@@ -26,7 +26,7 @@
 		<control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95" />
 		<control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95" />
 		<control-setting axis="/controls/flight/flaps" value="0.0" />
-		<control-setting axis="/controls/gear/gear-down" value="0.0" />
+		<control-setting axis="/fcs/gear-down" value="0.0" />
 		<solve-weight idx="0" weight="600.0" />
 		<solve-weight idx="1" weight="19395.0" />
 	</cruise>
@@ -130,7 +130,7 @@
 	<!-- Nosegear -->
 	<gear x="14.232" y="0.0" z="-3.459" compression="0.4" spring="0.7" damp="4.0">
 		<control-input axis="/fcs/nose-gear-steer-deg" control="STEER" src0="-80" dst0="-1" src1="80" dst1="1" />
-		<control-input axis="/controls/gear/gear-down" control="EXTEND" />
+		<control-input axis="/fcs/gear-down" control="EXTEND" />
 		<control-output control="EXTEND" prop="/gear/gear[0]/position-norm" />
 		<control-output control="STEER" prop="/gear/gear[0]/steering-norm" />
 		<control-speed control="EXTEND" transition-time="9.2" />
@@ -139,7 +139,7 @@
 	<gear x="-0.986" y="2.054" z="-3.81" compression="0.35" spring="0.6" damp="1.0">
 		<control-input axis="/fcs/brake-left-cmd-norm" control="BRAKE" />
 		<control-input axis="/controls/gear/brake-parking" control="BRAKE" />
-		<control-input axis="/controls/gear/gear-down" control="EXTEND" />
+		<control-input axis="/fcs/gear-down" control="EXTEND" />
 		<control-output control="EXTEND" prop="/gear/gear[1]/position-norm" />
 		<control-speed control="EXTEND" transition-time="9.2" />
 	</gear>
@@ -147,7 +147,7 @@
 	<gear x="-0.986" y="-2.054" z="-3.81" compression="0.35" spring="0.6" damp="1.0">
 		<control-input axis="/fcs/brake-right-cmd-norm" control="BRAKE" />
 		<control-input axis="/controls/gear/brake-parking" control="BRAKE" />
-		<control-input axis="/controls/gear/gear-down" control="EXTEND" />
+		<control-input axis="/fcs/gear-down" control="EXTEND" />
 		<control-output control="EXTEND" prop="/gear/gear[2]/position-norm" />
 		<control-speed control="EXTEND" transition-time="9.2" />
 	</gear>

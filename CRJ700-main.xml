@@ -362,34 +362,21 @@
 			<tiller-steer-deg type="float">0</tiller-steer-deg>
 		</gear>
 		<hydraulic>
-			<!-- 0 = off, 1 = on, 2 = auto -->
-			<pump-1B type="int">2</pump-1B>
-			<pump-2B type="int">2</pump-2B>
-			<!-- pump 3A only on/off, no auto -->
-			<pump-3A type="int">1</pump-3A>
-			<pump-3B type="int">2</pump-3B>
-			<hyd-sov-l type="bool">false</hyd-sov-l>
-			<hyd-sov-cover-l type="bool">false</hyd-sov-cover-l>
-			<hyd-sov-r type="bool">false</hyd-sov-r>
-			<hyd-sov-cover-r type="bool">false</hyd-sov-cover-r>
-	
 			<system>
-				<acmp-serviceable type="bool">true</acmp-serviceable>
-				<acmp-on type="bool">true</acmp-on>
-				<edp-serviceable type="bool">true</edp-serviceable>
-				<sov type="bool">false</sov>
+				<!-- 0 = off, 1 = on, 2 = auto -->
+				<pump-b type="int">2</pump-b>
+				<hyd-sov-open type="bool">true</hyd-sov-open>
+				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
-				<acmp-serviceable type="bool">true</acmp-serviceable>
-				<acmp-on type="bool">true</acmp-on>
-				<edp-serviceable type="bool">true</edp-serviceable>
-				<sov type="bool">false</sov>
+				<pump-b type="int">2</pump-b>
+				<hyd-sov-open type="bool">true</hyd-sov-open>
+				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
-				<acmp-a-serviceable type="bool">true</acmp-a-serviceable>
-				<acmp-a-on type="bool">true</acmp-a-on>
-				<acmp-b-serviceable type="bool">true</acmp-b-serviceable>
-				<acmp-b-on type="bool">true</acmp-b-on>
+				<!-- pump 3A only on/off, no auto -->
+				<pump-a type="bool">true</pump-a>
+				<pump-b type="int">2</pump-b>
 			</system>
 		</hydraulic>
 		<lighting>
@@ -460,12 +447,12 @@
 			<brake-right-cmd-norm alias="/controls/gear/brake-right" />
 		</copilot>
 		<throttle-cmd-norm type="double">0</throttle-cmd-norm>
-		<throttle-cmd-norm type="double">0</throttle-cmd-norm>
 		<aileron-cmd-norm type="double">0</aileron-cmd-norm>
 		<tiller-steer-deg type="float">0</tiller-steer-deg>
 		<nose-gear-steer-deg type="double">0</nose-gear-steer-deg>
 		<brake-left-cmd-norm type="float">0</brake-left-cmd-norm>
 		<brake-right-cmd-norm type="float">0</brake-right-cmd-norm>
+		<gear-down type="bool">true</gear-down>
 	</fcs>
 
 	<gear>
@@ -854,6 +841,62 @@
 			<serviceable type="bool">true</serviceable>
 			<position-norm type="float">0</position-norm>
 		</ram-air-turbine>
+		<hydraulic>
+			<system>
+				<name>Hydraulic1</name>
+				<pump-a-serviceable type="bool">true</pump-a-serviceable>
+				<pump-b-serviceable type="bool">true</pump-b-serviceable>
+				<pump-a-on type="bool">false</pump-a-on>
+				<pump-b-on type="bool">false</pump-b-on>
+				<hyd-sov type="bool">false</hyd-sov>
+				<pressure-psi>0</pressure-psi>
+				<temperature-degc>50</temperature-degc>
+				<quantity-percent>60</quantity-percent>
+			</system>
+			<system>
+				<name>Hydraulic2</name>
+				<pump-a-serviceable type="bool">true</pump-a-serviceable>
+				<pump-b-serviceable type="bool">true</pump-b-serviceable>
+				<pump-a-on type="bool">false</pump-a-on>
+				<pump-b-on type="bool">false</pump-b-on>
+				<hyd-sov type="bool">false</hyd-sov>
+				<pressure-psi>0</pressure-psi>
+				<temperature-degc>50</temperature-degc>
+				<quantity-percent>60</quantity-percent>
+			</system>
+			<system>
+				<name>Hydraulic3</name>
+				<pump-a-serviceable type="bool">true</pump-a-serviceable>
+				<pump-b-serviceable type="bool">true</pump-b-serviceable>
+				<pump-a-on type="bool">false</pump-a-on>
+				<pump-b-on type="bool">false</pump-b-on>
+				<pressure-psi>0</pressure-psi>
+				<temperature-degc>50</temperature-degc>
+				<quantity-percent>60</quantity-percent>
+			</system>
+			<outputs>
+				<rudder type="bool">true</rudder>
+				<elevator type="bool">true</elevator>
+				<!-- due to current yasim model only aileron - no left/right -->
+				<aileron type="bool">true</aileron>
+				<!--
+				<left-aileron type="bool">true</left-aileron>
+				<right-aileron type="bool">true</right-aileron>
+				-->
+				<left-reverser type="bool">true</left-reverser>
+				<right-reverser type="bool">true</right-reverser>
+				<ob-spoileron type="bool">true</ob-spoileron>
+				<ob-flight-spoiler type="bool">true</ob-flight-spoiler>
+				<ob-ground-spoiler type="bool">true</ob-ground-spoiler>
+				<ib-spoileron type="bool">true</ib-spoileron>
+				<ib-flight-spoiler type="bool">true</ib-flight-spoiler>
+				<ib-ground-spoiler type="bool">true</ib-ground-spoiler>
+				<ob-brakes type="bool">true</ob-brakes>
+				<ib-brakes type="bool">true</ib-brakes>
+				<landing-gear type="bool">true</landing-gear>
+				<nwsteering type="bool">true</nwsteering>
+			</outputs>
+		</hydraulic>
 	</systems>
 
 	<nasal>
@@ -869,6 +912,7 @@
 			<file>Aircraft/CRJ700-family/Nasal/doors.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/effects.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/electrical.nas</file>
+			<file>Aircraft/CRJ700-family/Nasal/hydraulic.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/instrumentation.nas</file>
 			<!--
 			<file>Aircraft/CRJ700-family/Nasal/systems.nas</file>

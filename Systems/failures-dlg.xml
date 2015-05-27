@@ -79,94 +79,200 @@
     </text>
 
     <group>
-	<halign>left</halign>
-	<layout>vbox</layout>
+		<halign>left</halign>
+		<layout>vbox</layout>
 
-	<checkbox>
-	    <halign>left</halign>
-	    <label>APU</label>
-	    <property>engines/apu/serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Ram air turbine</label>
-	    <property>systems/ram-air-turbine/serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Electrical system</label>
-	    <property>systems/electrical/serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Autopilot</label>
-	    <property>autopilot/autoflight-serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Autothrottle</label>
-	    <property>autopilot/autothrottle-serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Flight director</label>
-	    <property>autopilot/flight-director-serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	</checkbox>
-	<checkbox>
-	    <halign>left</halign>
-	    <label>Yaw damper</label>
-	    <property>autopilot/yaw-damper-serviceable</property>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <live type="bool">true</live>
-	    <enable>
-		<false />
-	    </enable>
-	</checkbox>
-    </group>
-
-    <hrule/>
-
-    <group>
-	<layout>vbox</layout>
-
-	<button>
-	    <legend>Close</legend>
-	    <default>true</default>
-	    <key>Esc</key>
-	    <padding>10</padding>
-	    <binding>
-		<command>dialog-apply</command>
-	    </binding>
-	    <binding>
-		<command>dialog-close</command>
-	    </binding>
-	</button>
-    </group>
-
+		<checkbox>
+			<halign>left</halign>
+			<label>APU</label>
+			<property>engines/apu/serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Ram air turbine</label>
+			<property>systems/ram-air-turbine/serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Electrical system</label>
+			<property>systems/electrical/serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Autopilot</label>
+			<property>autopilot/autoflight-serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Autothrottle</label>
+			<property>autopilot/autothrottle-serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Flight director</label>
+			<property>autopilot/flight-director-serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Yaw damper</label>
+			<property>autopilot/yaw-damper-serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+			<enable>
+			<false />
+			</enable>
+		</checkbox>
+	</group>
+	<hrule/>
+	<text>
+		<label>Hydraulic systems</label>
+	</text>
+	<group>
+		<halign>left</halign>
+		<layout>vbox</layout>
+		<checkbox>
+			<halign>left</halign>
+			<label>Rudder</label>
+			<property>systems/hydraulic/outputs/rudder</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Elevator</label>
+			<property>systems/hydraulic/outputs/elevator</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Ailerons</label>
+			<property>systems/hydraulic/outputs/aileron</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		
+		<checkbox>
+			<halign>left</halign>
+			<label>Reverser (left))</label>
+			<property>systems/hydraulic/outputs/left-reverser</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Reverser (right)</label>
+			<property>systems/hydraulic/outputs/right-reverser</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Flight spoiler (outboard)</label>
+			<property>systems/hydraulic/outputs/ob-flight-spoiler</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Flight spoiler (inboard)</label>
+			<property>systems/hydraulic/outputs/ib-flight-spoiler</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Ground spoiler (outboard)</label>
+			<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Ground spoiler (inboard)</label>
+			<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Brakes (outboard)</label>
+			<property>systems/hydraulic/outputs/ob-brakes</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Brakes (inboard)</label>
+			<property>systems/hydraulic/outputs/ib-brakes</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Landing gear</label>
+			<property>systems/hydraulic/outputs/landing-gear</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>Nose wheel steering</label>
+			<property>systems/hydraulic/outputs/nwsteering</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+	</group>
 </PropertyList>
