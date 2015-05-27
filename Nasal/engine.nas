@@ -427,7 +427,7 @@ Engine.Jet = func(n)
 		var apu_rpm = getprop_safe("/engines/apu/rpm");
 		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");
 		var eng2_rpm = getprop_safe("/engines/engine[1]/rpm");
-		print("Bleed source " ~ bleed_source);
+		#print("Bleed source " ~ bleed_source);
         # both engines
         if (bleed_source == 0) return eng1_rpm > 20 or eng2_rpm > 20;
         # right engine
