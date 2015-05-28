@@ -227,13 +227,69 @@
 		<name>PageDoorsText</name>
 		<object-name>PageDoorsTitle</object-name>
 	</animation>
+	<animation>
+		<name>PageHydraulicObj</name>
+		<object-name>HydraulicBackground</object-name>
+		<object-name>HydSOV1</object-name>
+		<object-name>HydSOV2</object-name>
+		<object-name>HydPump1A</object-name>
+		<object-name>HydPump1B</object-name>
+		<object-name>HydPump2A</object-name>
+		<object-name>HydPump2B</object-name>
+		<object-name>HydPump3A</object-name>
+		<object-name>HydPump3B</object-name>
+	</animation>
+	<animation>
+		<name>PageHydraulicText</name>
+		<object-name>PageHydraulicTitle</object-name>
+		<object-name>HydTemperature1</object-name>
+		<object-name>HydTemperature2</object-name>
+		<object-name>HydTemperature3</object-name>
+		<object-name>HydQuantity1</object-name>
+		<object-name>HydQuantity2</object-name>
+		<object-name>HydQuantity3</object-name>
+		<object-name>HydIBbrakes</object-name>
+		<object-name>HydOBbrakes</object-name>
+		<object-name>HydPressure1</object-name>
+		<object-name>HydPressure2</object-name>
+		<object-name>HydPressure3</object-name>
+
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+
+		<object-name>HydSpoileronOB</object-name>
+		<object-name>HydSpoileronIB</object-name>
+		<object-name>HydGndSpoilerIB</object-name>
+
+		<object-name>HydFltSpoilerOB</object-name>
+		<object-name>HydFltSpoilerIB</object-name>
+		<object-name>HydGear</object-name>
+		
+		<object-name>HydGndSpoilerOB</object-name>
+		<object-name>HydGearAlt</object-name>
+		<object-name>HydNWS</object-name>
+
+		<object-name>HydReverserL</object-name>
+		<object-name>HydReverserR</object-name>
+	</animation>
 
 	<animation>
 		<name>LCD</name>
 		<object-name>Page1Obj</object-name>
 		<object-name>Page2Obj</object-name>
 		<object-name>PageACObj</object-name>
+		<object-name>PageDCObj</object-name>
 		<object-name>PageDoorsObj</object-name>
+		<object-name>PageHydraulicObj</object-name>
 		<object-name>Screen</object-name>
 	</animation>
 	<!-- Visible only within 1/2 km -->
@@ -1773,6 +1829,126 @@ APU</text>
 		</font-resolution>
 	</text>
 	<!-- End page 5 text -->
+	<!-- Begin page 6 text -->
+	<text>
+		<name>PageHydraulicTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>HYDRAULIC</text>
+		<offsets>
+			<x-m>0.0003</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>HydTemperature1</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[0]/temperature</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>-0.0409</y-m>
+			<z-m>-0.0428</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydTemperature3</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[2]/temperature</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.0428</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydTemperature2</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[1]/temperature</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.0393</y-m>
+			<z-m>-0.0428</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+<!--
+	<name>HydTemperature2</name>
+		<name>HydTemperature3</name>
+		<name>HydQuantity1</name>
+		<name>HydQuantity2</name>
+		<name>HydQuantity3</name>
+		<name>HydIBbrakes</name>
+		<name>HydOBbrakes</name>
+		<name>HydPressure1</name>
+		<name>HydPressure2</name>
+		<name>HydPressure3</name>
+
+		<name>HydRudder1</name>
+		<name>HydRudder2</name>
+		<name>HydRudder3</name>
+
+		<name>HydElevator1</name>
+		<name>HydElevator2</name>
+		<name>HydElevator3</name>
+
+		<name>HydAileron1</name>
+		<name>HydAileron2</name>
+		<name>HydAileron3</name>
+
+		<name>HydSpoileronOB</name>
+		<name>HydSpoileronIB</name>
+		<name>HydGndSpoilerIB</name>
+
+		<name>HydFltSpoilerOB</name>
+		<name>HydFltSpoilerIB</name>
+		<name>HydGear</name>
+		
+		<name>HydGndSpoilerOB</name>
+		<name>HydGearAlt</name>
+		<name>HydNWS</name>
+
+		<name>HydReverserL</name>
+		<name>HydReverserR</name>	
+-->
+	<!-- End page 6 text -->
 	
 	<!-- Begin page 1 messages -->
 	<text>
@@ -2953,7 +3129,7 @@ APU</text>
 		</emission>
 	</animation>
 	<!-- End page 2 messages -->
-
+	<!-- amber elements -->
 	<animation>
 		<type>material</type>
 		<object-name>Engine 1 oil pressure</object-name>
@@ -2985,11 +3161,15 @@ APU</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
+	<!-- blue elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N1 TO/GA</object-name>
 		<object-name>N1 CLB</object-name>
-		<object-name>DOORS</object-name>
+		<object-name>PageACTitle</object-name>
+		<object-name>PageDCTitle</object-name>
+		<object-name>PageDoorsTitle</object-name>
+		<object-name>PageHydraulicTitle</object-name>
 		<ambient>
 			<red alias="../../../colors/blue/red" />
 			<green alias="../../../colors/blue/green" />
@@ -3006,7 +3186,8 @@ APU</text>
 			<blue alias="../../../colors/blue/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
-	</animation>
+	</animation>	
+	<!-- green elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N11 text</object-name>
@@ -3055,6 +3236,7 @@ APU</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
+	<!-- white elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N1</object-name>
@@ -3087,7 +3269,6 @@ APU</text>
 		<object-name>APU running</object-name>
 		<object-name>Engine 1 shut down</object-name>
 		<object-name>Engine 2 shut down</object-name>
-		<object-name>PageACTitle</object-name>
 		<object-name>Service bus</object-name>
 		<object-name>Bus 1</object-name>
 		<object-name>Bus 2</object-name>
@@ -3124,7 +3305,7 @@ APU</text>
 			</less-than>
 		</condition>
 	</animation>
-
+	<!-- page selectors -->	
 	<animation>
 		<type>select</type>
 		<object-name>Page1Obj</object-name>
@@ -3180,7 +3361,18 @@ APU</text>
 			</equals>
 		</condition>
 	</animation>
-
+	<animation>
+		<type>select</type>
+		<object-name>PageHydraulicObj</object-name>
+		<object-name>PageHydraulicText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>6</value>
+			</equals>
+		</condition>
+	</animation>
+	<!-- controls  -->
 	<animation>
 		<type>pick</type>
 		<object-name>LeftControl</object-name>
@@ -3205,11 +3397,12 @@ APU</text>
 				<command>property-adjust</command>
 				<property alias="../../../../params/page" />
 				<step>1</step>
-				<max>5</max>
+				<max>6</max>
 			</binding>
 		</action>
 	</animation>
 
+	<!-- animations -->
 	<animation>
 		<type>rotate</type>
 		<object-name>N11</object-name>
@@ -3535,7 +3728,7 @@ APU</text>
 		<z-min>1</z-min>
 		<z-max>1</z-max>
 	</animation>
-
+	<!-- trim -->
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronTrim</object-name>
@@ -3581,6 +3774,7 @@ APU</text>
 		</center>
 	</animation>
 
+	<!-- APU -->
 	<animation>
 		<type>select</type>
 		<object-name>APU</object-name>
@@ -3844,7 +4038,6 @@ APU</text>
 	</animation>
 
 	<!-- doors page	-->
-
 	<animation>
 		<type>select</type>
 		<object-name>DoorAftCargo</object-name>
@@ -3915,6 +4108,8 @@ APU</text>
 			<property>sim/model/door-positions/pax-right/position-norm</property>
 		</condition>
 	</animation>	
+	<!-- hydraulic page -->
+
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
