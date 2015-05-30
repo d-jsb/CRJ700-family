@@ -5,14 +5,8 @@
 var getprop_safe = func(node)
 {
     var value = getprop(node);
-    if (typeof(value) == "nil")
-    {
-        return 0;
-    }
-    else
-    {
-        return value;
-    }
+    if (typeof(value) == "nil") return 0;
+    else return value;
 };
 
 var Loop = func(interval, update)
@@ -27,23 +21,16 @@ var Loop = func(interval, update)
         {
             loop.update();
         }
-        settimer(func
-                 {
-                     loop.loop(thisTimerId);
-                 }, loop.interval);
+        settimer(func {loop.loop(thisTimerId);}, loop.interval);
     };
+	
     loop.start = func
     {
         timerId += 1;
-        settimer(func
-                 {
-                     loop.loop(timerId);
-                 }, 0);
+        settimer(func {loop.loop(timerId);}, 0);
     };
-    loop.stop = func
-    {
-        timerId += 1;
-    };
+	
+    loop.stop = func {timerId += 1;};
     return loop;
 };
 
@@ -72,44 +59,45 @@ var wipers = [
                  "/systems/electrical/outputs/wiper[1]")
 ];
 
+
+
 # Update loops.
-var fast_loop = Loop(0, func
-                     {
-                         if (!is_slave)
-                         {
-                             # Engines and APU.
-                             CRJ700.Engine.poll_fuel_tanks();
-                             #CRJ700.Engine.poll_bleed_air();
-                             apu.update();
-                             engines[0].update();
-                             engines[1].update();
-                         }
-                         # Electrical.
-                         update_electrical();
+var fast_loop = Loop(0, func {
+	if (!is_slave)
+	{
+		# Engines and APU.
+		CRJ700.Engine.poll_fuel_tanks();
+		#CRJ700.Engine.poll_bleed_air();
+		apu.update();
+		engines[0].update();
+		engines[1].update();
+	}
+	# Electrical.
+	update_electrical();
 
-                         # Instruments.
-                         eicas_messages_page1.update();
-                         eicas_messages_page2.update();
+	# Instruments.
+	eicas_messages_page1.update();
+	eicas_messages_page2.update();
 
-                         # Model.
-                         wipers[0].update();
-                         wipers[1].update();
-                     });
-var slow_loop = Loop(3, func
-                     {
-                         # Electrical.
-                         rat1.update();
+	# Model.
+	wipers[0].update();
+	wipers[1].update();
+});
 
-                         # Instruments.
-                         update_tat;
+var slow_loop = Loop(3, func {
+	# Electrical.
+	rat1.update();
 
-                         # Multiplayer.
-                         update_copilot_ints();
+	# Instruments.
+	update_tat;
 
-                         # Model.
-                         update_lightmaps();
-                         update_pass_signs();
-                     });
+	# Multiplayer.
+	update_copilot_ints();
+
+	# Model.
+	update_lightmaps();
+	update_pass_signs();
+});
 
 # When the sim is ready, start the update loops and create the crossfeed valve.
 var gravity_xflow = {};
