@@ -1842,7 +1842,6 @@
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[0]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1854,6 +1853,7 @@
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[0]/pump-b</property>
+				<offset>-1</offset>
 				<wrap>0</wrap>
 				<value type="int">1</value>
 				<value type="int">0</value>
@@ -1887,6 +1887,7 @@
 		<object-name>Hydraulic3ASwitch</object-name>
 		<action>
 			<button>0</button>
+			<button>1</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
@@ -1921,7 +1922,6 @@
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[2]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1933,6 +1933,7 @@
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[2]/pump-b</property>
+				<offset>-1</offset>
 				<wrap>0</wrap>
 				<value type="int">1</value>
 				<value type="int">0</value>
@@ -1971,7 +1972,6 @@
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[1]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1984,6 +1984,7 @@
 				<command>property-cycle</command>
 				<property>controls/hydraulic/system[1]/pump-b</property>
 				<wrap>0</wrap>
+				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
