@@ -256,6 +256,7 @@ var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbin
 ## Aircraft-specific dialogs
 var dialogs = {
     autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
+    doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", "Aircraft/CRJ700-family/Systems/doors-dlg.xml"),
     radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", "Aircraft/CRJ700-family/Systems/radio-stack-dlg.xml"),
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),

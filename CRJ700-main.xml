@@ -202,6 +202,15 @@
 						</binding>
 					</item>
 					<item>
+						<label>Doors</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.doors.open();
+							</script>
+						</binding>
+					</item>
+					<item>
 						<label>Failures</label>
 						<binding>
 							<command>nasal</command>
