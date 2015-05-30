@@ -426,14 +426,6 @@
 		<type>noise-spike</type>
 		<debug type="bool">false</debug>
 		<max-rate-of-change>1</max-rate-of-change>
-		<enable>
-			<condition>
-				<or>
-					<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
-					<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
-				</or>
-			</condition>
-		</enable>
 		<input>
 			<expression>
 				<product>

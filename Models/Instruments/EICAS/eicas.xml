@@ -11,7 +11,7 @@
 		<page>instrumentation/eicas/page</page>
 		<hyd-sym-size>0.004</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
-		<disp-x>0.001</disp-x>
+		<disp-x>0.0005</disp-x>
 		<temperature1-y>-0.0425</temperature1-y>
 		<temperature3-y>-0.004</temperature3-y>
 		<temperature2-y>0.032</temperature2-y>
@@ -20,8 +20,8 @@
 		<quantity3-y>-0.002</quantity3-y>
 		<quantity2-y>0.033</quantity2-y>
 		<quantity-z>0.041</quantity-z>
-		<pressure-br3-y>0.0357</pressure-br3-y>
-		<pressure-br2-y>0.0</pressure-br2-y>
+		<pressure-br3-y>0.0</pressure-br3-y>
+		<pressure-br2-y>0.0357</pressure-br2-y>
 		<pressure-br-z>-0.002</pressure-br-z>
 
 		<pressure1-y>-0.042</pressure1-y>
@@ -232,7 +232,7 @@
 	</animation>
 	<animation>
 		<name>PageDCObj</name>
-		<object-name>Page DC</object-name>
+		<object-name>DCBackground</object-name>
 	</animation>
 	<animation>
 		<name>PageDCText</name>
@@ -2573,6 +2573,32 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/rudder</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
 	<text>
 		<name>HydElevator1</name>
 		<type>literal</type>
@@ -2633,6 +2659,32 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/elevator</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
 	<text>
 		<name>HydAileron1</name>
 		<type>literal</type>
@@ -2692,7 +2744,33 @@ APU</text>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>	
+	</text>
+	<animation>
+		<type>material</type>
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/aileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
 	<text>
 		<name>HydSpoileronOB</name>
 		<type>literal</type>
@@ -2712,7 +2790,30 @@ APU</text>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>	
+	</text>
+	<animation>
+		<type>material</type>
+		<object-name>HydSpoileronOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-spoileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
 		<name>HydGndSpoilerIB</name>
 		<type>literal</type>
@@ -2733,6 +2834,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGndSpoilerIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
 		<name>HydSpoileronIB</name>
 		<type>literal</type>
@@ -2753,6 +2877,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydSpoileronIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-spoileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
 		<name>HydFltSpoilerOB</name>
 		<type>literal</type>
@@ -2773,6 +2920,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydFltSpoilerOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-flight-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
 		<name>HydGear</name>
 		<type>literal</type>
@@ -2793,6 +2963,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGear</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/landing-gear</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
 	<text>
 		<name>HydFltSpoilerIB</name>
 		<type>literal</type>
@@ -2813,6 +3006,30 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydFltSpoilerIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-flight-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+
 	<text>
 		<name>HydGndSpoilerOB</name>
 		<type>literal</type>
@@ -2833,10 +3050,33 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGndSpoilerOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
-		<name>HydGearAlt</name>
+		<name>HydNWS</name>
 		<type>literal</type>
-		<text>LG ALT EXT</text>
+		<text>N/W STEER</text>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size alias="../../params/hyd-lines-charsize" />
@@ -2853,10 +3093,33 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydNWS</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/nwsteering</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
-		<name>HydGndSpoilerIB</name>
+		<name>HydGearAlt</name>
 		<type>literal</type>
-		<text>IB GND SPLRS</text>
+		<text>LG ALT EXT</text>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size alias="../../params/hyd-lines-charsize" />
@@ -2873,6 +3136,30 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGearAlt</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/landing-gear-alt</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<!-- reverser -->
 	<text>
 		<name>HydReverserL</name>
 		<type>literal</type>
@@ -2893,6 +3180,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydReverserL</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/left-reverser</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<text>
 		<name>HydReverserR</name>
 		<type>literal</type>
@@ -2913,6 +3223,29 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydReverserR</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/right-reverser</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
 	<!-- End page 6 text -->
 	
 	<!-- Begin page 1 messages -->
@@ -4109,6 +4442,26 @@ APU</text>
 		<object-name>Engine 2 extinguisher</object-name>
 		<object-name>APU extinguisher</object-name>
 		<object-name>Service configuration</object-name>
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+		<object-name>HydSpoileronOB</object-name>
+		<object-name>HydGndSpoilerIB</object-name>
+		<object-name>HydSpoileronIB</object-name>
+		<object-name>HydFltSpoilerOB</object-name>
+		<object-name>HydGear</object-name>
+		<object-name>HydFltSpoilerIB</object-name>
+		<object-name>HydGndSpoilerOB</object-name>
+		<object-name>HydNWS</object-name>
+		<object-name>HydGearAlt</object-name>
+		<object-name>HydReverserL</object-name>
+		<object-name>HydReverserR</object-name>
 		<ambient>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -4253,26 +4606,6 @@ APU</text>
 		<object-name>APU generator</object-name>
 		<object-name>Generator 2</object-name>
 		<object-name>External power</object-name>
-		<object-name>HydRudder1</object-name>
-		<object-name>HydRudder2</object-name>
-		<object-name>HydRudder3</object-name>
-		<object-name>HydElevator1</object-name>
-		<object-name>HydElevator2</object-name>
-		<object-name>HydElevator3</object-name>
-		<object-name>HydAileron1</object-name>
-		<object-name>HydAileron2</object-name>
-		<object-name>HydAileron3</object-name>
-		<object-name>HydSpoileronOB</object-name>
-		<object-name>HydGndSpoilerIB</object-name>
-		<object-name>HydSpoileronIB</object-name>
-		<object-name>HydFltSpoilerOB</object-name>
-		<object-name>HydGear</object-name>
-		<object-name>HydFltSpoilerIB</object-name>
-		<object-name>HydGndSpoilerOB</object-name>
-		<object-name>HydNWS</object-name>
-		<object-name>HydGearAlt</object-name>
-		<object-name>HydReverserL</object-name>
-		<object-name>HydReverserR</object-name>
 		<ambient>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />

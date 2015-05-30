@@ -848,7 +848,7 @@ refs 4
 kids 0
 OBJECT poly
 name "DoorBackground"
-loc 0.0001000 -0.0000000 0.0000000
+loc 0.0000000 -0.0000000 0.0000000
 texture "eicas-doors.png"
 texrep 1 1
 numvert 4
@@ -1121,7 +1121,6 @@ refs 4
 kids 0
 OBJECT poly
 name "HydraulicBackground"
-loc 0.0001000 0.0000000 0.0000000
 texture "eicas-hydraulic.png"
 texrep 1 1
 numvert 4
@@ -2021,6 +2020,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Off"
+loc 0.0008000 0.0000000 0.0000000
 texture "black-bg.png"
 texrep 1 1
 numvert 4

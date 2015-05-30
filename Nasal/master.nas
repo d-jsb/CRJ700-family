@@ -82,6 +82,9 @@ var fast_loop = Loop(0, func {
 	# Model.
 	wipers[0].update();
 	wipers[1].update();
+	hydraulics[0].update();
+	hydraulics[1].update();
+	hydraulics[2].update();
 });
 
 var slow_loop = Loop(3, func {
@@ -166,6 +169,7 @@ setlistener("sim/model/start-idling", func(v)
 ## Instant start for tutorials and whatnot
 var instastart = func
 {
+    setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
     setprop("controls/engines/engine[0]/cutoff", 0);

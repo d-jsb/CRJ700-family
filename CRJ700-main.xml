@@ -390,19 +390,19 @@
 		<hydraulic>
 			<system>
 				<!-- 0 = off, 1 = on, 2 = auto -->
-				<pump-b type="int">2</pump-b>
+				<pump-b type="int">0</pump-b>
 				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
-				<pump-b type="int">2</pump-b>
+				<pump-b type="int">0</pump-b>
 				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
 				<!-- pump 3A only on/off, no auto -->
-				<pump-a type="bool">true</pump-a>
-				<pump-b type="int">2</pump-b>
+				<pump-a type="bool">false</pump-a>
+				<pump-b type="int">0</pump-b>
 			</system>
 		</hydraulic>
 		<lighting>
@@ -875,9 +875,9 @@
 				<pump-a-on type="bool">false</pump-a-on>
 				<pump-b-on type="bool">false</pump-b-on>
 				<hyd-sov type="bool">false</hyd-sov>
-				<pressure-psi>0</pressure-psi>
-				<temperature-degc>50</temperature-degc>
-				<quantity-percent>60</quantity-percent>
+				<pressure-psi type="int">0</pressure-psi>
+				<temperature-degc type="int">50</temperature-degc>
+				<quantity-percent type="int">60</quantity-percent>
 			</system>
 			<system>
 				<name>Hydraulic2</name>
@@ -886,9 +886,9 @@
 				<pump-a-on type="bool">false</pump-a-on>
 				<pump-b-on type="bool">false</pump-b-on>
 				<hyd-sov type="bool">false</hyd-sov>
-				<pressure-psi>0</pressure-psi>
-				<temperature-degc>50</temperature-degc>
-				<quantity-percent>60</quantity-percent>
+				<pressure-psi type="int">0</pressure-psi>
+				<temperature-degc type="int">50</temperature-degc>
+				<quantity-percent type="int">60</quantity-percent>
 			</system>
 			<system>
 				<name>Hydraulic3</name>
@@ -896,9 +896,9 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-on type="bool">false</pump-a-on>
 				<pump-b-on type="bool">false</pump-b-on>
-				<pressure-psi>0</pressure-psi>
-				<temperature-degc>50</temperature-degc>
-				<quantity-percent>60</quantity-percent>
+				<pressure-psi type="int">0</pressure-psi>
+				<temperature-degc type="int">50</temperature-degc>
+				<quantity-percent type="int">60</quantity-percent>
 			</system>
 			<outputs>
 				<rudder type="bool">true</rudder>
@@ -920,6 +920,7 @@
 				<ob-brakes type="bool">true</ob-brakes>
 				<ib-brakes type="bool">true</ib-brakes>
 				<landing-gear type="bool">true</landing-gear>
+				<landing-gear-alt type="bool">true</landing-gear-alt>
 				<nwsteering type="bool">true</nwsteering>
 			</outputs>
 		</hydraulic>

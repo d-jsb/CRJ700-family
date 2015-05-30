@@ -29,21 +29,38 @@
 # controls/hydraulic/system[n]
 #		hyd-sov-open	OHP switches for SOV
 #		pump-a, pump-b 	OHP switches for pumps (0, 1, 2 = auto)
-# systems/hydraulic/system[0..2]
+# systems/hydraulic/system[0..2]/* 
+#		system state
+# systems/hydraulic/outputs/*	
+#		computed effective hyd. states, this props enable hyd. functions
 #
 
 
 var HydraulicPump = {
-	new: func (sys, pid, switch, pwr_input, pwr_min) {
-		var obj = {parents: [HydraulicPump], sys: sys, pid: pid};
+	new: func (sys, pid, switch, pwr_input, input_min, input_max) {
+		var obj = {parents: [HydraulicPump], 
+			sys: sys, 
+			pid: pid, 
+			pressure_nominal: 3000,
+			pressure: 0,
+		};
 		obj.serviceable_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-serviceable", 1);
-		obj.on_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-on", 1); 
 		obj.switch_node = props.globals.getNode("/controls/hydraulic/system["~sys~"]/"~switch, 1);
+		obj.on_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-on", 1); 
+		obj.pressure_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-psi", 1); 
 		obj.running = obj.on_node.getBoolValue();
 		obj.pwr_input_node = props.globals.getNode(pwr_input, 1);
-		obj.pwr_min = pwr_min;
-		setlistener(obj.switch_node, me._switch_listener);
+		obj.input_min = (input_min > 0) ? input_min : 1;
+		obj.input_max = (input_max > 0) ? input_max : 1;
+		#print("Init pump "~obj.pid);
+		setlistener(obj.switch_node, func(v) {obj._switch_listener(v);},1,0);
 		return obj;
+	},
+	
+	_switch_listener: func(v){
+		#print("HydraulicPump["~me.sys~"]"~me.pid~": "~v.getValue());
+		if (v.getValue() == 0) me.set_on_off(0);
+		if (v.getValue() == 1) me.set_on_off(1);
 	},
 	
 	get_switch: func { return me.switch_node.getValue(); },
@@ -56,97 +73,96 @@ var HydraulicPump = {
 	
 	get_pressure: func {
 		me.input = me.pwr_input_node.getValue();
+		#me.running = me.on_node.getValue();
 		if (me.input == nil) me.input = 0;
-		if (!me.running) return 0;
-		if (me.input > me.pwr_min) return 3000;
-		return 3000 * me.input / me.pwr_min;
-	},
-	
-	_switch_listener: func(v) {
-		print("hp sw: "~v.getValue());
-		if (v.getValue() == 0) me.set_on_off(0);
-		if (v.getValue() == 1) me.set_on_off(1);
+		if (!me.running) me.pressure = 0;
+		else {
+			me.pressure = me.pressure_nominal;
+			if (me.input < me.input_min) me.pressure = me.pressure_nominal * me.input / me.input_min;
+			if (me.input > me.input_max) me.pressure = me.pressure_nominal * me.input / me.input_max;			
+		}
+		me.pressure_node.setValue(me.pressure);
+		return me.pressure;
 	},
 };
 
 var HydraulicSystem = {
-	new : func (sys, pa, pb ) {
+	new : func (sys, pa, pb, outputs_multi, outputs ) {
 		obj = { parents : [HydraulicSystem], sys: sys, pump_a: pa, pump_b: pb };		
 		obj.pressure_psi_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pressure-psi", 1); 
-		print("HydraulicSystem.new "~sys);
+		obj.pressure_nominal = pa.pressure_nominal;
+		obj.outputs_multi = [];
+		obj.outputs = [];
+		foreach (elem; outputs_multi) {
+			append(obj.outputs_multi, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
+		}
+		foreach (elem; outputs) {
+			append(obj.outputs, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
+		}
+		#print("HydraulicSystem.new "~sys);
+		setlistener("controls/flight/flaps", func(v) {obj._auto_pump(v);},1,0);
+		#setlistener("systems/hydraulic/system["~sys~"]", func {obj.update();}, 1, 2);
 		return obj;
+	},
+	
+	_auto_pump: func (v) {
+		if (me.pump_b.get_switch() == 2) {
+			me.pump_b.set_on_off(v.getBoolValue());
+		}
 	},
 	
 	read_props: func {		
 		me.pressure_psi = me.pressure_psi_node.getValue();
-		print("read_props: pressure "~me.sys~": "~me.pressure_psi);
 	},
 	
 	write_props: func {
 		me.pressure_psi_node.setValue(me.pressure_psi);
 	},
-
-	update: func() {		
+	
+	get_pressure: func {
 		me.read_props();
-		var flaps = getprop("controls/flight/flaps");
-		
-		if (me.pump_b.get_switch() == 2) {
-			if (me.pump_b != nil) me.pump_b.set_on_off(flaps);
-		}
+		return me.pressure_psi;
+	},
+	
+	update: func() {
+		me.read_props();
 		var p1 = me.pump_a.get_pressure();
 		var p2 = me.pump_b.get_pressure();
 		me.pressure_psi = (p1 < p2) ? p2 : p1;
-		print("HydS "~me.sys~": psi "~me.pressure_psi);
 		
+		foreach (out; me.outputs_multi) {
+			var p1 = getprop("/systems/hydraulic/system[0]/pressure-psi");
+			var p2 = getprop("/systems/hydraulic/system[1]/pressure-psi");
+			var p3 = getprop("/systems/hydraulic/system[2]/pressure-psi");
+			if (p1 >= me.pressure_nominal or p2 >= me.pressure_nominal or p3 >= me.pressure_nominal)
+				out.setValue(1);
+			else out.setValue(0);
+		}		
+		foreach (out; me.outputs) {
+			out.setValue((me.pressure_psi >= me.pressure_nominal));
+		}
 		me.write_props();
 	},
 };
 
 print("Creating hydraulic system ...");
-
 #ACMPs have to be fixed after rework of electrical system
 var hydraulics = [ 
 	HydraulicSystem.new(0, 
-		HydraulicPump.new(0, "a", "hyd-sov-open", "/engines/engine[0]/n2", 57),
-		HydraulicPump.new(0, "b", "pump-b", "/systems/electrical/right-bus", 24)
+		HydraulicPump.new(0, "a", "hyd-sov-open", "/engines/engine[0]/rpm", 21, 93),
+		HydraulicPump.new(0, "b", "pump-b", "/systems/electrical/right-bus", 24, 28),
+		["rudder", "elevator", "aileron"], ["ob-spoileron", "ob-flight-spoiler", "ob-ground-spoiler", "left-reverser"],
 	),
 	HydraulicSystem.new(1,
-		HydraulicPump.new(1, "a", "hyd-sov-open", "/engines/engine[1]/n2", 57),
-		HydraulicPump.new(1, "b", "pump-b", "/systems/electrical/left-bus", 24),
+		HydraulicPump.new(1, "a", "hyd-sov-open", "/engines/engine[1]/rpm", 21, 93),
+		HydraulicPump.new(1, "b", "pump-b", "/systems/electrical/left-bus", 24 ,28),
+		["rudder", "elevator", "aileron"], ["ib-spoileron", "ib-flight-spoiler", "landing-gear-alt", "right-reverser", "ob-brakes"],
 	),
 	HydraulicSystem.new(2, 
-		HydraulicPump.new(2, "a", "pump-a", "/systems/electrical/right-bus", 24),
-		HydraulicPump.new(2, "b", "pump-b", "/systems/electrical/left-bus", 24),
-	)
+		HydraulicPump.new(2, "a", "pump-a", "/systems/electrical/right-bus", 24, 28),
+		HydraulicPump.new(2, "b", "pump-b", "/systems/electrical/left-bus", 24, 28),
+		["rudder", "elevator", "aileron"], ["ib-ground-spoiler", "landing-gear", "nwsteering", "ib-brakes"],
+	),
 ];
 
-hydraulics[0].update();
-print("Hydraulic system done.");
-
-##############################################################
-# development
-##############################################################
-
-# creates a listener for pump switch
-var pump_switch_handler = func (sys, element) {
-	return func (n) {
-		var value = n.getValue();
-		if (value == 0)
-			setprop("systems/hydraulic/system["~sys~"]/"~element, 0);
-		if (value == 1)
-			setprop("systems/hydraulic/system["~sys~"]/"~element, 1);
-	};
-};
-
-#setlistener("controls/hydraulic/system[0]/sov-open", pump_switch_handler(0,"pump-a-on"), 1);
-#setlistener("controls/hydraulic/system[1]/sov-open", pump_switch_handler(1,"pump-a-on"), 1);
-#setlistener("controls/hydraulic/system[0]/pump-b", pump_switch_handler(0,"pump-b-on"), 1);
-#setlistener("controls/hydraulic/system[1]/pump-b", pump_switch_handler(1,"pump-b-on"), 1);
-#setlistener("controls/hydraulic/system[2]/pump-a", pump_switch_handler(2,"pump-a-on"), 1);
-#setlistener("controls/hydraulic/system[2]/pump-b", pump_switch_handler(2,"pump-b-on"), 1);
-
-#setlistener("systems/hydraulic/system[0]", hydraulics[0].update, 1,2);
-#setlistener("systems/hydraulic/system[1]", hydraulics[1].update, 1,2);
-#setlistener("systems/hydraulic/system[2]", hydraulics[2].update, 1,2);
-
-#setlistener("controls/flight/flaps", func { foreach (h; hydraulics)	h.update();});
+print("Hydraulic done.");
