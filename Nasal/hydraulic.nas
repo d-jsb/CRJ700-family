@@ -73,7 +73,7 @@ var HydraulicPump = {
 	
 	get_pressure: func {
 		me.input = me.pwr_input_node.getValue();
-		#me.running = me.on_node.getValue();
+		me.running = me.on_node.getValue();
 		if (me.input == nil) me.input = 0;
 		if (!me.running) me.pressure = 0;
 		else {
@@ -90,6 +90,7 @@ var HydraulicSystem = {
 	new : func (sys, pa, pb, outputs_multi, outputs ) {
 		obj = { parents : [HydraulicSystem], sys: sys, pump_a: pa, pump_b: pb };		
 		obj.pressure_psi_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pressure-psi", 1); 
+		obj.update_enabled_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/update-enabled", 1); 
 		obj.pressure_nominal = pa.pressure_nominal;
 		obj.outputs_multi = [];
 		obj.outputs = [];
@@ -113,6 +114,7 @@ var HydraulicSystem = {
 	
 	read_props: func {		
 		me.pressure_psi = me.pressure_psi_node.getValue();
+		me.update_enabled = me.update_enabled_node.getValue();
 	},
 	
 	write_props: func {
@@ -129,17 +131,18 @@ var HydraulicSystem = {
 		var p1 = me.pump_a.get_pressure();
 		var p2 = me.pump_b.get_pressure();
 		me.pressure_psi = (p1 < p2) ? p2 : p1;
-		
-		foreach (out; me.outputs_multi) {
-			var p1 = getprop("/systems/hydraulic/system[0]/pressure-psi");
-			var p2 = getprop("/systems/hydraulic/system[1]/pressure-psi");
-			var p3 = getprop("/systems/hydraulic/system[2]/pressure-psi");
-			if (p1 >= me.pressure_nominal or p2 >= me.pressure_nominal or p3 >= me.pressure_nominal)
-				out.setValue(1);
-			else out.setValue(0);
-		}		
-		foreach (out; me.outputs) {
-			out.setValue((me.pressure_psi >= me.pressure_nominal));
+		if (me.update_enabled) {
+			foreach (out; me.outputs_multi) {
+				var p1 = getprop("/systems/hydraulic/system[0]/pressure-psi");
+				var p2 = getprop("/systems/hydraulic/system[1]/pressure-psi");
+				var p3 = getprop("/systems/hydraulic/system[2]/pressure-psi");
+				if (p1 >= me.pressure_nominal or p2 >= me.pressure_nominal or p3 >= me.pressure_nominal)
+					out.setValue(1);
+				else out.setValue(0);
+			}		
+			foreach (out; me.outputs) {
+				out.setValue((me.pressure_psi >= me.pressure_nominal));
+			}
 		}
 		me.write_props();
 	},

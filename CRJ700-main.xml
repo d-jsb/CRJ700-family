@@ -870,6 +870,7 @@
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>
+				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-on type="bool">false</pump-a-on>
@@ -881,6 +882,7 @@
 			</system>
 			<system>
 				<name>Hydraulic2</name>
+				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-on type="bool">false</pump-a-on>
@@ -892,6 +894,7 @@
 			</system>
 			<system>
 				<name>Hydraulic3</name>
+				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-on type="bool">false</pump-a-on>
