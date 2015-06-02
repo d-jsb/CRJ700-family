@@ -121,32 +121,46 @@ var startup = func
     startid += 1;
     var id = startid;
     setprop("controls/electric/battery-switch", 1);
+    setprop("controls/lighting/nav-lights", 1);
+    setprop("controls/lighting/beacon", 1);
     setprop("controls/pneumatic/bleed-source", 2);
     setprop("controls/APU/electronic-control-unit", 1);
     setprop("controls/APU/off-on", 1);
-    setprop("controls/engines/engine[0]/cutoff", 0);
-    setprop("controls/engines/engine[1]/cutoff", 0);
     settimer(func
     {
         if (id == startid)
         {
+			setprop("controls/electric/engine[0]/generator", 1);
+			setprop("controls/electric/engine[1]/generator", 1);
+			setprop("controls/electric/APU-generator", 1);
+			setprop("controls/engines/engine[0]/cutoff", 0);
+			setprop("controls/engines/engine[1]/cutoff", 0);
             setprop("/consumables/fuel/tank[0]/selected", 1);
             setprop("/consumables/fuel/tank[1]/selected", 1);
             setprop("/controls/engines/engine[0]/starter", 1);
-            setprop("/controls/engines/engine[1]/starter", 1);
-            setprop("controls/electric/engine[0]/generator", 1);
-            setprop("controls/electric/engine[1]/generator", 1);
-            settimer(func
-            {
-                if (id == startid)
-                {
-                    setprop("controls/APU/off-on", 0);
-					setprop("controls/APU/electronic-control-unit", 0);
-                    #setprop("controls/electric/battery-switch", 0);
-                }
+			settimer(func
+			{
+				if (id == startid)
+				{
+					setprop("/controls/engines/engine[1]/starter", 1);
+					settimer(func
+					{
+						if (id == startid)
+						{
+							setprop("controls/APU/off-on", 0);
+							#setprop("controls/APU/electronic-control-unit", 0);
+							#setprop("controls/electric/battery-switch", 0);
+							setprop("controls/lighting/taxi-lights", 1);
+							setprop("controls/hydraulic/system[0]/pump-b", 2);
+							setprop("controls/hydraulic/system[1]/pump-b", 2);
+							setprop("controls/hydraulic/system[2]/pump-b", 2);
+							setprop("controls/hydraulic/system[2]/pump-a", 1);							
+						}
+					}, 8);
+				}
             }, 7);
         }
-    }, 21);
+    }, 22);
 };
 var shutdown = func
 {
@@ -171,6 +185,8 @@ setlistener("sim/model/start-idling", func(v)
 ## Instant start for tutorials and whatnot
 var instastart = func
 {
+	setprop("/consumables/fuel/tank[0]/selected", 1);
+	setprop("/consumables/fuel/tank[1]/selected", 1);
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
@@ -180,6 +196,11 @@ var instastart = func
     setprop("controls/engines/engine[1]/cutoff", 0);
     setprop("/controls/engines/engine[1]/starter", 1);
     setprop("engines/engine[1]/rpm", 25);
+
+	setprop("controls/hydraulic/system[0]/pump-b", 2);
+	setprop("controls/hydraulic/system[1]/pump-b", 2);
+	setprop("controls/hydraulic/system[2]/pump-b", 2);
+	setprop("controls/hydraulic/system[2]/pump-a", 1);							
 };
 
 ## Prevent the gear from being retracted on the ground
