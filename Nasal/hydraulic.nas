@@ -87,11 +87,11 @@ var HydraulicPump = {
 };
 
 var HydraulicSystem = {
-	new : func (sys, pa, pb, outputs_multi, outputs ) {
+	new : func (sys, pr_min, pa, pb, outputs_multi, outputs ) {
 		obj = { parents : [HydraulicSystem], sys: sys, pump_a: pa, pump_b: pb };		
 		obj.pressure_psi_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pressure-psi", 1); 
 		obj.update_enabled_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/update-enabled", 1); 
-		obj.pressure_nominal = pa.pressure_nominal;
+		obj.pressure_nominal = pr_min;
 		obj.outputs_multi = [];
 		obj.outputs = [];
 		foreach (elem; outputs_multi) {
@@ -133,10 +133,13 @@ var HydraulicSystem = {
 		me.pressure_psi = (p1 < p2) ? p2 : p1;
 		if (me.update_enabled) {
 			foreach (out; me.outputs_multi) {
-				var p1 = getprop("/systems/hydraulic/system[0]/pressure-psi");
-				var p2 = getprop("/systems/hydraulic/system[1]/pressure-psi");
-				var p3 = getprop("/systems/hydraulic/system[2]/pressure-psi");
-				if (p1 >= me.pressure_nominal or p2 >= me.pressure_nominal or p3 >= me.pressure_nominal)
+				var hsys = props.globals.getNode("systems/hydraulic").getChildren("system");
+				var pmax = 0;
+				foreach (s; hsys) {
+					p = s.getNode("pressure-psi").getValue();
+					pmax = (p > pmax) ? p : pmax;
+				}
+				if (pmax >= me.pressure_nominal)
 					out.setValue(1);
 				else out.setValue(0);
 			}		
@@ -151,17 +154,17 @@ var HydraulicSystem = {
 print("Creating hydraulic system ...");
 #ACMPs have to be fixed after rework of electrical system
 var hydraulics = [ 
-	HydraulicSystem.new(0, 
+	HydraulicSystem.new(0, 1800,
 		HydraulicPump.new(0, "a", "hyd-sov-open", "/engines/engine[0]/rpm", 21, 93),
 		HydraulicPump.new(0, "b", "pump-b", "/systems/electrical/right-bus", 24, 28),
 		["rudder", "elevator", "aileron"], ["ob-spoileron", "ob-flight-spoiler", "ob-ground-spoiler", "left-reverser"],
 	),
-	HydraulicSystem.new(1,
+	HydraulicSystem.new(1, 1800,
 		HydraulicPump.new(1, "a", "hyd-sov-open", "/engines/engine[1]/rpm", 21, 93),
 		HydraulicPump.new(1, "b", "pump-b", "/systems/electrical/left-bus", 24 ,28),
 		["rudder", "elevator", "aileron"], ["ib-spoileron", "ib-flight-spoiler", "landing-gear-alt", "right-reverser", "ob-brakes"],
 	),
-	HydraulicSystem.new(2, 
+	HydraulicSystem.new(2, 1800,
 		HydraulicPump.new(2, "a", "pump-a", "/systems/electrical/right-bus", 24, 28),
 		HydraulicPump.new(2, "b", "pump-b", "/systems/electrical/left-bus", 24, 28),
 		["rudder", "elevator", "aileron"], ["ib-ground-spoiler", "landing-gear", "nwsteering", "ib-brakes"],
