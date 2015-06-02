@@ -130,6 +130,8 @@ var startup = func
     {
         if (id == startid)
         {
+            setprop("/consumables/fuel/tank[0]/selected", 1);
+            setprop("/consumables/fuel/tank[1]/selected", 1);
             setprop("/controls/engines/engine[0]/starter", 1);
             setprop("/controls/engines/engine[1]/starter", 1);
             setprop("controls/electric/engine[0]/generator", 1);

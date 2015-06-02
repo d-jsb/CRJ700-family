@@ -275,9 +275,11 @@
 		<fuel>
 			<tank n="0">
 				<name>LH Wing</name>
+				<selected type="bool">false</selected>
 			</tank>
 			<tank n="1">
 				<name>RH Wing</name>
+				<selected type="bool">false</selected>
 			</tank>
 			<tank n="2">
 				<name>Center Main</name>

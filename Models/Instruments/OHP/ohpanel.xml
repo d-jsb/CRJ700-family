@@ -1029,7 +1029,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property  here -->
+					<not><property>consumables/fuel/tank[0]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1173,7 +1173,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<not><property>consumables/fuel/tank[1]/selected</property></not>
 				</or>
 			</and>
 		</condition>
