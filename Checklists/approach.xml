@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Approach</title>
+	<item>
+		<name>Landing Light</name>
+		<value>CHECK ON</value>
+		<condition>
+			<and>
+				<equals>
+					<property>/controls/lighting/landing-lights[0]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[1]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[2]</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Auto Spoilers</name>
+		<value>ARM</value>
+		<condition>
+			<equals>
+				<property>/controls/flight/ground-lift-dump</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/ground-lift-dump</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Reversers</name>
+		<value>ARM</value>
+		<condition>
+			<and>
+				<property>controls/engines/engine[0]/reverser-armed</property>
+				<property>controls/engines/engine[1]/reverser-armed</property>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+				<property>controls/engines/engine[0]/reverser-armed</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+				<property>controls/engines/engine[1]/reverser-armed</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>FIXME</name>
+		<value>...</value>
+	</item>
+	
+</PropertyList>

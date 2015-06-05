@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Landing roll</title>
+	<item>
+		<name>Autopilot</name>
+		<value>CHECK OFF</value>
+	</item>
+	<item>
+		<name>Throttles</name>
+		<value>IDLE</value>
+	</item>
+	<item>
+		<name>Spoilers</name>
+		<value>CHECK EXTENDED</value>
+	</item>
+	<item>
+		<name>Throttles</name>
+		<value>REVERSE THRUST</value>
+		<value>IDLE BELOW 60 KIAS</value>
+	</item>
+	<item>
+		<name>Brake</name>
+		<value>AS NECESSARY</value>
+	</item>	
+</PropertyList>

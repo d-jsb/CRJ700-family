@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Take off</title>
+	<item>
+		<name>Parking Brake</name>
+		<value>CHECK RELEASE</value>
+		<condition>
+			<equals>
+				<property>/controls/gear/brake-parking</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/brake-parking</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Brakes</name>
+		<value>HOLD</value>
+	</item>
+	<item>
+		<name>Throttles</name>
+		<value>50% N1 UNTIL STABLE</value>
+	</item>
+	<item>
+		<name>FIXME</name>
+		<value>...</value>
+	</item>
+</PropertyList>

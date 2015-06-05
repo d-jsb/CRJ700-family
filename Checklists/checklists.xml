@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Bombardier CRJ700 series -->
+<!-- Aircraft property settings common to all variants -->
+
+<PropertyList>
+		<checklist include="pre-start.xml" />
+		<checklist include="engine-start.xml" />
+		<checklist include="after-start.xml" />
+		<checklist include="taxi1.xml" />
+		<checklist include="before-takeoff.xml" />
+		<checklist include="takeoff.xml" />
+		<checklist include="climb.xml" />
+		<checklist include="cruise.xml" />
+		<checklist include="descent.xml" />
+		<checklist include="approach.xml" />
+		<checklist include="landing.xml" />
+		<checklist include="taxi2.xml" />
+		<checklist include="parking.xml" />
+</PropertyList>

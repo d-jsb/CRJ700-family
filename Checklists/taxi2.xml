@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Taxi (after landing)</title>
+	<item>
+		<name>Flaps</name>
+		<value>UP</value>
+	</item>
+	<item>
+		<name>Spoilers</name>
+		<value>RETRACT</value>
+	</item>
+	<item>
+		<name>Strobe Lights</name>
+		<value>OFF</value>
+	</item>
+	<item>
+		<name>Taxi Lights</name>
+		<value>ON</value>
+	</item>
+	<item>
+		<name>Landing Lights</name>
+		<value>OFF</value>
+	</item>
+	<item>
+		<name>Flight Director</name>
+		<value>OFF</value>
+	</item>
+	<item>
+		<name>Transponder</name>
+		<value>STANDBY</value>
+	</item>	
+</PropertyList>
