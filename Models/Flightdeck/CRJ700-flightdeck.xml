@@ -794,6 +794,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-amber/red" />
 			<green alias="../../../button-emit-amber/green" />
@@ -816,6 +822,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-green/red" />
 			<green alias="../../../button-emit-green/green" />
@@ -838,6 +850,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-green/red" />
 			<green alias="../../../button-emit-green/green" />
@@ -861,6 +879,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-red/red" />
 			<green alias="../../../button-emit-red/green" />
@@ -883,6 +907,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-amber/red" />
 			<green alias="../../../button-emit-amber/green" />
@@ -905,6 +935,12 @@
 				</or>
 			</and>
 		</condition>
+		<diffuse>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</diffuse>
 		<emission>	
 			<red alias="../../../button-emit-red/red" />
 			<green alias="../../../button-emit-red/green" />
@@ -1914,171 +1950,171 @@
 
     <!-- Engine 1 thrust lever -->
     <animation>
-	<type>pick</type>
-	<object-name>Eng1LeverCutoff</object-name>
-	<object-name>Eng1ThrustLever</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>controls/engines/engine[0]/cutoff</property>
-	    </binding>
-	</action>
+		<type>pick</type>
+		<object-name>Eng1LeverCutoff</object-name>
+		<object-name>Eng1ThrustLever</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-toggle</command>
+			<property>controls/engines/engine[0]/cutoff</property>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng1ThrustLever</object-name>
-	<action>
-	    <button>3</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-adjust</command>
+		<type>pick</type>
+		<object-name>Eng1ThrustLever</object-name>
+		<action>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-adjust</command>
+			<property>controls/engines/engine[0]/throttle</property>
+			<step>0.01</step>
+			<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-adjust</command>
+			<property>controls/engines/engine[0]/throttle</property>
+			<step>-0.01</step>
+			<min>0</min>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>Eng1LeverClimb</object-name>
+		<object-name>Eng1LeverToga</object-name>
+		<object-name>Eng1LeverMax</object-name>
+		<object-name>Eng1ThrustLever</object-name>
+		<action>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-cycle</command>
+			<property>controls/engines/engine[0]/thrust-mode</property>
+			<value>0</value>
+			<value>1</value>
+			<value>2</value>
+			<value>3</value>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>select</type>
+		<object-name>Eng1LeverCutoff</object-name>
+		<condition>
+			<property>controls/engines/engine[0]/cutoff</property>
+		</condition>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>Eng1Reverser</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>nasal</command>
+			<script>
+				CRJ700.engine1.reverse_thrust();
+			</script>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>select</type>
+		<object-name>Eng1ThrustLever</object-name>
+		<object-name>Eng1Reverser</object-name>
+		<condition>
+			<and>
+			<not>
+				<property>controls/engines/engine[0]/cutoff</property>
+			</not>
+			<equals>
+				<property>controls/engines/engine[0]/thrust-mode</property>
+				<value>0</value>
+			</equals>
+			</and>
+		</condition>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>Eng1ThrustLever</object-name>
+		<object-name>Eng1Reverser</object-name>
 		<property>controls/engines/engine[0]/throttle</property>
-		<step>0.01</step>
-		<max>1</max>
-	    </binding>
-	</action>
-	<action>
-	    <button>4</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-adjust</command>
+		<interpolation>
+			<entry><ind>0</ind><dep>29</dep></entry>
+			<entry><ind>1</ind><dep>-10</dep></entry>
+		</interpolation>
+		<condition>
+			<not>
+			<property>controls/engines/engine[0]/reverser</property>
+			</not>
+		</condition>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.506</x-m>
+			<y-m>0</y-m>
+			<z-m>0.517</z-m>
+		</center>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>Eng1Reverser</object-name>
 		<property>controls/engines/engine[0]/throttle</property>
-		<step>-0.01</step>
-		<min>0</min>
-	    </binding>
-	</action>
+		<factor>130</factor>
+		<condition>
+			<property>controls/engines/engine[0]/reverser</property>
+		</condition>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.545</x-m>
+			<y-m>0</y-m>
+			<z-m>0.674</z-m>
+		</center>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng1LeverClimb</object-name>
-	<object-name>Eng1LeverToga</object-name>
-	<object-name>Eng1LeverMax</object-name>
-	<object-name>Eng1ThrustLever</object-name>
-	<action>
-	    <button>1</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-cycle</command>
-		<property>controls/engines/engine[0]/thrust-mode</property>
-		<value>0</value>
-		<value>1</value>
-		<value>2</value>
-		<value>3</value>
-	    </binding>
-	</action>
+		<type>select</type>
+		<object-name>Eng1LeverClimb</object-name>
+		<condition>
+			<equals>
+			<property>controls/engines/engine[0]/thrust-mode</property>
+			<value>1</value>
+			</equals>
+		</condition>
     </animation>
     <animation>
-	<type>select</type>
-	<object-name>Eng1LeverCutoff</object-name>
-	<condition>
-	    <property>controls/engines/engine[0]/cutoff</property>
-	</condition>
+		<type>select</type>
+		<object-name>Eng1LeverToga</object-name>
+		<condition>
+			<equals>
+			<property>controls/engines/engine[0]/thrust-mode</property>
+			<value>2</value>
+			</equals>
+		</condition>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng1Reverser</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		    CRJ700.engine1.reverse_thrust();
-		</script>
-	    </binding>
-	</action>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>Eng1ThrustLever</object-name>
-	<object-name>Eng1Reverser</object-name>
-	<condition>
-	    <and>
-		<not>
-		    <property>controls/engines/engine[0]/cutoff</property>
-		</not>
-		<equals>
-		    <property>controls/engines/engine[0]/thrust-mode</property>
-		    <value>0</value>
-		</equals>
-	    </and>
-	</condition>
-    </animation>
-    <animation>
-	<type>rotate</type>
-	<object-name>Eng1ThrustLever</object-name>
-	<object-name>Eng1Reverser</object-name>
-	<property>controls/engines/engine[0]/throttle</property>
-	<interpolation>
-	    <entry><ind>0</ind><dep>29</dep></entry>
-	    <entry><ind>1</ind><dep>-10</dep></entry>
-	</interpolation>
-	<condition>
-	    <not>
-		<property>controls/engines/engine[0]/reverser</property>
-	    </not>
-	</condition>
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>-1.506</x-m>
-	    <y-m>0</y-m>
-	    <z-m>0.517</z-m>
-	</center>
-    </animation>
-    <animation>
-	<type>rotate</type>
-	<object-name>Eng1Reverser</object-name>
-	<property>controls/engines/engine[0]/throttle</property>
-	<factor>130</factor>
-	<condition>
-	    <property>controls/engines/engine[0]/reverser</property>
-	</condition>
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>-1.545</x-m>
-	    <y-m>0</y-m>
-	    <z-m>0.674</z-m>
-	</center>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>Eng1LeverClimb</object-name>
-	<condition>
-	    <equals>
-		<property>controls/engines/engine[0]/thrust-mode</property>
-		<value>1</value>
-	    </equals>
-	</condition>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>Eng1LeverToga</object-name>
-	<condition>
-	    <equals>
-		<property>controls/engines/engine[0]/thrust-mode</property>
-		<value>2</value>
-	    </equals>
-	</condition>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>Eng1LeverMax</object-name>
-	<condition>
-	    <equals>
-		<property>controls/engines/engine[0]/thrust-mode</property>
-		<value>3</value>
-	    </equals>
-	</condition>
+		<type>select</type>
+		<object-name>Eng1LeverMax</object-name>
+		<condition>
+			<equals>
+			<property>controls/engines/engine[0]/thrust-mode</property>
+			<value>3</value>
+			</equals>
+		</condition>
     </animation>
 
     <!-- Engine 2 thrust lever -->
