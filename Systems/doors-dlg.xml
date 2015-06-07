@@ -42,7 +42,7 @@
 			<border>2</border>
 			<binding>
 				<command>nasal</command>
-				<script>CRJ700.doors.pax_right.toggle();</script>
+				<script>CRJ700.doors.fwd_service.toggle();</script>
 			</binding>
 		</button>
 		<button>

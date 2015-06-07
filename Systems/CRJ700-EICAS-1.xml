@@ -586,7 +586,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Service door</text>
+		<text type="string">FWD Service door</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -599,6 +599,67 @@
 			</greater-than>
 		</condition>
 	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AV BAY DOOR</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<greater-than>
+				<property>sim/model/door-positions/av-bay/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</message>	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">FWD CARGO DOOR</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<greater-than>
+				<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</message>	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">CTR CARGO DOOR</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<greater-than>
+				<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</message>	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AFT CARGO DOOR</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<greater-than>
+				<property>sim/model/door-positions/aft-cargo/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</message>	
+
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">Yaw damper</text>
