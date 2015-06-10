@@ -54,6 +54,26 @@
 		</binding>
 	</item>
 	<item>
+		<name>ILS Frequency</name>
+		<value>CHECK SET ON NAV1</value>
+		<binding>
+			<command>nasal</command>
+			<script>CRJ700.dialogs.radio.open();</script>
+		</binding>
+	</item>
+	<item>
+		<name>ILS Course</name>
+		<value>CHECK CRS1</value>
+		<binding>
+			<command>nasal</command>
+			<script>CRJ700.dialogs.radio.open();</script>
+		</binding>
+	</item>
+	<item>
+		<name>Nav Source</name>
+		<value>NAV1</value>
+	</item>
+	<item>
 		<name>Reversers</name>
 		<value>ARM</value>
 		<condition>

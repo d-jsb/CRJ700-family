@@ -46,7 +46,16 @@
 		</binding>
 	</item>
 	<item>
+		<name>Gear</name>
+		<value>UP</value>
+	</item>
+	<item>
+		<name>Flaps</name>
+		<value>RETRACT (fixme: speed)</value>
+	</item>
+	<item>
 		<name>FIXME</name>
 		<value>...</value>
 	</item>
+	
 </PropertyList>

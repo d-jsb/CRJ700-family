@@ -4,6 +4,11 @@
 <PropertyList>
 	<title>Descent</title>
 	<item>
+		<name>ATIS / Airport Information</name>
+		<value>CHECK</value>
+	</item>
+
+	<item>
 		<name>Passenger signs</name>
 		<value>ON</value>
 		<condition>
@@ -40,7 +45,38 @@
 	<item>
 		<name>Landing Lights</name>
 		<value>ON BELOW 10,000ft</value>
-	</item>
+		<condition>
+			<and>
+				<equals>
+					<property>/controls/lighting/landing-lights[0]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[1]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[2]</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>1</value>
+		</binding>
+	</item>	
 	<item>
 		<name>Airspeed</name>
 		<value>max 250 KIAS BELOW 10,000ft</value>

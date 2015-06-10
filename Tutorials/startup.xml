@@ -7,11 +7,20 @@
 	<presets>
 		<on-ground type="bool">true</on-ground>
 	</presets>
-
+	<step-time>4</step-time>
+	<exit-time>2</exit-time>
 	<init>
 		<set>
 			<property>controls/gear/brake-parking</property>
 			<value type="bool">true</value>
+		</set>
+		<set>
+			<property>controls/APU/off-on</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>controls/APU/electronic-control-unit</property>
+			<value type="bool">false</value>
 		</set>
 		<set>
 			<property>controls/engines/engine[0]/cutoff</property>
@@ -45,6 +54,22 @@
 			<property>engines/engine[1]/running</property>
 			<value type="bool">false</value>
 		</set>
+		<set>
+			<property>controls/electric/battery-switch</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>consumables/fuel/tank[0]/selected</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>consumables/fuel/tank[1]/selected</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>instrumentation/eicas/page</property>
+			<value>1</value>
+		</set>
 		<nasal>
 			<script><![CDATA[
 				# engine cutoff settings seem to get overridden
@@ -58,18 +83,20 @@
 	</init>
 
 	<step>
-		<message>Welcome aboard the Bombardier CRJ700, a modern regional jet airliner.</message>
+		<message>Welcome aboard the Bombardier CRJ700/900.</message>
 	</step>
 
 	<step>
-		<message>In this tutorial, we will learn how to start the engines and prepare for takeoff.
-First, ensure all doors are closed (click them to open/close) and all passengers and
-cargo have been loaded.</message>
+		<message>In this tutorial, you will learn how to start the engines and prepare for takeoff.
+		If the ground staff did not switch on the lights for you, you will find the CRJ dark and cold.
+		</message>
 	</step>
 
 	<step>
-		<message>The electrical system is currently dormant. Reach up to the overhead panel and turn
-on the battery.</message>
+		<message>Reach up to the overhead panel and turn on the battery. 
+		The battery shall be on all the time until you are parked again at you destination. 
+		It is the first thing to turn on and the very last thing to turn off.
+		</message>
 		<view>
 			<heading-offset-deg>311.9</heading-offset-deg>
 			<pitch-offset-deg>36.1</pitch-offset-deg>
@@ -93,8 +120,70 @@ on the battery.</message>
 	</step>
 
 	<step>
-		<message>To start the engines, we need to turn on the APU (auxilary power unit). Engage the
-APU start/stop switch.</message>
+		<message>With battery power on, the computers will start and displays light up.</message>
+		<view>
+			<heading-offset-deg>337.2</heading-offset-deg>
+			<pitch-offset-deg>-21.3</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>48.3</field-of-view>
+		</view>
+	</step>
+	
+	<step>
+		<message>To start the engines, we need to turn on the APU (auxilary power unit). 
+		First we need to engage the APU electronic control unit (ECU) which will start the APU fuel pump
+		and activate the APU status display on the EICAS screen.
+		</message>
+		<view>
+			<heading-offset-deg>308.7</heading-offset-deg>
+			<pitch-offset-deg>21.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>26.9</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.5358</x-m>
+			<y-m>-0.0142</y-m>
+			<z-m>-0.1967</z-m>
+			<scale>1.9667</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>controls/APU/electronic-control-unit</property>
+			</condition>
+			<interval>1</interval>
+		</exit>
+	</step>
+	<step>
+		<message>
+		You can monitor the APU on the EICAS.
+		</message>
+		<view>
+			<heading-offset-deg>331.8</heading-offset-deg>
+			<pitch-offset-deg>-20.5</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>24.2</field-of-view>
+		</view>
+		<marker>
+			<x-m>-14.0817</x-m>
+			<y-m>0.0900</y-m>
+			<z-m>-0.9300</z-m>
+			<scale>4.6000</scale>
+		</marker>
+		<interval>3</interval>
+	</step>
+	<step>
+		<message>Now push the APU start/stop switch light. It will light "start" until APU reaches 46%. 
+		When the APU reaches 100%, the green AVAIL light turns on.
+		</message>
 		<view>
 			<heading-offset-deg>308.7</heading-offset-deg>
 			<pitch-offset-deg>21.0</pitch-offset-deg>
@@ -114,11 +203,23 @@ APU start/stop switch.</message>
 			<condition>
 				<property>controls/APU/off-on</property>
 			</condition>
+			<interval>2</interval>
 		</exit>
 	</step>
+
 	<step>
-		<message>If you want to, you may also turn on the power/fuel switch, which turns on the
-Electronic Control Unit. This enables the EICAS to display the APU's RPM and EGT.</message>
+		<message>
+		You can monitor the APU on the EICAS.
+		</message>
+		<view>
+			<heading-offset-deg>331.8</heading-offset-deg>
+			<pitch-offset-deg>-20.5</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>24.2</field-of-view>
+		</view>
 	</step>
 
 	<step>
@@ -132,8 +233,9 @@ the APU is fully started, "APU RUNNING" will appear.</message>
 	</step>
 
 	<step>
-		<message>Turn on the APU electric generator, which will provide electrical power to the airplane
-without draining the battery.</message>
+		<message>
+		Turn on the APU electric generator, which will provide AC power to the airplane and recharge the battery.
+		</message>
 		<view>
 			<heading-offset-deg>316.8</heading-offset-deg>
 			<pitch-offset-deg>29.4</pitch-offset-deg>
@@ -193,7 +295,7 @@ engines.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>20.5</field-of-view>
+			<field-of-view>20.0</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.6250</x-m>
@@ -348,7 +450,7 @@ the APU generator, as it is no longer needed.</message>
 	</step>
 
 	<end>
-		<message>Congratulations! You have successfully started a the Bombardier CRJ700.</message>
+		<message>Congratulations! You have successfully started your CRJ700.</message>
 	</end>
 
 </PropertyList>
