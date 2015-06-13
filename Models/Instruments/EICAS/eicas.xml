@@ -243,7 +243,6 @@
 		<object-name>DoorBackground</object-name>
 		<object-name>DoorAftCargo</object-name>
 		<object-name>DoorAvionic</object-name>
-		<object-name>DoorBackground</object-name>
 		<object-name>DoorCTRCargo</object-name>
 		<object-name>DoorEmerL1</object-name>
 		<object-name>DoorEmerL2</object-name>
@@ -256,6 +255,16 @@
 	<animation>
 		<name>PageDoorsText</name>
 		<object-name>PageDoorsTitle</object-name>
+		<object-name>DoorAftCargoText</object-name>
+		<object-name>DoorAvionicText</object-name>
+		<object-name>DoorCTRCargoText</object-name>
+		<object-name>DoorEmerL1Text</object-name>
+		<object-name>DoorEmerL2Text</object-name>
+		<object-name>DoorEmerR1Text</object-name>
+		<object-name>DoorEmerR2Text</object-name>
+		<object-name>DoorFwdCargoText</object-name>
+		<object-name>DoorPassengerText</object-name>
+		<object-name>DoorServiceText</object-name>		
 	</animation>
 	<animation>
 		<name>PageHydraulicObj</name>
@@ -1828,7 +1837,7 @@ APU</text>
 		<font>Helvetica.txf</font>
 		<text>DC ELECTRICAL</text>
 		<offsets>
-			<x-m>0.0001</x-m>
+			<x-m alias="../../../params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -1844,12 +1853,12 @@ APU</text>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.009</character-size>
+		<character-size>0.008</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>DOORS</text>
 		<offsets>
-			<x-m>0.0003</x-m>
+			<x-m alias="../../../params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -1858,6 +1867,427 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<text>
+		<name>DoorAftCargoText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AFT CARGO</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.04422</y-m>
+			<z-m>-0.0565</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorAvionicText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AVIONIC BAY</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02225</y-m>
+			<z-m>0.01029</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorCTRCargoText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>CTR CARGO</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02514</y-m>
+			<z-m>0.0043</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorEmerL1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>EMER</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02514</y-m>
+			<z-m>-0.01544</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<text>
+		<name>DoorEmerL2Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>EMER</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02514</y-m>
+			<z-m>-0.03099</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DoorEmerR1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>EMER</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02225</y-m>
+			<z-m>-0.01531</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DoorEmerR2Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>EMER</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02225</y-m>
+			<z-m>-0.03095</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorFwdCargoText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>FWD CARGO</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02514</y-m>
+			<z-m>0.01678</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorPassengerText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>PASSENGER</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02514</y-m>
+			<z-m>0.04165</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DoorServiceText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>FWD SERVICE</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02225</y-m>
+			<z-m>0.04165</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+
+	<animation>
+		<type>material</type>
+		<object-name>DoorAftCargoText</object-name>
+		<condition>
+			<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorAvionicText</object-name>
+		<condition>
+			<property>sim/model/door-positions/avionic/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorCTRCargoText</object-name>
+		<condition>
+			<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>DoorEmerL1Text</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l1/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorEmerL2Text</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l2/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorEmerR1Text</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r1/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorEmerR2Text</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r2/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorFwdCargoText</object-name>
+		<condition>
+			<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<animation>
+		<type>material</type>
+		<object-name>DoorPassengerText</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-left/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>DoorServiceText</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-right/position-norm</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
 	<!-- End page 5 text -->
 	<!-- Begin page 6 text -->
 	<text>
@@ -4548,6 +4978,16 @@ APU</text>
 		<object-name>HydPressure3</object-name>
 		<object-name>HydIBbrakes</object-name>
 		<object-name>HydOBbrakes</object-name>
+		<object-name>DoorAftCargoText</object-name>
+		<object-name>DoorAvionicText</object-name>
+		<object-name>DoorCTRCargoText</object-name>
+		<object-name>DoorEmerL1Text</object-name>
+		<object-name>DoorEmerL2Text</object-name>
+		<object-name>DoorEmerR1Text</object-name>
+		<object-name>DoorEmerR2Text</object-name>
+		<object-name>DoorFwdCargoText</object-name>
+		<object-name>DoorPassengerText</object-name>
+		<object-name>DoorServiceText</object-name>		
 		<ambient>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
