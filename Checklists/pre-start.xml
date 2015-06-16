@@ -61,7 +61,7 @@
 			<value>1</value>
 		</binding>
 	</item>
-	<item>
+	<!--item>
 		<name>Generator 1 and 2</name>
 		<value>OFF</value>
 		<condition>
@@ -86,7 +86,7 @@
 			<property>/controls/electric/engine[1]/generator</property>
 			<value>0</value>
 		</binding>	
-	</item>
+	</item-->
 	<item>
 		<name>Battery Master</name>
 		<value>ON</value>
@@ -107,8 +107,91 @@
 		<value>ON if required</value>
 	</item>
 	<item>
+		<name>Nav lights</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>/controls/lighting/nav-lights</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/nav-lights</property>
+			<value>1</value>
+		</binding>	
+	</item>
+	<!--item>
 		<name>Avionics Master</name>
 		<value>ON</value>
+	</item-->
+
+	<item>
+		<name>Fuel Quantity</name>
+		<value>CHECK</value>
+	</item>
+	<item>
+		<name>Request Fuel</name>
+		<value>AS REQUIRED</value>
+	</item>
+	<item>
+		<name>Beacon</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>/controls/lighting/beacon</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/beacon</property>
+			<value>1</value>
+		</binding>	
+	</item>
+	<item>
+		<name>APU</name>
+		<value>START</value>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>/controls/APU/electronic-control-unit</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/controls/APU/off-on</property>
+						<value>1</value>
+					</equals>				
+				</and>
+			
+			</or>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/APU/electronic-control-unit</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/APU/off-on</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>APU/Generator</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>/controls/electric/APU-generator</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/electric/APU-generator</property>
+			<value>1</value>
+		</binding>
 	</item>
 	<item>
 		<name>Hydraulic pump switch</name>
@@ -139,55 +222,6 @@
 		<binding>
 			<command>property-assign</command>
 			<property>/controls/hydraulic/system[2]/pump-a</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>Fuel Quantity</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>Request Fuel</name>
-		<value>AS REQUIRED</value>
-	</item>
-	<item>
-		<name>APU</name>
-		<value>START</value>
-		<condition>
-			<and>
-				<equals>
-					<property>/controls/APU/electronic-control-unit</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>/controls/APU/off-on</property>
-					<value>1</value>
-				</equals>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/electronic-control-unit</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/off-on</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>APU/Generator</name>
-		<value>ON</value>
-		<condition>
-			<equals>
-				<property>/controls/electric/APU-generator</property>
-				<value>1</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/electric/APU-generator</property>
 			<value>1</value>
 		</binding>
 	</item>

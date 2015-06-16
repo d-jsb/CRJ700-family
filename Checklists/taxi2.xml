@@ -2,7 +2,7 @@
 
 
 <PropertyList>
-	<title>Taxi (after landing)</title>
+	<title>After landing</title>
 	<item>
 		<name>Flaps</name>
 		<value>UP</value>
@@ -11,18 +11,59 @@
 		<name>Spoilers</name>
 		<value>RETRACT</value>
 	</item>
-	<item>
-		<name>Strobe Lights</name>
-		<value>OFF</value>
-	</item>
+
 	<item>
 		<name>Taxi Lights</name>
 		<value>ON</value>
+		<condition>
+			<property>/controls/lighting/taxi-lights</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/taxi-lights</property>
+			<value>1</value>
+		</binding>	
 	</item>
 	<item>
 		<name>Landing Lights</name>
 		<value>OFF</value>
+		<condition>
+			<not>
+			<and>
+				<property>/controls/lighting/landing-lights[0]</property>
+				<property>/controls/lighting/landing-lights[1]</property>
+				<property>/controls/lighting/landing-lights[2]</property>
+			</and>
+			</not>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>0</value>
+		</binding>
 	</item>
+	<item>
+		<name>Strobe Light</name>
+		<value>OFF</value>
+		<condition>
+			<not><property>/controls/lighting/strobe</property></not>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/strobe</property>
+			<value>0</value>
+		</binding>
+	</item>		
 	<item>
 		<name>Flight Director</name>
 		<value>OFF</value>

@@ -20,10 +20,16 @@
 		<name>Flaps</name>
 		<value>8 degree</value>
 		<condition>
-			<equals>
-				<property>surface-positions/flap-pos-norm</property>
-				<value>0.177</value>
-			</equals>
+			<and>
+				<greater-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.177</value>
+				</greater-equal>
+				<less-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.444</value>
+				</less-equal>
+			</and>
 		</condition>
 		<binding>
 			<command>property-assign</command>
@@ -51,18 +57,9 @@
 		<value>ON</value>
 		<condition>
 			<and>
-				<equals>
-					<property>/controls/lighting/landing-lights[0]</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>/controls/lighting/landing-lights[1]</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>/controls/lighting/landing-lights[2]</property>
-					<value>1</value>
-				</equals>
+				<property>/controls/lighting/landing-lights[0]</property>
+				<property>/controls/lighting/landing-lights[1]</property>
+				<property>/controls/lighting/landing-lights[2]</property>
 			</and>
 		</condition>
 		<binding>
@@ -78,6 +75,18 @@
 		<binding>
 			<command>property-assign</command>
 			<property>/controls/lighting/landing-lights[2]</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Strobe Light</name>
+		<value>ON</value>
+		<condition>
+			<property>/controls/lighting/strobe</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/strobe</property>
 			<value>1</value>
 		</binding>
 	</item>

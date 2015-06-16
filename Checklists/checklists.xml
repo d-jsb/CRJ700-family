@@ -7,7 +7,7 @@
 		<checklist include="pre-start.xml" />
 		<checklist include="engine-start.xml" />
 		<checklist include="after-start.xml" />
-		<checklist include="taxi1.xml" />
+		<!--checklist include="taxi1.xml" /-->
 		<checklist include="before-takeoff.xml" />
 		<checklist include="takeoff.xml" />
 		<checklist include="climb.xml" />
