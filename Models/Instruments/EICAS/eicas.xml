@@ -2083,19 +2083,19 @@ APU</text>
 			<property>sim/model/door-positions/aft-cargo/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2129,19 +2129,19 @@ APU</text>
 			<property>sim/model/door-positions/ctr-cargo/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>
@@ -2152,19 +2152,19 @@ APU</text>
 			<property>sim/model/door-positions/emer-l1/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2175,19 +2175,19 @@ APU</text>
 			<property>sim/model/door-positions/emer-l2/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2198,19 +2198,19 @@ APU</text>
 			<property>sim/model/door-positions/emer-r1/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2221,19 +2221,19 @@ APU</text>
 			<property>sim/model/door-positions/emer-r2/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2244,19 +2244,19 @@ APU</text>
 			<property>sim/model/door-positions/fwd-cargo/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>		
@@ -2290,19 +2290,19 @@ APU</text>
 			<property>sim/model/door-positions/pax-right/position-norm</property>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
