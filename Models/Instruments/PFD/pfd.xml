@@ -1086,10 +1086,10 @@ G</text>
 		<property alias="../../params/indicated-vertical-speed-fpm" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.4</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%04.1f</format>
+		<format>%04.0f</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06874</y-m>
