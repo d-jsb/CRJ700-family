@@ -243,5 +243,20 @@
 			<value>0</value>
 		</binding>
 	</item>
+	<item>
+		<name>Bleed Air Souce</name>
+		<value>BOTH</value>
+		<condition>
+			<equals>
+				<property>/controls/pneumatic/bleed-source</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/pneumatic/bleed-source</property>
+			<value>0</value>
+		</binding>		
+	</item>
 	
 </PropertyList>
