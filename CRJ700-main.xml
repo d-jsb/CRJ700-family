@@ -366,6 +366,7 @@
 			<battery-switch type="bool">true</battery-switch>
 			<ac-service-avail type="bool">true</ac-service-avail>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
+			<APU-generator type="bool">false</APU-generator>
 			<auto-xfer1 type="bool">true</auto-xfer1>
 			<auto-xfer2 type="bool">true</auto-xfer2>
 			<ac-ess-xfer type="bool">false</ac-ess-xfer>
@@ -871,6 +872,33 @@
 			<serviceable type="bool">true</serviceable>
 			<position-norm type="float">0</position-norm>
 		</ram-air-turbine>
+		<electrical>
+			<ac>
+			</ac>
+			<dc>
+				<bus>
+					<name>DCBus1</name>
+				</bus>
+				<bus>
+					<name>DCBus2</name>
+				</bus>
+				<bus>
+					<name>EmergencyBus</name>
+				</bus>
+				<bus>
+					<name>ServiceBus</name>
+				</bus>
+				<bus>
+					<name>UtilityBus</name>
+				</bus>
+				<bus>
+					<name>EssentialBus</name>
+				</bus>
+				<bus>
+					<name>BatteryBus</name>
+				</bus>
+			</dc>
+		</electrical>
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>
@@ -936,6 +964,7 @@
 			<file>Aircraft/CRJ700-family/Nasal/cdu.nas</file>
 		</interactive_cdu>
 		<CRJ700>
+			<file>Aircraft/CRJ700-family/Nasal/classes.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
 			<!--
 			<file>Aircraft/CRJ700-family/Nasal/engines.nas</file>

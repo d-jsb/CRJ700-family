@@ -49,18 +49,18 @@ var HydraulicPump = {
 			output_min: 1800,
 			output: 0,
 		};
-		obj.serviceable_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-serviceable", 1);
-		obj.switch_node = props.globals.getNode("/controls/hydraulic/system["~sys~"]/"~switch, 1);
-		obj.running_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-running", 1); 
-		obj.output_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-psi", 1); 
-		obj.pwr_input_node = props.globals.getNode(pwr_input, 1);
+		obj.serviceableN = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-serviceable", 1);
+		obj.switchN = props.globals.getNode("/controls/hydraulic/system["~sys~"]/"~switch, 1);
+		obj.runningN = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-running", 1); 
+		obj.outputN = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-psi", 1); 
+		obj.pwr_inputN = props.globals.getNode(pwr_input, 1);
 		obj.input_min = (input_min > 0) ? input_min : 1;
 		obj.input_max = (input_max > 0) ? input_max : 1;
 		obj.sw2 = 0; 
 		#print("Init pump "~obj.pid);
-		setlistener(obj.switch_node, func(v) {obj._switch_listener(v);},1,0);
-		setlistener(obj.pwr_input_node, func(v) {obj._update_output();},1,0);
-		setlistener(obj.serviceable_node, func(v) {obj._update_output();},1,0);
+		setlistener(obj.switchN, func(v) {obj._switch_listener(v);},1,0);
+		setlistener(obj.pwr_inputN, func(v) {obj._update_output();},1,0);
+		setlistener(obj.serviceableN, func(v) {obj._update_output();},1,0);
 		return obj;
 	},
 	
@@ -86,8 +86,8 @@ var HydraulicPump = {
 	},
 
 	_update_output: func {
-		me.input = me.pwr_input_node.getValue();
-		me.serviceable = me.serviceable_node.getValue();
+		me.input = me.pwr_inputN.getValue();
+		me.serviceable = me.serviceableN.getValue();
 		if (me.input == nil) me.input = 0;
 		if (me.serviceable and (me.switch == 1 or me.switch == 2 and me.sw2)) {
 			me.output = me.output_nominal;
@@ -101,13 +101,13 @@ var HydraulicPump = {
 			}
 		}
 		else me.output = 0;
-		me.output_node.setValue(me.output);
+		me.outputN.setValue(me.output);
 
 		#update running 0=off, 2=low output output, 1=good output output
 		me.running = 0;
 		if (me.output > 0) me.running = 2;
 		if (me.output > me.output_min) me.running = 1;
-		me.running_node.setValue(me.running);
+		me.runningN.setValue(me.running);
 
 		#print("hyd.upd "~me.sys~"."~me.pid~": "~me.output);
 		return me.output;
@@ -116,24 +116,18 @@ var HydraulicPump = {
 
 var HydraulicSystem = {
 	new : func (sys, out_min, pa, pb, outputs_multi, outputs ) {
-		obj = { parents : [HydraulicSystem],
+		
+		obj = { parents : [HydraulicSystem, EnergyBus.new("hydraulic", sys, outputs, {"output_min": out_min, "output_bool": 1})],
 			sys: sys, 
 			pump_a: HydraulicPump.new(sys, "a", pa), 
 			pump_b: HydraulicPump.new(sys, "b", pb),
-			output_min: out_min,
 			outputs_multi: [],
-			outputs: [],
+			
 		};
 		
-		obj.output_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pressure-psi", 1); 
-		obj.update_enabled_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/update-enabled", 1); 
 		foreach (elem; outputs_multi) {
-			append(obj.outputs_multi, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
+			append(obj.outputs_multi, props.globals.getNode(obj.outputs_path~elem, 1));
 		}
-		foreach (elem; outputs) {
-			append(obj.outputs, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
-		}
-		#print("HydraulicSystem.new "~sys);
 		
 		setlistener("controls/flight/flaps", func(v) {obj._auto_pump(v);},1,1);
 		#setlistener("systems/hydraulic/system["~sys~"]", func {obj.update();}, 1, 2);
@@ -144,38 +138,21 @@ var HydraulicSystem = {
 	_auto_pump: func (v) {
 		me.pump_b.set_switch2(v.getBoolValue());
 	},
-	
-	read_props: func {		
-		me.output = me.output_node.getValue();
-		me.update_enabled = me.update_enabled_node.getValue();
-	},
-	
-	get_output: func {
-		me.read_props();
-		return me.output;
-	},
-	
-	update: func() {
-		me.read_props();
-		if (me.update_enabled) {			
-			var p1 = me.pump_a.get_output();
-			var p2 = me.pump_b.get_output();
-			me.output = (p1 < p2) ? p2 : p1;
+
+	update: func {
+		me.parents[1].update();
+		if (me.serviceable) {			
 			foreach (out; me.outputs_multi) {
 				var hsys = props.globals.getNode("systems/hydraulic").getChildren("system");
 				var pmax = 0;
 				foreach (s; hsys) {
-					p = s.getNode("pressure-psi").getValue();
+					p = s.getNode("value").getValue();
 					pmax = (p > pmax) ? p : pmax;
 				}
 				if (pmax >= me.output_min)
 					out.setValue(1);
 				else out.setValue(0);
 			}		
-			foreach (out; me.outputs) {
-				out.setValue((me.output >= me.output_min));
-			}
-			me.output_node.setValue(me.output);
 		}
 	},
 };
