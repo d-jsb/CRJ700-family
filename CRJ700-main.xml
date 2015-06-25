@@ -395,13 +395,13 @@
 		<hydraulic>
 			<system>
 				<!-- 0 = off, 1 = on, 2 = auto -->
+				<pump-a type="bool">true</pump-a>
 				<pump-b type="int">0</pump-b>
-				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
+				<pump-a type="bool">true</pump-a>
 				<pump-b type="int">0</pump-b>
-				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
@@ -907,7 +907,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="int">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<pressure-psi type="int">0</pressure-psi>
+				<value type="int">0</value>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>
@@ -918,7 +918,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="int">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<pressure-psi type="int">0</pressure-psi>
+				<value type="int">0</value>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>
@@ -929,7 +929,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="bool">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<pressure-psi type="int">0</pressure-psi>
+				<value type="int">0</value>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>

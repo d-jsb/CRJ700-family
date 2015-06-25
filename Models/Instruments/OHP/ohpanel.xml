@@ -731,7 +731,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+				<property>controls/hydraulic/system[0]/pump-a</property>
 			</binding>
 		</action>
     </animation>
@@ -740,7 +740,7 @@
 		<object-name>HydSOVBtnL</object-name>
 		<object-name>HydSOVLightL</object-name>
 		<condition>
-			<not><property>controls/hydraulic/system[0]/hyd-sov-open</property></not>
+			<not><property>controls/hydraulic/system[0]/pump-a</property></not>
 		</condition>		
 		<factor alias="../../button-translate-m" />
 		<axis>
@@ -760,7 +760,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>controls/hydraulic/system[0]/hyd-sov-open</property></not>
+					<not><property>controls/hydraulic/system[0]/pump-a</property></not>
 				</or>					
 			</and>
 		</condition>
@@ -781,7 +781,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+				<property>controls/hydraulic/system[1]/pump-a</property>
 			</binding>
 		</action>
     </animation>
@@ -790,7 +790,7 @@
 		<object-name>HydSOVBtnR</object-name>
 		<object-name>HydSOVLightR</object-name>
 		<condition>
-			<not><property>controls/hydraulic/system[1]/hyd-sov-open</property></not>
+			<not><property>controls/hydraulic/system[1]/pump-a</property></not>
 		</condition>		
 		<factor alias="../../button-translate-m" />
 		<axis>
@@ -810,7 +810,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>controls/hydraulic/system[1]/hyd-sov-open</property></not>
+					<not><property>controls/hydraulic/system[1]/pump-a</property></not>
 				</or>					
 			</and>
 		</condition>
