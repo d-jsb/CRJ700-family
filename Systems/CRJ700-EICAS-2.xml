@@ -304,7 +304,31 @@
 			<property>controls/anti-ice/wing-heat</property>
 		</condition>
 	</message>
-
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 1 CLOSED</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>controls/hydraulic/system[0]/pump-a</property></not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 2 CLOSED</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>controls/hydraulic/system[1]/pump-a</property></not>
+		</condition>
+	</message>
+	
 	<!-- Statuses -->
 	<message>
 		<priority type="int">1</priority>

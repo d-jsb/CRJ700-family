@@ -679,5 +679,171 @@
 			</and>
 		</condition>
 	</message>
-
+	<!-->Hydraulic</!-->
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD EDP 1A</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[0]/pump-a-running</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD EDP 2A</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[1]/pump-a-running</property>
+				<value>2</value>
+			</equals>					
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD PUMP 1B</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[0]/pump-b-running</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD PUMP 2B</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[1]/pump-b-running</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD PUMP 3A</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[2]/pump-a-running</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</message>	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD PUMP 3B</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/hydraulic/system[2]/pump-b-running</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD 1 LO PRESS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<less-than>
+				<property>systems/hydraulic/system[0]/value</property>
+				<value>1800</value>
+			</less-than>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD 2 LO PRESS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<less-than>
+				<property>systems/hydraulic/system[1]/value</property>
+				<value>1800</value>
+			</less-than>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD 3 LO PRESS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<less-than>
+				<property>systems/hydraulic/system[2]/value</property>
+				<value>1800</value>
+			</less-than>
+		</condition>
+	</message>	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 1 OPEN</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<property>controls/hydraulic/system[0]/pump-a</property>
+				<property>engines/engine[0]/on-fire</property>
+			</and>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 2 OPEN</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<property>controls/hydraulic/system[1]/pump-a</property>
+				<property>engines/engine[1]/on-fire</property>
+			</and>
+		</condition>
+	</message>
+	
 </PropertyList>
