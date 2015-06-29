@@ -49,16 +49,17 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 	<overlay>
 	    <params>
-		<indicated-pitch-deg>instrumentation/attitude-indicator[0]/indicated-pitch-deg</indicated-pitch-deg>
-		<indicated-roll-deg>instrumentation/attitude-indicator[0]/indicated-roll-deg</indicated-roll-deg>
-		<indicated-altitude-ft>instrumentation/altimeter[0]/indicated-altitude-ft</indicated-altitude-ft>
-		<indicated-speed-kt>instrumentation/airspeed-indicator[0]/indicated-speed-kt</indicated-speed-kt>
-		<indicated-mach>instrumentation/airspeed-indicator[0]/indicated-mach</indicated-mach>
-		<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
-		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</indicated-vertical-speed-fpm>
-		<radar-altitude-ft>instrumentation/radar-altimeter[0]/radar-altitude-ft</radar-altitude-ft>
-		<altimeter-setting-inhg>instrumentation/altimeter[0]/setting-inhg</altimeter-setting-inhg>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/pfd1</powerN>
+			<indicated-pitch-deg>instrumentation/attitude-indicator[0]/indicated-pitch-deg</indicated-pitch-deg>
+			<indicated-roll-deg>instrumentation/attitude-indicator[0]/indicated-roll-deg</indicated-roll-deg>
+			<indicated-altitude-ft>instrumentation/altimeter[0]/indicated-altitude-ft</indicated-altitude-ft>
+			<indicated-speed-kt>instrumentation/airspeed-indicator[0]/indicated-speed-kt</indicated-speed-kt>
+			<indicated-mach>instrumentation/airspeed-indicator[0]/indicated-mach</indicated-mach>
+			<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
+			<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</indicated-vertical-speed-fpm>
+			<radar-altitude-ft>instrumentation/radar-altimeter[0]/radar-altitude-ft</radar-altitude-ft>
+			<altimeter-setting-inhg>instrumentation/altimeter[0]/setting-inhg</altimeter-setting-inhg>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -77,13 +78,14 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/mfd[0]/page</page>
-		<tcas>instrumentation/mfd[0]/tcas</tcas>
-		<wx>instrumentation/mfd[0]/wx</wx>
-		<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
-		<true-airspeed-kt>instrumentation/airspeed-indicator[0]/true-speed-kt</true-airspeed-kt>
-		<radar-range>instrumentation/efis/inputs/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/mfd1</powerN>
+			<page>instrumentation/mfd[0]/page</page>
+			<tcas>instrumentation/mfd[0]/tcas</tcas>
+			<wx>instrumentation/mfd[0]/wx</wx>
+			<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
+			<true-airspeed-kt>instrumentation/airspeed-indicator[0]/true-speed-kt</true-airspeed-kt>
+			<radar-range>instrumentation/efis/inputs/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -102,8 +104,8 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/eicas[0]/page</page>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
+			<page>instrumentation/eicas[0]/page</page>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -236,16 +238,17 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 	<overlay>
 	    <params>
-		<indicated-pitch-deg>instrumentation/attitude-indicator[2]/indicated-pitch-deg</indicated-pitch-deg>
-		<indicated-roll-deg>instrumentation/attitude-indicator[2]/indicated-roll-deg</indicated-roll-deg>
-		<indicated-altitude-ft>instrumentation/altimeter[2]/indicated-altitude-ft</indicated-altitude-ft>
-		<indicated-speed-kt>instrumentation/airspeed-indicator[2]/indicated-speed-kt</indicated-speed-kt>
-		<indicated-mach>instrumentation/airspeed-indicator[2]/indicated-mach</indicated-mach>
-		<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
-		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</indicated-vertical-speed-fpm>
-		<radar-altitude-ft>instrumentation/radar-altimeter[1]/radar-altitude-ft</radar-altitude-ft>
-		<altimeter-setting-inhg>instrumentation/altimeter[1]/setting-inhg</altimeter-setting-inhg>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/pfd2</powerN>
+			<indicated-pitch-deg>instrumentation/attitude-indicator[2]/indicated-pitch-deg</indicated-pitch-deg>
+			<indicated-roll-deg>instrumentation/attitude-indicator[2]/indicated-roll-deg</indicated-roll-deg>
+			<indicated-altitude-ft>instrumentation/altimeter[2]/indicated-altitude-ft</indicated-altitude-ft>
+			<indicated-speed-kt>instrumentation/airspeed-indicator[2]/indicated-speed-kt</indicated-speed-kt>
+			<indicated-mach>instrumentation/airspeed-indicator[2]/indicated-mach</indicated-mach>
+			<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
+			<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</indicated-vertical-speed-fpm>
+			<radar-altitude-ft>instrumentation/radar-altimeter[1]/radar-altitude-ft</radar-altitude-ft>
+			<altimeter-setting-inhg>instrumentation/altimeter[1]/setting-inhg</altimeter-setting-inhg>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -259,13 +262,14 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/mfd[1]/page</page>
-		<tcas>instrumentation/mfd[1]/tcas</tcas>
-		<wx>instrumentation/mfd[1]/wx</wx>
-		<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
-		<true-airspeed-kt>instrumentation/airspeed-indicator[2]/true-speed-kt</true-airspeed-kt>
-		<radar-range>instrumentation/radar[1]/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/mfd2</powerN>
+			<page>instrumentation/mfd[1]/page</page>
+			<tcas>instrumentation/mfd[1]/tcas</tcas>
+			<wx>instrumentation/mfd[1]/wx</wx>
+			<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
+			<true-airspeed-kt>instrumentation/airspeed-indicator[2]/true-speed-kt</true-airspeed-kt>
+			<radar-range>instrumentation/radar[1]/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -279,8 +283,9 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/eicas[1]/page</page>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/eicas-disp</powerN>
+			<page>instrumentation/eicas[1]/page</page>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -416,48 +421,48 @@
     </animation>
 
     <animation>
-	<type>material</type>
-	<!--
-	<object-name>Furniture</object-name>
-	<object-name>MainPanel</object-name>
-	<object-name>Floor</object-name>
-	<object-name>Glareshield</object-name>
-	<object-name>GearLever_0</object-name>
-	<object-name>GearLever_1</object-name>
-	<object-name>LeftASIPlacard</object-name>
-	<object-name>LeftYoke</object-name>
-	<object-name>LeftYokeAP</object-name>
-	<object-name>LeftYokeBase</object-name>
-	<object-name>LeftYokeChecklist</object-name>
-	<object-name>PedestalTop</object-name>
-	<object-name>RightASIPlacard</object-name>
-	<object-name>RightYoke</object-name>
-	<object-name>RightYokeAP</object-name>
-	<object-name>RightYokeBase</object-name>
-	<object-name>RightYokeChecklist</object-name>
-	<object-name>Seats</object-name>
-	<object-name>Shell</object-name>
-	<object-name>SpeedbrakeLever</object-name>
-	<object-name>Tiller</object-name>
-	<object-name>TillerPanel</object-name>
-	<object-name>UpperPanel</object-name>
-	<object-name>Warnings</object-name>
-	<object-name>YokeFloorBases</object-name>
-	-->
-	<condition>
-	    <and>
-		<property>controls/lighting/dome</property>
-		<greater-than-equals>
-		    <property>systems/electrical/outputs/panel-lights</property>
-		    <value>15</value>
-		</greater-than-equals>
-	    </and>
-	</condition>
-	<emission>
-	    <red>0.5</red>
-	    <green>0.5</green>
-	    <blue>0.5</blue>
-	</emission>
+		<type>material</type>
+		<!--
+		<object-name>Furniture</object-name>
+		<object-name>MainPanel</object-name>
+		<object-name>Floor</object-name>
+		<object-name>Glareshield</object-name>
+		<object-name>GearLever_0</object-name>
+		<object-name>GearLever_1</object-name>
+		<object-name>LeftASIPlacard</object-name>
+		<object-name>LeftYoke</object-name>
+		<object-name>LeftYokeAP</object-name>
+		<object-name>LeftYokeBase</object-name>
+		<object-name>LeftYokeChecklist</object-name>
+		<object-name>PedestalTop</object-name>
+		<object-name>RightASIPlacard</object-name>
+		<object-name>RightYoke</object-name>
+		<object-name>RightYokeAP</object-name>
+		<object-name>RightYokeBase</object-name>
+		<object-name>RightYokeChecklist</object-name>
+		<object-name>Seats</object-name>
+		<object-name>Shell</object-name>
+		<object-name>SpeedbrakeLever</object-name>
+		<object-name>Tiller</object-name>
+		<object-name>TillerPanel</object-name>
+		<object-name>UpperPanel</object-name>
+		<object-name>Warnings</object-name>
+		<object-name>YokeFloorBases</object-name>
+		-->
+		<condition>
+			<and>
+			<property>controls/lighting/dome</property>
+			<greater-than-equals>
+				<property>systems/AC/outputs/pilot-panel-lights</property>
+				<value>15</value>
+			</greater-than-equals>
+			</and>
+		</condition>
+		<emission>
+			<red>0.5</red>
+			<green>0.5</green>
+			<blue>0.5</blue>
+		</emission>
     </animation>
 
     <animation>
@@ -465,7 +470,7 @@
 	<object-name>PedestalMarkings</object-name>
 	<condition>
 	    <greater-than-equals>
-		<property>systems/electrical/outputs/panel-lights</property>
+		<property>systems/AC/outputs/center-panel-lights</property>
 		<value>15</value>
 	    </greater-than-equals>
 	</condition>
@@ -785,7 +790,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -813,7 +818,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -841,7 +846,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -870,7 +875,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -898,7 +903,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -926,7 +931,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -956,7 +961,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -978,7 +983,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1028,7 +1033,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1066,7 +1071,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1133,7 +1138,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1171,7 +1176,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1238,7 +1243,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1276,7 +1281,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1477,7 +1482,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1561,7 +1566,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1733,7 +1738,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1781,7 +1786,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2647,7 +2652,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2694,7 +2699,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2719,7 +2724,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>			
 				<or>
@@ -2740,7 +2745,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2845,7 +2850,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2893,7 +2898,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2941,7 +2946,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>

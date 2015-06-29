@@ -8,6 +8,7 @@
 	<path>eicas.ac</path>
 
 	<params>
+		<powerN>/systems/DC/outputs/eicas-disp</powerN>
 		<page>instrumentation/eicas/page</page>
 		<hyd-sym-size>0.078125</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
@@ -28,7 +29,6 @@
 		<pressure3-y>0</pressure3-y>
 		<pressure2-y>0.042</pressure2-y>
 		<pressure-z>-0.028</pressure-z>
-
 		<col1-y>-0.042</col1-y>
 		<col2-y>0</col2-y>
 		<col3-y>0.042</col3-y>
@@ -39,11 +39,28 @@
 		<row5-z>-0.067</row5-z>
 		<row6-z>-0.073</row6-z>
 		<row7-z>-0.079</row7-z>
+		
+		<dc1-y>-0.0575</dc1-y>
+		<dc2-y>-0.0243</dc2-y>
+		<dc3-y>0.0229</dc3-y>
+		<dc4-y>0.0562</dc4-y>
+		<dcin-z>0.0735</dcin-z>
+		<dctru-z>0.053</dctru-z>
+		<dctruvolt-z>0.0383</dctruvolt-z>
+		<dctruamp-z>0.0325</dctruamp-z>
+		<dcL-y>-0.0413</dcL-y>
+		<dcR-y>0.0418</dcR-y>
+		<dcR1-z>0.0208</dcR1-z>
+		<dcR2-z>0.0102</dcR2-z>
+		<dcR3-z>0</dcR3-z>
+		<dcR4-z>-0.0116</dcR4-z>
+		<dcbatt-y>0.002</dcbatt-y>
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
 	</params>
 
 	<lb-to-kg type="float">0.45359237</lb-to-kg>
-	<min-bus-amp type="int">24</min-bus-amp>
+	<AC-volt-min type="int">108</AC-volt-min>
+	<DC-volt-min type="int">24</DC-volt-min>
 
 	<colors>
 		<amber>
@@ -262,6 +279,40 @@
 	<animation>
 		<name>PageDCText</name>
 		<object-name>PageDCTitle</object-name>
+		<object-name>DCIn1Text</object-name>
+		<object-name>DCIn2Text</object-name>
+		<object-name>DCIn3Text</object-name>
+		<object-name>DCIn4Text</object-name>
+		<object-name>DCTRU1Text</object-name>
+		<object-name>DCTRU2Text</object-name>
+		<object-name>DCTRU3Text</object-name>
+		<object-name>DCTRU4Text</object-name>
+		<object-name>DC1v</object-name>
+		<object-name>DC2v</object-name>
+		<object-name>DC3v</object-name>
+		<object-name>DC4v</object-name>
+		<object-name>DC1a</object-name>
+		<object-name>DC2a</object-name>
+		<object-name>DC3a</object-name>
+		<object-name>DC4a</object-name>
+		<object-name>DCBus1Text</object-name>
+		<object-name>DCBus2Text</object-name>
+		<object-name>DCEssBusText</object-name>
+		<object-name>DCServBusText</object-name>
+		<object-name>DCUtilBusText</object-name>
+		<object-name>DCBattBusText</object-name>
+		<object-name>DCAPUBattText</object-name>
+		<object-name>DCMainBattText</object-name>
+		<object-name>DCAPUBattV</object-name>
+		<object-name>DCAPUBattA</object-name>
+		<object-name>DCAPUBattVText</object-name>
+		<object-name>DCAPUBattAText</object-name>
+		<object-name>DCMainBattV</object-name>
+		<object-name>DCMainBattA</object-name>
+		<object-name>DCMainBattVText</object-name>
+		<object-name>DCMainBattAText</object-name>
+		<object-name>DCAPUBattBusText</object-name>
+		<object-name>DCMainBattBusText</object-name>		
 	</animation>
 	<animation>
 		<name>PageDoorsObj</name>
@@ -1622,8 +1673,8 @@ CONFIGURATION</text>
 		<object-name>Service configuration</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/external-power-amp-v</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/system/acext-value</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -1707,7 +1758,7 @@ BUS</text>
 	<text>
 		<name>External power amperage</name>
 		<type>number-value</type>
-		<property>systems/electrical/external-power-amp-v</property>
+		<property>systems/AC/system/acext-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.007</character-size>
@@ -1748,14 +1799,14 @@ EXT</text>
 	<text>
 		<name>Generator 1 amperage</name>
 		<type>number-value</type>
-		<property>engines/engine[0]/amp-v</property>
+		<property>systems/AC/system/gen1-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<format>%2.1f
-AMPS</format>
+Volt</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>-0.03753</y-m>
@@ -1769,14 +1820,14 @@ AMPS</format>
 	<text>
 		<name>APU generator amperage</name>
 		<type>number-value</type>
-		<property>engines/apu/amp-v</property>
+		<property>systems/AC/system/apugen-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<format>%2.1f
-AMPS</format>
+Volt</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>0</y-m>
@@ -1790,14 +1841,14 @@ AMPS</format>
 	<text>
 		<name>Generator 2 amperage</name>
 		<type>number-value</type>
-		<property>engines/engine[1]/amp-v</property>
+		<property>systems/AC/system/gen2-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<format>%2.1f
-AMPS</format>
+Volt</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>0.03753</y-m>
@@ -1868,8 +1919,8 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
-	<!-- End page 3 text -->
-	<!-- Begin page 4 text -->
+	<!-- End page 3 AC text -->
+	<!-- Begin page 4 DC text -->
 	<text>
 		<name>PageDCTitle</name>
 		<type>literal</type>
@@ -1889,6 +1940,652 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	
+	<text>
+		<name>DCIn1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AC
+BUS1</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc1-y" />
+			<z-m alias="../../../params/dcin-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCIn2Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AC
+BUS2</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc2-y" />
+			<z-m alias="../../../params/dcin-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCIn3Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AC
+BUS2</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc3-y" />
+			<z-m alias="../../../params/dcin-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCIn4Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AC
+ESS BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc4-y" />
+			<z-m alias="../../../params/dcin-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	
+	<text>
+		<name>DCTRU1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>TRU 1
+
+    V
+    A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc1-y" />
+			<z-m alias="../../../params/dctru-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCTRU2Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>TRU 2
+
+    V
+    A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc2-y" />
+			<z-m alias="../../../params/dctru-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCTRU3Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>ESS
+TRU 2
+    V
+    A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc3-y" />
+			<z-m alias="../../../params/dctru-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCTRU4Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>ESS
+TRU 1
+    V
+    A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc4-y" />
+			<z-m alias="../../../params/dctru-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	
+	<text>
+		<name>DCBus1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>BUS 1</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcL-y" />
+			<z-m alias="../../../params/dcR1-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<text>
+		<name>DCBus2Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>BUS 2</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcL-y" />
+			<z-m alias="../../../params/dcR2-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCServBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>SERV BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcL-y" />
+			<z-m alias="../../../params/dcR3-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCUtilBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>UTIL BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcL-y" />
+			<z-m alias="../../../params/dcR4-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DCEssBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>BUS 1</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcR-y" />
+			<z-m alias="../../../params/dcR1-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<text>
+		<name>DCBattBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>BATT BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcR-y" />
+			<z-m alias="../../../params/dcR3-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCAPUBattText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>APU
+BATT</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.05784</y-m>
+			<z-m>-0.05387</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCMainBattText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>MAIN
+BATT</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.05784</y-m>
+			<z-m>-0.07143</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	
+	<text>
+		<name>DCAPUBattVText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>V
+A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.004</y-m>
+			<z-m>-0.0483</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<text>
+		<name>DCMainBattVText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>V
+A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.004</y-m>
+			<z-m>-0.066</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<text>
+		<name>DCAPUBattBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>APU BATT
+DIR BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.03253</y-m>
+			<z-m>-0.05387</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCMainBattBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>MAIN BATT
+DIR BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.03253</y-m>
+			<z-m>-0.07122</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+
+	<text>
+		<name>DC1v</name>
+		<type>number-value</type>
+		<property>systems/DC/system/tru1-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc1-y" />
+			<z-m alias="../../../params/dctruvolt-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC1a</name>
+		<type>number-value</type>
+		<property>systems/DC/system/tru1-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc1-y" />
+			<z-m alias="../../../params/dctruamp-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC2v</name>
+		<type>number-value</type>
+		<property>systems/DC/system/tru2-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc2-y" />
+			<z-m alias="../../../params/dctruvolt-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC2a</name>
+		<type>number-value</type>
+		<property>systems/DC/system/tru2-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc2-y" />
+			<z-m alias="../../../params/dctruamp-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC3v</name>
+		<type>number-value</type>
+		<property>systems/DC/system/esstru2-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc3-y" />
+			<z-m alias="../../../params/dctruvolt-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC3a</name>
+		<type>number-value</type>
+		<property>systems/DC/system/esstru2-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc3-y" />
+			<z-m alias="../../../params/dctruamp-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC4v</name>
+		<type>number-value</type>
+		<property>systems/DC/system/esstru1-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc4-y" />
+			<z-m alias="../../../params/dctruvolt-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DC4a</name>
+		<type>number-value</type>
+		<property>systems/DC/system/esstru1-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dc4-y" />
+			<z-m alias="../../../params/dctruamp-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCAPUBattV</name>
+		<type>number-value</type>
+		<property>systems/DC/system/apu-battery-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcbatt-y" />
+			<z-m>-0.051</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCAPUBattA</name>
+		<type>number-value</type>
+		<property>systems/DC/system/apu-battery-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcbatt-y" />
+			<z-m>-0.057</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	<text>
+		<name>DCMainBattV</name>
+		<type>number-value</type>
+		<property>systems/DC/system/main-battery-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcbatt-y" />
+			<z-m>-0.0681</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DCMainBattA</name>
+		<type>number-value</type>
+		<property>systems/DC/system/main-battery-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/dcbatt-y" />
+			<z-m>-0.0745</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
 	<!-- End page 4 text -->
 	<!-- Begin page 5 text -->
 	<text>
@@ -5145,6 +5842,18 @@ APU</text>
 		<object-name>DoorFwdCargoText</object-name>
 		<object-name>DoorPassengerText</object-name>
 		<object-name>DoorServiceText</object-name>		
+		<object-name>DC1v</object-name>
+		<object-name>DC2v</object-name>
+		<object-name>DC3v</object-name>
+		<object-name>DC4v</object-name>
+		<object-name>DC1a</object-name>
+		<object-name>DC2a</object-name>
+		<object-name>DC3a</object-name>
+		<object-name>DC4a</object-name>
+		<object-name>DCAPUBattV</object-name>
+		<object-name>DCAPUBattA</object-name>
+		<object-name>DCMainBattV</object-name>
+		<object-name>DCMainBattA</object-name>
 		<ambient>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -5208,7 +5917,29 @@ APU</text>
 		<object-name>Hyd1BText</object-name>
 		<object-name>Hyd2BText</object-name>
 		<object-name>Hyd3AText</object-name>
-		<object-name>Hyd3BText</object-name>
+		<object-name>Hyd3BText</object-name>		
+		<object-name>DCIn1Text</object-name>
+		<object-name>DCIn2Text</object-name>
+		<object-name>DCIn3Text</object-name>
+		<object-name>DCIn4Text</object-name>
+		<object-name>DCTRU1Text</object-name>
+		<object-name>DCTRU2Text</object-name>
+		<object-name>DCTRU3Text</object-name>
+		<object-name>DCTRU4Text</object-name>
+		<object-name>DCBus1Text</object-name>
+		<object-name>DCBus2Text</object-name>
+		<object-name>DCEssBusText</object-name>
+		<object-name>DCServBusText</object-name>
+		<object-name>DCUtilBusText</object-name>
+		<object-name>DCBattBusText</object-name>
+		<object-name>DCAPUBattText</object-name>
+		<object-name>DCMainBattText</object-name>
+		<object-name>DCAPUBattVText</object-name>
+		<object-name>DCAPUBattAText</object-name>
+		<object-name>DCMainBattVText</object-name>
+		<object-name>DCMainBattAText</object-name>
+		<object-name>DCAPUBattBusText</object-name>
+		<object-name>DCMainBattBusText</object-name>		
 		<ambient>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -5232,7 +5963,7 @@ APU</text>
 		<object-name>Off</object-name>
 		<condition>
 			<less-than>
-				<property>systems/electrical/outputs/efis</property>
+				<property alias="../../../../params/powerN" />
 				<value>15</value>
 			</less-than>
 		</condition>
@@ -5775,8 +6506,8 @@ APU</text>
 		<object-name>ElecSeg1</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/left-bus</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/outputs/bus[0]</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5787,8 +6518,8 @@ APU</text>
 		<object-name>ElecServBus</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/right-bus</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/outputs/bus[1]</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5799,8 +6530,8 @@ APU</text>
 		<object-name>External power amperage</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/external-power-amp-v</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/system/acext-value</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5809,8 +6540,8 @@ APU</text>
 		<object-name>ElecGen1</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>engines/engine[0]/amp-v</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/system/gen1-value</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5819,8 +6550,8 @@ APU</text>
 		<object-name>ElecAPUGen</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>engines/apu/amp-v</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/system/apugen-value</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5829,8 +6560,8 @@ APU</text>
 		<object-name>ElecGen2</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>engines/engine[1]/amp-v</property>
-				<value alias="../../../../min-bus-amp" />
+				<property>systems/AC/system/gen2-value</property>
+				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -5841,31 +6572,31 @@ APU</text>
 			<or>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<greater-than-equals>
-						<property>systems/electrical/right-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[1]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 				</and>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<or>
 						<greater-than-equals>
-							<property>systems/electrical/external-power-amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/acext-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/apu/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/apugen-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/engine[1]/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/gen2-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 					</or>
 				</and>
@@ -5879,42 +6610,42 @@ APU</text>
 			<or>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<greater-than-equals>
-						<property>systems/electrical/right-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[1]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 				</and>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<or>
 						<greater-than-equals>
-							<property>systems/electrical/external-power-amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/acext-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/apu/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/apugen-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/engine[1]/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/gen2-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 					</or>
 				</and>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/right-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[1]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<greater-than-equals>
-						<property>systems/electrical/external-power-amp-v</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/system/acext-value</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 				</and>
 			</or>
@@ -5927,41 +6658,41 @@ APU</text>
 			<or>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<greater-than-equals>
-						<property>systems/electrical/right-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
-					</greater-than-equals>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/electrical/left-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>engines/engine[1]/amp-v</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[1]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 				</and>
 				<and>
 					<greater-than-equals>
-						<property>systems/electrical/right-bus</property>
-						<value alias="../../../../../../min-bus-amp" />
+						<property>systems/AC/outputs/bus[0]</property>
+						<value alias="../../../../../../AC-volt-min" />
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>systems/AC/system/gen2-value</property>
+						<value alias="../../../../../../AC-volt-min" />
+					</greater-than-equals>
+				</and>
+				<and>
+					<greater-than-equals>
+						<property>systems/AC/outputs/bus[1]</property>
+						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
 					<or>
 						<greater-than-equals>
-							<property>systems/electrical/external-power-amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/acext-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/apu/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/apugen-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 						<greater-than-equals>
-							<property>engines/engine[0]/amp-v</property>
-							<value alias="../../../../../../../min-bus-amp" />
+							<property>systems/AC/system/gen1-value</property>
+							<value alias="../../../../../../../AC-volt-min" />
 						</greater-than-equals>
 					</or>
 				</and>

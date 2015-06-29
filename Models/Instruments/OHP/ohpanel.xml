@@ -46,7 +46,7 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-			<property>systems/electrical/outputs/panel-lights</property>
+			<property>systems/AC/outputs/ohp-lights</property>
 			<value>15</value>
 			</greater-than-equals>
 		</condition>
@@ -273,7 +273,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -295,7 +295,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -345,7 +345,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -367,7 +367,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -416,7 +416,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -467,7 +467,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -489,7 +489,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -539,7 +539,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -561,7 +561,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -755,7 +755,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -805,7 +805,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1002,7 +1002,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1024,7 +1024,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1074,7 +1074,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1096,7 +1096,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1146,7 +1146,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1168,7 +1168,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1219,7 +1219,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1241,7 +1241,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1289,7 +1289,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1339,7 +1339,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1361,7 +1361,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1461,7 +1461,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1483,7 +1483,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1533,7 +1533,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1565,7 +1565,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1618,7 +1618,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1667,7 +1667,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1716,7 +1716,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1765,7 +1765,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1814,7 +1814,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2075,7 +2075,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2125,7 +2125,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2147,7 +2147,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2199,7 +2199,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2221,7 +2221,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2271,7 +2271,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2293,7 +2293,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2341,7 +2341,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2389,7 +2389,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2467,7 +2467,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2601,7 +2601,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/ohp-lights</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>

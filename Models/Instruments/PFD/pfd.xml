@@ -8,6 +8,7 @@
 	<path>pfd.ac</path>
 
 	<params>
+		<powerN>/systems/DC/outputs/pfd1</powerN>
 		<indicated-pitch-deg>instrumentation/attitude-indicator/indicated-pitch-deg</indicated-pitch-deg>
 		<indicated-roll-deg>instrumentation/attitude-indicator/indicated-roll-deg</indicated-roll-deg>
 		<indicated-altitude-ft>instrumentation/altimeter/indicated-altitude-ft</indicated-altitude-ft>
@@ -1280,7 +1281,7 @@ G</text>
 		<object-name>Off</object-name>
 		<condition>
 			<less-than>
-				<property>systems/electrical/outputs/efis</property>
+				<property alias="../../../../params/powerN" />
 				<value>15</value>
 			</less-than>
 		</condition>
