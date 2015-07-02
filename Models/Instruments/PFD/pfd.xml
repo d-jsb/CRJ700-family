@@ -34,9 +34,9 @@
 			<blue>0.145</blue>
 		</green>
 		<pink>
-			<red>0.984</red>
-			<green>0.616</green>
-			<blue>0.616</blue>
+			<red>0.9</red>
+			<green>0.440</green>
+			<blue>0.74</blue>
 		</pink>
 		<white>
 			<red>1</red>
@@ -1044,7 +1044,6 @@ G</text>
 	<text>
 		<name>ADF1</name>
 		<type>string-value</type>
-		<property>instrumentation/adf[0]/ident</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
 		<character-size>0.008</character-size>
@@ -1134,7 +1133,7 @@ G</text>
 		<object-name>Autopilot on</object-name>
 		<object-name>Autopilot IAS</object-name>
 		<object-name>Autopilot Mach</object-name>
-		<object-name>ADF1</object-name>
+		
 		<object-name>Radar altimeter</object-name>
 		<object-name>Radar altimeter (metric)</object-name>
 		<object-name>Vertical speed indicator</object-name>
@@ -1161,6 +1160,7 @@ G</text>
 		<object-name>Altitude setting</object-name>
 		<object-name>Speed knot setting</object-name>
 		<object-name>Speed mach setting</object-name>
+		<object-name>ADF1</object-name>
 		<ambient>
 			<red alias="../../../colors/pink/red" />
 			<green alias="../../../colors/pink/green" />
