@@ -58,6 +58,7 @@
 					<position-norm type="float">0</position-norm>
 				</emer-r2>
 			</door-positions>
+			<sound-enabled type="bool">false</sound-enabled>
 		</model>
 
 		<instrumentation>
@@ -423,7 +424,6 @@
 			<dome type="bool">false</dome>
 			<display-norm type="float">0.8</display-norm>
 			<standby-compass type="bool">false</standby-compass>
-			<panel-lights type="bool">true</panel-lights>
 			<panel-norm type="float">0.4</panel-norm>
 			<panel-flood-norm type="float">0.2</panel-flood-norm>
 			<panel-overhead-norm type="float">0.4</panel-overhead-norm>

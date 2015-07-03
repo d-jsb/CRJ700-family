@@ -46,8 +46,8 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-			<property>systems/AC/outputs/ohp-lights</property>
-			<value>15</value>
+			<property alias="../../../../params/powerN" />
+			<value>104</value>
 			</greater-than-equals>
 		</condition>
 		<emission>
@@ -147,13 +147,19 @@
 		<type>material</type>
 		<object-name>ACAvailLight</object-name>
 		<condition>
-			<or>
-				<property>controls/lighting/lt-test</property>
-				<and>
-					<property>controls/electric/ac-service-avail</property>
-					<not><property>controls/electric/ac-service-in-use</property></not>
-				</and>
-			</or>
+			<and>
+				<greater-than-equals>
+					<property>systems/DC/outputs/ohp-lights</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<and>
+						<property>controls/electric/ac-service-avail</property>
+						<not><property>controls/electric/ac-service-in-use</property></not>
+					</and>
+				</or>
+			</and>
 		</condition>
 		<emission>	
 			<red alias="../../../button-emit-green/red" />
@@ -166,13 +172,19 @@
 		<type>material</type>
 		<object-name>ACInUseLight</object-name>
 		<condition>
-			<or>
-				<property>controls/lighting/lt-test</property>
-				<and>
-					<property>controls/electric/ac-service-avail</property>
-					<property>controls/electric/ac-service-in-use</property>
-				</and>
-			</or>
+			<and>
+				<greater-than-equals>
+					<property>systems/DC/outputs/ohp-lights</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<and>
+						<property>controls/electric/ac-service-avail</property>
+						<property>controls/electric/ac-service-in-use</property>
+					</and>
+				</or>
+			</and>
 		</condition>
 		<emission>	
 			<red alias="../../../button-emit-white/red" />
@@ -300,7 +312,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<not><property>systems/AC/system/gen1-serviceable</property></not>
 				</or>
 			</and>
 		</condition>
@@ -372,7 +384,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<not><property>systems/AC/system/gen2-serviceable</property></not>
 				</or>
 			</and>
 		</condition>

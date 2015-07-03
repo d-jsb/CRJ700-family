@@ -50,8 +50,7 @@ Engine.poll_fuel_tanks = func
 #
 #   n - index of APU: /engines/apu[n]
 #
-Engine.Apu = func(n)
-{
+Engine.Apu = func(n) {
     var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
     # Based on the fuel consumption of a 757 APU.
     apu.fuel_burn_pph = 200;
@@ -322,8 +321,13 @@ Engine.Jet = func(n)
     jet.n1 = 0;
     jet.n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm", 1);
 
-    jet.fdm_n1 = 0;
+    jet.n2 = 0;
+    jet.n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm2", 1);
+
+	jet.fdm_n1 = 0;
     jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
+	jet.fdm_n2 = 0;
+    jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
 
     jet.fuel_flow_gph = 0;
     jet.fuel_flow_gph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow-gph", 1);
@@ -354,6 +358,7 @@ Engine.Jet = func(n)
         jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
         jet.controls.throttle = jet.controls.throttle_node.getValue();
         jet.fdm_n1 = jet.fdm_n1_node.getValue();
+        jet.fdm_n2 = jet.fdm_n2_node.getValue();
         jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
         jet.on_fire = jet.on_fire_node.getBoolValue();
         jet.serviceable = jet.serviceable_node.getBoolValue();
@@ -365,6 +370,7 @@ Engine.Jet = func(n)
         jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
        # jet.fdm_reverser_node.setBoolValue(jet.fdm_reverser);
         jet.n1_node.setValue(jet.n1);
+        jet.n2_node.setValue(jet.n2);
         jet.fuel_flow_gph_node.setValue(jet.fuel_flow_gph);
         jet.fuel_flow_pph_node.setValue(jet.fuel_flow_gph * Engine.fuel_density());
         jet.running_node.setBoolValue(jet.running);
@@ -379,30 +385,36 @@ Engine.Jet = func(n)
 
         var time_delta = getprop_safe("sim/time/delta-sec");
         if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)
+		#shutdown
         {
             jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 8 * time_delta, 0);
+            jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
+            jet.n2 = math.max(jet.n2 - 15 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
         elsif (jet.running)
+		#run
         {
             jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle)
                                * jet.controls.throttle;
             jet.n1 = jet.fdm_n1;
+            jet.n2 = jet.fdm_n2;
             jet.controls.starter = 0;
         }
-        elsif (jet.controls.starter)
+        elsif (jet.controls.starter and jet._has_bleed_air())
+		#start
         {
-			if (jet._has_bleed_air())
-			{
-				jet.n1 = math.min(jet.n1 + 4 * time_delta, jet.fdm_n1);
-				if (jet.n1 >= jet.fdm_n1) jet.running = 1;
-            }
+			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
+			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
+			if (jet.n1 >= jet.fdm_n1) jet.running = 1;
+			#if (jet.n2 >= jet.fdm_n2) jet.running = 1;
         }
         else
+		#off, serviceable
         {
             jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 8 * time_delta, 0);
+            jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
+            jet.n2 = math.max(jet.n2 - 15 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
 

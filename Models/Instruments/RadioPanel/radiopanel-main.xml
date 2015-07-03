@@ -5,6 +5,7 @@
 
 <PropertyList>
 
+	
 	<path>radiopanel.ac</path>
 
 	<colors>
@@ -42,8 +43,8 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/outputs/panel-lights</property>
-				<value>15</value>
+				<property>systems/AC/outputs/center-panel-int-lights</property>
+				<value>105</value>
 			</greater-than-equals>
 		</condition>
 		<emission>

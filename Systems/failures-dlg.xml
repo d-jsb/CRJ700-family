@@ -92,8 +92,17 @@
 		</checkbox>
 		<checkbox>
 			<halign>left</halign>
-			<label>Electrical system</label>
-			<property>systems/electrical/serviceable</property>
+			<label>AC power center</label>
+			<property>systems/AC/system/serviceable</property>
+			<binding>
+			<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>
+		<checkbox>
+			<halign>left</halign>
+			<label>DC power center</label>
+			<property>systems/DC/system/serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>

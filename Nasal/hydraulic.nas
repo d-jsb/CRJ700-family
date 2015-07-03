@@ -54,10 +54,10 @@ var HydraulicPump = {
 	},	
 
 	_update_output: func {
-		#print("HydPump.update");
 		me.input = me.inputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
 		if (me.input == nil) me.input = 0;
+		print(me.name~"._update in: "~me.input~" ");
 		if (me.serviceable and (me.switch == 1 or me.switch == 2 and me.sw2)) {
 			me.output = me.output_nominal;
 			if (me.input_lo > 0 and me.input < me.input_lo) {
@@ -97,7 +97,6 @@ var HydraulicSystem = {
 	
 	#set on-off-signal for pump B automatic mode
 	_auto_pump: func (v) {
-		print(me.type~"."~me.index~".auto "~typeof(me.inputs[1]));
 		me.inputs[1].set_switch2(v.getBoolValue());
 	},
 
@@ -120,7 +119,7 @@ var HydraulicSystem = {
 };
 
 print("Creating hydraulic system ...");
-#ACMPs have to be fixed after rework of electrical system
+
 var hydraulics = [ 
 	HydraulicSystem.new(0,
 		["rudder", "elevator", "aileron"],
@@ -136,9 +135,9 @@ var hydraulics = [
 	),
 ];
 
-hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-a", "/engines/engine[0]/N2", 60, 93).addSwitch());
+hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-a", "/engines/engine[0]/rpm2", 57, 95).addSwitch());
 hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-b", "/systems/AC/outputs/hyd-pump1B", 110, 120).addSwitch());
-hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-a", "/engines/engine[1]/N2", 60, 93).addSwitch());
+hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-a", "/engines/engine[1]/rpm2", 57, 95).addSwitch());
 hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-b", "/systems/AC/outputs/hyd-pump2B", 110, 120).addSwitch());
 hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-a", "/systems/AC/outputs/hyd-pump3A", 110, 120).addSwitch());
 hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-b", "/systems/AC/outputs/hyd-pump3B", 110, 120).addSwitch());

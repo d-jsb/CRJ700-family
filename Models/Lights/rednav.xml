@@ -8,8 +8,8 @@
 		<type>select</type>
 		<condition>
 			<greater-than>
-				<property>systems/electrical/outputs/nav-lights</property>
-				<value>5</value>
+				<property>systems/DC/outputs/nav-lights</property>
+				<value>15</value>
 			</greater-than>
 		</condition>
 	</animation>

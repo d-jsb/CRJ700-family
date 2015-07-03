@@ -32,7 +32,7 @@
 var IDG = {
 	new: func (bus, name, input) {
 		var obj = {
-			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 60, 95).setOutputMin(108)],
+			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 57, 95).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 		};
@@ -60,7 +60,7 @@ var IDG = {
 var APUGen = {
 	new: func (bus, name, input) {
 		var obj = {
-			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 60, 99, 100).setOutputMin(108)],
+			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 60, 99, 102).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 		};
@@ -83,9 +83,9 @@ var APUGen = {
 		return me;
 	},
 };
-# ACBus
-# add freq [Hz] and load [kVA]
 
+
+# ACBus
 var ACBus = {
 	new: func (sysid, name, outputs) {
 		obj = { parents : [ACBus, EnergyBus.new("AC", sysid, name, outputs)],
@@ -112,7 +112,7 @@ var ACPC = {
 		obj = { parents : [ACPC, EnergyBus.new("AC", sysid, "acpc", outputs)],
 			buses: [],
 		};
-		print(obj.parents[1].system_path);
+		print("AC power center "~obj.parents[1].system_path);
 		return obj;		
 	},
 
@@ -130,22 +130,22 @@ var ACPC = {
 			var ep = me.inputs[3].getValue();
 			var adg = me.inputs[4].getValue();
 			
-			print("ACPC "~g1~", "~g2~", "~apu~", "~ep);
+			print("ACPC g1:"~g1~", g2:"~g2~", a:"~apu~", e:"~ep);
 			var v = 0;
 			
 			#use ext. AC until APU avail
 			if (apu < ep) apu = ep;
 			#AC1
-			v = (g1 >= apu) ? g1 : apu;
-			me.outputs[0].setValue(v);
+			if (g1 < apu) g1 = apu;
+			me.outputs[0].setValue(g1);
 			
 			#AC2
-			v = (g2 >= apu) ? g2 : apu;
-			me.outputs[1].setValue(v);
+			if (g2 < apu) g2 = apu;
+			me.outputs[1].setValue(g2);
 			
-			#AC_ESS
+			#AC_ESS (prio: adg,ac1,ac2)
 			v = (g1 >= g2) ? g1 : g2;
-			v =(adg > v) ? adg : v;
+			v = (adg > v) ? adg : v;
 			me.outputs[2].setValue(v);
 			
 			#AC_SERVICE
@@ -164,7 +164,7 @@ var DCPC = {
 		obj = { parents : [DCPC, EnergyBus.new("DC", sysid, "dcpc", outputs)],
 			buses: [],
 		};
-		print(obj.parents[1].system_path);
+		print("DC power center "~obj.parents[1].system_path);
 		return obj;		
 	},
 	
@@ -180,27 +180,29 @@ var DCPC = {
 			var t2 = me.inputs[1].getValue();
 			var et1 = me.inputs[2].getValue();
 			var et2 = me.inputs[3].getValue();
-			var bat1 = me.inputs[4].getValue();
-
-			print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~bat1);
+			var ab = me.inputs[4].getValue();
+			var mb = me.inputs[5].getValue();
+			var batt = (ab > mb) ? ab : mb;
+			
+			print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~batt);
 			var v = 0;
 			
 			#Battery
-			me.outputs[4].setValue(bat1);
+			me.outputs[4].setValue(batt);
 
 			#DC1
-			v = (t1 >= bat1) ? t1 : bat1;
+			v = (t1 >= batt) ? t1 : batt;
 			me.outputs[0].setValue(v);
 			
 			#DC2
-			v = (t2 >= bat1) ? t2 : bat1;
+			v = (t2 >= batt) ? t2 : batt;
 			me.outputs[1].setValue(v);
 	
 			#DC_SERVICE
 			me.outputs[3].setValue(v);
 
 			#DC_ESS
-			v = (et1 >= bat1) ? et1 : bat1;
+			v = (et1 >= batt) ? et1 : batt;
 			me.outputs[2].setValue(v);
 		}
 		return me;
@@ -210,43 +212,70 @@ var DCPC = {
 
 print("Creating electrical system ...");
 
+# Define electrical buses and their outputs. Output will be set to bus voltage.
+# Output can be defined as ["output-name", "controls/path/to/switch"] or just 
+# as "output-name" (always on).
+
 var ac_buses = [ 
-	ACBus.new(1, "AC1", ["tru1", "flaps-a", "pitch-trim-1", "hyd-pump2B", "hyd-pump3B","aoa-heater-r", "pitot-heater-r", "egpws"]),
-	ACBus.new(2, "AC2 ", ["tru2", "esstru2", "flaps-b", "pitch-trim-2", "hyd-pump1B", "hyd-pump3A", "copilot-panel-lights"]),
-	ACBus.new(3, "AC-ESS", ["esstru1", "xflow-pump", "pitot-heater-l", "aoa-heater-l", "cabin-lights", "ohp-lights", "pilot-panel-lights", "center-panel-lights", "tcas", "ignition-a"]),
-	ACBus.new(4, "AC-Service", ["apu-charger", "logo-lights", "cabin-lights"]),
-	ACBus.new(5, "ADG", ["hyd-pump3B", "pitch-trim-2", "flaps-a", "flaps-b"]),
+	ACBus.new(1, "AC1", ["aoa-heater-r", "egpws", "flaps-a", "hyd-pump2B", 
+		"hyd-pump3B", "pitch-trim-1", "pitot-heater-r", "tru1", 
+		]),
+	ACBus.new(2, "AC2",	["copilot-panel-int-lights", "esstru2", "flaps-b", 
+		"hyd-pump1B", "hyd-pump3A", "pitch-trim-2", "tru2", 
+		]),
+	ACBus.new(3, "AC-ESS", ["aoa-heater-l", "cabin-lights", 
+		"center-panel-int-lights", "esstru1", "ignition-a", "ohp-int-lights", 
+		"pilot-panel-int-lights", "pitot-heater-l", "tcas", "xflow-pump", 
+		]),
+	ACBus.new(4, "AC-Service", ["apu-charger", "cabin-lights",
+		["logo-lights", "controls/lighting/logo-lights"], 
+		]),
+	ACBus.new(5, "ADG",["flaps-a", "flaps-b", "hyd-pump3B", "pitch-trim-2"]),
 ];
 
 var dc_buses = [
-	DCBus.new(1, "DC1", ["eicas-disp", "radio-altimeter1", "passenger-door", "wiper-left", "nwsteering", "taxi-lights", "landing-lights[1]", "rear-ac-light", "wing-lights", "gps1", "dme1", "wradar"]),
-	DCBus.new(2, "DC2", ["vhf2", "rtu2", "pfd2", "mfd2", "wing-ac-lights"]),
-	DCBus.new(3, "DC-ESS", ["efis", "rtu1", "pfd1", "mfd1", "instrument-flood-lights", "transponder1", "vhf-nav1", "reversers"]),
-	DCBus.new(4, "DC-Service", ["service-lights", "boarding-lights", "nav-lights", "beacon", "galley-lights"]),
-	DCBus.new(5, "Battery", ["eicas-disp", "vhf-com1", "adg-deploy", "left-fuelpump", "gravity-xflow", "fuel-sov", "landing-lights[0]", "landing-lights[2]", "passenger-signs", "ohp-lights"]),
+	DCBus.new(1, "DC1", ["dme1", "eicas-disp", "gps1", 
+		["landing-lights[1]", "controls/lighting/landing-lights[1]"],
+		"nwsteering", "passenger-door", "radio-altimeter1", 
+		["rear-ac-light", "sim/model/lights/strobe/state"],
+		["taxi-lights", "controls/lighting/taxi-lights"],
+		["wing-lights", "controls/lighting/wing-lights"],
+		"wiper-left", 
+		"wradar",
+		]),
+	DCBus.new(2, "DC2", ["clock2", "mfd2", "pfd2", "rtu2", "vhf2",
+		["wing-ac-lights", "sim/model/lights/strobe/state"],
+		]),
+	DCBus.new(3, "DC-ESS", ["efis", "instrument-flood-lights", "mfd1", 
+		"pfd1", "reversers", "rtu1", "transponder1", "vhf-nav1", 
+		]),
+	DCBus.new(4, "DC-Service", ["boarding-lights", "galley-lights",
+		["beacon", "sim/model/lights/beacon/state"],
+		["nav-lights", "controls/lighting/nav-lights"],
+		"service-lights", 
+		]),
+	DCBus.new(5, "Battery", ["adg-deploy", "clock1", "eicas-disp", "fuel-sov",
+		"gravity-xflow", 
+		["landing-lights[0]", "controls/lighting/landing-lights[0]"],
+		["landing-lights[2]", "controls/lighting/landing-lights[2]"],
+		"left-fuelpump", 
+		["ohp-lights", "controls/lighting/ind-lts-norm"],
+		"passenger-signs", 
+		"standby-instrument",
+		"vhf-com1", 
+		]),
 	DCBus.new(6, "Utility", []),
 ];
 
 
-var acpc = ACPC.new(0, ["bus0","bus1","bus2","bus3","bus4"]);
+var acpc = ACPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5"]);
+var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
 
-acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/N2").addSwitch("/controls/electric/engine[0]/generator"));
-acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/N2").addSwitch("/controls/electric/engine[1]/generator"));
+acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2").addSwitch("/controls/electric/engine[0]/generator"));
+acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2").addSwitch("/controls/electric/engine[1]/generator"));
 acpc.addInput(APUGen.new(acpc, "apugen", "/engines/apu/rpm").addSwitch("/controls/electric/APU-generator"));
 acpc.addInput(EnergyConv.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
 acpc.addInput(APUGen.new(acpc, "adg", "/systems/ram-air-turbine/rpm"));
-
-
-foreach (b; ac_buses) {
-	print("input: "~acpc.outputs_path~"bus["~b.index~"]");
-	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 120));
-	b.init();
-}
-
-acpc.init();
-
-
-var dcpc = DCPC.new(0, ["bus0", "bus1", "bus2", "bus3", "bus4", "bus5"]);
 
 dcpc.addInput(EnergyConv.new(dcpc, "tru1", 28, ac_buses[0].outputs_path~"tru1", 40));
 dcpc.addInput(EnergyConv.new(dcpc, "tru2", 28, ac_buses[0].outputs_path~"tru2", 40));
@@ -255,10 +284,22 @@ dcpc.addInput(EnergyConv.new(dcpc, "esstru2", 28, ac_buses[0].outputs_path~"esst
 dcpc.addInput(EnergyConv.new(dcpc, "apu-battery", 24).addSwitch("/controls/electric/battery-switch"));
 dcpc.addInput(EnergyConv.new(dcpc, "main-battery", 24).addSwitch("/controls/electric/battery-switch"));
 
-foreach (b; dc_buses) {
-	b.addInput(EnergyConv.new(b, "dcpc-"~b.index, 28, dcpc.outputs_path~"bus"~b.index, 0,));
+foreach (b; ac_buses) {
+	print("input: "~acpc.outputs_path~"bus["~b.index~"]");
+	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 115));
 	b.init();
 }
+
+
+foreach (b; dc_buses) {
+	b.addInput(EnergyConv.new(b, "dcpc-"~b.index, 28, dcpc.outputs_path~"bus"~b.index, 0, 28));
+	b.init();
+}
+
+#init power controllers (setup listeners)
+acpc.init();
+dcpc.init();
+
 
 #dummy for compatibility
 update_electrical = func {

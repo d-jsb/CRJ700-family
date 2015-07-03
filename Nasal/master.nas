@@ -112,12 +112,15 @@ setlistener("sim/signals/fdm-initialized", func
                                                              0, 1);
                 fast_loop.start();
                 slow_loop.start();
+				settimer(func {
+					setprop("sim/model/sound-enabled",1);
+					print("Sound on.");
+					}, 3);
             }, 0, 0);
 
 ## Startup/shutdown functions
 var startid = 0;
-var startup = func
-{
+var startup = func {
     startid += 1;
     var id = startid;
     setprop("controls/electric/battery-switch", 1);
@@ -147,6 +150,7 @@ var startup = func
 					{
 						if (id == startid)
 						{
+							setprop("controls/pneumatic/bleed-source", 0);
 							setprop("controls/APU/off-on", 0);
 							#setprop("controls/APU/electronic-control-unit", 0);
 							#setprop("controls/electric/battery-switch", 0);
@@ -156,12 +160,13 @@ var startup = func
 							setprop("controls/hydraulic/system[2]/pump-b", 2);
 							setprop("controls/hydraulic/system[2]/pump-a", 1);							
 						}
-					}, 8);
+					}, 38);
 				}
-            }, 7);
+            }, 37);
         }
     }, 22);
 };
+
 var shutdown = func
 {
     setprop("controls/engines/engine[0]/cutoff", 1);
