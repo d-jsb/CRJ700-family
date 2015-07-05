@@ -1045,6 +1045,7 @@ G</text>
 	<text>
 		<name>ADF1</name>
 		<type>string-value</type>
+		<property>instrumentation/adf[0]/ident</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
 		<character-size>0.008</character-size>
