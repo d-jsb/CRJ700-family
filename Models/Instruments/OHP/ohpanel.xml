@@ -506,7 +506,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
+					<not><property>systems/AC/system[1]/serviceable</property></not>
 				</or>
 			</and>
 		</condition>
@@ -578,7 +578,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property  here -->
+					<not><property>systems/AC/system[2]/serviceable</property></not>
 				</or>
 			</and>
 		</condition>

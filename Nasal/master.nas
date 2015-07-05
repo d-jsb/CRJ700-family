@@ -72,9 +72,10 @@ var fast_loop = Loop(0, func {
 		engines[0].update();
 		engines[1].update();
 	}
-	# Electrical.
-	update_electrical();
 
+	update_electrical();
+	update_hydraulic();
+	
 	# Instruments.
 	eicas_messages_page1.update();
 	eicas_messages_page2.update();
@@ -82,9 +83,6 @@ var fast_loop = Loop(0, func {
 	# Model.
 	wipers[0].update();
 	wipers[1].update();
-	hydraulics[0].update();
-	hydraulics[1].update();
-	hydraulics[2].update();
 });
 
 var slow_loop = Loop(3, func {

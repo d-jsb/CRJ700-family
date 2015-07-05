@@ -12,7 +12,7 @@
 		<page>instrumentation/eicas/page</page>
 		<hyd-sym-size>0.078125</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
-		<disp-x>0.0005</disp-x>
+		<disp-x>0.001</disp-x>
 		<temperature1-y>-0.0425</temperature1-y>
 		<temperature3-y>-0.004</temperature3-y>
 		<temperature2-y>0.032</temperature2-y>
@@ -39,7 +39,18 @@
 		<row5-z>-0.067</row5-z>
 		<row6-z>-0.073</row6-z>
 		<row7-z>-0.079</row7-z>
-		
+
+		<acgen-maxkva>40</acgen-maxkva>
+		<acext-maxkva>40</acext-maxkva> <!-- guess -->
+		<ac-kva-z>-0.0355</ac-kva-z>
+		<ac-volt-z>-0.0412</ac-volt-z>
+		<ac-hz-z>-0.0471</ac-hz-z>
+		<ac-values1-y>-0.0449</ac-values1-y>
+		<ac-values2-y>-0.0014</ac-values2-y>
+		<ac-values3-y>0.0418</ac-values3-y>
+		<ac-units1-y>-0.0452</ac-units1-y>
+		<ac-units2-y>0.0018</ac-units2-y>
+		<ac-units3-y>0.045</ac-units3-y>
 		<dc1-y>-0.0575</dc1-y>
 		<dc2-y>-0.0243</dc2-y>
 		<dc3-y>0.0229</dc3-y>
@@ -217,22 +228,76 @@
 	<animation>
 		<name>PageACText</name>
 		<object-name>PageACTitle</object-name>
-		<object-name>Service configuration</object-name>
-		<object-name>Service bus</object-name>
-		<object-name>Bus 1</object-name>
-		<object-name>Bus 2</object-name>
-		<object-name>ESS bus</object-name>
-		<object-name>Generator 1</object-name>
-		<object-name>APU generator</object-name>
-		<object-name>Generator 2</object-name>
-		<object-name>External power</object-name>
-		<object-name>Generator 1 amperage</object-name>
-		<object-name>APU generator amperage</object-name>
-		<object-name>Generator 2 amperage</object-name>
-		<object-name>External power amperage</object-name>
+		<object-name>ACServiceConfiguration</object-name>
+		<object-name>ACServBusText</object-name>
+		<object-name>ACBus1Text</object-name>
+		<object-name>ACBus2Text</object-name>
+		<object-name>ACESSBusText</object-name>
+		<object-name>AutoXfer1Fail</object-name>
+		<object-name>AutoXfer2Fail</object-name>
+		<object-name>AutoXfer1Off</object-name>
+		<object-name>AutoXfer2Off</object-name>
+		<object-name>ACGen1Text</object-name>
+		<object-name>APUGenText</object-name>
+		<object-name>ACGen2Text</object-name>
+		<object-name>DISC1</object-name>
+		<object-name>DISC2</object-name>
+
+		<object-name>ExtUnits</object-name>
+		<object-name>Gen1Units</object-name>
+		<object-name>APUUnits</object-name>
+		<object-name>Gen2Units</object-name>
+
+		<object-name>ExtKVA</object-name>
+		<object-name>ExtV</object-name>
+		<object-name>ExtHZ</object-name>
+		<object-name>Gen1KVA</object-name>
+		<object-name>Gen1V</object-name>
+		<object-name>Gen1HZ</object-name>
+		<object-name>APUKVA</object-name>
+		<object-name>APUV</object-name>
+		<object-name>APUHZ</object-name>
+		<object-name>Gen2KVA</object-name>
+		<object-name>Gen2V</object-name>
+		<object-name>Gen2HZ</object-name>
+	</animation>
+	<animation>
+		<name>ADGgroup</name>
+		<object-name>ADGBackground</object-name>
+		<object-name>ADGText</object-name>
+		<object-name>ADGBusText</object-name>
+		<object-name>AGVUnits</object-name>
+		<object-name>ADGV</object-name>
+		<object-name>ADGHZ</object-name>
+	</animation>
+	<animation>
+		<name>Extgroup</name>
+		<object-name>ACExtBackground</object-name>
+		<object-name>ExtText</object-name>
+		<object-name>ExtUnits</object-name>
+		<object-name>ExtKVA</object-name>
+		<object-name>ExtV</object-name>
+		<object-name>ExtHZ</object-name>
 	</animation>
 	<animation>
 		<name>PageACObj</name>
+		<object-name>ACBackground</object-name>
+		<object-name>ADGgroup</object-name>
+		<object-name>ADG</object-name>
+		<object-name>ADGBus</object-name>
+		<object-name>ADGLine</object-name>		
+
+		<object-name>Extgroup</object-name>
+		<object-name>ACExtGen</object-name>
+		<object-name>ACExtLine</object-name>		
+
+		<object-name>ACServBus</object-name>
+		<object-name>ACServBusLine</object-name>
+
+		<object-name>ACGen1</object-name>		
+		<object-name>ACGen2</object-name>		
+		<object-name>APUGen</object-name>		
+
 		<object-name>ElecAPUGen</object-name>
 		<object-name>ElecBus1</object-name>
 		<object-name>ElecBus2</object-name>
@@ -244,8 +309,6 @@
 		<object-name>ElecSeg3</object-name>
 		<object-name>ElecSeg4</object-name>
 		<object-name>ElecSeg5</object-name>
-		<object-name>ElecServBus</object-name>
-		<object-name>SymbolsAC</object-name>	
 	</animation>
 	<animation>
 		<name>PageDCObj</name>
@@ -1640,7 +1703,7 @@
 		<font>Helvetica.txf</font>
 		<text>AC ELECTRICAL</text>
 		<offsets>
-			<x-m>0.0001</x-m>
+			<x-m alias="../../../params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -1650,48 +1713,118 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>Service configuration</name>
+		<name>ACServiceConfiguration</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.008</character-size>
+		<alignment>left-top</alignment>
+		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>SERVICE
 CONFIGURATION</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.065</y-m>
-			<z-m>0.062</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0615</y-m>
+			<z-m>0.056</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Service configuration</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/AC/system/acext-value</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
-		</condition>
-	</animation>
 	<text>
-		<name>Service bus</name>
+		<name>ADGBus</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>ADG BUS</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0012</y-m>
+			<z-m>0.0393</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>AGVUnits</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-top</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>V
+HZ</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0223</y-m>
+			<z-m>0.0562</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>ADGV</name>
+		<type>number-value</type>
+		<property>systems/AC/system/adg-value</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0191</y-m>
+			<z-m>0.0555</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ADGHZ</name>
+		<type>number-value</type>
+		<property>systems/AC/system/adg-freq</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0191</y-m>
+			<z-m>0.0508</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	
+	<text>
+		<name>ACServBusText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>SERV BUS</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.02233</y-m>
-			<z-m>0.04837</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.029</y-m>
+			<z-m>0.0303</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1699,18 +1832,37 @@ CONFIGURATION</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Bus 1</name>
+		<name>Shed</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>SHED</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.057</y-m>
+			<z-m>0.0303</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ACBus1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>BUS 1</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.03313</y-m>
-			<z-m>0.03456</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0404</y-m>
+			<z-m>0.0187</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1718,18 +1870,18 @@ CONFIGURATION</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Bus 2</name>
+		<name>ACBus2Text</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>BUS 2</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.02823</y-m>
-			<z-m>0.03456</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0375</y-m>
+			<z-m>0.0187</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1737,19 +1889,18 @@ CONFIGURATION</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>ESS bus</name>
+		<name>ACESSBusText</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<text>ESS
-BUS</text>
+		<text>ESS BUS</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.00226</y-m>
-			<z-m>0.02405</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0013</y-m>
+			<z-m>0.007</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1757,20 +1908,39 @@ BUS</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>External power amperage</name>
+		<name>ExtKVA</name>
+		<type>number-value</type>
+		<property>systems/AC/system/acext-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0015</y-m>
+			<z-m>-0.0025</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ExtV</name>
 		<type>number-value</type>
 		<property>systems/AC/system/acext-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>right-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%2.1f
-AMPS</format>
+		<format>%2.0f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.007</y-m>
-			<z-m>0.005</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0015</y-m>
+			<z-m>-0.0084</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1778,19 +1948,62 @@ AMPS</format>
 		</font-resolution>
 	</text>
 	<text>
-		<name>External power</name>
+		<name>ExtHZ</name>
+		<type>number-value</type>
+		<property>systems/AC/system/acext-freq</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0015</y-m>
+			<z-m>-0.0143</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>ExtUnits</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-bottom</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>KVA
+V
+HZ</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0024</y-m>
+			<z-m>-0.0164</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+
+	<text>
+		<name>AutoXfer1Off</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<text>AC
-EXT</text>
+		<text>AUTO
+XFER
+OFF</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.029</y-m>
-			<z-m>0.005</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.057</y-m>
+			<z-m>-0.0021</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1798,20 +2011,167 @@ EXT</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Generator 1 amperage</name>
+		<name>AutoXfer1Fail</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AUTO
+XFER
+FAIL</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.057</y-m>
+			<z-m>-0.0021</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>AutoXfer2Off</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AUTO
+XFER
+OFF</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0586</y-m>
+			<z-m>-0.0021</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>AutoXfer2Fail</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-top</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>AUTO
+XFER
+FAIL</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0586</y-m>
+			<z-m>-0.0021</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<!-- generator values -->
+	<text>
+		<name>Gen1Units</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-bottom</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>KVA
+V
+HZ</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-units1-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>APUUnits</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-bottom</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>KVA
+V
+HZ</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-units2-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>Gen2Units</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-bottom</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>KVA
+V
+HZ</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-units3-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+
+	<text>
+		<name>Gen1KVA</name>
+		<type>number-value</type>
+		<property>systems/AC/system/gen1-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values1-y" />
+			<z-m alias="../../../params/ac-kva-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>Gen1V</name>
 		<type>number-value</type>
 		<property>systems/AC/system/gen1-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>right-bottom</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%2.1f
-Volt</format>
+		<format>%2.0f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.03753</y-m>
-			<z-m>-0.0285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values1-y" />
+			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1819,20 +2179,60 @@ Volt</format>
 		</font-resolution>
 	</text>
 	<text>
-		<name>APU generator amperage</name>
+		<name>Gen1HZ</name>
+		<type>number-value</type>
+		<property>systems/AC/system/gen1-freq</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values1-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+
+	<text>
+		<name>APUKVA</name>
+		<type>number-value</type>
+		<property>systems/AC/system/apugen-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values2-y" />
+			<z-m alias="../../../params/ac-kva-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>APUV</name>
 		<type>number-value</type>
 		<property>systems/AC/system/apugen-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>right-bottom</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%2.1f
-Volt</format>
+		<format>%2.0f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.0285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values2-y" />
+			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1840,20 +2240,60 @@ Volt</format>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Generator 2 amperage</name>
+		<name>APUHZ</name>
+		<type>number-value</type>
+		<property>systems/AC/system/apugen-freq</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values2-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+
+	<text>
+		<name>Gen2KVA</name>
+		<type>number-value</type>
+		<property>systems/AC/system/gen2-load</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values3-y" />
+			<z-m alias="../../../params/ac-kva-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>Gen2V</name>
 		<type>number-value</type>
 		<property>systems/AC/system/gen2-value</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>right-bottom</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%2.1f
-Volt</format>
+		<format>%2.0f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.03753</y-m>
-			<z-m>-0.0285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values3-y" />
+			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1861,19 +2301,80 @@ Volt</format>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Generator 1</name>
+		<name>Gen2HZ</name>
+		<type>number-value</type>
+		<property>systems/AC/system/gen2-freq</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-bottom</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%2.0f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/ac-values3-y" />
+			<z-m alias="../../../params/ac-hz-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+
+	<!-->Generator Tags</!-->
+	<text>
+		<name>ADGText</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>ADG</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.04665</y-m>
+			<z-m>0.05236</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ExtText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>EXT
+AC</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02481</y-m>
+			<z-m>-0.00755</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>ACGen1Text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>GEN
 1</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.03753</y-m>
-			<z-m>-0.05285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.045</y-m>
+			<z-m>-0.0595</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1881,19 +2382,19 @@ Volt</format>
 		</font-resolution>
 	</text>
 	<text>
-		<name>APU generator</name>
+		<name>APUGenText</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<text>GEN
+		<text>GEN		
 APU</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.00164</y-m>
+			<z-m>-0.0595</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1901,26 +2402,663 @@ APU</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>Generator 2</name>
+		<name>ACGen2Text</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<character-size>0.005</character-size>
+		<character-aspect-ratio>1.0</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<text>GEN
 2</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.03753</y-m>
-			<z-m>-0.05285</z-m>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0422</y-m>
+			<z-m>-0.0595</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	
+	<text>
+		<name>DISC1</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DISC</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.0439</y-m>
+			<z-m>-0.0781</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DISC2</name>
+		<type>literal</type>
+		<property>controls/electric/idg2-disc</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DISC</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.0412</y-m>
+			<z-m>-0.0781</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+
+	<!-- text animation -->
+	<animation>
+		<type>select</type>
+		<object-name>ACServiceConfiguration</object-name>
+		<object-name>ACServBus</object-name>
+		<object-name>ACServBusText</object-name>
+		<object-name>ACServBusLine</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value alias="../../../../AC-volt-min" />
+				</greater-than-equals>
+				<property>controls/electric/ac-service-in-use-ext</property>
+			</and>
+		</condition>
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>ADGV</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/adg-value</property>
+					<value>108</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/adg-value</property>
+					<value>130</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>ADGHZ</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/adg-freq</property>
+					<value>360</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/adg-freq</property>
+					<value>440</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Shed</object-name>
+		<condition>
+			<less-than>
+				<property>systems/AC/outputs/bus4</property>
+				<value alias="../../../../AC-volt-min" />
+			</less-than>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>AutoXfer1Off</object-name>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer1</property>
+			</not>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>AutoXfer2Off</object-name>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer2</property>
+			</not>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>AutoXfer1Fail</object-name>
+		<condition>
+			<not><property>systems/AC/system[1]/serviceable</property></not>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>AutoXfer2Fail</object-name>
+		<condition>
+			<not><property>systems/AC/system[2]/serviceable</property></not>
+		</condition>
+	</animation>
+	<!-- ext readout -->
+	<animation>
+		<type>material</type>
+		<object-name>ExtKVA</object-name>
+		<condition>
+			<not><property>systems/AC/system/acext-load</property></not>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>ExtKVA</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/AC/system/acext-load</property>
+				<value alias="../../../../params/acext-maxkva" />
+			</greater-than>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>ExtV</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/acext-value</property>
+					<value>106</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/acext-value</property>
+					<value>124</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>ExtHZ</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/acext-freq</property>
+					<value>370</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/acext-freq</property>
+					<value>430</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<!-- gen1 readout -->
+	<animation>
+		<type>material</type>
+		<object-name>Gen1KVA</object-name>
+		<condition>
+			<not><property>systems/AC/system/gen1-load</property></not>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>Gen1KVA</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/AC/system/gen1-load</property>
+				<value alias="../../../../params/acgen-maxkva" />
+			</greater-than>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>Gen1V</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/gen1-value</property>
+					<value>106</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/gen1-value</property>
+					<value>124</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>Gen1HZ</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/gen1-freq</property>
+					<value>370</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/gen1-freq</property>
+					<value>430</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<!-- apugen readout -->
+	<animation>
+		<type>material</type>
+		<object-name>APUKVA</object-name>
+		<condition>
+			<not><property>systems/AC/system/apugen-load</property></not>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>APUKVA</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/AC/system/apugen-load</property>
+				<value alias="../../../../params/acgen-maxkva" />
+			</greater-than>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>APUV</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/apugen-value</property>
+					<value>106</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/apugen-value</property>
+					<value>124</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>APUHZ</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/apugen-freq</property>
+					<value>370</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/apugen-freq</property>
+					<value>430</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<!-- gen2 readout -->
+	<animation>
+		<type>material</type>
+		<object-name>Gen2KVA</object-name>
+		<condition>
+			<not><property>systems/AC/system/gen2-load</property></not>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>Gen2KVA</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/AC/system/gen2-load</property>
+				<value alias="../../../../params/acgen-maxkva" />
+			</greater-than>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>Gen2V</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/gen2-value</property>
+					<value>106</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/gen2-value</property>
+					<value>124</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>Gen2HZ</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/AC/system/gen2-freq</property>
+					<value>370</value>
+				</less-than>
+				<greater-than>
+					<property>systems/AC/system/gen2-freq</property>
+					<value>430</value>
+				</greater-than>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
+	<animation>
+		<type>select</type>
+		<object-name>DISC1</object-name>
+		<condition>
+			<property>controls/electric/idg1-disc</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DISC2</object-name>
+		<condition>
+			<property>controls/electric/idg2-disc</property>
+		</condition>
+	</animation>	
 	<!-- End page 3 AC text -->
+	
 	<!-- Begin page 4 DC text -->
 	<text>
 		<name>PageDCTitle</name>
@@ -6006,12 +7144,13 @@ DIR BUS</text>
 		<object-name>Generator 2 off</object-name>
 		<object-name>Engine 1 reverse thrust armed</object-name>
 		<object-name>Engine 2 reverse thrust armed</object-name>
-		<object-name>APU generator off</object-name>
+		<object-name>APUGenText off</object-name>
 		<object-name>Ram air turbine deployed</object-name>
 		<object-name>Engine 1 extinguisher</object-name>
 		<object-name>Engine 2 extinguisher</object-name>
 		<object-name>APU extinguisher</object-name>
-		<object-name>Service configuration</object-name>
+		<object-name>AutoXfer1Fail</object-name>
+		<object-name>AutoXfer2Fail</object-name>
 		<object-name>DCServiceConfigText</object-name>
 		<object-name>HydRudder1</object-name>
 		<object-name>HydRudder2</object-name>
@@ -6079,6 +7218,7 @@ DIR BUS</text>
 	<!-- green elements -->
 	<animation>
 		<type>material</type>
+		<object-name>ACServiceConfiguration</object-name>
 		<object-name>N11 text</object-name>
 		<object-name>N12 text</object-name>
 		<object-name>N11 APR</object-name>
@@ -6104,10 +7244,20 @@ DIR BUS</text>
 		<object-name>APU RPM</object-name>
 		<object-name>APU EGT</object-name>
 		<object-name>Parking brake</object-name>
-		<object-name>Generator 1 amperage</object-name>
-		<object-name>APU generator amperage</object-name>
-		<object-name>Generator 2 amperage</object-name>
-		<object-name>External power amperage</object-name>
+
+		<object-name>ExtKVA</object-name>
+		<object-name>ExtV</object-name>
+		<object-name>ExtHZ</object-name>
+		<object-name>Gen1KVA</object-name>
+		<object-name>Gen1V</object-name>
+		<object-name>Gen1HZ</object-name>
+		<object-name>APUKVA</object-name>
+		<object-name>APUV</object-name>
+		<object-name>APUHZ</object-name>
+		<object-name>Gen2KVA</object-name>
+		<object-name>Gen2V</object-name>
+		<object-name>Gen2HZ</object-name>
+		
 		<object-name>HydTemperature1</object-name>
 		<object-name>HydTemperature2</object-name>
 		<object-name>HydTemperature3</object-name>
@@ -6191,14 +7341,24 @@ DIR BUS</text>
 		<object-name>APU running</object-name>
 		<object-name>Engine 1 shut down</object-name>
 		<object-name>Engine 2 shut down</object-name>
-		<object-name>Service bus</object-name>
-		<object-name>Bus 1</object-name>
-		<object-name>Bus 2</object-name>
-		<object-name>ESS bus</object-name>
-		<object-name>Generator 1</object-name>
-		<object-name>APU generator</object-name>
-		<object-name>Generator 2</object-name>
-		<object-name>External power</object-name>
+
+		<object-name>ACServBusText</object-name>
+		<object-name>Shed</object-name>
+		<object-name>ACBus1Text</object-name>
+		<object-name>ACBus2Text</object-name>
+		<object-name>ACESSBusText</object-name>
+		<object-name>AutoXfer1Off</object-name>
+		<object-name>AutoXfer2Off</object-name>
+		<object-name>ACGen1Text</object-name>
+		<object-name>APUGenText</object-name>
+		<object-name>ACGen2Text</object-name>
+		<object-name>DISC1</object-name>
+		<object-name>DISC2</object-name>		
+		<object-name>ExtUnits</object-name>
+		<object-name>Gen1Units</object-name>
+		<object-name>APUUnits</object-name>
+		<object-name>Gen2Units</object-name>
+
 		<object-name>Hyd1AText</object-name>
 		<object-name>Hyd2AText</object-name>
 		<object-name>Hyd1BText</object-name>
@@ -6245,6 +7405,9 @@ DIR BUS</text>
 		</emission>
 	</animation>
 
+<!--
+	ANIMATIONS
+-->
 	<animation>
 		<type>select</type>
 		<object-name>Off</object-name>
@@ -6786,7 +7949,148 @@ DIR BUS</text>
 			<z-m>-0.05301</z-m>
 		</center>
 	</animation>
-	<!-- AC -->
+		
+<!-- 
+	AC 
+-->
+	<animation>
+		<type>select</type>
+		<object-name>ADGgroup</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/adg-value</property>
+					<value>10</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/AC/system/adg-freq</property>
+					<value>300</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>ADG</object-name>
+		<object-name>ADGBus</object-name>
+		<object-name>ADGLine</object-name>		
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/adg-value</property>
+					<value>108</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/adg-value</property>
+					<value>130</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>systems/AC/system/adg-freq</property>
+					<value>360</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/adg-freq</property>
+					<value>440</value>
+				</less-than-equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>ACServiceConfiguration</object-name>
+		<object-name>ACServBus</object-name>
+		<object-name>ACServBusText</object-name>
+		<object-name>ACServBusLine</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value alias="../../../../AC-volt-min" />
+				</greater-than-equals>
+				<property>controls/electric/ac-service-in-use-ext</property>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Extgroup</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value>10</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-freq</property>
+					<value>50</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>ExtGroup</object-name>
+		<object-name>ACExtGen</object-name>
+		<object-name>ACExtLine</object-name>		
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value>106</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value>124</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-freq</property>
+					<value>370</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/acext-freq</property>
+					<value>430</value>
+				</less-than-equals>
+				<property>controls/electric/ac-service-in-use</property>
+			</and>
+		</condition>
+	</animation>	
+	<!-- Generators-->
+	<animation>
+		<type>select</type>
+		<object-name>ACGen1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/AC/system/gen1-value</property>
+				<value alias="../../../../AC-volt-min" />
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>ACGen2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/AC/system/gen2-value</property>
+				<value alias="../../../../AC-volt-min" />
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>APUGen</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/AC/system/apugen-value</property>
+				<value alias="../../../../AC-volt-min" />
+			</greater-than-equals>
+		</condition>
+	</animation>
+
+
+	
+	<!-- AC lines -->
 	<animation>
 		<type>select</type>
 		<object-name>ElecBus1</object-name>
@@ -6802,22 +8106,9 @@ DIR BUS</text>
 		<type>select</type>
 		<object-name>ElecBus2</object-name>
 		<object-name>ElecSeg2</object-name>
-		<object-name>ElecServBus</object-name>
 		<condition>
 			<greater-than-equals>
 				<property>systems/AC/outputs/bus2</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>ElecExtAC</object-name>
-		<object-name>External power</object-name>
-		<object-name>External power amperage</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/AC/system/acext-value</property>
 				<value alias="../../../../AC-volt-min" />
 			</greater-than-equals>
 		</condition>
@@ -6988,7 +8279,9 @@ DIR BUS</text>
 	</animation>
 
 	
-	<!-- DC electrical -->
+<!-- 
+	DC electrical
+-->
 	<animation>
 		<type>select</type>
 		<object-name>DCAPUBatt</object-name>
@@ -7577,7 +8870,6 @@ DIR BUS</text>
 		<object-name>N22</object-name>
 		<object-name>Symbols1</object-name>
 		<object-name>Symbols2</object-name>
-		<object-name>SymbolsAC</object-name>
 		<object-name>GearLInd</object-name>
 		<object-name>GearNInd</object-name>
 		<object-name>GearRInd</object-name>
