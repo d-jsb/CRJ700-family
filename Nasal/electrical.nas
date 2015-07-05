@@ -42,6 +42,8 @@ var IDG = {
 	},
 
 	_update_output: func {
+		var i = int(me.inputN.getValue());
+		if (me.running and int(me.input) == i) return;
 		me.parents[1]._update_output();
 		me.freq = 0;
 		if (me.input > me.input_min) {			
@@ -57,10 +59,12 @@ var IDG = {
 	},
 };
 
+#needs ~5s from 0 - 115V
+#needs ~10s from 0 - 400 Hz
 var APUGen = {
 	new: func (bus, name, input) {
 		var obj = {
-			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 60, 99, 102).setOutputMin(108)],
+			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 80, 99, 102).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 		};
@@ -70,6 +74,8 @@ var APUGen = {
 	},
 
 	_update_output: func {
+		#var i = int(me.inputN.getValue());
+		#if (me.running and int(me.input) == i) return;
 		me.parents[1]._update_output();
 		me.freq = 0;
 		if (me.input > 60) {			
@@ -217,11 +223,15 @@ print("Creating electrical system ...");
 # as "output-name" (always on).
 
 var ac_buses = [ 
-	ACBus.new(1, "AC1", ["aoa-heater-r", "egpws", "flaps-a", "hyd-pump2B", 
-		"hyd-pump3B", "pitch-trim-1", "pitot-heater-r", "tru1", 
+	ACBus.new(1, "AC1", ["aoa-heater-r", "egpws", "flaps-a",
+		["hyd-pump2B", "controls/hydraulic/system[1]/pump-b"],
+		["hyd-pump3B", "controls/hydraulic/system[2]/pump-b"],
+		"pitch-trim-1", "pitot-heater-r", "tru1", 
 		]),
 	ACBus.new(2, "AC2",	["copilot-panel-int-lights", "esstru2", "flaps-b", 
-		"hyd-pump1B", "hyd-pump3A", "pitch-trim-2", "tru2", 
+		["hyd-pump1B", "controls/hydraulic/system[0]/pump-b"], 
+		["hyd-pump3A", "controls/hydraulic/system[2]/pump-a"],
+		"pitch-trim-2", "tru2", 
 		]),
 	ACBus.new(3, "AC-ESS", ["aoa-heater-l", "cabin-lights", 
 		"center-panel-int-lights", "esstru1", "ignition-a", "ohp-int-lights", 
@@ -243,7 +253,7 @@ var dc_buses = [
 		"wiper-left", 
 		"wradar",
 		]),
-	DCBus.new(2, "DC2", ["clock2", "mfd2", "pfd2", "rtu2", "vhf2",
+	DCBus.new(2, "DC2", ["afcs-r", "clock2", "mfd2", "pfd2", "rtu2", "vhf2",
 		["wing-ac-lights", "sim/model/lights/strobe/state"],
 		]),
 	DCBus.new(3, "DC-ESS", ["efis", "instrument-flood-lights", "mfd1", 
@@ -254,7 +264,7 @@ var dc_buses = [
 		["nav-lights", "controls/lighting/nav-lights"],
 		"service-lights", 
 		]),
-	DCBus.new(5, "Battery", ["adg-deploy", "clock1", "eicas-disp", "fuel-sov",
+	DCBus.new(5, "Battery", ["adg-deploy", "afcs-l", "clock1", "eicas-disp", "fuel-sov",
 		"gravity-xflow", 
 		["landing-lights[0]", "controls/lighting/landing-lights[0]"],
 		["landing-lights[2]", "controls/lighting/landing-lights[2]"],
@@ -285,7 +295,7 @@ dcpc.addInput(EnergyConv.new(dcpc, "apu-battery", 24).addSwitch("/controls/elect
 dcpc.addInput(EnergyConv.new(dcpc, "main-battery", 24).addSwitch("/controls/electric/battery-switch"));
 
 foreach (b; ac_buses) {
-	print("input: "~acpc.outputs_path~"bus["~b.index~"]");
+	#print("input: "~acpc.outputs_path~"bus["~b.index~"]");
 	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 115));
 	b.init();
 }

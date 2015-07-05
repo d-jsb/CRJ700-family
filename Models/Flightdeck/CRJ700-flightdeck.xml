@@ -489,7 +489,7 @@
 	<condition>
 	    <greater-than-equals>
 		<property>systems/AC/outputs/center-panel-int-lights</property>
-		<value>15</value>
+		<value>100</value>
 	    </greater-than-equals>
 	</condition>
 	<emission>

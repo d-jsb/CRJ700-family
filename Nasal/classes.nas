@@ -46,6 +46,7 @@ var EnergyConv = {
 			bus: bus,
 			name: name,
 			switch: 1,
+			running: 0,
 			input: 0,
 			output: 0,
 			input_min: 0,
@@ -83,7 +84,7 @@ var EnergyConv = {
 	},
 
 	init: func {
-		print(me.name~".init input:"~me.inputN.getName());
+		#print(me.name~".init input:"~me.inputN.getName());
 		foreach (l; me.listeners)
 			removelistener(l);
 		if (me.switchN != nil)
@@ -222,7 +223,10 @@ var EnergyBus = {
 			
 		foreach (s; me.switches)
 			if (s != nil)
-			append(me.listeners, setlistener(s, func(v) {me.update();}, 0, 0));
+			append(me.listeners, setlistener(s, func(v) {
+				me.update(); 
+				print("switch "~me.type~" "~v.getValue());
+			}, 0, 0));
 	},
 
 	addInput: func(obj) {
@@ -249,11 +253,11 @@ var EnergyBus = {
 	update: func {
 		me.readProps();
 		if (me.serviceable) {
-			me.output = 0;
 			foreach (in; me.inputs) {
 				var i = in.getValue();
 				me.output = (me.output < i) ? i : me.output;
 			}
+			#print(me.type~".update "~me.output);
 			for (i = 0; i < size(me.outputs); i += 1) {
 				if (me.switches[i] == nil or me.switches[i].getValue()) {
 					if (me.outputs_bool == 1)
@@ -268,4 +272,3 @@ var EnergyBus = {
 		return me;
 	},
 };
-
