@@ -253,11 +253,11 @@ var EnergyBus = {
 	update: func {
 		me.readProps();
 		if (me.serviceable) {
+			me.output = 0;
 			foreach (in; me.inputs) {
 				var i = in.getValue();
 				me.output = (me.output < i) ? i : me.output;
 			}
-			#print(me.type~".update "~me.output);
 			for (i = 0; i < size(me.outputs); i += 1) {
 				if (me.switches[i] == nil or me.switches[i].getValue()) {
 					if (me.outputs_bool == 1)

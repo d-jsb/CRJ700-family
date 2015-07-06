@@ -52,11 +52,11 @@ var wipers = [
     CRJ700.Wiper("/controls/anti-ice/wiper[0]",
                  "/surface-positions/left-wiper-pos-norm",
                  "/controls/anti-ice/wiper-power[0]",
-                 "/systems/electrical/outputs/wiper[0]"),
+                 "/systems/DC/outputs/wiper-left"),
     CRJ700.Wiper("/controls/anti-ice/wiper[1]",
                  "/surface-positions/right-wiper-pos-norm",
                  "/controls/anti-ice/wiper-power[1]",
-                 "/systems/electrical/outputs/wiper[1]")
+                 "/systems/DC/outputs/wiper-right")
 ];
 
 

@@ -254,11 +254,12 @@ var dc_buses = [
 		"wiper-left", 
 		"wradar",
 		]),
-	DCBus.new(2, "DC2", ["afcs-r", "clock2", "mfd2", "pfd2", "rtu2", "vhf2",
+	DCBus.new(2, "DC2", ["afcs-r", "clock2", "fuel-pump-right", "mfd2", "pfd2",
+		"rtu2",	"vhf-com2", "vhf-nav2",
 		["wing-ac-lights", "sim/model/lights/strobe/state"],
 		]),
 	DCBus.new(3, "DC-ESS", ["efis", "instrument-flood-lights", "mfd1", 
-		"pfd1", "reversers", "rtu1", "transponder1", "vhf-nav1", 
+		"pfd1", "reversers", "rtu1", "transponder1", "vhf-nav1", "wiper-right",
 		]),
 	DCBus.new(4, "DC-Service", ["boarding-lights", "galley-lights",
 		["beacon", "sim/model/lights/beacon/state"],
@@ -266,10 +267,10 @@ var dc_buses = [
 		"service-lights", 
 		]),
 	DCBus.new(5, "Battery", ["adg-deploy", "afcs-l", "clock1", "eicas-disp", "fuel-sov",
+		"fuel-pump-left",
 		"gravity-xflow", 
 		["landing-lights[0]", "controls/lighting/landing-lights[0]"],
 		["landing-lights[2]", "controls/lighting/landing-lights[2]"],
-		"left-fuelpump", 
 		["ohp-lights", "controls/lighting/ind-lts-norm"],
 		"passenger-signs", 
 		"standby-instrument",
@@ -278,7 +279,9 @@ var dc_buses = [
 	DCBus.new(6, "Utility", []),
 ];
 
-
+#
+# the power centers are the switch logic between serveral inputs and outputs
+#
 var acpc = ACPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5"]);
 var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
 
@@ -295,6 +298,9 @@ dcpc.addInput(EnergyConv.new(dcpc, "esstru2", 28, ac_buses[0].outputs_path~"esst
 dcpc.addInput(EnergyConv.new(dcpc, "apu-battery", 24).addSwitch("/controls/electric/battery-switch"));
 dcpc.addInput(EnergyConv.new(dcpc, "main-battery", 24).addSwitch("/controls/electric/battery-switch"));
 
+#
+# after acpc/dcpc init connect buses to the pc outlets
+#
 foreach (b; ac_buses) {
 	#print("input: "~acpc.outputs_path~"bus["~b.index~"]");
 	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 115));
@@ -311,8 +317,8 @@ foreach (b; dc_buses) {
 acpc.init();
 dcpc.init();
 
-
-#dummy for compatibility
+# dummy for compatibility, called from update loop
+# should not be needed if all listeners work correctly
 update_electrical = func {
 	#acpc.update();
 }
