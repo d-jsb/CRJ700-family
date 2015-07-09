@@ -380,6 +380,7 @@
 			<idg2-cover type="bool">false</idg2-cover>
 			<idg1-disc type="bool">false</idg1-disc>
 			<idg2-disc type="bool">false</idg2-disc>
+			<ADG type="bool">false</ADG>
 		</electric>
 		<flight>
 			<ground-lift-dump type="int">1</ground-lift-dump>
@@ -495,6 +496,13 @@
 		<gear n="0">
 			<!-- to initialize sound properly -->
 			<position-norm type="float">1</position-norm>
+			<has-brake type="bool">false</has-brake>
+		</gear>
+		<gear>
+			<has-brake></has-brake>
+		</gear>
+		<gear>
+			<has-brake></has-brake>
 		</gear>
 	</gear>
 	
@@ -871,20 +879,16 @@
 	</surface-positions>
 
 	<systems>
-		<ram-air-turbine>
-			<amp-v type="float">0</amp-v>
-			<rpm type="float">0</rpm>
-			<serviceable type="bool">true</serviceable>
-			<position-norm type="float">0</position-norm>
-		</ram-air-turbine>
 		<AC>
 			<system>
+				<position-norm type="float">0</position-norm>
 				<acext-freq>400</acext-freq>
 			</system>
 		</AC>
 		<DC>
 		</DC>
 		<electrical>
+			<!-->Compatibility mapping</!-->
 			<outputs>
 				<adf alias="/systems/DC/outputs/transponder1" />
 				<dme alias="/systems/DC/outputs/dme1" />
@@ -892,7 +896,9 @@
 				<fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
 				<fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
 				<gps alias="/systems/DC/outputs/gps1" />
-				<mk-viii alias="/systems/AC/outputs/egpws" />
+				<!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC 
+				<mk-viii alias="/systems/AC/outputs/egpws" /> 
+				<mk-viii alias="/systems/DC/outputs/radio-altimeter1" /> -->
 				<nav alias="/systems/DC/outputs/vhf-nav1" />
 				<panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
 				<transponder alias="/systems/DC/outputs/transponder1" />
