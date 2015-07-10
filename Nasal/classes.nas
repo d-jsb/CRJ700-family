@@ -84,12 +84,12 @@ var EnergyConv = {
 	},
 
 	init: func {
-		#print(me.name~".init input:"~me.inputN.getName());
+		#print(" "~me.name~".init input:"~me.inputN.getName());
 		foreach (l; me.listeners)
 			removelistener(l);
-		if (me.switchN != nil)
+		if (me.switchN != nil) {
 			append(me.listeners, setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0));
-
+		}
 		append(me.listeners, setlistener(me.serviceableN, func(v) {me._update_output();}, 0, 0));
 		append(me.listeners, setlistener(me.inputN, func(v) {me._update_output();}, 1, 0));
 		return me;
@@ -114,7 +114,6 @@ var EnergyConv = {
 		else {
 			var path = "/controls/"~me.bus.type~"/system["~me.bus.index~"]/"~me.name;
 			me.switchN = props.globals.getNode(path, 1);
-			#print(path);
 		}
 		#print("Adding switch "~me.switchN.getName());
 		return me;
@@ -122,7 +121,7 @@ var EnergyConv = {
 
 	_switch_listener: func(v){
 		me.switch = v.getValue();
-		#print(me.name~" "~me.switch);
+		print(me.name~" "~me.switch);
 		me._update_output();
 	},
 
@@ -152,7 +151,7 @@ var EnergyConv = {
 			if (me.input_hi > 0 and me.input > me.input_hi) {
 				me.output = me.output_nominal * me.input / me.input_hi;
 			}
-		}
+			}
 		me.outputN.setValue(me.output);
 		me.isRunning();
 		#print("EnergyConv.update name: "~me.name~" sw:"~me.switch~" nom:"~me.output_nominal~" in: "~me.input~" out:"~me.output);
@@ -195,17 +194,17 @@ var EnergyBus = {
 			var p = props.globals.getNode(obj.system_path~"_name", 1);
 			p.setValue(name);
 		}
-		obj.serviceableN = props.globals.getNode(obj.system_path~"serviceable",1);
+		obj.serviceableN = props.globals.getNode(obj.system_path~"serviceable",1, "BOOL");
 		obj.serviceableN.setBoolValue(1);
-		obj.outputN = props.globals.getNode(obj.system_path~"value", 1);
+		obj.outputN = props.globals.getNode(obj.system_path~"value", 1, "FLOAT");
 		obj.outputN.setValue(0);
 		foreach (elem; outputs) {
 			if (typeof(elem) == "scalar") {
-				var o = props.globals.getNode(obj.outputs_path~elem, 1);
+				var o = props.globals.getNode(obj.outputs_path~elem, 1, "FLOAT");
 				append(obj.switches, nil);
 			}
 			else {
-				var o = props.globals.getNode(obj.outputs_path~elem[0], 1);
+				var o = props.globals.getNode(obj.outputs_path~elem[0], 1, "FLOAT");
 				append(obj.switches, props.globals.getNode(elem[1], 1));
 			}
 			o.setValue(0);
@@ -225,7 +224,7 @@ var EnergyBus = {
 			if (s != nil)
 			append(me.listeners, setlistener(s, func(v) {
 				me.update(); 
-				print("switch "~me.type~" "~v.getValue());
+				#print("switch "~me.type~" "~v.getValue());
 			}, 0, 0));
 	},
 

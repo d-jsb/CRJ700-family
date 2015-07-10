@@ -12,7 +12,7 @@
 		<page>instrumentation/eicas/page</page>
 		<hyd-sym-size>0.078125</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
-		<disp-x>0.001</disp-x>
+		<disp-x>0.0005</disp-x>
 		<temperature1-y>-0.0425</temperature1-y>
 		<temperature3-y>-0.004</temperature3-y>
 		<temperature2-y>0.032</temperature2-y>
@@ -229,10 +229,24 @@
 		<name>PageACText</name>
 		<object-name>PageACTitle</object-name>
 		<object-name>ACServiceConfiguration</object-name>
+
+		<object-name>ADGUnits</object-name>
+		<object-name>ADGV</object-name>
+		<object-name>ADGHZ</object-name>
+		<object-name>ADGBusText</object-name>
+		<object-name>ADGText</object-name>
+
+		<object-name>ExtUnits</object-name>
+		<object-name>ExtKVA</object-name>
+		<object-name>ExtV</object-name>
+		<object-name>ExtHZ</object-name>
+		<object-name>ExtText</object-name>
+
 		<object-name>ACServBusText</object-name>
 		<object-name>ACBus1Text</object-name>
 		<object-name>ACBus2Text</object-name>
 		<object-name>ACESSBusText</object-name>
+		<object-name>Shed</object-name>
 		<object-name>AutoXfer1Fail</object-name>
 		<object-name>AutoXfer2Fail</object-name>
 		<object-name>AutoXfer1Off</object-name>
@@ -243,7 +257,6 @@
 		<object-name>DISC1</object-name>
 		<object-name>DISC2</object-name>
 
-		<object-name>ExtUnits</object-name>
 		<object-name>Gen1Units</object-name>
 		<object-name>APUUnits</object-name>
 		<object-name>Gen2Units</object-name>
@@ -261,33 +274,17 @@
 		<object-name>Gen2V</object-name>
 		<object-name>Gen2HZ</object-name>
 	</animation>
-	<animation>
-		<name>ADGgroup</name>
-		<object-name>ADGBackground</object-name>
-		<object-name>ADGText</object-name>
-		<object-name>ADGBusText</object-name>
-		<object-name>AGVUnits</object-name>
-		<object-name>ADGV</object-name>
-		<object-name>ADGHZ</object-name>
-	</animation>
-	<animation>
-		<name>Extgroup</name>
-		<object-name>ACExtBackground</object-name>
-		<object-name>ExtText</object-name>
-		<object-name>ExtUnits</object-name>
-		<object-name>ExtKVA</object-name>
-		<object-name>ExtV</object-name>
-		<object-name>ExtHZ</object-name>
-	</animation>
+
 	<animation>
 		<name>PageACObj</name>
 		<object-name>ACBackground</object-name>
-		<object-name>ADGgroup</object-name>
+		<object-name>ADGOff</object-name>
+		<object-name>ACExtOff</object-name>
+
 		<object-name>ADG</object-name>
 		<object-name>ADGBus</object-name>
 		<object-name>ADGLine</object-name>		
 
-		<object-name>Extgroup</object-name>
 		<object-name>ACExtGen</object-name>
 		<object-name>ACExtLine</object-name>		
 
@@ -298,17 +295,18 @@
 		<object-name>ACGen2</object-name>		
 		<object-name>APUGen</object-name>		
 
-		<object-name>ElecAPUGen</object-name>
-		<object-name>ElecBus1</object-name>
-		<object-name>ElecBus2</object-name>
+		<object-name>ACBus1</object-name>
+		<object-name>ACBus2</object-name>
+		<object-name>ACBus1Line</object-name>
+		<object-name>ACBus2Line</object-name>
+		<object-name>ACEssBus</object-name>
+		
 		<object-name>ElecExtAC</object-name>
-		<object-name>ElecGen1</object-name>
-		<object-name>ElecGen2</object-name>
-		<object-name>ElecSeg1</object-name>
-		<object-name>ElecSeg2</object-name>
-		<object-name>ElecSeg3</object-name>
-		<object-name>ElecSeg4</object-name>
-		<object-name>ElecSeg5</object-name>
+		<object-name>ACLine1E</object-name>
+		<object-name>ACLine2E</object-name>
+		<object-name>ACLineE12</object-name>
+		<object-name>ACLineA1</object-name>
+		<object-name>ACLineA2</object-name>
 	</animation>
 	<animation>
 		<name>PageDCObj</name>
@@ -1733,7 +1731,7 @@ CONFIGURATION</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>ADGBus</name>
+		<name>ADGBusText</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
@@ -1752,7 +1750,7 @@ CONFIGURATION</text>
 		</font-resolution>
 	</text>
 	<text>
-		<name>AGVUnits</name>
+		<name>ADGUnits</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-top</alignment>
@@ -1763,8 +1761,8 @@ CONFIGURATION</text>
 HZ</text>
 		<offsets>
 			<x-m alias="../../../params/disp-x" />
-			<y-m>0.0223</y-m>
-			<z-m>0.0562</z-m>
+			<y-m>0.021</y-m>
+			<z-m>0.0585</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1784,7 +1782,7 @@ HZ</text>
 		<offsets>
 			<x-m alias="../../../params/disp-x" />
 			<y-m>0.0191</y-m>
-			<z-m>0.0555</z-m>
+			<z-m>0.0560</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1804,7 +1802,7 @@ HZ</text>
 		<offsets>
 			<x-m alias="../../../params/disp-x" />
 			<y-m>0.0191</y-m>
-			<z-m>0.0508</z-m>
+			<z-m>0.0500</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -2333,8 +2331,8 @@ HZ</text>
 		<text>ADG</text>
 		<offsets>
 			<x-m alias="../../../params/disp-x" />
-			<y-m>0.04665</y-m>
-			<z-m>0.05236</z-m>
+			<y-m>0.047</y-m>
+			<z-m>0.0524</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -2353,7 +2351,7 @@ HZ</text>
 AC</text>
 		<offsets>
 			<x-m alias="../../../params/disp-x" />
-			<y-m>0.02481</y-m>
+			<y-m>0.027</y-m>
 			<z-m>-0.00755</z-m>
 		</offsets>
 		<font-resolution>
@@ -2464,50 +2462,34 @@ APU</text>
 
 	<!-- text animation -->
 	<animation>
-		<type>select</type>
-		<object-name>ACServiceConfiguration</object-name>
-		<object-name>ACServBus</object-name>
-		<object-name>ACServBusText</object-name>
-		<object-name>ACServBusLine</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/AC/system/acext-value</property>
-					<value alias="../../../../AC-volt-min" />
-				</greater-than-equals>
-				<property>controls/electric/ac-service-in-use-ext</property>
-			</and>
-		</condition>
-	</animation>	
-	<animation>
 		<type>material</type>
 		<object-name>ADGV</object-name>
 		<condition>
-			<or>
+			<and>
 				<less-than>
 					<property>systems/AC/system/adg-value</property>
-					<value>108</value>
+					<value>130</value>
 				</less-than>
 				<greater-than>
 					<property>systems/AC/system/adg-value</property>
-					<value>130</value>
+					<value>108</value>
 				</greater-than>
-			</or>
+			</and>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
@@ -2515,31 +2497,31 @@ APU</text>
 		<type>material</type>
 		<object-name>ADGHZ</object-name>
 		<condition>
-			<or>
+			<and>
 				<less-than>
 					<property>systems/AC/system/adg-freq</property>
-					<value>360</value>
+					<value>440</value>
 				</less-than>
 				<greater-than>
 					<property>systems/AC/system/adg-freq</property>
-					<value>440</value>
+					<value>360</value>
 				</greater-than>
-			</or>
+			</and>
 		</condition>
 		<ambient>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="../../../colors/green/red" />
+			<green alias="../../../colors/green/green" />
+			<blue alias="../../../colors/green/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>
@@ -7342,6 +7324,7 @@ DIR BUS</text>
 		<object-name>Engine 1 shut down</object-name>
 		<object-name>Engine 2 shut down</object-name>
 
+		<object-name>ADGBusText</object-name>
 		<object-name>ACServBusText</object-name>
 		<object-name>Shed</object-name>
 		<object-name>ACBus1Text</object-name>
@@ -7349,15 +7332,20 @@ DIR BUS</text>
 		<object-name>ACESSBusText</object-name>
 		<object-name>AutoXfer1Off</object-name>
 		<object-name>AutoXfer2Off</object-name>
+		<object-name>ADGText</object-name>
+		<object-name>ExtText</object-name>
 		<object-name>ACGen1Text</object-name>
 		<object-name>APUGenText</object-name>
 		<object-name>ACGen2Text</object-name>
 		<object-name>DISC1</object-name>
 		<object-name>DISC2</object-name>		
+		<object-name>ADGUnits</object-name>
 		<object-name>ExtUnits</object-name>
 		<object-name>Gen1Units</object-name>
 		<object-name>APUUnits</object-name>
 		<object-name>Gen2Units</object-name>
+		<object-name>ADGV</object-name>
+		<object-name>ADGHZ</object-name>
 
 		<object-name>Hyd1AText</object-name>
 		<object-name>Hyd2AText</object-name>
@@ -7955,18 +7943,18 @@ DIR BUS</text>
 -->
 	<animation>
 		<type>select</type>
-		<object-name>ADGgroup</object-name>
+		<object-name>ADGOff</object-name>
 		<condition>
-			<and>
-				<greater-than-equals>
+			<or>
+				<less-than>
 					<property>systems/AC/system/adg-value</property>
 					<value>10</value>
-				</greater-than-equals>
-				<greater-than-equals>
+				</less-than>
+				<less-than>
 					<property>systems/AC/system/adg-freq</property>
 					<value>300</value>
-				</greater-than-equals>
-			</and>
+				</less-than>
+			</or>
 		</condition>
 	</animation>
 	<animation>
@@ -7999,9 +7987,6 @@ DIR BUS</text>
 	<animation>
 		<type>select</type>
 		<object-name>ACServiceConfiguration</object-name>
-		<object-name>ACServBus</object-name>
-		<object-name>ACServBusText</object-name>
-		<object-name>ACServBusLine</object-name>
 		<condition>
 			<and>
 				<greater-than-equals>
@@ -8015,25 +8000,26 @@ DIR BUS</text>
 
 	<animation>
 		<type>select</type>
-		<object-name>Extgroup</object-name>
+		<object-name>ACExtOff</object-name>
 		<condition>
-			<and>
-				<greater-than-equals>
+			<or>
+				<not>
+					<property>controls/electric/ac-service-avail</property>
+				</not>
+				<less-than>
 					<property>systems/AC/system/acext-value</property>
 					<value>10</value>
-				</greater-than-equals>
-				<greater-than-equals>
+				</less-than>
+				<less-than>
 					<property>systems/AC/system/acext-freq</property>
 					<value>50</value>
-				</greater-than-equals>
-			</and>
+				</less-than>
+			</or>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>ExtGroup</object-name>
 		<object-name>ACExtGen</object-name>
-		<object-name>ACExtLine</object-name>		
 		<condition>
 			<and>
 				<greater-than-equals>
@@ -8052,10 +8038,113 @@ DIR BUS</text>
 					<property>systems/AC/system/acext-freq</property>
 					<value>430</value>
 				</less-than-equals>
+			</and>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>ACExtLine</object-name>		
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value>106</value>
+				</greater-than-equals>
 				<property>controls/electric/ac-service-in-use</property>
 			</and>
 		</condition>
 	</animation>	
+	
+	<!-- buses -->
+	<animation>
+		<type>select</type>
+		<object-name>ACBus1</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/outputs/bus1</property>
+					<value>106</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/outputs/bus1</property>
+					<value>124</value>
+				</less-than-equals>
+				<!--greater-than-equals>
+					<property>systems/AC/system/gen1-freq</property>
+					<value>370</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/bou1-freq</property>
+					<value>430</value>
+				</less-than-equals-->
+			</and>
+		</condition> 
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>ACBus2</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/outputs/bus2</property>
+					<value>106</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/outputs/bus2</property>
+					<value>124</value>
+				</less-than-equals>
+				<!--greater-than-equals>
+					<property>systems/AC/system/bus2-freq</property>
+					<value>370</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/system/bus2-freq</property>
+					<value>430</value>
+				</less-than-equals-->
+			</and>
+		</condition> 
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>ACEssBus</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/outputs/bus3</property>
+					<value>106</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/outputs/bus3</property>
+					<value>124</value>
+				</less-than-equals>
+			</and>
+		</condition> 
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>ACServBus</object-name>
+		<object-name>ACServBusLine</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/outputs/bus4</property>
+					<value>106</value>
+				</greater-than-equals>
+				<less-than-equals>
+					<property>systems/AC/outputs/bus4</property>
+					<value>124</value>
+				</less-than-equals>
+			</and>
+		</condition> 
+	</animation>
+	<!--animation>
+		<type>select</type>
+		<object-name>ACServBusLine</object-name>
+		<condition>
+			<property>systems/AC/outputs/bus2</property>
+		</condition>
+	</animation-->
+
 	<!-- Generators-->
 	<animation>
 		<type>select</type>
@@ -8087,196 +8176,121 @@ DIR BUS</text>
 			</greater-than-equals>
 		</condition>
 	</animation>
-
-
 	
+
 	<!-- AC lines -->
 	<animation>
 		<type>select</type>
-		<object-name>ElecBus1</object-name>
-		<object-name>ElecSeg1</object-name>
+		<object-name>ACBus1Line</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/AC/outputs/bus1</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
+			<and>
+				<property>controls/electric/engine[0]/generator</property>
+				<greater-than-equals>
+					<property>systems/AC/system/gen1-value</property>
+					<value alias="../../../../../AC-volt-min" />
+				</greater-than-equals>
+			</and>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>ElecBus2</object-name>
-		<object-name>ElecSeg2</object-name>
+		<object-name>ACBus2Line</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/AC/outputs/bus2</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
+			<and>
+				<property>controls/electric/engine[1]/generator</property>
+				<greater-than-equals>
+					<property>systems/AC/system/gen2-value</property>
+					<value alias="../../../../../AC-volt-min" />
+				</greater-than-equals>
+			</and>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>ElecGen1</object-name>
+		<object-name>ACLineE12</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/AC/system/gen1-value</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
+			<and>
+				<greater-than-equals>
+					<property>systems/AC/system/acext-value</property>
+					<value alias="../../../../../AC-volt-min" />
+				</greater-than-equals>
+				<property>/controls/electric/ac-service-in-use</property>
+				<not><or>
+					<and>
+						<property>controls/electric/engine[0]/generator</property>
+						<property>systems/AC/system/gen1-value</property>
+					</and>
+					<and>
+						<property>controls/electric/engine[1]/generator</property>
+						<property>systems/AC/system/gen2-value</property>
+					</and>
+					<and>
+						<property>controls/electric/APU-generator</property>
+						<property>systems/AC/system/apugen-value</property>
+					</and>
+				</or></not>
+			</and>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>ElecAPUGen</object-name>
+		<object-name>ACLineA1</object-name>
 		<condition>
-			<greater-than-equals>
+			<and>
+				<property>controls/electric/APU-generator</property>
 				<property>systems/AC/system/apugen-value</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
+				<not>
+					<greater-than-equals>
+						<property>systems/AC/system/gen1-value</property>
+						<value alias="../../../../../../AC-volt-min" />
+					</greater-than-equals>
+				</not>
+			</and>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>ElecGen2</object-name>
+		<object-name>ACLineA2</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/AC/system/gen2-value</property>
-				<value alias="../../../../AC-volt-min" />
-			</greater-than-equals>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>ElecSeg3</object-name>
-		<condition>
-			<or>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus2</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<or>
-						<greater-than-equals>
-							<property>systems/AC/system/acext-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/apugen-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/gen2-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-					</or>
-				</and>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>ElecSeg4</object-name>
-		<condition>
-			<or>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus2</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<or>
-						<greater-than-equals>
-							<property>systems/AC/system/acext-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/apugen-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/gen2-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-					</or>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus2</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/AC/system/acext-value</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-				</and>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>ElecSeg5</object-name>
-		<condition>
-			<or>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus2</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus1</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
+			<and>
+				<property>controls/electric/APU-generator</property>
+				<property>systems/AC/system/apugen-value</property>
+				<not>
 					<greater-than-equals>
 						<property>systems/AC/system/gen2-value</property>
 						<value alias="../../../../../../AC-volt-min" />
 					</greater-than-equals>
-				</and>
-				<and>
-					<greater-than-equals>
-						<property>systems/AC/outputs/bus2</property>
-						<value alias="../../../../../../AC-volt-min" />
-					</greater-than-equals>
-					<or>
-						<greater-than-equals>
-							<property>systems/AC/system/acext-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/apugen-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/AC/system/gen1-value</property>
-							<value alias="../../../../../../../AC-volt-min" />
-						</greater-than-equals>
-					</or>
-				</and>
-			</or>
+				</not>
+			</and>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>ACLine1E</object-name>
+		<condition>
+			<and>
+				<property>systems/AC/outputs/bus1</property>
+				<greater-than-equals>
+					<property>systems/AC/outputs/bus1</property>
+					<property>systems/AC/outputs/bus2</property>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>ACLine2E</object-name>
+		<condition>
+			<and>
+				<property>systems/AC/outputs/bus2</property>
+				<greater-than>
+					<property>systems/AC/outputs/bus2</property>
+					<property>systems/AC/outputs/bus1</property>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+
 
 	
 <!-- 

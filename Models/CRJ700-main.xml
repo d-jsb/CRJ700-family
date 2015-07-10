@@ -154,7 +154,7 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
         <type>translate</type>
         <object-name>RAT</object-name>
         <object-name>RATBlades</object-name>
-        <property>systems/ram-air-turbine/position-norm</property>
+        <property>systems/AC/system/adg-position-norm</property>
         <interpolation>
             <entry><ind>1</ind><dep>0</dep></entry>
             <entry><ind>0</ind><dep>0.2</dep></entry>
@@ -169,7 +169,7 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
         <type>rotate</type>
         <object-name>RAT</object-name>
         <object-name>RATBlades</object-name>
-        <property>systems/ram-air-turbine/position-norm</property>
+        <property>systems/AC/system/adg-position-norm</property>
         <interpolation>
             <entry><ind>1</ind><dep>0</dep></entry>
             <entry><ind>0</ind><dep>-40</dep></entry>
@@ -188,7 +188,7 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
     <animation>
         <type>spin</type>
         <object-name>RATBlades</object-name>
-        <property>systems/ram-air-turbine/rpm</property>
+        <property>systems/AC/system/adg-rpm</property>
         <axis>
             <x>1</x>
             <y>0</y>

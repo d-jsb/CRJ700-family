@@ -87,7 +87,7 @@ var fast_loop = Loop(0, func {
 
 var slow_loop = Loop(3, func {
 	# Electrical.
-	rat1.update();
+	#rat1.update();
 
 	# Instruments.
 	update_tat;
@@ -269,7 +269,7 @@ var Rat = {
         }
     }
 };
-var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
+#var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
 
 ## Aircraft-specific dialogs
 var dialogs = {
