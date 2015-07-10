@@ -971,18 +971,14 @@
 		<CRJ700>
 			<file>Aircraft/CRJ700-family/Nasal/classes.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
-			<!--
-			<file>Aircraft/CRJ700-family/Nasal/engines.nas</file>
-			-->
+
 			<file>Aircraft/CRJ700-family/Nasal/wiper.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/doors.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/effects.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/electrical.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/hydraulic.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/instrumentation.nas</file>
-			<!--
-			<file>Aircraft/CRJ700-family/Nasal/systems.nas</file>
-			-->
+
 			<file>Aircraft/CRJ700-family/Nasal/multiplayer.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/vnav.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/master.nas</file>
