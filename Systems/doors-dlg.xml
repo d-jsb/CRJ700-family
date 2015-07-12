@@ -25,26 +25,30 @@
 
 	<group>
 		<layout>vbox</layout>
-		<button>
-			<pref-width>80</pref-width>
-			<pref-height>24</pref-height>
-			<legend>PAX</legend>
-			<border>2</border>
-			<binding>
-				<command>nasal</command>
-				<script>CRJ700.doors.pax_left.toggle();</script>
-			</binding>
-		</button>
-		<button>
-			<pref-width>80</pref-width>
-			<pref-height>24</pref-height>
-			<legend>Service</legend>
-			<border>2</border>
-			<binding>
-				<command>nasal</command>
-				<script>CRJ700.doors.fwd_service.toggle();</script>
-			</binding>
-		</button>
+		<group>
+			<layout>hbox</layout>
+			<button>
+				<pref-width>35</pref-width>
+				<pref-height>24</pref-height>
+				<legend>PAX</legend>
+				<border>2</border>
+				<binding>
+					<command>nasal</command>
+					<script>CRJ700.doors.pax_left.toggle();</script>
+				</binding>
+			</button>
+			<button>
+				<pref-width>35</pref-width>
+				<pref-height>24</pref-height>
+				<legend>Srvc</legend>
+				<border>2</border>
+				<binding>
+					<command>nasal</command>
+					<script>CRJ700.doors.fwd_service.toggle();</script>
+				</binding>
+			</button>
+		</group>
+		
 		<button>
 			<pref-width>80</pref-width>
 			<pref-height>24</pref-height>
@@ -73,6 +77,16 @@
 			<binding>
 				<command>nasal</command>
 				<script>CRJ700.doors.aft_cargo.toggle();</script>
+			</binding>
+		</button>
+		<button>
+			<pref-width>80</pref-width>
+			<pref-height>24</pref-height>
+			<legend>CLOSE ALL</legend>
+			<border>2</border>
+			<binding>
+				<command>nasal</command>
+				<script>CRJ700.doors.close();</script>
 			</binding>
 		</button>
 	</group>

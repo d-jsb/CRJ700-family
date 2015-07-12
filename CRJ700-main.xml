@@ -42,6 +42,12 @@
 			</lights>
 			<yokes type="bool">true</yokes>
 			<door-positions>
+				<pax-left>
+					<position-norm type="float">1</position-norm>
+				</pax-left>
+				<pax-right>
+					<position-norm type="float">0</position-norm>
+				</pax-right>
 				<avionic>
 					<position-norm type="float">0</position-norm>
 				</avionic>
@@ -161,6 +167,15 @@
 						<binding>
 							<command>property-toggle</command>
 							<property>sim/model/start-idling</property>
+						</binding>
+					</item>
+					<item>
+						<label>Engines instant on</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.instastart();
+							</script>
 						</binding>
 					</item>
 					<item>
@@ -366,12 +381,13 @@
 			<dc-service-switch type="bool">false</dc-service-switch>
 			<battery-switch type="bool">true</battery-switch>
 			<ac-service-avail type="bool">true</ac-service-avail>
+			<ac-service-selected type="bool">false</ac-service-selected>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
 			<!-- 
 			the external service panel is not yet added to 3D model (nose right)
-			anyhow, ac-service-in-use-ext switch property is already used ;)
+			anyhow, ac-service-selected-ext switch property is already used ;)
 			-->
-			<ac-service-in-use-ext type="bool">false</ac-service-in-use-ext>
+			<ac-service-selected-ext type="bool">false</ac-service-selected-ext>
 			<APU-generator type="bool">false</APU-generator>
 			<auto-xfer1 type="bool">true</auto-xfer1>
 			<auto-xfer2 type="bool">true</auto-xfer2>

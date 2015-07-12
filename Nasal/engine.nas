@@ -3,7 +3,18 @@
 ##
 ## Engine simulation module
 ##
-##
+# GE CF34-8C1		CRJ700 (701)
+# GE CF34-8C5		CRJ700 (705), CRJ900, CRJ 900 NextGen
+# GE CF34-8C5A1		CRJ1000 NextGen
+# GE CF34-8C5B1		CRJ700 NextGen
+#
+# GE CF34-8C
+# dry weight			2,408 lb (1,092 kg) - 2,600 lb (1,200 kg) 
+# Thrust at see level	13,790 lbf (61.3 kN) - 14,510 lbf (64.5 kN)
+# Thrust to weight		5.3 : 1
+# Pressure ratio at max 28:1
+# bypass ratio			5:1
+
 
 var Engine = {};
 
@@ -385,11 +396,12 @@ Engine.Jet = func(n)
 
         var time_delta = getprop_safe("sim/time/delta-sec");
         if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)
-		#shutdown
+		#shutdown: N1 25->0 ~15s; N2 60
         {
             jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
-            jet.n2 = math.max(jet.n2 - 8 * time_delta, 0);
+            jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
+            if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
+			else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
         elsif (jet.running)
@@ -413,8 +425,9 @@ Engine.Jet = func(n)
 		#off, serviceable
         {
             jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
-            jet.n2 = math.max(jet.n2 - 8 * time_delta, 0);
+            jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
+            if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
+			else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
 

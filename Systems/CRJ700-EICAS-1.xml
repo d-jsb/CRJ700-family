@@ -516,7 +516,7 @@
 	</message-->
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Gen 1 off</text>
+		<text type="string">GEN 1 OFF</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -533,7 +533,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Gen 2 off</text>
+		<text type="string">GEN 2 OFF</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -544,6 +544,22 @@
 				<property>engines/engine[1]/running</property>
 				<not>
 					<property>controls/electric/engine[1]/generator</property>
+				</not>
+			</and>
+		</condition>
+	</message>	<message>
+		<priority type="int">1</priority>
+		<text type="string">APU GEN OFF</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<property>engines/APU/running</property>
+				<not>
+					<property>controls/electric/APU-generator</property>
 				</not>
 			</and>
 		</condition>
