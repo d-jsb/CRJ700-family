@@ -358,7 +358,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACBackground"
-loc -0.0001000 -0.0148994 0.0007908
+loc -0.0010000 -0.0148994 0.0007908
 texture "eicas-ac.png"
 texrep 1 1
 numvert 4
@@ -377,7 +377,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACBus1"
-loc 0.0001000 0.0189385 0.0403076
+loc 0.0000000 0.0189385 0.0403076
 texture "eicas-ac.png"
 texrep 1 1
 numvert 4
@@ -396,7 +396,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACBus1Line"
-loc 0.0001000 -0.0037392 0.0452540
+loc 0.0000000 -0.0037392 0.0452540
 texture "eicas.png"
 texrep 1 1
 numvert 4
@@ -415,7 +415,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACBus2"
-loc 0.0001000 0.0189053 -0.0374395
+loc 0.0000000 0.0189053 -0.0374395
 texture "eicas-ac.png"
 texrep 1 1
 numvert 4
@@ -434,7 +434,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACBus2Line"
-loc 0.0001000 -0.0037859 -0.0421359
+loc 0.0000000 -0.0037859 -0.0421359
 texture "eicas.png"
 texrep 1 1
 numvert 4
@@ -453,7 +453,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACEssBus"
-loc 0.0001000 0.0073323 0.0011018
+loc 0.0000000 0.0073323 0.0011018
 texture "eicas-ac.png"
 texrep 1 1
 numvert 4
@@ -472,7 +472,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACExtGen"
-loc 0.0001000 -0.0076280 -0.0270138
+loc 0.0000000 -0.0076280 -0.0270138
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -502,7 +502,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACExtLine"
-loc 0.0001000 -0.0107246 0.0231670
+loc 0.0000000 -0.0107246 0.0231670
 texture "eicas.png"
 texrep 1 1
 numvert 8
@@ -573,7 +573,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACGen1"
-loc 0.0001000 -0.0685055 0.0506245
+loc 0.0000000 -0.0685055 0.0506245
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -603,7 +603,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACGen2"
-loc 0.0001000 -0.0685055 -0.0482973
+loc 0.0000000 -0.0685055 -0.0482973
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -633,8 +633,8 @@ refs 4
 kids 0
 OBJECT poly
 name "ACLine12"
-loc 0.0001000 -0.0211567 -0.0201189
-texture "eicas.png"
+loc 0.0000000 -0.0211567 -0.0201189
+texture "eicas-ac.png"
 texrep 1 1
 numvert 10
 0.0000000 -0.0020833 0.0639886
@@ -649,49 +649,49 @@ numvert 10
 0.0000000 0.0358286 -0.0236272
 numsurf 8
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 5 0.912743 0.908929
 4 0.912743 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 9 0.979896 0.976081
 8 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 3 0.912743 0.976081
 5 0.912743 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 6 0.979896 0.976081
 9 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 1 0.979896 0.976081
 3 0.912743 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 2 0.979896 0.908929
 7 0.979896 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 7 0.979896 0.908929
 6 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 7 0.979896 0.908929
@@ -699,8 +699,8 @@ refs 3
 kids 0
 OBJECT poly
 name "ACLine1E"
-loc 0.0001000 0.0084946 0.0268648
-texture "eicas.png"
+loc 0.0000000 0.0084946 0.0268648
+texture "eicas-ac.png"
 texrep 1 1
 numvert 8
 0.0000000 0.0005530 0.0028715
@@ -713,37 +713,37 @@ numvert 8
 0.0000000 -0.0029693 0.0026269
 numsurf 6
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.904641 0.901590
 4 0.904641 0.901590
 5 0.904641 0.901590
 SURF 0X0
-mat 1
+mat 2
 refs 3
 6 0.904641 0.983420
 7 0.904641 0.901590
 4 0.904641 0.901590
 SURF 0X0
-mat 1
+mat 2
 refs 3
 3 0.986472 0.901590
 2 0.986472 0.983420
 1 0.904641 0.983420
 SURF 0X0
-mat 1
+mat 2
 refs 3
 1 0.904641 0.983420
 6 0.904641 0.983420
 4 0.904641 0.901590
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.904641 0.901590
 3 0.986472 0.901590
 1 0.904641 0.983420
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.904641 0.901590
 1 0.904641 0.983420
@@ -751,8 +751,8 @@ refs 3
 kids 0
 OBJECT poly
 name "ACLine21"
-loc 0.0002000 -0.0212300 0.0217023
-texture "eicas.png"
+loc 0.0000000 -0.0212300 0.0217023
+texture "eicas-ac.png"
 texrep 1 1
 numvert 10
 0.0000000 -0.0018636 -0.0624814
@@ -767,38 +767,38 @@ numvert 10
 0.0000000 -0.0018636 0.0251956
 numsurf 6
 SURF 0X0
-mat 1
+mat 2
 refs 3
 2 0.903435 0.900383
 3 0.987678 0.984626
 1 0.903435 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 4 0.987678 0.900383
 5 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 2 0.903435 0.900383
 0 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.987678 0.900383
 4 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 4
 2 0.903435 0.900383
 1 0.903435 0.984626
 6 0.903435 0.984626
 7 0.903435 0.900383
 SURF 0X0
-mat 1
+mat 2
 refs 4
 7 0.903435 0.900383
 6 0.903435 0.984626
@@ -807,8 +807,8 @@ refs 4
 kids 0
 OBJECT poly
 name "ACLine2E"
-loc 0.0001000 0.0083171 -0.0244808
-texture "eicas.png"
+loc 0.0000000 0.0083171 -0.0244808
+texture "eicas-ac.png"
 texrep 1 1
 numvert 8
 0.0000000 0.0002700 0.0088541
@@ -821,37 +821,37 @@ numvert 8
 0.0000000 0.0064502 -0.0026115
 numsurf 6
 SURF 0X0
-mat 1
+mat 2
 refs 3
 3 0.978185 0.906825
 0 0.978185 0.906825
 1 0.978185 0.906825
 SURF 0X0
-mat 1
+mat 2
 refs 3
 6 0.906825 0.978185
 7 0.906825 0.906825
 4 0.978185 0.906825
 SURF 0X0
-mat 1
+mat 2
 refs 3
 3 0.978185 0.906825
 4 0.978185 0.906825
 0 0.978185 0.906825
 SURF 0X0
-mat 1
+mat 2
 refs 3
 3 0.978185 0.906825
 2 0.978185 0.978185
 5 0.978185 0.978185
 SURF 0X0
-mat 1
+mat 2
 refs 3
 5 0.978185 0.978185
 6 0.906825 0.978185
 4 0.978185 0.906825
 SURF 0X0
-mat 1
+mat 2
 refs 3
 3 0.978185 0.906825
 5 0.978185 0.978185
@@ -859,8 +859,8 @@ refs 3
 kids 0
 OBJECT poly
 name "ACLineA1"
-loc 0.0002000 -0.0212300 0.0217023
-texture "eicas.png"
+loc 0.0000000 -0.0212300 0.0217023
+texture "eicas-ac.png"
 texrep 1 1
 numvert 10
 0.0000000 -0.0018636 -0.0188844
@@ -875,38 +875,38 @@ numvert 10
 0.0000000 -0.0018636 0.0251956
 numsurf 6
 SURF 0X0
-mat 1
+mat 2
 refs 3
 2 0.903435 0.900383
 3 0.987678 0.984626
 1 0.903435 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 4 0.987678 0.900383
 5 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 2 0.903435 0.900383
 0 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.987678 0.900383
 4 0.987678 0.900383
 3 0.987678 0.984626
 SURF 0X0
-mat 1
+mat 2
 refs 4
 2 0.903435 0.900383
 1 0.903435 0.984626
 6 0.903435 0.984626
 7 0.903435 0.900383
 SURF 0X0
-mat 1
+mat 2
 refs 4
 7 0.903435 0.900383
 6 0.903435 0.984626
@@ -915,8 +915,8 @@ refs 4
 kids 0
 OBJECT poly
 name "ACLineA2"
-loc 0.0001000 -0.0211567 -0.0201189
-texture "eicas.png"
+loc 0.0000000 -0.0211567 -0.0201189
+texture "eicas-ac.png"
 texrep 1 1
 numvert 10
 0.0000000 -0.0020833 0.0200381
@@ -931,49 +931,49 @@ numvert 10
 0.0000000 0.0358286 -0.0236272
 numsurf 8
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 5 0.912743 0.908929
 4 0.912743 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 9 0.979896 0.976081
 8 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 3 0.912743 0.976081
 5 0.912743 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 6 0.979896 0.976081
 9 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 1 0.979896 0.976081
 3 0.912743 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 2 0.979896 0.908929
 7 0.979896 0.908929
 SURF 0X0
-mat 1
+mat 2
 refs 3
 7 0.979896 0.908929
 6 0.979896 0.976081
 1 0.979896 0.976081
 SURF 0X0
-mat 1
+mat 2
 refs 3
 0 0.912743 0.908929
 7 0.979896 0.908929
@@ -981,8 +981,8 @@ refs 3
 kids 0
 OBJECT poly
 name "ACLineE12"
-loc 0.0001000 -0.0212300 0.0015302
-texture "eicas.png"
+loc 0.0000000 -0.0212300 0.0015302
+texture "eicas-ac.png"
 texrep 1 1
 numvert 12
 0.0000000 -0.0016440 -0.0420222
@@ -999,35 +999,35 @@ numvert 12
 0.0000000 0.0364949 -0.0453102
 numsurf 5
 SURF 0X0
-mat 1
+mat 2
 refs 4
 3 0.917798 0.917798
 0 0.973315 0.917798
 1 0.973315 0.973315
 2 0.917798 0.973315
 SURF 0X0
-mat 1
+mat 2
 refs 4
 3 0.917798 0.917798
 2 0.917798 0.973315
 4 0.917798 0.973315
 5 0.917798 0.917798
 SURF 0X0
-mat 1
+mat 2
 refs 4
 4 0.917798 0.973315
 2 0.917798 0.973315
 6 0.917798 0.973315
 7 0.917798 0.973315
 SURF 0X0
-mat 1
+mat 2
 refs 4
 1 0.973315 0.973315
 0 0.973315 0.917798
 8 0.973315 0.917798
 9 0.973315 0.973315
 SURF 0X0
-mat 1
+mat 2
 refs 4
 1 0.973315 0.973315
 9 0.973315 0.973315
@@ -1036,7 +1036,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ACServBus"
-loc 0.0001000 0.0308632 -0.0292624
+loc 0.0000000 0.0308632 -0.0292624
 texture "eicas-ac.png"
 texrep 1 1
 numvert 4
@@ -1055,8 +1055,8 @@ refs 4
 kids 0
 OBJECT poly
 name "ACServBusLine"
-loc 0.0001000 0.0247345 -0.0285143
-texture "eicas.png"
+loc 0.0000000 0.0247345 -0.0285143
+texture "eicas-ac.png"
 texrep 1 1
 numvert 4
 0.0000000 0.0023400 0.0016440
@@ -1065,7 +1065,7 @@ numvert 4
 0.0000000 -0.0023400 0.0016440
 numsurf 1
 SURF 0X0
-mat 1
+mat 2
 refs 4
 0 0.915267 0.915267
 3 0.975846 0.915267
@@ -1074,7 +1074,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ADG"
-loc 0.0001000 0.0523600 -0.0473064
+loc 0.0000000 0.0523600 -0.0473064
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -1126,7 +1126,7 @@ refs 3
 kids 0
 OBJECT poly
 name "ADGBus"
-loc 0.0001000 0.0397117 0.0011938
+loc 0.0000000 0.0397117 0.0011938
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -1178,7 +1178,7 @@ refs 3
 kids 0
 OBJECT poly
 name "ADGLine"
-loc 0.0001000 0.0366469 0.0017586
+loc 0.0000000 0.0366469 0.0017586
 texture "eicas-ac.png"
 texrep 1 1
 numvert 16
@@ -1292,7 +1292,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APUGen"
-loc 0.0001000 -0.0590685 0.0017417
+loc 0.0000000 -0.0590685 0.0017417
 texture "eicas-ac.png"
 texrep 1 1
 numvert 8
@@ -1360,7 +1360,7 @@ refs 4
 kids 0
 OBJECT poly
 name "DCBackground"
-loc -0.0005000 0.0000000 0.0000000
+loc -0.0010000 0.0000000 0.0000000
 texture "eicas-dc.png"
 texrep 1 1
 numvert 4
@@ -2210,7 +2210,7 @@ refs 4
 kids 0
 OBJECT poly
 name "DoorBackground"
-loc -0.0005000 -0.0000000 0.0000000
+loc -0.0010000 -0.0000000 0.0000000
 texture "eicas-doors.png"
 texrep 1 1
 numvert 4
@@ -2996,7 +2996,7 @@ refs 4
 kids 0
 OBJECT poly
 name "HydraulicBackground"
-loc -0.0005000 0.0000000 0.0000000
+loc -0.0010000 0.0000000 0.0000000
 texture "eicas-hydraulic.png"
 texrep 1 1
 numvert 4
@@ -3705,7 +3705,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Screen"
-loc -0.0010000 0.0000000 0.0000000
+loc -0.0015000 0.0000000 0.0000000
 texture "black-bg.png"
 texrep 1 1
 numvert 4
