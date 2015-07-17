@@ -27,16 +27,6 @@
 				<property>/engines/apu/running</property>
 			</and>
 		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/electronic-control-unit</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/off-on</property>
-			<value>1</value>
-		</binding>
 	</item>
 	<item>
 		<name>Bleed Air Souce</name>
@@ -107,10 +97,13 @@
 	</item>
 	<!-- engine 1 -->
 	<item>
-		<name>Engine Starter Switch</name>
+		<name>Engine 1 Starter Switch Light</name>
 		<value>ON</value>
 		<condition>
-			<not><property>/engines/engine[0]/running</property></not>
+			<or>
+				<property>/controls/engines/engine[0]/starter</property>
+				<property>/engines/engine[0]/running</property>
+			</or>
 		</condition>
 		<binding>
 			<command>property-assign</command>
@@ -131,13 +124,11 @@
 		<value>CHECK</value>
 	</item>
 	<item>
-		<name>Engine Starter Switch</name>
-		<value>OFF</value>
+		<name>Engine 1 Starter Switch Light </name>
+		<value>CHECK OFF</value>
 		<condition>
-			<and>
-				<not><property>/controls/engines/engine[0]/starter</property></not>
-				<property>/engines/engine[0]/running</property>
-			</and>
+			<not><property>/controls/engines/engine[0]/starter</property></not>
+			<property>/engines/engine[0]/running</property>
 		</condition>
 		<binding>
 			<command>property-assign</command>
@@ -147,10 +138,13 @@
 	</item>
 	<!-- engine 2 -->
 	<item>
-		<name>Engine Starter Switch</name>
+		<name>Engine 2 Starter Switch Light</name>
 		<value>ON</value>
 		<condition>
-			<not><property>/engines/engine[1]/running</property></not>
+			<or>
+				<property>/controls/engines/engine[1]/starter</property>
+				<property>/engines/engine[1]/running</property>
+			</or>
 		</condition>
 		<binding>
 			<command>property-assign</command>
@@ -171,8 +165,8 @@
 		<value>CHECK</value>
 	</item>
 	<item>
-		<name>Engine Starter Switch</name>
-		<value>OFF</value>
+		<name>Engine 2 Starter Switch Light</name>
+		<value>CHECK OFF</value>
 		<condition>
 			<and>
 				<not><property>/controls/engines/engine[1]/starter</property></not>

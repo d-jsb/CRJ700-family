@@ -15,6 +15,6 @@
 		<checklist include="descent.xml" />
 		<checklist include="approach.xml" />
 		<checklist include="landing.xml" />
-		<checklist include="taxi2.xml" />
+		<checklist include="after-landing.xml" />
 		<checklist include="parking.xml" />
 </PropertyList>
