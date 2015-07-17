@@ -19,6 +19,7 @@ var Engine = {};
 
 # Default fuel density (for YASim jets this is 6.72 lb/gal).
 Engine.FUEL_DENSITY = 6.72;
+Engine.FUEL_UNUSABLE = 62; #lbs
 
 # Returns fuel density.
 Engine.fuel_density = func
@@ -46,12 +47,12 @@ Engine.poll_fuel_tanks = func
         if (levelN != nil)
         {
             var level = levelN.getValue();
-            if (level != nil and level > 0 and tank.getNode("selected",1).getBoolValue())
+            if (level != nil and level > Engine.FUEL_UNUSABLE) # and tank.getNode("selected",1).getBoolValue()
             {
                 append(Engine.valid_fuel_tanks, tank);
             }
         }
-        setprop("/consumables/fuel/eng-valid-tanks", size(Engine.valid_fuel_tanks));
+        setprop("/consumables/fuel/valid-tanks", size(Engine.valid_fuel_tanks));
     }
 };
 
