@@ -15,13 +15,13 @@
 			<cockpit type="int">4</cockpit>
 			<model type="int">4</model>
 		</rating>
-		
+
 		<startup>
 			<splash-texture>Aircraft/CRJ700-family/splash.jpg</splash-texture>
 		</startup>
-		
+
 		<checklists include="Checklists/checklists.xml" />
-		
+
 		<model>
 			<livery>
 				<file>Blank</file>
@@ -97,6 +97,7 @@
 		<chase-distance-m type="double">-30</chase-distance-m>
 
 		<flaps>
+			<current-setting>0</current-setting>
 			<setting>0.000</setting>    <!-- 0 -->
 			<setting>0.022</setting>    <!-- 1 -->
 			<setting>0.177</setting>    <!-- 8 -->
@@ -257,7 +258,7 @@
 				</menu>
 			</default>
 		</menubar>
-		
+
 		<multiplay>
 			<generic>
 				<!-- Dual control transmission properties -->
@@ -383,7 +384,7 @@
 			<ac-service-avail type="bool">true</ac-service-avail>
 			<ac-service-selected type="bool">false</ac-service-selected>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
-			<!-- 
+			<!--
 			the external service panel is not yet added to 3D model (nose right)
 			anyhow, ac-service-selected-ext switch property is already used ;)
 			-->
@@ -521,10 +522,10 @@
 			<has-brake></has-brake>
 		</gear>
 	</gear>
-	
+
 	<instrumentation>
-		<use-metric-altitude type="bool">false</use-metric-altitude>
-		<use-QNH type="bool">false</use-QNH>
+		<use-metric-altitude type="bool" archive="y">false</use-metric-altitude>
+		<use-QNH type="bool" archive="y">true</use-QNH>
 		<adf>
 			<ident-audible type="bool">true</ident-audible>
 			<volume-norm type="float">0</volume-norm>
@@ -912,8 +913,8 @@
 				<fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
 				<fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
 				<gps alias="/systems/DC/outputs/gps1" />
-				<!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC 
-				<mk-viii alias="/systems/AC/outputs/egpws" /> 
+				<!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC
+				<mk-viii alias="/systems/AC/outputs/egpws" />
 				<mk-viii alias="/systems/DC/outputs/radio-altimeter1" /> -->
 				<nav alias="/systems/DC/outputs/vhf-nav1" />
 				<panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
