@@ -8954,60 +8954,10 @@ DIR BUS</text>
 		<object-name>GearLInd</object-name>
 		<object-name>GearNInd</object-name>
 		<object-name>GearRInd</object-name>
-		<object-name>DoorBackground</object-name>
 		<object-name>ACBackground</object-name>
-		<object-name>HydraulicBackground</object-name>
-		<object-name>ACBus1</object-name>
-		<object-name>ACBus2</object-name>
-		<object-name>ACEssBus</object-name>
-		<object-name>ACServBus</object-name>
-		<object-name>ACGen1</object-name>
-		<object-name>ACGen2</object-name>
-		<object-name>APUGen</object-name>
-		<object-name>ACExtGen</object-name>
-		<object-name>ADG</object-name>
-		<object-name>ADGBus</object-name>
-		
 		<object-name>DCBackground</object-name>
-		<object-name>DCAPUBatt</object-name>
-		<object-name>DCAPUBattBus</object-name>
-		<object-name>DCBattBus</object-name>
-		<object-name>DCBus1</object-name>
-		<object-name>DCBus2</object-name>
-		<object-name>DCEssBus</object-name>
-		<object-name>DCLineAPUBatt</object-name>
-		<object-name>DCLineBatt</object-name>
-		<object-name>DCLineIn1</object-name>
-		<object-name>DCLineIn2</object-name>
-		<object-name>DCLineIn3</object-name>
-		<object-name>DCLineIn4</object-name>
-		<object-name>DCLineMainBatt</object-name>
-		<object-name>DCLineT1</object-name>
-		<object-name>DCLineT2</object-name>
-		<object-name>DCLineT3</object-name>
-		<object-name>DCLineT4</object-name>
-		<object-name>DCMainBatt</object-name>
-		<object-name>DCMainBattBus</object-name>
-		<object-name>DCServBus</object-name>
-		<object-name>DCTRU1</object-name>
-		<object-name>DCTRU2</object-name>
-		<object-name>DCTRU3</object-name>
-		<object-name>DCTRU4</object-name>
-		<object-name>DCUtilBus</object-name>
-		
-		
-		<object-name>DoorAftCargo</object-name>
-		<object-name>DoorAvionic</object-name>
-		<object-name>DoorCTRCargo</object-name>
-		<object-name>DoorEmerL1</object-name>
-		<object-name>DoorEmerL2</object-name>
-		<object-name>DoorEmerR1</object-name>
-		<object-name>DoorEmerR2</object-name>
-		<object-name>DoorFwdCargo</object-name>
-		<object-name>DoorPassenger</object-name>
-		<object-name>DoorService</object-name>
-
-
+		<object-name>DoorBackground</object-name>
+		<object-name>HydraulicBackground</object-name>
 	</effect>
 
 </PropertyList>
