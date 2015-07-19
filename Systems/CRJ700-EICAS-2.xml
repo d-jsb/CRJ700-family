@@ -585,5 +585,45 @@
 			</not>
 		</condition>
 	</message>
-
+	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 1 AUTOXFER OFF</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer1</property>
+			</not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 2 AUTOXFER OFF</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer2</property>
+			</not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC ESS ALTN</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/ac-ess-xfer</property>
+		</condition>
+	</message>
 </PropertyList>

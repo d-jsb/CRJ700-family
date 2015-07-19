@@ -144,8 +144,6 @@
 			<path>/sim/weight[0]/weight-lb</path>
 			<path>/sim/weight[1]/weight-lb</path>
 			<path>/controls/gear/enable-tiller</path>
-			<path>/instrumentation/eicas[0]/page</path>
-			<path>/instrumentation/eicas[1]/page</path>
 			<path>/instrumentation/mfd[0]/page</path>
 			<path>/instrumentation/mfd[0]/tcas</path>
 			<path>/instrumentation/mfd[0]/wx</path>
@@ -577,6 +575,7 @@
 			<page type="int">1</page>
 		</eicas>
 		<eicas>
+			<!--page type="int">2</page-->
 			<page type="int">5</page>
 		</eicas>
 		<eicas-messages>

@@ -402,7 +402,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Passenger door</text>
+		<text type="string">PASSENGER DOOR</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -413,6 +413,18 @@
 				<property>sim/model/door-positions/pax-left/position-norm</property>
 				<value>0</value>
 			</greater-than>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">0</priority>
+		<text type="string">EMER PWR ONLY</text>
+		<color>
+			<red alias="../../../colors/red/red" />
+			<green alias="../../../colors/red/green" />
+			<blue alias="../../../colors/red/blue" />
+		</color>
+		<condition>
+			<property>systems/AC/system[5]/value</property>
 		</condition>
 	</message>
 
@@ -547,7 +559,8 @@
 				</not>
 			</and>
 		</condition>
-	</message>	<message>
+	</message>	
+	<message>
 		<priority type="int">1</priority>
 		<text type="string">APU GEN OFF</text>
 		<color>
@@ -564,6 +577,81 @@
 			</and>
 		</condition>
 	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC BUS 1</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[1]/value</property></not>	
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC BUS 2</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[2]/value</property></not>	
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC ESS BUS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[3]/value</property></not>	
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC SERV BUS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[4]/value</property></not>	
+		</condition>
+	</message>
+
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 1 AUTOXFER</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[1]/serviceable</property></not>	
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 2 AUTOXFER</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>systems/AC/system[2]/serviceable</property></not>	
+		</condition>
+	</message>
+	
+	
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">GLD not armed</text>
@@ -629,7 +717,7 @@
 				<value>0</value>
 			</greater-than>
 		</condition>
-	</message>	
+		</message>	
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">FWD CARGO DOOR</text>
