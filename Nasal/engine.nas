@@ -158,7 +158,7 @@ Engine.Apu = func(n) {
 		read_props();
         if (!apu.controls.on)
         {
-			print("APU off");
+			#print("APU off");
 			#apu.running = 0; # done by rpm listener
 			#-- spin down (20s) --
 			interpolate(apu.rpm_node, 0, 20 * apu.rpm / 100);
@@ -327,7 +327,8 @@ Engine.Jet = func(n)
     jet.fuel_flow_pph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow_pph", 1);
 
     jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
-    jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running", 1);
+    jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
+	jet.running_node.setBoolValue(jet.running);
     jet.on_fire_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/on-fire", 1);
     jet.on_fire_node.setBoolValue(jet.on_fire);
     jet.serviceable_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/serviceable", 1);
@@ -351,10 +352,7 @@ Engine.Jet = func(n)
 
     jet.update = func
     {
-		return;
-		print("1r:"~jet.running~" ");
-        jet.serviceable = jet.serviceable_node.getBoolValue();
-    #    jet.running = jet.running_node.getBoolValue();
+		jet.serviceable = jet.serviceable_node.getBoolValue();
 		jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
         jet.fdm_n1 = jet.fdm_n1_node.getValue();
         jet.fdm_n2 = jet.fdm_n2_node.getValue();
@@ -362,23 +360,24 @@ Engine.Jet = func(n)
         jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
         jet.controls.starter = jet.controls.starter_node.getBoolValue();
         jet.controls.throttle = jet.controls.throttle_node.getValue();
-		print("2r:"~jet.running~" ");
+		jet.running = jet.running_node.getBoolValue();
 
         var time_delta = getprop_safe("sim/time/delta-sec");
-
+		# possible states: 
+		# off/spin down
+		# starting
+		# running
 		if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
-		print("3r:"~jet.running~" ");
-
+		
 		if (jet.running) {
-			print("jet running");
-			#jet.controls.starter = 0;
+			jet.controls.starter = 0;
 			jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
 			jet.n1 = jet.fdm_n1;
 			jet.n2 = jet.fdm_n2;
 		}
-		elsif (jet.controls.starter and jet._has_bleed_air()) {
-			print("jet starting");
+		elsif (jet.serviceable and !jet.out_of_fuel and jet.controls.starter and jet._has_bleed_air()) {
 			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
+			if (jet.n2 > 25 and jet.controls.cutoff) jet.controls.starter = 0;
 			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
 			if (jet.n1 >= jet.fdm_n1) {
 				jet.running = 1;
@@ -387,7 +386,6 @@ Engine.Jet = func(n)
 		}
 		else {
 			#shutdown: N1 25->0 ~15s; N2 60
-			print("jet shutdown");
             jet.running = 0;
             jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
 			if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
@@ -395,7 +393,7 @@ Engine.Jet = func(n)
             jet.fdm_throttle = 0;
 		}
 
-	#	jet.running_node.setBoolValue(jet.running);
+		jet.running_node.setBoolValue(jet.running);
         jet.controls.starter_node.setBoolValue(jet.controls.starter);
         jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
         jet.n1_node.setValue(jet.n1);
@@ -423,7 +421,7 @@ Engine.Jet = func(n)
 		var apu_rpm = getprop_safe("/engines/apu/rpm");
 		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");
 		var eng2_rpm = getprop_safe("/engines/engine[1]/rpm");
-		print("Bleed source " ~ bleed_source~" a:"~apu_rpm~" 1:"~eng1_rpm~" 2:"~eng2_rpm);
+		#print("Bleed source " ~ bleed_source~" a:"~apu_rpm~" 1:"~eng1_rpm~" 2:"~eng2_rpm);
         # both engines
         if (bleed_source == 0) return eng1_rpm > 20 or eng2_rpm > 20;
         # right engine
