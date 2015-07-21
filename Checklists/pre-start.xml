@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!-- Marker positions for CRJ 700 / CRJ 900
+	dx=1.96
+</!-->
 
 <PropertyList>
 	<title>Pre-start</title>
