@@ -810,7 +810,22 @@
 		<object-name>Wings</object-name>
 		<object-name>Winglets</object-name>
 	</effect>
-
+	<animation>
+		<type>rotate</type>
+		<object-name>APUDoor</object-name>
+		<property>engines/apu/door-norm</property>
+		<factor>45</factor>
+        <axis>
+            <x>-0.00694</x>
+            <y>0.06146</y>
+            <z>-0.12143</z>
+        </axis>
+        <center>
+            <x-m>14.0877</x-m>
+            <y-m>0.29543</y-m>
+            <z-m>-0.42335</z-m>
+        </center>		
+	</animation>
 	<foo include="CRJ700-main.xml" omit-node="y" />
 
 </PropertyList>
