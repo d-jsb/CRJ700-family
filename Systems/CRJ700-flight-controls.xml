@@ -926,6 +926,7 @@
 	</filter>
 
 	<!-- Nose gear steering -->
+	<!-- deactivated; does not make sense
 	<filter>
 		<name>Pilot tiller disabled nose gear steer</name>
 		<type>gain</type>
@@ -939,7 +940,6 @@
 					</not>
 					<property>gear/gear[0]/wow</property>
 				</and>
-				<property>systems/hydraulic/outputs/nwsteering</property>
 			</condition>
 		</enable>
 		<input>
@@ -947,6 +947,7 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
+	-->
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
@@ -964,9 +965,11 @@
 						</expression>
 						<value>8</value>
 					</less-than-equals>
-					<property>controls/gear/enable-tiller</property>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
 					<property>gear/gear[0]/wow</property>
-					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -991,9 +994,11 @@
 						</expression>
 						<value>8</value>
 					</greater-than>
-					<property>controls/gear/enable-tiller</property>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
 					<property>gear/gear[0]/wow</property>
-					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -1028,7 +1033,10 @@
 							</expression>
 						</greater-than-equals>
 					</or>
-					<property>systems/hydraulic/outputs/nwsteering</property>
+					<or>
+						<property>systems/hydraulic/outputs/nwsteering</property>
+						<property>sim/model/pushback/linked</property>
+					</or>
 				</and>
 			</condition>
 		</enable>
@@ -1042,7 +1050,7 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
-		<enable>
+		<enable>/
 			<condition>
 				<and>
 					<property>gear/gear[0]/wow</property>
@@ -1061,7 +1069,10 @@
 							</expression>
 						</greater-than>
 					</and>
-					<property>systems/hydraulic/outputs/nwsteering</property>
+					<or>
+						<property>systems/hydraulic/outputs/nwsteering</property>
+						<property>sim/model/pushback/linked</property>
+					</or>
 				</and>
 			</condition>
 		</enable>
@@ -1070,6 +1081,7 @@
 		</input>
 		<output>fcs/nose-gear-steer-deg</output>
 	</filter>
+	<!-- center nose wheel after take off -->
 	<filter>
 		<name>Nose gear center</name>
 		<type>noise-spike</type>
