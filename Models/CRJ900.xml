@@ -761,7 +761,26 @@
 	<animation>
 		<type>material</type>
 		<object-name>Fuselage</object-name>
+		<object-name>Belly</object-name>
+		<object-name>Belly.001</object-name>
+		<object-name>GearLDoor2</object-name>
+		<object-name>GearLDoor2Int</object-name>
+		<object-name>GearRDoor2</object-name>
+		<object-name>GearRDoor2Int</object-name>
+		<object-name>ElevatorL</object-name>
+		<object-name>ElevatorR</object-name>
+		<object-name>EnginePylons</object-name>
+		<object-name>GearNDoorC</object-name>
+		<object-name>GearNDoorL</object-name>
+		<object-name>GearNDoorR</object-name>
+		<object-name>Hstabs</object-name>
+		<object-name>LeftDoor</object-name>
+		<object-name>RightDoor</object-name>
+		<object-name>Vstab</object-name>
+		<object-name>Vstab.001</object-name>
+		<object-name>Rudder</object-name>
 		<object-name>Winglets</object-name>
+		<object-name>APUDoor</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ900-Blank.png</texture>
