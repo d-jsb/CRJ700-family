@@ -761,6 +761,7 @@
 	<animation>
 		<type>material</type>
 		<object-name>Fuselage</object-name>
+		<object-name>Fuselage.001</object-name>
 		<object-name>Belly</object-name>
 		<object-name>Belly.001</object-name>
 		<object-name>GearLDoor2</object-name>
@@ -835,15 +836,13 @@
 		<property>engines/apu/door-norm</property>
 		<factor>45</factor>
         <axis>
-            <x>-0.00694</x>
-            <y>0.06146</y>
-            <z>-0.12143</z>
-        </axis>
-        <center>
-            <x-m>14.0877</x-m>
-            <y-m>0.29543</y-m>
-            <z-m>-0.42335</z-m>
-        </center>		
+			<x1-m>14.44046</x1-m>
+			<y1-m>0.1635</y1-m>
+			<z1-m>-0.31618</z1-m>
+			<x2-m>14.43303</x2-m>
+			<y2-m>0.28419</y2-m>
+			<z2-m>-0.50063</z2-m>
+        </axis>		
 	</animation>
 	<foo include="CRJ700-main.xml" omit-node="y" />
 
