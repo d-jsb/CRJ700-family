@@ -273,6 +273,71 @@
 				<command>dialog-update</command>
 			</binding>
 		</input>
+		<!-- DME1 -->
+		<text>
+			<row>7</row>
+			<col>0</col>
+			<label>DME1</label>
+		</text>
+		<text>
+			<row>7</row>
+			<col>1</col>
+			<label>999.999</label>
+			<halign>center</halign>
+			<format>%3.3f</format>
+			<property>instrumentation/dme[0]/frequencies/selected-mhz</property>
+			<live type="bool">true</live>
+		</text>
+		<button>
+			<row>7</row>
+			<col>2</col>
+			<pref-width>40</pref-width>
+			<pref-height>22</pref-height>
+			<legend>&lt;-&gt;</legend>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>dme1</object-name>
+			</binding>
+			<binding>
+				<command>property-swap</command>
+				<property>instrumentation/dme[0]/frequencies/selected-mhz</property>
+				<property>instrumentation/dme[0]/frequencies/standby-mhz</property>
+			</binding>
+			<binding>
+				<command>dialog-update</command>
+			</binding>
+			<enable>
+				<not>
+					<property>fcs/copilot/active</property>
+				</not>
+			</enable>
+		</button>
+
+		<input>
+			<row>7</row>
+			<col>3</col>
+			<name>dme1</name>
+			<property>instrumentation/dme[0]/frequencies/standby-mhz</property>
+			<enable>
+				<not>
+					<property>fcs/copilot/active</property>
+				</not>
+			</enable>
+		</input>
+
+		<dial>
+			<row>7</row>
+			<col>4</col>
+			<pref-width>30</pref-width>
+			<pref-height>30</pref-height>
+			<property>instrumentation/dme[0]/volume</property>
+			<min>0</min>
+			<max>1</max>
+			<wrap>false</wrap>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</dial>
 
 		<!-- NAV2 -->
 		<text>
