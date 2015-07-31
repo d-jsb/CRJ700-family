@@ -96,7 +96,7 @@ var APUGen = {
 # ADG will work down to 135kt airspeed (according to FOM)
 # 
 var ADG = {
-	new: func (bus, name="adg" , input="/velocities/airspeed-kt") {
+	new: func (bus, name="adg" , input="/instrumentation/airspeed-indicator/indicated-speed-kt") {
 		var obj = {
 			parents: [ADG, EnergyConv.new(bus, name, 115, input, 120, 135).setOutputMin(108)],
 			freq: 0,
@@ -122,6 +122,7 @@ var ADG = {
 	_update_output: func {
 		#var i = int(me.inputN.getValue());
 		#if (me.running and int(me.input) == i) return;
+		#print("ADG.update: "~me.input~","~me.output);
 		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
 		if (me.input > 120) {
@@ -224,6 +225,7 @@ var ACPC = {
 		obj = { parents : [ACPC, EnergyBus.new("AC", sysid, "acpc", outputs)],
 			buses: [],
 			acext_selected: 0,
+			in_flight: 0,
 		};
 		print("AC power center "~obj.parents[1].system_path);
 		return obj;		
@@ -232,7 +234,8 @@ var ACPC = {
 	readProps: func {		
 		me.output = me.outputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
-		me.acext_selected = getprop("controls/electric/ac-service-selected");	
+		me.acext_selected = getprop("controls/electric/ac-service-selected");
+		me.in_flight = (getprop("velocities/airspeed-kt") > 120 );
 	},
 		
 	#
@@ -285,7 +288,15 @@ var ACPC = {
 			#AC_SERVICE
 			v = (g2 >= ep) ? g2 : ep;
 			me.outputs[3].setValue(v);
-			
+			if (!me.inputs[0].isRunning() and 
+				!me.inputs[1].isRunning() and 
+				!me.inputs[2].isRunning() and 
+				!me.inputs[4].isRunning() and 
+				me.in_flight)
+			{
+				print("ACPC: !! ADG auto deploy !!");
+				setprop("controls/electric/ADG", 1);
+			}
 		}
 		return me;
 	},
