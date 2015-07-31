@@ -148,6 +148,48 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CargoDoorFwd</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.doors.fwd_cargo.toggle();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CargoDoorCtr</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.doors.ctr_cargo.toggle();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CargoDoorAft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.doors.aft_cargo.toggle();
+                </script>
+            </binding>
+        </action>
+    </animation>
 
     <!-- Ram air turbine -->
     <animation>
