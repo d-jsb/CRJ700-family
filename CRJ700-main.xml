@@ -150,6 +150,16 @@
 			<path>/instrumentation/mfd[1]/page</path>
 			<path>/instrumentation/mfd[1]/tcas</path>
 			<path>/instrumentation/mfd[1]/wx</path>
+			<path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+			<path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+			<path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
+			<path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
+			<path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
+			<path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
+			<path>/instrumentation/nav[0]/radials/selected-deg</path>
+			<path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
+			<path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
+			<path>/instrumentation/nav[1]/radials/selected-deg</path>
 			<path>/instrumentation/use-metric-altitude</path>
 			<path>/instrumentation/use-QNH</path>
 		</aircraft-data>
@@ -293,13 +303,16 @@
 			<tank n="0">
 				<name>LH Wing</name>
 				<selected type="bool">false</selected>
+				<level-lbs archive="y">5000</level-lbs>
 			</tank>
 			<tank n="1">
 				<name>RH Wing</name>
 				<selected type="bool">false</selected>
+				<level-lbs archive="y">5000</level-lbs>
 			</tank>
 			<tank n="2">
 				<name>Center Main</name>
+				<level-lbs archive="y">0</level-lbs>
 			</tank>
 		</fuel>
 	</consumables>
