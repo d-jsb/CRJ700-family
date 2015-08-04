@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Bombardier CRJ700 series -->
+<!-- NWS panel -->
+
+<PropertyList>
+
+	<path>nws.ac</path>
+
+	<params>
+		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+	</params>
+
+	<panel-marking-emit>
+		<red>1</red>
+		<green>0.871</green>
+		<blue>0.427</blue>
+	</panel-marking-emit>
+
+	<!-- Visible only within 1/2 km -->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>500</max-m>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>Markings</object-name>
+		<condition>
+			<greater-than-equals>
+				<property alias="../../../../params/powerN" />
+				<value>105</value>
+			</greater-than-equals>
+		</condition>
+		<emission>
+			<red alias="../../../panel-marking-emit/red" />
+			<green alias="../../../panel-marking-emit/green" />
+			<blue alias="../../../panel-marking-emit/blue" />
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>NWS</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/enable-tiller</property>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>NWS</object-name>
+		<property>controls/gear/enable-tiller</property>
+		<offset>0</offset>
+		<factor>60</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.0034</z-m>
+		</center>
+	</animation>
+
+	<!-- Lightmaps 
+	<effect>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+				<image alias="../../../../params/lightmap-texture-path" />
+			</texture>
+		</parameters>
+		<object-name>Panel</object-name>
+	</effect>
+	-->
+	
+	<!-- Rembrandt !! -->
+	<effect>
+		<name>REMBRANDT transparency</name>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Markings</object-name>
+	</effect>
+
+</PropertyList>
