@@ -262,8 +262,9 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
 				<property>controls/electric/idg1-disc</property>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>
@@ -334,8 +335,9 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
 				<property>controls/electric/idg2-disc</property>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>
