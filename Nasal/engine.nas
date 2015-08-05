@@ -13,7 +13,9 @@
 # Thrust to weight		5.3 : 1
 # Pressure ratio at max 28:1
 # bypass ratio			5:1
-
+# specific fuel cons.   0.68 (lb /h /lbf) -> 9239.3 - 9866.8 lb/h or 2.566 - 2.741 lb/s
+# specific-fuel-consumption, which is calculated with kg/h/kN and data refers to TO --> max thrust
+#
 
 var Engine = {};
 
