@@ -8603,6 +8603,20 @@ DIR BUS</text>
 	
 	<!-- doors page	-->
 	<animation>
+		<type>pick</type>
+		<object-name>DoorBackground</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					CRJ700.dialogs.doors.open()
+				</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
 		<type>select</type>
 		<object-name>DoorAftCargo</object-name>
 		<condition>
