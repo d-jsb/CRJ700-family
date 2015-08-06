@@ -16,6 +16,8 @@
 			<cockpit type="int">4</cockpit>
 			<model type="int">4</model>
 		</rating>
+		<variant-of>CRJ700</variant-of>
+
 		<flight-model>yasim</flight-model>
 		<aero>CRJ1000-EuroLite</aero>
 

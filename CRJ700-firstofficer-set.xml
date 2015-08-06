@@ -79,7 +79,7 @@
 				</dual-control>
 			</dialogs>
 		</gui>
-		
+
 		<aircraft-data>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
@@ -89,7 +89,7 @@
 
 		<allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
 		<virtual-cockpit type="bool">true</virtual-cockpit>
-		
+
 		<menubar>
 			<default>
 				<menu n="100">
@@ -147,7 +147,7 @@
 			</generic>
 		</multiplay>
 	</sim>
-	
+
 	<controls>
 		<engines>
 			<arm-reversers type="bool">false</arm-reversers>
