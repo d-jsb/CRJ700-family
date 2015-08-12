@@ -17,7 +17,7 @@
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>25</max-m>
 	</animation>
 
 	<animation>
@@ -209,6 +209,16 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
+				<property>controls/autoflight/lateral-mode</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/vertical-mode</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/autoflight/flight-director/engage-pressed</property>
 				<value>1</value>
 			</binding>
@@ -325,8 +335,9 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/autoflight/autothrottle-engage</property>
+				<command>property-assign</command>
+				<property>controls/autoflight/vertical-mode</property>
+				<value>5</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -357,7 +368,10 @@
 		<type>select</type>
 		<object-name>SPEEDOn</object-name>
 		<condition>
-			<property>controls/autoflight/autothrottle-engage</property>
+			<equals>
+				<property>controls/autoflight/vertical-mode</property>
+				<value>5</value>
+			</equals>
 		</condition>
 	</animation>
 
@@ -378,7 +392,7 @@
 				</condition>
 				<property>controls/autoflight/speed-select</property>
 				<step>1</step>
-				<max>350</max>
+				<max>340</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -390,7 +404,7 @@
 				</condition>
 				<property>controls/autoflight/mach-select</property>
 				<step>0.01</step>
-				<max>1</max>
+				<max>0.83</max>
 			</binding>
 		</action>
 		<action>
@@ -407,7 +421,7 @@
 				</condition>
 				<property>controls/autoflight/speed-select</property>
 				<step>-1</step>
-				<min>0</min>
+				<min>125</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -419,10 +433,11 @@
 				</condition>
 				<property>controls/autoflight/mach-select</property>
 				<step>-0.01</step>
-				<min>0</min>
+				<min>0.4</min>
 			</binding>
 		</action>
-		<hovered><binding>
+		<hovered>
+			<binding>
 				<condition>
 					<equals>
 						<property>controls/autoflight/speed-mode</property>
@@ -445,7 +460,8 @@
 				<tooltip-id>SPD</tooltip-id>
 				<label>SPEED: MA %.2f</label>
 				<property>controls/autoflight/mach-select</property>
-		</binding></hovered>
+			</binding>
+		</hovered>
 	</animation>
 	<animation>
 		<type>rotate</type>
@@ -503,6 +519,11 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/flight-director/engage</property>
+				<value>1</value>				
+			</binding>
+			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
 				<value>3</value>
@@ -550,6 +571,11 @@
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/flight-director/engage</property>
+				<value>1</value>				
+			</binding>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
@@ -666,6 +692,11 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/flight-director/engage</property>
+				<value>1</value>				
+			</binding>
+			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
 				<value>2</value>
@@ -761,6 +792,11 @@
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/flight-director/engage</property>
+				<value>1</value>				
+			</binding>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vertical-mode</property>
@@ -860,6 +896,11 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/flight-director/engage</property>
+				<value>1</value>				
+			</binding>
+			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vertical-mode</property>
 				<value>2</value>
@@ -930,7 +971,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>100</step>
-				<max>9000</max>
+				<max>4000</max>
 			</binding>
 		</action>
 		<action>
@@ -959,7 +1000,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>-100</step>
-				<min>-9000</min>
+				<min>-4000</min>
 			</binding>
 		</action>
 		<hovered><binding>
