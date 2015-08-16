@@ -6,22 +6,24 @@
 <!--
 	Properties:
 	/controls/autoflight/autopilot/engage			autopilot on/off
+	/controls/autoflight/flight-director/engage		flight director on/off
+
 	/controls/autoflight/basic-roll-mode			basic roll mode
 	/controls/autoflight/basic-roll-heading-select		basic roll mode heading setting
 	/controls/autoflight/basic-roll-select			basic roll mode roll setting
 	/controls/autoflight/pitch-select			basic pitch mode setting
-	/controls/autoflight/flight-director/engage		flight director on/off
 	/controls/autoflight/altitude-select			altitude setting
-	/controls/autoflight/autothrottle-engage		autothrottle on/off
-	/controls/autoflight/bank-angle-select			bank angle setting
+	/controls/autoflight/bank-limit-deg			bank angle setting
 	/controls/autoflight/heading-select			heading setting
-	/controls/autoflight/lateral-mode			lateral mode
 	/controls/autoflight/mach-select			mach speed setting
-	/controls/autoflight/nav-mode				nav mode
-	/controls/autoflight/speed-mode			speed mode
 	/controls/autoflight/speed-select			IAS speed setting
-	/controls/autoflight/vertical-mode			vertical mode
 	/controls/autoflight/vertical-speed-select		vertical speed seting
+
+	/controls/autoflight/lat-mode			lateral mode
+	/controls/autoflight/vertical-mode			vertical mode
+	/controls/autoflight/speed-mode			speed mode
+	/controls/autoflight/nav-mode				nav mode
+	
 	
 	Speed modes:
 	0	IAS
@@ -29,15 +31,15 @@
 	
 	Lateral modes:
 	0	basic roll mode
-	1	magnetic heading
+	1	heading
 	2	navigation (see nav modes)
 	3	approach
 	#4	back course
-	#5  lateral take off mode
-	#6	1/2 bank (inhibited when in TO/GA, approach or nav mode)
-	#7	go around mode
+	#5	1/2 bank (inhibited when in TO/GA, approach or nav mode)
+	6	take off mode
+	7	go around mode
 	
-	Nav modes:
+	Nav source:
 	0	VOR1 intercept
 	1	VOR2 intercept
 	2	FMS(1) course
@@ -46,11 +48,10 @@
 	0	basic pitch mode
 	1	altitude (hold)
 	2	vertical speed
-	#3	vertical take off mode
-	#4	altitude preselect
-	5	speed mode (this is NOT an auto throttle but a vertical (pitch) mode!)
-	#6	vertical go around mode
-	#7	glideslope mode
+	#3	altitude preselect
+	#4	speed mode (this is NOT an auto throttle but a vertical (pitch) mode!)
+	#5	glideslope mode
+	#6	TO/GA mode
 -->
 
 <PropertyList>
@@ -150,6 +151,7 @@
 			<max>180</max>
 		</period>
 	</filter>
+	<!-- speed predictors -->
     <predict-simple>
 		<name>5-second airspeed predictor</name>
 		<debug type="bool">false</debug>
@@ -166,162 +168,6 @@
 		<input>velocities/mach</input>
 		<output>autopilot/internal/lookahead-5-sec-airspeed-mach</output>
 	</predict-simple>
-	
-    <!-- Instrumentation stuff -->
-    <filter>
-		<name>VOR1 heading error computer/normalizer (instrument)</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[0]/heading-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/nav[0]/heading-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
-    <filter>
-		<name>VOR2 heading error computer/normalizer (instrument)</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[1]/heading-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/nav[1]/heading-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
-    <filter>
-		<name>ADF1 bearing error computer/normalizer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/adf[0]/indicated-bearing-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/adf[0]/indicated-bearing-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
-    <filter>
-		<name>ADF2 bearing error computer/normalizer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/adf[1]/indicated-bearing-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/adf[1]/indicated-bearing-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
-    <filter>
-		<name>Speed bug difference</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>controls/autoflight/speed-mode</property>
-					<value>0</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>controls/autoflight/speed-select</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/speed-bug-difference-kt</output>
-	</filter>
-    <filter>
-		<name>Mach bug difference</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>controls/autoflight/speed-mode</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/true-speed-kt</property>
-					<div>
-						<prod>
-							<property>instrumentation/airspeed-indicator/true-speed-kt</property>
-							<property>controls/autoflight/mach-select</property>
-						</prod>
-						<property>instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/mach-bug-difference-kt</output>
-	</filter>
-    <filter>
-		<name>Altitude bug difference</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<property>controls/autoflight/altitude-select</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/altitude-bug-difference-ft</output>
-	</filter>
-    <filter>
-		<name>VNAV altitude difference</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<property>autopilot/route-manager/vnav/target-altitude-ft</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/vnav-difference-ft</output>
-	</filter>
 	
     <!-- VNAV vertical speed advisory -->
     <pi-simple-controller>
@@ -459,10 +305,17 @@
 					<property>autopilot/internal/autoflight-engaged</property>
 					<property>autopilot/internal/flight-director-engaged</property>
 				</or>
-				<equals>
-					<property>controls/autoflight/lateral-mode</property>
-					<value>0</value>
-				</equals>
+				<or>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>6</value>
+					</equals>
+				</or>
+				<not><property>gear/gear[1]/wow</property></not>
 			</and>
 		</input>
 		<output>autopilot/internal/basic-roll-mode-engage</output>
@@ -517,11 +370,11 @@
 			<Ti>10</Ti>
 			<Td>0.00001</Td>
 			<u_min>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 				<scale>-1</scale>
 			</u_min>
 			<u_max>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 			</u_max>
 		</config>
 	</pid-controller>
@@ -537,7 +390,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -558,11 +411,11 @@
 			<Ti>10</Ti>
 			<Td>0.00001</Td>
 			<u_min>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 				<scale>-1</scale>
 			</u_min>
 			<u_max>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 			</u_max>
 		</config>
 	</pid-controller>
@@ -578,7 +431,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>2</value>
 					</equals>
 					<equals>
@@ -607,11 +460,11 @@
 			<Ki>0</Ki>
 		</config>
 		<min>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 			<scale>-1</scale>
 		</min>
 		<max>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 		</max>
 	</pi-simple-controller>
     <pi-simple-controller>
@@ -625,7 +478,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>2</value>
 					</equals>
 					<equals>
@@ -654,11 +507,11 @@
 			<Ki>0</Ki>
 		</config>
 		<min>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 			<scale>-1</scale>
 		</min>
 		<max>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 		</max>
 	</pi-simple-controller>
     <pid-controller>
@@ -672,7 +525,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>2</value>
 					</equals>
 					<equals>
@@ -703,11 +556,11 @@
 			<Ti>10</Ti>
 			<Td>0.00001</Td>
 			<u_min>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 				<scale>-1</scale>
 			</u_min>
 			<u_max>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 			</u_max>
 		</config>
 	</pid-controller>
@@ -723,7 +576,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 				</and>
@@ -742,11 +595,11 @@
 			<Ki>0</Ki>
 		</config>
 		<min>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 			<scale>-1</scale>
 		</min>
 		<max>
-			<property>controls/autoflight/bank-angle-select</property>
+			<property>controls/autoflight/bank-limit-deg</property>
 		</max>
 	</pi-simple-controller>
     <pid-controller>
@@ -760,7 +613,7 @@
 						<property>autopilot/internal/flight-director-engaged</property>
 					</or>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 					<equals>
@@ -788,8 +641,13 @@
 			<u_max>10</u_max>
 		</config>
 	</pid-controller>
+    <!-- 6: take off mode: wing level on gnd, hold hdg after TO w/ 5deg bank limit 
+		 7: go around
+	-->
+
+
 	
-    <!-- Vertical -->
+	<!-- Vertical -->
     <!-- 0 : Basic pitch mode -->
     <logic>
 		<name>Basic pitch mode logic</name>
@@ -805,7 +663,7 @@
 				</equals>
 				<not>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 				</not>

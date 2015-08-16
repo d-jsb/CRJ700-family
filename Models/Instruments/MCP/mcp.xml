@@ -209,7 +209,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -219,13 +219,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage-pressed</property>
+				<property>controls/autoflight/ani/fd-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/flight-director/engage-pressed</property>
+					<property>controls/autoflight/ani/fd-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -234,7 +234,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>FD</object-name>
-		<property>controls/autoflight/flight-director/engage-pressed</property>
+		<property>controls/autoflight/ani/fd-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -262,13 +262,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/autopilot/engage-pressed</property>
+				<property>controls/autoflight/ani/ap-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/autopilot/engage-pressed</property>
+					<property>controls/autoflight/ani/ap-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -277,7 +277,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>APENG</object-name>
-		<property>controls/autoflight/autopilot/engage-pressed</property>
+		<property>controls/autoflight/ani/ap-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -341,13 +341,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/autothrottle-pressed</property>
+				<property>controls/autoflight/ani/speed-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/autothrottle-pressed</property>
+					<property>controls/autoflight/ani/speed-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -356,7 +356,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>SPEED</object-name>
-		<property>controls/autoflight/autothrottle-pressed</property>
+		<property>controls/autoflight/ani/speed-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -525,19 +525,19 @@
 			</binding>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>3</value>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/appr-pressed</property>
+				<property>controls/autoflight/ani/appr-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/appr-pressed</property>
+					<property>controls/autoflight/ani/appr-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -546,7 +546,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>APPR</object-name>
-		<property>controls/autoflight/appr-pressed</property>
+		<property>controls/autoflight/ani/appr-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -559,7 +559,7 @@
 		<object-name>APPROn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>3</value>
 			</equals>
 		</condition>
@@ -578,19 +578,19 @@
 			</binding>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>1</value>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/hdg-pressed</property>
+				<property>controls/autoflight/ani/hdg-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/hdg-pressed</property>
+					<property>controls/autoflight/ani/hdg-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -599,7 +599,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HDG</object-name>
-		<property>controls/autoflight/hdg-pressed</property>
+		<property>controls/autoflight/ani/hdg-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -612,7 +612,7 @@
 		<object-name>HDGOn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -698,19 +698,19 @@
 			</binding>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>2</value>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/nav-pressed</property>
+				<property>controls/autoflight/ani/nav-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/nav-pressed</property>
+					<property>controls/autoflight/ani/nav-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -719,7 +719,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>NAV</object-name>
-		<property>controls/autoflight/nav-pressed</property>
+		<property>controls/autoflight/ani/nav-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -732,7 +732,7 @@
 		<object-name>NAVOn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>2</value>
 			</equals>
 		</condition>
@@ -745,20 +745,18 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-cycle</command>
-				<property>controls/autoflight/bank-angle-select</property>
-				<value>15</value>
-				<value>30</value>
+				<command>property-toggle</command>
+				<property>controls/autoflight/half-bank</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/bank-pressed</property>
+				<property>controls/autoflight/ani/bank-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/bank-pressed</property>
+					<property>controls/autoflight/ani/bank-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -767,7 +765,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>1/2BANK</object-name>
-		<property>controls/autoflight/bank-pressed</property>
+		<property>controls/autoflight/ani/bank-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -779,10 +777,7 @@
 		<type>select</type>
 		<object-name>1/2BANKOn</object-name>
 		<condition>
-			<equals>
-				<property>controls/autoflight/bank-angle-select</property>
-				<value>15</value>
-			</equals>
+			<property>controls/autoflight/half-bank</property>
 		</condition>
 	</animation>
 
@@ -805,13 +800,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/alt-pressed</property>
+				<property>controls/autoflight/ani/alt-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/alt-pressed</property>
+					<property>controls/autoflight/ani/alt-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -820,7 +815,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ALT</object-name>
-		<property>controls/autoflight/alt-pressed</property>
+		<property>controls/autoflight/ani/alt-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>
@@ -908,13 +903,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/vs-pressed</property>
+				<property>controls/autoflight/ani/vst-pressed</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/vs-pressed</property>
+					<property>controls/autoflight/ani/vst-pressed</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -923,7 +918,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>VS</object-name>
-		<property>controls/autoflight/vs-pressed</property>
+		<property>controls/autoflight/ani/vst-pressed</property>
 		<factor alias="../../button-press" />
 		<axis>
 			<x>-1</x>

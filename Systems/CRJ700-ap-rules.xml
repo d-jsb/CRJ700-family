@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
+	What is what depends on how the files are included in CRJ700-main.xml
+-->
+<PropertyList>
+    <!-- Instrumentation stuff not used in AP controllers -->
+    <filter>
+		<name>VOR1 heading error computer/normalizer (instrument)</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<property>instrumentation/nav[0]/heading-deg</property>
+			<offset>
+				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+				<scale>-1</scale>
+			</offset>
+		</input>
+		<output>instrumentation/nav[0]/heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+    <filter>
+		<name>VOR2 heading error computer/normalizer (instrument)</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<property>instrumentation/nav[1]/heading-deg</property>
+			<offset>
+				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+				<scale>-1</scale>
+			</offset>
+		</input>
+		<output>instrumentation/nav[1]/heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+    <filter>
+		<name>ADF1 bearing error computer/normalizer</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<property>instrumentation/adf[0]/indicated-bearing-deg</property>
+			<offset>
+				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+				<scale>-1</scale>
+			</offset>
+		</input>
+		<output>instrumentation/adf[0]/indicated-bearing-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+    <filter>
+		<name>ADF2 bearing error computer/normalizer</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<property>instrumentation/adf[1]/indicated-bearing-deg</property>
+			<offset>
+				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+				<scale>-1</scale>
+			</offset>
+		</input>
+		<output>instrumentation/adf[1]/indicated-bearing-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+    <filter>
+		<name>Speed bug difference</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>controls/autoflight/speed-mode</property>
+					<value>0</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>controls/autoflight/speed-select</property>
+				</dif>
+			</expression>
+		</input>
+		<output>autopilot/internal/speed-bug-difference-kt</output>
+	</filter>
+    <filter>
+		<name>Mach bug difference</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>controls/autoflight/speed-mode</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/true-speed-kt</property>
+					<div>
+						<prod>
+							<property>instrumentation/airspeed-indicator/true-speed-kt</property>
+							<property>controls/autoflight/mach-select</property>
+						</prod>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+				</dif>
+			</expression>
+		</input>
+		<output>autopilot/internal/mach-bug-difference-kt</output>
+	</filter>
+    <filter>
+		<name>Altitude bug difference</name>
+		<debug type="bool">false</debug>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/altimeter/indicated-altitude-ft</property>
+					<property>controls/autoflight/altitude-select</property>
+				</dif>
+			</expression>
+		</input>
+		<output>autopilot/internal/altitude-bug-difference-ft</output>
+	</filter>
+    <filter>
+		<name>VNAV altitude difference</name>
+		<debug type="bool">false</debug>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/altimeter/indicated-altitude-ft</property>
+					<property>autopilot/route-manager/vnav/target-altitude-ft</property>
+				</dif>
+			</expression>
+		</input>
+		<output>autopilot/internal/vnav-difference-ft</output>
+	</filter>
+</PropertyList>

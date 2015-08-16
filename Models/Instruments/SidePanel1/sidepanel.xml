@@ -217,6 +217,18 @@
 				<value>1</value>
 				<value>2</value>
 			</binding>
+			<!-- NAV mode is deselected, if nav source is changed -->
+			<binding>
+				<condition>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>2</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/autoflight/lat-mode</property>
+				<value>0</value>
+			</binding>
 		</action>
 		<action>
 			<button>1</button>
@@ -226,6 +238,18 @@
 				<property>controls/autoflight/nav-mode</property>
 				<value>2</value>
 				<value>1</value>
+				<value>0</value>
+			</binding>
+			<!-- NAV mode is deselected, if nav source is changed -->
+			<binding>
+				<condition>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>2</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/autoflight/lat-mode</property>
 				<value>0</value>
 			</binding>
 		</action>

@@ -28,8 +28,39 @@ setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
 {
     if (!v.getBoolValue()) return;
     var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
-    setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5);
+    setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 }, 0, 0);
+
+#Half Bank
+setlistener("controls/autoflight/half-bank", func (n) {
+	if (n.getValue()) {
+		setprop("controls/autoflight/bank-limit-deg", 15);
+	}
+	else {
+		setprop("controls/autoflight/bank-limit-deg", 30)
+	}	
+}, 1, 1);
+
+#TO/GA mode
+setlistener("controls/autoflight/toga-button", func (n) {
+	if (n.getValue()) {
+		setprop("controls/autoflight/autopilot/engage", 0);
+		setprop("controls/autoflight/flight-director/engage", 1);		
+		setprop("controls/autoflight/half-bank", 0);
+		setprop("controls/autoflight/bank-limit-deg", 5);
+		setprop("controls/autoflight/lat-mode", 6);		
+		setprop("controls/autoflight/toga-button", 0);
+	}
+}, 1, 0);
+
+setlistener("controls/autoflight/lat-mode", func (n) {
+	var mode = n.getValue();
+	var bank = getprop("controls/autoflight/bank-limit-deg");
+	#if leaving TO/GA mode reset to full bank limit
+	if (mode != 6 and bank == 5) {
+		setprop("controls/autoflight/half-bank", 0);
+	}
+}, 1, 1);
 
 ## EICAS message system
 var Eicas_messages =
@@ -207,6 +238,7 @@ setlistener(et_prop, func(v)
     var fmtN = props.globals.getNode("instrumentation/clock/elapsed-time-fmt", 1);
     fmtN.setValue(_gettimefmt_(v.getValue()));
 }, 0, 0);
+
 setlistener("gear/gear[1]/wow", func(v)
 {
     if (v.getBoolValue())
