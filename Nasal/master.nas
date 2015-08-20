@@ -194,9 +194,11 @@ var instastart = func
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
-	engines[0].on();
+    setprop("controls/lighting/nav-lights", 1);
+    setprop("controls/lighting/beacon", 1);
+ 	engines[0].on();
 	engines[1].on();
-
+	doors.close();
 	setprop("controls/hydraulic/system[0]/pump-b", 2);
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-b", 2);

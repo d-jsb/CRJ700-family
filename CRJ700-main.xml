@@ -293,7 +293,6 @@
 	<autopilot>
 		<flight-director-serviceable type="bool">true</flight-director-serviceable>
 		<autoflight-serviceable type="bool">true</autoflight-serviceable>
-		<autothrottle-serviceable type="bool">true</autothrottle-serviceable>
 		<yaw-damper-serviceable type="bool">true</yaw-damper-serviceable>
 		<route-manager>
 			<vnav>
@@ -352,9 +351,9 @@
 			</yaw-damper>
 			<altitude-select type="double">10000</altitude-select>
 			<autothrottle-engage type="bool">false</autothrottle-engage>
-			<basic-roll-mode type="int">0</basic-roll-mode>
-			<basic-roll-target-heading-deg type="double">0</basic-roll-target-heading-deg>
-			<basic-roll-target-roll-deg type="double">0</basic-roll-target-roll-deg>
+			<roll-mode type="int">1</roll-mode>
+			<roll-select type="int">0</roll-select>
+			<roll-heading-select type="double">0</roll-heading-select>
 			<bank-limit-deg type="float">30</bank-limit-deg>
 			<disengage-pos-norm type="int">0</disengage-pos-norm>
 			<half-bank type="bool">0</half-bank>
@@ -366,7 +365,7 @@
 			<speed-mode type="int">0</speed-mode>
 			<speed-select type="double">200</speed-select>
 			<toga-button type="bool">0</toga-button>
-			<vertical-mode type="int">0</vertical-mode>
+			<vert-mode type="int">0</vert-mode>
 			<vertical-speed-select type="double">1800</vertical-speed-select>
 		</autoflight>
 		<APU>
