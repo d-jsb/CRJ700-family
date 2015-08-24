@@ -106,6 +106,18 @@ setlistener("controls/autoflight/toga-button", func (n) {
 	}
 }, 1, 0);
 
+var gsL = nil;
+# catch GS if in range and FD in approach mode
+var gs_mon = func(v) {
+	if (!props.globals.getNode("instrumentation/nav[0]/gs-in-range").getBoolValue()) return;
+	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
+		print("GS capture");
+		setprop("controls/autoflight/vert-mode", 0);
+		removelistener(gsL);
+		gsL = nil;		
+	}
+}
+
 setlistener("controls/autoflight/lat-mode", func (n) {
 	var mode = n.getValue();
 	var bank = getprop("autopilot/internal/bank-limit-deg");
@@ -113,14 +125,20 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 	if (mode != 6 and bank == 5) {
 		setprop("controls/autoflight/half-bank", 0);
 	}
+	if (mode == 3 and gsL == nil) {
+		gsL = setlistener("instrumentation/nav[0]/gs-in-range", func (v) {
+			removelistener(gsL);
+			gsL = nil;
+			settimer(func { gsL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);
+		}, 0, 0);
+		print("gsL "~gsL);
+	}
+	if (mode != 3 and gsL != nil) {
+		removelistener(gsL);
+		gsL = nil;
+	}
 }, 1, 1);
 
-setlistener("instrumentation/nav[0]/gs-in-range", func(v)
-{
-	if (!v.getBoolValue()) return;
-	if (getprop("controls/lat-mode") == 3)
-		setprop("controls/autoflight/vert-mode", 0);
-}, 0, 0);
 
 ## EICAS message system
 var Eicas_messages =
