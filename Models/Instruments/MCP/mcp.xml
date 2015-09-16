@@ -891,6 +891,13 @@
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
+			<!-- verify me -->
+			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/vertical-speed-select</property>
+				<property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
+			</binding>
+			<!-- /verify me -->
 			<binding>
 				<command>property-assign</command>
 				<property>controls/autoflight/flight-director/engage</property>

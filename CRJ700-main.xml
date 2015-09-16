@@ -366,7 +366,7 @@
 			<speed-select type="double">200</speed-select>
 			<toga-button type="bool">0</toga-button>
 			<vert-mode type="int">0</vert-mode>
-			<vertical-speed-select type="double">1800</vertical-speed-select>
+			<vertical-speed-select type="double">0</vertical-speed-select>
 		</autoflight>
 		<APU>
 			<electronic-control-unit type="bool">false</electronic-control-unit>
