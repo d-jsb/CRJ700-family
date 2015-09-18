@@ -271,6 +271,16 @@
 							</script>
 						</binding>
 					</item>
+					<item>
+						<name>debug-output</name>
+						<label>Debug output</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.debug.open();
+							</script>
+						</binding>
+					</item>
 				</menu>
 			</default>
 		</menubar>
@@ -303,6 +313,10 @@
 				<target-altitude-ft type="double">0</target-altitude-ft>
 			</vnav>
 		</route-manager>
+		<ref>
+			<roll-deg type="float">0</roll-deg>
+			<roll-hdg type="float">0</roll-hdg>
+		</ref>
 	</autopilot>
 
 	<consumables>
@@ -352,8 +366,6 @@
 			<altitude-select type="double">10000</altitude-select>
 			<autothrottle-engage type="bool">false</autothrottle-engage>
 			<roll-mode type="int">1</roll-mode>
-			<roll-select type="int">0</roll-select>
-			<roll-heading-select type="double">0</roll-heading-select>
 			<bank-limit-deg type="float">30</bank-limit-deg>
 			<disengage-pos-norm type="int">0</disengage-pos-norm>
 			<half-bank type="bool">0</half-bank>

@@ -9,8 +9,8 @@
 	/controls/autoflight/flight-director/engage		flight director on/off
 
 	/controls/autoflight/roll-mode			basic roll mode
-	/controls/autoflight/roll-heading-select		basic roll mode heading setting
-	/controls/autoflight/roll-select			basic roll mode roll setting
+	/autopilot/ref/roll-hdg		basic roll mode heading setting
+	/autopilot/ref/roll-deg			basic roll mode roll setting
 	/controls/autoflight/pitch-select			basic pitch mode setting
 	/controls/autoflight/altitude-select			altitude setting
 	/autopilot/internal/bank-limit-deg			bank angle setting
@@ -100,7 +100,7 @@
 		<debug type="bool">false</debug>
 		<gain>1</gain>
 		<input>
-			<property>controls/autoflight/roll-heading-select</property>
+			<property>autopilot/ref/roll-hdg</property>
 			<offset>
 				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
 				<scale>-1</scale>
@@ -298,6 +298,7 @@
 	
     <!-- Lateral -->
     <!-- 0 : Basic roll mode -->
+	<!-- roll-mode-engage is used in instrumentation.nas for sync -->
     <logic>
 		<name>Basic roll mode logic</name>
 		<input>
@@ -342,7 +343,7 @@
 			</condition>
 		</enable>
 		<input>
-			<property>controls/autoflight/roll-select</property>
+			<property>autopilot/ref/roll-deg</property>
 		</input>
 		<output>autopilot/internal/target-roll-deg</output>
 	</filter>
@@ -650,6 +651,7 @@
 	
 	<!-- Vertical -->
     <!-- 0 : Basic pitch mode -->
+	<!-- basic-pitch-mode-engage is used in instrumentation.nas for sync -->
 	<logic>
 		<name>Basic pitch mode logic</name>
 		<input>
@@ -723,8 +725,8 @@
 			<property>controls/autoflight/altitude-select</property>
 		</reference>
 		<output>autopilot/internal/target-climb-rate-fpm</output>
-		<min>-2000</min>
-		<max>2000</max>
+		<min>-1500</min>
+		<max>1500</max>
 		<config>
 			<Kp>10</Kp>
 			<Ki>0</Ki>
@@ -765,11 +767,11 @@
 				<or>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
-						<value>1</value>
+						<value>1</value> <!-- ALT -->
 					</equals>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
-						<value>2</value>
+						<value>2</value> <!-- VS -->
 					</equals>
 				</or>
 			</condition>
@@ -840,7 +842,7 @@
 			<Kp>0.07</Kp>
 			<beta>1</beta>
 			<alpha>0.05</alpha>
-			<gamma>0</gamma>
+			<gamma>0.1</gamma>
 			<Ti>10</Ti>
 			<Td>0.0001</Td>
 			<u_min>-1</u_min>

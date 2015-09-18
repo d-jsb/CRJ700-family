@@ -24,15 +24,15 @@ incAileron = func(v, a)
                 var roll_step = 1.0;
 				if (a < 0) roll_step = -1.0;
 				fgcommand("property-adjust", props.Node.new(
-							  { property: "controls/autoflight/roll-select",
+							  { property: "autopilot/ref/roll-deg",
 								step: roll_step
 							  }));
             }
             elsif (roll_mode == 0)
             {
                 fgcommand("property-assign", props.Node.new(
-                              { property: "controls/autoflight/roll-heading-select",
-                                value: norm_hdg(getprop("controls/autoflight/roll-heading-select") + a)
+                              { property: "autopilot/ref/roll-hdg",
+                                value: norm_hdg(getprop("autopilot/ref/roll-hdg") + a)
                               }));
             }
         }
