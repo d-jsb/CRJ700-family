@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>debug</name>
+	<x>10</x>
+	<y>2</y>
+	<layout>hbox</layout>
+	<default-padding>2</default-padding>
+	<font>
+		<name>HELVETICA_12</name>
+	</font>
+	<color>
+		<red>0</red>
+		<green>0</green>
+		<blue>0</blue>
+		<alpha>0.8</alpha>
+	</color>
+	<text>
+		<label>HDG_err 000.0 </label>
+		<property>autopilot/internal/heading-bug-error-deg</property>
+		<format>HDG_err %3.1f </format>
+		<live>true</live>
+		<color>
+			<red>0.9</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+			<alpha>1</alpha>
+		</color>
+	</text>
+	<text>
+		<label>t_roll -00.0 </label>
+		<property>autopilot/internal/target-roll-deg</property>
+		<format>t_roll %2.1f </format>
+		<live>true</live>
+		<color>
+			<red>0.9</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+			<alpha>1</alpha>
+		</color>
+	</text>
+	<text>
+		<label>bank -00.0 </label>
+		<property>instrumentation/attitude-indicator[0]/indicated-roll-deg</property>
+		<format>bank %2.1f </format>
+		<live>true</live>
+		<color>
+			<red>0.9</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+			<alpha>1</alpha>
+		</color>
+	</text>		<text>
+		<label>a_cmd -0.000 </label>
+		<property>fcs/autopilot/aileron-cmd-norm</property>
+		<format>a_cmd %1.3f </format>
+		<live>true</live>
+		<color>
+			<red>0.9</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+			<alpha>1</alpha>
+		</color>
+	</text>	
+</PropertyList>
