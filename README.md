@@ -13,17 +13,7 @@ See LICENSE .
 
 ## Credits
 
-Initial version and FDM and model made Ryan "Skyop" Miller.
-
-###Major overhaul 2015 by D-JSB and Daniel M.
-* New electrical AC and DC system
-* Added hydraulic system
-* New EICAS pages for AC, DC, hydraulic and doors
-* Add some EICAS details for APU, engine start
-* More OHP switch lights (try light test switch on lower center panel)
-* Side panel HPA/inch and baro knob work now to set QNH
-* Added checklists 
-* Documentation update is pending
+FDM and model made by myself, Ryan Young.
 
 Liveries and models also contributed by fellow FlightGear fans:
 * ["Zbyszek"](http://www.flightgear.pl/)
