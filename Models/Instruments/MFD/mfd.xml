@@ -1605,8 +1605,6 @@
 		<type>rotate</type>
 		<object-name>HSI1</object-name>
 		<object-name>HSI1Bug</object-name>
-		<object-name>ADF1Ptr</object-name>
-		<object-name>ADF2Ptr</object-name>
 		<object-name>NAV1Ptr</object-name>
 		<object-name>NAV1Track</object-name>
 		<object-name>NAV2Ptr</object-name>
