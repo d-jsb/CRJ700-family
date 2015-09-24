@@ -209,6 +209,11 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
+				<property>controls/autoflight/autopilot/engage</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/autoflight/lat-mode</property>
 				<value>0</value>
 			</binding>
