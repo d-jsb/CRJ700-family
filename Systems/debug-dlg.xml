@@ -50,7 +50,8 @@
 			<blue>0.2</blue>
 			<alpha>1</alpha>
 		</color>
-	</text>		<text>
+	</text>		
+	<text>
 		<label>a_cmd -0.000 </label>
 		<property>fcs/autopilot/aileron-cmd-norm</property>
 		<format>a_cmd %1.3f </format>
@@ -62,4 +63,93 @@
 			<alpha>1</alpha>
 		</color>
 	</text>	
+	
+	<text>
+		<label>| </label>
+		<format>| </format>
+		<color>
+			<red>0.9</red>
+			<green>0.2</green>
+			<blue>0.4</blue>
+			<alpha>1</alpha>
+		</color>
+	</text>	
+	<group>
+		<layout>vbox</layout>
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label>TgtFps -0000 </label>
+				<property>autopilot/internal/target-climb-rate-fpm</property>
+				<format>TgtFps %4.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+			<text>
+				<label>TgtPitch -00.00 </label>
+				<property>autopilot/internal/target-pitch-deg</property>
+				<format>TgtPitch %2.2f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+			<text>
+				<label>ElvTrim -0.0000 </label>
+				<property>controls/flight/elevator-trim</property>
+				<format>ElvTrim %1.4f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>		
+		</group>
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label>CurFps -0000 </label>
+				<property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
+				<format>CurFps %4.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+			<text>
+				<label>CurPitch -00.00 </label>
+				<property>instrumentation/attitude-indicator[0]/indicated-pitch-deg</property>
+				<format>CurPitch %2.2f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+			<text>
+				<label>----- ---- </label>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+		</group>
+	</group>
 </PropertyList>
