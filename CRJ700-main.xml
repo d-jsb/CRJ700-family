@@ -65,6 +65,7 @@
 				</emer-r2>
 			</door-positions>
 			<sound-enabled type="bool">false</sound-enabled>
+			<hide-welcome-msg type="bool">false</hide-welcome-msg>
 		</model>
 
 		<instrumentation>
@@ -147,6 +148,8 @@
 			<path>/sim/aircraft-operator</path>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
+			<path>/sim/model/hide-welcome-msg</path>
+			<path>/sim/model/known-version</path>
 			<path>/sim/model/light-cones</path>
 			<path>/sim/model/yokes</path>
 			<path>/sim/weight[0]/weight-lb</path>
@@ -188,15 +191,6 @@
 						<binding>
 							<command>property-toggle</command>
 							<property>sim/model/start-idling</property>
-						</binding>
-					</item>
-					<item>
-						<label>Engines instant on</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.instastart();
-							</script>
 						</binding>
 					</item>
 					<item>
@@ -275,6 +269,8 @@
 							</script>
 						</binding>
 					</item>
+					<!-- for development -->
+<!--
 					<item>
 						<name>debug-output</name>
 						<label>Debug output</label>
@@ -292,6 +288,26 @@
 							<command>nasal</command>
 							<script>
 								CRJ700.dialogs.apdev.open();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Engines instant on</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.instastart();
+							</script>
+						</binding>
+					</item>
+-->
+					<item>
+						<name>welcome-msg</name>
+						<label>Info</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.info.open();
 							</script>
 						</binding>
 					</item>

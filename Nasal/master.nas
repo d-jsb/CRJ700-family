@@ -278,9 +278,16 @@ var dialogs = {
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),
     tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml"),
+    info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", "Aircraft/CRJ700-family/Systems/info-dlg.xml"),
     debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", "Aircraft/CRJ700-family/Systems/debug-dlg.xml"),
     apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dev-dlg.xml"),
 };
 gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
 gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
 
+var known = getprop("/sim/model/known-version");
+var version = getprop("/sim/aircraft-version");
+if (!getprop("/sim/model/hide-welcome-msg") or known != version) {
+	if (known != version) setprop("/sim/model/hide-welcome-msg", 0);
+	CRJ700.dialogs.info.open();
+}
