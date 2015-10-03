@@ -282,26 +282,20 @@
 			<value>AS REQUIRED</value>
 		</item>
 		<item>
-			<name>Doors</name>
-			<value>CHECK</value>
-			<marker>
-				<x-m>-15.4785</x-m>
-				<y-m>-0.0091</y-m>
-				<z-m>-1.2678</z-m>
-				<scale>1.0000</scale>
-			</marker>		
+			<name>Doors (see/click EICAS doors page)</name>
+			<value>CLOSE</value>
 			<condition>
 				<and>
-				<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
-				<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
-				<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
-				<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
+					<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
+					<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
+					<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
+					<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
 				</and>
 			</condition>
 			<binding>
@@ -309,24 +303,6 @@
 				<property>instrumentation/eicas[1]/page</property>
 				<value>5</value>
 			</binding>		
-		</item>
-		<item>
-			<name>Doors</name>
-			<value>CLOSE</value>
-			<condition>
-				<and>
-				<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
-				<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
-				<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
-				<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
-				<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
-				<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
-				</and>
-			</condition>
 			<binding>
 				<command>nasal</command>
 				<script>CRJ700.doors.close();</script>
