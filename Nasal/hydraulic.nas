@@ -61,14 +61,16 @@ var HydraulicPump = {
 			me.input = i;
 			if (me.input == nil) me.input = 0;
 			#print(me.name~"._update in: "~me.input~" ");
-			me.output = me.output_nominal;
-			if (me.input_lo > 0 and me.input < me.input_lo) {
-				me.output = me.output_nominal * me.input / me.input_lo;
-				me.output = int(me.output / 100) * 100;		
-			}
-			if (me.input_hi > 0 and me.input > me.input_hi) {
-				me.output = me.output_nominal * me.input / me.input_hi;
-				me.output = int(me.output / 100) * 100;		
+			if (me.input >= me.input_min) {
+				me.output = me.output_nominal;
+				if (me.input_lo > 0 and me.input < me.input_lo) {
+					me.output = me.output_nominal * (me.input - me.input_min) / (me.input_lo - me.input_min);
+					me.output = int(me.output / 100) * 100;		
+				}
+				if (me.input_hi > 0 and me.input > me.input_hi) {
+					me.output = me.output_nominal * me.input / me.input_hi;
+					me.output = int(me.output / 100) * 100;		
+				}
 			}
 		}
 		else me.output = 0;
