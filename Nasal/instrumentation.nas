@@ -48,7 +48,7 @@ setlistener("controls/autoflight/flight-director/sync", func(v)
 setlistener("autopilot/internal/roll-mode-engage", func(v)
 {
     if (!v.getBoolValue()) return;
-	print("roll mode engage");
+	#print("roll mode engage");
     var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
     if (math.abs(roll) > 5)
     {
@@ -67,7 +67,8 @@ setlistener("autopilot/internal/roll-mode-engage", func(v)
 setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
 {
     if (!v.getBoolValue()) return;
-	if (getprop("controls/autoflight/lat-mode") != 0) return; #toga
+	#print("Basic pitch mode");
+	if (getprop("controls/autoflight/vert-mode") != 0) return; #toga
     var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
     setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 }, 0, 0);
