@@ -30,14 +30,15 @@
 	<hrule/>
 	<group>
 		<layout>vbox</layout>
+		<halign>left</halign>
 		<text>
 			<label>CRJ700/900/1000 series Version 1.5beta</label>
 		</text>
 		<text>
-			<label>Documentation is currently outdated</label>
+			<label>Documentation is currently outdated.</label>
 		</text>
 		<text>
-			<label>Please try the checklists to get things flying :)</label>
+			<label>Please see the tutorials and checklists.</label>
 		</text>
 		<group>
 			<layout>hbox</layout>
@@ -67,6 +68,13 @@
 				<binding>
 					<command>nasal</command>
 					<script>gui.showHelpDialog("/sim/help")</script>
+				</binding>
+			</button>
+			<button>
+				<legend>Tutorials</legend>
+				<binding>
+					<command>dialog-show</command>
+					<dialog-name>tutorial</dialog-name>
 				</binding>
 			</button>
 		</group>
