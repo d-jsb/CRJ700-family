@@ -40,6 +40,14 @@
 		<text>
 			<label>Please see the tutorials and checklists.</label>
 		</text>
+		<text>
+			<label>Startup tutorial is highly recommended!</label>
+			<color>
+				<red>0.0</red>
+				<green>0.9</green>
+				<blue>0.2</blue>
+			</color>
+		</text>
 		<group>
 			<layout>hbox</layout>
 			<checkbox>
