@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 
 <!-- Bombardier CRJ700 series -->
 <!-- Aircraft property settings specific to the CRJ700ER -->
@@ -50,7 +50,7 @@
 
         <view n="0">
             <name>Captain View</name>
-            <internal type="bool" archive="y">true</internal>
+            <internal type="bool" >true</internal>
             <config>
                 <x-offset-m archive="y">-0.528</x-offset-m>
                 <y-offset-m archive="y">-0.468</y-offset-m>
@@ -79,7 +79,159 @@
                 <z-offset-m archive="y">-13.105</z-offset-m>
             </config>
         </view>
-
+        <view n="102">
+            <name>OH Panel</name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m>0</x-offset-m>
+                <y-offset-m>-0.468</y-offset-m>
+                <z-offset-m>-13.35</z-offset-m>
+                <pitch-offset-deg archive="y">59.2</pitch-offset-deg>
+                <heading-offset-deg>0</heading-offset-deg>
+                <default-field-of-view-deg type="double"  archive="y">85.3</default-field-of-view-deg>
+            </config>
+			<limits>
+				<enabled type="bool">true</enabled>
+				<left>
+				  <heading-max-deg type="double">0</heading-max-deg>
+				</left>
+				<right>
+				  <heading-max-deg type="double">0</heading-max-deg>
+				</right>
+			</limits>
+        </view>
+        <view n="103">
+            <name>Center Panel</name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m>0</x-offset-m>
+                <y-offset-m>-0.468</y-offset-m>
+                <z-offset-m>-13.35</z-offset-m>
+                <pitch-offset-deg>-47.5</pitch-offset-deg>
+                <heading-offset-deg>0</heading-offset-deg>
+                <default-field-of-view-deg type="double">34.5</default-field-of-view-deg>
+            </config>
+ 			<limits>
+				<enabled type="bool">true</enabled>
+				<left>
+				  <heading-max-deg type="double">0</heading-max-deg>
+				</left>
+				<right>
+				  <heading-max-deg type="double">0</heading-max-deg>
+				</right>
+			</limits>       
+		</view>
+        <view n="104">
+            <name>Radio Panel</name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m>0</x-offset-m>
+                <y-offset-m>-0.9</y-offset-m>
+                <z-offset-m>-13.2</z-offset-m>
+                <pitch-offset-deg>-56.8</pitch-offset-deg>
+                <heading-offset-deg>0</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.5</default-field-of-view-deg>
+            </config>
+			<limits>
+				<enabled type="bool">true</enabled>
+				<left>
+				  <heading-max-deg type="double">5</heading-max-deg>
+				</left>
+				<right>
+				  <heading-max-deg type="double">5</heading-max-deg>
+				</right>
+			</limits>        
+		</view>
+        <view n="108">
+            <name>Nose gear</name>
+            <type>lookfrom</type>
+            <internal type="bool">false</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m>0</x-offset-m>
+                <y-offset-m>-2.46</y-offset-m>
+                <z-offset-m>-11.6</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>0</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+            </config>
+        </view>      
+        <view n="109">
+            <name>Gear</name>
+            <type>lookfrom</type>
+            <internal type="bool">false</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m>0</x-offset-m>
+                <y-offset-m>-2.6</y-offset-m>
+                <z-offset-m>-8.6</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>180</heading-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view> 
+		<view n="110">
+            <name>Window left </name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m >-1.04</x-offset-m>
+                <y-offset-m >-0.55</y-offset-m>
+                <z-offset-m >-2.4</z-offset-m>
+                <pitch-offset-deg>-14</pitch-offset-deg>
+                <heading-offset-deg>67</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="111">
+            <name>Window left (wing)</name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m >-1.04</x-offset-m>
+                <y-offset-m >-0.55</y-offset-m>
+                <z-offset-m >3.86</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>80</heading-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="120">
+            <name>Window right </name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m >1.04</x-offset-m>
+                <y-offset-m >-0.55</y-offset-m>
+                <z-offset-m >-2.4</z-offset-m>
+                <pitch-offset-deg>-14</pitch-offset-deg>
+                <heading-offset-deg>285</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="121">
+            <name>Window right (wing)</name>
+            <type>lookfrom</type>
+            <internal type="bool" >true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m >1.04</x-offset-m>
+                <y-offset-m >-0.55</y-offset-m>
+                <z-offset-m >3.86</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>270</heading-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view>
         <weight n="1">
             <weight-lb>10000</weight-lb>
             <max-lb>18800</max-lb>
@@ -94,5 +246,5 @@
             </default>
         </menubar>
     </sim>
-
+    
 </PropertyList>

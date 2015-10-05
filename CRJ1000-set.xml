@@ -66,6 +66,62 @@
                 <z-offset-m archive="y">-16.395</z-offset-m>
             </config>
         </view>
+       <view n="110">
+            <name>Window left </name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">-1.09</x-offset-m>
+                <y-offset-m archive="y">-0.59</y-offset-m>
+                <z-offset-m archive="y">-2.29</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>70</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="111">
+            <name>Window left (wing)</name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">-1.08</x-offset-m>
+                <y-offset-m archive="y">-0.6</y-offset-m>
+                <z-offset-m archive="y">3.95</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>90</heading-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="120">
+            <name>Window right </name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">1.09</x-offset-m>
+                <y-offset-m archive="y">-0.59</y-offset-m>
+                <z-offset-m archive="y">-2.29</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>290</heading-offset-deg>
+                <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+            </config>
+        </view>
+       <view n="121">
+            <name>Window right (wing)</name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">1.08</x-offset-m>
+                <y-offset-m archive="y">-0.6</y-offset-m>
+                <z-offset-m archive="y">3.95</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <heading-offset-deg>270</heading-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view>
 
         <weight n="1">
             <weight-lb>18000</weight-lb>
