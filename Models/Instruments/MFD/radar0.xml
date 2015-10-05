@@ -22,7 +22,7 @@
 					<h>220</h>
 					<emissive type="bool">true</emissive>
 					<texture>
-						<path>Aircraft/777/Models/Instruments/MFD/od_wxradar.png</path>
+						<path>Aircraft/CRJ700-family/Models/Instruments/MFD/od_wxradar.png</path>
 						<x1>0</x1>
 						<y1>0</y1>
 						<x2>1</x2>
