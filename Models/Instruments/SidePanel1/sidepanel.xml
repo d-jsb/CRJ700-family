@@ -13,6 +13,8 @@
 		<mfd-page>instrumentation/mfd/page</mfd-page>
 		<radar-range>instrumentation/radar/range</radar-range>
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+		<barometer>instrumentation/altimeter/setting-hpa</barometer>
+		<use-QNH>instrumentation/use-QNH</use-QNH>
 	</params>
 
 	<panel-marking-emit>
@@ -271,6 +273,110 @@
 			<y-m>0.057</y-m>
 			<z-m>0.054</z-m>
 		</center>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>BarometerKnob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/barometer" />
+				<step type="double">1</step>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/barometer" />
+				<step type="double">-1</step>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>BaroKnbFace</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property alias="../../../../params/barometer" />
+				<value type="double">1013.25</value>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/barometer" />
+				<step type="double">1</step>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/barometer" />
+				<step type="double">-1</step>
+			</binding>
+		</action>	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>BarometerKnob</object-name>
+		<object-name>BaroKnbFace</object-name>
+		<property alias="../../params/barometer" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.057</y-m>
+			<z-m>-0.0168</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>HPAinBtn</object-name>
+		<object-name>HPAinBtnOn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property alias="../../../../params/use-QNH" />
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>HPAinBtn</object-name>
+		<object-name>HPAinBtnOn</object-name>
+		<property alias="../../params/use-QNH" />
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HPAinBtnOn</object-name>
+		<condition>
+			<property alias="../../../params/use-QNH" />
+		</condition>
 	</animation>
 
 	<!-- Lightmaps -->

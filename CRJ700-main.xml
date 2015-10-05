@@ -132,6 +132,7 @@
             <path>/instrumentation/mfd[1]/tcas</path>
             <path>/instrumentation/mfd[1]/wx</path>
             <path>/instrumentation/use-metric-altitude</path>
+            <path>/instrumentation/use-QNH</path>
         </aircraft-data>
 
         <allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
@@ -398,6 +399,7 @@
     
     <instrumentation>
         <use-metric-altitude type="bool">false</use-metric-altitude>
+        <use-QNH type="bool">false</use-QNH>
         <adf>
             <ident-audible type="bool">true</ident-audible>
             <volume-norm type="float">0</volume-norm>
