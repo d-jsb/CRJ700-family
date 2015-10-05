@@ -32,11 +32,15 @@ var Apu = {
         m.running.setBoolValue(0);
         m.serviceable = props.globals.getNode("engines/apu[" ~ no ~ "]/serviceable", 1);
         m.serviceable.setBoolValue(1);
+        m.slave = props.globals.getNode("sim/flight-model").getValue() == "null";
 
         return m;
     },
     update: func
     {
+        if( me.slave) {
+          return;
+        }
         if (me.on_fire.getBoolValue())
         {
             me.serviceable.setBoolValue(0);
@@ -150,11 +154,15 @@ var Engine = {
         m.throttle.setValue(0);
         m.throttle_lever = props.globals.getNode("controls/engines/engine[" ~ no ~ "]/throttle-lever", 1);
         m.throttle_lever.setValue(0);
+        m.slave = props.globals.getNode("sim/flight-model").getValue() == "null";
 
         return m;
     },
     update: func
     {
+        if (me.slave) {
+          return;
+        }
         me.starter.setBoolValue(me.starting);
         if (me.running.getBoolValue() and !me.started)
         {
@@ -224,7 +232,7 @@ var Engine = {
             me.rpm.setValue(me.n1.getValue());
         }
 
-        var total_fuel_gal = props.globals.getNode("consumables/fuel/total-fuel-gal_us", 1).getValue();
+        var total_fuel_gal = props.globals.getNode("consumables/fuel/total-fuel-gal_us", 1).getValue() or 1;
         var total_fuel_lbs = props.globals.getNode("consumables/fuel/total-fuel-lbs", 1).getValue();
         var density = total_fuel_lbs / total_fuel_gal or fuel_density;
         me.fuel_flow_pph.setValue(me.fuel_flow_gph.getValue() * density);
