@@ -63,7 +63,7 @@
             </chunk>
             <chunk>
                 <type>bool</type>
-                <node>/controls/electric/external-power</node>
+                <node>/controls/electric/dc-service-switch</node>
             </chunk>
             <chunk>
                 <type>bool</type>
@@ -306,7 +306,7 @@
             </chunk>
             <chunk>
                 <type>bool</type>
-                <node>/controls/electric/external-power</node>
+                <node>/controls/electric/dc-service-switch</node>
             </chunk>
             <chunk>
                 <type>bool</type>

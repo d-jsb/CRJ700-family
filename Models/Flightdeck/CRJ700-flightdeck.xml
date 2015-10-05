@@ -8,15 +8,40 @@
     <path>CRJ700-flightdeck.ac</path>
 
     <panel-marking-emit>
-	<red>1</red>
-	<green>0.871</green>
-	<blue>0.427</blue>
+		<red>1</red>
+		<green>0.871</green>
+		<blue>0.427</blue>
     </panel-marking-emit>
 
+    <button-emit-white>
+		<red>1</red>
+		<green>0.871</green>
+		<blue>0.6</blue>
+    </button-emit-white>
+    <button-emit-green>
+		<red>0.0</red>
+		<green>1</green>
+		<blue>0.12</blue>
+    </button-emit-green>
+    <button-emit-red>
+		<red>1</red>
+		<green>0.0</green>
+		<blue>0.0</blue>
+    </button-emit-red>
+    <button-emit-amber>
+		<red>1.0</red>
+		<green>0.304</green>
+		<blue>0.0</blue>
+    </button-emit-amber>
+    <button-translate-m type="float">0.001</button-translate-m>
+    <cover-rotate-deg type="float">110</cover-rotate-deg>
+    <switch-rotate-deg type="float">35</switch-rotate-deg>
+    <switch-rotate-neg-deg type="float">-35</switch-rotate-neg-deg>
+
     <animation>
-	<type>range</type>
-	<min-m>0</min-m>
-	<max-m>1000</max-m>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>50</max-m>
     </animation>
 
     <!-- Pilot-side instruments -->
@@ -37,9 +62,14 @@
 	    </params>
 	</overlay>
 	<offsets>
-	    <x-m>-1.896</x-m>
+	    <!--
+		<x-m>-1.896</x-m>
 	    <y-m>-0.518</y-m>
-	    <z-m>0.835</z-m>
+	    <z-m>0.835</z-m>-->
+
+	    <x-m>-1.9025</x-m>
+	    <y-m>-0.51396</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -57,9 +87,14 @@
 	    </params>
 	</overlay>
 	<offsets>
+		<!--
 	    <x-m>-1.896</x-m>
 	    <y-m>-0.342</y-m>
 	    <z-m>0.835</z-m>
+		-->
+	    <x-m>-1.9025</x-m>
+	    <y-m>-0.34116</y-m>
+	    <z-m>0.87135</z-m>		
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -214,9 +249,9 @@
 	    </params>
 	</overlay>
 	<offsets>
-	    <x-m>-1.896</x-m>
-	    <y-m>0.518</y-m>
-	    <z-m>0.835</z-m>
+	    <x-m>-1.9025</x-m>
+	    <y-m>0.51396</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -234,9 +269,9 @@
 	    </params>
 	</overlay>
 	<offsets>
-	    <x-m>-1.896</x-m>
-	    <y-m>0.342</y-m>
-	    <z-m>0.835</z-m>
+	    <x-m>-1.9025</x-m>
+	    <y-m>0.34116</y-m>
+	    <z-m>0.87135</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
     </model>
@@ -415,16 +450,6 @@
 	</emission>
     </animation>
 
-    <animation>
-	<type>select</type>
-	<object-name>NeedsPower</object-name>
-	<condition>
-	    <greater-than-equals>
-		<property>systems/electrical/outputs/efis</property>
-		<value>15</value>
-	    </greater-than-equals>
-	</condition>
-    </animation>
 
     <!-- Registration text -->
     <text>
@@ -486,15 +511,6 @@
     </animation>
 
     <!-- Not implemented -->
-    <animation>
-	<type>select</type>
-	<object-name>MachTrimOn</object-name>
-	<object-name>StabTrim1On</object-name>
-	<object-name>StabTrim2On</object-name>
-	<condition>
-	    <property></property>
-	</condition>
-    </animation>
 
     <!-- Wiper blades -->
     <animation>
@@ -693,308 +709,543 @@
 
     <!-- Glareshield warning lights -->
     <animation>
-	<type>material</type>
-	<object-name>MasterWarningLt</object-name>
-	<condition>
-	    <property>sim/alarms/master-warning</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	</emission>
+		<type>pick</type>
+		<object-name>APRollSelL</object-name>
+		<object-name>PltRoll</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/ailerons/plt-roll</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>controls/ailerons/plt-roll</property>				
+				</condition>
+				<command>property-assign</command>
+				<property>controls/ailerons/cplt-roll</property>
+				<value>false</value>
+			</binding>
+		</action>    
+	</animation>
+    <animation>
+		<type>pick</type>
+		<object-name>APRollSelR</object-name>
+		<object-name>CpltRoll</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/ailerons/cplt-roll</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>controls/ailerons/cplt-roll</property>				
+				</condition>
+				<command>property-assign</command>
+				<property>controls/ailerons/plt-roll</property>
+				<value>false</value>
+			</binding>
+		</action>    
+	</animation>
+	
+    <animation>
+		<type>material</type>
+		<object-name>APRollSelL</object-name>
+		<object-name>APRollSelR</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/ailerons/roll-select</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>MasterCautionLt</object-name>
-	<condition>
-	    <property>sim/alarms/master-caution</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0.6</green>
-	    <blue>0</blue>
-	</emission>
+		<type>material</type>
+		<object-name>PltRoll</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/ailerons/plt-roll</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>GPWS1Lt</object-name>
-	<condition>
-	    <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	</emission>
+		<type>material</type>
+		<object-name>CpltRoll</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/ailerons/cplt-roll</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+	<!-- master warning -->
+    <animation>
+		<type>material</type>
+		<object-name>MasterWarningLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>sim/alarms/master-warning</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>GPWS2Lt</object-name>
-	<condition>
-	    <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0.6</green>
-	    <blue>0</blue>
-	</emission>
+		<type>material</type>
+		<object-name>MasterCautionLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>sim/alarms/master-caution</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng1FireLtCover</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>material</type>
+		<object-name>StallLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>sim/alarms/stall-warning</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+	
+	<!-- GPWS -->
+    <animation>
+		<type>material</type>
+		<object-name>GPWS1Lt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>GPWS2Lt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>Eng1FireLtCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-toggle</command>
+			<property>controls/engines/engine[0]/fire-bottle-discharge-cover</property>
+			</binding>
+		</action>
+		</animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>Eng1FireLtCover</object-name>
 		<property>controls/engines/engine[0]/fire-bottle-discharge-cover</property>
-	    </binding>
-	</action>
+		<factor>110</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.674</x-m>
+			<y-m>0</y-m>
+			<z-m>1.199</z-m>
+		</center>
     </animation>
     <animation>
-	<type>rotate</type>
-	<object-name>Eng1FireLtCover</object-name>
-	<property>controls/engines/engine[0]/fire-bottle-discharge-cover</property>
-	<factor>110</factor>
-	<axis>
-	    <x>0</x>
-	    <y>-1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>-1.674</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.199</z-m>
-	</center>
-    </animation>
-    <animation>
-	<type>material</type>
-	<object-name>Eng1FireLt</object-name>
-	<condition>
-	    <property>engines/engine[0]/on-fire</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	</emission>
-    </animation>
-    <animation>
-	<type>pick</type>
-	<object-name>Eng1FireLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-assign</command>
+		<type>material</type>
+		<object-name>Eng1FireLt</object-name>
 		<condition>
-		    <property>engines/engine[0]/on-fire</property>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>engines/engine[0]/on-fire</property>
+				</or>
+			</and>
 		</condition>
-		<property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
-		<value type="bool">true</value>
-	    </binding>
-	</action>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>Eng1FireLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-assign</command>
+			<condition>
+				<property>engines/engine[0]/on-fire</property>
+			</condition>
+			<property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
+			<value type="bool">true</value>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>Eng1ExtinLt</object-name>
-	<condition>
-	    <property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
-	</condition>
-	<emission>
-	    <red>0</red>
-	    <green>0.6</green>
-	    <blue>0</blue>
-	</emission>
+		<type>material</type>
+		<object-name>Eng1ExtinLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng1ExtinLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>controls/engines/engine[0]/fire-bottle-discharge</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
-		<value type="bool">false</value>
-	    </binding>
-	</action>
+		<type>pick</type>
+		<object-name>Eng1ExtinLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/engines/engine[0]/fire-bottle-discharge</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[0]/fire-bottle-discharge-armed</property>
+				<value type="bool">false</value>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>APUFireLtCover</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>pick</type>
+		<object-name>APUFireLtCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/APU/fire-switch-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>APUFireLtCover</object-name>
 		<property>controls/APU/fire-switch-cover</property>
-	    </binding>
-	</action>
+		<factor>110</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.674</x-m>
+			<y-m>0</y-m>
+			<z-m>1.195</z-m>
+		</center>
     </animation>
     <animation>
-	<type>rotate</type>
-	<object-name>APUFireLtCover</object-name>
-	<property>controls/APU/fire-switch-cover</property>
-	<factor>110</factor>
-	<axis>
-	    <x>0</x>
-	    <y>-1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>-1.674</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.195</z-m>
-	</center>
-    </animation>
-    <animation>
-	<type>material</type>
-	<object-name>APUFireLt</object-name>
-	<condition>
-	    <property>engines/apu/on-fire</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	</emission>
-    </animation>
-    <animation>
-	<type>pick</type>
-	<object-name>APUFireLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-assign</command>
+		<type>material</type>
+		<object-name>APUFireLt</object-name>
 		<condition>
-		    <property>engines/apu/on-fire</property>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>engines/apu/on-fire</property>
+				</or>
+			</and>
 		</condition>
-		<property>controls/APU/fire-switch-armed</property>
-		<value type="bool">true</value>
-	    </binding>
-	</action>
+		<emission>
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>APUFireLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<condition>
+					<property>engines/apu/on-fire</property>
+				</condition>
+				<property>controls/APU/fire-switch-armed</property>
+				<value type="bool">true</value>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>APUExtinLt</object-name>
-	<condition>
-	    <property>controls/APU/fire-switch-armed</property>
-	</condition>
-	<emission>
-	    <red>0</red>
-	    <green>0.6</green>
-	    <blue>0</blue>
-	</emission>
+		<type>material</type>
+		<object-name>APUExtinLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/APU/fire-switch-armed</property>
+				</or>
+			</and>
+		</condition>
+		<emission>
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>APUExtinLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/APU/fire-switch</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/APU/fire-switch-armed</property>
+				<value type="bool">false</value>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>APUExtinLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>controls/APU/fire-switch</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>controls/APU/fire-switch-armed</property>
-		<value type="bool">false</value>
-	    </binding>
-	</action>
+		<type>pick</type>
+		<object-name>Eng2FireLtCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/engines/engine[1]/fire-bottle-discharge-cover</property>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng2FireLtCover</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>rotate</type>
+		<object-name>Eng2FireLtCover</object-name>
 		<property>controls/engines/engine[1]/fire-bottle-discharge-cover</property>
-	    </binding>
-	</action>
+		<factor>110</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.674</x-m>
+			<y-m>0</y-m>
+			<z-m>1.199</z-m>
+		</center>
     </animation>
     <animation>
-	<type>rotate</type>
-	<object-name>Eng2FireLtCover</object-name>
-	<property>controls/engines/engine[1]/fire-bottle-discharge-cover</property>
-	<factor>110</factor>
-	<axis>
-	    <x>0</x>
-	    <y>-1</y>
-	    <z>0</z>
-	</axis>
-	<center>
-	    <x-m>-1.674</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.199</z-m>
-	</center>
-    </animation>
-    <animation>
-	<type>material</type>
-	<object-name>Eng2FireLt</object-name>
-	<condition>
-	    <property>engines/engine[1]/on-fire</property>
-	</condition>
-	<emission>
-	    <red>0.6</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	</emission>
-    </animation>
-    <animation>
-	<type>pick</type>
-	<object-name>Eng2FireLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-assign</command>
+		<type>material</type>
+		<object-name>Eng2FireLt</object-name>
 		<condition>
-		    <property>engines/engine[1]/on-fire</property>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>engines/engine[1]/on-fire</property>
+				</or>
+			</and>
 		</condition>
-		<property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
-		<value type="bool">true</value>
-	    </binding>
-	</action>
+		<emission>
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>material</type>
-	<object-name>Eng2ExtinLt</object-name>
-	<condition>
-	    <property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
-	</condition>
-	<emission>
-	    <red>0</red>
-	    <green>0.6</green>
-	    <blue>0</blue>
-	</emission>
+		<type>pick</type>
+		<object-name>Eng2FireLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<condition>
+					<property>engines/engine[1]/on-fire</property>
+				</condition>
+				<property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
+				<value type="bool">true</value>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>Eng2ExtinLt</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>controls/engines/engine[1]/fire-bottle-discharge</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
-		<value type="bool">false</value>
-	    </binding>
-	</action>
+		<type>material</type>
+		<object-name>Eng2ExtinLt</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
+				</or>
+			</and>
+		</condition>
+		<emission>
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>Eng2ExtinLt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/engines/engine[1]/fire-bottle-discharge</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[1]/fire-bottle-discharge-armed</property>
+				<value type="bool">false</value>
+			</binding>
+		</action>
+	</animation>
 
     <!-- Pedals -->
     <animation>
@@ -1104,8 +1355,87 @@
 
     <!-- Gear lever -->
     <animation>
+		<type>pick</type>
+		<object-name>MuteHornCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/mute-horn-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>MuteHornCover</object-name>
+		<property>controls/switches/mute-horn-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.87455</x-m>
+			<y-m>0</y-m>
+			<z-m>0.74718</z-m>
+		</center>
+    </animation>
+
+    <animation>
+		<type>pick</type>
+		<object-name>MuteHornBtn</object-name>
+		<object-name>MuteHornLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/mute-horn</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>MuteHornBtn</object-name>
+		<object-name>MuteHornLight</object-name>
+		<property>controls/gear/mute-horn</property>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>MuteHornLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/gear/mute-horn</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+	
+    <animation>
 	<type>pick</type>
-	<object-name>GearLever</object-name>
+	<object-name>GearLever_0</object-name>
+	<object-name>GearLever_1</object-name>
 	<action>
 	    <button>0</button>
 	    <repeatable type="bool">false</repeatable>
@@ -1117,7 +1447,8 @@
     </animation>
     <animation>
 	<type>rotate</type>
-	<object-name>GearLever</object-name>
+	<object-name>GearLever_0</object-name>
+	<object-name>GearLever_1</object-name>
 	<property>controls/gear/gear-down</property>
 	<factor>25</factor>
 	<axis>
@@ -1131,71 +1462,277 @@
 	    <z-m>0.674</z-m>
 	</center>
     </animation>
+    <!-- engine high power - not implemented, almost never used in real live -->
+    <animation>
+		<type>pick</type>
+		<object-name>EngHighPwrCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/eng-high-power-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>EngHighPwrCover</object-name>
+		<property>controls/switches/eng-high-power-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.74813</x-m>
+			<y-m>0</y-m>
+			<z-m>0.64082</z-m>
+		</center>
+    </animation>
+    
+    <animation>
+		<type>material</type>
+		<object-name>EngHighPwrLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+	<!-- Light test switch -->
+    <animation>
+		<type>pick</type>
+		<object-name>LtTest</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/lt-test</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>LtTest</object-name>
+		<property>controls/lighting/lt-test</property>
+		<factor>25</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.748</x-m>
+			<y-m>0</y-m>
+			<z-m>0.639</z-m>
+		</center>
+    </animation>
+
+	<!-- Ind light switch -->
+    <animation>
+		<type>pick</type>
+		<object-name>IndLts</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/ind-lts-dim</property>
+			</binding>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/ind-lts-norm</property>
+				<value>1.0</value>
+				<value>0.5</value>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>IndLts</object-name>
+		<property>controls/lighting/ind-lts-dim</property>
+		<offset-deg>-25</offset-deg>
+		<factor>50</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.718</x-m>
+			<y-m>0</y-m>
+			<z-m>0.614</z-m>
+		</center>
+    </animation>
 
     <!-- GPWS overrides -->
     <animation>
-	<type>pick</type>
-	<object-name>GPWSTerrain</object-name>
-	<object-name>GPWSTerrainOff</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>pick</type>
+		<object-name>GPWSTerrainCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/gpws-terrain-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>GPWSTerrainCover</object-name>
+		<property>controls/switches/gpws-terrain-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.68591</x-m>
+			<y-m>0</y-m>
+			<z-m>0.58852</z-m>
+		</center>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>GPWSFlapCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/gpws-flaps-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>GPWSFlapCover</object-name>
+		<property>controls/switches/gpws-flaps-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.68591</x-m>
+			<y-m>0</y-m>
+			<z-m>0.58852</z-m>
+		</center>
+    </animation>
+	
+    <animation>
+		<type>pick</type>
+		<object-name>GPWSTerrainBtn</object-name>
+		<object-name>GPWSTerrainLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>GPWSTerrainBtn</object-name>
+		<object-name>GPWSTerrainLight</object-name>
 		<property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-	    </binding>
-	</action>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
     </animation>
     <animation>
-	<type>translate</type>
-	<object-name>GPWSTerrain</object-name>
-	<object-name>GPWSTerrainOff</object-name>
-	<property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-	<factor>0.001</factor>
-	<axis>
-	    <x>-1</x>
-	    <y>0</y>
-	    <z>-0.839099631</z>
-	</axis>
+		<type>material</type>
+		<object-name>GPWSTerrainLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+    <animation>
+		<type>pick</type>
+		<object-name>GPWSFlapBtn</object-name>
+		<object-name>GPWSFlapLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/mk-viii/inputs/discretes/momentary-flap-override</property>
+			</binding>
+		</action>
     </animation>
     <animation>
-	<type>select</type>
-	<object-name>GPWSTerrainOff</object-name>
-	<condition>
-	    <property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-	</condition>
-    </animation>
-    <animation>
-	<type>pick</type>
-	<object-name>GPWSFlap</object-name>
-	<object-name>GPWSFlapOff</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>translate</type>
+		<object-name>GPWSFlapBtn</object-name>
+		<object-name>GPWSFlapLight</object-name>
 		<property>instrumentation/mk-viii/inputs/discretes/momentary-flap-override</property>
-	    </binding>
-	</action>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
     </animation>
     <animation>
-	<type>translate</type>
-	<object-name>GPWSFlap</object-name>
-	<object-name>GPWSFlapOff</object-name>
-	<property>instrumentation/mk-viii/inputs/discretes/momentary-flap-override</property>
-	<factor>0.001</factor>
-	<axis>
-	    <x>-1</x>
-	    <y>0</y>
-	    <z>-0.839099631</z>
-	</axis>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>GPWSFlapOff</object-name>
-	<condition>
-	    <property>instrumentation/mk-viii/inputs/discretes/momentary-flap-override</property>
-	</condition>
+		<type>material</type>
+		<object-name>GPWSFlapLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>instrumentation/mk-viii/inputs/discretes/momentary-flap-override</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
 
     <!-- Spoilers/thrust reversers -->
@@ -2017,70 +2554,349 @@
 	</action>
     </animation>
     <animation>
-	<type>pick</type>
-	<object-name>YawDamper1</object-name>
-	<object-name>YawDamper1On</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>pick</type>
+		<object-name>YawDamper1Btn</object-name>
+		<object-name>YawDamper1Face</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+			<command>property-toggle</command>
+			<property>controls/autoflight/yaw-damper[0]/engage</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>YawDamper1Btn</object-name>
+		<object-name>YawDamper1Face</object-name>
 		<property>controls/autoflight/yaw-damper[0]/engage</property>
-	    </binding>
-	</action>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-0.487732589</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
     </animation>
     <animation>
-	<type>translate</type>
-	<object-name>YawDamper1</object-name>
-	<object-name>YawDamper1On</object-name>
-	<property>controls/autoflight/yaw-damper[0]/engage</property>
-	<factor>0.001</factor>
-	<axis>
-	    <x>-0.487732589</x>
-	    <y>0</y>
-	    <z>-1</z>
-	</axis>
+		<type>material</type>
+		<object-name>YawDamper1Face</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/autoflight/yaw-damper[0]/engage</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
     <animation>
-	<type>select</type>
-	<object-name>YawDamper1On</object-name>
-	<condition>
-	    <property>controls/autoflight/yaw-damper[0]/engage</property>
-	</condition>
-    </animation>
+		<type>pick</type>
+		<object-name>YawDamper2Btn</object-name>
+		<object-name>YawDamper2Face</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/autoflight/yaw-damper[1]/engage</property>
+			</binding>
+		</action>
+	</animation>
     <animation>
-	<type>pick</type>
-	<object-name>YawDamper2</object-name>
-	<object-name>YawDamper2On</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable type="bool">false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
+		<type>translate</type>
+		<object-name>YawDamper2Btn</object-name>
+		<object-name>YawDamper2Face</object-name>
 		<property>controls/autoflight/yaw-damper[1]/engage</property>
-	    </binding>
-	</action>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-0.487732589</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
     </animation>
     <animation>
-	<type>translate</type>
-	<object-name>YawDamper2</object-name>
-	<object-name>YawDamper2On</object-name>
-	<property>controls/autoflight/yaw-damper[1]/engage</property>
-	<factor>0.001</factor>
-	<axis>
-	    <x>-0.487732589</x>
-	    <y>0</y>
-	    <z>-1</z>
-	</axis>
-    </animation>
-    <animation>
-	<type>select</type>
-	<object-name>YawDamper2On</object-name>
-	<condition>
-	    <property>controls/autoflight/yaw-damper[1]/engage</property>
-	</condition>
+		<type>material</type>
+		<object-name>YawDamper2Face</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/autoflight/yaw-damper[1]/engage</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
     </animation>
 
+	<!-- trim -->
+    <animation>
+		<type>material</type>
+		<object-name>StabTrim1Face</object-name>
+		<object-name>StabTrim2Face</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>			
+				<or>
+					<property>controls/lighting/lt-test</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-white/red" />
+			<green alias="../../../button-emit-white/green" />
+			<blue alias="../../../button-emit-white/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>MachTrimLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-amber/red" />
+			<green alias="../../../button-emit-amber/green" />
+			<blue alias="../../../button-emit-amber/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+	<!-- cargo fire ex -->
+    <animation>
+		<type>pick</type>
+		<object-name>FwdCargoCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/fwd-cargo-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>FwdCargoCover</object-name>
+		<property>controls/switches/fwd-cargo-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.13757</x-m>
+			<y-m>0</y-m>
+			<z-m>0.44393</z-m>
+		</center>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>AftCargoCover</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/aft-cargo-cover</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>AftCargoCover</object-name>
+		<property>controls/switches/aft-cargo-cover</property>
+		<factor alias="../../cover-rotate-deg" />
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.10558</x-m>
+			<y-m>0</y-m>
+			<z-m>0.42766	</z-m>
+		</center>
+    </animation>
+	
+    <animation>
+		<type>pick</type>
+		<object-name>FwdCargoExtinBtn</object-name>
+		<object-name>FwdCargoExtinLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/firex/fwd-cargo-switch</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>FwdCargoExtinBtn</object-name>
+		<object-name>FwdCargoExtinLight</object-name>
+		<property>controls/firex/fwd-cargo-switch</property>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>FwdCargoExtinLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/firex/fwd-cargo-switch</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+    <animation>
+		<type>pick</type>
+		<object-name>AftCargoExtinBtn</object-name>
+		<object-name>AftCargoExtinLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/firex/aft-cargo-switch</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>AftCargoExtinBtn</object-name>
+		<object-name>AftCargoExtinLight</object-name>
+		<property>controls/firex/aft-cargo-switch</property>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>AftCargoExtinLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<property>controls/firex/aft-cargo-switch</property>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-red/red" />
+			<green alias="../../../button-emit-red/green" />
+			<blue alias="../../../button-emit-red/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>
+
+    <animation>
+		<type>pick</type>
+		<object-name>CargoFirexBtn</object-name>
+		<object-name>CargoFirexLight</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/firex/firex-switch</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>translate</type>
+		<object-name>CargoFirexBtn</object-name>
+		<object-name>CargoFirexLight</object-name>
+		<property>controls/firex/firex-switch</property>
+		<factor alias="../../button-translate-m" />
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>-0.839099631</z>
+		</axis>
+    </animation>
+    <animation>
+		<type>material</type>
+		<object-name>CargoFirexLight</object-name>
+		<condition>
+			<and>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/efis</property>
+					<value>15</value>
+				</greater-than-equals>
+				<or>
+					<property>controls/lighting/lt-test</property>
+					<and>
+						<property>controls/firex/fwd-cargo-switch</property>
+						<property>controls/firex/aft-cargo-switch</property>
+					</and>
+				</or>
+			</and>
+		</condition>
+		<emission>	
+			<red alias="../../../button-emit-green/red" />
+			<green alias="../../../button-emit-green/green" />
+			<blue alias="../../../button-emit-green/blue" />
+			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+		</emission>
+    </animation>	
     <!-- Cabin alerts -->
     <animation>
 	<type>pick</type>
@@ -2096,6 +2912,35 @@
 		</script>
 	    </binding>
 	</action>
+    </animation>
+    <!-- Emer Flaps -->
+    <animation>
+		<type>pick</type>
+		<object-name>EmerFlaps</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/emer-flaps</property>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>EmerFlaps</object-name>
+		<property>controls/emer-flaps</property>
+		<factor>30</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.03823</x-m>
+			<y-m>0</y-m>
+			<z-m>0.40654</z-m>
+		</center>
     </animation>
 
     <!-- Door -->
@@ -2132,110 +2977,115 @@
 
     <!-- Lightmaps -->
     <effect>
-	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-	<parameters>
-	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-	    <lightmap-factor n="0">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="1">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="2">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <texture n="3">
-		<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mainpanel-lightmap.png</image>
-	    </texture>
-	</parameters>
-	<object-name>MainPanel</object-name>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+			<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mainpanel-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>MainPanel</object-name>
     </effect>
     <effect>
-	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-	<parameters>
-	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-	    <lightmap-factor n="0">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="1">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="2">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <texture n="3">
-		<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pedestal-lightmap.png</image>
-	    </texture>
-	</parameters>
-	<object-name>PedestalTop</object-name>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+			<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pedestal-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>PedestalTop</object-name>
     </effect>
     <effect>
-	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-	<parameters>
-	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-	    <lightmap-factor n="0">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="1">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="2">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <texture n="3">
-		<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-left-lightmap.png</image>
-	    </texture>
-	</parameters>
-	<object-name>LeftASIPlacard</object-name>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+			<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-left-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>LeftASIPlacard</object-name>
     </effect>
     <effect>
-	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-	<parameters>
-	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-	    <lightmap-factor n="0">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="1">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="2">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <texture n="3">
-		<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-right-lightmap.png</image>
-	    </texture>
-	</parameters>
-	<object-name>RightASIPlacard</object-name>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+			<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-right-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>RightASIPlacard</object-name>
     </effect>
     <effect>
-	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-	<parameters>
-	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-	    <lightmap-factor n="0">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="1">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <lightmap-factor n="2">
-		<use alias="../../lightmap-factor-prop" />
-	    </lightmap-factor>
-	    <texture n="3">
-		<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/airvent-lightmap.png</image>
-	    </texture>
-	</parameters>
-	<object-name>AirVents</object-name>
-    </effect>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+			<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+			<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/airvent-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>AirVents</object-name>
+	</effect>
     
     <!-- Rembrandt !! -->
     <effect>
-	<name>REMBRANDT transparency</name>
-	<inherits-from>Effects/model-transparent</inherits-from>
-	<object-name>StallLtCover</object-name>
-	<object-name>Eng1FireLtCover</object-name>
-	<object-name>Eng2FireLtCover</object-name>
-	<object-name>APUFireLtCover</object-name>
-	<object-name>PedestalMarkings</object-name>
+		<name>REMBRANDT transparency</name>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>StallLtCover</object-name>
+		<object-name>Eng1FireLtCover</object-name>
+		<object-name>Eng2FireLtCover</object-name>
+		<object-name>APUFireLtCover</object-name>
+		<object-name>MuteHornCover</object-name>
+		<object-name>EngHighPwrCover</object-name>
+		<object-name>GPWSTerrainCover</object-name>
+		<object-name>GPWSFlapCover</object-name>
+		<object-name>FwdCargoCover</object-name>
+		<object-name>AftCargoCover</object-name>
+		<object-name>PedestalMarkings</object-name>
     </effect>
-
 </PropertyList>

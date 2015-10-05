@@ -523,7 +523,19 @@
 			<z-m>-0.013</z-m>
 		</center>
 	</animation>
-
+	<animation>
+		<type>pick</type>
+		<object-name>HDGKnbFace</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/autoflight/heading-select</property>
+				<property>instrumentation/heading-indicator/indicated-heading-deg</property>
+			</binding>
+		</action>
+	</animation>
 	<animation>
 		<type>pick</type>
 		<object-name>NAV</object-name>
