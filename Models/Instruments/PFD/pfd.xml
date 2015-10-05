@@ -842,7 +842,7 @@ G</text>
 	<text>
 		<name>VOR1 course</name>
 		<type>number-value</type>
-		<property>instrumentation/nav[0]/heading-deg</property>
+		<property>instrumentation/nav[0]/radials/selected-deg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.005</character-size>
@@ -934,7 +934,7 @@ G</text>
 	<text>
 		<name>VOR2 course</name>
 		<type>number-value</type>
-		<property>instrumentation/nav[1]/heading-deg</property>
+		<property>instrumentation/nav[1]/radials/selected-deg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.005</character-size>
@@ -1648,7 +1648,7 @@ G</text>
 		<type>rotate</type>
 		<object-name>NAVPtr</object-name>
 		<object-name>NAVTrack</object-name>
-		<property>instrumentation/nav[0]/heading-deg</property>
+		<property>instrumentation/nav[0]/radials/selected-deg</property>
 		<axis>
 			<x>-1</x>
 			<y>0</y>

@@ -1051,7 +1051,7 @@
 	<property>environment/wind-from-heading-deg</property>
 	<axis-alignment>yz-plane</axis-alignment>
 	<alignment>right-center</alignment>
-	<character-size>0.006</character-size>
+	<character-size>0.007</character-size>
 	<character-aspect-ratio>1.5</character-aspect-ratio>
 	<font>helvetica_bold.txf</font>
 	<format>%03.f</format>
@@ -1071,7 +1071,7 @@
 	<property>environment/wind-speed-kt</property>
 	<axis-alignment>yz-plane</axis-alignment>
 	<alignment>left-center</alignment>
-	<character-size>0.006</character-size>
+	<character-size>0.007</character-size>
 	<character-aspect-ratio>1.5</character-aspect-ratio>
 	<font>helvetica_bold.txf</font>
 	<format>/%2.f</format>
@@ -1556,7 +1556,12 @@
     <animation>
 	<type>rotate</type>
 	<object-name>Wind</object-name>
-	<property>environment/wind-from-heading-deg</property>
+	<expression>
+		<dif>
+			<property>instrumentation/heading-indicator/indicated-heading-deg</property>
+			<property>environment/wind-from-heading-deg</property>
+		</dif>
+	</expression>
 	<axis>
 	    <x>1</x>
 	    <y>0</y>
@@ -1688,7 +1693,7 @@
 	<type>rotate</type>
 	<object-name>NAV1Ptr</object-name>
 	<object-name>NAV1Track</object-name>
-	<property>instrumentation/nav[0]/heading-deg</property>
+	<property>instrumentation/nav[0]/radials/selected-deg</property>
 	<axis>
 	    <x>-1</x>
 	    <y>0</y>
@@ -1723,7 +1728,7 @@
 	<type>rotate</type>
 	<object-name>NAV2Ptr</object-name>
 	<object-name>NAV2Track</object-name>
-	<property>instrumentation/nav[1]/heading-deg</property>
+	<property>instrumentation/nav[1]/radials/selected-deg</property>
 	<axis>
 	    <x>-1</x>
 	    <y>0</y>

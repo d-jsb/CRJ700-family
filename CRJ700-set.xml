@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!-- Bombardier CRJ700 series -->
 <!-- Aircraft property settings specific to the CRJ700 -->
@@ -162,7 +162,7 @@
                 <heading-offset-deg>180</heading-offset-deg>
                 <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
             </config>
-        </view> 
+        </view>
 		<view n="110">
             <name>Window left </name>
             <type>lookfrom</type>
