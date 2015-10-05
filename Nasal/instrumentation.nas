@@ -257,7 +257,11 @@ var update_copilot_ints = func
     vsi.getChild("indicated-speed-fpm-int", 0, 1).setIntValue(int(vsi.getChild("indicated-speed-fpm", 0, 1).getValue()));
     
     var ra = instruments.getChild("radar-altimeter", 1, 1);
-    ra.getChild("radar-altitude-ft-int", 0, 1).setIntValue(int(ra.getChild("radar-altitude-ft", 0, 1).getValue()));
+    var ra_value = ra.getChild("radar-altitude-ft", 0, 1).getValue();
+    if (typeof(ra_value) != "nil")
+    {
+        ra.getChild("radar-altitude-ft-int", 0, 1).setIntValue(int(ra_value));
+    }
 };
 
 ## Spool up instruments every 5 seconds

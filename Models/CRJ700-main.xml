@@ -5,225 +5,219 @@
 
 <PropertyList>
 
-	<nasal>
-		<load>
-			var model = cmdarg();
+    <nasal>
+        <!-- Nasal code executed for multiplayer models. -->
+        <load>
+var model = cmdarg();
+var model_path = model.getNode("sim/model/path").getValue();
+var model_name = split(".", split("/", model_path)[-1])[0];
 
-			# MP shared props
-			var mp_generic = model.getNode("sim/multiplay/generic");
-			var mp_props_file = io.read_properties("Aircraft/CRJ700-family/Systems/CRJ700-multiplayer.xml");
-			foreach (var ref; mp_props_file.getChildren("reference"))
-			{
-				var val = mp_generic.getChild(ref.getNode("type").getValue(), ref.getNode("index").getValue(), 1);
-				var newprop = model.getNode(ref.getNode("property").getValue(), 1);
-				newprop.alias(val);
-			}
+# Animations.
+var mp_export = model.getNode("sim/multiplay/generic");
+var mp_export_def = io.read_properties("Aircraft/CRJ700-family/Systems/CRJ700-multiplayer.xml");
+foreach (var ref; mp_export_def.getChildren("reference"))
+{
+    var export_prop = mp_export.getChild(ref.getNode("type").getValue(), ref.getNode("index").getValue(), 1);
+    var model_prop = model.getNode(ref.getNode("property").getValue(), 1);
+    model_prop.alias(export_prop);
+}
 
-			# livery over MP
-			var model_path = model.getNode("sim/model/path").getValue();
-			var model_name = split(".", split("/", model_path)[-1])[0];
-			var variants =
-			{
-				"CRJ700":
-				[
-					"CRJ700",
-					"CRJ700ER",
-					"CRJ700LR"
-				],
-				"CRJ900":
-				[
-					"CRJ900",
-					"CRJ900ER",
-					"CRJ900LR"
-				],
-				"CRJ1000":
-				[
-					"CRJ1000",
-					"CRJ1000-EuroLite",
-					"CRJ1000ER"
-				]
-			};
-			var variant = model.getNode("sim/model/variant").getValue();
-			var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/" ~ variants[model_name][variant]);
+# Liveries.
+var model_dict = {
+    "CRJ700": [
+        "CRJ700",
+        "CRJ700ER",
+        "CRJ700LR"
+    ],
+    "CRJ900": [
+        "CRJ900",
+        "CRJ900ER",
+        "CRJ900LR"
+    ],
+    "CRJ1000": [
+        "CRJ1000",
+        "CRJ1000-EuroLite",
+        "CRJ1000ER"
+    ]
+};
+var variant = model.getNode("sim/model/variant").getValue();
+var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/"
+                                               ~ model_dict[model_name][variant]);
 
-			# animated jetway support over MP
-			var jetway_coordinates =
-			{
-				"CRJ700":
-				[
-					-11.519,	# x-m
-					-1.139,		# y-m
-					-1.796,		# z-m
-					3		# hood-deg
-				],
-				"CRJ900":
-				[
-					-13.459,
-					-1.139,
-					-1.796,
-					3
-				],
-				"CRJ1000":
-				[
-					-15.419,
-					-1.139,
-					-1.796,
-					3
-				]
-			};
-			model.getNode("door[0]/position-x-m", 1).setDoubleValue(jetway_coordinates[model_name][0]);
-			model.getNode("door[0]/position-y-m", 1).setDoubleValue(jetway_coordinates[model_name][1]);
-			model.getNode("door[0]/position-z-m", 1).setDoubleValue(jetway_coordinates[model_name][2]);
-			model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_coordinates[model_name][3]);
-		</load>
-		<unload>
-			livery_update.stop();
-		</unload>
-	</nasal>
+# Animated jetways.
+var jetway_dict = {
+    "CRJ700": [
+        -11.519, # x-m
+        -1.139,  # y-m
+        -1.796,  # z-m
+        3        # hood-deg
+    ],
+    "CRJ900": [
+        -13.459,
+        -1.139,
+        -1.796,
+        3
+    ],
+    "CRJ1000": [
+        -15.419,
+        -1.139,
+        -1.796,
+        3
+    ]
+};
+model.getNode("door[0]/position-x-m", 1).setDoubleValue(jetway_dict[model_name][0]);
+model.getNode("door[0]/position-y-m", 1).setDoubleValue(jetway_dict[model_name][1]);
+model.getNode("door[0]/position-z-m", 1).setDoubleValue(jetway_dict[model_name][2]);
+model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_name][3]);
+        </load>
+        <unload>
+            livery_update.stop();
+        </unload>
+    </nasal>
 
-	<!-- Tutorial marker -->
-	<model>
-		<path>Models/Aircraft/marker.xml</path>
-	</model>
+    <!-- Tutorial marker -->
+    <model>
+        <path>Models/Aircraft/marker.xml</path>
+    </model>
 
-	<!-- Hide windshield in interior views with virtual cockpit off -->
-	<animation>
-		<type>select</type>
-		<object-name>CockpitWindows</object-name>
-		<condition>
-			<and>
-				<not>
-					<property>sim/current-view/internal</property>
-				</not>
-				<not>
-					<property>sim/current-view/virtual-cockpit</property>
-				</not>
-			</and>
-		</condition>
-	</animation>
+    <!-- Hide windshield in interior views with virtual cockpit off -->
+    <animation>
+        <type>select</type>
+        <object-name>CockpitWindows</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property>sim/current-view/internal</property>
+                </not>
+                <not>
+                    <property>sim/current-view/virtual-cockpit</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
 
-	<!-- Door animations -->
-	<animation>
-		<type>pick</type>
-		<object-name>LeftDoor</object-name>
-		<object-name>LeftDoorInt</object-name>
-		<object-name>Stairs</object-name>
-		<object-name>StairHandles</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.doors.pax_left.toggle();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>LeftDoor</object-name>
-		<object-name>LeftDoorInt</object-name>
-		<object-name>Stairs</object-name>
-		<object-name>StairHandles</object-name>
-		<property>sim/model/door-positions/pax-left/position-norm</property>
-		<factor>150</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-1.139</y-m>
-			<z-m>-1.796</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>RightDoor</object-name>
-		<object-name>RightDoorInt</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.doors.pax_right.toggle();
-				</script>
-			</binding>
-		</action>
-	</animation>
+    <!-- Door animations -->
+    <animation>
+        <type>pick</type>
+        <object-name>LeftDoor</object-name>
+        <object-name>LeftDoorInt</object-name>
+        <object-name>Stairs</object-name>
+        <object-name>StairHandles</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.doors.pax_left.toggle();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftDoor</object-name>
+        <object-name>LeftDoorInt</object-name>
+        <object-name>Stairs</object-name>
+        <object-name>StairHandles</object-name>
+        <property>sim/model/door-positions/pax-left/position-norm</property>
+        <factor>150</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-1.139</y-m>
+            <z-m>-1.796</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>RightDoor</object-name>
+        <object-name>RightDoorInt</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.doors.pax_right.toggle();
+                </script>
+            </binding>
+        </action>
+    </animation>
 
-	<!-- Ram air turbine -->
-	<animation>
-		<type>translate</type>
-		<object-name>RAT</object-name>
-		<object-name>RATBlades</object-name>
-		<property>systems/ram-air-turbine/position-norm</property>
-		<interpolation>
-			<entry><ind>1</ind><dep>0</dep></entry>
-			<entry><ind>0</ind><dep>0.2</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>-0.4</y>
-			<z>1</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>RAT</object-name>
-		<object-name>RATBlades</object-name>
-		<property>systems/ram-air-turbine/position-norm</property>
-		<interpolation>
-			<entry><ind>1</ind><dep>0</dep></entry>
-			<entry><ind>0</ind><dep>-40</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.531</y-m>
-			<z-m>-1.738</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>spin</type>
-		<object-name>RATBlades</object-name>
-		<property>systems/ram-air-turbine/rpm</property>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.67671</y-m>
-			<z-m>-1.95605</z-m>
-		</center>
-	</animation>
+    <!-- Ram air turbine -->
+    <animation>
+        <type>translate</type>
+        <object-name>RAT</object-name>
+        <object-name>RATBlades</object-name>
+        <property>systems/ram-air-turbine/position-norm</property>
+        <interpolation>
+            <entry><ind>1</ind><dep>0</dep></entry>
+            <entry><ind>0</ind><dep>0.2</dep></entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>-0.4</y>
+            <z>1</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RAT</object-name>
+        <object-name>RATBlades</object-name>
+        <property>systems/ram-air-turbine/position-norm</property>
+        <interpolation>
+            <entry><ind>1</ind><dep>0</dep></entry>
+            <entry><ind>0</ind><dep>-40</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.531</y-m>
+            <z-m>-1.738</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>RATBlades</object-name>
+        <property>systems/ram-air-turbine/rpm</property>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.67671</y-m>
+            <z-m>-1.95605</z-m>
+        </center>
+    </animation>
 
-	<!-- Reflection shaders -->
-	<effect>
-		<name>Chrome reflect</name>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700reflect</inherits-from>
-		<object-name>WingChrome</object-name>
-		<object-name>CockpitFrame</object-name>
-		<object-name>LandingLts</object-name>
-		<object-name>StairHandles</object-name>
-	</effect>
-	
-	<!-- Rembrandt !! -->
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Windows</object-name>
-		<object-name>CockpitWindows</object-name>
-		<object-name>LandingLtLens</object-name>
-	</effect>
+    <!-- Reflection shaders -->
+    <effect>
+        <name>Chrome reflect</name>
+        <inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700reflect</inherits-from>
+        <object-name>WingChrome</object-name>
+        <object-name>CockpitFrame</object-name>
+        <object-name>LandingLts</object-name>
+        <object-name>StairHandles</object-name>
+    </effect>
+    
+    <!-- Rembrandt !! -->
+    <effect>
+        <name>REMBRANDT transparency</name>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Windows</object-name>
+        <object-name>CockpitWindows</object-name>
+        <object-name>LandingLtLens</object-name>
+    </effect>
 
 </PropertyList>

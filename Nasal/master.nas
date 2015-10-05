@@ -1,72 +1,127 @@
 ## Bombardier CRJ700 series
-## Aircraft systems
-###########################
+##
 
-## Main systems update loop
-var Systems = {
-    fast_loopid: -1,
-    slow_loopid: -1,
-    init: func
+# Utility functions.
+var getprop_safe = func(node)
+{
+    var value = getprop(node);
+    if (typeof(value) == "nil")
     {
-        print("CRJ700 aircraft systems ... initialized");
-        Systems.start();
-        # create crossfeed valve
-        var gravity_xflow = aircraft.crossfeed_valve.new(0.5, "controls/fuel/gravity-xflow", 0, 1);
-        gravity_xflow.open();
-    },
-    start: func
+        return 0;
+    }
+    else
     {
-        Systems.fast_update(Systems.fast_loopid += 1);
-        Systems.slow_update(Systems.slow_loopid += 1);
-    },
-    stop: func
-    {
-        Systems.fast_loopid += 1;
-        Systems.slow_loopid += 1;
-    },
-    reinit: func
-    {
-        print("CRJ700 aircraft systems ... reinitialized");
-        setprop("sim/model/start-idling", 0);
-        Systems.stop();
-        Systems.start();
-    },
-    fast_update: func(loopid)
-    {
-        if (loopid != Systems.fast_loopid) return;
-        engine1.update();
-        engine2.update();
-        apu1.update();
-        update_electrical();
-        eicas_messages_page1.update();
-        eicas_messages_page2.update();
-        if (!props.globals.getNode("sim/crashed").getBoolValue())
-        {
-            settimer(func
-            {
-                Systems.fast_update(loopid);
-            }, 0);
-        }
-    },
-    slow_update: func(loopid)
-    {
-        if (loopid != Systems.slow_loopid) return;
-        update_tat();
-        rat1.update();
-        update_copilot_ints();
-        update_pass_signs();
-        update_lightmaps();
-        if (!props.globals.getNode("sim/crashed").getBoolValue())
-        {
-            settimer(func
-            {
-                Systems.slow_update(loopid);
-            }, 3);
-        }
+        return value;
     }
 };
-setlistener("sim/signals/fdm-initialized", func settimer(Systems.init, 2), 0, 0);
-setlistener("sim/signals/reinit", func(v) if (v.getBoolValue()) Systems.reinit(), 0, 0);
+
+var Loop = func(interval, update)
+{
+    var loop = {};
+    var timerId = -1;
+    loop.interval = interval;
+    loop.update = update;
+    loop.loop = func(thisTimerId)
+    {
+        if (thisTimerId == timerId)
+        {
+            loop.update();
+        }
+        settimer(func
+                 {
+                     loop.loop(thisTimerId);
+                 }, loop.interval);
+    };
+    loop.start = func
+    {
+        timerId += 1;
+        settimer(func
+                 {
+                     loop.loop(timerId);
+                 }, 0);
+    };
+    loop.stop = func
+    {
+        timerId += 1;
+    };
+    return loop;
+};
+
+var is_slave = 0;
+if (getprop("/sim/flight-model") == "null")
+{
+    is_slave = 1;
+}
+
+# Engines and APU.
+var apu = CRJ700.Engine.Apu(0);
+var engines = [
+    CRJ700.Engine.Jet(0),
+    CRJ700.Engine.Jet(1)
+];
+
+# Wipers.
+var wipers = [
+    CRJ700.Wiper("/controls/anti-ice/wiper[0]",
+                 "/surface-positions/left-wiper-pos-norm",
+                 "/controls/anti-ice/wiper-power[0]",
+                 "/systems/electrical/outputs/wiper[0]"),
+    CRJ700.Wiper("/controls/anti-ice/wiper[1]",
+                 "/surface-positions/right-wiper-pos-norm",
+                 "/controls/anti-ice/wiper-power[1]",
+                 "/systems/electrical/outputs/wiper[1]")
+];
+
+# Update loops.
+var fast_loop = Loop(0, func
+                     {
+                         if (!is_slave)
+                         {
+                             # Engines and APU.
+                             CRJ700.Engine.poll_fuel_tanks();
+                             CRJ700.Engine.poll_bleed_air();
+                             apu.update();
+                             engines[0].update();
+                             engines[1].update();
+                         }
+                         # Electrical.
+                         update_electrical();
+
+                         # Instruments.
+                         eicas_messages_page1.update();
+                         eicas_messages_page2.update();
+
+                         # Model.
+                         wipers[0].update();
+                         wipers[1].update();
+                     });
+var slow_loop = Loop(3, func
+                     {
+                         # Electrical.
+                         rat1.update();
+
+                         # Instruments.
+                         update_tat;
+
+                         # Multiplayer.
+                         update_copilot_ints();
+
+                         # Model.
+                         update_lightmaps();
+                         update_pass_signs();
+                     });
+
+# When the sim is ready, start the update loops and create the crossfeed valve.
+var gravity_xflow = {};
+setlistener("sim/signals/fdm-initialized", func
+            {
+                print("CRJ700 aircraft systems ... initialized");
+                gravity_xflow = aircraft.crossfeed_valve.new(0.5,
+                                                             "controls/fuel/gravity-xflow",
+                                                             0, 1);
+                fast_loop.start();
+                slow_loop.start();
+            }, 0, 0);
 
 ## Startup/shutdown functions
 var startid = 0;
@@ -83,8 +138,8 @@ var startup = func
     {
         if (id == startid)
         {
-            engine1.start();
-            engine2.start();
+            setprop("/controls/engines/engine[0]/starter", 1);
+            setprop("/controls/engines/engine[1]/starter", 1);
             setprop("controls/electric/engine[0]/generator", 1);
             setprop("controls/electric/engine[1]/generator", 1);
             settimer(func
@@ -124,10 +179,10 @@ var instastart = func
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
     setprop("controls/engines/engine[0]/cutoff", 0);
-    engine1.start();
+    setprop("/controls/engines/engine[0]/starter", 1);
     setprop("engines/engine[0]/rpm", 25);
     setprop("controls/engines/engine[1]/cutoff", 0);
-    engine2.start();
+    setprop("/controls/engines/engine[1]/starter", 1);
     setprop("engines/engine[1]/rpm", 25);
 };
 
@@ -149,75 +204,6 @@ setlistener("controls/gear/gear-down", func(v)
 ## Engines at cutoff by default (not specified in -set.xml because that means they will be set to 'true' on a reset)
 setprop("controls/engines/engine[0]/cutoff", 1);
 setprop("controls/engines/engine[1]/cutoff", 1);
-
-## Wipers
-var Wiper = {
-    new: func(inP, outP, onP, pwrP)
-    {
-        var m = { parents: [Wiper] };
-        m.active = 0;
-        m.ctl_node = props.globals.getNode(inP, 1);
-        setlistener (inP, func
-        {
-            m.switch();
-        });
-        m.out_node = props.globals.getNode(outP, 1);
-        m.on_node = props.globals.getNode(onP, 1);
-        m.pwr_node = props.globals.getNode(pwrP, 1);
-        setlistener (pwrP, func
-        {
-            m.switch();
-        });
-        return m;
-    },
-    switch: func
-    {
-        var switch_val = me.ctl_node.getValue();
-        if (switch_val > 0)
-        {
-            me.on_node.setBoolValue(1);
-            if (!me.active and me.pwr_node.getValue() >= 15)
-            {
-                var wiper_time = 1 / switch_val;
-                interpolate(me.out_node, 1, wiper_time, 0, wiper_time);
-                settimer (func
-                {
-                    me.update();
-                }, wiper_time * 2);
-                me.active = 1;
-            }
-        }
-    },
-    update: func
-    {
-        var switch_val = me.ctl_node.getValue();
-        if (switch_val <= 0)
-        {
-            me.active = 0;
-            me.on_node.setBoolValue(0);
-        }
-        else
-        {
-            me.on_node.setBoolValue(1);
-            if (me.pwr_node.getValue() >= 15)
-            {
-                var wiper_time = 1 / switch_val;
-                interpolate(me.out_node, 1, wiper_time, 0, wiper_time);
-                settimer (func
-                {
-                    me.update();
-                }, wiper_time * 2);
-                me.active = 1;
-            }
-            else
-            {
-                me.active = 0;
-            }
-        }
-    }
-};
-var left_wiper = Wiper.new("controls/anti-ice/wiper[0]", "surface-positions/left-wiper-pos-norm", "controls/anti-ice/wiper-power[0]", "systems/electrical/outputs/wiper[0]");
-var right_wiper = Wiper.new("controls/anti-ice/wiper[1]", "surface-positions/right-wiper-pos-norm", "controls/anti-ice/wiper-power[1]", "systems/electrical/outputs/wiper[1]");
 
 ## RAT
 var Rat = {
