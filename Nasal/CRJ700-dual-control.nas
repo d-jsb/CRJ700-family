@@ -305,7 +305,7 @@ var get_copilot_decoders = func(pilot)
 		foreach (var propN; pilot_send_S_encoders[i])
 		{
 			var prop = propN.getPath();
-			prop = substr(propP, 1, size(propP) - 1);
+			prop = substr(prop, 1, size(prop) - 1);
 			var _get_action = func(prop)
 			{
 				return func(v)
