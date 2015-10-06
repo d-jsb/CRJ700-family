@@ -57,6 +57,10 @@
 			</signals>
 			<!-- APU -->
 			<signal>
+				<type>bool</type>
+				<property>controls/APU/electronic-control-unit</property>
+			</signal>
+			<signal>
 				<type>float</type>
 				<property>engines/apu/egt-degc</property>
 			</signal>
@@ -161,6 +165,22 @@
 			<signal>
 				<type>float</type>
 				<property>surface-positions/slat-pos-norm</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>controls/flight/slats-cmd</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>controls/flight/flaps-cmd</property>
+			</signal>
+			<signal>
+				<type>bool</type>
+				<property>controls/flight/flaps-start-snd</property>
+			</signal>
+			<signal>
+				<type>bool</type>
+				<property>controls/flight/flaps-stop-snd</property>
 			</signal>
 			<signal>
 				<type>float</type>

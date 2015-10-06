@@ -30,6 +30,7 @@
 				<position-z-m type="float">-1.796</position-z-m>
 				<jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
+			<has-slats type="bool">true</has-slats>
 		</model>
 
         <tutorials include="Tutorials/CRJ700-tutorials.xml" />

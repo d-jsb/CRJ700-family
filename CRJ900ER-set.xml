@@ -29,6 +29,7 @@
 				<position-z-m type="float">-1.796</position-z-m>
 				<jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
+			<has-slats type="bool">true</has-slats>
 		</model>
 
         <dimensions>
@@ -74,7 +75,7 @@
                 <from-model type="bool">true</from-model>
                 <x-offset-m>0</x-offset-m>
                 <y-offset-m>-0.468</y-offset-m>
-                <z-offset-m>-13.35</z-offset-m>
+                <z-offset-m>-15.29</z-offset-m>
                 <pitch-offset-deg archive="y">59.2</pitch-offset-deg>
                 <heading-offset-deg>0</heading-offset-deg>
                 <default-field-of-view-deg type="double"  archive="y">85.3</default-field-of-view-deg>
@@ -97,7 +98,7 @@
                 <from-model type="bool">true</from-model>
                 <x-offset-m>0</x-offset-m>
                 <y-offset-m>-0.468</y-offset-m>
-                <z-offset-m>-13.35</z-offset-m>
+                <z-offset-m>-15.29</z-offset-m>
                 <pitch-offset-deg>-55</pitch-offset-deg>
                 <heading-offset-deg>0</heading-offset-deg>
                 <default-field-of-view-deg type="double">56</default-field-of-view-deg>
@@ -120,10 +121,10 @@
                 <from-model type="bool">true</from-model>
                 <x-offset-m>0</x-offset-m>
                 <y-offset-m>-0.9</y-offset-m>
-                <z-offset-m>-13.2</z-offset-m>
-                <pitch-offset-deg>-62</pitch-offset-deg>
+                <z-offset-m>-15.14</z-offset-m>
+                <pitch-offset-deg>-64.3</pitch-offset-deg>
                 <heading-offset-deg>0</heading-offset-deg>
-                <default-field-of-view-deg type="double">70</default-field-of-view-deg>
+                <default-field-of-view-deg type="double">77.3</default-field-of-view-deg>
             </config>
 			<limits>
 				<enabled type="bool">true</enabled>
@@ -165,21 +166,21 @@
             </config>
         </view>      
 		<view n="110">
-            <name>Window left </name>
+            <name>15A</name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">true</internal>
             <config>
                 <from-model type="bool">true</from-model>
-                <x-offset-m archive="y">-1.04</x-offset-m>
+                <x-offset-m archive="y">-1.05</x-offset-m>
                 <y-offset-m archive="y">-0.59</y-offset-m>
-                <z-offset-m archive="y">-2.78</z-offset-m>
-                <pitch-offset-deg>-10</pitch-offset-deg>
-                <heading-offset-deg>70</heading-offset-deg>
+                <z-offset-m archive="y">-0.87</z-offset-m>
+                <pitch-offset-deg>-7</pitch-offset-deg>
+                <heading-offset-deg>90</heading-offset-deg>
                 <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
             </config>
         </view>
-       <view n="111">
-            <name>Window left (wing)</name>
+		<view n="111">
+            <name>23A</name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">true</internal>
             <config>
@@ -192,22 +193,22 @@
                 <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
             </config>
         </view>
-       <view n="120">
-            <name>Window right </name>
+		<view n="120">
+            <name>15F </name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">true</internal>
             <config>
                 <from-model type="bool">true</from-model>
-                <x-offset-m archive="y">1.04</x-offset-m>
+                <x-offset-m archive="y">1.05</x-offset-m>
                 <y-offset-m archive="y">-0.59</y-offset-m>
-                <z-offset-m archive="y">-2.79</z-offset-m>
-                <pitch-offset-deg>-10</pitch-offset-deg>
-                <heading-offset-deg>290</heading-offset-deg>
+                <z-offset-m archive="y">-0.87</z-offset-m>
+                <pitch-offset-deg>-7</pitch-offset-deg>
+                <heading-offset-deg>270</heading-offset-deg>
                 <default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
             </config>
         </view>
-       <view n="121">
-            <name>Window right (wing)</name>
+		<view n="121">
+            <name>23F</name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">true</internal>
             <config>
