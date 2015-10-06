@@ -79,7 +79,7 @@ var fast_loop = Loop(0, func
                          {
                              # Engines and APU.
                              CRJ700.Engine.poll_fuel_tanks();
-                             CRJ700.Engine.poll_bleed_air();
+                             #CRJ700.Engine.poll_bleed_air();
                              apu.update();
                              engines[0].update();
                              engines[1].update();
@@ -131,6 +131,7 @@ var startup = func
     var id = startid;
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/pneumatic/bleed-source", 2);
+    setprop("controls/APU/electronic-control-unit", 1);
     setprop("controls/APU/off-on", 1);
     setprop("controls/engines/engine[0]/cutoff", 0);
     setprop("controls/engines/engine[1]/cutoff", 0);
@@ -147,11 +148,12 @@ var startup = func
                 if (id == startid)
                 {
                     setprop("controls/APU/off-on", 0);
-                    setprop("controls/electric/battery-switch", 0);
+					setprop("controls/APU/electronic-control-unit", 0);
+                    #setprop("controls/electric/battery-switch", 0);
                 }
             }, 7);
         }
-    }, 11);
+    }, 21);
 };
 var shutdown = func
 {
@@ -261,3 +263,4 @@ var dialogs = {
 };
 gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
 gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
+

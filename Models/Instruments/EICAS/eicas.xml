@@ -140,10 +140,13 @@
 		<object-name>Rudder trim</object-name>
 		<object-name>Rudder trim nose right</object-name>
 		<object-name>APU</object-name>
+		<object-name>APUecuoff</object-name>
 		<object-name>APU RPM</object-name>
 		<object-name>APU EGT</object-name>
 		<object-name>APU RPM text</object-name>
 		<object-name>APU EGT text</object-name>
+		<object-name>APU DOOR</object-name>
+		<object-name>APU DOOR text</object-name>
 		<object-name>Parking brake</object-name>
 		<object-name>APU starting</object-name>
 		<object-name>APU running</object-name>
@@ -1218,6 +1221,26 @@
 		</font-resolution>
 	</text>
 	<text>
+		<name>APUecuoff</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>APU</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>-0.062</y-m>
+			<z-m>-0.070</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
 		<name>APU RPM</name>
 		<type>number-value</type>
 		<property>engines/apu/rpm</property>
@@ -1269,7 +1292,7 @@
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>-0.05239</y-m>
-			<z-m>-0.07829</z-m>
+			<z-m>-0.070</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1288,13 +1311,105 @@
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>-0.01413</y-m>
-			<z-m>-0.07829</z-m>
+			<z-m>-0.070</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<text>
+		<name>APU DOOR text</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DOOR</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>-0.063</y-m>
+			<z-m>-0.078</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>APU DOOR</name>
+		<type>string-value</type>
+		<property>engines/apu/door-msg</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%s</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>-0.045</y-m>
+			<z-m>-0.078</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<animation>
+		<type>material</type>
+		<object-name>APU DOOR</object-name>
+		<condition>
+			<equals>
+				<property>engines/apu/door-msg</property>
+				<value>----</value>
+			</equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>APU DOOR</object-name>
+		<condition>
+			<not><equals>
+				<property>engines/apu/door-msg</property>
+				<value>----</value>
+			</equals></not>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	
 	<!-- End page 2 text -->
 	<!-- Begin page 3 text -->
 	<text>
@@ -2892,6 +3007,8 @@ APU</text>
 		<object-name>Rudder trim</object-name>
 		<object-name>Rudder trim nose right</object-name>
 		<object-name>APU</object-name>
+		<object-name>APUecuoff</object-name>
+		<object-name>APU DOOR text</object-name>
 		<object-name>APU RPM text</object-name>
 		<object-name>APU EGT text</object-name>
 		<object-name>APU starting</object-name>
@@ -3381,6 +3498,15 @@ APU</text>
 		<object-name>APUReadings</object-name>
 		<condition>
 			<property>controls/APU/electronic-control-unit</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>APUecuoff</object-name>
+		<condition>
+			<not>
+			<property>controls/APU/electronic-control-unit</property>
+			</not>
 		</condition>
 	</animation>
 	<animation>
