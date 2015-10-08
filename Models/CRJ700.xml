@@ -7,6 +7,7 @@
 
 	<path>CRJ700.ac</path>
 	<params>
+		<apu-door>engines/engine[2]/n1</apu-door>
 		<fwd-cargo-door>engines/engine[3]/n1</fwd-cargo-door>
 		<ctr-cargo-door>engines/engine[3]/n2</ctr-cargo-door>
 		<aft-cargo-door>engines/engine[3]/rpm</aft-cargo-door>
@@ -264,6 +265,135 @@
 			<y-m>1.39</y-m>
 			<z-m>0</z-m>
 		</center>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>APUDoor</object-name>
+		<property alias="/params/apu-door" />
+		<factor>45</factor>
+        <axis>
+			<x1-m>12.48046</x1-m>
+			<y1-m>0.1635</y1-m>
+			<z1-m>-0.31618</z1-m>
+			<x2-m>12.47303</x2-m>
+			<y2-m>0.28419</y2-m>
+			<z2-m>-0.50063</z2-m>
+        </axis>		
+	</animation>
+	<!-- Aft Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property alias="/params/aft-cargo-door" />
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0.05</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>0.05</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>8.01757</x1-m>
+			<y1-m>-1.22626</y1-m>
+			<z1-m>-1.20368</z1-m>
+			<x2-m>7.967</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-1.042</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property alias="/params/aft-cargo-door" />
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-35</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>7.967</x-m>
+			<y-m>0</y-m>
+			<z-m>-1.042</z-m>
+		</center>
+		<axis>
+			<x>1.09</x>
+			<y>0.06101</y>
+			<z>0.0108</z>
+        </axis>
+	</animation>
+
+	<!-- Ctr Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorCtr</object-name>
+		<property alias="/params/ctr-cargo-door" />
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-0.1</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-0.5</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>-5.08492</x1-m>
+			<y1-m>-0.71826</y1-m>
+			<z1-m>-2.10312</z1-m>
+			<x2-m>-5.0849</x2-m>
+			<y2-m>-0.008</y2-m>
+			<z2-m>-1.1295</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorCtr</object-name>
+		<property alias="/params/ctr-cargo-door" />
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>25</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-5.0849</x-m>
+			<y-m>-0.008</y-m>
+			<z-m>-1.1295</z-m>
+		</center>
+		<axis>
+			<x>1.02218</x>
+			<y>0</y>
+			<z>0</z>
+        </axis>
 	</animation>
 
 	<!-- Wing animations -->
@@ -803,108 +933,6 @@
 		<object-name>Wings</object-name>
 		<object-name>Winglets</object-name>
 	</effect>
-	<animation>
-		<type>rotate</type>
-		<object-name>APUDoor</object-name>
-		<property>engines/apu/door-norm</property>
-		<factor>45</factor>
-        <axis>
-			<x1-m>12.48046</x1-m>
-			<y1-m>0.1635</y1-m>
-			<z1-m>-0.31618</z1-m>
-			<x2-m>12.47303</x2-m>
-			<y2-m>0.28419</y2-m>
-			<z2-m>-0.50063</z2-m>
-        </axis>		
-	</animation>
-	<!-- Ctr Cargo Door -->
-	<animation>
-		<type>translate</type>
-		<object-name>CargoDoorCtr</object-name>
-		<property alias="/params/ctr-cargo-door" />
-		<factor>1</factor>
-		<offset-m>0</offset-m>
-		<axis>
-			<x1-m>-5.19349</x1-m>
-			<y1-m>-0.73111</y1-m>
-			<z1-m>-2.09801</z1-m>
-			<x2-m>-5.19349</x2-m>
-			<y2-m>-0.37773</y2-m>
-			<z2-m>-2.57441</z2-m>
-		</axis>
- 	</animation>	
-	<animation>
-		<type>rotate</type>
-		<object-name>CargoDoorCtr</object-name>
-		<property alias="/params/ctr-cargo-door" />
-		<factor>20</factor>
-        <axis>
-            <x1-m>-6.19349</x1-m>
-            <y1-m>-0.73111</y1-m>
-            <z1-m>-2.09801</z1-m>
-            <x2-m>-5.19349</x2-m>
-            <y2-m>-0.73111</y2-m>
-            <z2-m>-2.09801</z2-m>
-        </axis>		
-	</animation>
-	<!-- Aft Cargo Door -->
-	<animation>
-		<type>translate</type>
-		<object-name>CargoDoorAft</object-name>
-		<property alias="/params/aft-cargo-door" />
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>0.05</ind>
-				<dep>0.05</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>0.05</dep>
-			</entry>
-		</interpolation>
-		<axis>
-			<x1-m>8.01757</x1-m>
-			<y1-m>-1.22626</y1-m>
-			<z1-m>-1.20368</z1-m>
-			<x2-m>7.967</x2-m>
-			<y2-m>0</y2-m>
-			<z2-m>-1.042</z2-m>
-        </axis>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>CargoDoorAft</object-name>
-		<property alias="/params/aft-cargo-door" />
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>0.05</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>-35</dep>
-			</entry>
-		</interpolation>
-		<center>
-			<x-m>7.967</x-m>
-			<y-m>0</y-m>
-			<z-m>-1.042</z-m>
-		</center>
-		<axis>
-			<x>1.09</x>
-			<y>0.06101</y>
-			<z>0.0108</z>
-        </axis>
-	</animation>
-
 	
 	<foo include="CRJ700-main.xml" omit-node="y" />
 

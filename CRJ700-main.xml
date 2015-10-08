@@ -558,6 +558,7 @@
 			<serviceable type="bool">true</serviceable>
 			<pump-fail type="bool">false</pump-fail>
 			<SOV-fail type="bool">false</SOV-fail>
+			<door-norm alias="/engines/engine[2]/n1" />
 		</apu>
 		<engine>
 			<on-fire type="bool">false</on-fire>
