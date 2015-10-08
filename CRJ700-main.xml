@@ -74,7 +74,7 @@
 				<emer-r2>
 					<position-norm type="float">0</position-norm>
 				</emer-r2>
-				
+				<!-- alias doors to unused MP enabled properties -->
 				<fwd-cargo>
 					<position-norm alias="/engines/engine[3]/n1" />
 				</fwd-cargo>
