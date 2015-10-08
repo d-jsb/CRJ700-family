@@ -33,7 +33,7 @@
 var IDG = {
 	new: func (bus, name, input, discN) {
 		var obj = {
-			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 59, 95).setOutputMin(108)],
+			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 58.7, 95).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 			discN: discN,
