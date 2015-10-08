@@ -749,7 +749,8 @@
 		<object-name>Rudder</object-name>
 		<object-name>Winglets</object-name>
 		<object-name>APUDoor</object-name>
-		<object-name>CTRCargoDoor</object-name>
+		<object-name>CargoDoorCtr</object-name>
+		<object-name>CargoDoorAft</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ700-Blank.png</texture>
@@ -812,9 +813,10 @@
 			<z2-m>-0.50063</z2-m>
         </axis>		
 	</animation>
+	<!-- Ctr Cargo Door -->
 	<animation>
 		<type>translate</type>
-		<object-name>CTRCargoDoor</object-name>
+		<object-name>CargoDoorCtr</object-name>
 		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
 		<factor>1</factor>
 		<offset-m>0</offset-m>
@@ -829,7 +831,7 @@
  	</animation>	
 	<animation>
 		<type>rotate</type>
-		<object-name>CTRCargoDoor</object-name>
+		<object-name>CargoDoorCtr</object-name>
 		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
 		<factor>20</factor>
         <axis>
@@ -840,6 +842,63 @@
             <y2-m>-0.73111</y2-m>
             <z2-m>-2.09801</z2-m>
         </axis>		
+	</animation>
+	<!-- Aft Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0.05</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>0.05</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>8.01757</x1-m>
+			<y1-m>-1.22626</y1-m>
+			<z1-m>-1.20368</z1-m>
+			<x2-m>7.967</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-1.042</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-35</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>7.967</x-m>
+			<y-m>0</y-m>
+			<z-m>-1.042</z-m>
+		</center>
+		<axis>
+			<x>1.09</x>
+			<y>0.06101</y>
+			<z>0.0108</z>
+        </axis>
 	</animation>
 
 	
