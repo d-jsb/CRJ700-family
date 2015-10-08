@@ -10,17 +10,12 @@
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
         <aircraft-version>1.5.0b</aircraft-version>
-        <rating>
-            <FDM type="int">3</FDM>
-            <systems type="int">3</systems>
-            <cockpit type="int">4</cockpit>
-            <model type="int">4</model>
-        </rating>
+        
+        <variant-of>CRJ700</variant-of>
         <flight-model>yasim</flight-model>
         <aero>CRJ900</aero>
-        <variant-of>CRJ700</variant-of>
 
-        <model>
+		<model>
             <path>Aircraft/CRJ700-family/Models/CRJ900.xml</path>
             <variant type="int">0</variant>
             <door>
@@ -222,7 +217,7 @@
                 <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
             </config>
         </view>
-		<view n="122">
+ 		<view n="122">
             <name>L wing</name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">true</internal>
@@ -251,9 +246,9 @@
             </config>
         </view>
         <view n="124">
-            <name>Ground walk</name>
+            <name>GndWalk</name>
             <type>lookfrom</type>
-            <internal type="bool" archive="y">false</internal>
+            <internal type="bool" archive="y">internal</internal>
             <config>
                 <from-model type="bool">true</from-model>
                 <x-offset-m archive="y">-3.95</x-offset-m>

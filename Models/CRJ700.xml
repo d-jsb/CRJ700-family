@@ -6,7 +6,11 @@
 <PropertyList>
 
 	<path>CRJ700.ac</path>
-
+	<params>
+		<fwd-cargo-door>engines/engine[3]/n1</fwd-cargo-door>
+		<ctr-cargo-door>engines/engine[3]/n2</ctr-cargo-door>
+		<aft-cargo-door>engines/engine[3]/rpm</aft-cargo-door>
+	</params>
 	<!-- Landing gear -->
 	<model>
 		<name>Nose gear</name>
@@ -817,7 +821,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>CargoDoorCtr</object-name>
-		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<property alias="/params/ctr-cargo-door" />
 		<factor>1</factor>
 		<offset-m>0</offset-m>
 		<axis>
@@ -832,7 +836,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorCtr</object-name>
-		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<property alias="/params/ctr-cargo-door" />
 		<factor>20</factor>
         <axis>
             <x1-m>-6.19349</x1-m>
@@ -847,7 +851,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>CargoDoorAft</object-name>
-		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<property alias="/params/aft-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -874,7 +878,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorAft</object-name>
-		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<property alias="/params/aft-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
