@@ -3,25 +3,12 @@
 ##
 ## Engine simulation module
 ##
-# GE CF34-8C5		CRJ700 (705), CRJ900, CRJ 900 NextGen
-# GE CF34-8C5A1		CRJ1000 NextGen
-# GE CF34-8C5B1		CRJ700 NextGen
-#
-# GE CF34-8C
-# dry weight			2,408 lb (1,092 kg) - 2,600 lb (1,200 kg) / 1125 kg
-# Thrust at see level	13,790 lbf (61.3 kN) - 14,510 lbf (64.5 kN)
-# Thrust to weight		5.3 : 1
-# Pressure ratio at max 28:1
-# bypass ratio			5:1
-# specific fuel cons.   0.68 (lb /h /lbf) -> 9239.3 - 9866.8 lb/h or 2.566 - 2.741 lb/s
-# specific-fuel-consumption, which is calculated with kg/h/kN and data refers to TO --> max thrust
-#
+##
 
 var Engine = {};
 
 # Default fuel density (for YASim jets this is 6.72 lb/gal).
 Engine.FUEL_DENSITY = 6.72;
-Engine.FUEL_UNUSABLE = 62; #lbs
 
 # Returns fuel density.
 Engine.fuel_density = func
@@ -49,12 +36,12 @@ Engine.poll_fuel_tanks = func
         if (levelN != nil)
         {
             var level = levelN.getValue();
-            if (level != nil and level > Engine.FUEL_UNUSABLE) # and tank.getNode("selected",1).getBoolValue()
+            if (level != nil and level > 0 and tank.getNode("selected",1).getBoolValue())
             {
                 append(Engine.valid_fuel_tanks, tank);
             }
         }
-        setprop("/consumables/fuel/valid-tanks", size(Engine.valid_fuel_tanks));
+        setprop("/consumables/fuel/eng-valid-tanks", size(Engine.valid_fuel_tanks));
     }
 };
 
@@ -63,13 +50,14 @@ Engine.poll_fuel_tanks = func
 #
 #   n - index of APU: /engines/apu[n]
 #
-Engine.Apu = func(n) {
+Engine.Apu = func(n)
+{
     var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
     # Based on the fuel consumption of a 757 APU.
     apu.fuel_burn_pph = 200;
 	apu.eicas_door_msg = ["----", "CLSD", "OPEN"];
     apu.controls = { ecu : 0, on : 0, fire_ex : 0 };
-
+	
     apu.controls.ecu_node = props.globals.getNode("/controls/APU[" ~ n ~ "]/electronic-control-unit", 1);
     apu.controls.ecu_node.setBoolValue(apu.controls.ecu);
 
@@ -86,7 +74,7 @@ Engine.Apu = func(n) {
     apu.door_node.setValue(apu.door);
     apu.eicas_door_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/door-msg", 1);
     apu.eicas_door_node.setValue(apu.eicas_door_msg[0]);
-
+	
     apu.running_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/running", 1);
     apu.running_node.setBoolValue(apu.running);
 
@@ -121,7 +109,7 @@ Engine.Apu = func(n) {
         apu.on_fire_node.setBoolValue(apu.on_fire);
         apu.serviceable_node.setBoolValue(apu.serviceable);
     };
-
+	
 	#-- for debugging
 	apu.controls_listener = func
 	{
@@ -131,7 +119,7 @@ Engine.Apu = func(n) {
 		print("APU fire ex " ~ apu.controls.fire_ex );
 	}
 	#setlistener("/controls/APU", apu.controls_listener, 1, 2);
-
+	
 	#-- for debugging
 	apu.state_listener = func
 	{
@@ -140,9 +128,9 @@ Engine.Apu = func(n) {
 		print("APU running " ~ apu.running);
 		print("APU rpm " ~ apu.rpm );
 		print("APU egt " ~ apu.egt );
-	}
+	}	
 	#setlistener("/engines/apu", apu.state_listener, 1, 2);
-
+	
 	#-- spin up --
 	apu.start = func
 	{
@@ -153,14 +141,14 @@ Engine.Apu = func(n) {
 			interpolate(apu.egt_node, 400, 4, 517,3.5, 468,2, 485,1.5, 415,9, 384,4);
 		}
 	}
-
+	
 	#-- spin down --
 	apu.stop = func
 	{
 		read_props();
         if (!apu.controls.on)
         {
-			#print("APU off");
+			print("APU off");
 			#apu.running = 0; # done by rpm listener
 			#-- spin down (20s) --
 			interpolate(apu.rpm_node, 0, 20 * apu.rpm / 100);
@@ -182,9 +170,9 @@ Engine.Apu = func(n) {
 				interpolate(apu.egt_node, outside_temperature, cooling_time);
 			}
         }
-#        write_props();
+#        write_props();	
 	}
-
+	
     apu.update = func
     {
         read_props();
@@ -204,7 +192,7 @@ Engine.Apu = func(n) {
 #        write_props();
     };
 
-#-- set listeners for rare events, e.g. not necessary to poll in the update loop
+#-- set listeners for rare events, e.g. not necessary to poll in the update loop	
 
 	# APU master switch (ECU = electronic control unit)
 	setlistener(apu.controls.ecu_node, func (node)
@@ -224,21 +212,21 @@ Engine.Apu = func(n) {
 			apu.controls.on_node.setBoolValue(apu.controls.on);
 		}
 	});
-
+	
 	setlistener(apu.controls.on_node, func (node)
 	{
         if (node.getBoolValue())
 			apu.start();
-		else
+		else 
 			apu.stop();
 	});
-
-	setlistener(apu.on_fire_node, func (node)
+	
+	setlistener(apu.on_fire_node, func (node) 
 	{
 		if (node.getBoolValue())
             apu.serviceable_node.setBoolValue(0);
-	});
-
+	});	
+		
 	setlistener(apu.controls.fire_ex_node, func(node)
 	{
         if (node.getBoolValue())
@@ -247,8 +235,8 @@ Engine.Apu = func(n) {
             apu.serviceable_node.setBoolValue(0);
         }
 	});
-
-	#-- monitor RPM to set running (available) flag;
+	
+	#-- monitor RPM to set running (available) flag; 
 	var rpm_timer = 0;
 	setlistener(apu.rpm_node, func(node)
 	{
@@ -264,7 +252,7 @@ Engine.Apu = func(n) {
 			if (rpm_timer == 0)
 			{
 				timer = 1;
-				settimer(func
+				settimer(func 
 				{
 					apu.running_node.setBoolValue(1);
 					rpm_timer=0;
@@ -272,7 +260,7 @@ Engine.Apu = func(n) {
 			}
 		}
 	});
-
+	
 	setlistener(apu.door_node, func(node)
 	{
 		var door = node.getValue();
@@ -291,130 +279,146 @@ Engine.Apu = func(n) {
 #
 Engine.Jet = func(n)
 {
-    var jet = {serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
-    jet.fdm_throttle_idle = 0.01;
+    var jet = {};
+    jet.n1_max_start = 5.21;
+    jet.fdm_throttle_idle = 0.02;
 
-    jet.controls = {cutoff: 0, fire_ex: 0, reverser_arm: 0, reverser_cmd: 0, starter: 0, thrust_mode: 0, throttle: 0};
+    jet.controls = {};
 
+    jet.controls.cutoff = 0;
     jet.controls.cutoff_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/cutoff", 1);
     jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
 
+    jet.controls.fire_ex = 0;
     jet.controls.fire_ex_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/fire-bottle-discharge", 1);
     jet.controls.fire_ex_node.setBoolValue(jet.controls.fire_ex);
 
+    jet.controls.reverser_arm = 0;
     jet.controls.reverser_arm_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-armed", 1);
     jet.controls.reverser_arm_node.setBoolValue(jet.controls.reverser_arm);
 
+    jet.controls.reverser_cmd = 0;
     jet.controls.reverser_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-cmd", 1);
     jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
 
+    jet.controls.starter = 0;
     jet.controls.starter_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/starter", 1);
     jet.controls.starter_node.setBoolValue(jet.controls.starter);
 
+    jet.controls.thrust_mode = 0;
     jet.controls.thrust_mode_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/thrust-mode", 1);
     jet.controls.thrust_mode_node.setIntValue(jet.controls.thrust_mode);
 
+    jet.controls.throttle = 0;
     jet.controls.throttle_node = props.globals.getNode("/fcs/throttle-cmd-norm[" ~ n ~ "]", 1);
     jet.controls.throttle_node.setValue(jet.controls.throttle);
 
+    jet.fdm_throttle = 0;
     jet.fdm_throttle_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/throttle-lever", 1);
+
+    jet.fdm_reverser = 0;
     jet.fdm_reverser_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser", 1);
+
+    jet.n1 = 0;
     jet.n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm", 1);
-    jet.n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm2", 1);
+
+    jet.fdm_n1 = 0;
     jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
-    jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
 
     jet.fuel_flow_gph = 0;
     jet.fuel_flow_gph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow-gph", 1);
+
     jet.fuel_flow_pph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow_pph", 1);
 
+    jet.out_of_fuel = 0;
     jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
-    jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
-	jet.running_node.setBoolValue(jet.running);
+
+    jet.running = 0;
+    jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running", 1);
+
+    jet.on_fire = 0;
     jet.on_fire_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/on-fire", 1);
     jet.on_fire_node.setBoolValue(jet.on_fire);
+
+    jet.serviceable = 1;
     jet.serviceable_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/serviceable", 1);
     jet.serviceable_node.setBoolValue(jet.serviceable);
 
-
-	#instant on
-	jet.on = func
-	{
-		jet.controls.cutoff = 0;
-		jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
-		jet.n1 = jet.fdm_n1;
-		jet.n2 = jet.fdm_n2;
-        jet.n1_node.setValue(jet.n1);
-        jet.n2_node.setValue(jet.n2);
-		jet.running = 1;
-        jet.running_node.setBoolValue(jet.running);
-		jet.controls.starter = 0;
-        jet.controls.starter_node.setBoolValue(jet.controls.starter);
-	};
-
-    jet.update = func
+    var read_props = func
     {
-		jet.serviceable = jet.serviceable_node.getBoolValue();
-		jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
-        jet.fdm_n1 = jet.fdm_n1_node.getValue();
-        jet.fdm_n2 = jet.fdm_n2_node.getValue();
-        jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
         jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
+        jet.controls.fire_ex = jet.controls.fire_ex_node.getBoolValue();
+        jet.controls.reverser_arm = jet.controls.reverser_arm_node.getBoolValue();
+        jet.controls.reverser_cmd = jet.controls.reverser_cmd_node.getBoolValue();
         jet.controls.starter = jet.controls.starter_node.getBoolValue();
+        jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
         jet.controls.throttle = jet.controls.throttle_node.getValue();
-		jet.running = jet.running_node.getBoolValue();
-
-        var time_delta = getprop_safe("sim/time/delta-sec");
-		# possible states: 
-		# off/spin down
-		# starting
-		# running
-		if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
-		
-		if (jet.running) {
-			jet.controls.starter = 0;
-			jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
-			jet.n1 = jet.fdm_n1;
-			jet.n2 = jet.fdm_n2;
-		}
-		elsif (jet.serviceable and !jet.out_of_fuel and jet.controls.starter and jet._has_bleed_air()) {
-			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
-			if (jet.n2 > 25 and jet.controls.cutoff) jet.controls.starter = 0;
-			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
-			if (jet.n1 >= jet.fdm_n1) {
-				jet.running = 1;
-				jet.controls.starter = 0;
-			}
-		}
-		else {
-			#shutdown: N1 25->0 ~15s; N2 60
-            jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
-			if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
-			else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
-            jet.fdm_throttle = 0;
-		}
-
-		jet.running_node.setBoolValue(jet.running);
+        jet.fdm_n1 = jet.fdm_n1_node.getValue();
+        jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
+        jet.on_fire = jet.on_fire_node.getBoolValue();
+        jet.serviceable = jet.serviceable_node.getBoolValue();
+    };
+    var write_props = func
+    {
+        jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
         jet.controls.starter_node.setBoolValue(jet.controls.starter);
         jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
+       # jet.fdm_reverser_node.setBoolValue(jet.fdm_reverser);
         jet.n1_node.setValue(jet.n1);
-        jet.n2_node.setValue(jet.n2);
         jet.fuel_flow_gph_node.setValue(jet.fuel_flow_gph);
         jet.fuel_flow_pph_node.setValue(jet.fuel_flow_gph * Engine.fuel_density());
+        jet.running_node.setBoolValue(jet.running);
+        jet.on_fire_node.setBoolValue(jet.on_fire);
+        jet.serviceable_node.setBoolValue(jet.serviceable);
     };
 
+    
+    jet.update = func
+    {
+        read_props();
+
+        var time_delta = getprop_safe("sim/time/delta-sec");
+        if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)
+        {
+            jet.running = 0;
+            jet.n1 = math.max(jet.n1 - 8 * time_delta, 0);
+            jet.fdm_throttle = 0;
+        }
+        elsif (jet.running)
+        {
+            jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle)
+                               * jet.controls.throttle;
+            jet.n1 = jet.fdm_n1;
+            jet.controls.starter = 0;
+        }
+        elsif (jet.controls.starter)
+        {
+			if (jet._has_bleed_air())
+			{
+				jet.n1 = math.min(jet.n1 + 4 * time_delta, jet.fdm_n1);
+				if (jet.n1 >= jet.fdm_n1) jet.running = 1;
+            }
+        }
+        else
+        {
+            jet.running = 0;
+            jet.n1 = math.max(jet.n1 - 8 * time_delta, 0);
+            jet.fdm_throttle = 0;
+        }
+
+        write_props();
+    };
+	
     jet.toggle_reversers = func
     {
 		print("Engine toggle_reversers");
-        jet.controls.throttle = jet.controls.throttle_node.getValue();
-        jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
+		read_props();
         if (jet.controls.throttle == 0 and jet.controls.thrust_mode == 0)
         {
             jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
         }
-        jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
-	};
+		write_props();
+    };
 
 
     jet._has_bleed_air = func
@@ -423,7 +427,7 @@ Engine.Jet = func(n)
 		var apu_rpm = getprop_safe("/engines/apu/rpm");
 		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");
 		var eng2_rpm = getprop_safe("/engines/engine[1]/rpm");
-		#print("Bleed source " ~ bleed_source~" a:"~apu_rpm~" 1:"~eng1_rpm~" 2:"~eng2_rpm);
+		#print("Bleed source " ~ bleed_source);
         # both engines
         if (bleed_source == 0) return eng1_rpm > 20 or eng2_rpm > 20;
         # right engine
@@ -436,8 +440,8 @@ Engine.Jet = func(n)
         return 0;
     }
 
-#-- set listeners for rare events, e.g. not necessary to poll in the update loop
-	setlistener(jet.on_fire_node, func (v)
+#-- set listeners for rare events, e.g. not necessary to poll in the update loop	
+	setlistener(jet.on_fire_node, func (v) 
 	{
 		print("Engine on fire listener");
 		if (v.getBoolValue())
@@ -445,8 +449,8 @@ Engine.Jet = func(n)
 			print("Engine " ~ n ~ " on fire!");
             jet.serviceable_node.setBoolValue(0);
         }
-	},0,0);
-
+	},0,0);	
+		
 	setlistener(jet.controls.fire_ex_node, func(v)
 	{
 		print("Engine fire ex listener");
@@ -466,6 +470,6 @@ Engine.Jet = func(n)
         else
             jet.fdm_reverser_node.setBoolValue(0);
 	},0,0);
-
+		
     return jet;
 };

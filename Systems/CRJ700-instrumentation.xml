@@ -29,174 +29,174 @@ file, these values will be used (they are hardcoded).
 <PropertyList>
 
     <adf>
-		<name>adf</name>
-		<number>0</number>
-	</adf>
+    <name>adf</name>
+    <number>0</number>
+    </adf>
     <adf>
-		<name>adf</name>
-		<number>1</number>
-	</adf>
+    <name>adf</name>
+    <number>1</number>
+    </adf>
 
     <airspeed-indicator>
-		<name>airspeed-indicator</name>
-		<number>0</number>
-		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</airspeed-indicator>
+    <name>airspeed-indicator</name>
+    <number>0</number>
+    <total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </airspeed-indicator>
     <airspeed-indicator>
-		<name>airspeed-indicator</name>
-		<number>1</number>
-		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</airspeed-indicator>
+    <name>airspeed-indicator</name>
+    <number>1</number>
+    <total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </airspeed-indicator>
     <airspeed-indicator>
-		<name>airspeed-indicator</name>
-		<number>2</number>
-		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</airspeed-indicator>
+    <name>airspeed-indicator</name>
+    <number>2</number>
+    <total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </airspeed-indicator>
 
     <altimeter>
-		<name>altimeter</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>0</quantum>
-		<tau>0</tau>
-	</altimeter>
+    <name>altimeter</name>
+    <number>0</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    <quantum>0</quantum>
+    <tau>0</tau>
+    </altimeter>
     <altimeter>
-		<name>altimeter</name>
-		<number>1</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>0</quantum>
-		<tau>0</tau>
-	</altimeter>
+    <name>altimeter</name>
+    <number>1</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    <quantum>0</quantum>
+    <tau>0</tau>
+    </altimeter>
     <altimeter>
-		<name>altimeter</name>
-		<number>2</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>0</quantum>
-		<tau>0</tau>
-	</altimeter>
+    <name>altimeter</name>
+    <number>2</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    <quantum>0</quantum>
+    <tau>0</tau>
+    </altimeter>
 
     <attitude-indicator>
-		<name>attitude-indicator</name>
-		<number>0</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</attitude-indicator>
+    <name>attitude-indicator</name>
+    <number>0</number>
+    <suction>/systems/vacuum/suction-inhg</suction>
+    </attitude-indicator>
     <attitude-indicator>
-		<name>attitude-indicator</name>
-		<number>1</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</attitude-indicator>
+    <name>attitude-indicator</name>
+    <number>1</number>
+    <suction>/systems/vacuum/suction-inhg</suction>
+    </attitude-indicator>
     <attitude-indicator>
-		<name>attitude-indicator</name>
-		<number>2</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</attitude-indicator>
+    <name>attitude-indicator</name>
+    <number>2</number>
+    <suction>/systems/vacuum/suction-inhg</suction>
+    </attitude-indicator>
 
     <clock>
-		<name>clock</name>
-		<number>0</number>
-	</clock>
+    <name>clock</name>
+    <number>0</number>
+    </clock>
 
     <dme>
-		<name>dme</name>
-		<number>0</number>
-	</dme>
+    <name>dme</name>
+    <number>0</number>
+    </dme>
     <dme>
-		<name>dme</name>
-		<number>1</number>
-	</dme>
+    <name>dme</name>
+    <number>1</number>
+    </dme>
 
     <marker-beacon>
-		<name>marker-beacon</name>
-		<number>0</number>
-	</marker-beacon>
+    <name>marker-beacon</name>
+    <number>0</number>
+    </marker-beacon>
 
     <heading-indicator>
-		<name>heading-indicator</name>
-		<number>0</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</heading-indicator>
+    <name>heading-indicator</name>
+    <number>0</number>
+    <suction>/systems/vacuum/suction-inhg</suction>
+    </heading-indicator>
     <heading-indicator>
-		<name>heading-indicator</name>
-		<number>1</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</heading-indicator>
+    <name>heading-indicator</name>
+    <number>1</number>
+    <suction>/systems/vacuum/suction-inhg</suction>
+    </heading-indicator>
 
     <altimeter>
-		<name>encoder</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>0</quantum>
-		<tau>0</tau>
-	</altimeter>
+    <name>encoder</name>
+    <number>0</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    <quantum>0</quantum>
+    <tau>0</tau>
+    </altimeter>
 
     <magnetic-compass>
-		<name>magnetic-compass</name>
-		<number>0</number>
-	</magnetic-compass>
+    <name>magnetic-compass</name>
+    <number>0</number>
+    </magnetic-compass>
 
     <nav-radio>
-		<name>nav</name>
-		<number>0</number>
-	</nav-radio>
+    <name>nav</name>
+    <number>0</number>
+    </nav-radio>
     <nav-radio>
-		<name>nav</name>
-		<number>1</number>
-	</nav-radio>
+    <name>nav</name>
+    <number>1</number>
+    </nav-radio>
 
     <transponder>
-		<name>transponder</name>
-		<number>0</number>
-		<mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
-	</transponder>
+    <name>transponder</name>
+    <number>0</number>
+    <mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
+    </transponder>
 
     <vertical-speed-indicator>
-		<name>vertical-speed-indicator</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</vertical-speed-indicator>
+    <name>vertical-speed-indicator</name>
+    <number>0</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </vertical-speed-indicator>
     <vertical-speed-indicator>
-		<name>vertical-speed-indicator</name>
-		<number>1</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</vertical-speed-indicator>
+    <name>vertical-speed-indicator</name>
+    <number>1</number>
+    <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </vertical-speed-indicator>
 
     <radar-altimeter>
-		<name>radar-altimeter</name>
-		<number>0</number>
-	</radar-altimeter>
+    <name>radar-altimeter</name>
+    <number>0</number>
+    </radar-altimeter>
     <radar-altimeter>
-		<name>radar-altimeter</name>
-		<number>1</number>
-	</radar-altimeter>
+    <name>radar-altimeter</name>
+    <number>1</number>
+    </radar-altimeter>
 
     <gps>
-		<name>gps</name>
-		<number>0</number>
-	</gps>
+    <name>gps</name>
+    <number>0</number>
+    </gps>
 
     <navigation-display>
-		<name>nd</name>
-		<number>0</number>
-		<symbols include="/Aircraft/Instruments/nav-display.xml" />
-	</navigation-display>
+    <name>nd</name>
+    <number>0</number>
+    <symbols include="/Aircraft/Instruments/nav-display.xml" />
+    </navigation-display>
 
     <radar>
-		<name>radar</name>
-		<number>0</number>
-	</radar>
+    <name>radar</name>
+    <number>0</number>
+    </radar>
 
     <tcas>
-		<name>tcas</name>
-		<number>0</number>
-	</tcas>
+    <name>tcas</name>
+    <number>0</number>
+    </tcas>
 
     <mk-viii>
-		<name>mk-viii</name>
-		<number>0</number>
-	</mk-viii>
+    <name>mk-viii</name>
+    <number>0</number>
+    </mk-viii>
 
 	<comm-radio>
 		<name>comm</name>

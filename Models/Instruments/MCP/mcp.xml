@@ -12,28 +12,20 @@
 		<green>0.871</green>
 		<blue>0.427</blue>
 	</panel-marking-emit>
-	<button-press>0.005</button-press>
+
 	<!-- Visible only within 1/2 km -->
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>25</max-m>
+		<max-m>500</max-m>
 	</animation>
 
 	<animation>
 		<type>select</type>
-		<object-name>1/2BANKOn</object-name>
-		<object-name>ALTOn</object-name>
-		<object-name>APENGOn</object-name>
-		<object-name>APPROn</object-name>
-		<object-name>FDOn</object-name>
-		<object-name>HDGOn</object-name>
-		<object-name>NAVOn</object-name>
-		<object-name>SPEEDOn</object-name>
-		<object-name>VSOn</object-name>
+		<object-name>NeedsPower</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/DC/outputs/efis</property>
+				<property>systems/electrical/outputs/efis</property>
 				<value>15</value>
 			</greater-than-equals>
 		</condition>
@@ -50,8 +42,8 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property alias="../../../../params/powerN" />
-				<value>103</value>
+				<property>systems/electrical/outputs/panel-lights</property>
+				<value>15</value>
 			</greater-than-equals>
 		</condition>
 		<emission>
@@ -108,14 +100,14 @@
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/nav[0]/radials/selected-deg</property>
-				<property>instrumentation/nav[0]/heading-deg</property>
+				<property>instrumentation/nav[0]/radials/actual-deg</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CRS1Knb</object-name>
-		<object-name>CRS1KnbFace</object-name>
+		<!--<object-name>CRS1KnbFace</object-name>-->
 		<property>instrumentation/nav[0]/radials/selected-deg</property>
 		<factor>2</factor>
 		<axis>
@@ -175,14 +167,14 @@
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/nav[1]/radials/selected-deg</property>
-				<property>instrumentation/nav[1]/heading-deg</property>
+				<property>instrumentation/nav[1]/radials/actual-deg</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CRS2Knb</object-name>
-		<object-name>CRS2KnbFace</object-name>
+		<!--<object-name>CRS2KnbFace</object-name>-->
 		<property>instrumentation/nav[1]/radials/selected-deg</property>
 		<factor>2</factor>
 		<axis>
@@ -207,40 +199,7 @@
 				<command>property-toggle</command>
 				<property>controls/autoflight/flight-director/engage</property>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/lateral-mode</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/vertical-mode</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/flight-director/engage-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>FD</object-name>
-		<property>controls/autoflight/flight-director/engage-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -260,30 +219,7 @@
 				<command>property-toggle</command>
 				<property>controls/autoflight/autopilot/engage</property>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/autopilot/engage-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/autopilot/engage-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>APENG</object-name>
-		<property>controls/autoflight/autopilot/engage-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -335,43 +271,16 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/vertical-mode</property>
-				<value>5</value>
+				<command>property-toggle</command>
+				<property>controls/autoflight/autothrottle-engage</property>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/autothrottle-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/autothrottle-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>SPEED</object-name>
-		<property>controls/autoflight/autothrottle-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
 		<object-name>SPEEDOn</object-name>
 		<condition>
-			<equals>
-				<property>controls/autoflight/vertical-mode</property>
-				<value>5</value>
-			</equals>
+			<property>controls/autoflight/autothrottle-engage</property>
 		</condition>
 	</animation>
 
@@ -392,7 +301,7 @@
 				</condition>
 				<property>controls/autoflight/speed-select</property>
 				<step>1</step>
-				<max>340</max>
+				<max>350</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -404,7 +313,7 @@
 				</condition>
 				<property>controls/autoflight/mach-select</property>
 				<step>0.01</step>
-				<max>0.83</max>
+				<max>1</max>
 			</binding>
 		</action>
 		<action>
@@ -421,7 +330,7 @@
 				</condition>
 				<property>controls/autoflight/speed-select</property>
 				<step>-1</step>
-				<min>125</min>
+				<min>0</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -433,11 +342,10 @@
 				</condition>
 				<property>controls/autoflight/mach-select</property>
 				<step>-0.01</step>
-				<min>0.4</min>
+				<min>0</min>
 			</binding>
 		</action>
-		<hovered>
-			<binding>
+		<hovered><binding>
 				<condition>
 					<equals>
 						<property>controls/autoflight/speed-mode</property>
@@ -460,8 +368,7 @@
 				<tooltip-id>SPD</tooltip-id>
 				<label>SPEED: MA %.2f</label>
 				<property>controls/autoflight/mach-select</property>
-			</binding>
-		</hovered>
+		</binding></hovered>
 	</animation>
 	<animation>
 		<type>rotate</type>
@@ -519,40 +426,12 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage</property>
-				<value>1</value>				
-			</binding>
-			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
 				<value>3</value>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/appr-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/appr-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>APPR</object-name>
-		<property>controls/autoflight/appr-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -572,40 +451,12 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage</property>
-				<value>1</value>				
-			</binding>
-			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
 				<value>1</value>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/hdg-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/hdg-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>HDG</object-name>
-		<property>controls/autoflight/hdg-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -692,40 +543,12 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage</property>
-				<value>1</value>				
-			</binding>
-			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/lateral-mode</property>
 				<value>2</value>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/nav-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/nav-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>NAV</object-name>
-		<property>controls/autoflight/nav-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -750,30 +573,7 @@
 				<value>15</value>
 				<value>30</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/bank-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/bank-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>1/2BANK</object-name>
-		<property>controls/autoflight/bank-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -793,40 +593,12 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage</property>
-				<value>1</value>				
-			</binding>
-			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vertical-mode</property>
 				<value>1</value>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/alt-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/alt-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>ALT</object-name>
-		<property>controls/autoflight/alt-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -850,7 +622,7 @@
 				<command>property-adjust</command>
 				<property>controls/autoflight/altitude-select</property>
 				<step>100</step>
-				<max>45000</max>
+				<max>50000</max>
 			</binding>
 		</action>
 		<action>
@@ -861,7 +633,7 @@
 				<command>property-adjust</command>
 				<property>controls/autoflight/altitude-select</property>
 				<step>-100</step>
-				<min>100</min>
+				<min>0</min>
 			</binding>
 		</action>
 		<hovered><binding>
@@ -875,7 +647,7 @@
 		<type>rotate</type>
 		<object-name>ALTKnb</object-name>
 		<object-name>ALTKnbFace</object-name>
-		<property>controls/autoflight/altitude-select</property>
+		<property>autopilot/settings/target-altitude-ft</property>
 		<factor>0.045</factor>
 		<axis>
 			<x>-1</x>
@@ -896,40 +668,12 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/flight-director/engage</property>
-				<value>1</value>				
-			</binding>
-			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vertical-mode</property>
 				<value>2</value>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/vs-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/autoflight/vs-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>VS</object-name>
-		<property>controls/autoflight/vs-pressed</property>
-		<factor alias="../../button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -971,7 +715,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>100</step>
-				<max>4000</max>
+				<max>9000</max>
 			</binding>
 		</action>
 		<action>
@@ -1000,7 +744,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>-100</step>
-				<min>-4000</min>
+				<min>-9000</min>
 			</binding>
 		</action>
 		<hovered><binding>

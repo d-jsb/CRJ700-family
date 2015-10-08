@@ -20,7 +20,7 @@
 
 		<flight-model>yasim</flight-model>
 		<aero>CRJ1000-EuroLite</aero>
-
+        <variant-of>CRJ1000</variant-of>
 		<model>
 			<path>Aircraft/CRJ700-family/Models/CRJ1000.xml</path>
 			<variant type="int">1</variant>

@@ -402,7 +402,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">PASSENGER DOOR</text>
+		<text type="string">Passenger door</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -413,18 +413,6 @@
 				<property>sim/model/door-positions/pax-left/position-norm</property>
 				<value>0</value>
 			</greater-than>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">0</priority>
-		<text type="string">EMER PWR ONLY</text>
-		<color>
-			<red alias="../../../colors/red/red" />
-			<green alias="../../../colors/red/green" />
-			<blue alias="../../../colors/red/blue" />
-		</color>
-		<condition>
-			<property>systems/AC/system[5]/value</property>
 		</condition>
 	</message>
 
@@ -528,7 +516,7 @@
 	</message-->
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">GEN 1 OFF</text>
+		<text type="string">Gen 1 off</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -545,7 +533,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">GEN 2 OFF</text>
+		<text type="string">Gen 2 off</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -559,99 +547,7 @@
 				</not>
 			</and>
 		</condition>
-	</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">APU GEN OFF</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<and>
-				<property>engines/APU/running</property>
-				<not>
-					<property>controls/electric/APU-generator</property>
-				</not>
-			</and>
-		</condition>
 	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC BUS 1</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[1]/value</property></not>	
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC BUS 2</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[2]/value</property></not>	
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC ESS BUS</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[3]/value</property></not>	
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC SERV BUS</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[4]/value</property></not>	
-		</condition>
-	</message>
-
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC 1 AUTOXFER</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[1]/serviceable</property></not>	
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AC 2 AUTOXFER</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<not><property>systems/AC/system[2]/serviceable</property></not>	
-		</condition>
-	</message>
-	
-	
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">GLD not armed</text>
@@ -690,7 +586,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">FWD Service door</text>
+		<text type="string">Service door</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -703,67 +599,6 @@
 			</greater-than>
 		</condition>
 	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AV BAY DOOR</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<greater-than>
-				<property>sim/model/door-positions/av-bay/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
-		</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">FWD CARGO DOOR</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<greater-than>
-				<property>sim/model/door-positions/fwd-cargo/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
-	</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">CTR CARGO DOOR</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<greater-than>
-				<property>sim/model/door-positions/ctr-cargo/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
-	</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">AFT CARGO DOOR</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<greater-than>
-				<property>sim/model/door-positions/aft-cargo/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
-	</message>	
-
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">Yaw damper</text>
@@ -783,171 +618,5 @@
 			</and>
 		</condition>
 	</message>
-	<!-->Hydraulic</!-->
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD EDP 1A</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[0]/pump-a-running</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD EDP 2A</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[1]/pump-a-running</property>
-				<value>2</value>
-			</equals>					
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD PUMP 1B</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[0]/pump-b-running</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD PUMP 2B</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[1]/pump-b-running</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD PUMP 3A</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[2]/pump-a-running</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD PUMP 3B</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>systems/hydraulic/system[2]/pump-b-running</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD 1 LO PRESS</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<less-than>
-				<property>systems/hydraulic/system[0]/value</property>
-				<value>1800</value>
-			</less-than>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD 2 LO PRESS</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<less-than>
-				<property>systems/hydraulic/system[1]/value</property>
-				<value>1800</value>
-			</less-than>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD 3 LO PRESS</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<less-than>
-				<property>systems/hydraulic/system[2]/value</property>
-				<value>1800</value>
-			</less-than>
-		</condition>
-	</message>	
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD SOV 1 OPEN</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<and>
-				<property>controls/hydraulic/system[0]/pump-a</property>
-				<property>engines/engine[0]/on-fire</property>
-			</and>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">HYD SOV 2 OPEN</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<and>
-				<property>controls/hydraulic/system[1]/pump-a</property>
-				<property>engines/engine[1]/on-fire</property>
-			</and>
-		</condition>
-	</message>
-	
+
 </PropertyList>

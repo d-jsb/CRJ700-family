@@ -11,52 +11,52 @@
 	<reference>
 		<type>int</type>
 		<index type="int">0</index>
-		<property>systems/DC/outputs/landing-lights[0]</property>
+		<property>systems/electrical/outputs/landing-lights[0]</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">1</index>
-		<property>systems/DC/outputs/landing-lights[1]</property>
+		<property>systems/electrical/outputs/landing-lights[1]</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">2</index>
-		<property>systems/DC/outputs/landing-lights[2]</property>
+		<property>systems/electrical/outputs/landing-lights[2]</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">3</index>
-		<property>systems/DC/outputs/nav-lights</property>
+		<property>systems/electrical/outputs/nav-lights</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">4</index>
-		<property>systems/AC/outputs/cabin-lights</property>
+		<property>systems/electrical/outputs/cabin</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">5</index>
-		<property>systems/DC/outputs/taxi-lights</property>
+		<property>systems/electrical/outputs/taxi-lights</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">6</index>
-		<property>systems/DC/outputs/wing-lights</property>
+		<property>systems/electrical/outputs/wing-lights</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">7</index>
-		<property>systems/AC/outputs/logo-lights</property>
+		<property>systems/electrical/outputs/logo-lights</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">8</index>
-		<property>systems/DC/outputs/beacon</property>
+		<property>systems/electrical/outputs/beacon</property>
 	</reference>
 	<reference>
 		<type>int</type>
 		<index type="int">9</index>
-		<property>systems/DC/outputs/strobe</property>
+		<property>systems/electrical/outputs/strobe</property>
 	</reference>
 	<!-- dual control-shared instruments -->
 	<reference>
