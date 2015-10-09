@@ -302,11 +302,11 @@
 			</entry>
 			<entry>
 				<ind>0.05</ind>
-				<dep>0.05</dep>
+				<dep>0.07</dep>
 			</entry>
 			<entry>
 				<ind>1</ind>
-				<dep>0.05</dep>
+				<dep>0.07</dep>
 			</entry>
 		</interpolation>
 		<axis>
@@ -333,7 +333,7 @@
 			</entry>
 			<entry>
 				<ind>1</ind>
-				<dep>-35</dep>
+				<dep>-33</dep>
 			</entry>
 		</interpolation>
 		<center>
