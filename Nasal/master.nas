@@ -5,14 +5,8 @@
 var getprop_safe = func(node)
 {
     var value = getprop(node);
-    if (typeof(value) == "nil")
-    {
-        return 0;
-    }
-    else
-    {
-        return value;
-    }
+    if (typeof(value) == "nil") return 0;
+    else return value;
 };
 
 var Loop = func(interval, update)
@@ -27,23 +21,16 @@ var Loop = func(interval, update)
         {
             loop.update();
         }
-        settimer(func
-                 {
-                     loop.loop(thisTimerId);
-                 }, loop.interval);
+        settimer(func {loop.loop(thisTimerId);}, loop.interval);
     };
+	
     loop.start = func
     {
         timerId += 1;
-        settimer(func
-                 {
-                     loop.loop(timerId);
-                 }, 0);
+        settimer(func {loop.loop(timerId);}, 0);
     };
-    loop.stop = func
-    {
-        timerId += 1;
-    };
+	
+    loop.stop = func {timerId += 1;};
     return loop;
 };
 
@@ -72,44 +59,48 @@ var wipers = [
                  "/systems/electrical/outputs/wiper[1]")
 ];
 
+
+
 # Update loops.
-var fast_loop = Loop(0, func
-                     {
-                         if (!is_slave)
-                         {
-                             # Engines and APU.
-                             CRJ700.Engine.poll_fuel_tanks();
-                             #CRJ700.Engine.poll_bleed_air();
-                             apu.update();
-                             engines[0].update();
-                             engines[1].update();
-                         }
-                         # Electrical.
-                         update_electrical();
+var fast_loop = Loop(0, func {
+	if (!is_slave)
+	{
+		# Engines and APU.
+		CRJ700.Engine.poll_fuel_tanks();
+		#CRJ700.Engine.poll_bleed_air();
+		apu.update();
+		engines[0].update();
+		engines[1].update();
+	}
+	# Electrical.
+	update_electrical();
 
-                         # Instruments.
-                         eicas_messages_page1.update();
-                         eicas_messages_page2.update();
+	# Instruments.
+	eicas_messages_page1.update();
+	eicas_messages_page2.update();
 
-                         # Model.
-                         wipers[0].update();
-                         wipers[1].update();
-                     });
-var slow_loop = Loop(3, func
-                     {
-                         # Electrical.
-                         rat1.update();
+	# Model.
+	wipers[0].update();
+	wipers[1].update();
+	hydraulics[0].update();
+	hydraulics[1].update();
+	hydraulics[2].update();
+});
 
-                         # Instruments.
-                         update_tat;
+var slow_loop = Loop(3, func {
+	# Electrical.
+	rat1.update();
 
-                         # Multiplayer.
-                         update_copilot_ints();
+	# Instruments.
+	update_tat;
 
-                         # Model.
-                         update_lightmaps();
-                         update_pass_signs();
-                     });
+	# Multiplayer.
+	update_copilot_ints();
+
+	# Model.
+	update_lightmaps();
+	update_pass_signs();
+});
 
 # When the sim is ready, start the update loops and create the crossfeed valve.
 var gravity_xflow = {};
@@ -130,30 +121,46 @@ var startup = func
     startid += 1;
     var id = startid;
     setprop("controls/electric/battery-switch", 1);
+    setprop("controls/lighting/nav-lights", 1);
+    setprop("controls/lighting/beacon", 1);
     setprop("controls/pneumatic/bleed-source", 2);
     setprop("controls/APU/electronic-control-unit", 1);
     setprop("controls/APU/off-on", 1);
-    setprop("controls/engines/engine[0]/cutoff", 0);
-    setprop("controls/engines/engine[1]/cutoff", 0);
     settimer(func
     {
         if (id == startid)
         {
+			setprop("controls/electric/engine[0]/generator", 1);
+			setprop("controls/electric/engine[1]/generator", 1);
+			setprop("controls/electric/APU-generator", 1);
+			setprop("controls/engines/engine[0]/cutoff", 0);
+			setprop("controls/engines/engine[1]/cutoff", 0);
+            setprop("/consumables/fuel/tank[0]/selected", 1);
+            setprop("/consumables/fuel/tank[1]/selected", 1);
             setprop("/controls/engines/engine[0]/starter", 1);
-            setprop("/controls/engines/engine[1]/starter", 1);
-            setprop("controls/electric/engine[0]/generator", 1);
-            setprop("controls/electric/engine[1]/generator", 1);
-            settimer(func
-            {
-                if (id == startid)
-                {
-                    setprop("controls/APU/off-on", 0);
-					setprop("controls/APU/electronic-control-unit", 0);
-                    #setprop("controls/electric/battery-switch", 0);
-                }
+			settimer(func
+			{
+				if (id == startid)
+				{
+					setprop("/controls/engines/engine[1]/starter", 1);
+					settimer(func
+					{
+						if (id == startid)
+						{
+							setprop("controls/APU/off-on", 0);
+							#setprop("controls/APU/electronic-control-unit", 0);
+							#setprop("controls/electric/battery-switch", 0);
+							setprop("controls/lighting/taxi-lights", 1);
+							setprop("controls/hydraulic/system[0]/pump-b", 2);
+							setprop("controls/hydraulic/system[1]/pump-b", 2);
+							setprop("controls/hydraulic/system[2]/pump-b", 2);
+							setprop("controls/hydraulic/system[2]/pump-a", 1);							
+						}
+					}, 8);
+				}
             }, 7);
         }
-    }, 21);
+    }, 22);
 };
 var shutdown = func
 {
@@ -178,6 +185,9 @@ setlistener("sim/model/start-idling", func(v)
 ## Instant start for tutorials and whatnot
 var instastart = func
 {
+	setprop("/consumables/fuel/tank[0]/selected", 1);
+	setprop("/consumables/fuel/tank[1]/selected", 1);
+    setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
     setprop("controls/engines/engine[0]/cutoff", 0);
@@ -186,6 +196,11 @@ var instastart = func
     setprop("controls/engines/engine[1]/cutoff", 0);
     setprop("/controls/engines/engine[1]/starter", 1);
     setprop("engines/engine[1]/rpm", 25);
+
+	setprop("controls/hydraulic/system[0]/pump-b", 2);
+	setprop("controls/hydraulic/system[1]/pump-b", 2);
+	setprop("controls/hydraulic/system[2]/pump-b", 2);
+	setprop("controls/hydraulic/system[2]/pump-a", 1);							
 };
 
 ## Prevent the gear from being retracted on the ground
@@ -256,6 +271,7 @@ var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbin
 ## Aircraft-specific dialogs
 var dialogs = {
     autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
+    doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", "Aircraft/CRJ700-family/Systems/doors-dlg.xml"),
     radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", "Aircraft/CRJ700-family/Systems/radio-stack-dlg.xml"),
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),

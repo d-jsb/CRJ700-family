@@ -552,7 +552,7 @@
 		<name>Left elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorL</object-name>
-		<property>controls/flight/elevator</property>
+		<property>fcs/elevator-cmd-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>18.97</x1-m>
@@ -567,7 +567,7 @@
 		<name>Right elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorR</object-name>
-		<property>controls/flight/elevator</property>
+		<property>fcs/elevator-cmd-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>17.601</x1-m>

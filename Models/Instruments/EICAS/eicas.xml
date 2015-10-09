@@ -9,6 +9,36 @@
 
 	<params>
 		<page>instrumentation/eicas/page</page>
+		<hyd-sym-size>0.004</hyd-sym-size>
+		<hyd-lines-charsize>0.006</hyd-lines-charsize>
+		<disp-x>0.0005</disp-x>
+		<temperature1-y>-0.0425</temperature1-y>
+		<temperature3-y>-0.004</temperature3-y>
+		<temperature2-y>0.032</temperature2-y>
+		<temperature-z>0.061</temperature-z>
+		<quantity1-y>-0.040</quantity1-y>
+		<quantity3-y>-0.002</quantity3-y>
+		<quantity2-y>0.033</quantity2-y>
+		<quantity-z>0.041</quantity-z>
+		<pressure-br3-y>0.0</pressure-br3-y>
+		<pressure-br2-y>0.0357</pressure-br2-y>
+		<pressure-br-z>-0.002</pressure-br-z>
+
+		<pressure1-y>-0.042</pressure1-y>
+		<pressure3-y>0</pressure3-y>
+		<pressure2-y>0.042</pressure2-y>
+		<pressure-z>-0.028</pressure-z>
+
+		<col1-y>-0.042</col1-y>
+		<col2-y>0</col2-y>
+		<col3-y>0.042</col3-y>
+		<row1-z>-0.0428</row1-z>
+		<row2-z>-0.049</row2-z>
+		<row3-z>-0.055</row3-z>
+		<row4-z>-0.061</row4-z>
+		<row5-z>-0.067</row5-z>
+		<row6-z>-0.073</row6-z>
+		<row7-z>-0.079</row7-z>
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
 	</params>
 
@@ -168,8 +198,8 @@
 		<object-name>Symbols2</object-name>	
 	</animation>
 	<animation>
-		<name>Page3Text</name>
-		<object-name>Page 3 title</object-name>
+		<name>PageACText</name>
+		<object-name>PageACTitle</object-name>
 		<object-name>Service configuration</object-name>
 		<object-name>Service bus</object-name>
 		<object-name>Bus 1</object-name>
@@ -185,7 +215,7 @@
 		<object-name>External power amperage</object-name>
 	</animation>
 	<animation>
-		<name>Page3Obj</name>
+		<name>PageACObj</name>
 		<object-name>ElecAPUGen</object-name>
 		<object-name>ElecBus1</object-name>
 		<object-name>ElecBus2</object-name>
@@ -198,14 +228,98 @@
 		<object-name>ElecSeg4</object-name>
 		<object-name>ElecSeg5</object-name>
 		<object-name>ElecServBus</object-name>
-		<object-name>Symbols3</object-name>	
+		<object-name>SymbolsAC</object-name>	
+	</animation>
+	<animation>
+		<name>PageDCObj</name>
+		<object-name>DCBackground</object-name>
+	</animation>
+	<animation>
+		<name>PageDCText</name>
+		<object-name>PageDCTitle</object-name>
+	</animation>
+	<animation>
+		<name>PageDoorsObj</name>
+		<object-name>DoorBackground</object-name>
+		<object-name>DoorAftCargo</object-name>
+		<object-name>DoorAvionic</object-name>
+		<object-name>DoorBackground</object-name>
+		<object-name>DoorCTRCargo</object-name>
+		<object-name>DoorEmerL1</object-name>
+		<object-name>DoorEmerL2</object-name>
+		<object-name>DoorEmerR1</object-name>
+		<object-name>DoorEmerR2</object-name>
+		<object-name>DoorFwdCargo</object-name>
+		<object-name>DoorPassenger</object-name>
+		<object-name>DoorService</object-name>		
+	</animation>
+	<animation>
+		<name>PageDoorsText</name>
+		<object-name>PageDoorsTitle</object-name>
+	</animation>
+	<animation>
+		<name>PageHydraulicObj</name>
+		<object-name>HydraulicBackground</object-name>
+		<object-name>HydSOV1</object-name>
+		<object-name>HydSOV2</object-name>
+		<object-name>HydPump1A</object-name>
+		<object-name>HydPump1B</object-name>
+		<object-name>HydPump2A</object-name>
+		<object-name>HydPump2B</object-name>
+		<object-name>HydPump3A</object-name>
+		<object-name>HydPump3B</object-name>
+	</animation>
+	<animation>
+		<name>PageHydraulicText</name>
+		<object-name>PageHydraulicTitle</object-name>
+		<object-name>HydTemperature1</object-name>
+		<object-name>HydTemperature2</object-name>
+		<object-name>HydTemperature3</object-name>
+		<object-name>HydQuantity1</object-name>
+		<object-name>HydQuantity2</object-name>
+		<object-name>HydQuantity3</object-name>
+		<object-name>HydIBbrakes</object-name>
+		<object-name>HydOBbrakes</object-name>
+		<object-name>HydPressure1</object-name>
+		<object-name>HydPressure2</object-name>
+		<object-name>HydPressure3</object-name>
+
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+
+		<object-name>HydSpoileronOB</object-name>
+		<object-name>HydSpoileronIB</object-name>
+		<object-name>HydGndSpoilerIB</object-name>
+
+		<object-name>HydFltSpoilerOB</object-name>
+		<object-name>HydFltSpoilerIB</object-name>
+		<object-name>HydGear</object-name>
+		
+		<object-name>HydGndSpoilerOB</object-name>
+		<object-name>HydGearAlt</object-name>
+		<object-name>HydNWS</object-name>
+
+		<object-name>HydReverserL</object-name>
+		<object-name>HydReverserR</object-name>
 	</animation>
 
 	<animation>
 		<name>LCD</name>
 		<object-name>Page1Obj</object-name>
 		<object-name>Page2Obj</object-name>
-		<object-name>Page3Obj</object-name>
+		<object-name>PageACObj</object-name>
+		<object-name>PageDCObj</object-name>
+		<object-name>PageDoorsObj</object-name>
+		<object-name>PageHydraulicObj</object-name>
 		<object-name>Screen</object-name>
 	</animation>
 	<!-- Visible only within 1/2 km -->
@@ -1413,7 +1527,7 @@
 	<!-- End page 2 text -->
 	<!-- Begin page 3 text -->
 	<text>
-		<name>Page 3 title</name>
+		<name>PageACTitle</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
@@ -1703,6 +1817,1437 @@ APU</text>
 		</font-resolution>
 	</text>
 	<!-- End page 3 text -->
+	<!-- Begin page 4 text -->
+	<text>
+		<name>PageDCTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DC ELECTRICAL</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- End page 4 text -->
+	<!-- Begin page 5 text -->
+	<text>
+		<name>PageDoorsTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>DOORS</text>
+		<offsets>
+			<x-m>0.0003</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- End page 5 text -->
+	<!-- Begin page 6 text -->
+	<text>
+		<name>PageHydraulicTitle</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>HYDRAULIC</text>
+		<offsets>
+			<x-m>0.0003</x-m>
+			<y-m>0</y-m>
+			<z-m>0.079</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<!-- temperature -->
+ 	<text>
+		<name>HydTemperature1</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[0]/temperature-degc</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/temperature1-y" />
+			<z-m alias="../../../params/temperature-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydTemperature3</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[2]/temperature-degc</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/temperature3-y" />
+			<z-m alias="../../../params/temperature-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydTemperature2</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[1]/temperature-degc</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/temperature2-y" />
+			<z-m alias="../../../params/temperature-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydTemperature1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[0]/temperature-degc</property>
+				<value>96</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydTemperature2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[1]/temperature-degc</property>
+				<value>96</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydTemperature3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[2]/temperature-degc</property>
+				<value>96</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+ 	<!-- hyd quantity -->
+	<text>
+		<name>HydQuantity1</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[0]/quantity-percent</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/quantity1-y" />
+			<z-m alias="../../../params/quantity-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydQuantity3</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[2]/quantity-percent</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/quantity3-y" />
+			<z-m alias="../../../params/quantity-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydQuantity2</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[1]/quantity-percent</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/quantity2-y" />
+			<z-m alias="../../../params/quantity-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydQuantity1</object-name>
+		<condition>
+			<or>
+				<less-than-equals>
+					<property>systems/hydraulic/system[0]/quantity-percent</property>
+					<value>45</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>systems/hydraulic/system[0]/quantity-percent</property>
+					<value>85</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydQuantity2</object-name>
+		<condition>
+			<or>
+				<less-than-equals>
+					<property>systems/hydraulic/system[1]/quantity-percent</property>
+					<value>45</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>systems/hydraulic/system[1]/quantity-percent</property>
+					<value>85</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydQuantity3</object-name>
+		<condition>
+			<or>
+				<less-than-equals>
+					<property>systems/hydraulic/system[2]/quantity-percent</property>
+					<value>45</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>systems/hydraulic/system[2]/quantity-percent</property>
+					<value>85</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydTemperature1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[0]/temperature-degc</property>
+				<value>96</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<!-- hyd pressure -->
+	<text>
+		<name>HydPressure1</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[0]/pressure-psi</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/pressure1-y" />
+			<z-m alias="../../../params/pressure-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydPressure3</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[2]/pressure-psi</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/pressure3-y" />
+			<z-m alias="../../../params/pressure-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydPressure2</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[1]/pressure-psi</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/pressure2-y" />
+			<z-m alias="../../../params/pressure-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<value>3200</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure1</object-name>
+		<condition>
+			<less-than-equals>
+				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<value>1800</value>
+			</less-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<value>3200</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure2</object-name>
+		<condition>
+			<less-than-equals>
+				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<value>1800</value>
+			</less-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<value>3200</value>
+			</greater-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>HydPressure3</object-name>
+		<condition>
+			<less-than-equals>
+				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<value>1800</value>
+			</less-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	<!-- hyd brakes -->
+	<text>
+		<name>HydIBbrakes</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[2]/pressure-psi</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/pressure-br3-y" />
+			<z-m alias="../../../params/pressure-br-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydOBbrakes</name>
+		<type>number-value</type>
+		<property>systems/hydraulic/system[1]/pressure-psi</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/pressure-br2-y" />
+			<z-m alias="../../../params/pressure-br-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydIBbrakes</object-name>
+		<condition>
+			<less-than-equals>
+				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<value>1800</value>
+			</less-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<animation>
+		<type>material</type>
+		<object-name>HydOBbrakes</object-name>
+		<condition>
+			<less-than-equals>
+				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<value>1800</value>
+			</less-than-equals>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>
+	
+	<!-- Hyd sys txt rows-->
+	<text>
+		<name>HydRudder1</name>
+		<type>literal</type>
+		<text>RUDDER</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row1-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydRudder3</name>
+		<type>literal</type>
+		<text>RUDDER</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row1-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydRudder2</name>
+		<type>literal</type>
+		<text>RUDDER</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row1-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/rudder</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
+	<text>
+		<name>HydElevator1</name>
+		<type>literal</type>
+		<text>ELEVATOR</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row2-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydElevator3</name>
+		<type>literal</type>
+		<text>ELEVATOR</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row2-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydElevator2</name>
+		<type>literal</type>
+		<text>ELEVATOR</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row2-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/elevator</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
+	<text>
+		<name>HydAileron1</name>
+		<type>literal</type>
+		<text>L AIL</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row3-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydAileron3</name>
+		<type>literal</type>
+		<text>L AIL R</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row3-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>HydAileron2</name>
+		<type>literal</type>
+		<text>AIL R</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row3-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<animation>
+		<type>material</type>
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/aileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+
+	<text>
+		<name>HydSpoileronOB</name>
+		<type>literal</type>
+		<text>OB SPLRON</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row4-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<animation>
+		<type>material</type>
+		<object-name>HydSpoileronOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-spoileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydGndSpoilerIB</name>
+		<type>literal</type>
+		<text>IB GND SPLRS</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row4-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGndSpoilerIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydSpoileronIB</name>
+		<type>literal</type>
+		<text>IB SPLRON</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row4-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydSpoileronIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-spoileron</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydFltSpoilerOB</name>
+		<type>literal</type>
+		<text>OB FLT SPLRS</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row5-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydFltSpoilerOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-flight-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydGear</name>
+		<type>literal</type>
+		<text>LNDG GEAR</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row5-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGear</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/landing-gear</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>	
+	<text>
+		<name>HydFltSpoilerIB</name>
+		<type>literal</type>
+		<text>IB FLT SPLRS</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row5-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydFltSpoilerIB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ib-flight-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+
+	<text>
+		<name>HydGndSpoilerOB</name>
+		<type>literal</type>
+		<text>OB GND SPLRS</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row6-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGndSpoilerOB</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydNWS</name>
+		<type>literal</type>
+		<text>N/W STEER</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col2-y" />
+			<z-m alias="../../../params/row6-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydNWS</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/nwsteering</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydGearAlt</name>
+		<type>literal</type>
+		<text>LG ALT EXT</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row6-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydGearAlt</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/landing-gear-alt</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<!-- reverser -->
+	<text>
+		<name>HydReverserL</name>
+		<type>literal</type>
+		<text>L REVERSER</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col1-y" />
+			<z-m alias="../../../params/row7-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydReverserL</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/left-reverser</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<text>
+		<name>HydReverserR</name>
+		<type>literal</type>
+		<text>REVERSER R</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size alias="../../params/hyd-lines-charsize" />
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<format>%3.f</format>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m alias="../../../params/col3-y" />
+			<z-m alias="../../../params/row7-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>material</type>
+		<object-name>HydReverserR</object-name>
+		<condition>
+			<property>systems/hydraulic/outputs/right-reverser</property>
+		</condition>
+		<ambient>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</diffuse>
+		<emission>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>	
+	</animation>		
+	<!-- End page 6 text -->
+	
 	<!-- Begin page 1 messages -->
 	<text>
 		<name>Page 1 message 1</name>
@@ -2882,7 +4427,7 @@ APU</text>
 		</emission>
 	</animation>
 	<!-- End page 2 messages -->
-
+	<!-- amber elements -->
 	<animation>
 		<type>material</type>
 		<object-name>Engine 1 oil pressure</object-name>
@@ -2897,6 +4442,26 @@ APU</text>
 		<object-name>Engine 2 extinguisher</object-name>
 		<object-name>APU extinguisher</object-name>
 		<object-name>Service configuration</object-name>
+		<object-name>HydRudder1</object-name>
+		<object-name>HydRudder2</object-name>
+		<object-name>HydRudder3</object-name>
+		<object-name>HydElevator1</object-name>
+		<object-name>HydElevator2</object-name>
+		<object-name>HydElevator3</object-name>
+		<object-name>HydAileron1</object-name>
+		<object-name>HydAileron2</object-name>
+		<object-name>HydAileron3</object-name>
+		<object-name>HydSpoileronOB</object-name>
+		<object-name>HydGndSpoilerIB</object-name>
+		<object-name>HydSpoileronIB</object-name>
+		<object-name>HydFltSpoilerOB</object-name>
+		<object-name>HydGear</object-name>
+		<object-name>HydFltSpoilerIB</object-name>
+		<object-name>HydGndSpoilerOB</object-name>
+		<object-name>HydNWS</object-name>
+		<object-name>HydGearAlt</object-name>
+		<object-name>HydReverserL</object-name>
+		<object-name>HydReverserR</object-name>
 		<ambient>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -2914,10 +4479,15 @@ APU</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
+	<!-- blue elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N1 TO/GA</object-name>
 		<object-name>N1 CLB</object-name>
+		<object-name>PageACTitle</object-name>
+		<object-name>PageDCTitle</object-name>
+		<object-name>PageDoorsTitle</object-name>
+		<object-name>PageHydraulicTitle</object-name>
 		<ambient>
 			<red alias="../../../colors/blue/red" />
 			<green alias="../../../colors/blue/green" />
@@ -2934,7 +4504,8 @@ APU</text>
 			<blue alias="../../../colors/blue/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
-	</animation>
+	</animation>	
+	<!-- green elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N11 text</object-name>
@@ -2966,6 +4537,17 @@ APU</text>
 		<object-name>APU generator amperage</object-name>
 		<object-name>Generator 2 amperage</object-name>
 		<object-name>External power amperage</object-name>
+		<object-name>HydTemperature1</object-name>
+		<object-name>HydTemperature2</object-name>
+		<object-name>HydTemperature3</object-name>
+		<object-name>HydQuantity1</object-name>
+		<object-name>HydQuantity2</object-name>
+		<object-name>HydQuantity3</object-name>
+		<object-name>HydPressure1</object-name>
+		<object-name>HydPressure2</object-name>
+		<object-name>HydPressure3</object-name>
+		<object-name>HydIBbrakes</object-name>
+		<object-name>HydOBbrakes</object-name>
 		<ambient>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -2983,6 +4565,7 @@ APU</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
+	<!-- white elements -->
 	<animation>
 		<type>material</type>
 		<object-name>N1</object-name>
@@ -3015,7 +4598,6 @@ APU</text>
 		<object-name>APU running</object-name>
 		<object-name>Engine 1 shut down</object-name>
 		<object-name>Engine 2 shut down</object-name>
-		<object-name>Page 3 title</object-name>
 		<object-name>Service bus</object-name>
 		<object-name>Bus 1</object-name>
 		<object-name>Bus 2</object-name>
@@ -3052,7 +4634,7 @@ APU</text>
 			</less-than>
 		</condition>
 	</animation>
-
+	<!-- page selectors -->	
 	<animation>
 		<type>select</type>
 		<object-name>Page1Obj</object-name>
@@ -3077,8 +4659,8 @@ APU</text>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Page3Obj</object-name>
-		<object-name>Page3Text</object-name>
+		<object-name>PageACObj</object-name>
+		<object-name>PageACText</object-name>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
@@ -3086,6 +4668,40 @@ APU</text>
 			</equals>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PageDCObj</object-name>
+		<object-name>PageDCText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>4</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PageDoorsObj</object-name>
+		<object-name>PageDoorsText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>5</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>PageHydraulicObj</object-name>
+		<object-name>PageHydraulicText</object-name>
+		<condition>
+			<equals>
+				<property alias="../../../../params/page" />
+				<value>6</value>
+			</equals>
+		</condition>
+	</animation>
+	<!-- controls  -->
 	<animation>
 		<type>pick</type>
 		<object-name>LeftControl</object-name>
@@ -3110,11 +4726,12 @@ APU</text>
 				<command>property-adjust</command>
 				<property alias="../../../../params/page" />
 				<step>1</step>
-				<max>3</max>
+				<max>6</max>
 			</binding>
 		</action>
 	</animation>
 
+	<!-- animations -->
 	<animation>
 		<type>rotate</type>
 		<object-name>N11</object-name>
@@ -3440,7 +5057,7 @@ APU</text>
 		<z-min>1</z-min>
 		<z-max>1</z-max>
 	</animation>
-
+	<!-- trim -->
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronTrim</object-name>
@@ -3486,6 +5103,7 @@ APU</text>
 		</center>
 	</animation>
 
+	<!-- APU -->
 	<animation>
 		<type>select</type>
 		<object-name>APU</object-name>
@@ -3547,7 +5165,7 @@ APU</text>
 			<z-m>-0.05301</z-m>
 		</center>
 	</animation>
-
+	<!-- AC -->
 	<animation>
 		<type>select</type>
 		<object-name>ElecBus1</object-name>
@@ -3748,6 +5366,159 @@ APU</text>
 		</condition>
 	</animation>
 
+	<!-- doors page	-->
+	<animation>
+		<type>select</type>
+		<object-name>DoorAftCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorAvionic</object-name>
+		<condition>
+			<property>sim/model/door-positions/avionic/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorCTRCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerL1</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l1/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerL2</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-l2/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerR1</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r1/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorEmerR2</object-name>
+		<condition>
+			<property>sim/model/door-positions/emer-r2/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorFwdCargo</object-name>
+		<condition>
+			<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DoorPassenger</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-left/position-norm</property>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>DoorService</object-name>
+		<condition>
+			<property>sim/model/door-positions/pax-right/position-norm</property>
+		</condition>
+	</animation>	
+	<!-- hydraulic page -->
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump1A</object-name>
+		<property>systems/hydraulic/system[0]/pump-a-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump1B</object-name>
+		<property>systems/hydraulic/system[0]/pump-b-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump2A</object-name>
+		<property>systems/hydraulic/system[1]/pump-a-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump2B</object-name>
+		<property>systems/hydraulic/system[1]/pump-b-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump3A</object-name>
+		<property>systems/hydraulic/system[2]/pump-a-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydPump3B</object-name>
+		<property>systems/hydraulic/system[2]/pump-b-on</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydSOV1</object-name>
+		<property>systems/hydraulic/system[0]/hyd-sov</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydSOV2</object-name>
+		<property>systems/hydraulic/system[1]/hyd-sov</property>
+		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
@@ -3781,7 +5552,7 @@ APU</text>
 		<object-name>N22</object-name>
 		<object-name>Symbols1</object-name>
 		<object-name>Symbols2</object-name>
-		<object-name>Symbols3</object-name>
+		<object-name>SymbolsAC</object-name>
 		<object-name>GearLInd</object-name>
 		<object-name>GearNInd</object-name>
 		<object-name>GearRInd</object-name>

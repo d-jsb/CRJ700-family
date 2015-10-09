@@ -300,7 +300,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<!-- FIXME: property here -->
 				</or>
 			</and>
 		</condition>
@@ -372,7 +372,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<!-- FIXME: property here -->
 				</or>
 			</and>
 		</condition>
@@ -566,7 +566,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<!-- FIXME: property  here -->
 				</or>
 			</and>
 		</condition>
@@ -673,14 +673,14 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/hyd-sov-cover-l</property>
+				<property>controls/hydraulic/system[0]/hyd-sov-cover</property>
 			</binding>
 		</action>
     </animation>
     <animation>
 		<type>rotate</type>
 		<object-name>HydSOVCoverL</object-name>
-		<property>controls/hydraulic/hyd-sov-cover-l</property>
+		<property>controls/hydraulic/system[0]/hyd-sov-cover</property>
 		<factor alias="../../cover-rotate-deg" />
 		<axis>
 			<x>0</x>
@@ -701,14 +701,14 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/hyd-sov-cover-r</property>
+				<property>controls/hydraulic/system[1]/hyd-sov-cover</property>
 			</binding>
 		</action>
     </animation>
     <animation>
 		<type>rotate</type>
 		<object-name>HydSOVCoverR</object-name>
-		<property>controls/hydraulic/hyd-sov-cover-r</property>
+		<property>controls/hydraulic/system[1]/hyd-sov-cover</property>
 		<factor alias="../../cover-rotate-deg" />
 		<axis>
 			<x>0</x>
@@ -731,7 +731,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/hyd-sov-l</property>
+				<property>controls/hydraulic/system[0]/hyd-sov-open</property>
 			</binding>
 		</action>
     </animation>
@@ -739,7 +739,9 @@
 		<type>translate</type>
 		<object-name>HydSOVBtnL</object-name>
 		<object-name>HydSOVLightL</object-name>
-		<property>controls/hydraulic/hyd-sov-l</property>
+		<condition>
+			<not><property>controls/hydraulic/system[0]/hyd-sov-open</property></not>
+		</condition>		
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -758,7 +760,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/hydraulic/hyd-sov-l</property>
+					<not><property>controls/hydraulic/system[0]/hyd-sov-open</property></not>
 				</or>					
 			</and>
 		</condition>
@@ -779,7 +781,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/hyd-sov-r</property>
+				<property>controls/hydraulic/system[1]/hyd-sov-open</property>
 			</binding>
 		</action>
     </animation>
@@ -787,7 +789,9 @@
 		<type>translate</type>
 		<object-name>HydSOVBtnR</object-name>
 		<object-name>HydSOVLightR</object-name>
-		<property>controls/hydraulic/hyd-sov-r</property>
+		<condition>
+			<not><property>controls/hydraulic/system[1]/hyd-sov-open</property></not>
+		</condition>		
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -806,7 +810,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/hydraulic/hyd-sov-r</property>
+					<not><property>controls/hydraulic/system[1]/hyd-sov-open</property></not>
 				</or>					
 			</and>
 		</condition>
@@ -1025,7 +1029,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<not><property>consumables/fuel/tank[0]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1097,7 +1101,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<!-- FIXME: property here -->
 				</or>					
 			</and>
 		</condition>
@@ -1169,7 +1173,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property for failed pump here -->
+					<not><property>consumables/fuel/tank[1]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1836,9 +1840,8 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-1B</property>
+				<property>controls/hydraulic/system[0]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1849,7 +1852,8 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-1B</property>
+				<property>controls/hydraulic/system[0]/pump-b</property>
+				<offset>-1</offset>
 				<wrap>0</wrap>
 				<value type="int">1</value>
 				<value type="int">0</value>
@@ -1860,7 +1864,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Hydraulic1Switch</object-name>
-		<property>controls/hydraulic/pump-1B</property>
+		<property>controls/hydraulic/system[0]/pump-b</property>
 		<interpolation>
 			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
 			<entry><ind>0</ind><dep>0</dep></entry>
@@ -1883,17 +1887,18 @@
 		<object-name>Hydraulic3ASwitch</object-name>
 		<action>
 			<button>0</button>
+			<button>1</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/pump-3A</property>
+				<property>controls/hydraulic/system[2]/pump-a</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>Hydraulic3ASwitch</object-name>
-		<property>controls/hydraulic/pump-3A</property>
+		<property>controls/hydraulic/system[2]/pump-a</property>
 		<factor alias="../../switch-rotate-deg" />
 		<axis>
 			<x>0</x>
@@ -1915,9 +1920,8 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-3B</property>
+				<property>controls/hydraulic/system[2]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1928,7 +1932,8 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-3B</property>
+				<property>controls/hydraulic/system[2]/pump-b</property>
+				<offset>-1</offset>
 				<wrap>0</wrap>
 				<value type="int">1</value>
 				<value type="int">0</value>
@@ -1939,7 +1944,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Hydraulic3BSwitch</object-name>
-		<property>controls/hydraulic/pump-3B</property>
+		<property>controls/hydraulic/system[2]/pump-b</property>
 		<interpolation>
 			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
 			<entry><ind>0</ind><dep>0</dep></entry>
@@ -1965,9 +1970,8 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-2B</property>
+				<property>controls/hydraulic/system[1]/pump-b</property>
 				<wrap>0</wrap>
-				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1978,8 +1982,9 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/hydraulic/pump-2B</property>
+				<property>controls/hydraulic/system[1]/pump-b</property>
 				<wrap>0</wrap>
+				<offset>-1</offset>
 				<value type="int">1</value>
 				<value type="int">0</value>
 				<value type="int">2</value>
@@ -1989,7 +1994,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Hydraulic2Switch</object-name>
-		<property>controls/hydraulic/pump-2B</property>
+		<property>controls/hydraulic/system[1]/pump-b</property>
 		<interpolation>
 			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
 			<entry><ind>0</ind><dep>0</dep></entry>

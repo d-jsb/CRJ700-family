@@ -29,7 +29,7 @@ var Battery = {
     new : func(swtch,vlt,amp,hr,chp,cha){
     m = { parents : [Battery] };
             m.switch = props.globals.getNode(swtch,1);
-            m.switch.setBoolValue(0);
+            #m.switch.setBoolValue(0);
             m.ideal_volts = vlt;
             m.ideal_amps = amp;
             m.amp_hours = hr;
@@ -79,7 +79,7 @@ var Alternator = {
     new : func (num,switch,gen_output,src,thr,vlt,amp){
         m = { parents : [Alternator] };
         m.switch =  props.globals.getNode(switch,1);
-        m.switch.setBoolValue(0);
+        #m.switch.setBoolValue(0);
         m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
         m.meter.setDoubleValue(0);
         m.gen_output =  props.globals.getNode(gen_output,1);

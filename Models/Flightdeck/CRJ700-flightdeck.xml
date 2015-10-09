@@ -417,6 +417,33 @@
 
     <animation>
 	<type>material</type>
+	<!--
+	<object-name>Furniture</object-name>
+	<object-name>MainPanel</object-name>
+	<object-name>Floor</object-name>
+	<object-name>Glareshield</object-name>
+	<object-name>GearLever_0</object-name>
+	<object-name>GearLever_1</object-name>
+	<object-name>LeftASIPlacard</object-name>
+	<object-name>LeftYoke</object-name>
+	<object-name>LeftYokeAP</object-name>
+	<object-name>LeftYokeBase</object-name>
+	<object-name>LeftYokeChecklist</object-name>
+	<object-name>PedestalTop</object-name>
+	<object-name>RightASIPlacard</object-name>
+	<object-name>RightYoke</object-name>
+	<object-name>RightYokeAP</object-name>
+	<object-name>RightYokeBase</object-name>
+	<object-name>RightYokeChecklist</object-name>
+	<object-name>Seats</object-name>
+	<object-name>Shell</object-name>
+	<object-name>SpeedbrakeLever</object-name>
+	<object-name>Tiller</object-name>
+	<object-name>TillerPanel</object-name>
+	<object-name>UpperPanel</object-name>
+	<object-name>Warnings</object-name>
+	<object-name>YokeFloorBases</object-name>
+	-->
 	<condition>
 	    <and>
 		<property>controls/lighting/dome</property>

@@ -926,7 +926,10 @@ Vertical modes:
 		<debug type="bool">false</debug>
 		<enable>
 			<condition>
-			<property>autopilot/internal/autoflight-engaged</property>
+				<and>
+					<property>autopilot/internal/autoflight-engaged</property>
+					<property>systems/hydraulic/outputs/elevator</property>
+				</and>
 			</condition>
 		</enable>
 		<input>
