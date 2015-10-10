@@ -33,6 +33,10 @@
 
 		<checklists include="Checklists/checklists.xml" />
 
+		<config>
+			<hide-welcome-msg type="bool">false</hide-welcome-msg>
+		</config>
+
 		<model>
 			<livery>
 				<file>Blank</file>
@@ -87,7 +91,6 @@
 				
 			</door-positions>
 			<sound-enabled type="bool">false</sound-enabled>
-			<hide-welcome-msg type="bool">false</hide-welcome-msg>
 		</model>
 
 		<instrumentation>
@@ -170,7 +173,7 @@
 			<path>/sim/aircraft-operator</path>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
-			<path>/sim/model/hide-welcome-msg</path>
+			<path>/sim/config/hide-welcome-msg</path>
 			<path>/sim/model/known-version</path>
 			<path>/sim/model/light-cones</path>
 			<path>/sim/model/yokes</path>
