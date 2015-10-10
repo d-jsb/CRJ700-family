@@ -15,55 +15,87 @@
 		<blue>0</blue>
 		<alpha>0.8</alpha>
 	</color>
-	<text>
-		<label>HDG_err 000.0 </label>
-		<property>autopilot/internal/heading-bug-error-deg</property>
-		<format>HDG_err %3.1f </format>
-		<live>true</live>
-		<color>
-			<red>0.9</red>
-			<green>0.4</green>
-			<blue>0.2</blue>
-			<alpha>1</alpha>
-		</color>
-	</text>
-	<text>
-		<label>t_roll -00.0 </label>
-		<property>autopilot/internal/target-roll-deg</property>
-		<format>t_roll %2.1f </format>
-		<live>true</live>
-		<color>
-			<red>0.9</red>
-			<green>0.4</green>
-			<blue>0.2</blue>
-			<alpha>1</alpha>
-		</color>
-	</text>
-	<text>
-		<label>bank -00.0 </label>
-		<property>instrumentation/attitude-indicator[0]/indicated-roll-deg</property>
-		<format>bank %2.1f </format>
-		<live>true</live>
-		<color>
-			<red>0.9</red>
-			<green>0.4</green>
-			<blue>0.2</blue>
-			<alpha>1</alpha>
-		</color>
-	</text>		
-	<text>
-		<label>a_cmd -0.000 </label>
-		<property>fcs/autopilot/aileron-cmd-norm</property>
-		<format>a_cmd %1.3f </format>
-		<live>true</live>
-		<color>
-			<red>0.9</red>
-			<green>0.4</green>
-			<blue>0.2</blue>
-			<alpha>1</alpha>
-		</color>
-	</text>	
-	
+	<group>
+		<layout>vbox</layout>
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label>HDG_err 000.0 </label>
+				<property>autopilot/internal/heading-bug-error-deg</property>
+				<format>HDG_err %3.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>t_roll -00.0 </label>
+				<property>autopilot/internal/target-roll-deg</property>
+				<format>t_roll %2.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>bank -00.0 </label>
+				<property>instrumentation/attitude-indicator[0]/indicated-roll-deg</property>
+				<format>bank %2.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>		
+			<text>
+				<label>a_cmd -0.000 </label>
+				<property>fcs/autopilot/aileron-cmd-norm</property>
+				<format>a_cmd %1.3f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+		</group>
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label>ref_deg -10.0 </label>
+				<property>autopilot/ref/roll-deg</property>
+				<format>ref_deg %2.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>ref_hdg -100 </label>
+				<property>autopilot/ref/roll-hdg</property>
+				<format>ref_hdg %3.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+		</group>
+	</group>
 	<text>
 		<label>| </label>
 		<color>
