@@ -554,8 +554,8 @@
 			<and>
 				<property>sim/current-view/internal</property>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
-					<value>15</value>
+					<property>systems/DC/outputs/rtu1</property>
+					<value>22</value>
 				</greater-than-equals>
 			</and>
 		</condition>

@@ -38,7 +38,7 @@
 		<object-name>LCD</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/outputs/standby-instrument</property>
+				<property>systems/DC/outputs/standby-instrument</property>
 				<value>15</value>
 			</greater-than-equals>
 		</condition>

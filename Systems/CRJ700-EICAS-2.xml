@@ -304,7 +304,31 @@
 			<property>controls/anti-ice/wing-heat</property>
 		</condition>
 	</message>
-
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 1 CLOSED</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>controls/hydraulic/system[0]/pump-a</property></not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">HYD SOV 2 CLOSED</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<not><property>controls/hydraulic/system[1]/pump-a</property></not>
+		</condition>
+	</message>
+	
 	<!-- Statuses -->
 	<message>
 		<priority type="int">1</priority>
@@ -326,6 +350,30 @@
 					<value>99</value>
 				</less-than>
 			</and>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">IDG 1 DISC</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/idg1-disc</property>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">IDG 2 DISC</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/idg2-disc</property>
 		</condition>
 	</message>
 	<message>
@@ -537,5 +585,45 @@
 			</not>
 		</condition>
 	</message>
-
+	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 1 AUTOXFER OFF</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer1</property>
+			</not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC 2 AUTOXFER OFF</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<not>
+				<property>controls/electric/auto-xfer2</property>
+			</not>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">AC ESS ALTN</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/ac-ess-xfer</property>
+		</condition>
+	</message>
 </PropertyList>
