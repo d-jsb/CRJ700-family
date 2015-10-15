@@ -8,6 +8,7 @@
 	<path>pfd.ac</path>
 
 	<params>
+		<powerN>/systems/DC/outputs/pfd1</powerN>
 		<indicated-pitch-deg>instrumentation/attitude-indicator/indicated-pitch-deg</indicated-pitch-deg>
 		<indicated-roll-deg>instrumentation/attitude-indicator/indicated-roll-deg</indicated-roll-deg>
 		<indicated-altitude-ft>instrumentation/altimeter/indicated-altitude-ft</indicated-altitude-ft>
@@ -34,9 +35,9 @@
 			<blue>0.145</blue>
 		</green>
 		<pink>
-			<red>0.984</red>
-			<green>0.616</green>
-			<blue>0.616</blue>
+			<red>0.9</red>
+			<green>0.440</green>
+			<blue>0.74</blue>
 		</pink>
 		<white>
 			<red>1</red>
@@ -100,7 +101,7 @@
 		<object-name>Autopilot 1/2 bank</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>autopilot/internal/bank-limit-deg</property>
 				<value>15</value>
 			</equals>
 		</condition>
@@ -130,7 +131,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -165,7 +166,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -200,7 +201,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -234,7 +235,7 @@
 		<object-name>Autopilot ALTS</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -263,7 +264,7 @@
 		<object-name>Autopilot VS</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>2</value>
 			</equals>
 		</condition>
@@ -292,7 +293,7 @@
 		<object-name>Autopilot APPR</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>3</value>
 			</equals>
 		</condition>
@@ -321,7 +322,7 @@
 		<object-name>Autopilot HDG</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -1087,10 +1088,10 @@ G</text>
 		<property alias="../../params/indicated-vertical-speed-fpm" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.4</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%04.1f</format>
+		<format>%04.0f</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06874</y-m>
@@ -1134,7 +1135,7 @@ G</text>
 		<object-name>Autopilot on</object-name>
 		<object-name>Autopilot IAS</object-name>
 		<object-name>Autopilot Mach</object-name>
-		<object-name>ADF1</object-name>
+		
 		<object-name>Radar altimeter</object-name>
 		<object-name>Radar altimeter (metric)</object-name>
 		<object-name>Vertical speed indicator</object-name>
@@ -1161,6 +1162,7 @@ G</text>
 		<object-name>Altitude setting</object-name>
 		<object-name>Speed knot setting</object-name>
 		<object-name>Speed mach setting</object-name>
+		<object-name>ADF1</object-name>
 		<ambient>
 			<red alias="../../../colors/pink/red" />
 			<green alias="../../../colors/pink/green" />
@@ -1280,7 +1282,7 @@ G</text>
 		<object-name>Off</object-name>
 		<condition>
 			<less-than>
-				<property>systems/electrical/outputs/efis</property>
+				<property alias="../../../../params/powerN" />
 				<value>15</value>
 			</less-than>
 		</condition>
@@ -1599,8 +1601,6 @@ G</text>
 		<type>rotate</type>
 		<object-name>HSI</object-name>
 		<object-name>HSIBug</object-name>
-		<object-name>ADF1Ptr</object-name>
-		<object-name>ADF2Ptr</object-name>
 		<object-name>NAVPtr</object-name>
 		<object-name>NAVTrack</object-name>
 		<property alias="../../params/indicated-heading-deg" />

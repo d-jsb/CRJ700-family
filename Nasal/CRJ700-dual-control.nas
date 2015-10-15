@@ -67,7 +67,7 @@ var pilot_send_TDM_properties =
 	"systems/electrical/outputs/efis",
 	# autoflight
 	"controls/autoflight/altitude-select",
-	"controls/autoflight/bank-angle-select",
+	"autopilot/internal/bank-limit-deg",
 	"controls/autoflight/heading-select",
 	"controls/autoflight/mach-select",
 	"controls/autoflight/speed-select",
@@ -94,10 +94,10 @@ var pilot_send_S_properties =
 	"controls/autoflight/yaw-damper[1]/engage",
 	"controls/autoflight/autothrottle-engage",
 	"controls/autoflight/disengage-pos-norm",
-	"controls/autoflight/lateral-mode",
+	"controls/autoflight/lat-mode",
 	"controls/autoflight/nav-mode",
 	"controls/autoflight/speed-mode",
-	"controls/autoflight/vertical-mode",
+	"controls/autoflight/vert-mode",
 	# flight controls
 	"controls/engines/engine[0]/thrust-mode",
 	"controls/engines/engine[1]/thrust-mode",

@@ -37,8 +37,8 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/outputs/panel-lights</property>
-				<value>15</value>
+				<property alias="../../../../params/powerN" />
+				<value>105</value>
 			</greater-than-equals>
 		</condition>
 		<emission>

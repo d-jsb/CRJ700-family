@@ -64,8 +64,8 @@
 		<desc alias="/input/keyboard/key[6]/desc" />
 	</key>
 	<key>
-		<name>Ctrl-S</name>
-		<desc alias="/input/keyboard/key[19]/desc" />
+		<name>Ctrl-T</name>
+		<desc alias="/input/keyboard/key[20]/desc" />
 	</key>
 	<key>
 		<name>Ctrl-A</name>
@@ -108,70 +108,32 @@
 		<desc alias="/input/keyboard/key[102]/desc" />
 	</key>
 
-	<text>Additional help is available in HTML format in the CRJ700-family/Docs/ folder.
+	<text>Please see the checklists! Additional help may be available in the CRJ700-family/Docs/ folder.
 
-_________Startup_________
-1. Battery switch ... on
-2. APU start/stop switch ... on
-3. Bleed air source ... APU
-4. Engine 1 thrust lever ... idle
-5. Engine 1 start sequence ... initiated
-6. Engine 2 thrust lever ... idle
-7. Engine 2 start sequence ... initiated
-8. APU start/stop switch ... off
-9. Engine 1 electric generator ... on
-10. Engine 2 electric generator ... on
-11. Battery switch ... off
-
-_________Takeoff_________
-1. Flaps/slats ... 8 or 20
-2. Landing lights ... on
-3. Engine thrust modes ... TO/GA
-
-_________Climb and cruise_________
-1. Engine thrust modes ... climb
-2. Autothrottle ... set
-Nominal cruise speed Mach 0.78 (0.80 for CRJ900)
-
-_________Approach and landing________
-1. Thrust reversers ... armed
-2. Flaps/slats ... 45
-Refer to V-speed chart for approach and flap extension speeds
-Remain below 250 knots below 10,000 feet at all times
-
-_________Shutdown_________
-1. Engine thrust levers ... shutoff
-2. Engine 1 electric generator ... off
-3. Engine 2 electric generator ... off
-4. Switch to external power
+Nominal cruise speed Mach 0.78 (0.80 for CRJ900). Refer to V-speed chart for approach and flap extension speeds. Remain below 250 knots below 10,000 feet at all times.
 
 _________V-speeds_________
-Gross wt  Flaps       Airspeed
-V1
-50,000.......8...........144 KIAS
-50,000.......20..........134 KIAS
-Vr
-50,000.......8...........144 KIAS
-50,000.......20..........135 KIAS
-V2
-50,000.......8...........154 KIAS
-50,000.......20..........143 KIAS
-Vref
+Gross wt  Flaps       V1             VR              V2
+50,000 .....  8  ....... 144 KIAS ... 144 KIAS ... 154 KIAS
+50,000 ..... 20 ....... 134 KIAS ... 135 KIAS ... 143 KIAS
+
+                            Vref
 59,000.......45..........125 KIAS
 61,000.......45..........128 KIAS
 73,000.......45..........141 KIAS
 77,000.......45..........145 KIAS
+
 Vmo               Mmo
 335 KIAS          0.85 Mach
 Va                Ma
 280 KIAS          0.85 Mach
 Vlo/Vle           Mlo/Mle
 220 KIAS          0.41 Mach
-Vfe
-1........................230 KIAS
-8........................230 KIAS
-20.......................230 KIAS
+
+Vfe (flaps extension max speed)
+1, 8, 20 ................230 KIAS
 30.......................185 KIAS
-45.......................170 KIAS</text>
+45.......................170 KIAS
+</text>
 
 </PropertyList>

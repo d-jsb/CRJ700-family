@@ -4,6 +4,9 @@
 <!-- Clock -->
 
 <PropertyList>
+	<params>
+		<powerN>systems/DC/outputs/clock1</powerN>
+	</params>
 
 	<path>clock.ac</path>
 
@@ -426,7 +429,7 @@
 			<and>
 				<property>sim/current-view/internal</property>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/clock</property>
+					<property alias="../../../../../params/powerN" />
 					<value>15</value>
 				</greater-than-equals>
 			</and>
