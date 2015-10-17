@@ -7,11 +7,25 @@
 		<name>Anti-ice Switches</name>
 		<value>ON below freezing</value>
 		<condition>
-			<and>
-				<property>/controls/anti-ice/wing-heat</property>
-				<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-				<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			</and>
+			<or>
+				<and>
+					<property>/controls/anti-ice/wing-heat</property>
+					<property>/controls/anti-ice/engine[0]/inlet-heat</property>
+					<property>/controls/anti-ice/engine[1]/inlet-heat</property>
+					<less-than>
+						<property>/environment/temperature-degc</property>
+						<value>0</value>
+					</less-than>
+				</and>
+				<equals>
+					<property>/environment/temperature-degc</property>
+					<value>0</value>
+				</equals>
+				<greater-than>
+					<property>/environment/temperature-degc</property>
+					<value>0</value>
+				</greater-than>					
+			</or>
 		</condition>
 		<binding>
 			<command>property-assign</command>
