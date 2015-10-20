@@ -364,11 +364,11 @@
 		<and>
 		    <property>controls/APU/off-on</property>
 		    <greater-than>
-			<property>engines/apu/rpm</property>
+			<property>engines/engine[2]/rpm</property>
 			<value>0</value>
 		    </greater-than>
 		    <less-than>
-			<property>engines/apu/rpm</property>
+			<property>engines/engine[2]/rpm</property>
 			<value>99</value>
 		    </less-than>
 		</and>
@@ -387,7 +387,7 @@
 	    <path>Aircraft/CRJ700-family/Sounds/apu_run.wav</path>
 	    <condition>
 		<greater-than-equals>
-		    <property>engines/apu/rpm</property>
+		    <property>engines/engine[2]/rpm</property>
 		    <value>99</value>
 		</greater-than-equals>
 	    </condition>
@@ -409,11 +409,11 @@
 			<property>controls/APU/off-on</property>
 		    </not>
 		    <greater-than>
-			<property>engines/apu/rpm</property>
+			<property>engines/engine[2]/rpm</property>
 			<value>0</value>
 		    </greater-than>
 		    <less-than>
-			<property>engines/apu/rpm</property>
+			<property>engines/engine[2]/rpm</property>
 			<value>99</value>
 		    </less-than>
 		</and>

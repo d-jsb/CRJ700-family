@@ -632,7 +632,8 @@ the APU generator, as it is no longer needed.</message>
 		<exit>
 			<condition>
 				<not>
-					<property>engines/apu/door-norm</property>
+					<!-- door position is saved in n1 -->
+					<property>engines/engine[2]/n1</property>
 				</not>
 			</condition>
 		</exit>

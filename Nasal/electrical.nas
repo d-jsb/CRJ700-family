@@ -457,7 +457,7 @@ var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
 
 acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2", "controls/electric/idg1-disc").addSwitch("/controls/electric/engine[0]/generator"));
 acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2", "controls/electric/idg2-disc").addSwitch("/controls/electric/engine[1]/generator"));
-acpc.addInput(APUGen.new(acpc, "apugen", "/engines/apu/rpm").addSwitch("/controls/electric/APU-generator"));
+acpc.addInput(APUGen.new(acpc, "apugen", "/engines/engine[2]/rpm").addSwitch("/controls/electric/APU-generator"));
 #acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
 acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-avail"));
 acpc.addInput(ADG.new(acpc).addSwitch("/controls/electric/ADG"));
