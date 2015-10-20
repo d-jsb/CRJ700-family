@@ -23,7 +23,13 @@
 		<min-m>0</min-m>
 		<max-m>5</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>NWSElements</name>
+		<object-name>NWS</object-name>
+		<object-name>Panel</object-name>
+	</animation>
+	
 	<animation>
 		<type>material</type>
 		<object-name>Markings</object-name>
@@ -39,7 +45,7 @@
 			<blue alias="../../../panel-marking-emit/blue" />
 			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
-	</animation>
+		</animation>
 
 	<animation>
 		<type>pick</type>

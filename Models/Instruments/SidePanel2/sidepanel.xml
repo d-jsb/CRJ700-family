@@ -24,7 +24,20 @@
 		<min-m>0</min-m>
 		<max-m>500</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>Sidepanel2Elements</name>
+		<object-name>Panel</object-name>
+		<object-name>DisplayLts</object-name>
+		<object-name>FloodLts</object-name>
+		<object-name>FloorLts</object-name>
+		<object-name>Markings</object-name>
+		<object-name>Panel</object-name>
+		<object-name>PanelLts</object-name>
+		<object-name>StallProtect</object-name>
+		<object-name>SwitchSockets</object-name>
+		<object-name>Wiper</object-name>
+	</animation>
 	<animation>
 		<type>material</type>
 		<object-name>Markings</object-name>
@@ -185,6 +198,7 @@
 		<object-name>Wiper</object-name>
 		<action>
 			<button>0</button>
+			<button>3</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>
@@ -195,6 +209,7 @@
 		</action>
 		<action>
 			<button>1</button>
+			<button>4</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>

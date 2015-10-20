@@ -19,7 +19,46 @@
 		<min-m>0</min-m>
 		<max-m>25</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>MCPElements</name>
+		<object-name>1/2BANK</object-name>
+		<object-name>ALT</object-name>
+		<object-name>ALTKnb</object-name>
+		<object-name>ALTKnbFace</object-name>
+		<object-name>APDISC</object-name>
+		<object-name>APENG</object-name>
+		<object-name>APPR</object-name>
+		<object-name>BC</object-name>
+		<object-name>CRS1Knb</object-name>
+		<object-name>CRS1KnbFace</object-name>
+		<object-name>CRS2Knb</object-name>
+		<object-name>CRS2KnbFace</object-name>
+		<object-name>FD</object-name>
+		<object-name>HDG</object-name>
+		<object-name>HDGKnb</object-name>
+		<object-name>HDGKnbFace</object-name>
+		<object-name>ModesOff</object-name>
+		<object-name>NAV</object-name>
+		<object-name>1/2BANKOn</object-name>
+		<object-name>ALTOn</object-name>
+		<object-name>APENGOn</object-name>
+		<object-name>APPROn</object-name>
+		<object-name>FDOn</object-name>
+		<object-name>HDGOn</object-name>
+		<object-name>NAVOn</object-name>
+		<object-name>NotImplemented</object-name>
+		<object-name>SPEEDOn</object-name>
+		<object-name>VSOn</object-name>
+		<object-name>Panel</object-name>
+		<object-name>SPEED</object-name>
+		<object-name>SPEEDKnb</object-name>
+		<object-name>SPEEDKnbFace</object-name>
+		<object-name>TURB</object-name>
+		<object-name>VS</object-name>
+		<object-name>VSKnb</object-name>
+		<object-name>XFR</object-name>
+	</animation>
 	<animation>
 		<type>select</type>
 		<object-name>1/2BANKOn</object-name>

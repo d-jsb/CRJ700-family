@@ -24,15 +24,39 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>1</blue>
-		</white>
+			</white>
 	</colors>
 
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>20</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>StandbyElements</name>
+		<object-name>AI</object-name>
+		<object-name>AltTape</object-name>
+		<object-name>GS</object-name>
+		<object-name>GSPtr</object-name>
+		<object-name>Horizon</object-name>
+		<object-name>ILS</object-name>
+		<object-name>ILSPtr</object-name>
+		<object-name>Roll</object-name>
+		<object-name>RollPtr</object-name>
+		<object-name>SpdPtr</object-name>
+		<object-name>SpdTape</object-name>
+		<object-name>BaroKnob</object-name>
+		<object-name>Bezel</object-name>
+		<object-name>CageBtn</object-name>
+		<object-name>CageBtnText</object-name>
+		<object-name>MinusBtn</object-name>
+		<object-name>MinusBtnText</object-name>
+		<object-name>PlusBtn</object-name>
+		<object-name>PlusBtnText</object-name>
+		<object-name>StdBtn</object-name>
+		<object-name>StdBtnText</object-name>
+		</animation>
 	<animation>
 		<type>material</type>
 		<object-name>LCD</object-name>

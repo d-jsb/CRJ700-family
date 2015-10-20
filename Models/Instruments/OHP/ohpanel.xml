@@ -38,7 +38,7 @@
     <animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>50</max-m>
 	</animation>
 	
     <animation>
@@ -57,7 +57,134 @@
 			<factor-prop>controls/lighting/panel-overhead-norm</factor-prop>
 		</emission>
 	</animation>
-	
+	<animation>
+		<name>OHPElementsEmit</name>
+		<object-name>ACAvailLight</object-name>
+		<object-name>ACCargoSwitch</object-name>
+		<object-name>ACEssXferLight</object-name>
+		<object-name>ACInUseLight</object-name>
+		<object-name>AITestLight</object-name>
+		<object-name>APUAvail</object-name>
+		<object-name>APUPumpFail</object-name>
+		<object-name>APUSOVFail</object-name>
+		<object-name>APUStarting</object-name>
+		<object-name>CONTLight</object-name>
+		<object-name>EmerDepressLight</object-name>
+		<object-name>Eng1StartLight</object-name>
+		<object-name>Eng1StopLight</object-name>
+		<object-name>Eng2StartLight</object-name>
+		<object-name>Eng2StopLight</object-name>
+		<object-name>HydSOVLightL</object-name>
+		<object-name>HydSOVLightR</object-name>
+		<object-name>IDG1Disc</object-name>
+		<object-name>IDG1Fault</object-name>
+		<object-name>IDG1TransferFail</object-name>
+		<object-name>IDG1TransferOff</object-name>
+		<object-name>IDG2Disc</object-name>
+		<object-name>IDG2Fault</object-name>
+		<object-name>IDG2TransferFail</object-name>
+		<object-name>IDG2TransferOff</object-name>
+		<object-name>LFuelINOP</object-name>
+		<object-name>LFuelOn</object-name>
+		<object-name>Markings</object-name>
+		<object-name>PackLFail</object-name>
+		<object-name>PackLManLight</object-name>
+		<object-name>PackLOff</object-name>
+		<object-name>PackRFail</object-name>
+		<object-name>PackRManLight</object-name>
+		<object-name>PackROff</object-name>
+		<object-name>PressContFault</object-name>
+		<object-name>PressContMan</object-name>
+		<object-name>RamAirLight</object-name>
+		<object-name>RFuelINOP</object-name>
+		<object-name>RFuelOn</object-name>
+		<object-name>XflowFail</object-name>
+		<object-name>XflowManLight</object-name>
+		<object-name>XflowOpen</object-name>
+		<object-name>XflowToLeftINOP</object-name>
+		<object-name>XflowToLeftOn</object-name>
+		<object-name>XflowToRightINOP</object-name>
+		<object-name>XflowToRightOn</object-name>
+	</animation>
+	<animation>
+		<name>OHPElements</name>
+		<object-name>ACBtn</object-name>
+		<object-name>ACEssXferBtn</object-name>
+		<object-name>ACFanSwitch</object-name>
+		<object-name>ACTempLKnob</object-name>
+		<object-name>ACTempLSwitch</object-name>
+		<object-name>ACTempRKnob</object-name>
+		<object-name>ACTempRSwitch</object-name>
+		<object-name>AICowlLSwitch</object-name>
+		<object-name>AICowlRSwitch</object-name>
+		<object-name>AIProbeLSwitch</object-name>
+		<object-name>AIProbeRSwitch</object-name>
+		<object-name>AITestBtn</object-name>
+		<object-name>AIWingSwitch</object-name>
+		<object-name>AIWndshldLSwitch</object-name>
+		<object-name>AIWndshldRSwitch</object-name>
+		<object-name>APUGenSwitch</object-name>
+		<object-name>APUPwrBtn</object-name>
+		<object-name>APUStartBtn</object-name>
+		<object-name>BatterySwitch</object-name>
+		<object-name>BeaconLightSwitch</object-name>
+		<object-name>BleedSourceKnob</object-name>
+		<object-name>BleedValveKnob</object-name>
+		<object-name>CabinPressKnob</object-name>
+		<object-name>CabinRateKnob</object-name>
+		<object-name>CONTBtn</object-name>
+		<object-name>CrossBleedKnob</object-name>
+		<object-name>DCSwitch</object-name>
+		<object-name>DomeLightSwitch</object-name>
+		<object-name>EmerDepCoverFrame</object-name>
+		<object-name>EmerDepCoverGlas</object-name>
+		<object-name>EmerDepressBtn</object-name>
+		<object-name>Eng1StartBtn</object-name>
+		<object-name>Eng1StopBtn</object-name>
+		<object-name>Eng2StartBtn</object-name>
+		<object-name>Eng2StopBtn</object-name>
+		<object-name>Gen1Switch</object-name>
+		<object-name>Gen2Switch</object-name>
+		<object-name>Hydraulic1Switch</object-name>
+		<object-name>Hydraulic2Switch</object-name>
+		<object-name>Hydraulic3ASwitch</object-name>
+		<object-name>Hydraulic3BSwitch</object-name>
+		<object-name>HydSOVBtnL</object-name>
+		<object-name>HydSOVBtnR</object-name>
+		<object-name>HydSOVCoverL</object-name>
+		<object-name>HydSOVCoverR</object-name>
+		<object-name>IDG1Btn</object-name>
+		<object-name>IDG1Cover</object-name>
+		<object-name>IDG1TransferBtn</object-name>
+		<object-name>IDG2Btn</object-name>
+		<object-name>IDG2Cover</object-name>
+		<object-name>IDG2TransferBtn</object-name>
+		<object-name>ISOLSwitch</object-name>
+		<object-name>LFuelBtn</object-name>
+		<object-name>LogoLightSwitch</object-name>
+		<object-name>NavLightSwitch</object-name>
+		<object-name>OverheadLightKnob</object-name>
+		<object-name>PackLBtn</object-name>
+		<object-name>PackLManBtn</object-name>
+		<object-name>PackRBtn</object-name>
+		<object-name>PackRManBtn</object-name>
+		<object-name>Panel_0</object-name>
+		<object-name>Panel_1</object-name>
+		<object-name>PressContBtn</object-name>
+		<object-name>RamAirBtn</object-name>
+		<object-name>RamAirCover</object-name>
+		<object-name>RFuelBtn</object-name>
+		<object-name>StandbyLightSwitch</object-name>
+		<object-name>StrobeLightSwitch</object-name>
+		<object-name>SwitchSocket_3</object-name>
+		<object-name>SwitchSockets</object-name>
+		<object-name>SwitchSockets_1</object-name>
+		<object-name>WingLightSwitch</object-name>
+		<object-name>XflowBtn</object-name>
+		<object-name>XflowManBtn</object-name>
+		<object-name>XflowToLeft</object-name>
+		<object-name>XflowToRight</object-name>		
+	</animation>
     <!-- Electrical power -->
     <animation>
 		<type>pick</type>
