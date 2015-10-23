@@ -15,6 +15,8 @@
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
 		<barometer>instrumentation/altimeter/setting-hpa</barometer>
 		<use-QNH>instrumentation/use-QNH</use-QNH>
+		<brg-src1>instrumentation/brg-src1</brg-src1>
+		<brg-src2>instrumentation/brg-src2</brg-src2>
 	</params>
 
 	<panel-marking-emit>
@@ -378,7 +380,56 @@
 			<property alias="../../../params/use-QNH" />
 		</condition>
 	</animation>
-
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BrgBtn1</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property alias="../../../../params/brg-src1" />
+				<value>FMS</value>
+				<value>VOR1</value>
+				<value>ADF1</value>
+				<value>OFF</value>
+			</binding>
+		</action>
+		<hovered><binding>
+				<command>set-tooltip</command>
+				<tooltip-id>BRGSRC1</tooltip-id>
+				<!--<mapping>heading</mapping>-->
+				<label>Brg1 Src: %s</label>
+				<property>instrumentation/brg-src1</property>
+		</binding></hovered>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BrgBtn2</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property alias="../../../../params/brg-src2" />
+				<value>FMS</value>
+				<value>VOR2</value>
+				<value>ADF2</value>
+				<value>OFF</value>
+			</binding>
+		</action>
+		<hovered><binding>
+				<command>set-tooltip</command>
+				<tooltip-id>BRGSRC2</tooltip-id>
+				<!--<mapping>heading</mapping>-->
+				<label>Brg2 Src: %s</label>
+				<property>instrumentation/brg-src2</property>
+		</binding></hovered>
+	</animation>
+	
+	
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
