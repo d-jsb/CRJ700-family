@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Taxi</title>
+	<item>
+		<name>Brakes</name>
+		<value>CHECK</value>
+	</item>
+	<item>
+		<name>Gyro</name>
+		<value>CHECK DURING TURNS</value>
+	</item>
+	<item>
+		<name>Turn Coordinator</name>
+		<value>CHECK DURING TURNS</value>
+	</item>
+</PropertyList>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Climb</title>
+	<item>
+		<name>Autopilot</name>
+		<value>ON</value>
+		<condition>
+			<property>/controls/autoflight/autopilot/engage</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/autoflight/autopilot/engage</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Landing Light</name>
+		<value>OFF ABOVE 10,000ft</value>
+		<condition>
+				<and>
+					<not><property>/controls/lighting/landing-lights[0]</property></not>
+					<not><property>/controls/lighting/landing-lights[1]</property></not>
+					<not><property>/controls/lighting/landing-lights[2]</property></not>
+					<greater-equal>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>10000</value>
+					</greater-equal>
+				</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Gear</name>
+		<value>UP</value>
+	</item>
+	<item>
+		<name>Flaps</name>
+		<value>RETRACT (fixme: speed)</value>
+	</item>
+	<item>
+		<name>FIXME</name>
+		<value>...</value>
+	</item>
+	
+</PropertyList>

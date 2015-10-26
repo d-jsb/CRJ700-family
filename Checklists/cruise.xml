@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Cruise</title>
+	<item>
+		<name>Passenger Signs</name>
+		<value>AS NEEDED</value>
+	</item>
+	<item>
+		<name>FIXME</name>
+		<value>...</value>
+	</item>
+</PropertyList>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>After start</title>
+	<item>
+		<name>Lights</name>
+		<value>As required</value>
+	</item>
+	<item>
+		<name>Anti-ice Switches</name>
+		<value>ON below freezing</value>
+	</item>
+	<item>
+		<name>Trim (check EICAS)</name>
+		<value>0 degree (50000 lbs)</value>
+		<value>0.5 degree nose up (70000 lbs)</value>
+	</item>
+	<item>
+		<name>Flight director</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>/controls/autoflight/flight-director/engage</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/autoflight/flight-director/engage</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Heading Hold</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>controls/autoflight/lateral-mode</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>controls/autoflight/lateral-mode</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Heading Bug</name>
+		<value>SET for departure</value>
+	</item>
+	<item>
+		<name>Altitude Hold</name>
+		<value>ON</value>
+		<condition>
+			<equals>
+				<property>controls/autoflight/vertical-mode</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>controls/autoflight/vertical-mode</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Altitude bug</name>
+		<value>SET for departure</value>
+	</item>
+	<item>
+		<name>Nav Radios</name>
+		<value>SET for departure</value>
+	</item>
+	<item>
+		<name>Taxi Clearance</name>
+		<value>OBTAIN</value>
+	</item>
+	<item>
+		<name>Transponder</name>
+		<value>SET AND STANDBY</value>
+	</item>
+	<item>
+		<name>Parking Brake</name>
+		<value>RELEASE</value>
+		<condition>
+			<equals>
+				<property>/controls/gear/brake-parking</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/brake-parking</property>
+			<value>0</value>
+		</binding>
+	</item>
+</PropertyList>

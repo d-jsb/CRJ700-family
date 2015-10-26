@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Descent</title>
+	<item>
+		<name>ATIS / Airport Information</name>
+		<value>CHECK</value>
+	</item>
+
+	<item>
+		<name>Passenger signs</name>
+		<value>ON</value>
+		<condition>
+			<and>
+				<not-equals>
+					<property>/controls/switches/no-smoking-sign</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/controls/switches/seatbelt-sign</property>
+					<value>1</value>
+				</not-equals>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/switches/no-smoking-sign</property>
+			<value>2</value>
+		</binding>		
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/switches/seatbelt-sign</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Altimeter</name>
+		<value>SET BELOW TRANSITION LEVEL</value>
+	</item>
+	<item>
+		<name>Anti-ice</name>
+		<value>ON BELOW 20°C</value>
+	</item>
+	<item>
+		<name>Landing Lights</name>
+		<value>ON BELOW 10,000ft</value>
+		<condition>
+			<and>
+				<equals>
+					<property>/controls/lighting/landing-lights[0]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[1]</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/lighting/landing-lights[2]</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>1</value>
+		</binding>
+	</item>	
+	<item>
+		<name>Airspeed</name>
+		<value>max 250 KIAS BELOW 10,000ft</value>
+	</item>
+	<item>
+		<name>Airspeed (Vref)</name>
+		<value>COMPUTE</value>
+	</item>
+	<item>
+		<name>Clearance</name>
+		<value>OBTAIN</value>
+	</item>
+	<item>
+		<name>Autopilot</name>
+		<value>HDG HOLD FOR VECTORS</value>
+	</item>
+	<item>
+		<name>Approach Procedure</name>
+		<value>REVIEW</value>
+	</item>
+	<item>
+		<name>ILS Frequency</name>
+		<value>SET ON NAV1</value>
+	</item>
+	<item>
+		<name>ILS Course</name>
+		<value>SET CRS1</value>
+	</item>
+	<item>
+		<name>Nav Source</name>
+		<value>NAV1</value>
+	</item>
+	
+</PropertyList>

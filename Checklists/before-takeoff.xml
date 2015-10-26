@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+	<title>Before takeoff</title>
+	<item>
+		<name>Flight Instruments</name>
+		<value>SET</value>
+	</item>
+	<item>
+		<name>Engine Instruments</name>
+		<value>CHECK</value>
+	</item>
+	<item>
+		<name>Takeoff Data V1, VR, V2</name>
+		<value>REVIEW</value>
+	</item>
+
+	<item>
+		<name>Flaps</name>
+		<value>8 degree</value>
+		<condition>
+			<and>
+				<greater-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.177</value>
+				</greater-equal>
+				<less-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.444</value>
+				</less-equal>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/flaps</property>
+			<value>0.177</value>
+		</binding>
+	</item>
+	<item>
+		<name>Spoilers</name>
+		<value>CHECK RETRACTED</value>
+		<condition>
+			<equals>
+				<property>/controls/flight/speedbrake</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/speedbrake</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Landing Light</name>
+		<value>ON</value>
+		<condition>
+			<and>
+				<property>/controls/lighting/landing-lights[0]</property>
+				<property>/controls/lighting/landing-lights[1]</property>
+				<property>/controls/lighting/landing-lights[2]</property>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[0]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[1]</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/landing-lights[2]</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Strobe Light</name>
+		<value>ON</value>
+		<condition>
+			<property>/controls/lighting/strobe</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/strobe</property>
+			<value>1</value>
+		</binding>
+	</item>
+</PropertyList>

@@ -20,6 +20,8 @@
 			<splash-texture>Aircraft/CRJ700-family/splash.jpg</splash-texture>
 		</startup>
 		
+		<checklists include="Checklists/checklists.xml" />
+		
 		<model>
 			<livery>
 				<file>Blank</file>
