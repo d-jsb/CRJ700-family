@@ -543,10 +543,10 @@
 			<waypoint-altitude-ft type="double">0</waypoint-altitude-ft>
 		</fms>
 		<eicas>
-			<page type="int" archive="y">1</page>
+			<page type="int">1</page>
 		</eicas>
 		<eicas>
-			<page type="int" archive="y">2</page>
+			<page type="int">5</page>
 		</eicas>
 		<eicas-messages>
 			<page>
