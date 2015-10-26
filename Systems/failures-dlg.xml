@@ -145,14 +145,14 @@
 	</text>
 	<text>
 		<halign>left</halign>
-		<label>Pumps running</label>
+		<label>Pumps serviceable</label>
 	</text>
 	<group>
 		<layout>hbox</layout>
 		<checkbox>
 			<halign>left</halign>
 			<label>1A</label>
-			<property>systems/hydraulic/system[0]/pump-a-on</property>
+			<property>systems/hydraulic/system[0]/pump-a-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -161,7 +161,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>1B</label>
-			<property>systems/hydraulic/system[0]/pump-b-on</property>
+			<property>systems/hydraulic/system[0]/pump-b-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -170,7 +170,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>2A</label>
-			<property>systems/hydraulic/system[1]/pump-a-on</property>
+			<property>systems/hydraulic/system[1]/pump-a-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -179,7 +179,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>2B</label>
-			<property>systems/hydraulic/system[1]/pump-b-on</property>
+			<property>systems/hydraulic/system[1]/pump-b-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -188,7 +188,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>3A</label>
-			<property>systems/hydraulic/system[2]/pump-a-on</property>
+			<property>systems/hydraulic/system[2]/pump-a-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -197,7 +197,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>3B</label>
-			<property>systems/hydraulic/system[2]/pump-b-on</property>
+			<property>systems/hydraulic/system[2]/pump-b-serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -255,24 +255,7 @@
 				</binding>
 				<live type="bool">true</live>
 			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Elevator (1,2,3)</label>
-				<property>systems/hydraulic/outputs/elevator</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Ailerons (1,2,3)</label>
-				<property>systems/hydraulic/outputs/aileron</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
+
 			<checkbox>
 				<halign>left</halign>
 				<label>OB flight spoiler</label>
@@ -306,15 +289,6 @@
 			<layout>vbox</layout>
 			<checkbox>
 				<halign>left</halign>
-				<label>Rudder (1,2,3)</label>
-				<property>systems/hydraulic/outputs/rudder</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
 				<label>Elevator (1,2,3)</label>
 				<property>systems/hydraulic/outputs/elevator</property>
 				<binding>
@@ -322,16 +296,6 @@
 				</binding>
 				<live type="bool">true</live>
 			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Ailerons (1,2,3)</label>
-				<property>systems/hydraulic/outputs/aileron</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-	
 
 			<checkbox>
 				<halign>left</halign>
@@ -373,24 +337,6 @@
 		<group>
 			<halign>left</halign>
 			<layout>vbox</layout>
-			<checkbox>
-				<halign>left</halign>
-				<label>Rudder (1,2,3)</label>
-				<property>systems/hydraulic/outputs/rudder</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Elevator (1,2,3)</label>
-				<property>systems/hydraulic/outputs/elevator</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
 			<checkbox>
 				<halign>left</halign>
 				<label>Ailerons (1,2,3)</label>

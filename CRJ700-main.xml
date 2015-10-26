@@ -877,9 +877,8 @@
 				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-on type="bool">false</pump-a-on>
-				<pump-b-on type="bool">false</pump-b-on>
-				<hyd-sov type="bool">false</hyd-sov>
+				<pump-a-running type="int">false</pump-a-running>
+				<pump-b-running type="bool">false</pump-b-running>
 				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
@@ -889,9 +888,8 @@
 				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-on type="bool">false</pump-a-on>
-				<pump-b-on type="bool">false</pump-b-on>
-				<hyd-sov type="bool">false</hyd-sov>
+				<pump-a-running type="int">false</pump-a-running>
+				<pump-b-running type="bool">false</pump-b-running>
 				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
@@ -901,8 +899,8 @@
 				<update-enabled type="bool">true</update-enabled>
 				<pump-a-serviceable type="bool">true</pump-a-serviceable>
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-on type="bool">false</pump-a-on>
-				<pump-b-on type="bool">false</pump-b-on>
+				<pump-a-running type="bool">false</pump-a-running>
+				<pump-b-running type="bool">false</pump-b-running>
 				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>

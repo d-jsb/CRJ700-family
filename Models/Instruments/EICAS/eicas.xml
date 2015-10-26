@@ -9,7 +9,7 @@
 
 	<params>
 		<page>instrumentation/eicas/page</page>
-		<hyd-sym-size>0.004</hyd-sym-size>
+		<hyd-sym-size>0.078125</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
 		<disp-x>0.0005</disp-x>
 		<temperature1-y>-0.0425</temperature1-y>
@@ -277,10 +277,28 @@
 		<object-name>HydPump2B</object-name>
 		<object-name>HydPump3A</object-name>
 		<object-name>HydPump3B</object-name>
+		<object-name>HydLine1A</object-name>
+		<object-name>HydLineIn1A</object-name>
+		<object-name>HydLine1B</object-name>
+		<object-name>HydLine2A</object-name>
+		<object-name>HydLineIn2A</object-name>
+		<object-name>HydLine2B</object-name>
+		<object-name>HydLine3A</object-name>
+		<object-name>HydLine3B</object-name>
+		<object-name>HydOut1</object-name>
+		<object-name>HydOut2</object-name>
+		<object-name>HydOut3</object-name>		
 	</animation>
 	<animation>
 		<name>PageHydraulicText</name>
 		<object-name>PageHydraulicTitle</object-name>
+		<object-name>Hyd1AText</object-name>
+		<object-name>Hyd2AText</object-name>
+		<object-name>Hyd1BText</object-name>
+		<object-name>Hyd2BText</object-name>
+		<object-name>Hyd3AText</object-name>
+		<object-name>Hyd3BText</object-name>
+		
 		<object-name>HydTemperature1</object-name>
 		<object-name>HydTemperature2</object-name>
 		<object-name>HydTemperature3</object-name>
@@ -2309,6 +2327,120 @@ APU</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<text>
+		<name>Hyd1BText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>1B</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.02543</y-m>
+			<z-m>0.01606</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>Hyd3AText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>3A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.01223</y-m>
+			<z-m>0.01606</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>Hyd3BText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>3B</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.01131</y-m>
+			<z-m>0.01606</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>Hyd2BText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>2B</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.02367</y-m>
+			<z-m>0.01606</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>Hyd1AText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>1A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>-0.05994</y-m>
+			<z-m>-0.00186</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>Hyd2AText</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.2</character-aspect-ratio>
+		<font>Helvetica.txf</font>
+		<text>2A</text>
+		<offsets>
+			<x-m alias="../../../params/disp-x" />
+			<y-m>0.05796</y-m>
+			<z-m>-0.00186</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
 	<!-- temperature -->
  	<text>
 		<name>HydTemperature1</name>
@@ -5046,6 +5178,12 @@ APU</text>
 		<object-name>APU generator</object-name>
 		<object-name>Generator 2</object-name>
 		<object-name>External power</object-name>
+		<object-name>Hyd1AText</object-name>
+		<object-name>Hyd2AText</object-name>
+		<object-name>Hyd1BText</object-name>
+		<object-name>Hyd2BText</object-name>
+		<object-name>Hyd3AText</object-name>
+		<object-name>Hyd3BText</object-name>
 		<ambient>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -5881,8 +6019,8 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump1A</object-name>
-		<property>systems/hydraulic/system[0]/pump-a-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[0]/pump-a-running</property>
+		<factor alias="../../params/hyd-sym-size" />
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5891,8 +6029,8 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump1B</object-name>
-		<property>systems/hydraulic/system[0]/pump-b-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[0]/pump-b-running</property>
+		<factor alias="../../params/hyd-sym-size" />
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5901,8 +6039,8 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump2A</object-name>
-		<property>systems/hydraulic/system[1]/pump-a-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[1]/pump-a-running</property>
+		<factor alias="../../params/hyd-sym-size" />
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5911,8 +6049,8 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump2B</object-name>
-		<property>systems/hydraulic/system[1]/pump-b-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[1]/pump-b-running</property>
+		<factor alias="../../params/hyd-sym-size" />
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5921,8 +6059,8 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump3A</object-name>
-		<property>systems/hydraulic/system[2]/pump-a-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[2]/pump-a-running</property>
+		<factor alias="../../params/hyd-sym-size" />
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5931,8 +6069,92 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydPump3B</object-name>
-		<property>systems/hydraulic/system[2]/pump-b-on</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>systems/hydraulic/system[2]/pump-b-running</property>
+		<factor alias="../../params/hyd-sym-size" />
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>HydLine1A</object-name>
+		<condition>
+			<property>systems/hydraulic/system[0]/pump-a-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLine1B</object-name>
+		<condition>
+			<property>systems/hydraulic/system[0]/pump-b-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLine2A</object-name>
+		<condition>
+			<property>systems/hydraulic/system[1]/pump-a-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLine2B</object-name>
+		<condition>
+			<property>systems/hydraulic/system[1]/pump-b-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLine3A</object-name>
+		<condition>
+			<property>systems/hydraulic/system[2]/pump-a-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLine3B</object-name>
+		<condition>
+			<property>systems/hydraulic/system[2]/pump-b-running</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLineIn1A</object-name>
+		<condition>
+			<or>
+				<property>systems/hydraulic/system[0]/pump-a-running</property>
+				<and>
+					<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+					<property>engines/engine[0]/on-fire</property>
+				</and>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydLineIn2A</object-name>
+		<condition>
+			<or>
+				<property>systems/hydraulic/system[1]/pump-a-running</property>
+				<and>
+					<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+					<property>engines/engine[1]/on-fire</property>
+				</and>
+			</or>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydLine1A</object-name>
+		<property>systems/hydraulic/system[0]/pump-a-psi</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0.084</dep></entry>
+			<entry><ind>1799</ind><dep>0.084</dep></entry>
+			<entry><ind>1800</ind><dep>0</dep></entry>		
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5940,9 +6162,58 @@ APU</text>
 	</animation>
 	<animation>
 		<type>textranslate</type>
+		<object-name>HydLine2A</object-name>
+		<property>systems/hydraulic/system[1]/pump-a-psi</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0.084</dep></entry>
+			<entry><ind>1799</ind><dep>0.084</dep></entry>
+			<entry><ind>1800</ind><dep>0</dep></entry>		
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydLineIn1A</object-name>
+		<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+		<condition>
+			<and>
+				<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+				<property>engines/engine[0]/on-fire</property>
+			</and>
+		</condition>
+		<factor>0.168</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>HydLineIn2A</object-name>
+		<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+		<condition>
+			<and>
+				<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+				<property>engines/engine[1]/on-fire</property>
+			</and>
+		</condition>
+		<factor>0.168</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+		</axis>
+	</animation>	
+
+	
+	<animation>
+		<type>textranslate</type>
 		<object-name>HydSOV1</object-name>
-		<property>systems/hydraulic/system[0]/hyd-sov</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+		<factor>0.1504</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5951,14 +6222,45 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydSOV2</object-name>
-		<property>systems/hydraulic/system[1]/hyd-sov</property>
-		<factor><property alias="../../../params/hyd-sym-size" /></factor>
+		<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+		<factor>0.1504</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
 		</axis>
 	</animation>
 
+	<animation>
+		<type>select</type>
+		<object-name>HydOut1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<value>1800</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydOut2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<value>1800</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HydOut3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<value>1800</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
