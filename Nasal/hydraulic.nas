@@ -157,8 +157,7 @@ var HydraulicSystem = {
 	
 	update: func() {
 		me.read_props();
-		if (me.update_enabled) {
-			print("update "~me.sys~" "~me.update_enabled);
+		if (me.update_enabled) {			
 			var p1 = me.pump_a.get_output();
 			var p2 = me.pump_b.get_output();
 			me.output = (p1 < p2) ? p2 : p1;
