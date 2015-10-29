@@ -2,104 +2,15 @@
 
 
 <PropertyList>
-	<title>After engine start</title>
+	<title>After start</title>
+	<item>
+		<name>Lights</name>
+		<value>As required</value>
+	</item>
 	<item>
 		<name>Anti-ice Switches</name>
 		<value>ON below freezing</value>
-		<condition>
-			<and>
-				<property>/controls/anti-ice/wing-heat</property>
-				<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-				<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/wing-heat</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			<value>1</value>
-		</binding>
 	</item>
-	<item>
-		<name>Hydraulic pump switch</name>
-		<value>CHECK ON</value>
-		<condition>
-			<and>
-				<property>/controls/hydraulic/system[0]/pump-b</property>
-				<property>/controls/hydraulic/system[1]/pump-b</property>
-				<property>/controls/hydraulic/system[2]/pump-b</property>
-				<property>/controls/hydraulic/system[2]/pump-a</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[0]/pump-b</property>
-			<value>2</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[1]/pump-b</property>
-			<value>2</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[2]/pump-b</property>
-			<value>2</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[2]/pump-a</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<!-- not yet implemented
-	<item>
-		<name>Flight controls</name>
-		<value>SELECT ON EICAS</value>
-	</item> -->
-	<item>
-		<name>Spoilers</name>
-		<value>RETRACTED</value>
-	</item>
-	<item>
-		<name>Flight controls</name>
-		<value>FREE AND CORRECT</value>
-	</item>
-
-	<item>
-		<name>Flaps</name>
-		<value>8 (20 if heavy)</value>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>/surface-positions/flap-pos-norm</property>
-					<value>0.177</value>
-				</greater-than-equals>
-				<less-than-equals>
-					<property>/surface-positions/flap-pos-norm</property>
-					<value>0.444</value>
-				</less-than-equals>
-			</and>
-		</condition>
-		<binding>
-			<command>nasal</command>
-			<script>controls.flapsDown(-5);</script>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>controls.flapsDown(2);</script>
-		</binding>
-	</item>
-
 	<item>
 		<name>Trim (check EICAS)</name>
 		<value>0 degree (50000 lbs)</value>
@@ -125,13 +36,13 @@
 		<value>ON</value>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lat-mode</property>
+				<property>controls/autoflight/lateral-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/lat-mode</property>
+			<property>controls/autoflight/lateral-mode</property>
 			<value>1</value>
 		</binding>
 	</item>
@@ -144,13 +55,13 @@
 		<value>ON</value>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vert-mode</property>
+				<property>controls/autoflight/vertical-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/vert-mode</property>
+			<property>controls/autoflight/vertical-mode</property>
 			<value>1</value>
 		</binding>
 	</item>
@@ -165,24 +76,6 @@
 	<item>
 		<name>Taxi Clearance</name>
 		<value>OBTAIN</value>
-	</item>
-	<item>
-		<name>Taxi Lights</name>
-		<value>ON</value>
-		<marker>
-			<x-m>-15.6479</x-m>
-			<y-m>-0.0959</y-m>
-			<z-m>-0.3083</z-m>
-			<scale>1.0000</scale>
-		</marker>
-		<condition>
-			<property>/controls/lighting/taxi-lights</property>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/taxi-lights</property>
-			<value>1</value>
-		</binding>
 	</item>
 	<item>
 		<name>Transponder</name>

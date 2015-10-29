@@ -7,14 +7,19 @@
 
 	<sim>
 		<description>Bombardier CRJ900ER</description>
-        <author>Ryan Miller, Henning S.</author>
-        <status>production</status>
-        <aircraft-version>1.5.0b</aircraft-version>
-		
+		<author>Ryan Miller (3d), Ryan Miller (FDM)</author>
+		<status>early-production</status>
+		<aircraft-version>1.1.0</aircraft-version>
+		<rating>
+			<FDM type="int">3</FDM>
+			<systems type="int">3</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">4</model>
+		</rating>
 		<variant-of>CRJ700</variant-of>
 		<flight-model>yasim</flight-model>
 		<aero>CRJ900ER</aero>
-
+        <variant-of>CRJ900</variant-of>
 		<model>
 			<path>Aircraft/CRJ700-family/Models/CRJ900.xml</path>
 			<variant type="int">1</variant>
@@ -26,8 +31,6 @@
 			</door>
 			<has-slats type="bool">true</has-slats>
 		</model>
-
-		<tutorials include="Tutorials/CRJ900-tutorials.xml" />
 
         <dimensions>
             <radius-m type="float">36.4</radius-m>
@@ -218,50 +221,8 @@
                 <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
             </config>
         </view>
-		<view n="122">
-            <name>L wing</name>
-            <type>lookfrom</type>
-            <internal type="bool" archive="y">false</internal>
-            <config>
-                <from-model type="bool">true</from-model>
-                <x-offset-m archive="y">-2.2</x-offset-m>
-                <y-offset-m archive="y">-0.6</y-offset-m>
-                <z-offset-m archive="y">1.4</z-offset-m>
-                <pitch-offset-deg>-9</pitch-offset-deg>
-                <heading-offset-deg>10</heading-offset-deg>
-                <default-field-of-view-deg type="double">65</default-field-of-view-deg>
-            </config>
-        </view>
-		<view n="123">
-            <name>R wing</name>
-            <type>lookfrom</type>
-            <internal type="bool" archive="y">false</internal>
-            <config>
-                <from-model type="bool">true</from-model>
-                <x-offset-m archive="y">9.52</x-offset-m>
-                <y-offset-m archive="y">-0.6</y-offset-m>
-                <z-offset-m archive="y">3.06</z-offset-m>
-                <pitch-offset-deg>-1</pitch-offset-deg>
-                <heading-offset-deg>130</heading-offset-deg>
-                <default-field-of-view-deg type="double">65</default-field-of-view-deg>
-            </config>
-        </view>
-        <view n="124">
-            <name>GndWalk</name>
-            <type>lookfrom</type>
-            <internal type="bool" archive="y">false</internal>
-            <config>
-                <from-model type="bool">true</from-model>
-                <x-offset-m archive="y">-3.95</x-offset-m>
-                <y-offset-m archive="y">-1.65</y-offset-m>
-				<!-- ground z ~ -3.35m -->
-                <z-offset-m archive="y">-17.65</z-offset-m>
-                <pitch-offset-deg>0</pitch-offset-deg>
-                <heading-offset-deg>180</heading-offset-deg>
-            </config>
-        </view>
-        
-		<weight n="1">
+
+        <weight n="1">
             <weight-lb>14000</weight-lb>
             <max-lb>22750</max-lb>
             <min-lb>0</min-lb>
@@ -274,6 +235,6 @@
                 </menu>
             </default>
         </menubar>
-		</sim>
+    </sim>
 
 </PropertyList>

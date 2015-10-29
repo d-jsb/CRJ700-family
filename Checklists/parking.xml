@@ -2,21 +2,7 @@
 
 
 <PropertyList>
-	<title>Parking + shut down</title>
-	<item>
-		<name>Taxi Lights</name>
-		<value>OFF</value>
-		<condition>
-			<not>
-				<property>/controls/lighting/taxi-lights</property>
-			</not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/taxi-lights</property>
-			<value>0</value>
-		</binding>	
-	</item>
+	<title>Parking</title>
 	<item>
 		<name>Parking Brake</name>
 		<value>SET</value>
@@ -33,37 +19,31 @@
 		</binding>
 	</item>
 	<item>
-		<name>Ground power</name>
-		<value>SELECT</value>
-		<condition>
-			<property>/controls/electric/ac-service-selected</property>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/electric/ac-service-selected</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>Throttle</name>
-		<value>SHUT OFF</value>
+		<name>Passenger signs</name>
+		<value>OFF</value>
 		<condition>
 			<and>
-				<property>/controls/engines/engine[0]/cutoff</property>
-				<property>/controls/engines/engine[1]/cutoff</property>
+				<equals>
+					<property>/controls/switches/no-smoking-sign</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/controls/switches/seatbelt-sign</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</condition>
 		<binding>
 			<command>property-assign</command>
-			<property>/controls/engines/engine[0]/cutoff</property>
+			<property>/controls/switches/no-smoking-sign</property>
 			<value>1</value>
-		</binding>
+		</binding>		
 		<binding>
 			<command>property-assign</command>
-			<property>/controls/engines/engine[1]/cutoff</property>
+			<property>/controls/switches/seatbelt-sign</property>
 			<value>1</value>
 		</binding>
-	</item>	
+	</item>
 	<item>
 		<name>Fuel Pumps</name>
 		<value>OFF</value>
@@ -105,126 +85,13 @@
 		</binding>	
 	</item>
 	<item>
-		<name>Beacon</name>
-		<value>OFF</value>
-		<condition>
-			<equals>
-				<property>/controls/lighting/beacon</property>
-				<value>0</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/beacon</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
 		<name>Lights</name>
 		<value>AS REQUIRED</value>
 	</item>
 	<item>
-		<name>Passenger signs</name>
-		<value>OFF</value>
-		<condition>
-			<and>
-				<equals>
-					<property>/controls/switches/no-smoking-sign</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>/controls/switches/seatbelt-sign</property>
-					<value>1</value>
-				</equals>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/switches/no-smoking-sign</property>
-			<value>1</value>
-		</binding>		
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/switches/seatbelt-sign</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
 		<name>Doors</name>
 		<value>OPEN</value>
-		<condition>
-			<property>/sim/model/door-positions/pax-left/position-norm</property>
-		</condition>
-		<binding>
-			<command>nasal</command>
-			<script>
-				CRJ700.dialogs.doors.open();
-			</script>
-		</binding>	
 	</item>
-	<item>
-		<name>-- Shutdown --</name>
-	</item>
-	<item>
-		<name>Anti-Ice Switches</name>
-		<value>OFF</value>
-		<condition>
-			<and>
-				<not><property>/controls/anti-ice/wing-heat</property></not>
-				<not><property>/controls/anti-ice/engine[0]/inlet-heat</property></not>
-				<not><property>/controls/anti-ice/engine[1]/inlet-heat</property></not>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/wing-heat</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Hydraulic pump switch</name>
-		<value>OFF</value>
-		<condition>
-			<not><or>
-				<property>/controls/hydraulic/system[0]/pump-b</property>
-				<property>/controls/hydraulic/system[1]/pump-b</property>
-				<property>/controls/hydraulic/system[2]/pump-b</property>
-				<property>/controls/hydraulic/system[2]/pump-a</property>
-			</or></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[0]/pump-b</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[1]/pump-b</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[2]/pump-b</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/hydraulic/system[2]/pump-a</property>
-			<value>0</value>
-		</binding>
-	</item>
-	
-	
 	<item>
 		<name>Lights</name>
 		<value>OFF</value>

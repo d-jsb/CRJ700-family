@@ -8,12 +8,12 @@
 	<path>sidepanel.ac</path>
 
 	<params>
-		<barometer>instrumentation/altimeter/setting-hpa</barometer>
-		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
 		<mfd-tcas>instrumentation/mfd/tcas</mfd-tcas>
 		<mfd-wx>instrumentation/mfd/wx</mfd-wx>
 		<mfd-page>instrumentation/mfd/page</mfd-page>
 		<radar-range>instrumentation/radar/range</radar-range>
+		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+		<barometer>instrumentation/altimeter/setting-hpa</barometer>
 		<use-QNH>instrumentation/use-QNH</use-QNH>
 		<brg-src1>instrumentation/brg-src1</brg-src1>
 		<brg-src2>instrumentation/brg-src2</brg-src2>
@@ -34,12 +34,22 @@
 	</animation>
 
 	<animation>
+		<type>select</type>
+		<object-name>NeedsPower</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/outputs/efis</property>
+				<value>15</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
 		<type>material</type>
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property alias="../../../../params/powerN" />
-				<value>100</value>
+				<property>systems/electrical/outputs/panel-lights</property>
+				<value>15</value>
 			</greater-than-equals>
 		</condition>
 		<emission>
@@ -161,6 +171,7 @@
 	<animation>
 		<type>pick</type>
 		<object-name>RadarTerrainBtn</object-name>
+		<object-name>RadarTerrainBtnOn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -173,6 +184,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>RadarTerrainBtn</object-name>
+		<object-name>RadarTerrainBtnOn</object-name>
 		<property alias="../../params/mfd-wx" />
 		<factor alias="../../button-translate-m" />
 		<axis>
@@ -181,10 +193,18 @@
 			<z>0</z>
 		</axis>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>RadarTerrainBtnOn</object-name>
+		<condition>
+			<property alias="../../../params/mfd-wx" />
+		</condition>
+	</animation>
 
 	<animation>
 		<type>pick</type>
 		<object-name>TrafficBtn</object-name>
+		<object-name>TrafficBtnOn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -197,6 +217,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>TrafficBtn</object-name>
+		<object-name>TrafficBtnOn</object-name>
 		<property alias="../../params/mfd-tcas" />
 		<factor alias="../../button-translate-m" />
 		<axis>
@@ -204,6 +225,13 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TrafficBtnOn</object-name>
+		<condition>
+			<property alias="../../../params/mfd-tcas" />
+		</condition>
 	</animation>
 
 	<animation>
@@ -219,18 +247,6 @@
 				<value>1</value>
 				<value>2</value>
 			</binding>
-			<!-- NAV mode is deselected, if nav source is changed -->
-			<binding>
-				<condition>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<command>property-assign</command>
-				<property>controls/autoflight/lat-mode</property>
-				<value>0</value>
-			</binding>
 		</action>
 		<action>
 			<button>1</button>
@@ -240,18 +256,6 @@
 				<property>controls/autoflight/nav-mode</property>
 				<value>2</value>
 				<value>1</value>
-				<value>0</value>
-			</binding>
-			<!-- NAV mode is deselected, if nav source is changed -->
-			<binding>
-				<condition>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<command>property-assign</command>
-				<property>controls/autoflight/lat-mode</property>
 				<value>0</value>
 			</binding>
 		</action>
@@ -326,14 +330,12 @@
 				<property alias="../../../../params/barometer" />
 				<step type="double">-1</step>
 			</binding>
-		</action>	
-	</animation>
+		</action>	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>BarometerKnob</object-name>
 		<object-name>BaroKnbFace</object-name>
 		<property alias="../../params/barometer" />
-		<factor>10</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -349,6 +351,7 @@
 	<animation>
 		<type>pick</type>
 		<object-name>HPAinBtn</object-name>
+		<object-name>HPAinBtnOn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -361,6 +364,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HPAinBtn</object-name>
+		<object-name>HPAinBtnOn</object-name>
 		<property alias="../../params/use-QNH" />
 		<factor alias="../../button-translate-m" />
 		<axis>
@@ -368,6 +372,13 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>HPAinBtnOn</object-name>
+		<condition>
+			<property alias="../../../params/use-QNH" />
+		</condition>
 	</animation>
 	
 	<animation>

@@ -58,7 +58,7 @@
             <property>engines/engine[1]/rpm</property>
             <offset>0</offset>
             <factor>0.05</factor>
-            <max>2</max>
+            <max>3</max>
         </volume>
         <pitch>
             <property>engines/engine[1]/rpm</property>
@@ -81,12 +81,9 @@
         <path>Aircraft/CRJ700-family/Sounds/squeaking-front.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[0]/wow</property>
+            <property>gear/gear[0]/wow</property>
         </condition>
         <volume>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
             <offset>-0.95</offset>
         </volume>
         <position>
@@ -100,12 +97,9 @@
         <path>Aircraft/CRJ700-family/Sounds/pressure-mid.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[0]/wow</property>
+            <property>gear/gear[0]/wow</property>
         </condition>
         <volume>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
             <offset>-0.95</offset>
         </volume>
         <position>
@@ -119,12 +113,9 @@
         <path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[1]/wow</property>
+            <property>gear/gear[1]/wow</property>
         </condition>
         <volume>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
             <offset>-0.95</offset>
         </volume>
         <position>
@@ -138,14 +129,11 @@
         <path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[1]/wow</property>
+            <property>gear/gear[1]/wow</property>
         </condition>
         <volume>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
             <offset>-0.5</offset>
-		</volume>
+        </volume>
         <position>
             <x>1</x>
             <y>-2</y>
@@ -157,12 +145,9 @@
         <path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[2]/wow</property>
-		</condition>
+            <property>gear/gear[2]/wow</property>
+        </condition>
         <volume>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
             <offset>-0.95</offset>
         </volume>
         <position>
@@ -176,13 +161,10 @@
         <path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
         <mode>once</mode>
         <condition>
-			<property>gear/gear[2]/wow</property>
+            <property>gear/gear[2]/wow</property>
         </condition>
         <volume>
             <offset>-0.5</offset>
-			<factor>
-				<property>sim/model/sound-enabled</property>
-			</factor>
         </volume>
         <position>
             <x>1</x>
@@ -197,7 +179,7 @@
         <path>Aircraft/CRJ700-family/Sounds/rumble.wav</path>
         <condition>
             <and>
-	            <property>gear/gear[0]/wow</property>
+                <property>gear/gear[0]/wow</property>
                 <property>sim/current-view/internal</property>
             </and>
         </condition>
@@ -220,7 +202,7 @@
         <path>Aircraft/CRJ700-family/Sounds/roll.wav</path>
         <condition>
             <and>
-	            <or>
+                <or>
                     <property>gear/gear[1]/wow</property>
                     <property>gear/gear[2]/wow</property>
                 </or>
@@ -247,9 +229,14 @@
         <mode>once</mode>
         <path>Sounds/click.wav</path>
         <condition>
-            <property>sim/sound/click</property>
+            <and>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <value>10</value>
+                </greater-than>
+                <property>sim/sound/click</property>
+            </and>
         </condition>
-
     </click>
     <sign>
         <name>Passenger sign</name>
@@ -287,10 +274,8 @@
         <path>Aircraft/CRJ700-family/Sounds/autopilot-disconnect.wav</path>
         <condition>
             <equals>
-			<!--<property>controls/autoflight/disengage-pos-norm</property>     
-			<value>1</value> -->
-                <property>controls/autoflight/autopilot/engage</property>     
-                <value>0</value>
+                <property>controls/autoflight/disengage-pos-norm</property>     
+                <value>1</value>
             </equals>
         </condition>
         <volume>

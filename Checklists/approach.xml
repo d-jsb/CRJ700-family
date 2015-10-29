@@ -72,160 +72,30 @@
 	<item>
 		<name>Nav Source</name>
 		<value>NAV1</value>
-		<marker>
-			<x-m>-15.9116</x-m>
-			<y-m>-0.7165</y-m>
-			<z-m>-0.9959</z-m>
-			<scale>1.0000</scale>
-		</marker>
-		<condition>
-			<equals>
-				<property>controls/autoflight/nav-mode</property>
-				<value>0</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/nav-mode</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Speed</name>
-		<value>220 KIAS max</value>
-		<condition>
-			<less-than-equals>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<value>220</value>
-			</less-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Flaps</name>
-		<value>8</value>
-		<condition>
-			<greater-than-equals>
-				<property>/sim/flaps/current-setting</property>
-				<value>2</value>
-			</greater-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Localizer</name>
-		<value>INTERCEPT</value>
-	</item>
-	<item>
-		<name>Speed</name>
-		<value>200 KIAS max</value>
-		<condition>
-			<less-than-equals>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<value>200</value>
-			</less-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Flaps</name>
-		<value>20</value>
-		<condition>
-			<greater-than-equals>
-				<property>/sim/flaps/current-setting</property>
-				<value>3</value>
-			</greater-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Glide slope</name>
-		<value>INTERCEPT</value>
-	</item>
-	<item>
-		<name>Gear</name>
-		<value>DOWN</value>
-		<condition>
-			<property>controls/gear/gear-down</property>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/gear/gear-down</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>Speed</name>
-		<value>180 KIAS max</value>
-		<condition>
-			<less-than-equals>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<value>180</value>
-			</less-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Flaps</name>
-		<value>30</value>
-		<condition>
-			<greater-than-equals>
-				<property>/sim/flaps/current-setting</property>
-				<value>4</value>
-			</greater-than-equals>
-		</condition>
 	</item>
 	<item>
 		<name>Reversers</name>
 		<value>ARM</value>
 		<condition>
-			<property>/controls/engines/engine[0]/reverser-armed</property>
-			<property>/controls/engines/engine[1]/reverser-armed</property>
+			<and>
+				<property>controls/engines/engine[0]/reverser-armed</property>
+				<property>controls/engines/engine[1]/reverser-armed</property>
+			</and>
 		</condition>
 		<binding>
 			<command>property-assign</command>
-			<property>/controls/engines/engine[0]/reverser-armed</property>
+				<property>controls/engines/engine[0]/reverser-armed</property>
 			<value>1</value>
 		</binding>
 		<binding>
 			<command>property-assign</command>
-			<property>/controls/engines/engine[1]/reverser-armed</property>
+				<property>controls/engines/engine[1]/reverser-armed</property>
 			<value>1</value>
 		</binding>
 	</item>
 	<item>
-		<name>-- at outer marker (5 miles out) --</name>
+		<name>FIXME</name>
+		<value>...</value>
 	</item>
-	<item>
-		<name>Speed</name>
-		<value>160 KIAS max</value>
-		<condition>
-			<less-than-equals>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<value>160</value>
-			</less-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Flaps</name>
-		<value>FULL</value>
-		<condition>
-			<greater-than-equals>
-				<property>/sim/flaps/current-setting</property>
-				<value>5</value>
-			</greater-than-equals>
-		</condition>
-	</item>
-	<item>
-		<name>Speed</name>
-		<value>Vref + 5kt</value>
-	</item>
-	<item>
-		<name>Autopilot</name>
-		<value>OFF latest 500ft AGL</value>
-		<condition>
-			<not><property>/controls/autoflight/autopilot/engage</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/autoflight/autopilot/engage</property>
-			<value>0</value>
-		</binding>
-	</item>
-
+	
 </PropertyList>

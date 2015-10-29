@@ -7,32 +7,21 @@
 
 	<sim>
 		<description>Bombardier CRJ700 series</description>
-        <author>Ryan Miller, Henning S.</author>
-        <status>production</status>
-        <aircraft-version>1.5.0b</aircraft-version>
+		<author>Ryan Miller (3d), Ryan Miller (FDM)</author>
+		<status>early-production</status>
 		<rating>
 			<FDM type="int">3</FDM>
 			<systems type="int">3</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">4</model>
 		</rating>
-        
-        <tags>
-            <tag>transport</tag>
-            <tag>bombardier</tag>
-            <tag>jet</tag>
-            <tag>retractable-gear</tag>
-            <tag>ifr</tag>
-            <tag>twin-engine</tag>
-            <tag>glass-cockpit</tag>
-        </tags>
 		
 		<startup>
 			<splash-texture>Aircraft/CRJ700-family/splash.jpg</splash-texture>
 		</startup>
-
+		
 		<checklists include="Checklists/checklists.xml" />
-
+		
 		<model>
 			<livery>
 				<file>Blank</file>
@@ -53,12 +42,6 @@
 			</lights>
 			<yokes type="bool">true</yokes>
 			<door-positions>
-				<pax-left>
-					<position-norm type="float">1</position-norm>
-				</pax-left>
-				<pax-right>
-					<position-norm type="float">0</position-norm>
-				</pax-right>
 				<avionic>
 					<position-norm type="float">0</position-norm>
 				</avionic>
@@ -74,20 +57,7 @@
 				<emer-r2>
 					<position-norm type="float">0</position-norm>
 				</emer-r2>
-				<!-- alias doors to unused MP enabled properties -->
-				<fwd-cargo>
-					<position-norm alias="/engines/engine[3]/n1" />
-				</fwd-cargo>
-				<ctr-cargo>
-					<position-norm alias="/engines/engine[3]/n2" />
-				</ctr-cargo>
-				<aft-cargo>
-					<position-norm alias="/engines/engine[3]/rpm" />
-				</aft-cargo>
-				
 			</door-positions>
-			<sound-enabled type="bool">false</sound-enabled>
-			<hide-welcome-msg type="bool">false</hide-welcome-msg>
 		</model>
 
 		<instrumentation>
@@ -111,14 +81,6 @@
 				<name>Pushback</name>
 				<path>Aircraft/CRJ700-family/Systems/pushback.xml</path>
 			</autopilot>
-			<property-rule n="100">
-				<name>Propery rules</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-property-rules.xml</path>
-			</property-rule>
-			<property-rule n="101">
-				<name>Propery rules</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-ap-rules.xml</path>
-			</property-rule>
 		</systems>
 
 		<sound>
@@ -128,7 +90,6 @@
 		<chase-distance-m type="double">-30</chase-distance-m>
 
 		<flaps>
-			<current-setting>0</current-setting>
 			<setting>0.000</setting>    <!-- 0 -->
 			<setting>0.022</setting>    <!-- 1 -->
 			<setting>0.177</setting>    <!-- 8 -->
@@ -170,33 +131,19 @@
 			<path>/sim/aircraft-operator</path>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
-			<path>/sim/model/hide-welcome-msg</path>
-			<path>/sim/model/known-version</path>
 			<path>/sim/model/light-cones</path>
 			<path>/sim/model/yokes</path>
 			<path>/sim/weight[0]/weight-lb</path>
 			<path>/sim/weight[1]/weight-lb</path>
 			<path>/controls/gear/enable-tiller</path>
+			<path>/instrumentation/eicas[0]/page</path>
+			<path>/instrumentation/eicas[1]/page</path>
 			<path>/instrumentation/mfd[0]/page</path>
 			<path>/instrumentation/mfd[0]/tcas</path>
 			<path>/instrumentation/mfd[0]/wx</path>
 			<path>/instrumentation/mfd[1]/page</path>
 			<path>/instrumentation/mfd[1]/tcas</path>
 			<path>/instrumentation/mfd[1]/wx</path>
-			<path>/instrumentation/adf[0]/frequencies/selected-khz</path>
-			<path>/instrumentation/adf[0]/frequencies/standby-khz</path>
-			<path>/instrumentation/adf[1]/frequencies/selected-khz</path>
-			<path>/instrumentation/adf[1]/frequencies/standby-khz</path>
-			<path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
-			<path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
-			<path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
-			<path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
-			<path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[0]/radials/selected-deg</path>
-			<path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
-			<path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[1]/radials/selected-deg</path>
 			<path>/instrumentation/use-metric-altitude</path>
 			<path>/instrumentation/use-QNH</path>
 		</aircraft-data>
@@ -291,52 +238,10 @@
 							</script>
 						</binding>
 					</item>
-					<!-- for development -->
-
-					<item>
-						<name>debug-output</name>
-						<label>Debug output</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.debug.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<name>apdev</name>
-						<label>AP development</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.apdev.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Engines instant on</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.instastart();
-							</script>
-						</binding>
-					</item>
-
-					<item>
-						<name>welcome-msg</name>
-						<label>Info</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.info.open();
-							</script>
-						</binding>
-					</item>
 				</menu>
 			</default>
 		</menubar>
-
+		
 		<multiplay>
 			<generic>
 				<!-- Dual control transmission properties -->
@@ -355,6 +260,7 @@
 	<autopilot>
 		<flight-director-serviceable type="bool">true</flight-director-serviceable>
 		<autoflight-serviceable type="bool">true</autoflight-serviceable>
+		<autothrottle-serviceable type="bool">true</autothrottle-serviceable>
 		<yaw-damper-serviceable type="bool">true</yaw-damper-serviceable>
 		<route-manager>
 			<vnav>
@@ -365,10 +271,6 @@
 				<target-altitude-ft type="double">0</target-altitude-ft>
 			</vnav>
 		</route-manager>
-		<ref>
-			<roll-deg type="float">0</roll-deg>
-			<roll-hdg type="float">0</roll-hdg>
-		</ref>
 	</autopilot>
 
 	<consumables>
@@ -376,16 +278,13 @@
 			<tank n="0">
 				<name>LH Wing</name>
 				<selected type="bool">false</selected>
-				<level-lbs archive="y">5000</level-lbs>
 			</tank>
 			<tank n="1">
 				<name>RH Wing</name>
 				<selected type="bool">false</selected>
-				<level-lbs archive="y">5000</level-lbs>
 			</tank>
 			<tank n="2">
 				<name>Center Main</name>
-				<level-lbs archive="y">0</level-lbs>
 			</tank>
 		</fuel>
 	</consumables>
@@ -417,20 +316,20 @@
 			</yaw-damper>
 			<altitude-select type="double">10000</altitude-select>
 			<autothrottle-engage type="bool">false</autothrottle-engage>
-			<roll-mode type="int">1</roll-mode>
-			<bank-limit-deg type="float">30</bank-limit-deg>
+			<basic-roll-mode type="int">0</basic-roll-mode>
+			<basic-roll-target-heading-deg type="double">0</basic-roll-target-heading-deg>
+			<basic-roll-target-roll-deg type="double">0</basic-roll-target-roll-deg>
+			<bank-angle-select type="float">30</bank-angle-select>
 			<disengage-pos-norm type="int">0</disengage-pos-norm>
-			<half-bank type="bool">0</half-bank>
 			<heading-select type="double">360</heading-select>
-			<lat-mode type="int">0</lat-mode>
+			<lateral-mode type="int">0</lateral-mode>
 			<mach-select type="double">0</mach-select>
 			<nav-mode type="int">0</nav-mode>
 			<pitch-select type="double">0</pitch-select>
 			<speed-mode type="int">0</speed-mode>
 			<speed-select type="double">200</speed-select>
-			<toga-button type="bool">0</toga-button>
-			<vert-mode type="int">0</vert-mode>
-			<vertical-speed-select type="double">0</vertical-speed-select>
+			<vertical-mode type="int">0</vertical-mode>
+			<vertical-speed-select type="double">1800</vertical-speed-select>
 		</autoflight>
 		<APU>
 			<electronic-control-unit type="bool">false</electronic-control-unit>
@@ -466,14 +365,7 @@
 			<dc-service-switch type="bool">false</dc-service-switch>
 			<battery-switch type="bool">true</battery-switch>
 			<ac-service-avail type="bool">true</ac-service-avail>
-			<ac-service-selected type="bool">false</ac-service-selected>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
-			<!--
-			the external service panel is not yet added to 3D model (nose right)
-			anyhow, ac-service-selected-ext switch property is already used ;)
-			-->
-			<ac-service-selected-ext type="bool">false</ac-service-selected-ext>
-			<APU-generator type="bool">false</APU-generator>
 			<auto-xfer1 type="bool">true</auto-xfer1>
 			<auto-xfer2 type="bool">true</auto-xfer2>
 			<ac-ess-xfer type="bool">false</ac-ess-xfer>
@@ -481,7 +373,6 @@
 			<idg2-cover type="bool">false</idg2-cover>
 			<idg1-disc type="bool">false</idg1-disc>
 			<idg2-disc type="bool">false</idg2-disc>
-			<ADG type="bool">false</ADG>
 		</electric>
 		<flight>
 			<ground-lift-dump type="int">1</ground-lift-dump>
@@ -503,13 +394,13 @@
 		<hydraulic>
 			<system>
 				<!-- 0 = off, 1 = on, 2 = auto -->
-				<pump-a type="bool">true</pump-a>
 				<pump-b type="int">0</pump-b>
+				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
-				<pump-a type="bool">true</pump-a>
 				<pump-b type="int">0</pump-b>
+				<hyd-sov-open type="bool">true</hyd-sov-open>
 				<hyd-sov-cover type="bool">false</hyd-sov-cover>
 			</system>
 			<system>
@@ -531,6 +422,7 @@
 			<dome type="bool">false</dome>
 			<display-norm type="float">0.8</display-norm>
 			<standby-compass type="bool">false</standby-compass>
+			<panel-lights type="bool">true</panel-lights>
 			<panel-norm type="float">0.4</panel-norm>
 			<panel-flood-norm type="float">0.2</panel-flood-norm>
 			<panel-overhead-norm type="float">0.4</panel-overhead-norm>
@@ -558,7 +450,6 @@
 			<serviceable type="bool">true</serviceable>
 			<pump-fail type="bool">false</pump-fail>
 			<SOV-fail type="bool">false</SOV-fail>
-			<door-norm alias="/engines/engine[2]/n1" />
 		</apu>
 		<engine>
 			<on-fire type="bool">false</on-fire>
@@ -598,19 +489,12 @@
 		<gear n="0">
 			<!-- to initialize sound properly -->
 			<position-norm type="float">1</position-norm>
-			<has-brake type="bool">false</has-brake>
-		</gear>
-		<gear>
-			<has-brake></has-brake>
-		</gear>
-		<gear>
-			<has-brake></has-brake>
 		</gear>
 	</gear>
-
+	
 	<instrumentation>
-		<use-metric-altitude type="bool" archive="y">false</use-metric-altitude>
-		<use-QNH type="bool" archive="y">true</use-QNH>
+		<use-metric-altitude type="bool">false</use-metric-altitude>
+		<use-QNH type="bool">false</use-QNH>
 		<adf>
 			<ident-audible type="bool">true</ident-audible>
 			<volume-norm type="float">0</volume-norm>
@@ -662,7 +546,6 @@
 			<page type="int">1</page>
 		</eicas>
 		<eicas>
-			<!--page type="int">2</page-->
 			<page type="int">5</page>
 		</eicas>
 		<eicas-messages>
@@ -982,31 +865,12 @@
 	</surface-positions>
 
 	<systems>
-		<AC>
-			<system>
-				<position-norm type="float">0</position-norm>
-				<acext-freq>400</acext-freq>
-			</system>
-		</AC>
-		<DC>
-		</DC>
-		<electrical>
-			<!-->Compatibility mapping</!-->
-			<outputs>
-				<adf alias="/systems/DC/outputs/transponder1" />
-				<dme alias="/systems/DC/outputs/dme1" />
-				<efis alias="/systems/DC/outputs/efis" />
-				<fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
-				<fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
-				<gps alias="/systems/DC/outputs/gps1" />
-				<!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC
-				<mk-viii alias="/systems/AC/outputs/egpws" />
-				<mk-viii alias="/systems/DC/outputs/radio-altimeter1" /> -->
-				<nav alias="/systems/DC/outputs/vhf-nav1" />
-				<panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
-				<transponder alias="/systems/DC/outputs/transponder1" />
-			</outputs>
-		</electrical>
+		<ram-air-turbine>
+			<amp-v type="float">0</amp-v>
+			<rpm type="float">0</rpm>
+			<serviceable type="bool">true</serviceable>
+			<position-norm type="float">0</position-norm>
+		</ram-air-turbine>
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>
@@ -1015,7 +879,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="int">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
+				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>
@@ -1026,7 +890,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="int">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
+				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>
@@ -1037,7 +901,7 @@
 				<pump-b-serviceable type="bool">true</pump-b-serviceable>
 				<pump-a-running type="bool">false</pump-a-running>
 				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
+				<pressure-psi type="int">0</pressure-psi>
 				<temperature-degc type="int">50</temperature-degc>
 				<quantity-percent type="int">60</quantity-percent>
 			</system>
@@ -1072,16 +936,19 @@
 			<file>Aircraft/CRJ700-family/Nasal/cdu.nas</file>
 		</interactive_cdu>
 		<CRJ700>
-			<file>Aircraft/CRJ700-family/Nasal/classes.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
-
+			<!--
+			<file>Aircraft/CRJ700-family/Nasal/engines.nas</file>
+			-->
 			<file>Aircraft/CRJ700-family/Nasal/wiper.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/doors.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/effects.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/electrical.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/hydraulic.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/instrumentation.nas</file>
-
+			<!--
+			<file>Aircraft/CRJ700-family/Nasal/systems.nas</file>
+			-->
 			<file>Aircraft/CRJ700-family/Nasal/multiplayer.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/vnav.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/master.nas</file>

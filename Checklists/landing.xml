@@ -2,25 +2,14 @@
 
 
 <PropertyList>
-	<title>Landing</title>
+	<title>Landing roll</title>
 	<item>
 		<name>Autopilot</name>
-		<value>OFF</value>
-		<condition>
-			<not><property>/controls/autoflight/autopilot/engage</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/autoflight/autopilot/engage</property>
-			<value>0</value>
-		</binding>
+		<value>CHECK OFF</value>
 	</item>
 	<item>
 		<name>Throttles</name>
 		<value>IDLE</value>
-	</item>
-	<item>
-		<name>Flare	50ft AGL</name>
 	</item>
 	<item>
 		<name>Spoilers</name>

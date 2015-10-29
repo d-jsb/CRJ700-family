@@ -52,11 +52,11 @@ var wipers = [
     CRJ700.Wiper("/controls/anti-ice/wiper[0]",
                  "/surface-positions/left-wiper-pos-norm",
                  "/controls/anti-ice/wiper-power[0]",
-                 "/systems/DC/outputs/wiper-left"),
+                 "/systems/electrical/outputs/wiper[0]"),
     CRJ700.Wiper("/controls/anti-ice/wiper[1]",
                  "/surface-positions/right-wiper-pos-norm",
                  "/controls/anti-ice/wiper-power[1]",
-                 "/systems/DC/outputs/wiper-right")
+                 "/systems/electrical/outputs/wiper[1]")
 ];
 
 
@@ -72,10 +72,9 @@ var fast_loop = Loop(0, func {
 		engines[0].update();
 		engines[1].update();
 	}
-
+	# Electrical.
 	update_electrical();
-	update_hydraulic();
-	
+
 	# Instruments.
 	eicas_messages_page1.update();
 	eicas_messages_page2.update();
@@ -83,11 +82,14 @@ var fast_loop = Loop(0, func {
 	# Model.
 	wipers[0].update();
 	wipers[1].update();
+	hydraulics[0].update();
+	hydraulics[1].update();
+	hydraulics[2].update();
 });
 
 var slow_loop = Loop(3, func {
 	# Electrical.
-	#rat1.update();
+	rat1.update();
 
 	# Instruments.
 	update_tat;
@@ -110,15 +112,12 @@ setlistener("sim/signals/fdm-initialized", func
                                                              0, 1);
                 fast_loop.start();
                 slow_loop.start();
-				settimer(func {
-					setprop("sim/model/sound-enabled",1);
-					print("Sound on.");
-					}, 3);
             }, 0, 0);
 
 ## Startup/shutdown functions
 var startid = 0;
-var startup = func {
+var startup = func
+{
     startid += 1;
     var id = startid;
     setprop("controls/electric/battery-switch", 1);
@@ -148,7 +147,6 @@ var startup = func {
 					{
 						if (id == startid)
 						{
-							setprop("controls/pneumatic/bleed-source", 0);
 							setprop("controls/APU/off-on", 0);
 							#setprop("controls/APU/electronic-control-unit", 0);
 							#setprop("controls/electric/battery-switch", 0);
@@ -158,13 +156,12 @@ var startup = func {
 							setprop("controls/hydraulic/system[2]/pump-b", 2);
 							setprop("controls/hydraulic/system[2]/pump-a", 1);							
 						}
-					}, 38);
+					}, 8);
 				}
-            }, 37);
+            }, 7);
         }
     }, 22);
 };
-
 var shutdown = func
 {
     setprop("controls/engines/engine[0]/cutoff", 1);
@@ -186,7 +183,6 @@ setlistener("sim/model/start-idling", func(v)
 }, 0, 0);
 
 ## Instant start for tutorials and whatnot
-#broken
 var instastart = func
 {
 	setprop("/consumables/fuel/tank[0]/selected", 1);
@@ -194,11 +190,13 @@ var instastart = func
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
-    setprop("controls/lighting/nav-lights", 1);
-    setprop("controls/lighting/beacon", 1);
- 	engines[0].on();
-	engines[1].on();
-	doors.close();
+    setprop("controls/engines/engine[0]/cutoff", 0);
+    setprop("/controls/engines/engine[0]/starter", 1);
+    setprop("engines/engine[0]/rpm", 25);
+    setprop("controls/engines/engine[1]/cutoff", 0);
+    setprop("/controls/engines/engine[1]/starter", 1);
+    setprop("engines/engine[1]/rpm", 25);
+
 	setprop("controls/hydraulic/system[0]/pump-b", 2);
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-b", 2);
@@ -268,7 +266,7 @@ var Rat = {
         }
     }
 };
-#var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
+var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
 
 ## Aircraft-specific dialogs
 var dialogs = {
@@ -277,17 +275,8 @@ var dialogs = {
     radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", "Aircraft/CRJ700-family/Systems/radio-stack-dlg.xml"),
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),
-    tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml"),
-    info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", "Aircraft/CRJ700-family/Systems/info-dlg.xml"),
-    debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", "Aircraft/CRJ700-family/Systems/debug-dlg.xml"),
-    apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dev-dlg.xml"),
+    tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml")
 };
 gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
 gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
 
-var known = getprop("/sim/model/known-version");
-var version = getprop("/sim/aircraft-version");
-if (!getprop("/sim/model/hide-welcome-msg") or known != version) {
-	if (known != version) setprop("/sim/model/hide-welcome-msg", 0);
-	CRJ700.dialogs.info.open();
-}

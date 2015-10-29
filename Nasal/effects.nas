@@ -80,8 +80,7 @@ var sound_switchclick = Switch_sound.new("sim/sound/click", 0.5,
 	 "controls/APU/fire-switch-armed",
 	 "controls/electric/dc-service-switch",
 	 "controls/electric/battery-switch",
-	 "controls/electric/ac-service-selected",
-	 "controls/electric/ac-service-selected-ext",
+	 "controls/electric/ac-in-use",
 	 "controls/electric/idg1-disc",
 	 "controls/electric/ac-ess-xfer",
 	 "controls/electric/idg2-disc",
@@ -90,7 +89,6 @@ var sound_switchclick = Switch_sound.new("sim/sound/click", 0.5,
 	 "controls/electric/engine[0]/generator",
 	 "controls/electric/APU-generator",
 	 "controls/electric/engine[1]/generator",
-	 "controls/electric/ADG",
 	 "controls/ECS/ram-air",
 	 "controls/ECS/emer-depress",
 	 "controls/ECS/press-man",
@@ -98,10 +96,9 @@ var sound_switchclick = Switch_sound.new("sim/sound/click", 0.5,
 	 "controls/ECS/pack-r-off",
 	 "controls/ECS/pack-l-man",
 	 "controls/ECS/pack-r-man",  
-	 "controls/gear/enable-tiller",
-	 "controls/hydraulic/system[0]/pump-a",
+	 "controls/hydraulic/system[0]/hyd-sov-open",
 	 "controls/hydraulic/system[0]/pump-b",
-	 "controls/hydraulic/system[1]/pump-a",		
+	 "controls/hydraulic/system[1]/hyd-sov-open",		
 	 "controls/hydraulic/system[1]/pump-b",
 	 "controls/hydraulic/system[2]/pump-a",
 	 "controls/hydraulic/system[2]/pump-b",	 
@@ -140,7 +137,7 @@ var tiresmoke_system = aircraft.tyresmoke_system.new(0, 1, 2);
 
 ## Lights
 # Exterior lights
-var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 2.1], "controls/lighting/beacon");
+var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 6], "controls/lighting/beacon");
 var strobe_light = aircraft.light.new("sim/model/lights/strobe", [0.05, 2], "controls/lighting/strobe");
 
 # No smoking/seatbelt signs
@@ -204,11 +201,11 @@ var update_pass_signs = func
 var update_lightmaps = func
 {
     var fuse = props.globals.getNode("sim/model/lights/fuselage-lightmap");
-    fuse.setBoolValue(getprop("systems/AC/outputs/logo-lights") > 108);
+    fuse.setBoolValue(getprop("systems/electrical/outputs/logo-lights") > 15);
     var wing = props.globals.getNode("sim/model/lights/wing-lightmap");
-    wing.setBoolValue(getprop("systems/DC/outputs/wing-lights") > 15);
+    wing.setBoolValue(getprop("systems/electrical/outputs/wing-lights") > 15);
     var panel = props.globals.getNode("sim/model/lights/panel-lightmap");
-    if (getprop("systems/DC/outputs/instrument-flood-lights") > 15)
+    if (getprop("systems/electrical/outputs/panel-lights") > 15)
     {
         panel.setDoubleValue(getprop("controls/lighting/panel-flood-norm"));
     }
@@ -217,7 +214,7 @@ var update_lightmaps = func
         panel.setDoubleValue(0);
     }
     var cabin = props.globals.getNode("sim/model/lights/cabin-lightmap");
-    if (getprop("systems/AC/outputs/cabin-lights") > 100)
+    if (getprop("systems/electrical/outputs/cabin") > 15)
     {
         cabin.setDoubleValue(getprop("controls/lighting/cabin-norm"));
     }

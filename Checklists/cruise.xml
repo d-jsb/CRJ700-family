@@ -8,19 +8,7 @@
 		<value>AS NEEDED</value>
 	</item>
 	<item>
-		<name>Prepare descent / approach</name>
+		<name>FIXME</name>
+		<value>...</value>
 	</item>
-	<item>
-		<name>Get landing RW </name>
-		<value>from ATC or by weather</value>
-	</item>
-	<item>
-		<name>ILS frequency</name>
-		<value>LOOK UP</value>
-	</item>	
-	<item>
-		<name>Top of descent</name>
-		<value>CALCULATE</value>
-	</item>
-	
 </PropertyList>

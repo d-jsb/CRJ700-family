@@ -5,7 +5,7 @@
 	<path>landing.ac</path>
 
 	<params>
-		<source>systems/DC/outputs/landing-lights</source>
+		<source>systems/electrical/outputs/landing-lights</source>
 	</params>
 
 	<animation>
@@ -17,7 +17,7 @@
 				</not>
 				<greater-than>
 					<property alias="../../../../../params/source" />
-					<value>22</value>
+					<value>5</value>
 				</greater-than>
 			</and>
 		</condition>

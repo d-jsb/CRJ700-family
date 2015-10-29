@@ -1,426 +1,368 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Marker positions for CRJ 700 / CRJ 900
-	dx=1.96
-</!-->
 
 <PropertyList>
 	<title>Pre-start</title>
-	<page>
-		<item>
-			<name>Parking Brake</name>
-			<value>CHECK SET</value>
-			<condition>
-				<equals>
-					<property>/controls/gear/brake-parking</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+	<item>
+		<name>Parking Brake</name>
+		<value>SET</value>
+		<condition>
+			<equals>
 				<property>/controls/gear/brake-parking</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>Landing gear lever</name>
-			<value>CHECK DOWN</value>
-			<marker>
-				<x-m>-15.9190</x-m>
-				<y-m>0.0339</y-m>
-				<z-m>-1.0876</z-m>
-				<scale>3.8760</scale>
-			</marker>
-			<condition>
-				<equals>
-					<property>/controls/gear/gear-down</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/brake-parking</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Throttle</name>
+		<value>IDLE</value>
+		<condition>
+			<and>
+				<not><property>/controls/engines/engine[0]/cutoff</property></not>
+				<not><property>/controls/engines/engine[1]/cutoff</property></not>
+				<less-than>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<value>0.02</value>
+				</less-than>
+				<less-than>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<value>0.02</value>
+				</less-than>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/engines/engine[0]/cutoff</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/engines/engine[1]/cutoff</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Landing gear lever</name>
+		<value>CHECK DOWN</value>
+		<condition>
+			<equals>
 				<property>/controls/gear/gear-down</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>Throttle</name>
-			<value>CUT OFF</value>
-			<marker>
-				<x-m>-15.5686</x-m>
-				<y-m>-0.0240</y-m>
-				<z-m>-1.1909</z-m>
-				<scale>3.8760</scale>
-			</marker>
-			<condition>
-				<and>
-					<property>/controls/engines/engine[0]/cutoff</property>
-					<property>/controls/engines/engine[1]/cutoff</property>
-				</and>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/engines/engine[0]/cutoff</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/engines/engine[1]/cutoff</property>
-				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>Flaps</name>
-			<value>UP</value>
-			<marker>
-				<x-m>-15.6686</x-m>
-				<y-m>0.1760</y-m>
-				<z-m>-1.1909</z-m>
-				<scale>3.8760</scale>
-			</marker>
-			<condition>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/gear-down</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<!--item>
+		<name>Generator 1 and 2</name>
+		<value>OFF</value>
+		<condition>
+			<and>
 				<equals>
-					<property>/surface-positions/flap-pos-norm</property>
+					<property>/controls/electric/engine[0]/generator</property>
 					<value>0</value>
 				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/flight/flaps</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.flapsDown(0);</script>
-			</binding>
-		</item>
-		<item>
-			<name>Battery Master</name>
-			<value>ON</value>
-			<view>
-				<heading-offset-deg>321.1</heading-offset-deg>
-				<pitch-offset-deg>28.2</pitch-offset-deg>
-				<roll-offset-deg>0.0</roll-offset-deg>
-				<x-offset-m>-0.5</x-offset-m>
-				<y-offset-m>-0.5</y-offset-m>
-				<z-offset-m>-15.0</z-offset-m>
-				<field-of-view>55.0</field-of-view>
-			</view>
-			<marker>
-				<x-m>-15.3488</x-m>
-				<y-m>-0.1843</y-m>
-				<z-m>-0.1273</z-m>
-				<scale>1.4628</scale>
-			</marker>
-			<condition>
 				<equals>
-					<property>/controls/electric/battery-switch</property>
-					<value>1</value>
+					<property>/controls/electric/engine[1]/generator</property>
+					<value>0</value>
 				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/electric/engine[0]/generator</property>
+			<value>0</value>
+		</binding>	
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/electric/engine[1]/generator</property>
+			<value>0</value>
+		</binding>	
+	</item-->
+	<item>
+		<name>Battery Master</name>
+		<value>ON</value>
+		<condition>
+			<equals>
 				<property>/controls/electric/battery-switch</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>Ground power</name>
-			<value>SELECT</value>
-			<view>
-				<heading-offset-deg>321.1</heading-offset-deg>
-				<pitch-offset-deg>28.2</pitch-offset-deg>
-				<roll-offset-deg>0.0</roll-offset-deg>
-				<x-offset-m>-0.5</x-offset-m>
-				<y-offset-m>-0.5</y-offset-m>
-				<z-offset-m>-15.0</z-offset-m>
-				<field-of-view>55.0</field-of-view>
-			</view>
-			<marker>
-				<x-m>-15.3397</x-m>
-				<y-m>-0.1140</y-m>
-				<z-m>-0.115</z-m>
-				<scale>1.1488</scale>
-			</marker>
-			<condition>
-				<property>/controls/electric/ac-service-selected</property>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/electric/ac-service-selected</property>
-				<value>1</value>
-			</binding>
-		</item>
-
-		<!--item>
-			<name>Generator 1 and 2</name>
-			<value>OFF</value>
-			<condition>
-				<and>
-					<equals>
-						<property>/controls/electric/engine[0]/generator</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/controls/electric/engine[1]/generator</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/electric/engine[0]/generator</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/electric/engine[1]/generator</property>
-				<value>0</value>
-			</binding>
-		</item-->
-		<item>
-			<name>Panel lights</name>
-			<value>ON if required</value>
-		</item>
-		<item>
-			<name>Nav lights</name>
-			<value>ON</value>
-			<marker>
-				<x-m>-15.5975</x-m>
-				<y-m>-0.2298</y-m>
-				<z-m>-0.2372</z-m>
-				<scale>1.0000</scale>
-			</marker>
-			<condition>
-				<equals>
-					<property>/controls/lighting/nav-lights</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/electric/battery-switch</property>
+			<value>1</value>
+		</binding>	
+	</item>
+	<item>
+		<name>Panel lights</name>
+		<value>ON if required</value>
+	</item>
+	<item>
+		<name>Nav lights</name>
+		<value>ON</value>
+		<condition>
+			<equals>
 				<property>/controls/lighting/nav-lights</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<!--item>
-			<name>Avionics Master</name>
-			<value>ON</value>
-		</item-->
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/nav-lights</property>
+			<value>1</value>
+		</binding>	
+	</item>
+	<!--item>
+		<name>Avionics Master</name>
+		<value>ON</value>
+	</item-->
 
-		<item>
-			<name>Fuel Quantity</name>
-			<value>CHECK</value>
-			<binding>
-				<command>nasal</command>
-				<script>gui.showWeightDialog()</script>
-			</binding>
-		</item>
-		<item>
-			<name>Request Fuel</name>
-			<value>AS REQUIRED</value>
-		</item>
-
-		<item>
-			<name>Passenger signs</name>
-			<value>ON</value>
-			<marker>
-				<x-m>-15.6521</x-m>
-				<y-m>0.0992</y-m>
-				<z-m>-0.3107</z-m>
-				<scale>2.0909</scale>
-			</marker>
-			<condition>
-				<and>
-					<not-equals>
-						<property>/controls/switches/no-smoking-sign</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/controls/switches/seatbelt-sign</property>
-						<value>1</value>
-					</not-equals>
-				</and>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/switches/no-smoking-sign</property>
-				<value>2</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/switches/seatbelt-sign</property>
-				<value>0</value>
-			</binding>
-		</item>
-		<item>
-			<name>ATIS</name>
-			<value>CHECK</value>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>weather</dialog-name>
-			</binding>
-		</item>
-		<item>
-			<name>Altimeter</name>
-			<value>SET</value>
-			<marker>
-				<x-m>-15.9190</x-m>
-				<y-m>-0.7215</y-m>
-				<z-m>-1.0521</z-m>
-				<scale>1.8760</scale>
-			</marker>
-		</item>
-		<item>
-			<name>Clearance</name>
-			<value>OBTAIN</value>
-		</item>
-	</page>
-	<page>
-		<item>
-			<name>Lights</name>
-			<value>AS REQUIRED</value>
-		</item>
-		<item>
-			<name>Doors (see/click EICAS doors page)</name>
-			<value>CLOSE</value>
-			<condition>
-				<and>
-					<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
-					<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
-					<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
-					<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
-					<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
-					<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
-					<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
-					<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
-					<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
-					<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
-				</and>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/eicas[1]/page</property>
-				<value>5</value>
-			</binding>		
-			<binding>
-				<command>nasal</command>
-				<script>CRJ700.doors.close();</script>
-			</binding>
-		</item>
-		<item>
-			<name>Beacon</name>
-			<value>ON</value>
-			<marker>
-				<x-m>-15.5967</x-m>
-				<y-m>-0.2033</y-m>
-				<z-m>-0.2380</z-m>
-				<scale>1.0000</scale>
-			</marker>
-			<condition>
-				<equals>
-					<property>/controls/lighting/beacon</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+	<item>
+		<name>Fuel Quantity</name>
+		<value>CHECK</value>
+	</item>
+	<item>
+		<name>Request Fuel</name>
+		<value>AS REQUIRED</value>
+	</item>
+	<item>
+		<name>Beacon</name>
+		<value>ON</value>
+		<condition>
+			<equals>
 				<property>/controls/lighting/beacon</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>APU ECU</name>
-			<value>PWR ON</value>
-			<marker>
-				<x-m>-15.4909</x-m>
-				<y-m>0.0000</y-m>
-				<z-m>-0.1893</z-m>
-				<scale>1.0000</scale>
-			</marker>
-			<condition>
-				<property>/controls/APU/electronic-control-unit</property>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/APU/electronic-control-unit</property>
-				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>APU</name>
-			<value>START</value>
-			<marker>
-				<x-m>-15.4909</x-m>
-				<y-m>0.0314</y-m>
-				<z-m>-0.1893</z-m>
-				<scale>1.0000</scale>
-			</marker>
-			<condition>
-				<property>/controls/APU/off-on</property>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/APU/off-on</property>
-				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>APU/Generator</name>
-			<value>ON</value>
-			<marker>
-				<x-m>-15.4215</x-m>
-				<y-m>-0.1661</y-m>
-				<z-m>-0.1554</z-m>
-				<scale>1.4959</scale>
-			</marker>
-			<condition>
-				<equals>
-					<property>/controls/electric/APU-generator</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/lighting/beacon</property>
+			<value>1</value>
+		</binding>	
+	</item>
+	<item>
+		<name>APU</name>
+		<value>START</value>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>/controls/APU/electronic-control-unit</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/controls/APU/off-on</property>
+						<value>1</value>
+					</equals>				
+				</and>
+			
+			</or>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/APU/electronic-control-unit</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/APU/off-on</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>APU/Generator</name>
+		<value>ON</value>
+		<condition>
+			<equals>
 				<property>/controls/electric/APU-generator</property>
 				<value>1</value>
-			</binding>
-		</item>
-		<item>
-			<name>APU</name>
-			<value>CHECK AVAIL</value>
-			<marker>
-				<x-m>-15.4926</x-m>
-				<y-m>0.0132</y-m>
-				<z-m>-0.1884</z-m>
-				<scale>2.0248</scale>
-			</marker>
-			<condition>
-				<and>
-					<property>/controls/APU/off-on</property>
-					<property>/engines/apu/running</property>
-				</and>
-			</condition>
-		</item>
-
-		<item>
-			<name>Pushback</name>
-			<value>AS REQUIRED</value>
-		</item>
-		<item>
-			<name>Parking Brake (if pushback)</name>
-			<value>RELEASE</value>
-			<condition>
-				<equals>
-					<property>/controls/gear/brake-parking</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/electric/APU-generator</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Hydraulic pump switch</name>
+		<value>CHECK ON</value>
+		<condition>
+			<and>
+				<property>/controls/hydraulic/system[0]/pump-b</property>
+				<property>/controls/hydraulic/system[1]/pump-b</property>
+				<property>/controls/hydraulic/system[2]/pump-b</property>
+				<property>/controls/hydraulic/system[2]/pump-a</property>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/hydraulic/system[0]/pump-b</property>
+			<value>2</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/hydraulic/system[1]/pump-b</property>
+			<value>2</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/hydraulic/system[2]/pump-b</property>
+			<value>2</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/hydraulic/system[2]/pump-a</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
+		<name>Flight controls</name>
+		<value>SELECT ON EICAS</value>
+	</item>
+	<item>
+		<name>Flaps</name>
+		<value>UP</value>
+		<condition>
+			<equals>
+				<property>/surface-positions/flap-pos-norm</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/flaps</property>
+			<value>0</value>
+		</binding>		
+	</item>
+	<item>
+		<name>Spoilers</name>
+		<value>RETRACTED</value>
+	</item>
+	<item>
+		<name>Flight controls</name>
+		<value>FREE AND CORRECT</value>
+	</item>
+	<item>
+		<name>Engine Gauges on EICAS</name>
+		<value>SELECT</value>
+	</item>
+	<item>
+		<name>Anti-Ice Switches</name>
+		<value>OFF</value>
+		<condition>
+			<and>
+				<not><property>/controls/anti-ice/wing-heat</property></not>
+				<not><property>/controls/anti-ice/engine[0]/inlet-heat</property></not>
+				<not><property>/controls/anti-ice/engine[1]/inlet-heat</property></not>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/wing-heat</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/engine[0]/inlet-heat</property>
+			<value>0</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/engine[1]/inlet-heat</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Passenger signs</name>
+		<value>ON</value>
+		<condition>
+			<and>
+				<not-equals>
+					<property>/controls/switches/no-smoking-sign</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/controls/switches/seatbelt-sign</property>
+					<value>1</value>
+				</not-equals>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/switches/no-smoking-sign</property>
+			<value>2</value>
+		</binding>		
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/switches/seatbelt-sign</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>ATIS</name>
+		<value>CHECK</value>
+	</item>
+	<item>
+		<name>Altimeter</name>
+		<value>SET</value>
+	</item>
+	<item>
+		<name>Clearance</name>
+		<value>OBTAIN</value>
+	</item>
+	<item>
+		<name>Lights</name>
+		<value>AS REQUIRED</value>
+	</item>
+	<item>
+		<name>Doors</name>
+		<value>CLOSE</value>
+		<condition>
+			<and>
+			<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
+			<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
+			<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
+			<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
+			<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
+			<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
+			<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
+			<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
+			<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
+			<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
+			</and>
+		</condition>
+		<binding>
+			<command>nasal</command>
+			<script>CRJ700.doors.close();</script>
+		</binding>
+	</item>
+	<item>
+		<name>Parking Brake (if pushback)</name>
+		<value>RELEASE</value>
+		<condition>
+			<equals>
 				<property>/controls/gear/brake-parking</property>
 				<value>0</value>
-			</binding>
-		</item>
-	</page>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/brake-parking</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Pushback</name>
+		<value>AS REQUIRED</value>
+	</item>	
 </PropertyList>

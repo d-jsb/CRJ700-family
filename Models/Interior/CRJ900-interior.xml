@@ -78,7 +78,7 @@
 			<and>
 				<property>sim/model/lights/seatbelt-sign</property>
 				<greater-than-equals>
-					<property>systems/DC/outputs/passenger-signs</property>
+					<property>systems/electrical/outputs/cabin</property>
 					<value>5</value>
 				</greater-than-equals>
 			</and>
@@ -91,7 +91,7 @@
 			<and>
 				<property>sim/model/lights/no-smoking-sign</property>
 				<greater-than-equals>
-					<property>systems/DC/outputs/passenger-signs</property>
+					<property>systems/electrical/outputs/cabin</property>
 					<value>5</value>
 				</greater-than-equals>
 			</and>
@@ -108,8 +108,8 @@
 		<object-name>Walls</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/AC/outputs/cabin-lights</property>
-				<value>100</value>
+				<property>systems/electrical/outputs/cabin</property>
+				<value>15</value>
 			</greater-than-equals>
 		</condition>
 		<emission>

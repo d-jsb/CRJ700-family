@@ -4,1967 +4,1968 @@
 <!-- Multi-function display -->
 
 <PropertyList>
-	
+
     <path>mfd.ac</path>
-	
+
     <params>
-		<powerN>/systems/DC/outputs/mfd1</powerN>	
-		<page>instrumentation/mfd/page</page>
-		<tcas>instrumentation/mfd/tcas</tcas>
-		<wx>instrumentation/mfd/wx</wx>
-		<indicated-heading-deg>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading-deg>
-		<true-airspeed-kt>instrumentation/airspeed-indicator/true-speed-kt</true-airspeed-kt>
-		<radar-range>instrumentation/radar/range</radar-range>
-		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
-	</params>
+	<page>instrumentation/mfd/page</page>
+	<tcas>instrumentation/mfd/tcas</tcas>
+	<wx>instrumentation/mfd/wx</wx>
+	<indicated-heading-deg>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading-deg>
+	<true-airspeed-kt>instrumentation/airspeed-indicator/true-speed-kt</true-airspeed-kt>
+	<radar-range>instrumentation/radar/range</radar-range>
+	<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+    </params>
     <big-rose-min-bug-deg type="double">-52</big-rose-min-bug-deg>
     <big-rose-max-bug-deg type="double">52</big-rose-max-bug-deg>
     <ft-to-m type="float">0.3048</ft-to-m>
-	
+
     <colors>
-		<blue>
-			<red>0.349</red>
-			<green>0.767</green>
-			<blue>0.808</blue>
-		</blue>
-		<green>
-			<red>0.133</red>
-			<green>0.663</green>
-			<blue>0.145</blue>
-		</green>
-		<pink>
-			<red>0.984</red>
-			<green>0.616</green>
-			<blue>0.616</blue>
-		</pink>
-		<white>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</white>
-	</colors>
-	
+	<blue>
+	    <red>0.349</red>
+	    <green>0.767</green>
+	    <blue>0.808</blue>
+	</blue>
+	<green>
+	    <red>0.133</red>
+	    <green>0.663</green>
+	    <blue>0.145</blue>
+	</green>
+	<pink>
+	    <red>0.984</red>
+	    <green>0.616</green>
+	    <blue>0.616</blue>
+	</pink>
+	<white>
+	    <red>1</red>
+	    <green>1</green>
+	    <blue>1</blue>
+	</white>
+    </colors>
+
     <!-- Visible only within 1/2 km -->
     <animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>500</max-m>
-	</animation>
+	<type>range</type>
+	<min-m>0</min-m>
+	<max-m>500</max-m>
+    </animation>
     <!-- Instrument elements only visible inside -->
     <animation>
-		<type>select</type>
-		<object-name>LCD</object-name>
-		<object-name>Radar</object-name>
-		<condition>
-			<property>sim/current-view/internal</property>
-		</condition>
-	</animation>
-	
+	<type>select</type>
+	<object-name>LCD</object-name>
+	<object-name>Radar</object-name>
+	<condition>
+	    <property>sim/current-view/internal</property>
+	</condition>
+    </animation>
+
     <panel>
-		<name>Radar</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/MFD/radar0.xml</path>
-		<top-left>
-			<x-m>0</x-m>
-			<y-m>-0.07338</y-m>
-			<z-m>0.04567</z-m>
-		</top-left>
-		<bottom-left>
-			<x-m>0</x-m>
-			<y-m>-0.07338</y-m>
-			<z-m>-0.09105</z-m>
-		</bottom-left>
-		<bottom-right>
-			<x-m>0</x-m>
-			<y-m>0.07338</y-m>
-			<z-m>-0.09105</z-m>
-		</bottom-right>
-	</panel>
+	<name>Radar</name>
+	<path>Aircraft/CRJ700-family/Models/Instruments/MFD/radar0.xml</path>
+	<top-left>
+	    <x-m>0</x-m>
+	    <y-m>-0.07338</y-m>
+	    <z-m>0.04567</z-m>
+	</top-left>
+	<bottom-left>
+	    <x-m>0</x-m>
+	    <y-m>-0.07338</y-m>
+	    <z-m>-0.09105</z-m>
+	</bottom-left>
+	<bottom-right>
+	    <x-m>0</x-m>
+	    <y-m>0.07338</y-m>
+	    <z-m>-0.09105</z-m>
+	</bottom-right>
+    </panel>
     <animation>
-		<type>select</type>
-		<object-name>Radar</object-name>
-		<object-name>Radar inner range</object-name>
-		<object-name>Radar outer range</object-name>
-		<condition>
-			<and>
-				<property>sim/current-view/internal</property>
-				<greater-than-equals>
-					<property>systems/DC/outputs/wradar</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>3</value>
-					</equals>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>4</value>
-					</equals>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>6</value>
-					</equals>
-				</or>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Radar</object-name>
+	<object-name>Radar inner range</object-name>
+	<object-name>Radar outer range</object-name>
+	<condition>
+	    <and>
+		<property>sim/current-view/internal</property>
+		<greater-than-equals>
+		    <property>systems/electrical/outputs/efis</property>
+		    <value>15</value>
+		</greater-than-equals>
+		<or>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>3</value>
+		    </equals>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>4</value>
+		    </equals>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>6</value>
+		    </equals>
+		</or>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NoRadar</object-name>
-		<condition>
-			<or>
-				<not>
-					<property>sim/current-view/internal</property>
-				</not>
-				<or>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>1</value>
-					</equals>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>2</value>
-					</equals>
-					<equals>
-						<property alias="../../../../../../params/page" />
-						<value>5</value>
-					</equals>
-				</or>
-			</or>
-		</condition>
-	</animation>
-	
+	<type>select</type>
+	<object-name>NoRadar</object-name>
+	<condition>
+	    <or>
+		<not>
+		    <property>sim/current-view/internal</property>
+		</not>
+		<or>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>1</value>
+		    </equals>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>2</value>
+		    </equals>
+		    <equals>
+			<property alias="../../../../../../params/page" />
+			<value>5</value>
+		    </equals>
+		</or>
+	    </or>
+	</condition>
+    </animation>
+
     <animation>
-		<type>material</type>
-		<object-name>LCD</object-name>
-		<emission>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+	<type>material</type>
+	<object-name>LCD</object-name>
+	<emission>
+	    <red>1</red>
+	    <green>1</green>
+	    <blue>1</blue>
+	    <factor-prop>controls/lighting/display-norm</factor-prop>
+	</emission>
+    </animation>
     <text>
-		<name>Radar inner range</name>
-		<type>number-value</type>
-		<property alias="../../params/radar-range" />
-		<scale>0.5</scale>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.f</format>
-		<offsets>
-			<x-m>0.0003</x-m>
-			<y-m>-0.03858</y-m>
-			<z-m>-0.03425</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Radar inner range</name>
+	<type>number-value</type>
+	<property alias="../../params/radar-range" />
+	<scale>0.5</scale>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.2</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.f</format>
+	<offsets>
+	    <x-m>0.0003</x-m>
+	    <y-m>-0.03858</y-m>
+	    <z-m>-0.03425</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Radar outer range</name>
-		<type>number-value</type>
-		<property alias="../../params/radar-range" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.2</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.f</format>
-		<offsets>
-			<x-m>0.0003</x-m>
-			<y-m>-0.06809</y-m>
-			<z-m>-0.01267</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Radar outer range</name>
+	<type>number-value</type>
+	<property alias="../../params/radar-range" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.2</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.f</format>
+	<offsets>
+	    <x-m>0.0003</x-m>
+	    <y-m>-0.06809</y-m>
+	    <z-m>-0.01267</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Page 1 title</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>COMPASS</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 1 title</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>COMPASS</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Page 2 title</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>NAVAIDS</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 2 title</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>NAVAIDS</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Page 3 title off</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>TCAS OFF</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 3 title off</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>TCAS OFF</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Page 3 title off</object-name>
-		<condition>
-			<not>
-				<property alias="../../../../params/tcas" />
-			</not>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page 3 title off</object-name>
+	<condition>
+	    <not>
+		<property alias="../../../../params/tcas" />
+	    </not>
+	</condition>
+    </animation>
     <text>
-		<name>Page 3 title on</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>TCAS ON</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 3 title on</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>TCAS ON</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Page 3 title on</object-name>
-		<condition>
-			<property alias="../../../params/tcas" />
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page 3 title on</object-name>
+	<condition>
+	    <property alias="../../../params/tcas" />
+	</condition>
+    </animation>
     <text>
-		<name>Page 4 title</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>MAP</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 4 title</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>MAP</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Page 5 title</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>PLAN</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 5 title</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>PLAN</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Page 6 title off</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>WX OFF</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 6 title off</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>WX OFF</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Page 6 title off</object-name>
-		<condition>
-			<not>
-				<property alias="../../../../params/wx" />
-			</not>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page 6 title off</object-name>
+	<condition>
+	    <not>
+		<property alias="../../../../params/wx" />
+	    </not>
+	</condition>
+    </animation>
     <text>
-		<name>Page 6 title on</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>WX ON</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.08147</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Page 6 title on</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>WX ON</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.08147</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Page 6 title on</object-name>
-		<condition>
-			<property alias="../../../params/wx" />
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page 6 title on</object-name>
+	<condition>
+	    <property alias="../../../params/wx" />
+	</condition>
+    </animation>
     <text>
-		<name>UTC</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>UTC</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>UTC</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>UTC</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>UTC value</name>
-		<type>string-value</type>
-		<property>sim/time/gmt-string</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%.5s</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.05379</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>UTC value</name>
+	<type>string-value</type>
+	<property>sim/time/gmt-string</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%.5s</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.05379</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>TAS</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>TAS</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.03608</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>TAS</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>TAS</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.03608</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>TAS value</name>
-		<type>number-value</type>
-		<property alias="../../params/true-airspeed-kt" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%-3.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.02486</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>TAS value</name>
+	<type>number-value</type>
+	<property alias="../../params/true-airspeed-kt" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%-3.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.02486</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>GS text</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>GS</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.01127</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>GS text</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>GS</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.01127</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>GS value</name>
-		<type>number-value</type>
-		<property>velocities/groundspeed-kt</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%-3.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.00351</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>GS value</name>
+	<type>number-value</type>
+	<property>velocities/groundspeed-kt</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%-3.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.00351</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>SAT</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>SAT</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.0158</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>SAT</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>SAT</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.0158</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>SAT value</name>
-		<type>number-value</type>
-		<property>environment/temperature-degc</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%2.fC</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.02842</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>SAT value</name>
+	<type>number-value</type>
+	<property>environment/temperature-degc</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%2.fC</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.02842</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>TAT</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>TAT</text>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.04105</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>TAT</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>TAT</text>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.04105</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>TAT value</name>
-		<type>number-value</type>
-		<property>environment/total-air-temperature-degc</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%2.fC</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.05311</y-m>
-			<z-m>0.07447</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>TAT value</name>
+	<type>number-value</type>
+	<property>environment/total-air-temperature-degc</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%2.fC</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.05311</y-m>
+	    <z-m>0.07447</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 1 ID</name>
-		<type>string-value</type>
-		<property>autopilot/route-manager/route/wp[0]/id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.06247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 1 ID</name>
+	<type>string-value</type>
+	<property>autopilot/route-manager/route/wp[0]/id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.06247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 1 distance</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[0]/leg-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.fNM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.0325</y-m>
-			<z-m>0.06247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 1 distance</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[0]/leg-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.fNM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.0325</y-m>
+	    <z-m>0.06247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 1 course</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[0]/leg-bearing-true-deg</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>CRS %03.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.00196</y-m>
-			<z-m>0.06247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 1 course</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[0]/leg-bearing-true-deg</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>CRS %03.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.00196</y-m>
+	    <z-m>0.06247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 1 altitude</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[0]/altitude-ft</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fFT</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.06247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 1 altitude</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[0]/altitude-ft</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fFT</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.06247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 1 altitude (metric)</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[0]/altitude-ft</property>
-		<scale alias="../../ft-to-m" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.06247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 1 altitude (metric)</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[0]/altitude-ft</property>
+	<scale alias="../../ft-to-m" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.06247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 1 ID</object-name>
-		<object-name>Waypoint 1 distance</object-name>
-		<object-name>Waypoint 1 course</object-name>
-		<object-name>Waypoint 1 altitude</object-name>
-		<object-name>Waypoint 1 altitude (metric)</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>autopilot/route-manager/route/num</property>
-				<value>1</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 1 ID</object-name>
+	<object-name>Waypoint 1 distance</object-name>
+	<object-name>Waypoint 1 course</object-name>
+	<object-name>Waypoint 1 altitude</object-name>
+	<object-name>Waypoint 1 altitude (metric)</object-name>
+	<condition>
+	    <greater-than-equals>
+		<property>autopilot/route-manager/route/num</property>
+		<value>1</value>
+	    </greater-than-equals>
+	</condition>
+    </animation>
     <text>
-		<name>Waypoint 2 ID</name>
-		<type>string-value</type>
-		<property>autopilot/route-manager/route/wp[1]/id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.05747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 2 ID</name>
+	<type>string-value</type>
+	<property>autopilot/route-manager/route/wp[1]/id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.05747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 2 distance</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[1]/leg-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.fNM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.0325</y-m>
-			<z-m>0.05747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 2 distance</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[1]/leg-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.fNM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.0325</y-m>
+	    <z-m>0.05747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 2 course</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[1]/leg-bearing-true-deg</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>CRS %03.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.00196</y-m>
-			<z-m>0.05747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 2 course</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[1]/leg-bearing-true-deg</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>CRS %03.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.00196</y-m>
+	    <z-m>0.05747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 2 altitude</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[1]/altitude-ft</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fFT</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.05747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 2 altitude</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[1]/altitude-ft</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fFT</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.05747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 2 altitude (metric)</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[1]/altitude-ft</property>
-		<scale alias="../../ft-to-m" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.05747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 2 altitude (metric)</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[1]/altitude-ft</property>
+	<scale alias="../../ft-to-m" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.05747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 2 ID</object-name>
-		<object-name>Waypoint 2 distance</object-name>
-		<object-name>Waypoint 2 course</object-name>
-		<object-name>Waypoint 2 altitude</object-name>
-		<object-name>Waypoint 2 altitude (metric)</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>autopilot/route-manager/route/num</property>
-				<value>2</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 2 ID</object-name>
+	<object-name>Waypoint 2 distance</object-name>
+	<object-name>Waypoint 2 course</object-name>
+	<object-name>Waypoint 2 altitude</object-name>
+	<object-name>Waypoint 2 altitude (metric)</object-name>
+	<condition>
+	    <greater-than-equals>
+		<property>autopilot/route-manager/route/num</property>
+		<value>2</value>
+	    </greater-than-equals>
+	</condition>
+    </animation>
     <text>
-		<name>Waypoint 3 ID</name>
-		<type>string-value</type>
-		<property>autopilot/route-manager/route/wp[2]/id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.05247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 3 ID</name>
+	<type>string-value</type>
+	<property>autopilot/route-manager/route/wp[2]/id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.05247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 3 distance</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[2]/leg-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.fNM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.0325</y-m>
-			<z-m>0.05247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 3 distance</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[2]/leg-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.fNM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.0325</y-m>
+	    <z-m>0.05247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 3 course</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[2]/leg-bearing-true-deg</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>CRS %03.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.00196</y-m>
-			<z-m>0.05247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 3 course</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[2]/leg-bearing-true-deg</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>CRS %03.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.00196</y-m>
+	    <z-m>0.05247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 3 altitude</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[2]/altitude-ft</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fFT</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.05247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 3 altitude</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[2]/altitude-ft</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fFT</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.05247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 3 altitude (metric)</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[2]/altitude-ft</property>
-		<scale alias="../../ft-to-m" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.05247</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 3 altitude (metric)</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[2]/altitude-ft</property>
+	<scale alias="../../ft-to-m" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.05247</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 3 ID</object-name>
-		<object-name>Waypoint 3 distance</object-name>
-		<object-name>Waypoint 3 course</object-name>
-		<object-name>Waypoint 3 altitude</object-name>
-		<object-name>Waypoint 3 altitude (metric)</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>autopilot/route-manager/route/num</property>
-				<value>3</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 3 ID</object-name>
+	<object-name>Waypoint 3 distance</object-name>
+	<object-name>Waypoint 3 course</object-name>
+	<object-name>Waypoint 3 altitude</object-name>
+	<object-name>Waypoint 3 altitude (metric)</object-name>
+	<condition>
+	    <greater-than-equals>
+		<property>autopilot/route-manager/route/num</property>
+		<value>3</value>
+	    </greater-than-equals>
+	</condition>
+    </animation>
     <text>
-		<name>Waypoint 4 ID</name>
-		<type>string-value</type>
-		<property>autopilot/route-manager/route/wp[3]/id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.06536</y-m>
-			<z-m>0.04747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 4 ID</name>
+	<type>string-value</type>
+	<property>autopilot/route-manager/route/wp[3]/id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.06536</y-m>
+	    <z-m>0.04747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 4 distance</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[3]/leg-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.fNM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.0325</y-m>
-			<z-m>0.04747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 4 distance</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[3]/leg-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.fNM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.0325</y-m>
+	    <z-m>0.04747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 4 course</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[3]/leg-bearing-true-deg</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>CRS %03.f</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>-0.00196</y-m>
-			<z-m>0.04747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 4 course</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[3]/leg-bearing-true-deg</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>CRS %03.f</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>-0.00196</y-m>
+	    <z-m>0.04747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 4 altitude</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[3]/altitude-ft</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fFT</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.04747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 4 altitude</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[3]/altitude-ft</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fFT</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.04747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Waypoint 4 altitude (metric)</name>
-		<type>number-value</type>
-		<property>autopilot/route-manager/route/wp[3]/altitude-ft</property>
-		<scale alias="../../ft-to-m" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%5.fM</format>
-		<offsets>
-			<x-m>0.0002</x-m>
-			<y-m>0.03422</y-m>
-			<z-m>0.04747</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Waypoint 4 altitude (metric)</name>
+	<type>number-value</type>
+	<property>autopilot/route-manager/route/wp[3]/altitude-ft</property>
+	<scale alias="../../ft-to-m" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.005</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%5.fM</format>
+	<offsets>
+	    <x-m>0.0002</x-m>
+	    <y-m>0.03422</y-m>
+	    <z-m>0.04747</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 4 ID</object-name>
-		<object-name>Waypoint 4 distance</object-name>
-		<object-name>Waypoint 4 course</object-name>
-		<object-name>Waypoint 4 altitude</object-name>
-		<object-name>Waypoint 4 altitude (metric)</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>autopilot/route-manager/route/num</property>
-				<value>4</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 4 ID</object-name>
+	<object-name>Waypoint 4 distance</object-name>
+	<object-name>Waypoint 4 course</object-name>
+	<object-name>Waypoint 4 altitude</object-name>
+	<object-name>Waypoint 4 altitude (metric)</object-name>
+	<condition>
+	    <greater-than-equals>
+		<property>autopilot/route-manager/route/num</property>
+		<value>4</value>
+	    </greater-than-equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 1 altitude</object-name>
-		<object-name>Waypoint 2 altitude</object-name>
-		<object-name>Waypoint 3 altitude</object-name>
-		<object-name>Waypoint 4 altitude</object-name>
-		<condition>
-			<not>
-				<property>instrumentation/use-metric-altitude</property>
-			</not>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 1 altitude</object-name>
+	<object-name>Waypoint 2 altitude</object-name>
+	<object-name>Waypoint 3 altitude</object-name>
+	<object-name>Waypoint 4 altitude</object-name>
+	<condition>
+	    <not>
+		<property>instrumentation/use-metric-altitude</property>
+	    </not>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Waypoint 1 altitude (metric)</object-name>
-		<object-name>Waypoint 2 altitude (metric)</object-name>
-		<object-name>Waypoint 3 altitude (metric)</object-name>
-		<object-name>Waypoint 4 altitude (metric)</object-name>
-		<condition>
-			<property>instrumentation/use-metric-altitude</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Waypoint 1 altitude (metric)</object-name>
+	<object-name>Waypoint 2 altitude (metric)</object-name>
+	<object-name>Waypoint 3 altitude (metric)</object-name>
+	<object-name>Waypoint 4 altitude (metric)</object-name>
+	<condition>
+	    <property>instrumentation/use-metric-altitude</property>
+	</condition>
+    </animation>
     <text>
-		<name>Wind direction</name>
-		<type>number-value</type>
-		<property>environment/wind-from-heading-deg</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%03.f</format>
-		<offsets>
-			<x-m>0.0003</x-m>
-			<y-m>-0.05705</y-m>
-			<z-m>0.04146</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Wind direction</name>
+	<type>number-value</type>
+	<property>environment/wind-from-heading-deg</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>right-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%03.f</format>
+	<offsets>
+	    <x-m>0.0003</x-m>
+	    <y-m>-0.05705</y-m>
+	    <z-m>0.04146</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Wind speed</name>
-		<type>number-value</type>
-		<property>environment/wind-speed-kt</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>/%2.f</format>
-		<offsets>
-			<x-m>0.0003</x-m>
-			<y-m>-0.05705</y-m>
-			<z-m>0.04146</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Wind speed</name>
+	<type>number-value</type>
+	<property>environment/wind-speed-kt</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>/%2.f</format>
+	<offsets>
+	    <x-m>0.0003</x-m>
+	    <y-m>-0.05705</y-m>
+	    <z-m>0.04146</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Selected heading</name>
-		<type>number-value</type>
-		<property>controls/autoflight/heading-select</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size>0.007</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>HDG %03.f</format>
-		<offsets>
-			<x-m>0.0003</x-m>
-			<y-m>-0.0157</y-m>
-			<z-m>0.03755</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Selected heading</name>
+	<type>number-value</type>
+	<property>controls/autoflight/heading-select</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>right-center</alignment>
+	<character-size>0.007</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>HDG %03.f</format>
+	<offsets>
+	    <x-m>0.0003</x-m>
+	    <y-m>-0.0157</y-m>
+	    <z-m>0.03755</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>Heading</name>
-		<type>number-value</type>
-		<property alias="../../params/indicated-heading-deg" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.01</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%03.f</format>
-		<offsets>
-			<x-m>0.0005</x-m>
-			<y-m>0</y-m>
-			<z-m>0.03723</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>Heading</name>
+	<type>number-value</type>
+	<property alias="../../params/indicated-heading-deg" />
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>center-center</alignment>
+	<character-size>0.01</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%03.f</format>
+	<offsets>
+	    <x-m>0.0005</x-m>
+	    <y-m>0</y-m>
+	    <z-m>0.03723</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>VOR1</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>VOR1</text>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06515</y-m>
-			<z-m>-0.06512</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR1</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>VOR1</text>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>-0.06515</y-m>
+	    <z-m>-0.06512</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>VOR1 ID</name>
-		<type>string-value</type>
-		<property>instrumentation/nav[0]/nav-id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06515</y-m>
-			<z-m>-0.07212</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR1 ID</name>
+	<type>string-value</type>
+	<property>instrumentation/nav[0]/nav-id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>-0.06515</y-m>
+	    <z-m>-0.07212</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>VOR1 distance</name>
-		<type>number-value</type>
-		<property>instrumentation/dme[0]/indicated-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.1fNM</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06515</y-m>
-			<z-m>-0.07912</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR1 distance</name>
+	<type>number-value</type>
+	<property>instrumentation/dme[0]/indicated-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>left-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.1fNM</format>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>-0.06515</y-m>
+	    <z-m>-0.07912</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>VOR1</object-name>
-		<object-name>VOR1 ID</object-name>
-		<object-name>VOR1 distance</object-name>
-		<condition>
-			<property>instrumentation/nav[0]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>VOR1</object-name>
+	<object-name>VOR1 ID</object-name>
+	<object-name>VOR1 distance</object-name>
+	<condition>
+	    <property>instrumentation/nav[0]/in-range</property>
+	</condition>
+    </animation>
     <text>
-		<name>VOR2</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>VOR2</text>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.06515</y-m>
-			<z-m>-0.06512</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR2</name>
+	<type>literal</type>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>right-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<text>VOR2</text>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>0.06515</y-m>
+	    <z-m>-0.06512</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>VOR2 ID</name>
-		<type>string-value</type>
-		<property>instrumentation/nav[1]/nav-id</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%s</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.06515</y-m>
-			<z-m>-0.07212</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR2 ID</name>
+	<type>string-value</type>
+	<property>instrumentation/nav[1]/nav-id</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>right-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%s</format>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>0.06515</y-m>
+	    <z-m>-0.07212</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <text>
-		<name>VOR2 distance</name>
-		<type>number-value</type>
-		<property>instrumentation/dme[1]/indicated-distance-nm</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>%3.1fNM</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.06515</y-m>
-			<z-m>-0.07912</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
+	<name>VOR2 distance</name>
+	<type>number-value</type>
+	<property>instrumentation/dme[1]/indicated-distance-nm</property>
+	<axis-alignment>yz-plane</axis-alignment>
+	<alignment>right-center</alignment>
+	<character-size>0.006</character-size>
+	<character-aspect-ratio>1.5</character-aspect-ratio>
+	<font>helvetica_bold.txf</font>
+	<format>%3.1fNM</format>
+	<offsets>
+	    <x-m>0.0001</x-m>
+	    <y-m>0.06515</y-m>
+	    <z-m>-0.07912</z-m>
+	</offsets>
+	<font-resolution>
+	    <width type="int">32</width>
+	    <height type="int">32</height>
+	</font-resolution>
+    </text>
     <animation>
-		<type>select</type>
-		<object-name>VOR2</object-name>
-		<object-name>VOR2 ID</object-name>
-		<object-name>VOR2 distance</object-name>
-		<condition>
-			<property>instrumentation/nav[1]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>VOR2</object-name>
+	<object-name>VOR2 ID</object-name>
+	<object-name>VOR2 distance</object-name>
+	<condition>
+	    <property>instrumentation/nav[1]/in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Page 1 title</object-name>
-		<object-name>Page 2 title</object-name>
-		<object-name>Page 3 title off</object-name>
-		<object-name>Page 3 title on</object-name>
-		<object-name>Page 4 title</object-name>
-		<object-name>Page 5 title</object-name>
-		<object-name>Page 6 title off</object-name>
-		<object-name>Page 6 title on</object-name>
-		<object-name>Waypoint 1 ID</object-name>
-		<object-name>Waypoint 1 distance</object-name>
-		<object-name>Waypoint 1 course</object-name>
-		<object-name>Waypoint 1 altitude</object-name>
-		<object-name>Waypoint 1 altitude (metric)</object-name>
-		<object-name>VOR2</object-name>
-		<object-name>VOR2 ID</object-name>
-		<object-name>VOR2 distance</object-name>
-		<object-name>UTC</object-name>
-		<ambient>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+	<type>material</type>
+	<object-name>Page 1 title</object-name>
+	<object-name>Page 2 title</object-name>
+	<object-name>Page 3 title off</object-name>
+	<object-name>Page 3 title on</object-name>
+	<object-name>Page 4 title</object-name>
+	<object-name>Page 5 title</object-name>
+	<object-name>Page 6 title off</object-name>
+	<object-name>Page 6 title on</object-name>
+	<object-name>Waypoint 1 ID</object-name>
+	<object-name>Waypoint 1 distance</object-name>
+	<object-name>Waypoint 1 course</object-name>
+	<object-name>Waypoint 1 altitude</object-name>
+	<object-name>Waypoint 1 altitude (metric)</object-name>
+	<object-name>VOR2</object-name>
+	<object-name>VOR2 ID</object-name>
+	<object-name>VOR2 distance</object-name>
+	<object-name>UTC</object-name>
+	<ambient>
+	    <red alias="../../../colors/blue/red" />
+	    <green alias="../../../colors/blue/green" />
+	    <blue alias="../../../colors/blue/blue" />
+	</ambient>
+	<diffuse>
+	    <red alias="../../../colors/blue/red" />
+	    <green alias="../../../colors/blue/green" />
+	    <blue alias="../../../colors/blue/blue" />
+	</diffuse>
+	<emission>
+	    <red alias="../../../colors/blue/red" />
+	    <green alias="../../../colors/blue/green" />
+	    <blue alias="../../../colors/blue/blue" />
+	    <factor-prop>controls/lighting/display-norm</factor-prop>
+	</emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>TAS</object-name>
-		<object-name>GS text</object-name>
-		<object-name>SAT</object-name>
-		<object-name>TAT</object-name>
-		<object-name>Selected heading</object-name>
-		<object-name>VOR1</object-name>
-		<object-name>VOR1 ID</object-name>
-		<object-name>VOR1 distance</object-name>
-		<ambient>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+	<type>material</type>
+	<object-name>TAS</object-name>
+	<object-name>GS text</object-name>
+	<object-name>SAT</object-name>
+	<object-name>TAT</object-name>
+	<object-name>Selected heading</object-name>
+	<object-name>VOR1</object-name>
+	<object-name>VOR1 ID</object-name>
+	<object-name>VOR1 distance</object-name>
+	<ambient>
+	    <red alias="../../../colors/green/red" />
+	    <green alias="../../../colors/green/green" />
+	    <blue alias="../../../colors/green/blue" />
+	</ambient>
+	<diffuse>
+	    <red alias="../../../colors/green/red" />
+	    <green alias="../../../colors/green/green" />
+	    <blue alias="../../../colors/green/blue" />
+	</diffuse>
+	<emission>
+	    <red alias="../../../colors/green/red" />
+	    <green alias="../../../colors/green/green" />
+	    <blue alias="../../../colors/green/blue" />
+	    <factor-prop>controls/lighting/display-norm</factor-prop>
+	</emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Waypoint 2 ID</object-name>
-		<object-name>Waypoint 2 distance</object-name>
-		<object-name>Waypoint 2 course</object-name>
-		<object-name>Waypoint 2 altitude</object-name>
-		<object-name>Waypoint 2 altitude (metric)</object-name>
-		<ambient>
-			<red alias="../../../colors/pink/red" />
-			<green alias="../../../colors/pink/green" />
-			<blue alias="../../../colors/pink/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/pink/red" />
-			<green alias="../../../colors/pink/green" />
-			<blue alias="../../../colors/pink/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/pink/red" />
-			<green alias="../../../colors/pink/green" />
-			<blue alias="../../../colors/pink/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+	<type>material</type>
+	<object-name>Waypoint 2 ID</object-name>
+	<object-name>Waypoint 2 distance</object-name>
+	<object-name>Waypoint 2 course</object-name>
+	<object-name>Waypoint 2 altitude</object-name>
+	<object-name>Waypoint 2 altitude (metric)</object-name>
+	<ambient>
+	    <red alias="../../../colors/pink/red" />
+	    <green alias="../../../colors/pink/green" />
+	    <blue alias="../../../colors/pink/blue" />
+	</ambient>
+	<diffuse>
+	    <red alias="../../../colors/pink/red" />
+	    <green alias="../../../colors/pink/green" />
+	    <blue alias="../../../colors/pink/blue" />
+	</diffuse>
+	<emission>
+	    <red alias="../../../colors/pink/red" />
+	    <green alias="../../../colors/pink/green" />
+	    <blue alias="../../../colors/pink/blue" />
+	    <factor-prop>controls/lighting/display-norm</factor-prop>
+	</emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Radar inner range</object-name>
-		<object-name>Radar outer range</object-name>
-		<object-name>UTC value</object-name>
-		<object-name>TAS value</object-name>
-		<object-name>GS value</object-name>
-		<object-name>SAT value</object-name>
-		<object-name>TAT value</object-name>
-		<object-name>Heading</object-name>
-		<object-name>Waypoint 3 ID</object-name>
-		<object-name>Waypoint 3 distance</object-name>
-		<object-name>Waypoint 3 course</object-name>
-		<object-name>Waypoint 3 altitude</object-name>
-		<object-name>Waypoint 3 altitude (metric)</object-name>
-		<object-name>Waypoint 4 ID</object-name>
-		<object-name>Waypoint 4 distance</object-name>
-		<object-name>Waypoint 4 course</object-name>
-		<object-name>Waypoint 4 altitude</object-name>
-		<object-name>Waypoint 4 altitude (metric)</object-name>
-		<object-name>Wind direction</object-name>
-		<object-name>Wind speed</object-name>
-		<ambient>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+	<type>material</type>
+	<object-name>Radar inner range</object-name>
+	<object-name>Radar outer range</object-name>
+	<object-name>UTC value</object-name>
+	<object-name>TAS value</object-name>
+	<object-name>GS value</object-name>
+	<object-name>SAT value</object-name>
+	<object-name>TAT value</object-name>
+	<object-name>Heading</object-name>
+	<object-name>Waypoint 3 ID</object-name>
+	<object-name>Waypoint 3 distance</object-name>
+	<object-name>Waypoint 3 course</object-name>
+	<object-name>Waypoint 3 altitude</object-name>
+	<object-name>Waypoint 3 altitude (metric)</object-name>
+	<object-name>Waypoint 4 ID</object-name>
+	<object-name>Waypoint 4 distance</object-name>
+	<object-name>Waypoint 4 course</object-name>
+	<object-name>Waypoint 4 altitude</object-name>
+	<object-name>Waypoint 4 altitude (metric)</object-name>
+	<object-name>Wind direction</object-name>
+	<object-name>Wind speed</object-name>
+	<ambient>
+	    <red alias="../../../colors/white/red" />
+	    <green alias="../../../colors/white/green" />
+	    <blue alias="../../../colors/white/blue" />
+	</ambient>
+	<diffuse>
+	    <red alias="../../../colors/white/red" />
+	    <green alias="../../../colors/white/green" />
+	    <blue alias="../../../colors/white/blue" />
+	</diffuse>
+	<emission>
+	    <red alias="../../../colors/white/red" />
+	    <green alias="../../../colors/white/green" />
+	    <blue alias="../../../colors/white/blue" />
+	    <factor-prop>controls/lighting/display-norm</factor-prop>
+	</emission>
+    </animation>
     <animation>
-		<name>Text</name>
-		<object-name>Page 1 title</object-name>
-		<object-name>Page 2 title</object-name>
-		<object-name>Page 3 title off</object-name>
-		<object-name>Page 3 title on</object-name>
-		<object-name>Page 4 title</object-name>
-		<object-name>Page 5 title</object-name>
-		<object-name>Page 6 title off</object-name>
-		<object-name>Page 6 title on</object-name>
-		<object-name>Waypoint 1 ID</object-name>
-		<object-name>Waypoint 1 distance</object-name>
-		<object-name>Waypoint 1 course</object-name>
-		<object-name>Waypoint 1 altitude</object-name>
-		<object-name>Waypoint 1 altitude (metric)</object-name>
-		<object-name>Waypoint 2 ID</object-name>
-		<object-name>Waypoint 2 distance</object-name>
-		<object-name>Waypoint 2 course</object-name>
-		<object-name>Waypoint 2 altitude</object-name>
-		<object-name>Waypoint 2 altitude (metric)</object-name>
-		<object-name>Waypoint 3 ID</object-name>
-		<object-name>Waypoint 3 distance</object-name>
-		<object-name>Waypoint 3 course</object-name>
-		<object-name>Waypoint 3 altitude</object-name>
-		<object-name>Waypoint 3 altitude (metric)</object-name>
-		<object-name>Waypoint 4 ID</object-name>
-		<object-name>Waypoint 4 distance</object-name>
-		<object-name>Waypoint 4 course</object-name>
-		<object-name>Waypoint 4 altitude</object-name>
-		<object-name>Waypoint 4 altitude (metric)</object-name>
-		<object-name>Wind direction</object-name>
-		<object-name>Wind speed</object-name>
-		<object-name>UTC</object-name>
-		<object-name>TAS</object-name>
-		<object-name>GS text</object-name>
-		<object-name>SAT</object-name>
-		<object-name>TAT</object-name>
-		<object-name>UTC value</object-name>
-		<object-name>TAS value</object-name>
-		<object-name>GS value</object-name>
-		<object-name>SAT value</object-name>
-		<object-name>TAT value</object-name>
-		<object-name>Selected heading</object-name>
-		<object-name>Heading</object-name>
-		<object-name>VOR1</object-name>
-		<object-name>VOR1 ID</object-name>
-		<object-name>VOR1 distance</object-name>
-		<object-name>VOR2</object-name>
-		<object-name>VOR2 ID</object-name>
-		<object-name>VOR2 distance</object-name>
-	</animation>
-	
+	<name>Text</name>
+	<object-name>Page 1 title</object-name>
+	<object-name>Page 2 title</object-name>
+	<object-name>Page 3 title off</object-name>
+	<object-name>Page 3 title on</object-name>
+	<object-name>Page 4 title</object-name>
+	<object-name>Page 5 title</object-name>
+	<object-name>Page 6 title off</object-name>
+	<object-name>Page 6 title on</object-name>
+	<object-name>Waypoint 1 ID</object-name>
+	<object-name>Waypoint 1 distance</object-name>
+	<object-name>Waypoint 1 course</object-name>
+	<object-name>Waypoint 1 altitude</object-name>
+	<object-name>Waypoint 1 altitude (metric)</object-name>
+	<object-name>Waypoint 2 ID</object-name>
+	<object-name>Waypoint 2 distance</object-name>
+	<object-name>Waypoint 2 course</object-name>
+	<object-name>Waypoint 2 altitude</object-name>
+	<object-name>Waypoint 2 altitude (metric)</object-name>
+	<object-name>Waypoint 3 ID</object-name>
+	<object-name>Waypoint 3 distance</object-name>
+	<object-name>Waypoint 3 course</object-name>
+	<object-name>Waypoint 3 altitude</object-name>
+	<object-name>Waypoint 3 altitude (metric)</object-name>
+	<object-name>Waypoint 4 ID</object-name>
+	<object-name>Waypoint 4 distance</object-name>
+	<object-name>Waypoint 4 course</object-name>
+	<object-name>Waypoint 4 altitude</object-name>
+	<object-name>Waypoint 4 altitude (metric)</object-name>
+	<object-name>Wind direction</object-name>
+	<object-name>Wind speed</object-name>
+	<object-name>UTC</object-name>
+	<object-name>TAS</object-name>
+	<object-name>GS text</object-name>
+	<object-name>SAT</object-name>
+	<object-name>TAT</object-name>
+	<object-name>UTC value</object-name>
+	<object-name>TAS value</object-name>
+	<object-name>GS value</object-name>
+	<object-name>SAT value</object-name>
+	<object-name>TAT value</object-name>
+	<object-name>Selected heading</object-name>
+	<object-name>Heading</object-name>
+	<object-name>VOR1</object-name>
+	<object-name>VOR1 ID</object-name>
+	<object-name>VOR1 distance</object-name>
+	<object-name>VOR2</object-name>
+	<object-name>VOR2 ID</object-name>
+	<object-name>VOR2 distance</object-name>
+    </animation>
+
     <animation>
-		<type>select</type>
-		<object-name>Off</object-name>
-		<condition>
-			<less-than>
-				<property alias="../../../../params/powerN" />
-				<value>15</value>
-			</less-than>
-		</condition>
-	</animation>
-	
+	<type>select</type>
+	<object-name>Off</object-name>
+	<condition>
+	    <less-than>
+		<property>systems/electrical/outputs/efis</property>
+		<value>15</value>
+	    </less-than>
+	</condition>
+    </animation>
+
     <animation>
-		<type>select</type>
-		<object-name>Page1</object-name>
-		<object-name>Page 1 title</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page1</object-name>
+	<object-name>Page 1 title</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>1</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Page2</object-name>
-		<object-name>Page 2 title</object-name>
-		<object-name>VOR1</object-name>
-		<object-name>VOR1 ID</object-name>
-		<object-name>VOR1 distance</object-name>
-		<object-name>VOR2</object-name>
-		<object-name>VOR2 ID</object-name>
-		<object-name>VOR2 distance</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page2</object-name>
+	<object-name>Page 2 title</object-name>
+	<object-name>VOR1</object-name>
+	<object-name>VOR1 ID</object-name>
+	<object-name>VOR1 distance</object-name>
+	<object-name>VOR2</object-name>
+	<object-name>VOR2 ID</object-name>
+	<object-name>VOR2 distance</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>2</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Page3</object-name>
-		<object-name>Page 3 title off</object-name>
-		<object-name>Page 3 title on</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>3</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page3</object-name>
+	<object-name>Page 3 title off</object-name>
+	<object-name>Page 3 title on</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>3</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Page4</object-name>
-		<object-name>Page 4 title</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>4</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page4</object-name>
+	<object-name>Page 4 title</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>4</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Page5</object-name>
-		<object-name>Page 5 title</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>5</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page5</object-name>
+	<object-name>Page 5 title</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>5</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>Page6</object-name>
-		<object-name>Page 6 title off</object-name>
-		<object-name>Page 6 title on</object-name>
-		<condition>
-			<equals>
-				<property alias="../../../../params/page" />
-				<value>6</value>
-			</equals>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>Page6</object-name>
+	<object-name>Page 6 title off</object-name>
+	<object-name>Page 6 title on</object-name>
+	<condition>
+	    <equals>
+		<property alias="../../../../params/page" />
+		<value>6</value>
+	    </equals>
+	</condition>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>LeftControl</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/page" />
-				<step>-1</step>
-				<min>1</min>
-			</binding>
-		</action>
-	</animation>
+	<type>pick</type>
+	<object-name>LeftControl</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable type="bool">false</repeatable>
+	    <binding>
+		<command>property-adjust</command>
+		<property alias="../../../../params/page" />
+		<step>-1</step>
+		<min>1</min>
+	    </binding>
+	</action>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>RightControl</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/page" />
-				<step>1</step>
-				<max>6</max>
-			</binding>
-		</action>
-	</animation>
-	
+	<type>pick</type>
+	<object-name>RightControl</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable type="bool">false</repeatable>
+	    <binding>
+		<command>property-adjust</command>
+		<property alias="../../../../params/page" />
+		<step>1</step>
+		<max>6</max>
+	    </binding>
+	</action>
+    </animation>
+
     <animation>
-		<type>rotate</type>
-		<object-name>Wind</object-name>
-		<expression>
-			<dif>
-				<property>instrumentation/heading-indicator/indicated-heading-deg</property>
-				<property>environment/wind-from-heading-deg</property>
-			</dif>
-		</expression>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.05864</y-m>
-			<z-m>0.03103</z-m>
-		</center>
-	</animation>
-	
+	<type>rotate</type>
+	<object-name>Wind</object-name>
+	<expression>
+		<dif>
+			<property>instrumentation/heading-indicator/indicated-heading-deg</property>
+			<property>environment/wind-from-heading-deg</property>
+		</dif>
+	</expression>
+	<axis>
+	    <x>1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>-0.05864</y-m>
+	    <z-m>0.03103</z-m>
+	</center>
+    </animation>
+
     <animation>
-		<type>select</type>
-		<object-name>GS</object-name>
-		<condition>
-			<property>instrumentation/nav[0]/has-gs</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>GS</object-name>
+	<condition>
+	    <property>instrumentation/nav[0]/has-gs</property>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>GSPtr</object-name>
-		<condition>
-			<property>instrumentation/nav[0]/gs-in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>GSPtr</object-name>
+	<condition>
+	    <property>instrumentation/nav[0]/gs-in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>GSPtr</object-name>
-		<property>instrumentation/nav[0]/gs-needle-deflection-norm</property>
-		<factor>0.039</factor>
-		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>1</z>
-		</axis>
-	</animation>
-	
+	<type>translate</type>
+	<object-name>GSPtr</object-name>
+	<property>instrumentation/nav[0]/gs-needle-deflection-norm</property>
+	<factor>0.039</factor>
+	<axis>
+	    <x>0</x>
+	    <y>0</y>
+	    <z>1</z>
+	</axis>
+    </animation>
+
     <animation>
-		<type>rotate</type>
-		<object-name>HSI1</object-name>
-		<object-name>HSI1Bug</object-name>
-		<object-name>NAV1Ptr</object-name>
-		<object-name>NAV1Track</object-name>
-		<object-name>NAV2Ptr</object-name>
-		<object-name>NAV2Track</object-name>
-		<property alias="../../params/indicated-heading-deg" />
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>HSI1</object-name>
+	<object-name>HSI1Bug</object-name>
+	<object-name>ADF1Ptr</object-name>
+	<object-name>ADF2Ptr</object-name>
+	<object-name>NAV1Ptr</object-name>
+	<object-name>NAV1Track</object-name>
+	<object-name>NAV2Ptr</object-name>
+	<object-name>NAV2Track</object-name>
+	<property alias="../../params/indicated-heading-deg" />
+	<axis>
+	    <x>1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>HSI1Bug</object-name>
-		<property>controls/autoflight/heading-select</property>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>HSI1Bug</object-name>
+	<property>controls/autoflight/heading-select</property>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>ADF1Ptr</object-name>
-		<condition>
-			<property>instrumentation/adf[0]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>ADF1Ptr</object-name>
+	<condition>
+	    <property>instrumentation/adf[0]/in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>ADF1Ptr</object-name>
-		<property>instrumentation/adf[0]/indicated-bearing-deg</property>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>ADF1Ptr</object-name>
+	<property>instrumentation/adf[0]/indicated-bearing-deg</property>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>ADF2Ptr</object-name>
-		<condition>
-			<property>instrumentation/adf[1]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>ADF2Ptr</object-name>
+	<condition>
+	    <property>instrumentation/adf[1]/in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>ADF2Ptr</object-name>
-		<property>instrumentation/adf[1]/indicated-bearing-deg</property>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>ADF2Ptr</object-name>
+	<property>instrumentation/adf[1]/indicated-bearing-deg</property>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV1Ptr</object-name>
-		<object-name>NAV1Track</object-name>
-		<condition>
-			<property>instrumentation/nav[0]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV1Ptr</object-name>
+	<object-name>NAV1Track</object-name>
+	<condition>
+	    <property>instrumentation/nav[0]/in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>NAV1Ptr</object-name>
-		<object-name>NAV1Track</object-name>
-		<property>instrumentation/nav[0]/radials/selected-deg</property>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>NAV1Ptr</object-name>
+	<object-name>NAV1Track</object-name>
+	<property>instrumentation/nav[0]/radials/selected-deg</property>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>NAV1Track</object-name>
-		<property>instrumentation/nav[0]/heading-needle-deflection-norm</property>
-		<factor>0.03</factor>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+	<type>translate</type>
+	<object-name>NAV1Track</object-name>
+	<property>instrumentation/nav[0]/heading-needle-deflection-norm</property>
+	<factor>0.03</factor>
+	<axis>
+	    <x>0</x>
+	    <y>1</y>
+	    <z>0</z>
+	</axis>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV2Ptr</object-name>
-		<object-name>NAV2Track</object-name>
-		<condition>
-			<property>instrumentation/nav[1]/in-range</property>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV2Ptr</object-name>
+	<object-name>NAV2Track</object-name>
+	<condition>
+	    <property>instrumentation/nav[1]/in-range</property>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>NAV2Ptr</object-name>
-		<object-name>NAV2Track</object-name>
-		<property>instrumentation/nav[1]/radials/selected-deg</property>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.02133</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>NAV2Ptr</object-name>
+	<object-name>NAV2Track</object-name>
+	<property>instrumentation/nav[1]/radials/selected-deg</property>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.02133</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>NAV2Track</object-name>
-		<property>instrumentation/nav[1]/heading-needle-deflection-norm</property>
-		<factor>0.03</factor>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
+	<type>translate</type>
+	<object-name>NAV2Track</object-name>
+	<property>instrumentation/nav[1]/heading-needle-deflection-norm</property>
+	<factor>0.03</factor>
+	<axis>
+	    <x>0</x>
+	    <y>1</y>
+	    <z>0</z>
+	</axis>
+    </animation>
+
     <animation>
-		<type>texrotate</type>
-		<object-name>HSI2</object-name>
-		<object-name>HSI3</object-name>
-		<object-name>HSI4</object-name>
-		<object-name>HSI6</object-name>
-		<property alias="../../params/indicated-heading-deg" />
-		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>-1</z>
-		</axis>
-		<center>
-			<x>0.5</x>
-			<y>0.5</y>
-		</center>
-	</animation>
+	<type>texrotate</type>
+	<object-name>HSI2</object-name>
+	<object-name>HSI3</object-name>
+	<object-name>HSI4</object-name>
+	<object-name>HSI6</object-name>
+	<property alias="../../params/indicated-heading-deg" />
+	<axis>
+	    <x>0</x>
+	    <y>0</y>
+	    <z>-1</z>
+	</axis>
+	<center>
+	    <x>0.5</x>
+	    <y>0.5</y>
+	</center>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>HSI2Bug</object-name>
-		<object-name>HSI3Bug</object-name>
-		<object-name>HSI4Bug</object-name>
-		<object-name>HSI6Bug</object-name>
-		<property>autopilot/internal/heading-bug-error-deg</property>
-		<interpolation>
-			<entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05884</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>HSI2Bug</object-name>
+	<object-name>HSI3Bug</object-name>
+	<object-name>HSI4Bug</object-name>
+	<object-name>HSI6Bug</object-name>
+	<property>autopilot/internal/heading-bug-error-deg</property>
+	<interpolation>
+	    <entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
+	    <entry><ind>0</ind><dep>0</dep></entry>
+	    <entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
+	</interpolation>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.05884</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV1To</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/nav[0]/in-range</property>
-				<property>instrumentation/nav[0]/to-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV1To</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/nav[0]/in-range</property>
+		<property>instrumentation/nav[0]/to-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV1From</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/nav[0]/in-range</property>
-				<property>instrumentation/nav[0]/from-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV1From</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/nav[0]/in-range</property>
+		<property>instrumentation/nav[0]/from-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>NAV1To</object-name>
-		<object-name>NAV1From</object-name>
-		<property>instrumentation/nav[0]/heading-error-deg</property>
-		<interpolation>
-			<entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05884</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>NAV1To</object-name>
+	<object-name>NAV1From</object-name>
+	<property>instrumentation/nav[0]/heading-error-deg</property>
+	<interpolation>
+	    <entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
+	    <entry><ind>0</ind><dep>0</dep></entry>
+	    <entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
+	</interpolation>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.05884</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV2To</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/nav[1]/in-range</property>
-				<property>instrumentation/nav[1]/to-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV2To</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/nav[1]/in-range</property>
+		<property>instrumentation/nav[1]/to-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>NAV2From</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/nav[1]/in-range</property>
-				<property>instrumentation/nav[1]/from-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>NAV2From</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/nav[1]/in-range</property>
+		<property>instrumentation/nav[1]/from-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>NAV2To</object-name>
-		<object-name>NAV2From</object-name>
-		<property>instrumentation/nav[1]/heading-error-deg</property>
-		<interpolation>
-			<entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05884</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>NAV2To</object-name>
+	<object-name>NAV2From</object-name>
+	<property>instrumentation/nav[1]/heading-error-deg</property>
+	<interpolation>
+	    <entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
+	    <entry><ind>0</ind><dep>0</dep></entry>
+	    <entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
+	</interpolation>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.05884</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>ADF1</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/adf[0]/in-range</property>
-				<property>instrumentation/adf[0]/to-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>ADF1</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/adf[0]/in-range</property>
+		<property>instrumentation/adf[0]/to-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>ADF1</object-name>
-		<property>instrumentation/adf[0]/indicated-bearing-error-deg</property>
-		<interpolation>
-			<entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05884</z-m>
-		</center>
-	</animation>
+	<type>rotate</type>
+	<object-name>ADF1</object-name>
+	<property>instrumentation/adf[0]/indicated-bearing-error-deg</property>
+	<interpolation>
+	    <entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
+	    <entry><ind>0</ind><dep>0</dep></entry>
+	    <entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
+	</interpolation>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.05884</z-m>
+	</center>
+    </animation>
     <animation>
-		<type>select</type>
-		<object-name>ADF2</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/adf[1]/in-range</property>
-				<property>instrumentation/adf[1]/to-flag</property>
-			</and>
-		</condition>
-	</animation>
+	<type>select</type>
+	<object-name>ADF2</object-name>
+	<condition>
+	    <and>
+		<property>instrumentation/adf[1]/in-range</property>
+		<property>instrumentation/adf[1]/to-flag</property>
+	    </and>
+	</condition>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>ADF2</object-name>
-		<property>instrumentation/adf[1]/indicated-bearing-error-deg</property>
-		<interpolation>
-			<entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05884</z-m>
-		</center>
-	</animation>
-	
+	<type>rotate</type>
+	<object-name>ADF2</object-name>
+	<property>instrumentation/adf[1]/indicated-bearing-error-deg</property>
+	<interpolation>
+	    <entry><ind alias="../../../../big-rose-min-bug-deg" /><dep alias="../../../../big-rose-min-bug-deg" /></entry>
+	    <entry><ind>0</ind><dep>0</dep></entry>
+	    <entry><ind alias="../../../../big-rose-max-bug-deg" /><dep alias="../../../../big-rose-max-bug-deg" /></entry>
+	</interpolation>
+	<axis>
+	    <x>-1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+	<center>
+	    <x-m>0</x-m>
+	    <y-m>0</y-m>
+	    <z-m>-0.05884</z-m>
+	</center>
+    </animation>
+
     <!-- Lightmaps -->
     <effect>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image alias="../../../../params/lightmap-texture-path" />
-			</texture>
-		</parameters>
-		<object-name>Border</object-name>
-	</effect>
+	<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+	<parameters>
+	    <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+	    <lightmap-factor n="0">
+		<use alias="../../lightmap-factor-prop" />
+	    </lightmap-factor>
+	    <lightmap-factor n="1">
+		<use alias="../../lightmap-factor-prop" />
+	    </lightmap-factor>
+	    <lightmap-factor n="2">
+		<use alias="../../lightmap-factor-prop" />
+	    </lightmap-factor>
+	    <texture n="3">
+		<image alias="../../../../params/lightmap-texture-path" />
+	    </texture>
+	</parameters>
+	<object-name>Border</object-name>
+    </effect>
     
     <!-- Rembrandt !! -->
     <effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>HSIHdg</object-name>
-		<object-name>Page1</object-name>
-		<object-name>Page2</object-name>
-		<object-name>Page3</object-name>
-		<object-name>Page6</object-name>
-		<object-name>Wind</object-name>
-	</effect>
-	
+	<name>REMBRANDT transparency</name>
+	<inherits-from>Effects/model-transparent</inherits-from>
+	<object-name>HSIHdg</object-name>
+	<object-name>Page1</object-name>
+	<object-name>Page2</object-name>
+	<object-name>Page3</object-name>
+	<object-name>Page6</object-name>
+	<object-name>Wind</object-name>
+    </effect>
+
 </PropertyList>

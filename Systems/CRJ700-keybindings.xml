@@ -10,20 +10,20 @@
 		<name>Ctrl-R</name>
 		<desc>Reload interactive CDU</desc>
 		<binding>
-		<command>nasal</command>
-		<script>
-		CRJ700.cdu1.reload();
-		</script>
+			<command>nasal</command>
+			<script>
+				CRJ700.cdu1.reload();
+			</script>
 		</binding>
-		</key>
-		<key n="115">
+	</key>
+	<key n="115">
 		<name>s</name>
 		<desc>Instant start</desc>
 		<binding>
-		<command>nasal</command>
-		<script>
-		CRJ700.instastart();
-		</script>
+			<command>nasal</command>
+			<script>
+				CRJ700.instastart();
+			</script>
 		</binding>
 	</key-->
 	<!-- Speedbrakes/spoilers -->
@@ -36,11 +36,11 @@
 				controls.cycleSpeedbrake();
 			</script>
 			<!--command>property-cycle</command>
-				<property>controls/flight/speedbrake</property>
-				<value>0</value>
-				<value>0.25</value>
-				<value>0.5</value>
-				<value>0.75</value>
+			<property>controls/flight/speedbrake</property>
+			<value>0</value>
+			<value>0.25</value>
+			<value>0.5</value>
+			<value>0.75</value>
 			<value>1</value-->
 		</binding>
 	</key>
@@ -53,8 +53,8 @@
 				controls.stepGroundDump(-1);
 			</script>
 			<!--command>property-adjust</command>
-				<property>controls/flight/ground-lift-dump</property>
-				<step>-1</step>
+			<property>controls/flight/ground-lift-dump</property>
+			<step>-1</step>
 			<min>0</min-->
 		</binding>
 	</key>
@@ -67,8 +67,8 @@
 				controls.stepGroundDump(1);
 			</script>
 			<!--command>property-adjust</command>
-				<property>controls/flight/ground-lift-dump</property>
-				<step>1</step>
+			<property>controls/flight/ground-lift-dump</property>
+			<step>1</step>
 			<max>2</max-->
 		</binding>
 	</key>
@@ -84,7 +84,6 @@
 			</script>
 		</binding>
 	</key>
-
 	<key n="82">
 		<name>R</name>
 		<desc>Run forward toward view</desc>
@@ -107,23 +106,6 @@
 			</script>
 		</binding>
 	</key>
-	<key n="121">
-		<name>y</name>
-		<desc>Crouch</desc>
-		<repeatable type="bool">false</repeatable>
-		<binding>
-			<command>property-assign</command>
-			<property>sim/current-view/crouch</property>
-			<value>1</value>
-		</binding>
-		<mod-up>
-			<binding>
-				<command>property-assign</command>
-				<property>sim/current-view/crouch</property>
-				<value>0</value>
-			</binding>
-		</mod-up>
-	</key>
 	<!-- Tiller steering -->
 	<key n="81">
 		<name>Q</name>
@@ -134,7 +116,7 @@
 				controls.setTiller(-80);
 			</script>
 			<!--command>property-assign</command>
-				<property>controls/gear/tiller-steer-deg</property>
+			<property>controls/gear/tiller-steer-deg</property>
 			<value>-80</value-->
 		</binding>
 	</key>
@@ -148,8 +130,8 @@
 				controls.stepTiller(-10);
 			</script>
 			<!--command>property-adjust</command>
-				<property>controls/gear/tiller-steer-deg</property>
-				<step>-10</step>
+			<property>controls/gear/tiller-steer-deg</property>
+			<step>-10</step>
 			<min>-80</min-->
 		</binding>
 	</key>
@@ -162,7 +144,7 @@
 				controls.setTiller(0);
 			</script>
 			<!--command>property-assign</command>
-				<property>controls/gear/tiller-steer-deg</property>
+			<property>controls/gear/tiller-steer-deg</property>
 			<value>0</value-->
 		</binding>
 	</key>
@@ -176,8 +158,8 @@
 				controls.stepTiller(10);
 			</script>
 			<!--command>property-adjust</command>
-				<property>controls/gear/tiller-steer-deg</property>
-				<step>10</step>
+			<property>controls/gear/tiller-steer-deg</property>
+			<step>10</step>
 			<max>80</max-->
 		</binding>
 	</key>
@@ -190,7 +172,7 @@
 				controls.setTiller(80);
 			</script>
 			<!--command>property-assign</command>
-				<property>controls/gear/tiller-steer-deg</property>
+			<property>controls/gear/tiller-steer-deg</property>
 			<value>80</value-->
 		</binding>
 	</key>
@@ -210,7 +192,7 @@
 		<desc>Toggle autopilot altitude mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/vert-mode</property>
+			<property>controls/autoflight/vertical-mode</property>
 			<value>1</value>
 			<value>0</value>
 		</binding>
@@ -228,7 +210,7 @@
 		<desc>Toggle autopilot approach mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lat-mode</property>
+			<property>controls/autoflight/lateral-mode</property>
 			<value>3</value>
 			<value>0</value>
 		</binding>
@@ -238,7 +220,7 @@
 		<desc>Toggle autopilot heading mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lat-mode</property>
+			<property>controls/autoflight/lateral-mode</property>
 			<value>1</value>
 			<value>0</value>
 		</binding>
@@ -248,7 +230,7 @@
 		<desc>Toggle autopilot NAV mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lat-mode</property>
+			<property>controls/autoflight/lateral-mode</property>
 			<value>2</value>
 			<value>0</value>
 		</binding>
@@ -258,7 +240,7 @@
 		<desc>Set autopilot pitch mode</desc>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/vert-mode</property>
+			<property>controls/autoflight/vertical-mode</property>
 			<value>0</value>
 		</binding>
 	</key>
@@ -270,21 +252,12 @@
 			<property>controls/autoflight/autothrottle-engage</property>
 		</binding>
 	</key>
-	<key n="20">
-		<name>Ctrl-T</name>
-		<desc>Flight director TO/GA mode</desc>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/toga-button</property>
-			<value>1</value>
-		</binding>
-	</key>
 	<key n="23">
 		<name>Ctrl-W</name>
 		<desc>Set autopilot hold heading/roll mode</desc>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/lat-mode</property>
+			<property>controls/autoflight/lateral-mode</property>
 			<value>0</value>
 		</binding>
 	</key>

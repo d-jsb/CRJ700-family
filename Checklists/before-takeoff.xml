@@ -15,25 +15,31 @@
 		<name>Takeoff Data V1, VR, V2</name>
 		<value>REVIEW</value>
 	</item>
+
 	<item>
 		<name>Flaps</name>
-		<value>CHECK</value>
-		<marker>
-			<x-m>-16.0413</x-m>
-			<y-m>-0.0950</y-m>
-			<z-m>-0.9446</z-m>
-			<scale>2.8347</scale>
-		</marker>
+		<value>8 degree</value>
+		<condition>
+			<and>
+				<greater-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.177</value>
+				</greater-equal>
+				<less-equal>
+					<property>surface-positions/flap-pos-norm</property>
+					<value>0.444</value>
+				</less-equal>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/flaps</property>
+			<value>0.177</value>
+		</binding>
 	</item>
 	<item>
 		<name>Spoilers</name>
 		<value>CHECK RETRACTED</value>
-		<marker>
-			<x-m>-15.6413</x-m>
-			<y-m>-0.0867</y-m>
-			<z-m>-1.1926</z-m>
-			<scale>2.3388</scale>
-		</marker>
 		<condition>
 			<equals>
 				<property>/controls/flight/speedbrake</property>
@@ -47,18 +53,8 @@
 		</binding>
 	</item>
 	<item>
-		<name>Line up clearance</name>
-		<value>OBTAIN from ATC</value>
-	</item>
-	<item>
 		<name>Landing Light</name>
 		<value>ON</value>
-		<marker>
-			<x-m>-15.6479</x-m>
-			<y-m>-0.0959</y-m>
-			<z-m>-0.3083</z-m>
-			<scale>1.0000</scale>
-		</marker>
 		<condition>
 			<and>
 				<property>/controls/lighting/landing-lights[0]</property>
@@ -83,32 +79,8 @@
 		</binding>
 	</item>
 	<item>
-		<name>Taxi Lights</name>
-		<value>OFF</value>
-		<marker>
-			<x-m>-15.6479</x-m>
-			<y-m>-0.0959</y-m>
-			<z-m>-0.3083</z-m>
-			<scale>1.0000</scale>
-		</marker>
-		<condition>
-			<not><property>/controls/lighting/taxi-lights</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/taxi-lights</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
 		<name>Strobe Light</name>
 		<value>ON</value>
-		<marker>
-			<x-m>-15.5992</x-m>
-			<y-m>-0.1710</y-m>
-			<z-m>-0.2446</z-m>
-			<scale>1.5124</scale>
-		</marker>
 		<condition>
 			<property>/controls/lighting/strobe</property>
 		</condition>

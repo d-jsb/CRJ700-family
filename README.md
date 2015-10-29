@@ -1,29 +1,20 @@
 # Bombardier CRJ700 series
 
-This is a project to develop the Bombardier CRJ700/900/1000 regional jet for [FlightGear Flight Simulator](http://www.flightgear.org/).
+This is a project to develop the Bombardier CRJ700 regional jet for [FlightGear Flight Simulator](http://www.flightgear.org/).
 
-It is already a highly complete and functional aircraft, with a realistic model, cockpit, and autopilot. 
+It is already a highly complete and functional aircraft, with a realistic model, cockpit, and autopilot. Active development is effectively stopped and only bugfixes and regular maintenance are still being done.
+
 Contributions and pull requests, of course, are welcome.
 
-For more information check ./Docs/
+The latest CRJ700 is pushed out to [fgdata](https://gitorious.org/fg/fgdata/) before the next FlightGear release.
 
 ## License
 
-See LICENSE .
+See LICENSE (duh).
 
 ## Credits
 
-Initial version and FDM and model made Ryan "Skyop" Miller.
-
-###Major overhaul 2015 by D-JSB and Daniel M.
-* New electrical AC and DC system
-* Added hydraulic system
-* New EICAS pages for AC, DC, hydraulic and doors
-* Add some EICAS details for APU, engine start
-* More OHP switch lights (try light test switch on lower center panel)
-* Side panel HPA/inch and baro knob work now to set QNH
-* Added checklists 
-* Documentation update is pending
+FDM and model made by myself, Ryan Miller.
 
 Liveries and models also contributed by fellow FlightGear fans:
 * ["Zbyszek"](http://www.flightgear.pl/)

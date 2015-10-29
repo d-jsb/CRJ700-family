@@ -12,8 +12,8 @@
 					<property>sim/current-view/internal</property>
 				</not>
 				<greater-than>
-					<property>systems/DC/outputs/beacon</property>
-					<value>15</value>
+					<property>systems/electrical/outputs/beacon</property>
+					<value>5</value>
 				</greater-than>
 			</and>
 		</condition>
