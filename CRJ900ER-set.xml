@@ -117,9 +117,9 @@
             <config>
                 <from-model type="bool">true</from-model>
                 <x-offset-m>0</x-offset-m>
-                <y-offset-m>-0.9</y-offset-m>
-                <z-offset-m>-15.14</z-offset-m>
-                <pitch-offset-deg>-64.3</pitch-offset-deg>
+                <y-offset-m>-0.97</y-offset-m>
+                <z-offset-m>-15.22</z-offset-m>
+                <pitch-offset-deg>-69.2</pitch-offset-deg>
                 <heading-offset-deg>0</heading-offset-deg>
                 <default-field-of-view-deg type="double">77.3</default-field-of-view-deg>
             </config>
