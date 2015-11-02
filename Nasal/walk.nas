@@ -27,3 +27,10 @@ setlistener("sim/current-view/crouch", func(v) {
 	else
 		zViewNode.setValue(zViewNode.getValue() + 0.8);	
 },0,0);
+
+setlistener("sim/current-view/raise", func(v) {
+	if (v.getBoolValue())
+		zViewNode.setValue(zViewNode.getValue() + 0.2);
+	else
+		zViewNode.setValue(zViewNode.getValue() - 0.2);	
+},0,0);

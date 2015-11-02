@@ -96,6 +96,23 @@
 			</script>
 		</binding>
 	</key>
+	<key n="89">
+		<name>Y</name>
+		<desc>raise</desc>
+		<repeatable type="bool">false</repeatable>
+		<binding>
+			<command>property-assign</command>
+			<property>sim/current-view/raise</property>
+			<value>1</value>
+		</binding>
+		<mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>sim/current-view/raise</property>
+				<value></value>
+			</binding>
+		</mod-up>
+	</key>
 	<key n="102">
 		<name>f</name>
 		<desc>Walk backward from view</desc>
