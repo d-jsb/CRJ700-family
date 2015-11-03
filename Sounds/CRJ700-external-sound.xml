@@ -291,12 +291,12 @@
 			</and>
 		</condition>
 	    <position>
-			<x>0</x>
+			<x>3.8</x>
 			<y>0</y>
-			<z>-2.50</z>
+			<z>-2.30</z>
 	    </position>
-		<max-dist>17</max-dist>
-		<reference-dist>2</reference-dist>
+		<max-dist>20</max-dist>
+		<reference-dist>3</reference-dist>
 	</flaps>
 	<flapsStop>
 	    <name>Flaps stopping</name>
@@ -304,12 +304,12 @@
 	    <mode>once</mode>
 		<property>controls/flight/flaps-stop-snd</property>
 	    <position>
-			<x>0</x>
+			<x>3.8</x>
 			<y>0</y>
-			<z>-2.50</z>
+			<z>-2.30</z>
 	    </position>
-		<max-dist>17</max-dist>
-		<reference-dist>2</reference-dist>
+		<max-dist>20</max-dist>
+		<reference-dist>3</reference-dist>
 	</flapsStop>
 	<slats>
 	    <name>Slats in transit</name>
@@ -317,12 +317,12 @@
 	    <mode>in-transit</mode>		
 		<property>surface-positions/slat-pos-norm</property>
 	    <position>
-			<x>0</x>
+			<x>-2.60</x>
 			<y>0</y>
-			<z>-2.50</z>
+			<z>-2.30</z>
 	    </position>
-		<max-dist>17</max-dist>
-		<reference-dist>2</reference-dist>
+		<max-dist>20</max-dist>
+		<reference-dist>3</reference-dist>
 	</slats>
 	
 	<!-- Speedbrakes/spoilers -->

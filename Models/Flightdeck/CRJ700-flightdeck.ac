@@ -38961,6 +38961,7 @@ refs 4
 kids 0
 OBJECT poly
 name "MuteHornBtn"
+loc 0.0005283 0.0004623 0.0000000
 numvert 12
 -1.8575670 0.7319620 0.0085500
 -1.8575670 0.7319620 0.0285500
@@ -40000,6 +40001,7 @@ refs 4
 kids 0
 OBJECT poly
 name "MuteHornLight"
+loc 0.0005283 0.0004623 0.0000000
 texture "controls.png"
 texrep 1 1
 numvert 4
