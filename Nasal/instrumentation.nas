@@ -97,8 +97,10 @@ setlistener("controls/autoflight/toga-button", func (n) {
 			setprop("controls/autoflight/vert-mode", 7);
 		}
 		# setprop("autopilot/internal/bank-limit-deg", 5);
-		setprop("controls/autoflight/pitch-select", 10);		
-		setprop("controls/autoflight/toga-button", 0);
+		setprop("controls/autoflight/pitch-select", 10);
+        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/ref/roll-hdg", getprop("instrumentation/heading-indicator[0]/indicated-heading-deg"));
+ 		n.setBoolValue(0);
 	}
 }, 1, 0);
 
