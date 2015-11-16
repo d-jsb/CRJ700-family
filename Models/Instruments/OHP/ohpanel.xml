@@ -1528,6 +1528,134 @@
     <!-- Bleed air -->
     <animation>
 		<type>pick</type>
+		<object-name>CrossBleedKnob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/pneumatic/cross-bleed</property>
+				<wrap>0</wrap>
+				<value>1</value>
+				<value>0</value>
+				<value>2</value>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/pneumatic/cross-bleed</property>
+				<wrap>0</wrap>
+				<value>2</value>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>CrossBleedKnob</object-name>
+		<property>controls/pneumatic/cross-bleed</property>
+		<interpolation>
+			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
+		</interpolation>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.00323</y-m>
+			<z-m>0.05979</z-m>
+		</center>
+	</animation>
+    <animation>
+		<type>pick</type>
+		<object-name>BleedValveKnob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/pneumatic/bleed-valve</property>
+				<wrap>0</wrap>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/pneumatic/bleed-valve</property>
+				<wrap>0</wrap>
+				<value>2</value>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>BleedValveKnob</object-name>
+		<property>controls/pneumatic/bleed-valve</property>
+		<factor>30</factor>
+		<offset-deg>-30</offset-deg>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.04756</y-m>
+			<z-m>0.02011</z-m>
+		</center>
+	</animation>
+    <animation>
+		<type>pick</type>
+		<object-name>ISOLSwitch</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/pneumatic/isol</property>
+			</binding>
+		</action>
+	</animation>
+    <animation>
+		<type>rotate</type>
+		<object-name>ISOLSwitch</object-name>
+		<property>controls/pneumatic/isol</property>
+		<factor>60</factor>
+		<offset-deg>-30</offset-deg>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.00305</y-m>
+			<z-m>0.02296</z-m>
+		</center>
+	</animation>
+	
+    <animation>
+		<type>pick</type>
 		<object-name>BleedSourceKnob</object-name>
 		<action>
 			<button>0</button>
@@ -1569,7 +1697,7 @@
 		<center>
 			<x-m>0</x-m>
 			<y-m>0.0445</y-m>
-			<z-m>0.021</z-m>
+			<z-m>0.02068</z-m>
 		</center>
 	</animation>
 	
