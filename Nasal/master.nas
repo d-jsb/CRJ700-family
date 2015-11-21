@@ -103,18 +103,20 @@ var slow_loop = Loop(3, func {
 # When the sim is ready, start the update loops and create the crossfeed valve.
 var gravity_xflow = {};
 setlistener("sim/signals/fdm-initialized", func
-            {
-                print("CRJ700 aircraft systems ... initialized");
-                gravity_xflow = aircraft.crossfeed_valve.new(0.5,
-                                                             "controls/fuel/gravity-xflow",
-                                                             0, 1);
-                fast_loop.start();
-                slow_loop.start();
-				settimer(func {
-					setprop("sim/model/sound-enabled",1);
-					print("Sound on.");
-					}, 3);
-            }, 0, 0);
+{
+	print("CRJ700 aircraft systems ... initialized");
+	gravity_xflow = aircraft.crossfeed_valve.new(0.5,
+												 "controls/fuel/gravity-xflow",
+												 0, 1);
+	if (getprop("/sim/time/sun-angle-rad") > 1.57) 
+		setprop("controls/lighting/dome", 1);
+	fast_loop.start();
+	slow_loop.start();
+	settimer(func {
+		setprop("sim/model/sound-enabled",1);
+		print("Sound on.");
+		}, 3);
+}, 0, 0);
 
 ## Startup/shutdown functions
 var startid = 0;

@@ -476,7 +476,7 @@
 		</engines>
 		<electric>
 			<dc-service-switch type="bool">false</dc-service-switch>
-			<battery-switch type="bool">true</battery-switch>
+			<battery-switch type="bool">false</battery-switch>
 			<ac-service-avail type="bool">true</ac-service-avail>
 			<ac-service-selected type="bool">false</ac-service-selected>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
