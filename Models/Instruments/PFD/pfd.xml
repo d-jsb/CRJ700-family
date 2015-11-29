@@ -1878,7 +1878,7 @@ G</text>
 		<type>translate</type>
 		<object-name>ILSPtr</object-name>
 		<property>instrumentation/nav[0]/heading-needle-deflection-norm</property>
-		<factor>0.00295</factor>
+		<factor>0.026</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1907,7 +1907,7 @@ G</text>
 		<type>translate</type>
 		<object-name>GSPtr</object-name>
 		<property>instrumentation/nav[0]/gs-needle-deflection-norm</property>
-		<factor>0.00295</factor>
+		<factor>0.02191</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>

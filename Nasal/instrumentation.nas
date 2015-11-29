@@ -109,7 +109,7 @@ var gs_rateL = nil;
 # catch GS if in range and FD in approach mode
 var gs_mon = func(v) {
 	if (getprop("instrumentation/nav[0]/gs-in-range") == 0) return;
-	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-needle-deflection-norm") <= 0) {
+	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
 		print("GS capture");
 		setprop("controls/autoflight/vert-mode", 0);
 		if (gs_rateL != nil) {
@@ -140,7 +140,7 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 						gs_rangeL = nil;
 					}
 					# if GS in range, wait 1s and track GS
-					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-needle-deflection-norm", gs_mon, 1, 0); }, 1);	
+					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);	
 				}
 			}, 1, 0);
 		print("gs_rangeL "~gs_rangeL);
