@@ -201,7 +201,7 @@ var update_pass_signs = func
 var update_lightmaps = func
 {
     var fuse = props.globals.getNode("sim/model/lights/fuselage-lightmap");
-    fuse.setBoolValue(getprop("systems/AC/outputs/logo-lights") > 15);
+    fuse.setBoolValue(getprop("systems/AC/outputs/logo-lights") > 108);
     var wing = props.globals.getNode("sim/model/lights/wing-lightmap");
     wing.setBoolValue(getprop("systems/DC/outputs/wing-lights") > 15);
     var panel = props.globals.getNode("sim/model/lights/panel-lightmap");
@@ -214,7 +214,7 @@ var update_lightmaps = func
         panel.setDoubleValue(0);
     }
     var cabin = props.globals.getNode("sim/model/lights/cabin-lightmap");
-    if (getprop("systems/AC/outputs/cabin-lights") > 15)
+    if (getprop("systems/AC/outputs/cabin-lights") > 100)
     {
         cabin.setDoubleValue(getprop("controls/lighting/cabin-norm"));
     }
