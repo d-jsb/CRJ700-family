@@ -158,9 +158,10 @@ var ACext = {
 		call(EnergyConv.init,[], me);
 		var gear = props.getNode("gear").getChildren("gear");
 		me.gear_cnt = size(gear);
-		foreach(g; gear) {			
-			append(me.listeners, setlistener(g.getChild("has-brake"), func(v) {me._gearL(v);}, 1 , 0));			
-		}
+		#foreach(g; gear) {			
+		#	append(me.listeners, setlistener(g.getChild("has-brake"), func(v) {me._gearL(v);}, 1 , 0));			
+		#}
+		append(me.listeners, setlistener(props.globals.getNode("controls/gear/brake-parking"), func(v) {me._gearL(v);}, 1 , 0));			
 		append(me.listeners, setlistener(props.globals.getNode("controls/electric/ac-service-selected"), func(v) {me._selectedL(v);}, 1 , 0));			
 		return me;
 	},

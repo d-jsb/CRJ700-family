@@ -186,6 +186,7 @@ setlistener("sim/model/start-idling", func(v)
 }, 0, 0);
 
 ## Instant start for tutorials and whatnot
+#broken
 var instastart = func
 {
 	setprop("/consumables/fuel/tank[0]/selected", 1);
@@ -193,12 +194,8 @@ var instastart = func
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
-    setprop("controls/engines/engine[0]/cutoff", 0);
-    setprop("/controls/engines/engine[0]/starter", 1);
-    setprop("engines/engine[0]/rpm", 25);
-    setprop("controls/engines/engine[1]/cutoff", 0);
-    setprop("/controls/engines/engine[1]/starter", 1);
-    setprop("engines/engine[1]/rpm", 25);
+	engines[0].on();
+	engines[1].on();
 
 	setprop("controls/hydraulic/system[0]/pump-b", 2);
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
