@@ -80,12 +80,17 @@
 	<model>
 		<name>Pushback</name>
 		<path>Models/Airport/Pushback/Goldhofert.xml</path>
+		<overlay>
+			<params>
+				<max-nw-degree>-80</max-nw-degree>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-16.173</x-m>
 			<y-m>0</y-m>
 			<z-m>-3.459</z-m>
 		</offsets>
-	</model>
+		</model>
 	<!-- Lights -->
 	<model>
 		<name>Port nav light</name>
