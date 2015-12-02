@@ -1,391 +1,267 @@
-####    jet engine electrical system    ####
-####    Syd Adams    ####
-var count=0;
-var ammeter_ave = 0.0;
-var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
-var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
-var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
-var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE");
-var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
-var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
-var extpwr=props.globals.initNode("controls/electric/external-power",0,"BOOL");
-var lbus_volts = 0.0;
-var rbus_volts = 0.0;
+## Electrical system for CRJ700 family ##
+## Author:		Henning Stahlke
+## Created:		May 2015
 
-var lbus_input=[];
-var lbus_output=[];
-var lbus_load=[];
+# The CRJ700 electrical system consists of an AC part and a DC part.
+# Multiple redundant buses distribute the power to the electrical loads.
+#
+# AC (115V@400Hz) 
+# Feed by APU generator, engine generators or ext. power while on ground.
+# 
+#
+# DC (24V - 28V)
+# Feed by battery, external power and four TRUs (ac/dc converters)
+# For simplification some parts are skipped.
 
-var rbus_input=[];
-var rbus_output=[];
-var rbus_load=[];
 
-var lights_input=[];
-var lights_output=[];
-var lights_load=[];
+## FG properties used
+# controls/AC/system[n]/
+# systems/AC/system[]/* 
+# systems/AC/outputs/*	
+#
+# controls/DC/system[n]/
+# systems/DC/system[]/* 
+# systems/DC/outputs/*	
+#		
+#
 
-#var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
-var Battery = {
-    new : func(swtch,vlt,amp,hr,chp,cha){
-    m = { parents : [Battery] };
-            m.switch = props.globals.getNode(swtch,1);
-            #m.switch.setBoolValue(0);
-            m.ideal_volts = vlt;
-            m.ideal_amps = amp;
-            m.amp_hours = hr;
-            m.charge_percent = chp;
-            m.charge_amps = cha;
-    return m;
-    },
+# IDG (engine generator)
+#
+#
 
-    apply_load : func(load,dt) {
-        if(me.switch.getValue()){
-        var amphrs_used = load * dt / 3600.0;
-        var percent_used = amphrs_used / me.amp_hours;
-        me.charge_percent -= percent_used;
-        if ( me.charge_percent < 0.0 ) {
-            me.charge_percent = 0.0;
-        } elsif ( me.charge_percent > 1.0 ) {
-        me.charge_percent = 1.0;
-        }
-        var output =me.amp_hours * me.charge_percent;
-        return output;
-        }else return 0;
-    },
+var IDG = {
+	new: func (bus, name, input) {
+		var obj = {
+			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 60, 95).setOutputMin(108)],
+			freq: 0,
+			load: 0,
+		};
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN.setValue(0);
+		return obj;
+	},
 
-    get_output_volts : func {
-        if(me.switch.getValue()){
-        var x = 1.0 - me.charge_percent;
-        var tmp = -(3.0 * x - 1.0);
-        var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
-        var output =me.ideal_volts * factor;
-        return output;
-        }else return 0;
-    },
-
-    get_output_amps : func {
-        if(me.switch.getValue()){
-        var x = 1.0 - me.charge_percent;
-        var tmp = -(3.0 * x - 1.0);
-        var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
-        var output =me.ideal_amps * factor;
-        return output;
-        }else return 0;
-    }
+	_update_output: func {
+		me.parents[1]._update_output();
+		me.freq = 0;
+		if (me.input > me.input_min) {			
+			if (me.input < 57.5) 
+				#me.freq = 375 * (me.input - me.input_min)/5;
+				me.freq = 75 * int(me.input - me.input_min);
+			elsif (me.input < me.input_lo) 
+				#me.freq = 375 + 25 * (me.input - 57.5)/2.5;
+				me.freq = 375 + int(10 * (me.input - 57.5));
+		}
+		me.freqN.setValue(me.freq);
+		return me;
+	},
 };
 
-# var alternator = Alternator.new(num,switch,gen_output,rpm_source,rpm_threshold,volts,amps);
-var Alternator = {
-    new : func (num,switch,gen_output,src,thr,vlt,amp){
-        m = { parents : [Alternator] };
-        m.switch =  props.globals.getNode(switch,1);
-        #m.switch.setBoolValue(0);
-        m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
-        m.meter.setDoubleValue(0);
-        m.gen_output =  props.globals.getNode(gen_output,1);
-        m.gen_output.setDoubleValue(0);
-        m.meter.setDoubleValue(0);
-        m.rpm_source =  props.globals.getNode(src,1);
-        m.rpm_threshold = thr;
-        m.ideal_volts = vlt;
-        m.ideal_amps = amp;
-        return m;
-    },
+var APUGen = {
+	new: func (bus, name, input) {
+		var obj = {
+			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 60, 99, 100).setOutputMin(108)],
+			freq: 0,
+			load: 0,
+		};
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN.setValue(0);
+		return obj;
+	},
 
-    apply_load : func(load) {
-        var cur_volt=me.gen_output.getValue();
-        var cur_amp=me.meter.getValue();
-        if(cur_volt >1){
-            var factor=1/cur_volt;
-            gout = (load * factor);
-            if(gout>1)gout=1;
-        }else{
-            gout=0;
-        }
-        me.meter.setValue(gout);
-    },
+	_update_output: func {
+		me.parents[1]._update_output();
+		me.freq = 0;
+		if (me.input > 60) {			
+			if (me.input < 70) 
+				me.freq = 37.5 * int(me.input - 60);
+			elsif (me.input < 100) 
+				me.freq = 375 + int(0.83333 * (me.input - 70));
+			else me.freq = 400;
+		}
+		me.freqN.setValue(me.freq);
+		return me;
+	},
+};
+# ACBus
+# add freq [Hz] and load [kVA]
 
-    get_output_volts : func {
-        var out = 0;
-        if(me.switch.getBoolValue()){
-            var factor = me.rpm_source.getValue() / me.rpm_threshold or 0;
-            if ( factor > 1.0 )factor = 1.0;
-            var out = (me.ideal_volts * factor);
-        }
-        me.gen_output.setValue(out);
-        return out;
-    },
-
-    get_output_amps : func {
-        var ampout =0;
-        if(me.switch.getBoolValue()){
-            var factor = me.rpm_source.getValue() / me.rpm_threshold or 0;
-            if ( factor > 1.0 ) {
-                factor = 1.0;
-            }
-            ampout = me.ideal_amps * factor;
-        }
-        return ampout;
-    }
+var ACBus = {
+	new: func (sysid, name, outputs) {
+		obj = { parents : [ACBus, EnergyBus.new("AC", sysid, name, outputs)],
+			freq: 0, #Hz
+			load: 0, #kVA
+		};		
+		return obj;
+	},
 };
 
-var battery = Battery.new("/controls/electric/battery-switch",24,30,34,1.0,7.0);
-var alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/amp-v","/engines/engine[0]/rpm",20.0,28.0,60.0);
-var alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/amp-v","/engines/engine[1]/rpm",20.0,28.0,60.0);
-var alternator3 = Alternator.new(2,"controls/electric/APU-generator","/engines/apu/amp-v","/engines/apu/rpm",80.0,28.0,60.0);
-var alternator4 = Alternator.new(3,"controls/pneumatic/ram-air-turbine","/systems/ram-air-turbine/amp-v","/systems/ram-air-turbine/rpm",3000,18.0,10.0); # RPM threshold is a guess
+var DCBus = {
+	new: func (sysid, name, outputs) {
+		obj = { parents : [DCBus, EnergyBus.new("DC", sysid, name, outputs)],
+		};		
+		return obj;
+	},
+};
 
-#####################################
-setlistener("/sim/signals/fdm-initialized", func {
-    init_switches();
-    print("Electrical System ... ok");
-});
+# ACPC (AC power center)
+# connection logic from AC sources to AC buses
 
-var init_switches = func{
-    var AVswitch=props.globals.initNode("controls/electric/avionics-switch",1,"BOOL");
-    props.globals.initNode("controls/electric/ammeter-switch",0,"BOOL");
-    props.globals.getNode("systems/electrical/serviceable",0,"BOOL");
+var ACPC = {
+	new: func (sysid, outputs) {
+		obj = { parents : [ACPC, EnergyBus.new("AC", sysid, "acpc", outputs)],
+			buses: [],
+		};
+		print(obj.parents[1].system_path);
+		return obj;		
+	},
 
-    append(lights_input,props.globals.initNode("controls/lighting/landing-lights[0]",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-lights[0]",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/landing-lights[1]",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-lights[1]",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/landing-lights[2]",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-lights[2]",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/nav-lights",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/nav-lights",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/taxi-lights",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/taxi-lights",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/wing-lights",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/wing-lights",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/logo-lights",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/logo-lights",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("controls/lighting/panel-lights",1,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/panel-lights",0,"DOUBLE"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("sim/model/lights/beacon/state",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/beacon",0,"INT"));
-    append(lights_load,1);
-    append(lights_input,props.globals.initNode("sim/model/lights/strobe/state",0,"BOOL"));
-    append(lights_output,props.globals.initNode("systems/electrical/outputs/strobe",0,"INT"));
-    append(lights_load,1);
+	readProps: func {		
+		me.output = me.outputN.getValue();
+		me.serviceable = me.serviceableN.getValue();
+	},
+		
+	update: func {
+		me.readProps();
+		if (me.serviceable) {
+			var g1 = me.inputs[0].getValue();
+			var g2 = me.inputs[1].getValue();
+			var apu = me.inputs[2].getValue();
+			var ep = me.inputs[3].getValue();
+			var adg = me.inputs[4].getValue();
+			
+			print("ACPC "~g1~", "~g2~", "~apu~", "~ep);
+			var v = 0;
+			
+			#use ext. AC until APU avail
+			if (apu < ep) apu = ep;
+			#AC1
+			v = (g1 >= apu) ? g1 : apu;
+			me.outputs[0].setValue(v);
+			
+			#AC2
+			v = (g2 >= apu) ? g2 : apu;
+			me.outputs[1].setValue(v);
+			
+			#AC_ESS
+			v = (g1 >= g2) ? g1 : g2;
+			v =(adg > v) ? adg : v;
+			me.outputs[2].setValue(v);
+			
+			#AC_SERVICE
+			v = (g2 >= apu) ? g2 : apu;
+			me.outputs[3].setValue(v);
+			
+			#ADG			
+			me.outputs[4].setValue(adg);			
+		}
+		return me;
+	},
+};
 
-    append(rbus_input,AVswitch);
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/autopilot",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/electric/cabin-power",1,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/cabin",0,"INT"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/anti-ice/wiper-power[0]",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/wiper[0]",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/anti-ice/wiper-power[1]",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/wiper[1]",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/engine[0]/fuel-pump",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/fuel-pump[0]",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/engine[1]/fuel-pump",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/fuel-pump[1]",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/engine[0]/starter",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter",0,"DOUBLE"));
-    append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/engine[1]/starter",0,"BOOL"));
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter[1]",0,"DOUBLE"));
-    append(rbus_load,1);
+var DCPC = {
+	new: func (sysid, outputs) {
+		obj = { parents : [DCPC, EnergyBus.new("DC", sysid, "dcpc", outputs)],
+			buses: [],
+		};
+		print(obj.parents[1].system_path);
+		return obj;		
+	},
+	
+	readProps: func {		
+		me.output = me.outputN.getValue();
+		me.serviceable = me.serviceableN.getValue();
+	},
+		
+	update: func {
+		me.readProps();
+		if (me.serviceable) {
+			var t1 = me.inputs[0].getValue();
+			var t2 = me.inputs[1].getValue();
+			var et1 = me.inputs[2].getValue();
+			var et2 = me.inputs[3].getValue();
+			var bat1 = me.inputs[4].getValue();
 
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/adf[0]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/adf[1]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/dme[0]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/dme[1]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/gps",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/efis",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/transponder",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/mk-viii",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/magnetic-compass",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/standby-instrument",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm[0]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm[1]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/nav",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/nav[1]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/dme[0]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/dme[1]",0,"DOUBLE"));
-    append(lbus_load,1);
-    append(lbus_input,AVswitch);
-    append(lbus_output,props.globals.initNode("systems/electrical/outputs/clock",0,"DOUBLE"));
-    append(lbus_load,1);
+			print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~bat1);
+			var v = 0;
+			
+			#Battery
+			me.outputs[4].setValue(bat1);
+
+			#DC1
+			v = (t1 >= bat1) ? t1 : bat1;
+			me.outputs[0].setValue(v);
+			
+			#DC2
+			v = (t2 >= bat1) ? t2 : bat1;
+			me.outputs[1].setValue(v);
+	
+			#DC_SERVICE
+			me.outputs[3].setValue(v);
+
+			#DC_ESS
+			v = (et1 >= bat1) ? et1 : bat1;
+			me.outputs[2].setValue(v);
+		}
+		return me;
+	},
+};
+
+
+print("Creating electrical system ...");
+
+var ac_buses = [ 
+	ACBus.new(1, "AC1", ["tru1", "flaps-a", "pitch-trim-1", "hyd-pump2B", "hyd-pump3B","aoa-heater-r", "pitot-heater-r", "egpws"]),
+	ACBus.new(2, "AC2 ", ["tru2", "esstru2", "flaps-b", "pitch-trim-2", "hyd-pump1B", "hyd-pump3A", "copilot-panel-lights"]),
+	ACBus.new(3, "AC-ESS", ["esstru1", "xflow-pump", "pitot-heater-l", "aoa-heater-l", "cabin-lights", "ohp-lights", "pilot-panel-lights", "center-panel-lights", "tcas", "ignition-a"]),
+	ACBus.new(4, "AC-Service", ["apu-charger", "logo-lights", "cabin-lights"]),
+	ACBus.new(5, "ADG", ["hyd-pump3B", "pitch-trim-2", "flaps-a", "flaps-b"]),
+];
+
+var dc_buses = [
+	DCBus.new(1, "DC1", ["eicas-disp", "radio-altimeter1", "passenger-door", "wiper-left", "nwsteering", "taxi-lights", "landing-lights[1]", "rear-ac-light", "wing-lights", "gps1", "dme1", "wradar"]),
+	DCBus.new(2, "DC2", ["vhf2", "rtu2", "pfd2", "mfd2", "wing-ac-lights"]),
+	DCBus.new(3, "DC-ESS", ["efis", "rtu1", "pfd1", "mfd1", "instrument-flood-lights", "transponder1", "vhf-nav1", "reversers"]),
+	DCBus.new(4, "DC-Service", ["service-lights", "boarding-lights", "nav-lights", "beacon", "galley-lights"]),
+	DCBus.new(5, "Battery", ["eicas-disp", "vhf-com1", "adg-deploy", "left-fuelpump", "gravity-xflow", "fuel-sov", "landing-lights[0]", "landing-lights[2]", "passenger-signs", "ohp-lights"]),
+	DCBus.new(6, "Utility", []),
+];
+
+
+var acpc = ACPC.new(0, ["bus0","bus1","bus2","bus3","bus4"]);
+
+acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/N2").addSwitch("/controls/electric/engine[0]/generator"));
+acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/N2").addSwitch("/controls/electric/engine[1]/generator"));
+acpc.addInput(APUGen.new(acpc, "apugen", "/engines/apu/rpm").addSwitch("/controls/electric/APU-generator"));
+acpc.addInput(EnergyConv.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
+acpc.addInput(APUGen.new(acpc, "adg", "/systems/ram-air-turbine/rpm"));
+
+
+foreach (b; ac_buses) {
+	print("input: "~acpc.outputs_path~"bus["~b.index~"]");
+	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 120));
+	b.init();
 }
 
+acpc.init();
 
-update_virtual_bus = func( dt ) {
-    var PWR = getprop("systems/electrical/serviceable");
-    var xtie=0;
-    load = 0.0;
-    power_source = nil;
-    setprop("systems/electrical/external-power-amp-v", 0);
-    if(count==0){
-        var battery_volts = battery.get_output_volts();
-        lbus_volts = battery_volts;
-        power_source = "battery";
-        var alternator = nil;
-        if (extpwr.getBoolValue() and getprop("velocities/groundspeed-kt") < 1)
-        {
-            power_source = "external";
-            lbus_volts = 28;
-            setprop("systems/electrical/external-power-amp-v", 28);
-        }
-        var alternator1_volts = alternator1.get_output_volts();
-        if (alternator1_volts > lbus_volts) {
-            lbus_volts = alternator1_volts;
-            power_source = "alternator1";
-            alternator = alternator1;
-        }
-        var alternator3_volts = alternator3.get_output_volts();
-        if (APUgen.getBoolValue() and alternator3_volts > lbus_volts)
-        {
-            lbus_volts = alternator3_volts;
-            power_source = "APU";
-            alternator = alternator3;
-        }
-        var alternator4_volts = alternator4.get_output_volts();
-        if (alternator4_volts > lbus_volts)
-        {
-            lbus_volts = alternator4_volts;
-            power_source = "RAT";
-            alternator = alternator4;
-        }
-        lbus_volts *=PWR;
-        Lbus.setValue(lbus_volts);
-        load += lh_bus(lbus_volts);
-        if (alternator != nil) alternator.apply_load(load);
-    }else{
-        var battery_volts = battery.get_output_volts();
-        rbus_volts = battery_volts;
-        power_source = "battery";
-        var alternator = nil;
-        if (extpwr.getBoolValue() and getprop("velocities/groundspeed-kt") < 1)
-        {
-            power_source = "external";
-            rbus_volts = 28;
-            setprop("systems/electrical/external-power-amp-v", 28);
-        }
-        var alternator2_volts = alternator2.get_output_volts();
-        if (alternator2_volts > rbus_volts) {
-            rbus_volts = alternator2_volts;
-            power_source = "alternator2";
-            alternator = alternator2;
-        }
-        var alternator3_volts = alternator3.get_output_volts();
-        if (APUgen.getBoolValue() and alternator3_volts > rbus_volts)
-        {
-            rbus_volts = alternator3_volts;
-            power_source = "APU";
-            alternator = alternator3;
-        }
-        var alternator4_volts = alternator4.get_output_volts();
-        if (alternator4_volts > rbus_volts)
-        {
-            rbus_volts = alternator4_volts;
-            power_source = "RAT";
-            alternator = alternator4;
-        }
-        rbus_volts *=PWR;
-        Rbus.setValue(rbus_volts);
-        load += rh_bus(rbus_volts);
-        if (alternator != nil) alternator.apply_load(load);
-    }
-    count=1-count;
-    if(rbus_volts > 5 and  lbus_volts>5) xtie=1;
-    XTie.setValue(xtie);
-    load += lighting(rbus_volts > 5 or lbus_volts > 5 ? 24 : 0);
 
-    ammeter = 0.0;
+var dcpc = DCPC.new(0, ["bus0", "bus1", "bus2", "bus3", "bus4", "bus5"]);
 
-return load;
+dcpc.addInput(EnergyConv.new(dcpc, "tru1", 28, ac_buses[0].outputs_path~"tru1", 40));
+dcpc.addInput(EnergyConv.new(dcpc, "tru2", 28, ac_buses[0].outputs_path~"tru2", 40));
+dcpc.addInput(EnergyConv.new(dcpc, "esstru1", 28, ac_buses[0].outputs_path~"esstru1", 40));
+dcpc.addInput(EnergyConv.new(dcpc, "esstru2", 28, ac_buses[0].outputs_path~"esstru2", 40));
+dcpc.addInput(EnergyConv.new(dcpc, "apu-battery", 24).addSwitch("/controls/electric/battery-switch"));
+dcpc.addInput(EnergyConv.new(dcpc, "main-battery", 24).addSwitch("/controls/electric/battery-switch"));
+
+foreach (b; dc_buses) {
+	b.addInput(EnergyConv.new(b, "dcpc-"~b.index, 28, dcpc.outputs_path~"bus"~b.index, 0,));
+	b.init();
 }
 
-rh_bus = func(bv) {
-    var bus_volts = bv;
-    var load = 0.0;
-    var srvc = 0.0;
-
-    for(var i=0; i<size(rbus_input); i+=1) {
-        var srvc = rbus_input[i].getValue();
-        load += rbus_load[i] * srvc;
-        rbus_output[i].setValue(bus_volts * srvc);
-    }
-    return load;
-}
-
-lh_bus = func(bv) {
-    var load = 0.0;
-    var srvc = 0.0;
-
-    for(var i=0; i<size(lbus_input); i+=1) {
-        var srvc = lbus_input[i].getValue();
-        load += lbus_load[i] * srvc;
-        lbus_output[i].setValue(bv * srvc);
-    }
-
-    setprop("systems/electrical/outputs/flaps",bv);
-    return load;
-}
-
-lighting = func(bv) {
-    var load = 0.0;
-    var srvc = 0.0;
-    var ac=bv*4.29;
-
-    for(var i=0; i<size(lights_input); i+=1) {
-        var srvc = lights_input[i].getValue();
-        load += lights_load[i] * srvc;
-        lights_output[i].setValue(bv * srvc);
-    }
-
-return load;
-
-}
-
+#dummy for compatibility
 update_electrical = func {
-    var scnd = getprop("sim/time/delta-sec");
-    update_virtual_bus( scnd );
+	#acpc.update();
 }
+print("Electrical system done.");

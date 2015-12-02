@@ -9,98 +9,146 @@
 # A switchable device converting energy from an input to an output
 # subsystem of EnergyBus
 # Examples: AC generator, AC2DC converter, hydraulic pump
-# Output value will be nominal, if input is between input_min and input_max
+# Output value will be nominal, if input is between input_lo and input_hi
 # otherwise output will be linear scaled input.
-# 
+#
 # bus (EnergyBus)		the bus that is feeded by this src
 # name (string)			name of device ("generator", "pump", ...)
-# input 				numeric constant or property path, 
-# output_nominal (num)	normal output level, if input_min < input < input_max
+# input 				numeric constant or property path,
+# output_nominal (num)	normal output level, if input_lo < input < input_hi
 # output_min (num)		to calculate isRunning (0: off, 1: ok, 2: low)
+# input_min				cutoff, input < min --> output = 0
+# input_lo				min input for normal output
+# input_hi				max input for normal output (0 -> no limit)
 
 
 var EnergyConv = {
-	new: func (bus, name, output_nominal=1, output_min=0, input=1, input_min=0, input_max=0) {
-		var obj = {parents: [EnergyConv], 
+	new: func (bus, name, output_nominal=1, input=1, input_min = 0, input_lo=0, input_hi=0) {
+		var obj = { parents: [EnergyConv],
 			bus: bus,
 			name: name,
-			switch: 0,
+			switch: 1,
 			input: 0,
 			output: 0,
 			input_min: 0,
-			input_max: 0,
+			input_lo: 0,
+			input_hi: 0,
 			output_min: 1,
 			output_nominal: 1,
-			params: arg,
+			serviceableL: nil,
+			switchN: nil,
+			switchL: nil,
+			inputL: nil,
 		};
-		
+
 		obj.serviceableN = props.globals.getNode(bus.system_path~name~"-serviceable", 1);
-		obj.switchN = props.globals.getNode("/controls/"~bus.type~"/system["~bus.index~"]/"~name, 1);
-		obj.runningN = props.globals.getNode(bus.system_path~name~"-running", 1); 
-		obj.outputN = props.globals.getNode(bus.system_path~name~"-value", 1); 
+		obj.serviceableN.setBoolValue(1);
+		obj.runningN = props.globals.getNode(bus.system_path~name~"-running", 1);
+		obj.runningN.setBoolValue(0);
+		obj.outputN = props.globals.getNode(bus.system_path~name~"-value", 1);
+		obj.outputN.setValue(0);
 		#input it either a numerical constant or a prop path
-		if (num(input) != nil)
-			obj.inputN = props.globals.getNode(bus.system_path~"input", 1).setValue(input);
-		else 
+		if (num(input) != nil) {
+			obj.inputN = props.globals.getNode(bus.system_path~name~"-input", 1);
+			obj.inputN.setValue(input);
+		}
+		else
 			obj.inputN = props.globals.getNode(input, 1);
 		if (output_nominal != nil and output_nominal >= 0)
 			obj.output_nominal = output_nominal;
-		if (output_min != nil and output_min >= 0)
-			obj.output_min = output_min;
+		
 		if (input_min != nil and input_min >= 0)
 			obj.input_min = input_min;
-		if (input_max != nil and input_max >= 0)
-			obj.input_max = input_max;
+		if (input_lo != nil and input_lo >= 0)
+			obj.input_lo = input_lo;
+		if (input_hi != nil and input_hi >= 0)
+			obj.input_hi = input_hi;
 		return obj;
 	},
-	
+
 	init: func {
+		print(me.name~".init input:"~me.inputN.getName());
+		if (me.serviceableL != nil)
+			removelistener(me.serviceableL);
+		if (me.switchL != nil)
+			removelistener(me.switchL);
+		if (me.inputL != nil)
+			removelistener(me.inputL);
 		me.serviceableL = setlistener(me.serviceableN, func(v) {me._update_output();}, 1, 0);
-		me.switchL = setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0);
+		if (me.switchN != nil)
+			me.switchL = setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0);
 		me.inputL = setlistener(me.inputN, func(v) {me._update_output();}, 1, 0);
+		return me;
+	},
+
+	setOutputMin: func (n) {
+		if (num(n) >= 0)
+			me.output_min = n;
+		return me;
 	},
 	
+	setInputMin: func (n) {
+		if (num(n) >= 0)
+			me.input_min = n;
+		return me;
+	},
+	
+	
+	addSwitch: func(name = "") {
+		var path = "";
+		if (name) me.switchN = props.globals.getNode(name, 1);
+		else {
+			var path = "/controls/"~me.bus.type~"/system["~me.bus.index~"]/"~me.name;
+			me.switchN = props.globals.getNode(path, 1);
+			print(path);
+		}
+		print("Adding switch "~me.switchN.getName());
+		return me;
+	},
+
 	_switch_listener: func(v){
 		me.switch = v.getValue();
+		print(me.name~" "~me.switch);
 		me._update_output();
 	},
-	
+
 	getSwitch: func { me.switch; },
 
 	getValue: func { me.output; },
 
-	#update running 0=off, 2=low output, 1=good output
-	isRunning: func { 
+	isRunning: func {
+		#update running: 0=off, 2=low output, 1=good output
 		me.running = 0;
 		if (me.output > 0) me.running = 2;
 		if (me.output >= me.output_min) me.running = 1;
-		me.runningN.setValue(me.running);	
+		me.runningN.setValue(me.running);
 		return me.running;
 	},
-	
+
 	_update_output: func {
-		print("EnergyBus.update");
 		me.input = me.inputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
 		if (me.input == nil) me.input = 0;
-		if (me.serviceable and me.switch) {
+		me.output = 0;
+		if (me.serviceable and me.switch and me.input >= me.input_min) {
 			me.output = me.output_nominal;
-			if (me.input_min > 0 and me.input < me.input_min) {
-				me.output = me.output_nominal * me.input / me.input_min;
+			if (me.input_lo > 0 and me.input < me.input_lo) {
+				me.output = me.output_nominal * me.input / me.input_lo;
 			}
-			if (me.input_max > 0 and me.input > me.input_max) {
-				me.output = me.output_nominal * me.input / me.input_max;
+			if (me.input_hi > 0 and me.input > me.input_hi) {
+				me.output = me.output_nominal * me.input / me.input_hi;
 			}
 		}
-		else me.output = 0;
 		me.outputN.setValue(me.output);
 		me.isRunning();
+		print("EnergyConv.update name: "~me.name~"sw:"~me.switch~" in: "~me.input~" out:"~me.output);
+		me.bus.update();
 		return me;
 	},
 };
 
-#
-# EnergyBus 
+
+# EnergyBus
 #
 # Models an energy distribution system .
 # Multiple energy sources and drains can be connected.
@@ -115,9 +163,9 @@ var EnergyConv = {
 # output_min			threshold level to set bool outputs to true
 
 var EnergyBus = {
-	new: func (systype, sysid, outputs, outputs_bool = 0, output_min = 0) {
-		var obj = {parents: [EnergyBus], 
-			type: systype, 
+	new: func (systype, sysid, name, outputs, outputs_bool = 0, output_min = 0) {
+		var obj = {parents: [EnergyBus],
+			type: systype,
 			index: sysid,
 			system_path: "/systems/"~systype~"/system["~sysid~"]/",
 			outputs_path: "/systems/"~systype~"/outputs/",
@@ -127,48 +175,48 @@ var EnergyBus = {
 			output_min: output_min,
 			params: [],
 		};
-		
-		obj.serviceableN = props.globals.getNode(obj.system_path~"serviceable",1); 
+		if (name) {
+			var p = props.globals.getNode(obj.system_path~"name", 1);
+			p.setValue(name);
+		}
+		obj.serviceableN = props.globals.getNode(obj.system_path~"serviceable",1);
 		obj.serviceableN.setBoolValue(1);
-		obj.outputN = props.globals.getNode(obj.system_path~"value", 1); 
+		obj.outputN = props.globals.getNode(obj.system_path~"value", 1);
 		obj.outputN.setValue(0);
 		foreach (elem; outputs) {
-			append(obj.outputs, props.globals.getNode(obj.outputs_path~elem, 1));
-		}
-		if (size(arg) > 0) {
-			obj.params = arg[0];
-			print(obj.params);
-			forindex (i; obj.params) print("p "~i~ ": "~obj.params[i]);
+			var p = props.globals.getNode(obj.outputs_path~elem, 1);
+			p.setValue(0);
+			append(obj.outputs, p);
 		}
 		return obj;
 	},
-	
+
 	init: func {
 		foreach (i; me.inputs)
 			i.init();
 	},
 
-	addInput: func(name, output_nominal=1, output_min=0, input=1, input_min=0, input_max=0) {
-		print("add EnergyConv "~name);
-		var s = EnergyConv.new(me, name, output_nominal, output_min, input, input_min, input_max);
-		if (s != nil) append(me.inputs, s);
+	addInput: func(obj) {
+		if (obj != nil) append(me.inputs, obj);
+		return me;
 	},
-	
+
 	addOutput: func (name) {
 		var n = props.globals.getNode(me.outputs_path~name, 1);
 		if (n != nil) append(me.outputs, n);
+		return me;
 	},
-	
-	readProps: func {		
+
+	readProps: func {
 		me.output = me.outputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
 	},
-	
+
 	getLevel: func {
 		me.readProps();
 		return me.output;
 	},
-	
+
 	update: func {
 		me.readProps();
 		if (me.serviceable) {

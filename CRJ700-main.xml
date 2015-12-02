@@ -872,33 +872,15 @@
 			<serviceable type="bool">true</serviceable>
 			<position-norm type="float">0</position-norm>
 		</ram-air-turbine>
-		<electrical>
-			<ac>
-			</ac>
-			<dc>
-				<bus>
-					<name>DCBus1</name>
-				</bus>
-				<bus>
-					<name>DCBus2</name>
-				</bus>
-				<bus>
-					<name>EmergencyBus</name>
-				</bus>
-				<bus>
-					<name>ServiceBus</name>
-				</bus>
-				<bus>
-					<name>UtilityBus</name>
-				</bus>
-				<bus>
-					<name>EssentialBus</name>
-				</bus>
-				<bus>
-					<name>BatteryBus</name>
-				</bus>
-			</dc>
-		</electrical>
+		<AC>
+			<system>
+				<acext-freq>400</acext-freq>
+			</system>
+		</AC>
+		<DC>
+			<system>
+			</system>
+		</DC>
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>

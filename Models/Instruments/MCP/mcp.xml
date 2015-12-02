@@ -33,7 +33,7 @@
 		<object-name>VSOn</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/DC/outputs/efis</property>
 				<value>15</value>
 			</greater-than-equals>
 		</condition>
@@ -50,7 +50,7 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/electrical/outputs/panel-lights</property>
+				<property>systems/AC/outputs/center-panel-lights</property>
 				<value>15</value>
 			</greater-than-equals>
 		</condition>

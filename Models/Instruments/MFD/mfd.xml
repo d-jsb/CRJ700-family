@@ -8,13 +8,14 @@
     <path>mfd.ac</path>
 
     <params>
-	<page>instrumentation/mfd/page</page>
-	<tcas>instrumentation/mfd/tcas</tcas>
-	<wx>instrumentation/mfd/wx</wx>
-	<indicated-heading-deg>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading-deg>
-	<true-airspeed-kt>instrumentation/airspeed-indicator/true-speed-kt</true-airspeed-kt>
-	<radar-range>instrumentation/radar/range</radar-range>
-	<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+		<powerN>/systems/DC/outputs/mfd1</powerN>	
+		<page>instrumentation/mfd/page</page>
+		<tcas>instrumentation/mfd/tcas</tcas>
+		<wx>instrumentation/mfd/wx</wx>
+		<indicated-heading-deg>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading-deg>
+		<true-airspeed-kt>instrumentation/airspeed-indicator/true-speed-kt</true-airspeed-kt>
+		<radar-range>instrumentation/radar/range</radar-range>
+		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
     </params>
     <big-rose-min-bug-deg type="double">-52</big-rose-min-bug-deg>
     <big-rose-max-bug-deg type="double">52</big-rose-max-bug-deg>
@@ -79,33 +80,33 @@
 	</bottom-right>
     </panel>
     <animation>
-	<type>select</type>
-	<object-name>Radar</object-name>
-	<object-name>Radar inner range</object-name>
-	<object-name>Radar outer range</object-name>
-	<condition>
-	    <and>
-		<property>sim/current-view/internal</property>
-		<greater-than-equals>
-		    <property>systems/electrical/outputs/efis</property>
-		    <value>15</value>
-		</greater-than-equals>
-		<or>
-		    <equals>
-			<property alias="../../../../../../params/page" />
-			<value>3</value>
-		    </equals>
-		    <equals>
-			<property alias="../../../../../../params/page" />
-			<value>4</value>
-		    </equals>
-		    <equals>
-			<property alias="../../../../../../params/page" />
-			<value>6</value>
-		    </equals>
-		</or>
-	    </and>
-	</condition>
+		<type>select</type>
+		<object-name>Radar</object-name>
+		<object-name>Radar inner range</object-name>
+		<object-name>Radar outer range</object-name>
+		<condition>
+			<and>
+			<property>sim/current-view/internal</property>
+			<greater-than-equals>
+				<property>systems/DC/outputs/wradar</property>
+				<value>15</value>
+			</greater-than-equals>
+			<or>
+				<equals>
+				<property alias="../../../../../../params/page" />
+				<value>3</value>
+				</equals>
+				<equals>
+				<property alias="../../../../../../params/page" />
+				<value>4</value>
+				</equals>
+				<equals>
+				<property alias="../../../../../../params/page" />
+				<value>6</value>
+				</equals>
+			</or>
+			</and>
+		</condition>
     </animation>
     <animation>
 	<type>select</type>
@@ -1444,7 +1445,7 @@
 	<object-name>Off</object-name>
 	<condition>
 	    <less-than>
-		<property>systems/electrical/outputs/efis</property>
+		<property alias="../../../../params/powerN" />
 		<value>15</value>
 	    </less-than>
 	</condition>

@@ -155,7 +155,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -169,7 +169,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -201,7 +201,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -215,7 +215,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
