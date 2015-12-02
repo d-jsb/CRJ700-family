@@ -1690,7 +1690,14 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
+					<and>
+						<not><property>controls/engines/engine[0]/starter</property></not>
+						<not><property>engines/engine[0]/running</property></not>
+						<greater-than>
+							<property>engines/engine[0]/rpm2</property>
+							<value>10</value>
+						</greater-than>
+					</and>
 				</or>					
 			</and>
 		</condition>
@@ -1788,7 +1795,14 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
+					<and>
+						<not><property>controls/engines/engine[1]/starter</property></not>
+						<not><property>engines/engine[1]/running</property></not>
+						<greater-than>
+							<property>engines/engine[1]/rpm2</property>
+							<value>10</value>
+						</greater-than>
+					</and>
 				</or>					
 			</and>
 		</condition>
