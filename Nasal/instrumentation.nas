@@ -6,6 +6,17 @@
 var cdu1 = interactive_cdu.Cdu.new("instrumentation/cdu", "Aircraft/CRJ700-family/Systems/CRJ700-cdu.xml");
 
 ## Autopilot
+setlistener("autopilot/internal/autoflight-engaged", func(v)
+{
+	var lm = getprop("controls/autoflight/lat-mode");
+	var vm = getprop("controls/autoflight/vert-mode");
+	#clear toga
+	if (v.getBoolValue()) {
+		if (lm == 6 or lm == 7) setprop("controls/autoflight/lat-mode", 0);
+		if (vm == 6 or vm == 7) setprop("controls/autoflight/vert-mode", 0);
+	}
+}, 0, 0);
+
 # sync
 setlistener("controls/autoflight/flight-director/sync", func(v)
 {
@@ -14,8 +25,8 @@ setlistener("controls/autoflight/flight-director/sync", func(v)
 	print("sync");
     var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
 	var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
-    setprop("controls/autoflight/roll-select", roll);
-	setprop("controls/autoflight/roll-heading-select", heading);
+	setprop("autopilot/ref/roll-deg", roll);
+	setprop("autopilot/ref/roll-hdg", heading);
 
 	var vmode = getprop("controls/autoflight/vert-mode");
 	if (vmode == 1) { #ALT
@@ -41,13 +52,13 @@ setlistener("autopilot/internal/roll-mode-engage", func(v)
     if (math.abs(roll) > 5)
     {
         setprop("controls/autoflight/roll-mode", 1);
-        setprop("controls/autoflight/roll-select", roll);
+        setprop("autopilot/ref/roll-deg", roll);
     }
     else
     {
         var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
         setprop("controls/autoflight/roll-mode", 0);
-        setprop("controls/autoflight/roll-heading-select", heading);
+        setprop("autopilot/ref/roll-hdg", heading);
     }
 }, 0, 0);
 
@@ -60,30 +71,13 @@ setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
     setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 }, 0, 0);
 
-setlistener("controls/autoflight/lat-mode", func(v)
-{
-	var lm = v.getValue();
-    if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
-		setprop("controls/autoflight/half-bank", 0);
-}, 0, 1);
-
+#prevent half-bank in certain lateral modes
 setlistener("controls/autoflight/half-bank", func(v)
 {
 	var lm = getprop("controls/autoflight/lat-mode");
     if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
 		v.setValue(0);
 }, 0, 1);
-
-
-#Half Bank
-# setlistener("controls/autoflight/half-bank", func (n) {
-	# if (n.getValue()) {
-		# setprop("autopilot/internal/bank-limit-deg", 15);
-	# }
-	# else {
-		# setprop("autopilot/internal/bank-limit-deg", 30)
-	# }	
-# }, 1, 1);
 
 #TO/GA mode
 setlistener("controls/autoflight/toga-button", func (n) {
@@ -106,36 +100,48 @@ setlistener("controls/autoflight/toga-button", func (n) {
 	}
 }, 1, 0);
 
-var gsL = nil;
+var gs_rangeL = nil;
+var gs_rateL = nil;
 # catch GS if in range and FD in approach mode
 var gs_mon = func(v) {
-	if (!props.globals.getNode("instrumentation/nav[0]/gs-in-range").getBoolValue()) return;
+	if (getprop("instrumentation/nav[0]/gs-in-range") == 0) return;
 	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
 		print("GS capture");
 		setprop("controls/autoflight/vert-mode", 0);
-		removelistener(gsL);
-		gsL = nil;		
+		removelistener(gs_rateL);
+		gs_rateL = nil;		
+	}
+	#if not in APPR mode, cancel GS monitoring
+	if (getprop("controls/autoflight/lat-mode") != 3 and gs_rateL != nil) {
+		removelistener(gs_rateL);
+		gs_rateL = nil;		
 	}
 }
 
 setlistener("controls/autoflight/lat-mode", func (n) {
 	var mode = n.getValue();
 	var bank = getprop("autopilot/internal/bank-limit-deg");
-	#if leaving TO/GA mode reset to full bank limit
-	if (mode != 6 and bank == 5) {
+
+    if (mode == 2 or mode == 3)
 		setprop("controls/autoflight/half-bank", 0);
+	
+	#GS handling in APPR mode 
+	if (mode == 3 and gs_rangeL == nil) {
+		gs_rangeL = setlistener("instrumentation/nav[0]/gs-in-range", func (v) {
+				if (v.getBoolValue()) {
+					removelistener(gs_rangeL);
+					gs_rangeL = nil;
+					# if GS in range, wait 1s and track GS
+					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);	
+				}
+			}, 1, 0);
+		print("gs_rangeL "~gs_rangeL);
 	}
-	if (mode == 3 and gsL == nil) {
-		gsL = setlistener("instrumentation/nav[0]/gs-in-range", func (v) {
-			removelistener(gsL);
-			gsL = nil;
-			settimer(func { gsL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);
-		}, 0, 0);
-		print("gsL "~gsL);
-	}
-	if (mode != 3 and gsL != nil) {
-		removelistener(gsL);
-		gsL = nil;
+	#remove GS capture if leaving APPR mode
+	if (mode != 3 and gs_rangeL != nil) {
+		removelistener(gs_rangeL);
+		gs_rangeL = nil;
+		print("gs_rangeL "~gs_rangeL);
 	}
 }, 1, 1);
 
