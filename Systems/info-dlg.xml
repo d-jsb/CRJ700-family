@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+	<name>info-crj700</name>
+    <layout>vbox</layout>
+	
+    <group>
+		<layout>hbox</layout>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<text>
+			<label>Info</label>
+		</text>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<button>
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend>X</legend>
+			<keynum>27</keynum>
+			<border>2</border>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+	<hrule/>
+	<group>
+		<layout>vbox</layout>
+		<text>
+			<label>CRJ700/900/1000 series Version 1.5beta</label>
+		</text>
+		<text>
+			<label>Documentation is currently outdated</label>
+		</text>
+		<text>
+			<label>Please try the checklists to get things flying :)</label>
+		</text>
+		<group>
+			<layout>hbox</layout>
+			<checkbox>
+				<halign>left</halign>
+				<label>Do not show on start</label>
+				<property>sim/model/hide-welcome-msg</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>sim/model/known-version</property>
+					<property>sim/aircraft-version</property>
+				</binding>
+				<live type="bool">true</live>
+			</checkbox>	
+			<button>
+				<legend>Checklists</legend>
+				<binding>
+					<command>dialog-show</command>
+					<dialog-name>checklist</dialog-name>
+				</binding>
+			</button>			
+			<button>
+				<legend>?</legend>
+				<binding>
+					<command>nasal</command>
+					<script>gui.showHelpDialog("/sim/help")</script>
+				</binding>
+			</button>
+		</group>
+	</group>
+</PropertyList>
