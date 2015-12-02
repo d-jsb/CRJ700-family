@@ -285,6 +285,16 @@
 							</script>
 						</binding>
 					</item>
+					<item>
+						<name>apdev</name>
+						<label>AP development</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.apdev.open();
+							</script>
+						</binding>
+					</item>
 				</menu>
 			</default>
 		</menubar>
