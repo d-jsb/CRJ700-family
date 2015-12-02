@@ -108,14 +108,14 @@
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/nav[0]/radials/selected-deg</property>
-				<property>instrumentation/nav[0]/radials/actual-deg</property>
+				<property>instrumentation/nav[0]/heading-deg</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CRS1Knb</object-name>
-		<!--<object-name>CRS1KnbFace</object-name>-->
+		<object-name>CRS1KnbFace</object-name>
 		<property>instrumentation/nav[0]/radials/selected-deg</property>
 		<factor>2</factor>
 		<axis>
@@ -175,14 +175,14 @@
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/nav[1]/radials/selected-deg</property>
-				<property>instrumentation/nav[1]/radials/actual-deg</property>
+				<property>instrumentation/nav[1]/heading-deg</property>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CRS2Knb</object-name>
-		<!--<object-name>CRS2KnbFace</object-name>-->
+		<object-name>CRS2KnbFace</object-name>
 		<property>instrumentation/nav[1]/radials/selected-deg</property>
 		<factor>2</factor>
 		<axis>
