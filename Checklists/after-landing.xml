@@ -6,10 +6,28 @@
 	<item>
 		<name>Flaps</name>
 		<value>UP</value>
+		<condition>
+			<not><property>surface-positions/flap-pos-norm</property></not>
+		</condition>
+		<binding>
+			<command>nasal</command>
+			<script>controls.flapsDown(-5);</script>
+		</binding>
 	</item>
 	<item>
 		<name>Spoilers</name>
 		<value>RETRACT</value>
+		<condition>
+			<equals>
+				<property>/controls/flight/speedbrake</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/flight/speedbrake</property>
+			<value>0</value>
+		</binding>
 	</item>
 
 	<item>
@@ -26,7 +44,7 @@
 	</item>
 	<item>
 		<name>Landing Lights</name>
-		<value>OFF</value>
+		<value>OFF (after leaving runway)</value>
 		<condition>
 			<not>
 			<and>
@@ -53,8 +71,16 @@
 		</binding>
 	</item>
 	<item>
-		<name>Strobe Light</name>
+		<name>Flight Director</name>
 		<value>OFF</value>
+	</item>
+	<item>
+		<name>Transponder</name>
+		<value>STANDBY</value>
+	</item>	
+	<item>
+		<name>Strobe Light</name>
+		<value>OFF (when entering apron)</value>
 		<condition>
 			<not><property>/controls/lighting/strobe</property></not>
 		</condition>
@@ -64,12 +90,4 @@
 			<value>0</value>
 		</binding>
 	</item>		
-	<item>
-		<name>Flight Director</name>
-		<value>OFF</value>
-	</item>
-	<item>
-		<name>Transponder</name>
-		<value>STANDBY</value>
-	</item>	
 </PropertyList>

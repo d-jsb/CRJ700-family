@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-	<name>doors-dlg</name>
+	<name>doors</name>
 	<layout>vbox</layout>
 
 	<group>

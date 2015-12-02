@@ -4,8 +4,40 @@
 <PropertyList>
 	<title>Climb</title>
 	<item>
+		<name>Gear</name>
+		<value>CHECK UP</value>
+		<condition>
+			<not>
+				<property>controls/gear/gear-down</property>
+			</not>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>controls/gear/gear-down</property>
+			<value>0</value>
+		</binding>
+	</item>
+	<item>
+		<name>Flaps</name>
+		<value>CHECK RECTRACTED</value>
+		<condition>
+			<not>
+			<property>surface-positions/flap-pos-norm</property>
+			</not>
+			<not>
+			<property>surface-positions/slat-pos-norm</property>
+			</not>
+		</condition>
+	</item>
+	<item>
 		<name>Autopilot</name>
 		<value>ON</value>
+		<marker>
+			<x-m>-15.7959</x-m>
+			<y-m>-0.1405</y-m>
+			<z-m>-0.6256</z-m>
+			<scale>1.0000</scale>
+		</marker>
 		<condition>
 			<property>/controls/autoflight/autopilot/engage</property>
 		</condition>
@@ -16,8 +48,24 @@
 		</binding>
 	</item>
 	<item>
-		<name>Landing Light</name>
-		<value>OFF ABOVE 10,000ft</value>
+		<name>Altimeter (above transition level)</name>
+		<value>to NORM</value>
+		<marker>
+			<x-m>-15.9190</x-m>
+			<y-m>-0.7215</y-m>
+			<z-m>-1.0521</z-m>
+			<scale>1.8760</scale>
+		</marker>
+	</item>
+	<item>
+		<name>Landing Light (ABOVE 10,000ft)</name>
+		<value>OFF</value>
+		<marker>
+			<x-m>-15.6471</x-m>
+			<y-m>-0.1545</y-m>
+			<z-m>-0.3190</z-m>
+			<scale>1.5124</scale>
+		</marker>
 		<condition>
 				<and>
 					<not><property>/controls/lighting/landing-lights[0]</property></not>
@@ -46,16 +94,8 @@
 		</binding>
 	</item>
 	<item>
-		<name>Gear</name>
-		<value>UP</value>
-	</item>
-	<item>
-		<name>Flaps</name>
-		<value>RETRACT (fixme: speed)</value>
-	</item>
-	<item>
 		<name>FIXME</name>
 		<value>...</value>
 	</item>
-	
+
 </PropertyList>

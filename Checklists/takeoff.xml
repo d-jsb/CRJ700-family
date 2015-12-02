@@ -4,6 +4,18 @@
 <PropertyList>
 	<title>Take off</title>
 	<item>
+		<name>Take off clearance</name>
+		<value>OBTAIN from ATC</value>
+	</item>
+	<item>
+		<name>Brakes</name>
+		<value>HOLD</value>
+		<condition>
+			<property>/gear/gear[1]/has-brake</property>
+			<property>/gear/gear[2]/has-brake</property>
+		</condition>
+	</item>
+	<item>
 		<name>Parking Brake</name>
 		<value>CHECK RELEASE</value>
 		<condition>
@@ -19,15 +31,39 @@
 		</binding>
 	</item>
 	<item>
-		<name>Brakes</name>
-		<value>HOLD</value>
-	</item>
-	<item>
 		<name>Throttles</name>
 		<value>50% N1 UNTIL STABLE</value>
 	</item>
 	<item>
-		<name>FIXME</name>
-		<value>...</value>
+		<name>V1</name>
+		<value>TO/abort decision</value>
 	</item>
+	<item>
+		<name>Vr</name>
+		<value>rotate, nose up 10 to 15 degree</value>
+	</item>
+	<item>
+		<name>Gear</name>
+		<value>UP on stable climb rate</value>
+		<condition>
+			<not>
+				<property>controls/gear/gear-down</property>
+			</not>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>controls/gear/gear-down</property>
+			<value>0</value>
+		</binding>
+	</item>
+
+	<item>
+		<name>Flaps 1</name>
+		<value>1000ft AGL</value>
+	</item>
+	<item>
+		<name>Flaps 0</name>
+		<value>IAS above 200kt</value>
+	</item>
+
 </PropertyList>
