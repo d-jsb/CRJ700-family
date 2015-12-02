@@ -12,6 +12,7 @@ setlistener("autopilot/internal/autoflight-engaged", func(v)
 	var vm = getprop("controls/autoflight/vert-mode");
 	#clear toga
 	if (v.getBoolValue()) {
+		setprop("controls/autoflight/flight-director/engage", 1);
 		if (lm == 6 or lm == 7) setprop("controls/autoflight/lat-mode", 0);
 		if (vm == 6 or vm == 7) setprop("controls/autoflight/vert-mode", 0);
 	}
@@ -108,8 +109,10 @@ var gs_mon = func(v) {
 	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
 		print("GS capture");
 		setprop("controls/autoflight/vert-mode", 0);
-		removelistener(gs_rateL);
-		gs_rateL = nil;		
+		if (gs_rateL != nil) {
+			removelistener(gs_rateL);
+			gs_rateL = nil;	
+		}
 	}
 	#if not in APPR mode, cancel GS monitoring
 	if (getprop("controls/autoflight/lat-mode") != 3 and gs_rateL != nil) {
@@ -129,8 +132,10 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 	if (mode == 3 and gs_rangeL == nil) {
 		gs_rangeL = setlistener("instrumentation/nav[0]/gs-in-range", func (v) {
 				if (v.getBoolValue()) {
-					removelistener(gs_rangeL);
-					gs_rangeL = nil;
+					if (gs_rangeL != nil) {
+						removelistener(gs_rangeL);
+						gs_rangeL = nil;
+					}
 					# if GS in range, wait 1s and track GS
 					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);	
 				}
@@ -141,7 +146,7 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 	if (mode != 3 and gs_rangeL != nil) {
 		removelistener(gs_rangeL);
 		gs_rangeL = nil;
-		print("gs_rangeL "~gs_rangeL);
+		print("gs_rangeL nil");
 	}
 }, 1, 1);
 
