@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
 
@@ -70,6 +70,10 @@
 			<property>instrumentation/eicas/page</property>
 			<value>1</value>
 		</set>
+		<set>
+			<property>instrumentation/eicas[1]/page</property>
+			<value>2</value>
+		</set>
 		<nasal>
 			<script><![CDATA[
 				# engine cutoff settings seem to get overridden
@@ -84,16 +88,19 @@
 
 	<step>
 		<message>Welcome aboard the Bombardier CRJ700/900.</message>
+		<view>
+			<field-of-view>80</field-of-view>
+		</view>
 	</step>
-
 	<step>
-		<message>In this tutorial, you will learn how to start the engines and prepare for takeoff.
+		<message>
+		In this tutorial, you will learn how to start the engines and prepare for takeoff.
 		If the ground staff did not switch on the lights for you, you will find the CRJ dark and cold.
 		</message>
 	</step>
-
 	<step>
-		<message>Reach up to the overhead panel and turn on the battery. 
+		<message>		
+		Reach up to the overhead panel and turn on the battery. 
 		The battery shall be on all the time until you are parked again at you destination. 
 		It is the first thing to turn on and the very last thing to turn off.
 		</message>
@@ -104,7 +111,7 @@
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>35.4</field-of-view>
+			<field-of-view>40</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.3950</x-m>
@@ -120,7 +127,9 @@
 	</step>
 
 	<step>
-		<message>With battery power on, the computers will start and displays light up.</message>
+		<message>
+			With battery power on, the computers will start and displays light up.
+		</message>
 		<view>
 			<heading-offset-deg>337.2</heading-offset-deg>
 			<pitch-offset-deg>-21.3</pitch-offset-deg>
@@ -131,9 +140,37 @@
 			<field-of-view>48.3</field-of-view>
 		</view>
 	</step>
+	<step>
+		<message>		
+		While your aircraft is on its parking position, you can usually request ground power.
+		If it is available, select it.
+		</message>
+		<view>
+			<heading-offset-deg>311.9</heading-offset-deg>
+			<pitch-offset-deg>36.1</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>40</field-of-view>
+		</view>
+		<marker>
+			<x-m>-15.3397</x-m>
+			<y-m>-0.1140</y-m>
+			<z-m>-0.115</z-m>
+			<scale>1.1488</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>controls/electric/battery-switch</property>
+			</condition>
+		</exit>
+	</step>
 	
 	<step>
-		<message>To start the engines, we need to turn on the APU (auxilary power unit). 
+		<message>
+		
+		To start the engines, we need to turn on the APU (auxilary power unit). 
 		First we need to engage the APU electronic control unit (ECU) which will start the APU fuel pump
 		and activate the APU status display on the EICAS screen.
 		</message>
@@ -156,32 +193,33 @@
 			<condition>
 				<property>controls/APU/electronic-control-unit</property>
 			</condition>
-			<interval>1</interval>
 		</exit>
+		<interval>1</interval>
 	</step>
 	<step>
 		<message>
 		You can monitor the APU on the EICAS.
 		</message>
 		<view>
-			<heading-offset-deg>331.8</heading-offset-deg>
-			<pitch-offset-deg>-20.5</pitch-offset-deg>
+			<heading-offset-deg>328.4</heading-offset-deg>
+			<pitch-offset-deg>-19.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>24.2</field-of-view>
+			<field-of-view>42.8</field-of-view>
 		</view>
 		<marker>
-			<x-m>-14.0817</x-m>
-			<y-m>0.0900</y-m>
-			<z-m>-0.9300</z-m>
-			<scale>4.6000</scale>
+			<x-m>-14.1016</x-m>
+			<y-m>0.1000</y-m>
+			<z-m>-0.9421</z-m>
+			<scale>4.4711</scale>
 		</marker>
 		<interval>3</interval>
 	</step>
 	<step>
-		<message>Now push the APU start/stop switch light. It will light "start" until APU reaches 46%. 
+		<message>
+		Now push the APU start/stop switch light. It will light "start" until APU reaches 46%. 
 		When the APU reaches 100%, the green AVAIL light turns on.
 		</message>
 		<view>
@@ -212,19 +250,18 @@
 		You can monitor the APU on the EICAS.
 		</message>
 		<view>
-			<heading-offset-deg>331.8</heading-offset-deg>
-			<pitch-offset-deg>-20.5</pitch-offset-deg>
+			<heading-offset-deg>328.4</heading-offset-deg>
+			<pitch-offset-deg>-19.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>24.2</field-of-view>
+			<field-of-view>35.8</field-of-view>
 		</view>
 	</step>
 
 	<step>
-		<message>The APU will now spool up. During this time, "APU START" will appear on the EICAS. When
-the APU is fully started, "APU RUNNING" will appear.</message>
+		<message>The APU will now spool up. During this time, "APU START" will appear on the EICAS.</message>
 		<exit>
 			<condition>
 				<property>engines/apu/running</property>
@@ -267,7 +304,7 @@ the APU is fully started, "APU RUNNING" will appear.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>22.8</field-of-view>
+			<field-of-view>32.8</field-of-view>
 		</view>
 		<marker>
 				<x-m>-13.5075</x-m>
@@ -286,8 +323,9 @@ the APU is fully started, "APU RUNNING" will appear.</message>
 	</step>
 
 	<step>
-		<message>Click the thrust levers to set them to idle. This will allow fuel to flow to the
-engines.</message>
+		<message>
+			Click the thrust levers to set them to idle. This will allow fuel to flow to the engines.
+		</message>
 		<view>
 			<heading-offset-deg>314.5</heading-offset-deg>
 			<pitch-offset-deg>-43.0</pitch-offset-deg>
@@ -295,7 +333,7 @@ engines.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>20.0</field-of-view>
+			<field-of-view>50.0</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.6250</x-m>
@@ -318,8 +356,7 @@ engines.</message>
 	</step>
 
 	<step>
-		<message>Now let's start the engines. Activate the engine starters by clicking both engine
-start buttons.</message>
+		<message>Now let's start the engines. Activate an engine starter by clicking the start button.</message>
 		<view>
 			<heading-offset-deg>314.5</heading-offset-deg>
 			<pitch-offset-deg>21.0</pitch-offset-deg>
@@ -327,7 +364,7 @@ start buttons.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>21.6</field-of-view>
+			<field-of-view>40</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.5825</x-m>
@@ -337,16 +374,20 @@ start buttons.</message>
 		</marker>
 		<exit>
 			<condition>
-				<and>
+				<or>
 					<property>controls/engines/engine[0]/starter</property>
 					<property>controls/engines/engine[1]/starter</property>
-				</and>
+				</or>
 			</condition>
 		</exit>
 	</step>
 
 	<step>
-		<message>Now wait for the engines to spool up to about 20% N1 and become responsive.</message>
+		<message>Bleed air will run the starter and accelerate the N2 stage.
+		At 20% N2 thust lever must be set from cutoff to idle to allow fuel flow.
+		Now wait for the engines to spool up to about 20% N1 and become responsive.
+		</message>
+		<interval>30</interval>
 		<view>
 			<heading-offset-deg>339.3</heading-offset-deg>
 			<pitch-offset-deg>-20.4</pitch-offset-deg>
@@ -354,20 +395,78 @@ start buttons.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>22.8</field-of-view>
+			<field-of-view>25.8</field-of-view>
 		</view>
 		<exit>
 			<condition>
+				<or>
+					<property>engines/engine[0]/running-nasal</property>
+					<property>engines/engine[1]/running-nasal</property>
+				</or>
+			</condition>
+		</exit>
+	</step>
+
+	<step>
+		<message>Start the 2nd engine.</message>
+		<interval>30</interval>
+		<exit>
+			<condition>
 				<and>
-					<property>engines/engine[0]/running</property>
-					<property>engines/engine[1]/running</property>
+					<property>engines/engine[0]/running-nasal</property>
+					<property>engines/engine[1]/running-nasal</property>
 				</and>
 			</condition>
 		</exit>
 	</step>
 
 	<step>
-		<message>Now that the engines are running, turn on the engine 1 electric generator.</message>
+		<message>
+
+		Now that the engines are running, switch the EICAS 2nd display to show AC status page 
+		by pushing the Electrical button on the EICAS control panel in the lower center panel.
+		(push again, if it shows DC status page).
+		</message>
+		<view>
+			<heading-offset-deg>315.8</heading-offset-deg>
+			<pitch-offset-deg>-45.8</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>42.8</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.5512</x-m>
+			<y-m>0.0231</y-m>
+			<z-m>-1.2603</z-m>
+			<scale>0.8182</scale>
+		</marker>		
+		<exit>
+			<condition>
+				<equals>
+					<property>instrumentation/eicas[1]/page</property>
+					<value>3</value>
+				</equals>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>
+		You can see the AC electrical status on the EICAS.
+		</message>
+		<view>
+			<heading-offset-deg>326.8</heading-offset-deg>
+			<pitch-offset-deg>-15.8</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>37.5</field-of-view>
+		</view>
+	</step>	
+	<step>
+		<message>Turn on the engine 1 electric generator.</message>
 		<view>
 			<heading-offset-deg>319.1</heading-offset-deg>
 			<pitch-offset-deg>31.0</pitch-offset-deg>
@@ -388,6 +487,18 @@ start buttons.</message>
 				<property>controls/electric/engine[0]/generator</property>
 			</condition>
 		</exit>
+	</step>
+	<step>
+		<message>You may want to check the EICAS screen again</message>
+		<view>
+			<heading-offset-deg>326.8</heading-offset-deg>
+			<pitch-offset-deg>-15.8</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>37.5</field-of-view>
+		</view>		
 	</step>
 
 	<step>
@@ -432,7 +543,7 @@ the APU generator, as it is no longer needed.</message>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>-0.5</y-offset-m>
 			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>28.5</field-of-view>
+			<field-of-view>37.5</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.5417</x-m>
@@ -446,11 +557,35 @@ the APU generator, as it is no longer needed.</message>
 					<property>controls/APU/off-on</property>
 				</not>
 			</condition>
+			<nasal>
+			<script><![CDATA[
+					setprop("instrumentation/eicas[1]/page", 2);
+			]]></script>
+			</nasal>
 		</exit>
 	</step>
-
+	<step>	
+		<message>The APU will shut down and its ECU will close the APU door.</message>
+		<view>
+			<heading-offset-deg>326.8</heading-offset-deg>
+			<pitch-offset-deg>-15.8</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>37.5</field-of-view>
+		</view>
+		<exit>
+			<condition>
+				<not>
+					<property>controls/APU/off-on</property>
+				</not>
+			</condition>
+		</exit>
+	</step>
 	<end>
-		<message>Congratulations! You have successfully started your CRJ700.</message>
+		<message>Congratulations! You have successfully started your CRJ700.
+		Have a look to the checklists for more information.</message>
 	</end>
 
 </PropertyList>
