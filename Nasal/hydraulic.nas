@@ -92,7 +92,7 @@ var HydraulicSystem = {
 	},
 
 	init: func {
-		me.parents[1].init();
+		call(EnergyBus.init, [], me);
 		setlistener("controls/flight/flaps", func(v) {me._auto_pump(v);}, 1, 1);
 		#setlistener("systems/hydraulic/system["~sysid~"]", func {me.update();}, 1, 2);
 	},
@@ -104,7 +104,7 @@ var HydraulicSystem = {
 	},
 
 	update: func {
-		me.parents[1].update();
+		call(EnergyBus.update, [], me);
 		if (me.serviceable) {			
 			foreach (out; me.outputs_multi) {
 				var hsys = props.globals.getNode("systems/hydraulic").getChildren("system");

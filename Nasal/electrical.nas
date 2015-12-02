@@ -7,7 +7,8 @@
 #
 # AC (115V@400Hz) 
 # Feed by APU generator, engine generators or ext. power while on ground.
-# 
+# If all regular AC power fails, the ADG will generate AC power in flight
+# while airspeed >= 135kt
 #
 # DC (24V - 28V)
 # Feed by battery, external power and four TRUs (ac/dc converters)
@@ -17,18 +18,18 @@
 ## FG properties used
 # controls/AC/system[n]/
 # systems/AC/system[]/* 
+# systems/AC/outputs/bus<n>		the outputs of the AC power center feeding AC bus<n>
 # systems/AC/outputs/*	
 #
 # controls/DC/system[n]/
 # systems/DC/system[]/* 
+# systems/DC/outputs/bus<n>		the outputs of the DCC power center feeding DC bus<n>
 # systems/DC/outputs/*	
-#		
 #
 
 # IDG (engine generator)
 #
 #
-
 var IDG = {
 	new: func (bus, name, input) {
 		var obj = {
@@ -36,7 +37,7 @@ var IDG = {
 			freq: 0,
 			load: 0,
 		};
-		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq", 1, "FLOAT");
 		obj.freqN.setValue(0);
 		return obj;
 	},
@@ -44,7 +45,7 @@ var IDG = {
 	_update_output: func {
 		var i = int(me.inputN.getValue());
 		if (me.running and int(me.input) == i) return;
-		me.parents[1]._update_output();
+		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
 		if (me.input > me.input_min) {			
 			if (me.input < 57.5) 
@@ -60,8 +61,9 @@ var IDG = {
 	},
 };
 
-#needs ~5s from 0 - 115V
-#needs ~10s from 0 - 400 Hz
+# APU generator
+# needs ~5s from 0 - 115V
+# needs ~10s from 0 - 400 Hz
 var APUGen = {
 	new: func (bus, name, input) {
 		var obj = {
@@ -69,7 +71,7 @@ var APUGen = {
 			freq: 0,
 			load: 0,
 		};
-		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq", 1, "FLOAT");
 		obj.freqN.setValue(0);
 		return obj;
 	},
@@ -77,12 +79,12 @@ var APUGen = {
 	_update_output: func {
 		#var i = int(me.inputN.getValue());
 		#if (me.running and int(me.input) == i) return;
-		me.parents[1]._update_output();
+		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
-		if (me.input > 80) {			
-			if (me.input < 90) 
+		if (me.input > 80) {
+			if (me.input < 90)
 				me.freq = 37.5 * int(me.input - 80);
-			elsif (me.input < 100) 
+			elsif (me.input < 100)
 				me.freq = 375 + int(2.5 * (me.input - 90));
 			else me.freq = 400;
 		}
@@ -91,6 +93,106 @@ var APUGen = {
 	},
 };
 
+# ADG will work down to 135kt airspeed (according to FOM)
+# 
+var ADG = {
+	new: func (bus, name="adg" , input="/velocities/airspeed-kt") {
+		var obj = {
+			parents: [ADG, EnergyConv.new(bus, name, 115, input, 120, 135).setOutputMin(108)],
+			freq: 0,
+			rpm: 0,
+		};
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN.setValue(0);
+		obj.rpmN = props.globals.getNode(bus.system_path~name~"-rpm",1);
+		obj.rpmN.setValue(0);
+		obj.positionN = props.globals.getNode(bus.system_path~name~"-position-norm",1);
+		obj.positionN.setValue(0);
+		return obj;
+	},
+
+	#will deploy on first "switch on"
+	_switch_listener: func(v){
+		me.switch = v.getValue();
+		if (me.serviceableN.getBoolValue() and me.switch) 
+			interpolate(me.positionN, 1, 2);
+		me._update_output();
+	},
+		
+	_update_output: func {
+		#var i = int(me.inputN.getValue());
+		#if (me.running and int(me.input) == i) return;
+		call(EnergyConv._update_output, [], me);
+		me.freq = 0;
+		if (me.input > 120) {
+			if (me.input < 130) 
+				me.freq = 37.5 * int(me.input - 120);
+			elsif (me.input < 135) 
+				me.freq = 375 + int(5 * (me.input - 130));
+			else me.freq = 400;
+		}
+		me.freqN.setValue(me.freq);
+		me.rpmN.setValue(me.freq*20);
+		return me;
+	},
+};
+
+#
+# external AC should not be available if aircraft moves ;)
+#
+var ACext = {
+	new: func (bus, name="acext", input=115) {
+		var obj = {
+			parents: [ACext, EnergyConv.new(bus, name, input)],
+			freq: 0,
+			gsL: 0,
+			parking_brake: 0,
+			inuse: 0,
+		};
+		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
+		obj.freqN.setValue(0);
+		return obj;
+	},
+
+	init: func {
+		call(EnergyConv.init,[], me);
+		var gear = props.getNode("gear").getChildren("gear");
+		foreach(g; gear) {			
+			append(me.listeners, setlistener(g.getChild("has-brake"), func(v) {me._gear_listener(v);}, 1 , 0));			
+		}
+		append(me.listeners, setlistener(props.globals.getNode("controls/electric/ac-service-in-use"), func(v) {me._inuse(v);}, 1 , 0));			
+		return me;
+	},
+
+	_inuse: func(v){
+			me.inuse = v.getValue;
+			me._update_output();
+	},
+	
+	
+	_gear_listener: func(v) {
+		if (v.getBoolValue()) {
+			if  (me.parking_brake < 3) me.parking_brake += 1;
+		}
+		else if (me.parking_brake > 0) me.parking_brake -= 1;
+		if (me.parking_brake) {
+			setprop("controls/electric/ac-service-avail", 1);
+		}			
+		else {
+			setprop("controls/electric/ac-service-avail", 0);
+		}
+	},
+		
+	_update_output: func {
+		#var i = int(me.inputN.getValue());
+		#if (me.running and int(me.input) == i) return;
+		call(EnergyConv._update_output, [], me);
+		if (me.running) me.freq = 400;
+			else me.freq = 0;
+		me.freqN.setValue(me.freq);
+		return me;
+	},
+};
 
 # ACBus
 var ACBus = {
@@ -118,16 +220,25 @@ var ACPC = {
 	new: func (sysid, outputs) {
 		obj = { parents : [ACPC, EnergyBus.new("AC", sysid, "acpc", outputs)],
 			buses: [],
+			acext_inuse: 0,
 		};
 		print("AC power center "~obj.parents[1].system_path);
 		return obj;		
 	},
-
+	
 	readProps: func {		
 		me.output = me.outputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
+		me.acext_inuse = getprop("controls/electric/ac-service-in-use");	
 	},
 		
+	#
+	# ACPC logic
+	#
+	# On ground ext. AC can be used. Ext. AC will automatically disconnect on 
+	# any on-board AC generator comming online.
+	# The APU generator will auto disconnect when 2nd IDG comes online
+	#
 	update: func {
 		me.readProps();
 		if (me.serviceable) {
@@ -137,15 +248,24 @@ var ACPC = {
 			var ep = me.inputs[3].getValue();
 			var adg = me.inputs[4].getValue();
 			
-			print("ACPC g1:"~g1~", g2:"~g2~", a:"~apu~", e:"~ep);
+			#print("ACPC g1:"~g1~", g2:"~g2~", a:"~apu~", e:"~ep~", adg:"~adg);
 			var v = 0;
+			#AC_SERVICE
+			v = (g2 >= ep) ? g2 : ep;
+			me.outputs[3].setValue(v);
 			
+			#ADG			
+			me.outputs[4].setValue(adg);
+			
+			if (me.acext_inuse and (apu or g1 or g2)) {
+				setprop("controls/electric/ac-service-in-use",0);
+			}
+			if (!me.acext_inuse) ep = 0;
 			#use ext. AC until APU avail
-			if (apu < ep) apu = ep;
+			if (!apu) apu = ep;
 			#AC1
 			if (g1 < apu) g1 = apu;
 			me.outputs[0].setValue(g1);
-			
 			#AC2
 			if (g2 < apu) g2 = apu;
 			me.outputs[1].setValue(g2);
@@ -153,18 +273,14 @@ var ACPC = {
 			#AC_ESS (prio: adg,ac1,ac2)
 			v = (g1 >= g2) ? g1 : g2;
 			v = (adg > v) ? adg : v;
-			me.outputs[2].setValue(v);
-			
-			#AC_SERVICE
-			v = (g2 >= apu) ? g2 : apu;
-			me.outputs[3].setValue(v);
-			
-			#ADG			
-			me.outputs[4].setValue(adg);			
+			me.outputs[2].setValue(v);			
 		}
 		return me;
 	},
 };
+
+# DCPC (DC power center)
+# connection logic from DC sources to DC buses
 
 var DCPC = {
 	new: func (sysid, outputs) {
@@ -191,7 +307,7 @@ var DCPC = {
 			var mb = me.inputs[5].getValue();
 			var batt = (ab > mb) ? ab : mb;
 			
-			print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~batt);
+			#print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~batt);
 			var v = 0;
 			
 			#Battery
@@ -288,8 +404,9 @@ var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
 acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2").addSwitch("/controls/electric/engine[0]/generator"));
 acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2").addSwitch("/controls/electric/engine[1]/generator"));
 acpc.addInput(APUGen.new(acpc, "apugen", "/engines/apu/rpm").addSwitch("/controls/electric/APU-generator"));
-acpc.addInput(EnergyConv.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
-acpc.addInput(APUGen.new(acpc, "adg", "/systems/ram-air-turbine/rpm"));
+#acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
+acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-avail"));
+acpc.addInput(ADG.new(acpc).addSwitch("/controls/electric/ADG"));
 
 dcpc.addInput(EnergyConv.new(dcpc, "tru1", 28, ac_buses[0].outputs_path~"tru1", 40));
 dcpc.addInput(EnergyConv.new(dcpc, "tru2", 28, ac_buses[0].outputs_path~"tru2", 40));
@@ -316,6 +433,12 @@ foreach (b; dc_buses) {
 #init power controllers (setup listeners)
 acpc.init();
 dcpc.init();
+
+
+var mkviii = EnergyBus.new("electrical", 0, "mk-viii-compat", ["mk-viii"]);
+mkviii.addInput(EnergyConv.new(mkviii,"ac-in", 28, "systems/AC/outputs/egpws", 40));
+mkviii.init();
+
 
 # dummy for compatibility, called from update loop
 # should not be needed if all listeners work correctly
