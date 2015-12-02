@@ -979,7 +979,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>100</step>
-				<max>4000</max>
+				<max>12000</max>
 			</binding>
 		</action>
 		<action>
@@ -1008,7 +1008,7 @@
 				</condition>
 				<property>controls/autoflight/vertical-speed-select</property>
 				<step>-100</step>
-				<min>-4000</min>
+				<min>-12000</min>
 			</binding>
 		</action>
 		<hovered><binding>
