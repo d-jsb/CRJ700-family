@@ -138,7 +138,7 @@ var tiresmoke_system = aircraft.tyresmoke_system.new(0, 1, 2);
 
 ## Lights
 # Exterior lights
-var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 6], "controls/lighting/beacon");
+var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 2.1], "controls/lighting/beacon");
 var strobe_light = aircraft.light.new("sim/model/lights/strobe", [0.05, 2], "controls/lighting/strobe");
 
 # No smoking/seatbelt signs
