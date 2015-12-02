@@ -7,9 +7,9 @@
 
     <sim>
         <description>Bombardier CRJ900</description>
-        <author>Ryan Miller (3d), Ryan Miller (FDM)</author>
-        <status>early-production</status>
-        <aircraft-version>1.1.0</aircraft-version>
+        <author>Ryan Miller, Henning S.</author>
+        <status>production</status>
+        <aircraft-version>1.5.0b</aircraft-version>
         <rating>
             <FDM type="int">3</FDM>
             <systems type="int">3</systems>
@@ -32,7 +32,9 @@
 			<has-slats type="bool">true</has-slats>
         </model>
 
-        <dimensions>
+		<tutorials include="Tutorials/CRJ900-tutorials.xml" />
+
+		<dimensions>
             <radius-m type="float">36.4</radius-m>
         </dimensions>
 
