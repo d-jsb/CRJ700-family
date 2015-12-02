@@ -21,7 +21,7 @@
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>5</max-m>
 	</animation>
 
 	<animation>
@@ -46,6 +46,19 @@
 		<object-name>NWS</object-name>
 		<action>
 			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/enable-tiller</property>				
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					CRJ700.dialogs.tiller.open();
+				</script>
+			</binding>
+		</action>
+		<action>
 			<button>1</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
