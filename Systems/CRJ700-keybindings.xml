@@ -84,6 +84,7 @@
 			</script>
 		</binding>
 	</key>
+
 	<key n="82">
 		<name>R</name>
 		<desc>Run forward toward view</desc>
@@ -105,6 +106,23 @@
 				walk.walk_about(-0.1);
 			</script>
 		</binding>
+	</key>
+	<key n="121">
+		<name>y</name>
+		<desc>Crouch</desc>
+		<repeatable type="bool">false</repeatable>
+		<binding>
+			<command>property-assign</command>
+			<property>sim/current-view/crouch</property>
+			<value>1</value>
+		</binding>
+		<mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>sim/current-view/crouch</property>
+				<value>0</value>
+			</binding>
+		</mod-up>
 	</key>
 	<!-- Tiller steering -->
 	<key n="81">
