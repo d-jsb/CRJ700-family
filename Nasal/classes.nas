@@ -151,7 +151,7 @@ var EnergyConv = {
 			if (me.input_hi > 0 and me.input > me.input_hi) {
 				me.output = me.output_nominal * me.input / me.input_hi;
 			}
-			}
+		}
 		me.outputN.setValue(me.output);
 		me.isRunning();
 		#print("EnergyConv.update name: "~me.name~" sw:"~me.switch~" nom:"~me.output_nominal~" in: "~me.input~" out:"~me.output);
