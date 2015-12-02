@@ -339,10 +339,10 @@
 			<field-of-view>37.5</field-of-view>
 		</view>
 		<marker>
-			<x-m>-15.3612</x-m>
+			<x-m>-15.3430</x-m>
 			<y-m>-0.0527</y-m>
 			<z-m>-0.1197</z-m>
-			<scale>1</scale>
+			<scale>1.0000</scale>
 		</marker>
 		<exit>
 			<condition>
@@ -388,7 +388,7 @@
 	</step>
 
 	<step>
-		<message>Now let's start the engines. Activate an engine starter by clicking the start button.</message>
+		<message>Now let's start the engines. Activate an engine starter by clicking its start button.</message>
 		<view>
 			<heading-offset-deg>314.5</heading-offset-deg>
 			<pitch-offset-deg>21.0</pitch-offset-deg>
@@ -399,10 +399,10 @@
 			<field-of-view>40</field-of-view>
 		</view>
 		<marker>
-			<x-m>-15.5425</x-m>
-			<y-m>-0.0408</y-m>
-			<z-m>-0.2108</z-m>
-			<scale>2.5667</scale>
+			<x-m>-15.5359</x-m>
+			<y-m>-0.0358</y-m>
+			<z-m>-0.2174</z-m>
+			<scale>2.7650</scale>
 		</marker>
 		<exit>
 			<condition>
@@ -411,6 +411,10 @@
 					<property>controls/engines/engine[1]/starter</property>
 				</or>
 			</condition>
+			<set>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>6</value>
+			</set>
 		</exit>
 	</step>
 
@@ -469,7 +473,7 @@
 			<field-of-view>42.8</field-of-view>
 		</view>
 		<marker>
-			<x-m>-15.5112</x-m>
+			<x-m>-15.4914</x-m>
 			<y-m>0.0231</y-m>
 			<z-m>-1.2603</z-m>
 			<scale>0.8182</scale>
@@ -551,10 +555,11 @@
 	<step>
 		<message>We are now generating electrical power through the engines.  Turn off
 the APU generator, as it is no longer needed.</message>
+
 		<marker>
-			<x-m>-15.4450</x-m>
-			<y-m>-0.1583</y-m>
-			<z-m>-0.1650</z-m>
+			<x-m>-15.4235</x-m>
+			<y-m>-0.1666</y-m>
+			<z-m>-0.1658</z-m>
 			<scale>2.0000</scale>
 		</marker>
 		<exit>
@@ -578,7 +583,7 @@ the APU generator, as it is no longer needed.</message>
 			<field-of-view>37.5</field-of-view>
 		</view>
 		<marker>
-			<x-m>-15.5017</x-m>
+			<x-m>-15.4844</x-m>
 			<y-m>0.0217</y-m>
 			<z-m>-0.1933</z-m>
 			<scale>1.7000</scale>
@@ -596,7 +601,7 @@ the APU generator, as it is no longer needed.</message>
 		</exit>
 	</step>
 	<step>	
-		<message>The APU will shut down and its ECU will close the APU door.</message>
+		<message>The APU will shut down ...</message>
 		<view>
 			<heading-offset-deg>326.8</heading-offset-deg>
 			<pitch-offset-deg>-15.8</pitch-offset-deg>
@@ -614,6 +619,65 @@ the APU generator, as it is no longer needed.</message>
 			</condition>
 		</exit>
 	</step>
+	<step>	
+		<message>... and its ECU will close the APU door.</message>
+		<view>
+			<heading-offset-deg>128.9</heading-offset-deg>
+			<pitch-offset-deg>4.4</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>10.7</x-offset-m>
+			<y-offset-m>-0.6</y-offset-m>
+			<z-offset-m>4.2</z-offset-m>
+			<field-of-view>71.8</field-of-view>
+		</view>
+		<exit>
+			<condition>
+				<not>
+					<property>engines/apu/door-norm</property>
+				</not>
+			</condition>
+		</exit>
+	</step>
+	<step>	
+		<message>Switch all hydraulic pumps to automatic (3A to on). You can check hydraulics on the EICAS.</message>
+		<view>
+			<heading-offset-deg>318.4</heading-offset-deg>
+			<pitch-offset-deg>17.6</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-15.1</z-offset-m>
+			<field-of-view>45.7</field-of-view>
+		</view>
+		<marker>
+			<x-m>-15.5896</x-m>
+			<y-m>0.0000</y-m>
+			<z-m>-0.2455</z-m>
+			<scale>3.0000</scale>
+		</marker>
+		<exit>
+			<condition>
+				<and>
+					<property>controls/hydraulic/system/pump-b</property>
+					<property>controls/hydraulic/system[1]/pump-b</property>
+					<property>controls/hydraulic/system[2]/pump-a</property>
+					<property>controls/hydraulic/system[2]/pump-b</property>
+				</and>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>That's it. Now use the checklists to complete the start configuration.</message>
+		<view>
+			<heading-offset-deg>0.0</heading-offset-deg>
+			<pitch-offset-deg>0.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-15.1</z-offset-m>
+			<field-of-view>71.7</field-of-view>
+		</view>
+	</step>	
 	<end>
 		<message>Congratulations! You have successfully started your CRJ700.
 		Please make sure to look at the checklists for more information.</message>

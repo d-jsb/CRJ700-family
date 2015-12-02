@@ -163,9 +163,9 @@
 			<field-of-view>40</field-of-view>
 		</view>
 		<marker>
-			<x-m>-13.3397</x-m>
+			<x-m>-13.4000</x-m>
 			<y-m>-0.1140</y-m>
-			<z-m>-0.115</z-m>
+			<z-m>-0.1150</z-m>
 			<scale>1.1488</scale>
 		</marker>
 		<exit>
@@ -411,6 +411,10 @@
 					<property>controls/engines/engine[1]/starter</property>
 				</or>
 			</condition>
+			<set>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>6</value>
+			</set>
 		</exit>
 	</step>
 
@@ -596,7 +600,7 @@ the APU generator, as it is no longer needed.</message>
 		</exit>
 	</step>
 	<step>	
-		<message>The APU will shut down and its ECU will close the APU door.</message>
+		<message>The APU will shut down ...</message>
 		<view>
 			<heading-offset-deg>326.8</heading-offset-deg>
 			<pitch-offset-deg>-15.8</pitch-offset-deg>
@@ -613,6 +617,66 @@ the APU generator, as it is no longer needed.</message>
 				</not>
 			</condition>
 		</exit>
+	</step>
+	<step>	
+		<message>... and its ECU will close the APU door.</message>
+		<view>
+			<heading-offset-deg>128.9</heading-offset-deg>
+			<pitch-offset-deg>4.4</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>10.7</x-offset-m>
+			<y-offset-m>-0.6</y-offset-m>
+			<z-offset-m>4.2</z-offset-m>
+			<field-of-view>71.8</field-of-view>
+		</view>
+		<exit>
+			<condition>
+				<not>
+					<property>engines/apu/door-norm</property>
+				</not>
+			</condition>
+		</exit>
+	</step>
+	<step>	
+		<message>Switch all hydraulic pumps to automatic (3A to on). You can check hydraulics on the EICAS.</message>
+		<view>
+			<heading-offset-deg>318.4</heading-offset-deg>
+			<pitch-offset-deg>17.6</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>45.7</field-of-view>
+		</view>
+
+		<marker>
+			<x-m>-13.6430</x-m>
+			<y-m>0.0000</y-m>
+			<z-m>-0.2455</z-m>
+			<scale>3</scale>
+		</marker>
+		<exit>
+			<condition>
+				<and>
+					<property>controls/hydraulic/system/pump-b</property>
+					<property>controls/hydraulic/system[1]/pump-b</property>
+					<property>controls/hydraulic/system[2]/pump-a</property>
+					<property>controls/hydraulic/system[2]/pump-b</property>
+				</and>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>That's it. Now use the checklists to complete the start configuration.</message>
+		<view>
+			<heading-offset-deg>0.0</heading-offset-deg>
+			<pitch-offset-deg>0.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>71.7</field-of-view>
+		</view>
 	</step>
 	<end>
 		<message>Congratulations! You have successfully started your CRJ700.
