@@ -116,101 +116,120 @@
 	</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.813</x-m>
-	    <y-m>-0.707</y-m>
-	    <z-m>0.922</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/DC/outputs/clock1</powerN>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.813</x-m>
+			<y-m>-0.707</y-m>
+			<z-m>0.922</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<mfd-tcas>instrumentation/mfd[0]/tcas</mfd-tcas>
-		<mfd-wx>instrumentation/mfd[0]/wx</mfd-wx>
-		<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
-		<radar-range>instrumentation/efis/inputs/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.768</x-m>
-	    <y-m>-0.78</y-m>
-	    <z-m>0.761</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<mfd-tcas>instrumentation/mfd[0]/tcas</mfd-tcas>
+			<mfd-wx>instrumentation/mfd[0]/wx</mfd-wx>
+			<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
+			<radar-range>instrumentation/efis/inputs/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.768</x-m>
+			<y-m>-0.78</y-m>
+			<z-m>0.761</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<wiper>controls/anti-ice/wiper[0]</wiper>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.663</x-m>
-	    <y-m>-0.957</y-m>
-	    <z-m>0.808</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<wiper>controls/anti-ice/wiper[0]</wiper>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.663</x-m>
+			<y-m>-0.957</y-m>
+			<z-m>0.808</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.756</x-m>
-	    <y-m>-0.152</y-m>
-	    <z-m>0.65</z-m>
-	    <pitch-deg>-50</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
+		<overlay>
+			<params>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/DC/outputs/bus1</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.756</x-m>
+			<y-m>-0.152</y-m>
+			<z-m>0.65</z-m>
+			<pitch-deg>-50</pitch-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-left.xml</path>
-	<offsets>
-	    <x-m>-1.311</x-m>
-	    <y-m>-0.157</y-m>
-	    <z-m>0.528</z-m>
-	    <pitch-deg>-64.5</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-left.xml</path>
+		<offsets>
+			<x-m>-1.311</x-m>
+			<y-m>-0.157</y-m>
+			<z-m>0.528</z-m>
+			<pitch-deg>-64.5</pitch-deg>
+		</offsets>
     </model>
 
     <!-- Shared instruments -->
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/MCP/mcp.xml</path>
-	<offsets>
-	    <x-m>-1.67</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.174</z-m>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MCP/mcp.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/center-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.67</x-m>
+			<y-m>0</y-m>
+			<z-m>1.174</z-m>
+		</offsets>
+    </model>
+		<model>
+		<path>Aircraft/CRJ700-family/Models/Instruments/OHP/ohpanel.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.333</x-m>
+			<y-m>0</y-m>
+			<z-m>1.635</z-m>
+			<pitch-deg>65</pitch-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/OHP/ohpanel.xml</path>
-	<offsets>
-	    <x-m>-1.333</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.635</z-m>
-	    <pitch-deg>65</pitch-deg>
-	</offsets>
-    </model>
-    <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/UpperPanel/uppanel.xml</path>
-	<offsets>
-	    <x-m>-1.514</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.5</z-m>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/UpperPanel/uppanel.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.514</x-m>
+			<y-m>0</y-m>
+			<z-m>1.5</z-m>
+		</offsets>
     </model>
     <model>
 	<path>Aircraft/CRJ700-family/Models/Instruments/Standby/standby.xml</path>
@@ -296,74 +315,78 @@
 	</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.813</x-m>
-	    <y-m>0.707</y-m>
-	    <z-m>0.922</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
+		<overlay>
+			<params>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
+				<powerN>systems/DC/outputs/clock2</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.813</x-m>
+			<y-m>0.707</y-m>
+			<z-m>0.922</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<mfd-tcas>instrumentation/mfd[1]/tcas</mfd-tcas>
-		<mfd-wx>instrumentation/mfd[1]/wx</mfd-wx>
-		<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
-		<radar-range>instrumentation/radar[1]/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.768</x-m>
-	    <y-m>0.78</y-m>
-	    <z-m>0.761</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<mfd-tcas>instrumentation/mfd[1]/tcas</mfd-tcas>
+			<mfd-wx>instrumentation/mfd[1]/wx</mfd-wx>
+			<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
+			<radar-range>instrumentation/radar[1]/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.768</x-m>
+			<y-m>0.78</y-m>
+			<z-m>0.761</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<wiper>controls/anti-ice/wiper[1]</wiper>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.663</x-m>
-	    <y-m>0.957</y-m>
-	    <z-m>0.808</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<wiper>controls/anti-ice/wiper[1]</wiper>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.663</x-m>
+			<y-m>0.957</y-m>
+			<z-m>0.808</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.756</x-m>
-	    <y-m>0.152</y-m>
-	    <z-m>0.65</z-m>
-	    <pitch-deg>-50</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
+		<overlay>
+			<params>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/DC/outputs/bus2</powerN>
+		</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.756</x-m>
+			<y-m>0.152</y-m>
+			<z-m>0.65</z-m>
+			<pitch-deg>-50</pitch-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-right.xml</path>
-	<offsets>
-	    <x-m>-1.311</x-m>
-	    <y-m>0.157</y-m>
-	    <z-m>0.528</z-m>
-	    <pitch-deg>-64.5</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-right.xml</path>
+		<offsets>
+			<x-m>-1.311</x-m>
+			<y-m>0.157</y-m>
+			<z-m>0.528</z-m>
+			<pitch-deg>-64.5</pitch-deg>
+		</offsets>
     </model>
 
     <!-- Generic pilot models -->
@@ -450,13 +473,8 @@
 		<object-name>YokeFloorBases</object-name>
 		-->
 		<condition>
-			<and>
+			<!-- powered by battery direct bus -->
 			<property>controls/lighting/dome</property>
-			<greater-than-equals>
-				<property>systems/AC/outputs/pilot-panel-lights</property>
-				<value>15</value>
-			</greater-than-equals>
-			</and>
 		</condition>
 		<emission>
 			<red>0.5</red>
@@ -470,7 +488,7 @@
 	<object-name>PedestalMarkings</object-name>
 	<condition>
 	    <greater-than-equals>
-		<property>systems/AC/outputs/center-panel-lights</property>
+		<property>systems/AC/outputs/center-panel-int-lights</property>
 		<value>15</value>
 	    </greater-than-equals>
 	</condition>
@@ -489,15 +507,15 @@
 	<type>string-value</type>
 	<property>sim/model/livery/registration</property>
 	<axis-alignment>yz-plane</axis-alignment>
-	<alignment>center-center</alignment>
+	<alignment>center-top</alignment>
 	<character-size>0.014</character-size>
 	<character-aspect-ratio>0.6</character-aspect-ratio>
 	<font>Helvetica.txf</font>
 	<format>%s</format>
 	<offsets>
-	    <x-m>-1.918</x-m>
-	    <y-m>-0.459</y-m>
-	    <z-m>0.953</z-m>
+	    <x-m>-1.923</x-m>
+	    <y-m>-0.51396</y-m>
+	    <z-m>0.995</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
 	<font-resolution>
@@ -510,15 +528,15 @@
 	<type>string-value</type>
 	<property>sim/model/livery/registration</property>
 	<axis-alignment>yz-plane</axis-alignment>
-	<alignment>center-center</alignment>
+	<alignment>center-top</alignment>
 	<character-size>0.014</character-size>
 	<character-aspect-ratio>0.6</character-aspect-ratio>
 	<font>Helvetica.txf</font>
 	<format>%s</format>
 	<offsets>
-	    <x-m>-1.918</x-m>
-	    <y-m>0.459</y-m>
-	    <z-m>0.953</z-m>
+	    <x-m>-1.923</x-m>
+	    <y-m>0.51396</y-m>
+	    <z-m>0.995</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
 	<font-resolution>

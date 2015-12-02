@@ -6,20 +6,38 @@
 #
 
 # EnergyConv
-# A switchable device converting energy from an input to an output
-# subsystem of EnergyBus
+# (subsystem of EnergyBus)
+# A switchable device 'converting' energy from an input to an output
 # Examples: AC generator, AC2DC converter, hydraulic pump
-# Output value will be nominal, if input is between input_lo and input_hi
+#
+# Output value will be calculated from input, switch and serviceable flag.
+# Transfer function:
+# out
+#  |             
+#  |             /
+#  |      /-----/ out_nominal
+#  |     /
+#  |    /
+# -0--min--lo--hi-------> in
+#
+# Output is constant, if input is between input_lo and input_hi,
 # otherwise output will be linear scaled input.
 #
-# bus (EnergyBus)		the bus that is feeded by this src
-# name (string)			name of device ("generator", "pump", ...)
+# bus (EnergyBus)		the bus that is feeded by this device
+# name (string)			name of device ("generator1", "pump-B", ...)
+#
+# Optional:
 # input 				numeric constant or property path,
 # output_nominal (num)	normal output level, if input_lo < input < input_hi
 # output_min (num)		to calculate isRunning (0: off, 1: ok, 2: low)
-# input_min				cutoff, input < min --> output = 0
-# input_lo				min input for normal output
-# input_hi				max input for normal output (0 -> no limit)
+# input_min	(num)		cutoff, input < min --> output = 0
+# input_lo (num)		min input for nominal output
+# input_hi (num)		max input for nominal output (0 -> no limit)
+#
+# Examples:
+#
+#
+#
 
 
 var EnergyConv = {
@@ -35,10 +53,8 @@ var EnergyConv = {
 			input_hi: 0,
 			output_min: 1,
 			output_nominal: 1,
-			serviceableL: nil,
+			listeners: [],
 			switchN: nil,
-			switchL: nil,
-			inputL: nil,
 		};
 
 		obj.serviceableN = props.globals.getNode(bus.system_path~name~"-serviceable", 1);
@@ -68,16 +84,13 @@ var EnergyConv = {
 
 	init: func {
 		print(me.name~".init input:"~me.inputN.getName());
-		if (me.serviceableL != nil)
-			removelistener(me.serviceableL);
-		if (me.switchL != nil)
-			removelistener(me.switchL);
-		if (me.inputL != nil)
-			removelistener(me.inputL);
-		me.serviceableL = setlistener(me.serviceableN, func(v) {me._update_output();}, 1, 0);
+		foreach (l; me.listeners)
+			removelistener(l);
 		if (me.switchN != nil)
-			me.switchL = setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0);
-		me.inputL = setlistener(me.inputN, func(v) {me._update_output();}, 1, 0);
+			append(me.listeners, setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0));
+
+		append(me.listeners, setlistener(me.serviceableN, func(v) {me._update_output();}, 0, 0));
+		append(me.listeners, setlistener(me.inputN, func(v) {me._update_output();}, 1, 0));
 		return me;
 	},
 
@@ -100,9 +113,9 @@ var EnergyConv = {
 		else {
 			var path = "/controls/"~me.bus.type~"/system["~me.bus.index~"]/"~me.name;
 			me.switchN = props.globals.getNode(path, 1);
-			print(path);
+			#print(path);
 		}
-		print("Adding switch "~me.switchN.getName());
+		#print("Adding switch "~me.switchN.getName());
 		return me;
 	},
 
@@ -133,7 +146,7 @@ var EnergyConv = {
 		if (me.serviceable and me.switch and me.input >= me.input_min) {
 			me.output = me.output_nominal;
 			if (me.input_lo > 0 and me.input < me.input_lo) {
-				me.output = me.output_nominal * me.input / me.input_lo;
+				me.output = me.output_nominal * (me.input - me.input_min) / me.input_lo;
 			}
 			if (me.input_hi > 0 and me.input > me.input_hi) {
 				me.output = me.output_nominal * me.input / me.input_hi;
@@ -141,7 +154,7 @@ var EnergyConv = {
 		}
 		me.outputN.setValue(me.output);
 		me.isRunning();
-		print("EnergyConv.update name: "~me.name~"sw:"~me.switch~" in: "~me.input~" out:"~me.output);
+		#print("EnergyConv.update name: "~me.name~" sw:"~me.switch~" nom:"~me.output_nominal~" in: "~me.input~" out:"~me.output);
 		me.bus.update();
 		return me;
 	},
@@ -171,12 +184,14 @@ var EnergyBus = {
 			outputs_path: "/systems/"~systype~"/outputs/",
 			inputs: [],
 			outputs: [],
+			switches: [],
+			listeners: [],
 			outputs_bool: outputs_bool,
 			output_min: output_min,
 			params: [],
 		};
 		if (name) {
-			var p = props.globals.getNode(obj.system_path~"name", 1);
+			var p = props.globals.getNode(obj.system_path~"_name", 1);
 			p.setValue(name);
 		}
 		obj.serviceableN = props.globals.getNode(obj.system_path~"serviceable",1);
@@ -184,9 +199,16 @@ var EnergyBus = {
 		obj.outputN = props.globals.getNode(obj.system_path~"value", 1);
 		obj.outputN.setValue(0);
 		foreach (elem; outputs) {
-			var p = props.globals.getNode(obj.outputs_path~elem, 1);
-			p.setValue(0);
-			append(obj.outputs, p);
+			if (typeof(elem) == "scalar") {
+				var o = props.globals.getNode(obj.outputs_path~elem, 1);
+				append(obj.switches, nil);
+			}
+			else {
+				var o = props.globals.getNode(obj.outputs_path~elem[0], 1);
+				append(obj.switches, props.globals.getNode(elem[1], 1));
+			}
+			o.setValue(0);
+			append(obj.outputs, o);			
 		}
 		return obj;
 	},
@@ -194,6 +216,13 @@ var EnergyBus = {
 	init: func {
 		foreach (i; me.inputs)
 			i.init();
+			
+		foreach (l; me.listeners)
+			removelistener(l);
+			
+		foreach (s; me.switches)
+			if (s != nil)
+			append(me.listeners, setlistener(s, func(v) {me.update();}, 0, 0));
 	},
 
 	addInput: func(obj) {
@@ -225,11 +254,14 @@ var EnergyBus = {
 				var i = in.getValue();
 				me.output = (me.output < i) ? i : me.output;
 			}
-			foreach (out; me.outputs) {
-				if (me.outputs_bool == 1)
-					out.setValue((me.output >= me.output_min));
-				else
-					out.setValue(me.output);
+			for (i = 0; i < size(me.outputs); i += 1) {
+				if (me.switches[i] == nil or me.switches[i].getValue()) {
+					if (me.outputs_bool == 1)
+						me.outputs[i].setValue((me.output >= me.output_min));
+					else
+						me.outputs[i].setValue(me.output);
+				}
+				else me.outputs[i].setValue(0);
 			}
 			me.outputN.setValue(me.output);
 		}

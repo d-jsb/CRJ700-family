@@ -50,8 +50,8 @@
 		<object-name>Markings</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/AC/outputs/center-panel-lights</property>
-				<value>15</value>
+				<property alias="../../../../params/powerN" />
+				<value>103</value>
 			</greater-than-equals>
 		</condition>
 		<emission>

@@ -5,7 +5,7 @@
 	<path>landing-bare.ac</path>
 
 	<params>
-		<source>systems/electrical/outputs/landing-lights</source>
+		<source>systems/DC/outputs/landing-lights</source>
 	</params>
 
 	<animation>
@@ -16,12 +16,12 @@
 				<or>
 					<greater-than>
 						<property alias="../../../../../../params/source" />
-						<value>5</value>
+						<value>22</value>
 					</greater-than>
 					<greater-than>
-						<property>systems/electrical/outputs/taxi-lights</property>
-						<value>5</value>
-					</greater-than>
+						<property>systems/DC/outputs/taxi-lights</property>
+						<value>22</value>
+					</greater-than>				
 				</or>
 			</and>
 		</condition>
