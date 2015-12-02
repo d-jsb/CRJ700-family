@@ -925,8 +925,8 @@
 		<output>fcs/throttle-cmd-norm[1]</output>
 	</filter>
 
-	<!-- Nose gear steering -->
-	<!-- deactivated; does not make sense
+	<!-- Nose wheel steering -->
+	<!-- for simulator use: rudder controls NWS if tiller is switched "off" -->
 	<filter>
 		<name>Pilot tiller disabled nose gear steer</name>
 		<type>gain</type>
@@ -947,7 +947,7 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
-	-->
+	
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
