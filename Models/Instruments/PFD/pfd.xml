@@ -1601,8 +1601,6 @@ G</text>
 		<type>rotate</type>
 		<object-name>HSI</object-name>
 		<object-name>HSIBug</object-name>
-		<object-name>ADF1Ptr</object-name>
-		<object-name>ADF2Ptr</object-name>
 		<object-name>NAVPtr</object-name>
 		<object-name>NAVTrack</object-name>
 		<property alias="../../params/indicated-heading-deg" />
