@@ -883,9 +883,21 @@
 			</system>
 		</AC>
 		<DC>
-			<system>
-			</system>
 		</DC>
+		<electrical>
+			<outputs>
+				<adf alias="/systems/DC/outputs/transponder1" />
+				<dme alias="/systems/DC/outputs/dme1" />
+				<efis alias="/systems/DC/outputs/efis" />
+				<fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
+				<fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
+				<gps alias="/systems/DC/outputs/gps1" />
+				<mk-viii alias="/systems/AC/outputs/egpws" />
+				<nav alias="/systems/DC/outputs/vhf-nav1" />
+				<panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
+				<transponder alias="/systems/DC/outputs/transponder1" />
+			</outputs>
+		</electrical>
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>
