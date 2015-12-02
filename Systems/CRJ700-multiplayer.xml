@@ -173,21 +173,7 @@
 		<index type="int">19</index>
 		<property>instrumentation/heading-indicator[1]/indicated-heading-deg</property>
 	</reference>
-	<reference>
-		<type>float</type>
-		<index type="int">20</index>
-		<property>sim/model/door-positions/aft-cargo/position-norm</property>
-	</reference>
-	<reference>
-		<type>float</type>
-		<index type="int">21</index>
-		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
-	</reference>
-	<reference>
-		<type>float</type>
-		<index type="int">22</index>
-		<property>sim/model/door-positions/fwd-cargo/position-norm</property>
-	</reference>
+
 	<!-- Strings -->
 	<!-- strings #16 - #19 are reserved for dual control -->
 
