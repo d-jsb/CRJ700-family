@@ -287,8 +287,10 @@
         <path>Aircraft/CRJ700-family/Sounds/autopilot-disconnect.wav</path>
         <condition>
             <equals>
-                <property>controls/autoflight/disengage-pos-norm</property>     
-                <value>1</value>
+			<!--<property>controls/autoflight/disengage-pos-norm</property>     
+			<value>1</value> -->
+                <property>controls/autoflight/autopilot/engage</property>     
+                <value>0</value>
             </equals>
         </condition>
         <volume>
