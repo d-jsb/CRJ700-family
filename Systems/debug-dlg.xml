@@ -66,7 +66,6 @@
 	
 	<text>
 		<label>| </label>
-		<format>| </format>
 		<color>
 			<red>0.9</red>
 			<green>0.2</green>
@@ -141,30 +140,39 @@
 					<alpha>1</alpha>
 				</color>
 			</text>	
+
 			<text>
-				<label>GS ----- </label>
-				<property>instrumentation/nav[0]/gs-in-range</property>
-				<format>GS %s </format>
+				<label>GS -1000 fpm</label>
+				<property>instrumentation/nav[0]/gs-rate-of-climb-fpm</property>
+				<format>GS %4.0f fpm</format>
 				<live>true</live>
 				<color>
-					<red>0.99</red>
+					<red>0.9</red>
 					<green>0.1</green>
 					<blue>0.1</blue>
 					<alpha>1</alpha>
 				</color>
-			</text>				
+				<visible>
+					<not>
+						<property>instrumentation/nav[0]/gs-in-range</property>
+					</not>
+				</visible>			
+			</text>	
 			<text>
-				<label>-1000 </label>
+				<label>GS -1000 fpm</label>
 				<property>instrumentation/nav[0]/gs-rate-of-climb-fpm</property>
-				<format>%4.0f </format>
+				<format>GS %4.0f fpm</format>
 				<live>true</live>
 				<color>
-					<red>0.2</red>
+					<red>0.1</red>
 					<green>0.9</green>
-					<blue>0.4</blue>
+					<blue>0.1</blue>
 					<alpha>1</alpha>
 				</color>
-			</text>	
+				<visible>
+					<property>instrumentation/nav[0]/gs-in-range</property>
+				</visible>			
+			</text>				
 		</group>
 	</group>
 </PropertyList>
