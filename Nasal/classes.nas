@@ -34,11 +34,6 @@
 # input_lo (num)		min input for nominal output
 # input_hi (num)		max input for nominal output (0 -> no limit)
 #
-# Examples:
-#
-#
-#
-
 
 var EnergyConv = {
 	new: func (bus, name, output_nominal=1, input=1, input_min = 0, input_lo=0, input_hi=0) {
@@ -85,8 +80,11 @@ var EnergyConv = {
 
 	init: func {
 		#print(" "~me.name~".init input:"~me.inputN.getName());
-		foreach (l; me.listeners)
+		foreach (l; me.listeners) {
+			#print("remove listener "~l);
 			removelistener(l);
+		}
+		me.listeners = [];
 		if (me.switchN != nil) {
 			append(me.listeners, setlistener(me.switchN, func(v) {me._switch_listener(v);}, 1, 0));
 		}
@@ -154,7 +152,8 @@ var EnergyConv = {
 		}
 		me.outputN.setValue(me.output);
 		me.isRunning();
-		#print("EnergyConv.update name: "~me.name~" sw:"~me.switch~" nom:"~me.output_nominal~" in: "~me.input~" out:"~me.output);
+		#if (me.name == "gen1")
+		#print("EnergyConv.update name: "~me.name~" sw:"~me.switch~" nom:"~me.output_nominal~" in: "~me.inputN.getName()~" "~me.input~" out:"~me.output);
 		me.bus.update();
 		return me;
 	},
@@ -214,9 +213,15 @@ var EnergyBus = {
 	},
 
 	init: func {
-		foreach (i; me.inputs)
-			i.init();
-			
+		foreach (i; me.inputs) {
+			if (isa(i, EnergyConv)) 
+				i.init();
+			elsif (isa(i,props.Node)) {
+				print("Node listener");
+				setlistener(i, func {me.update;}, 1,0);
+			}
+			else print("Unnown input type");
+		}
 		foreach (l; me.listeners)
 			removelistener(l);
 			
@@ -226,6 +231,7 @@ var EnergyBus = {
 				me.update(); 
 				#print("switch "~me.type~" "~v.getValue());
 			}, 0, 0));
+		return me;
 	},
 
 	addInput: func(obj) {
@@ -270,4 +276,72 @@ var EnergyBus = {
 		}
 		return me;
 	},
+};
+
+var Logic = {
+	new: func(op, out = nil) {
+		var valid_ops = ["and", "or", "not"];
+		var obj = {parents: [Logic],
+			listeners: [],
+			operator: nil,
+			inputs: [],
+			output: out,
+		};
+		foreach (elem; valid_ops) {
+			if (elem == op)
+				obj.operator = op;
+		}
+		if (obj.operator == nil)
+			print("Logic.new: Invalid operator");
+		else 
+		return obj;
+	},
+
+	init: func {
+		foreach (l; me.listeners)
+			removelistener(l);
+		me.listeners = [];
+		foreach (i; me.inputs) {
+			append(me.listeners, setlistener(i, func(v) {me._update();}, 0, 0));
+		}
+		return me;
+	},
+	
+	# add input if not already added
+	input: func(prop) {
+		foreach (i; me.inputs) {
+			if (i == prop) return me;
+		}
+		if (me.operator != "not" or size(me.inputs) == 0) {
+			append(me.inputs, prop);
+			props.globals.getNode(prop, 1, "BOOL");
+		}
+		return me;
+	},
+	
+	
+	_update: func {
+		var out = 0;
+		if (me.operator == "and") {
+			out = 1;
+			foreach (i; me.inputs) {
+				if (!getprop(i)) {
+					out = 0;
+					break;
+				}
+			}
+			setprop(me.output, out);
+		} elsif (me.operator == "or") {
+			out = 0;
+			foreach (i; me.inputs) {
+				if (getprop(i)) {
+					out = 1;
+					break;
+				}
+			}
+			setprop(me.output, out);
+		} elsif (me.operator == "not") {
+			setprop(me.output, !getprop(me.inputs[0]));
+		}		
+	},		
 };

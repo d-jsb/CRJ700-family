@@ -31,20 +31,48 @@
 #
 #
 var IDG = {
-	new: func (bus, name, input) {
+	new: func (bus, name, input, discN) {
 		var obj = {
 			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 59, 95).setOutputMin(108)],
 			freq: 0,
 			load: 0,
+			discN: discN,
+			disc: 0,
 		};
 		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq", 1, "FLOAT");
 		obj.freqN.setValue(0);
+		obj.fakeinputN = props.globals.getNode(bus.system_path~name~"-fi", 1, "FLOAT");
+		obj.fakeinputN.setValue(0);
 		return obj;
 	},
 
+	init: func {
+		call(EnergyConv.init,[], me);
+		append(me.listeners, setlistener(me.discN, func(v) {me._disconnectL(v);}, 0 , 0));
+		return me;
+	},
+
+	_disconnectL: func(v) {
+		me.disc = v.getBoolValue();
+		if (me.disc) {
+			me.fakeinputN.setValue(me.inputN.getValue());
+			var tmp = me.inputN;
+			me.inputN = me.fakeinputN;
+			me.fakeinputN = tmp;
+			interpolate(me.inputN, 0, 10);
+		}
+		else {
+			#"repair" (re-connect) IDG; in reality only possible on ground
+			var tmp = me.inputN;
+			me.inputN = me.fakeinputN;
+			me.fakeinputN = tmp;
+		}
+	},
+	
 	_update_output: func {
 		#var i = int(me.inputN.getValue());
 		#if (me.running and int(me.input) == i) return;
+		
 		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
 		if (me.output and me.input > me.input_min) {			
@@ -366,15 +394,15 @@ print("Creating electrical system ...");
 # as "output-name" (always on).
 
 var ac_buses = [ 
-	ACBus.new(1, "AC1", ["aoa-heater-r", "egpws", "flaps-a",
+	ACBus.new(1, "AC1", ["aoa-heater-r", "egpws", "flaps-a-1",
 		["hyd-pump2B", "controls/hydraulic/system[1]/pump-b"],
-		["hyd-pump3B", "controls/hydraulic/system[2]/pump-b"],
-		"pitch-trim-1", "pitot-heater-r", "tru1", 
+		["hyd-pump3B-1", "controls/hydraulic/system[2]/pump-b"],
+		"pitch-trim1", "pitot-heater-r", "tru1", 
 		]),
-	ACBus.new(2, "AC2",	["copilot-panel-int-lights", "esstru2", "flaps-b", 
+	ACBus.new(2, "AC2",	["copilot-panel-int-lights", "esstru2", "flaps-b-1", 
 		["hyd-pump1B", "controls/hydraulic/system[0]/pump-b"], 
 		["hyd-pump3A", "controls/hydraulic/system[2]/pump-a"],
-		"pitch-trim-2", "tru2", 
+		"pitch-trim2-1", "tru2", 
 		]),
 	ACBus.new(3, "AC-ESS", ["aoa-heater-l", "cabin-lights", 
 		"center-panel-int-lights", "esstru1", "ignition-a", "ohp-int-lights", 
@@ -383,7 +411,7 @@ var ac_buses = [
 	ACBus.new(4, "AC-Service", ["apu-charger", "cabin-lights",
 		["logo-lights", "controls/lighting/logo-lights"], 
 		]),
-	ACBus.new(5, "ADG",["flaps-a", "flaps-b", "hyd-pump3B", "pitch-trim-2"]),
+	ACBus.new(5, "ADG",["flaps-a-2", "flaps-b-2", "hyd-pump3B-2", "pitch-trim2-2"]),
 ];
 
 var dc_buses = [
@@ -427,12 +455,30 @@ var dc_buses = [
 var acpc = ACPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5"]);
 var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
 
-acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2").addSwitch("/controls/electric/engine[0]/generator"));
-acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2").addSwitch("/controls/electric/engine[1]/generator"));
+acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2", "controls/electric/idg1-disc").addSwitch("/controls/electric/engine[0]/generator"));
+acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2", "controls/electric/idg2-disc").addSwitch("/controls/electric/engine[1]/generator"));
 acpc.addInput(APUGen.new(acpc, "apugen", "/engines/apu/rpm").addSwitch("/controls/electric/APU-generator"));
 #acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
 acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-avail"));
 acpc.addInput(ADG.new(acpc).addSwitch("/controls/electric/ADG"));
+
+
+var flapsA = ACBus.new(10,"flaps-a", ["flaps-a"]);
+flapsA.addInput(EnergyConv.new(flapsA, "flaps-a1", 115, "/systems/AC/outputs/flaps-a-1", 0, 115));
+flapsA.addInput(EnergyConv.new(flapsA, "flaps-a2", 115, "/systems/AC/outputs/flaps-a-2", 0, 115));
+flapsA.init();
+var flapsB = ACBus.new(11,"flaps-b", ["flaps-b"]);
+flapsB.addInput(EnergyConv.new(flapsB, "flaps-b1", 115, "/systems/AC/outputs/flaps-b-1", 0, 115));
+flapsB.addInput(EnergyConv.new(flapsB, "flaps-b2", 115, "/systems/AC/outputs/flaps-b-2", 0, 115));
+flapsB.init();
+var h3b = ACBus.new(12,"hyd-3B", ["hyd-pump3B"]);
+h3b.addInput(EnergyConv.new(h3b, "hyd-3B1", 115, "/systems/AC/outputs/hyd-pump3B-1", 0, 115));
+h3b.addInput(EnergyConv.new(h3b, "hyd-3B2", 115, "/systems/AC/outputs/hyd-pump3B-2", 0, 115));
+h3b.init();
+var pt2 = ACBus.new(13,"pitch-trim2", ["pitch-trim2"]);
+pt2.addInput(EnergyConv.new(pt2, "pt21", 115, "/systems/AC/outputs/pitch-trim2-1", 0, 115));
+pt2.addInput(EnergyConv.new(pt2, "pt22", 115, "/systems/AC/outputs/pitch-trim2-2", 0, 115));
+pt2.init();
 
 dcpc.addInput(EnergyConv.new(dcpc, "tru1", 28, ac_buses[0].outputs_path~"tru1", 40));
 dcpc.addInput(EnergyConv.new(dcpc, "tru2", 28, ac_buses[0].outputs_path~"tru2", 40));
@@ -447,6 +493,7 @@ dcpc.addInput(EnergyConv.new(dcpc, "main-battery", 24).addSwitch("/controls/elec
 foreach (b; ac_buses) {
 	#print("input: "~acpc.outputs_path~"bus["~b.index~"]");
 	b.addInput(EnergyConv.new(b, "acpc-"~b.index, 115, acpc.outputs_path~"bus"~b.index, 0, 115));
+	#b.addInput(props.globals.getNode(acpc.outputs_path~"bus"~b.index));
 	b.init();
 }
 
@@ -469,6 +516,6 @@ mkviii.init();
 # dummy for compatibility, called from update loop
 # should not be needed if all listeners work correctly
 update_electrical = func {
-	#acpc.update();
+	acpc.update();
 }
 print("Electrical system done.");
