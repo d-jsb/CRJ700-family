@@ -926,7 +926,11 @@
 	</filter>
 
 	<!-- Nose wheel steering -->
-	<!-- for simulator use: rudder controls NWS if tiller is switched "off" -->
+	<!-- 
+	rudder controls NWS 100% if tiller is switched "off"?! 
+	Bad idea when landing with tiller switched off.
+	-->
+    <!--
 	<filter>
 		<name>Pilot tiller disabled nose gear steer</name>
 		<type>gain</type>
@@ -947,7 +951,7 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
-	
+	-->
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
@@ -1097,6 +1101,7 @@
 		<input>
 			<value>0</value>
 		</input>
+		<output>controls/gear/tiller-steer-deg</output>
 		<output>fcs/nose-gear-steer-deg</output>
 	</filter>
 
