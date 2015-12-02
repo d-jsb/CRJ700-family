@@ -32,7 +32,7 @@
 var IDG = {
 	new: func (bus, name, input) {
 		var obj = {
-			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 57, 95).setOutputMin(108)],
+			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 59, 95).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 		};
@@ -53,6 +53,7 @@ var IDG = {
 			elsif (me.input < me.input_lo) 
 				#me.freq = 375 + 25 * (me.input - 57.5)/2.5;
 				me.freq = 375 + int(10 * (me.input - 57.5));
+			else me.freq = 400;
 		}
 		me.freqN.setValue(me.freq);
 		return me;
@@ -64,7 +65,7 @@ var IDG = {
 var APUGen = {
 	new: func (bus, name, input) {
 		var obj = {
-			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 80, 99, 102).setOutputMin(108)],
+			parents: [APUGen, EnergyConv.new(bus, name, 115, input, 80, 90, 102).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 		};
@@ -78,11 +79,11 @@ var APUGen = {
 		#if (me.running and int(me.input) == i) return;
 		me.parents[1]._update_output();
 		me.freq = 0;
-		if (me.input > 60) {			
-			if (me.input < 70) 
-				me.freq = 37.5 * int(me.input - 60);
+		if (me.input > 80) {			
+			if (me.input < 90) 
+				me.freq = 37.5 * int(me.input - 80);
 			elsif (me.input < 100) 
-				me.freq = 375 + int(0.83333 * (me.input - 70));
+				me.freq = 375 + int(2.5 * (me.input - 90));
 			else me.freq = 400;
 		}
 		me.freqN.setValue(me.freq);

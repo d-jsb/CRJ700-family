@@ -37,9 +37,9 @@
 
 
 var HydraulicPump = {
-	new: func (bus, name, input, input_lo, input_hi) {
+	new: func (bus, name, input, input_min, input_lo, input_hi) {
 		var obj = {
-			parents: [HydraulicPump, EnergyConv.new(bus, name, 3000, input, 0, input_lo, input_hi).setOutputMin(1800) ],
+			parents: [HydraulicPump, EnergyConv.new(bus, name, 3000, input, input_min, input_lo, input_hi).setOutputMin(1800) ],
 			sw2: 0,
 		};
 		return obj;
@@ -54,7 +54,9 @@ var HydraulicPump = {
 	},	
 
 	_update_output: func {
-		me.input = me.inputN.getValue();
+		var i = me.inputN.getValue();
+		if (me.running and int(me.input) == int(i)) return;
+		me.input = i;
 		me.serviceable = me.serviceableN.getValue();
 		if (me.input == nil) me.input = 0;
 		print(me.name~"._update in: "~me.input~" ");
@@ -72,6 +74,7 @@ var HydraulicPump = {
 		else me.output = 0;
 		me.outputN.setValue(me.output);		
 		me.isRunning();
+		me.bus.update();
 		return me.output;
 	},
 };
@@ -135,15 +138,20 @@ var hydraulics = [
 	),
 ];
 
-hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-a", "/engines/engine[0]/rpm2", 57, 95).addSwitch());
-hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-b", "/systems/AC/outputs/hyd-pump1B", 110, 120).addSwitch());
-hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-a", "/engines/engine[1]/rpm2", 57, 95).addSwitch());
-hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-b", "/systems/AC/outputs/hyd-pump2B", 110, 120).addSwitch());
-hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-a", "/systems/AC/outputs/hyd-pump3A", 110, 120).addSwitch());
-hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-b", "/systems/AC/outputs/hyd-pump3B", 110, 120).addSwitch());
+hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-a", "/engines/engine[0]/rpm2", 30, 57, 95).addSwitch());
+hydraulics[0].addInput(HydraulicPump.new(hydraulics[0], "pump-b", "/systems/AC/outputs/hyd-pump1B", 80, 110, 120).addSwitch());
+hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-a", "/engines/engine[1]/rpm2", 30, 57, 95).addSwitch());
+hydraulics[1].addInput(HydraulicPump.new(hydraulics[1], "pump-b", "/systems/AC/outputs/hyd-pump2B", 80, 110, 120).addSwitch());
+hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-a", "/systems/AC/outputs/hyd-pump3A", 80, 110, 120).addSwitch());
+hydraulics[2].addInput(HydraulicPump.new(hydraulics[2], "pump-b", "/systems/AC/outputs/hyd-pump3B", 80, 110, 120).addSwitch());
 
 foreach (h; hydraulics) 
 	h.init();
 
+var update_hydraulic = func {
+	#hydraulics[0].update();
+	#hydraulics[1].update();
+	#hydraulics[2].update();	
+}
 
 print("Hydraulic done.");

@@ -367,6 +367,11 @@
 			<battery-switch type="bool">true</battery-switch>
 			<ac-service-avail type="bool">true</ac-service-avail>
 			<ac-service-in-use type="bool">false</ac-service-in-use>
+			<!-- 
+			the external service panel is not yet added to 3D model (nose right)
+			anyhow, ac-service-in-use-ext switch property is already used ;)
+			-->
+			<ac-service-in-use-ext type="bool">false</ac-service-in-use-ext>
 			<APU-generator type="bool">false</APU-generator>
 			<auto-xfer1 type="bool">true</auto-xfer1>
 			<auto-xfer2 type="bool">true</auto-xfer2>

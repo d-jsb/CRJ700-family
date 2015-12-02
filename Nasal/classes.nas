@@ -147,7 +147,7 @@ var EnergyConv = {
 		if (me.serviceable and me.switch and me.input >= me.input_min) {
 			me.output = me.output_nominal;
 			if (me.input_lo > 0 and me.input < me.input_lo) {
-				me.output = me.output_nominal * (me.input - me.input_min) / me.input_lo;
+				me.output = me.output_nominal * (me.input - me.input_min) / (me.input_lo - me.input_min);
 			}
 			if (me.input_hi > 0 and me.input > me.input_hi) {
 				me.output = me.output_nominal * me.input / me.input_hi;
