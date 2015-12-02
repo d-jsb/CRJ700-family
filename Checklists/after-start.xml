@@ -144,13 +144,13 @@
 		<value>ON</value>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/vertical-mode</property>
+			<property>controls/autoflight/vert-mode</property>
 			<value>1</value>
 		</binding>
 	</item>

@@ -159,4 +159,36 @@
 		</input>
 		<output>autopilot/internal/vnav-difference-ft</output>
 	</filter>
+    <filter>
+		<name>Bank Limit</name>
+		<debug type="bool">false</debug>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<or>
+				<equals>
+					<property>controls/autoflight/lat-mode</property>
+					<value>6</value>
+				</equals>
+				<equals>
+					<property>controls/autoflight/lat-mode</property>
+					<value>7</value>
+				</equals>
+				</or>
+			</condition>
+			<value>5</value>
+		</input>
+		<input>
+			<condition>
+				<property>controls/autoflight/half-bank</property>
+			</condition>
+			<value>15</value>
+		</input>
+		<input>
+			<value>30</value>
+		</input>
+		<output>autopilot/internal/bank-limit-deg</output>
+	</filter>
+	
 </PropertyList>

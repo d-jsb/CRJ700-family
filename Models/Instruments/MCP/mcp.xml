@@ -214,7 +214,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -335,9 +335,10 @@
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/autoflight/vertical-mode</property>
+				<command>property-cycle</command>
+				<property>controls/autoflight/vert-mode</property>
 				<value>5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -369,7 +370,7 @@
 		<object-name>SPEEDOn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>5</value>
 			</equals>
 		</condition>
@@ -794,7 +795,7 @@
 			</binding>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>1</value>
 				<value>0</value>
 			</binding>
@@ -828,7 +829,7 @@
 		<object-name>ALTOn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -897,7 +898,7 @@
 			</binding>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>2</value>
 				<value>0</value>
 			</binding>
@@ -931,7 +932,7 @@
 		<object-name>VSOn</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>2</value>
 			</equals>
 		</condition>
@@ -948,7 +949,7 @@
 				<command>property-adjust</command>
 				<condition>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>0</value>
 					</equals>
 				</condition>
@@ -960,7 +961,7 @@
 				<command>property-adjust</command>
 				<condition>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>2</value>
 					</equals>
 				</condition>
@@ -977,7 +978,7 @@
 				<command>property-adjust</command>
 				<condition>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>0</value>
 					</equals>
 				</condition>
@@ -989,7 +990,7 @@
 				<command>property-adjust</command>
 				<condition>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>2</value>
 					</equals>
 				</condition>
@@ -1012,7 +1013,7 @@
 		<factor>0.1</factor>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>2</value>
 			</equals>
 		</condition>
@@ -1034,7 +1035,7 @@
 		<factor>3.6</factor>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>0</value>
 			</equals>
 		</condition>

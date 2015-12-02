@@ -101,7 +101,7 @@
 		<object-name>Autopilot 1/2 bank</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/bank-limit-deg</property>
+				<property>autopilot/internal/bank-limit-deg</property>
 				<value>15</value>
 			</equals>
 		</condition>
@@ -235,7 +235,7 @@
 		<object-name>Autopilot ALTS</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -264,7 +264,7 @@
 		<object-name>Autopilot VS</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/vertical-mode</property>
+				<property>controls/autoflight/vert-mode</property>
 				<value>2</value>
 			</equals>
 		</condition>

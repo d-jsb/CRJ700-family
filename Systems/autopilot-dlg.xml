@@ -198,7 +198,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/bank-limit-deg</property>
+								<property>autopilot/internal/bank-limit-deg</property>
 								<value>15</value>
 							</equals>
 						</visible>
@@ -208,7 +208,7 @@
 						<pref-width>70</pref-width>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/bank-limit-deg</property>
+							<property>autopilot/internal/bank-limit-deg</property>
 							<value>15</value>
 							<value>30</value>
 						</binding>
@@ -217,7 +217,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/bank-limit-deg</property>
+								<property>autopilot/internal/bank-limit-deg</property>
 								<value>15</value>
 							</equals>
 						</visible>
@@ -908,7 +908,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/vertical-mode</property>
+								<property>controls/autoflight/vert-mode</property>
 								<value>1</value>
 							</equals>
 						</visible>
@@ -917,7 +917,7 @@
 						<legend>ALT</legend>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/vertical-mode</property>
+							<property>controls/autoflight/vert-mode</property>
 							<value>1</value>
 							<value>0</value>
 						</binding>
@@ -926,7 +926,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/vertical-mode</property>
+								<property>controls/autoflight/vert-mode</property>
 								<value>1</value>
 							</equals>
 						</visible>
@@ -938,7 +938,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/vertical-mode</property>
+								<property>controls/autoflight/vert-mode</property>
 								<value>2</value>
 							</equals>
 						</visible>
@@ -947,7 +947,7 @@
 						<legend>VS</legend>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/vertical-mode</property>
+							<property>controls/autoflight/vert-mode</property>
 							<value>2</value>
 							<value>0</value>
 						</binding>
@@ -956,7 +956,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/vertical-mode</property>
+								<property>controls/autoflight/vert-mode</property>
 								<value>2</value>
 							</equals>
 						</visible>
@@ -1024,8 +1024,8 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/basic-roll-mode</property>
-						<value>0</value>
+						<property>controls/autoflight/roll-mode</property>
+						<value>1</value>
 					</equals>
 				</and>
 			</visible>
@@ -1042,8 +1042,8 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/basic-roll-mode</property>
-						<value>1</value>
+						<property>controls/autoflight/roll-mode</property>
+						<value>0</value>
 					</equals>
 				</and>
 			</visible>
@@ -1092,6 +1092,32 @@
 		</text>
 		<text>
 			<row>0</row>
+			<col>2</col>
+			<label>[ TO ]</label>
+			<visible>
+				<and>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>6</value>
+					</equals>
+				</and>
+			</visible>
+		</text>
+		<text>
+			<row>0</row>
+			<col>2</col>
+			<label>[ GA ]</label>
+			<visible>
+				<and>
+					<equals>
+						<property>controls/autoflight/lat-mode</property>
+						<value>7</value>
+					</equals>
+				</and>
+			</visible>
+		</text>
+		<text>
+			<row>0</row>
 			<col>3</col>
 			<halign>left</halign>
 			<label>||</label>
@@ -1105,7 +1131,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>0</value>
 					</equals>
 					<not>
@@ -1126,7 +1152,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -1145,7 +1171,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1160,8 +1186,36 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/vertical-mode</property>
+						<property>controls/autoflight/vert-mode</property>
 						<value>2</value>
+					</equals>
+				</and>
+			</visible>
+		</text>
+		<text>
+			<row>0</row>
+			<col>4</col>
+			<halign>left</halign>
+			<label>[ TO ]</label>
+			<visible>
+				<and>
+					<equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>6</value>
+					</equals>
+				</and>
+			</visible>
+		</text>
+		<text>
+			<row>0</row>
+			<col>4</col>
+			<halign>left</halign>
+			<label>[ GA ]</label>
+			<visible>
+				<and>
+					<equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>7</value>
 					</equals>
 				</and>
 			</visible>

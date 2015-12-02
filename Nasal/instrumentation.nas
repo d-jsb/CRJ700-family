@@ -6,61 +6,121 @@
 var cdu1 = interactive_cdu.Cdu.new("instrumentation/cdu", "Aircraft/CRJ700-family/Systems/CRJ700-cdu.xml");
 
 ## Autopilot
-# Basic roll mode controller
-setlistener("autopilot/internal/basic-roll-mode-engage", func(v)
+# sync
+setlistener("controls/autoflight/flight-director/sync", func(v)
 {
     if (!v.getBoolValue()) return;
+	if (getprop("controls/autoflight/autopilot/engage")) return;
+	print("sync");
+    var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
+	var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
+    setprop("controls/autoflight/roll-select", roll);
+	setprop("controls/autoflight/roll-heading-select", heading);
+
+	var vmode = getprop("controls/autoflight/vert-mode");
+	if (vmode == 1) { #ALT
+		setprop("controls/autoflight/altitude-select", getprop("instrumentation/altimeter[0]/indicated-altitude-ft"));
+	} elsif (vmode == 2) { #VS
+		setprop("controls/autoflight/vertical-speed-select", getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm"));
+	} elsif (vmode == 4) { #SPEED
+		setprop("controls/autoflight/speed-select", getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));	
+		setprop("controls/autoflight/mach-select", getprop("instrumentation/airspeed-indicator/indicated-mach"));	
+	} else {
+		var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
+		setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
+	}
+	v.setBoolValue(0);
+}, 0, 0);
+
+# Basic roll mode controller
+setlistener("autopilot/internal/roll-mode-engage", func(v)
+{
+    if (!v.getBoolValue()) return;
+	print("roll mode engage");
     var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
     if (math.abs(roll) > 5)
     {
-        setprop("controls/autoflight/basic-roll-mode", 0);
-        setprop("controls/autoflight/basic-roll-select", roll);
+        setprop("controls/autoflight/roll-mode", 1);
+        setprop("controls/autoflight/roll-select", roll);
     }
     else
     {
         var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
-        setprop("controls/autoflight/basic-roll-mode", 1);
-        setprop("controls/autoflight/basic-roll-heading-select", heading);
+        setprop("controls/autoflight/roll-mode", 0);
+        setprop("controls/autoflight/roll-heading-select", heading);
     }
 }, 0, 0);
+
 # Basic pitch mode controller
 setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
 {
     if (!v.getBoolValue()) return;
+	if (getprop("controls/autoflight/lat-mode") != 0) return; #toga
     var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
     setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 }, 0, 0);
 
+setlistener("controls/autoflight/lat-mode", func(v)
+{
+	var lm = v.getValue();
+    if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
+		setprop("controls/autoflight/half-bank", 0);
+}, 0, 1);
+
+setlistener("controls/autoflight/half-bank", func(v)
+{
+	var lm = getprop("controls/autoflight/lat-mode");
+    if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
+		v.setValue(0);
+}, 0, 1);
+
+
 #Half Bank
-setlistener("controls/autoflight/half-bank", func (n) {
-	if (n.getValue()) {
-		setprop("controls/autoflight/bank-limit-deg", 15);
-	}
-	else {
-		setprop("controls/autoflight/bank-limit-deg", 30)
-	}	
-}, 1, 1);
+# setlistener("controls/autoflight/half-bank", func (n) {
+	# if (n.getValue()) {
+		# setprop("autopilot/internal/bank-limit-deg", 15);
+	# }
+	# else {
+		# setprop("autopilot/internal/bank-limit-deg", 30)
+	# }	
+# }, 1, 1);
 
 #TO/GA mode
 setlistener("controls/autoflight/toga-button", func (n) {
+	var on_ground = getprop("gear/gear[1]/wow");
 	if (n.getValue()) {
 		setprop("controls/autoflight/autopilot/engage", 0);
 		setprop("controls/autoflight/flight-director/engage", 1);		
 		setprop("controls/autoflight/half-bank", 0);
-		setprop("controls/autoflight/bank-limit-deg", 5);
-		setprop("controls/autoflight/lat-mode", 6);		
+		if (on_ground) {
+			setprop("controls/autoflight/lat-mode", 6);
+			setprop("controls/autoflight/vert-mode", 6);
+		}
+		else {
+			setprop("controls/autoflight/lat-mode", 7);
+			setprop("controls/autoflight/vert-mode", 7);
+		}
+		# setprop("autopilot/internal/bank-limit-deg", 5);
+		setprop("controls/autoflight/pitch-select", 10);		
 		setprop("controls/autoflight/toga-button", 0);
 	}
 }, 1, 0);
 
 setlistener("controls/autoflight/lat-mode", func (n) {
 	var mode = n.getValue();
-	var bank = getprop("controls/autoflight/bank-limit-deg");
+	var bank = getprop("autopilot/internal/bank-limit-deg");
 	#if leaving TO/GA mode reset to full bank limit
 	if (mode != 6 and bank == 5) {
 		setprop("controls/autoflight/half-bank", 0);
 	}
 }, 1, 1);
+
+setlistener("instrumentation/nav[0]/gs-in-range", func(v)
+{
+	if (!v.getBoolValue()) return;
+	if (getprop("controls/lat-mode") == 3)
+		setprop("controls/autoflight/vert-mode", 0);
+}, 0, 0);
 
 ## EICAS message system
 var Eicas_messages =
