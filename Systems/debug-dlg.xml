@@ -79,9 +79,9 @@
 		<group>
 			<layout>hbox</layout>
 			<text>
-				<label>TgtFps -0000 </label>
+				<label>TgtFpm -0000 </label>
 				<property>autopilot/internal/target-climb-rate-fpm</property>
-				<format>TgtFps %4.0f </format>
+				<format>TgtFpm %4.0f </format>
 				<live>true</live>
 				<color>
 					<red>0.2</red>
@@ -118,9 +118,9 @@
 		<group>
 			<layout>hbox</layout>
 			<text>
-				<label>CurFps -0000 </label>
+				<label>CurFpm -0000 </label>
 				<property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
-				<format>CurFps %4.0f </format>
+				<format>CurFpm %4.0f </format>
 				<live>true</live>
 				<color>
 					<red>0.2</red>
@@ -142,7 +142,22 @@
 				</color>
 			</text>	
 			<text>
-				<label>----- ---- </label>
+				<label>GS ----- </label>
+				<property>instrumentation/nav[0]/gs-in-range</property>
+				<format>GS %s </format>
+				<live>true</live>
+				<color>
+					<red>0.99</red>
+					<green>0.1</green>
+					<blue>0.1</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>				
+			<text>
+				<label>-1000 </label>
+				<property>instrumentation/nav[0]/gs-rate-of-climb-fpm</property>
+				<format>%4.0f </format>
+				<live>true</live>
 				<color>
 					<red>0.2</red>
 					<green>0.9</green>
