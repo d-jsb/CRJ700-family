@@ -304,6 +304,8 @@
 		<object-name>ACBus2</object-name>
 		<object-name>ACBus1Line</object-name>
 		<object-name>ACBus2Line</object-name>
+		<object-name>ACLine12</object-name>
+		<object-name>ACLine21</object-name>
 		<object-name>ACEssBus</object-name>
 		
 		<object-name>ElecExtAC</object-name>
@@ -1706,7 +1708,7 @@
 		<font>Helvetica.txf</font>
 		<text>AC ELECTRICAL</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -1726,7 +1728,7 @@
 		<text>SERVICE
 CONFIGURATION</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0615</y-m>
 			<z-m>0.056</z-m>
 		</offsets>
@@ -1745,7 +1747,7 @@ CONFIGURATION</text>
 		<font>Helvetica.txf</font>
 		<text>ADG BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0012</y-m>
 			<z-m>0.0393</z-m>
 		</offsets>
@@ -1765,7 +1767,7 @@ CONFIGURATION</text>
 		<text>V
 HZ</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.021</y-m>
 			<z-m>0.0585</z-m>
 		</offsets>
@@ -1785,7 +1787,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0191</y-m>
 			<z-m>0.0560</z-m>
 		</offsets>
@@ -1805,7 +1807,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0191</y-m>
 			<z-m>0.0500</z-m>
 		</offsets>
@@ -1825,7 +1827,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>SERV BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.029</y-m>
 			<z-m>0.0303</z-m>
 		</offsets>
@@ -1844,7 +1846,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>SHED</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.057</y-m>
 			<z-m>0.0303</z-m>
 		</offsets>
@@ -1863,7 +1865,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>BUS 1</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0404</y-m>
 			<z-m>0.0187</z-m>
 		</offsets>
@@ -1882,7 +1884,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>BUS 2</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0375</y-m>
 			<z-m>0.0187</z-m>
 		</offsets>
@@ -1901,7 +1903,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>ESS BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0013</y-m>
 			<z-m>0.007</z-m>
 		</offsets>
@@ -1921,7 +1923,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0015</y-m>
 			<z-m>-0.0025</z-m>
 		</offsets>
@@ -1941,7 +1943,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0015</y-m>
 			<z-m>-0.0084</z-m>
 		</offsets>
@@ -1961,7 +1963,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0015</y-m>
 			<z-m>-0.0143</z-m>
 		</offsets>
@@ -1982,7 +1984,7 @@ HZ</text>
 V
 HZ</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0024</y-m>
 			<z-m>-0.0164</z-m>
 		</offsets>
@@ -2004,7 +2006,7 @@ HZ</text>
 XFER
 OFF</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.057</y-m>
 			<z-m>-0.0021</z-m>
 		</offsets>
@@ -2025,7 +2027,7 @@ OFF</text>
 XFER
 FAIL</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.057</y-m>
 			<z-m>-0.0021</z-m>
 		</offsets>
@@ -2046,7 +2048,7 @@ FAIL</text>
 XFER
 OFF</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0586</y-m>
 			<z-m>-0.0021</z-m>
 		</offsets>
@@ -2067,7 +2069,7 @@ OFF</text>
 XFER
 FAIL</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0586</y-m>
 			<z-m>-0.0021</z-m>
 		</offsets>
@@ -2089,7 +2091,7 @@ FAIL</text>
 V
 HZ</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-units1-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2110,7 +2112,7 @@ HZ</text>
 V
 HZ</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-units2-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2131,7 +2133,7 @@ HZ</text>
 V
 HZ</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-units3-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2152,7 +2154,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values1-y" />
 			<z-m alias="../../../params/ac-kva-z" />
 		</offsets>
@@ -2172,7 +2174,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values1-y" />
 			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
@@ -2192,7 +2194,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values1-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2213,7 +2215,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values2-y" />
 			<z-m alias="../../../params/ac-kva-z" />
 		</offsets>
@@ -2233,7 +2235,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values2-y" />
 			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
@@ -2253,7 +2255,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values2-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2274,7 +2276,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values3-y" />
 			<z-m alias="../../../params/ac-kva-z" />
 		</offsets>
@@ -2294,7 +2296,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values3-y" />
 			<z-m alias="../../../params/ac-volt-z" />
 		</offsets>
@@ -2314,7 +2316,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/ac-values3-y" />
 			<z-m alias="../../../params/ac-hz-z" />
 		</offsets>
@@ -2335,7 +2337,7 @@ HZ</text>
 		<font>Helvetica.txf</font>
 		<text>ADG</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.047</y-m>
 			<z-m>0.0524</z-m>
 		</offsets>
@@ -2355,7 +2357,7 @@ HZ</text>
 		<text>EXT
 AC</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.027</y-m>
 			<z-m>-0.00755</z-m>
 		</offsets>
@@ -2375,7 +2377,7 @@ AC</text>
 		<text>GEN
 1</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.045</y-m>
 			<z-m>-0.0595</z-m>
 		</offsets>
@@ -2395,7 +2397,7 @@ AC</text>
 		<text>GEN		
 APU</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.00164</y-m>
 			<z-m>-0.0595</z-m>
 		</offsets>
@@ -2415,7 +2417,7 @@ APU</text>
 		<text>GEN
 2</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0422</y-m>
 			<z-m>-0.0595</z-m>
 		</offsets>
@@ -2435,7 +2437,7 @@ APU</text>
 		<font>Helvetica.txf</font>
 		<text>DISC</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0439</y-m>
 			<z-m>-0.0781</z-m>
 		</offsets>
@@ -2455,7 +2457,7 @@ APU</text>
 		<font>Helvetica.txf</font>
 		<text>DISC</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.0412</y-m>
 			<z-m>-0.0781</z-m>
 		</offsets>
@@ -2537,7 +2539,7 @@ APU</text>
 		<condition>
 			<less-than>
 				<property>systems/AC/outputs/bus4</property>
-				<value alias="../../../../AC-volt-min" />
+				<value alias="/AC-volt-min" />
 			</less-than>
 		</condition>
 	</animation>	
@@ -3057,7 +3059,7 @@ APU</text>
 		<font>Helvetica.txf</font>
 		<text>DC ELECTRICAL</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -3078,7 +3080,7 @@ APU</text>
 		<text>AC
 BUS1</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc1-y" />
 			<z-m alias="../../../params/dcin-z" />
 		</offsets>
@@ -3098,7 +3100,7 @@ BUS1</text>
 		<text>AC
 BUS2</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc2-y" />
 			<z-m alias="../../../params/dcin-z" />
 		</offsets>
@@ -3118,7 +3120,7 @@ BUS2</text>
 		<text>AC
 BUS2</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc3-y" />
 			<z-m alias="../../../params/dcin-z" />
 		</offsets>
@@ -3138,7 +3140,7 @@ BUS2</text>
 		<text>AC
 ESS BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc4-y" />
 			<z-m alias="../../../params/dcin-z" />
 		</offsets>
@@ -3161,7 +3163,7 @@ ESS BUS</text>
     V
     A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc1-y" />
 			<z-m alias="../../../params/dctru-z" />
 		</offsets>
@@ -3183,7 +3185,7 @@ ESS BUS</text>
     V
     A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc2-y" />
 			<z-m alias="../../../params/dctru-z" />
 		</offsets>
@@ -3205,7 +3207,7 @@ TRU 2
     V
     A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc3-y" />
 			<z-m alias="../../../params/dctru-z" />
 		</offsets>
@@ -3227,7 +3229,7 @@ TRU 1
     V
     A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc4-y" />
 			<z-m alias="../../../params/dctru-z" />
 		</offsets>
@@ -3247,7 +3249,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>BUS 1</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcL-y" />
 			<z-m alias="../../../params/dcR1-z" />
 		</offsets>
@@ -3266,7 +3268,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>BUS 2</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcL-y" />
 			<z-m alias="../../../params/dcR2-z" />
 		</offsets>
@@ -3285,7 +3287,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>SERV BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcL-y" />
 			<z-m alias="../../../params/dcR3-z" />
 		</offsets>
@@ -3304,7 +3306,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>UTIL BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcL-y" />
 			<z-m alias="../../../params/dcR4-z" />
 		</offsets>
@@ -3323,7 +3325,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>SERVICE CONFIGURATION</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.0679</y-m>
 			<z-m>-0.0391</z-m>
 		</offsets>
@@ -3343,7 +3345,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>ESS BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcR-y" />
 			<z-m alias="../../../params/dcR1-z" />
 		</offsets>
@@ -3362,7 +3364,7 @@ TRU 1
 		<font>Helvetica.txf</font>
 		<text>BATT BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcR-y" />
 			<z-m alias="../../../params/dcR3-z" />
 		</offsets>
@@ -3382,7 +3384,7 @@ TRU 1
 		<text>APU
 BATT</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.05784</y-m>
 			<z-m>-0.05387</z-m>
 		</offsets>
@@ -3402,7 +3404,7 @@ BATT</text>
 		<text>MAIN
 BATT</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.05784</y-m>
 			<z-m>-0.07143</z-m>
 		</offsets>
@@ -3423,7 +3425,7 @@ BATT</text>
 		<text>V
 A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.004</y-m>
 			<z-m>-0.0483</z-m>
 		</offsets>
@@ -3443,7 +3445,7 @@ A</text>
 		<text>V
 A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.004</y-m>
 			<z-m>-0.066</z-m>
 		</offsets>
@@ -3463,7 +3465,7 @@ A</text>
 		<text>APU BATT
 DIR BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.03253</y-m>
 			<z-m>-0.05387</z-m>
 		</offsets>
@@ -3483,7 +3485,7 @@ DIR BUS</text>
 		<text>MAIN BATT
 DIR BUS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.03253</y-m>
 			<z-m>-0.07122</z-m>
 		</offsets>
@@ -3504,7 +3506,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc1-y" />
 			<z-m alias="../../../params/dctruvolt-z" />
 		</offsets>
@@ -3524,7 +3526,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc1-y" />
 			<z-m alias="../../../params/dctruamp-z" />
 		</offsets>
@@ -3544,7 +3546,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc2-y" />
 			<z-m alias="../../../params/dctruvolt-z" />
 		</offsets>
@@ -3564,7 +3566,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc2-y" />
 			<z-m alias="../../../params/dctruamp-z" />
 		</offsets>
@@ -3584,7 +3586,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc3-y" />
 			<z-m alias="../../../params/dctruvolt-z" />
 		</offsets>
@@ -3604,7 +3606,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc3-y" />
 			<z-m alias="../../../params/dctruamp-z" />
 		</offsets>
@@ -3624,7 +3626,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc4-y" />
 			<z-m alias="../../../params/dctruvolt-z" />
 		</offsets>
@@ -3644,7 +3646,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dc4-y" />
 			<z-m alias="../../../params/dctruamp-z" />
 		</offsets>
@@ -3664,7 +3666,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcbatt-y" />
 			<z-m>-0.051</z-m>
 		</offsets>
@@ -3684,7 +3686,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcbatt-y" />
 			<z-m>-0.057</z-m>
 		</offsets>
@@ -3703,7 +3705,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcbatt-y" />
 			<z-m>-0.0681</z-m>
 		</offsets>
@@ -3723,7 +3725,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%2.0f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/dcbatt-y" />
 			<z-m>-0.0745</z-m>
 		</offsets>
@@ -4009,7 +4011,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>DOORS</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0</y-m>
 			<z-m>0.079</z-m>
 		</offsets>
@@ -4028,7 +4030,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>AFT CARGO</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.04422</y-m>
 			<z-m>-0.0565</z-m>
 		</offsets>
@@ -4047,7 +4049,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>AVIONIC BAY</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.02225</y-m>
 			<z-m>0.01029</z-m>
 		</offsets>
@@ -4066,7 +4068,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>CTR CARGO</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02514</y-m>
 			<z-m>0.0043</z-m>
 		</offsets>
@@ -4085,7 +4087,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>EMER</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02514</y-m>
 			<z-m>-0.01544</z-m>
 		</offsets>
@@ -4104,7 +4106,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>EMER</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02514</y-m>
 			<z-m>-0.03099</z-m>
 		</offsets>
@@ -4123,7 +4125,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>EMER</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.02225</y-m>
 			<z-m>-0.01531</z-m>
 		</offsets>
@@ -4142,7 +4144,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>EMER</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.02225</y-m>
 			<z-m>-0.03095</z-m>
 		</offsets>
@@ -4161,7 +4163,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>FWD CARGO</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02514</y-m>
 			<z-m>0.01678</z-m>
 		</offsets>
@@ -4180,7 +4182,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>PASSENGER</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02514</y-m>
 			<z-m>0.04165</z-m>
 		</offsets>
@@ -4199,7 +4201,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>FWD SERVICE</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.02225</y-m>
 			<z-m>0.04165</z-m>
 		</offsets>
@@ -4470,7 +4472,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>1B</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.02543</y-m>
 			<z-m>0.01606</z-m>
 		</offsets>
@@ -4489,7 +4491,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>3A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.01223</y-m>
 			<z-m>0.01606</z-m>
 		</offsets>
@@ -4508,7 +4510,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>3B</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.01131</y-m>
 			<z-m>0.01606</z-m>
 		</offsets>
@@ -4527,7 +4529,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>2B</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.02367</y-m>
 			<z-m>0.01606</z-m>
 		</offsets>
@@ -4546,7 +4548,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>1A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>-0.05994</y-m>
 			<z-m>-0.00186</z-m>
 		</offsets>
@@ -4565,7 +4567,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<text>2A</text>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m>0.05796</y-m>
 			<z-m>-0.00186</z-m>
 		</offsets>
@@ -4586,7 +4588,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/temperature1-y" />
 			<z-m alias="../../../params/temperature-z" />
 		</offsets>
@@ -4606,7 +4608,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/temperature3-y" />
 			<z-m alias="../../../params/temperature-z" />
 		</offsets>
@@ -4626,7 +4628,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/temperature2-y" />
 			<z-m alias="../../../params/temperature-z" />
 		</offsets>
@@ -4725,7 +4727,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/quantity1-y" />
 			<z-m alias="../../../params/quantity-z" />
 		</offsets>
@@ -4745,7 +4747,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/quantity3-y" />
 			<z-m alias="../../../params/quantity-z" />
 		</offsets>
@@ -4765,7 +4767,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/quantity2-y" />
 			<z-m alias="../../../params/quantity-z" />
 		</offsets>
@@ -4908,7 +4910,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/pressure1-y" />
 			<z-m alias="../../../params/pressure-z" />
 		</offsets>
@@ -4928,7 +4930,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/pressure3-y" />
 			<z-m alias="../../../params/pressure-z" />
 		</offsets>
@@ -4948,7 +4950,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/pressure2-y" />
 			<z-m alias="../../../params/pressure-z" />
 		</offsets>
@@ -5125,7 +5127,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/pressure-br3-y" />
 			<z-m alias="../../../params/pressure-br-z" />
 		</offsets>
@@ -5145,7 +5147,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/pressure-br2-y" />
 			<z-m alias="../../../params/pressure-br-z" />
 		</offsets>
@@ -5219,7 +5221,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row1-z" />
 		</offsets>
@@ -5239,7 +5241,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row1-z" />
 		</offsets>
@@ -5259,7 +5261,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row1-z" />
 		</offsets>
@@ -5305,7 +5307,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row2-z" />
 		</offsets>
@@ -5325,7 +5327,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row2-z" />
 		</offsets>
@@ -5345,7 +5347,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row2-z" />
 		</offsets>
@@ -5391,7 +5393,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row3-z" />
 		</offsets>
@@ -5411,7 +5413,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row3-z" />
 		</offsets>
@@ -5431,7 +5433,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row3-z" />
 		</offsets>
@@ -5477,7 +5479,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row4-z" />
 		</offsets>
@@ -5520,7 +5522,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row4-z" />
 		</offsets>
@@ -5563,7 +5565,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row4-z" />
 		</offsets>
@@ -5606,7 +5608,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row5-z" />
 		</offsets>
@@ -5649,7 +5651,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row5-z" />
 		</offsets>
@@ -5692,7 +5694,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row5-z" />
 		</offsets>
@@ -5736,7 +5738,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row6-z" />
 		</offsets>
@@ -5779,7 +5781,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col2-y" />
 			<z-m alias="../../../params/row6-z" />
 		</offsets>
@@ -5822,7 +5824,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row6-z" />
 		</offsets>
@@ -5866,7 +5868,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col1-y" />
 			<z-m alias="../../../params/row7-z" />
 		</offsets>
@@ -5909,7 +5911,7 @@ DIR BUS</text>
 		<font>Helvetica.txf</font>
 		<format>%3.f</format>
 		<offsets>
-			<x-m alias="../../../params/disp-x" />
+			<x-m alias="/params/disp-x" />
 			<y-m alias="../../../params/col3-y" />
 			<z-m alias="../../../params/row7-z" />
 		</offsets>
@@ -7996,9 +7998,9 @@ DIR BUS</text>
 			<and>
 				<greater-than-equals>
 					<property>systems/AC/system/acext-value</property>
-					<value alias="../../../../AC-volt-min" />
+					<value alias="/AC-volt-min" />
 				</greater-than-equals>
-				<property>controls/electric/ac-service-in-use-ext</property>
+				<property>controls/electric/ac-service-selected-ext</property>
 			</and>
 		</condition>
 	</animation>
@@ -8075,11 +8077,11 @@ DIR BUS</text>
 					<value>124</value>
 				</less-than-equals>
 				<!--greater-than-equals>
-					<property>systems/AC/system/gen1-freq</property>
+					<property>systems/AC/system/bus1-freq</property>
 					<value>370</value>
 				</greater-than-equals>
 				<less-than-equals>
-					<property>systems/AC/system/bou1-freq</property>
+					<property>systems/AC/system/bus1-freq</property>
 					<value>430</value>
 				</less-than-equals-->
 			</and>
@@ -8157,7 +8159,7 @@ DIR BUS</text>
 		<condition>
 			<greater-than-equals>
 				<property>systems/AC/system/gen1-value</property>
-				<value alias="../../../../AC-volt-min" />
+				<value alias="/AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -8167,7 +8169,7 @@ DIR BUS</text>
 		<condition>
 			<greater-than-equals>
 				<property>systems/AC/system/gen2-value</property>
-				<value alias="../../../../AC-volt-min" />
+				<value alias="/AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -8177,7 +8179,7 @@ DIR BUS</text>
 		<condition>
 			<greater-than-equals>
 				<property>systems/AC/system/apugen-value</property>
-				<value alias="../../../../AC-volt-min" />
+				<value alias="/AC-volt-min" />
 			</greater-than-equals>
 		</condition>
 	</animation>
@@ -8192,7 +8194,7 @@ DIR BUS</text>
 				<property>controls/electric/engine[0]/generator</property>
 				<greater-than-equals>
 					<property>systems/AC/system/gen1-value</property>
-					<value alias="../../../../../AC-volt-min" />
+					<value alias="/AC-volt-min" />
 				</greater-than-equals>
 			</and>
 		</condition>
@@ -8205,8 +8207,68 @@ DIR BUS</text>
 				<property>controls/electric/engine[1]/generator</property>
 				<greater-than-equals>
 					<property>systems/AC/system/gen2-value</property>
-					<value alias="../../../../../AC-volt-min" />
+					<value alias="/AC-volt-min" />
 				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<!-- G1 feeds B2 -->
+	<animation>
+		<type>select</type>
+		<object-name>ACLine12</object-name>
+		<condition>
+			<and>
+				<property>controls/electric/engine[0]/generator</property>
+				<greater-than-equals>
+					<property>systems/AC/system/gen1-value</property>
+					<value alias="/AC-volt-min" />
+				</greater-than-equals>
+				<not><or>
+					<and>
+						<property>controls/electric/engine[1]/generator</property>
+						<greater-than-equals>
+							<property>systems/AC/system/gen2-value</property>
+							<value alias="/AC-volt-min" />
+						</greater-than-equals>
+					</and>
+					<and>
+						<property>controls/electric/APU-generator</property>
+						<greater-than-equals>
+							<property>systems/AC/system/apugen-value</property>
+							<value alias="/AC-volt-min" />
+						</greater-than-equals>
+					</and>
+				</or></not>
+			</and>
+		</condition>
+	</animation>
+	<!-- G2 feeds B1 -->
+	<animation>
+		<type>select</type>
+		<object-name>ACLine21</object-name>
+		<condition>
+			<and>
+				<property>controls/electric/engine[1]/generator</property>
+				<greater-than-equals>
+					<property>systems/AC/system/gen2-value</property>
+					<value alias="/AC-volt-min" />
+				</greater-than-equals>
+				<not><or>
+					<and>
+						<property>controls/electric/engine[0]/generator</property>
+						<greater-than-equals>
+							<property>systems/AC/system/gen1-value</property>
+							<value alias="/AC-volt-min" />
+						</greater-than-equals>
+					</and>
+					<and>
+						<property>controls/electric/APU-generator</property>
+						<greater-than-equals>
+							<property>systems/AC/system/apugen-value</property>
+							<value alias="/AC-volt-min" />
+						</greater-than-equals>
+					</and>
+				</or></not>
 			</and>
 		</condition>
 	</animation>
@@ -8217,7 +8279,7 @@ DIR BUS</text>
 			<and>
 				<greater-than-equals>
 					<property>systems/AC/system/acext-value</property>
-					<value alias="../../../../../AC-volt-min" />
+					<value alias="/AC-volt-min" />
 				</greater-than-equals>
 				<property>/controls/electric/ac-service-in-use</property>
 				<not><or>
@@ -8247,7 +8309,7 @@ DIR BUS</text>
 				<not>
 					<greater-than-equals>
 						<property>systems/AC/system/gen1-value</property>
-						<value alias="../../../../../../AC-volt-min" />
+						<value alias="/AC-volt-min" />
 					</greater-than-equals>
 				</not>
 			</and>
@@ -8263,7 +8325,7 @@ DIR BUS</text>
 				<not>
 					<greater-than-equals>
 						<property>systems/AC/system/gen2-value</property>
-						<value alias="../../../../../../AC-volt-min" />
+						<value alias="/AC-volt-min" />
 					</greater-than-equals>
 				</not>
 			</and>

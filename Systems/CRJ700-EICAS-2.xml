@@ -354,6 +354,30 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
+		<text type="string">IDG 1 DISC</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/idg1-disc</property>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">IDG 2 DISC</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/electric/idg2-disc</property>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
 		<text type="string">L MLG fault</text>
 		<color>
 			<red alias="../../../colors/white/red" />

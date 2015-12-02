@@ -43,11 +43,11 @@ var IDG = {
 	},
 
 	_update_output: func {
-		var i = int(me.inputN.getValue());
-		if (me.running and int(me.input) == i) return;
+		#var i = int(me.inputN.getValue());
+		#if (me.running and int(me.input) == i) return;
 		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
-		if (me.input > me.input_min) {			
+		if (me.output and me.input > me.input_min) {			
 			if (me.input < 57.5) 
 				#me.freq = 375 * (me.input - me.input_min)/5;
 				me.freq = 75 * int(me.input - me.input_min);
@@ -81,7 +81,7 @@ var APUGen = {
 		#if (me.running and int(me.input) == i) return;
 		call(EnergyConv._update_output, [], me);
 		me.freq = 0;
-		if (me.input > 80) {
+		if (me.output and me.input > 80) {
 			if (me.input < 90)
 				me.freq = 37.5 * int(me.input - 80);
 			elsif (me.input < 100)
@@ -145,9 +145,9 @@ var ACext = {
 		var obj = {
 			parents: [ACext, EnergyConv.new(bus, name, input)],
 			freq: 0,
-			gsL: 0,
+			gear_cnt: 0,
 			parking_brake: 0,
-			inuse: 0,
+			selected: 0,
 		};
 		obj.freqN = props.globals.getNode(bus.system_path~name~"-freq",1);
 		obj.freqN.setValue(0);
@@ -157,22 +157,24 @@ var ACext = {
 	init: func {
 		call(EnergyConv.init,[], me);
 		var gear = props.getNode("gear").getChildren("gear");
+		me.gear_cnt = size(gear);
 		foreach(g; gear) {			
-			append(me.listeners, setlistener(g.getChild("has-brake"), func(v) {me._gear_listener(v);}, 1 , 0));			
+			append(me.listeners, setlistener(g.getChild("has-brake"), func(v) {me._gearL(v);}, 1 , 0));			
 		}
-		append(me.listeners, setlistener(props.globals.getNode("controls/electric/ac-service-in-use"), func(v) {me._inuse(v);}, 1 , 0));			
+		append(me.listeners, setlistener(props.globals.getNode("controls/electric/ac-service-selected"), func(v) {me._selectedL(v);}, 1 , 0));			
 		return me;
 	},
 
-	_inuse: func(v){
-			me.inuse = v.getValue;
+	_selectedL: func(v){
+			me.selected = v.getValue();
+			setprop("controls/electric/ac-service-in-use", me.selected);
 			me._update_output();
 	},
 	
 	
-	_gear_listener: func(v) {
+	_gearL: func(v) {
 		if (v.getBoolValue()) {
-			if  (me.parking_brake < 3) me.parking_brake += 1;
+			if  (me.parking_brake < me.gear_cnt) me.parking_brake += 1;
 		}
 		else if (me.parking_brake > 0) me.parking_brake -= 1;
 		if (me.parking_brake) {
@@ -220,7 +222,7 @@ var ACPC = {
 	new: func (sysid, outputs) {
 		obj = { parents : [ACPC, EnergyBus.new("AC", sysid, "acpc", outputs)],
 			buses: [],
-			acext_inuse: 0,
+			acext_selected: 0,
 		};
 		print("AC power center "~obj.parents[1].system_path);
 		return obj;		
@@ -229,7 +231,7 @@ var ACPC = {
 	readProps: func {		
 		me.output = me.outputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
-		me.acext_inuse = getprop("controls/electric/ac-service-in-use");	
+		me.acext_selected = getprop("controls/electric/ac-service-selected");	
 	},
 		
 	#
@@ -249,31 +251,40 @@ var ACPC = {
 			var adg = me.inputs[4].getValue();
 			
 			#print("ACPC g1:"~g1~", g2:"~g2~", a:"~apu~", e:"~ep~", adg:"~adg);
+			if (me.acext_selected) {
+				if (apu > 90 or g1 or g2) {
+					setprop("controls/electric/ac-service-in-use", 0);
+					ep = 0;
+				}
+				else setprop("controls/electric/ac-service-in-use", 1);
+			}
+			else ep = 0;
+
 			var v = 0;
-			#AC_SERVICE
-			v = (g2 >= ep) ? g2 : ep;
-			me.outputs[3].setValue(v);
-			
 			#ADG			
 			me.outputs[4].setValue(adg);
 			
-			if (me.acext_inuse and (apu or g1 or g2)) {
-				setprop("controls/electric/ac-service-in-use",0);
-			}
-			if (!me.acext_inuse) ep = 0;
 			#use ext. AC until APU avail
 			if (!apu) apu = ep;
-			#AC1
 			if (g1 < apu) g1 = apu;
+			if (g2 < apu) g2 = apu;
+			if (g1 < g2) g1 = g2;
+			if (g2 < g1) g2 = g1;
+
+			#AC1
 			me.outputs[0].setValue(g1);
 			#AC2
-			if (g2 < apu) g2 = apu;
 			me.outputs[1].setValue(g2);
 			
 			#AC_ESS (prio: adg,ac1,ac2)
 			v = (g1 >= g2) ? g1 : g2;
 			v = (adg > v) ? adg : v;
 			me.outputs[2].setValue(v);			
+
+			#AC_SERVICE
+			v = (g2 >= ep) ? g2 : ep;
+			me.outputs[3].setValue(v);
+			
 		}
 		return me;
 	},
@@ -286,6 +297,7 @@ var DCPC = {
 	new: func (sysid, outputs) {
 		obj = { parents : [DCPC, EnergyBus.new("DC", sysid, "dcpc", outputs)],
 			buses: [],
+			dcservice: 0,
 		};
 		print("DC power center "~obj.parents[1].system_path);
 		return obj;		
@@ -294,6 +306,7 @@ var DCPC = {
 	readProps: func {		
 		me.output = me.outputN.getValue();
 		me.serviceable = me.serviceableN.getValue();
+		me.dcservice = getprop("controls/electric/dc-service-switch");
 	},
 		
 	update: func {
@@ -303,9 +316,9 @@ var DCPC = {
 			var t2 = me.inputs[1].getValue();
 			var et1 = me.inputs[2].getValue();
 			var et2 = me.inputs[3].getValue();
-			var ab = me.inputs[4].getValue();
-			var mb = me.inputs[5].getValue();
-			var batt = (ab > mb) ? ab : mb;
+			var apubatt = me.inputs[4].getValue();
+			var mainbatt = me.inputs[5].getValue();
+			var batt = (apubatt > mainbatt) ? apubatt : mainbatt;
 			
 			#print("DCPC "~t1~", "~t2~", "~et1~", "~et2~", "~batt);
 			var v = 0;
@@ -322,7 +335,8 @@ var DCPC = {
 			me.outputs[1].setValue(v);
 	
 			#DC_SERVICE
-			me.outputs[3].setValue(v);
+			if (me.dcservice) me.outputs[3].setValue(apubatt);
+			else me.outputs[3].setValue(v);
 
 			#DC_ESS
 			v = (et1 >= batt) ? et1 : batt;
