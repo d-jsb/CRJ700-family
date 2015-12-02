@@ -2767,7 +2767,7 @@ APU</text>
 	<text>
 		<name>HydPressure1</name>
 		<type>number-value</type>
-		<property>systems/hydraulic/system[0]/pressure-psi</property>
+		<property>systems/hydraulic/system[0]/value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.008</character-size>
@@ -2787,7 +2787,7 @@ APU</text>
 	<text>
 		<name>HydPressure3</name>
 		<type>number-value</type>
-		<property>systems/hydraulic/system[2]/pressure-psi</property>
+		<property>systems/hydraulic/system[2]/value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.008</character-size>
@@ -2807,7 +2807,7 @@ APU</text>
 	<text>
 		<name>HydPressure2</name>
 		<type>number-value</type>
-		<property>systems/hydraulic/system[1]/pressure-psi</property>
+		<property>systems/hydraulic/system[1]/value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.008</character-size>
@@ -2829,7 +2829,7 @@ APU</text>
 		<object-name>HydPressure1</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<property>systems/hydraulic/system[0]/value</property>
 				<value>3200</value>
 			</greater-than-equals>
 		</condition>
@@ -2855,7 +2855,7 @@ APU</text>
 		<object-name>HydPressure1</object-name>
 		<condition>
 			<less-than-equals>
-				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<property>systems/hydraulic/system[0]/value</property>
 				<value>1800</value>
 			</less-than-equals>
 		</condition>
@@ -2881,7 +2881,7 @@ APU</text>
 		<object-name>HydPressure2</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<property>systems/hydraulic/system[1]/value</property>
 				<value>3200</value>
 			</greater-than-equals>
 		</condition>
@@ -2907,7 +2907,7 @@ APU</text>
 		<object-name>HydPressure2</object-name>
 		<condition>
 			<less-than-equals>
-				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<property>systems/hydraulic/system[1]/value</property>
 				<value>1800</value>
 			</less-than-equals>
 		</condition>
@@ -2933,7 +2933,7 @@ APU</text>
 		<object-name>HydPressure3</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<property>systems/hydraulic/system[2]/value</property>
 				<value>3200</value>
 			</greater-than-equals>
 		</condition>
@@ -2959,7 +2959,7 @@ APU</text>
 		<object-name>HydPressure3</object-name>
 		<condition>
 			<less-than-equals>
-				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<property>systems/hydraulic/system[2]/value</property>
 				<value>1800</value>
 			</less-than-equals>
 		</condition>
@@ -2984,7 +2984,7 @@ APU</text>
 	<text>
 		<name>HydIBbrakes</name>
 		<type>number-value</type>
-		<property>systems/hydraulic/system[2]/pressure-psi</property>
+		<property>systems/hydraulic/system[2]/value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.008</character-size>
@@ -3004,7 +3004,7 @@ APU</text>
 	<text>
 		<name>HydOBbrakes</name>
 		<type>number-value</type>
-		<property>systems/hydraulic/system[1]/pressure-psi</property>
+		<property>systems/hydraulic/system[1]/value</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
 		<character-size>0.008</character-size>
@@ -3026,7 +3026,7 @@ APU</text>
 		<object-name>HydIBbrakes</object-name>
 		<condition>
 			<less-than-equals>
-				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<property>systems/hydraulic/system[2]/value</property>
 				<value>1800</value>
 			</less-than-equals>
 		</condition>
@@ -3052,7 +3052,7 @@ APU</text>
 		<object-name>HydOBbrakes</object-name>
 		<condition>
 			<less-than-equals>
-				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<property>systems/hydraulic/system[1]/value</property>
 				<value>1800</value>
 			</less-than-equals>
 		</condition>
@@ -6126,7 +6126,7 @@ APU</text>
 			<or>
 				<property>systems/hydraulic/system[0]/pump-a-running</property>
 				<and>
-					<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+					<property>controls/hydraulic/system[0]/pump-a</property>
 					<property>engines/engine[0]/on-fire</property>
 				</and>
 			</or>
@@ -6139,7 +6139,7 @@ APU</text>
 			<or>
 				<property>systems/hydraulic/system[1]/pump-a-running</property>
 				<and>
-					<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+					<property>controls/hydraulic/system[1]/pump-a</property>
 					<property>engines/engine[1]/on-fire</property>
 				</and>
 			</or>
@@ -6149,7 +6149,7 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydLine1A</object-name>
-		<property>systems/hydraulic/system[0]/pump-a-psi</property>
+		<property>systems/hydraulic/system[0]/pump-a-value</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0.084</dep></entry>
 			<entry><ind>1799</ind><dep>0.084</dep></entry>
@@ -6163,7 +6163,7 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydLine2A</object-name>
-		<property>systems/hydraulic/system[1]/pump-a-psi</property>
+		<property>systems/hydraulic/system[1]/pump-a-value</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0.084</dep></entry>
 			<entry><ind>1799</ind><dep>0.084</dep></entry>
@@ -6178,10 +6178,10 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydLineIn1A</object-name>
-		<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+		<property>controls/hydraulic/system[0]/pump-a</property>
 		<condition>
 			<and>
-				<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+				<property>controls/hydraulic/system[0]/pump-a</property>
 				<property>engines/engine[0]/on-fire</property>
 			</and>
 		</condition>
@@ -6194,10 +6194,10 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydLineIn2A</object-name>
-		<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+		<property>controls/hydraulic/system[1]/pump-a</property>
 		<condition>
 			<and>
-				<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+				<property>controls/hydraulic/system[1]/pump-a</property>
 				<property>engines/engine[1]/on-fire</property>
 			</and>
 		</condition>
@@ -6212,7 +6212,7 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydSOV1</object-name>
-		<property>controls/hydraulic/system[0]/hyd-sov-open</property>
+		<property>controls/hydraulic/system[0]/pump-a</property>
 		<factor>0.1504</factor>
 		<axis>
 			<x>1</x>
@@ -6222,7 +6222,7 @@ APU</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>HydSOV2</object-name>
-		<property>controls/hydraulic/system[1]/hyd-sov-open</property>
+		<property>controls/hydraulic/system[1]/pump-a</property>
 		<factor>0.1504</factor>
 		<axis>
 			<x>1</x>
@@ -6235,7 +6235,7 @@ APU</text>
 		<object-name>HydOut1</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[0]/pressure-psi</property>
+				<property>systems/hydraulic/system[0]/value</property>
 				<value>1800</value>
 			</greater-than-equals>
 		</condition>
@@ -6245,7 +6245,7 @@ APU</text>
 		<object-name>HydOut2</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[1]/pressure-psi</property>
+				<property>systems/hydraulic/system[1]/value</property>
 				<value>1800</value>
 			</greater-than-equals>
 		</condition>
@@ -6255,7 +6255,7 @@ APU</text>
 		<object-name>HydOut3</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>systems/hydraulic/system[2]/pressure-psi</property>
+				<property>systems/hydraulic/system[2]/value</property>
 				<value>1800</value>
 			</greater-than-equals>
 		</condition>

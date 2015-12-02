@@ -26,156 +26,98 @@
 #		nose wheel steering
 
 ## FG properties used
-# controls/hydraulic/system[n]
-#		hyd-sov-open	OHP switches for SOV
+# controls/hydraulic/system[n]/
+#		pump-a	OHP switches for SOV
 #		pump-a, pump-b 	OHP switches for pumps (0, 1, 2 = auto)
 # systems/hydraulic/system[0..2]/* 
 #		system state
 # systems/hydraulic/outputs/*	
-#		computed effective hyd. states, this props enable hyd. functions
+#		computed effective hyd. states, this props enable hydraulics
 #
 
 
 var HydraulicPump = {
-	new: func (sys, pid, params) {
-		var switch = params[0];
-		var pwr_input = params[1];
-		var input_min = params[2];
-		var input_max = params[3];
-		var obj = {parents: [HydraulicPump], 
-			sys: sys, 
-			pid: pid, 
-			output_nominal: 3000,
-			output_min: 1800,
-			output: 0,
+	new: func (bus, name, input, input_min, input_max) {
+		var obj = {
+			parents: [HydraulicPump, EnergyConv.new(bus, name, 3000, 1800, input, input_min, input_max) ],
+			sw2: 0,
 		};
-		obj.serviceable_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-serviceable", 1);
-		obj.switch_node = props.globals.getNode("/controls/hydraulic/system["~sys~"]/"~switch, 1);
-		obj.running_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-running", 1); 
-		obj.output_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pump-"~pid~"-psi", 1); 
-		obj.pwr_input_node = props.globals.getNode(pwr_input, 1);
-		obj.input_min = (input_min > 0) ? input_min : 1;
-		obj.input_max = (input_max > 0) ? input_max : 1;
-		obj.sw2 = 0; 
-		#print("Init pump "~obj.pid);
-		setlistener(obj.switch_node, func(v) {obj._switch_listener(v);},1,0);
-		setlistener(obj.pwr_input_node, func(v) {obj._update_output();},1,0);
-		setlistener(obj.serviceable_node, func(v) {obj._update_output();},1,0);
 		return obj;
 	},
 	
-	#0,1,2 : off, on, automatic mode (use 2nd switch input)
-	_switch_listener: func(v){
-		me.switch = v.getValue();
-		#print("hyd.p "~me.sys~"."~me.pid~": "~me.switch~", "~me.sw2);
-		me._update_output();
-	},
-	
-	get_switch: func { return me.switch; },
-
+	#switch 0,1,2 : off, on, automatic mode (use 2nd switch input)
 	#store signal for pump automatic mode, called by hydraulic system class
 	set_switch2:  func (on) {
 		me.sw2 = (on > 0) ? 1 : 0;
-		#print("hyd.p a "~me.sys~"."~me.pid~": "~me.switch~", "~me.sw2);
+		print("sw:"~me.switch);
 		if (me.switch == 2) me._update_output();
 		return me.sw2;
 	},	
-	
-	get_output: func () {
-		return me.output;
-	},
 
 	_update_output: func {
-		me.input = me.pwr_input_node.getValue();
-		me.serviceable = me.serviceable_node.getValue();
+		#print("Hydraulic.update");
+		me.input = me.inputN.getValue();
+		me.serviceable = me.serviceableN.getValue();
 		if (me.input == nil) me.input = 0;
 		if (me.serviceable and (me.switch == 1 or me.switch == 2 and me.sw2)) {
 			me.output = me.output_nominal;
-			if (me.input < me.input_min) {
-				me.output = int(me.output_nominal * me.input / me.input_min / 100);
-				me.output = me.output * 100;
+			if (me.input_min > 0 and me.input < me.input_min) {
+				me.output = me.output_nominal * me.input / me.input_min;
+				me.output = int(me.output / 100) * 100;		
 			}
-			if (me.input > me.input_max) {
-				me.output = int(me.output_nominal * me.input / me.input_max / 100);
-				me.output = me.output * 100;
+			if (me.input_max > 0 and me.input > me.input_max) {
+				me.output = me.output_nominal * me.input / me.input_max;
+				me.output = int(me.output / 100) * 100;		
 			}
 		}
 		else me.output = 0;
-		me.output_node.setValue(me.output);
-
-		#update running 0=off, 2=low output output, 1=good output output
-		me.running = 0;
-		if (me.output > 0) me.running = 2;
-		if (me.output > me.output_min) me.running = 1;
-		me.running_node.setValue(me.running);
-
-		#print("hyd.upd "~me.sys~"."~me.pid~": "~me.output);
+		me.outputN.setValue(me.output);		
+		me.isRunning();
 		return me.output;
 	},
 };
 
 var HydraulicSystem = {
-	new : func (sys, out_min, pa, pb, outputs_multi, outputs ) {
-		obj = { parents : [HydraulicSystem],
-			sys: sys, 
-			pump_a: HydraulicPump.new(sys, "a", pa), 
-			pump_b: HydraulicPump.new(sys, "b", pb),
-			output_min: out_min,
+	new: func (sysid, pa, pb, outputs_multi, outputs ) {
+		
+		obj = { parents : [HydraulicSystem, EnergyBus.new("hydraulic", sysid, outputs, 1, 1800)],
 			outputs_multi: [],
-			outputs: [],
-		};
-		
-		obj.output_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/pressure-psi", 1); 
-		obj.update_enabled_node = props.globals.getNode("/systems/hydraulic/system["~sys~"]/update-enabled", 1); 
+		};		
 		foreach (elem; outputs_multi) {
-			append(obj.outputs_multi, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
+			append(obj.outputs_multi, props.globals.getNode(obj.outputs_path~elem, 1));
 		}
-		foreach (elem; outputs) {
-			append(obj.outputs, props.globals.getNode("/systems/hydraulic/outputs/"~elem, 1));
-		}
-		#print("HydraulicSystem.new "~sys);
-		
-		setlistener("controls/flight/flaps", func(v) {obj._auto_pump(v);},1,1);
-		#setlistener("systems/hydraulic/system["~sys~"]", func {obj.update();}, 1, 2);
+		obj.addInput(pa[0], pa[1], pa[2], pa[3]);
+		obj.addInput(pb[0], pb[1], pb[2], pb[3]);
+		setlistener("controls/flight/flaps", func(v) {obj._auto_pump(v);}, 1, 1);
+		#setlistener("systems/hydraulic/system["~sysid~"]", func {obj.update();}, 1, 2);
 		return obj;
+	},
+	
+	addInput: func() {
+		var s = HydraulicPump.new(me, arg[0], arg[1], arg[2], arg[3]);
+		if (s != nil) append(me.inputs, s);
 	},
 	
 	#set on-off-signal for pump B automatic mode
 	_auto_pump: func (v) {
-		me.pump_b.set_switch2(v.getBoolValue());
+		print(me.type~"."~me.index~".auto");
+		me.inputs[1].set_switch2(v.getBoolValue());
 	},
-	
-	read_props: func {		
-		me.output = me.output_node.getValue();
-		me.update_enabled = me.update_enabled_node.getValue();
-	},
-	
-	get_output: func {
-		me.read_props();
-		return me.output;
-	},
-	
-	update: func() {
-		me.read_props();
-		if (me.update_enabled) {			
-			var p1 = me.pump_a.get_output();
-			var p2 = me.pump_b.get_output();
-			me.output = (p1 < p2) ? p2 : p1;
+
+	update: func {
+		me.parents[1].update();
+		if (me.serviceable) {			
 			foreach (out; me.outputs_multi) {
 				var hsys = props.globals.getNode("systems/hydraulic").getChildren("system");
 				var pmax = 0;
 				foreach (s; hsys) {
-					p = s.getNode("pressure-psi").getValue();
+					p = s.getNode("value").getValue();
 					pmax = (p > pmax) ? p : pmax;
 				}
 				if (pmax >= me.output_min)
 					out.setValue(1);
 				else out.setValue(0);
 			}		
-			foreach (out; me.outputs) {
-				out.setValue((me.output >= me.output_min));
-			}
-			me.output_node.setValue(me.output);
 		}
 	},
 };
@@ -183,21 +125,27 @@ var HydraulicSystem = {
 print("Creating hydraulic system ...");
 #ACMPs have to be fixed after rework of electrical system
 var hydraulics = [ 
-	HydraulicSystem.new(0, 1800,
-		["hyd-sov-open", "/engines/engine[0]/rpm", 21, 93],
+	HydraulicSystem.new(0,
+		["pump-a", "/engines/engine[0]/rpm", 21, 93],
 		["pump-b", "/systems/electrical/right-bus", 24, 28],
-		["rudder", "elevator", "aileron"], ["ob-spoileron", "ob-flight-spoiler", "ob-ground-spoiler", "left-reverser"],
+		["rudder", "elevator", "aileron"],
+		["ob-spoileron", "ob-flight-spoiler", "ob-ground-spoiler", "left-reverser"],
 	),
-	HydraulicSystem.new(1, 1800,
-		["hyd-sov-open", "/engines/engine[1]/rpm", 21, 93],
-		["pump-b", "/systems/electrical/left-bus", 24 ,28],
-		["rudder", "elevator", "aileron"], ["ib-spoileron", "ib-flight-spoiler", "landing-gear-alt", "right-reverser", "ob-brakes"],
+	HydraulicSystem.new(1,
+		["pump-a", "/engines/engine[1]/rpm", 21, 93],
+		["pump-b", "/systems/electrical/left-bus", 24, 28],
+		["rudder", "elevator", "aileron"], 
+		["ib-spoileron", "ib-flight-spoiler", "landing-gear-alt", "right-reverser", "ob-brakes"],
 	),
-	HydraulicSystem.new(2, 1800,
+	HydraulicSystem.new(2,
 		["pump-a", "/systems/electrical/right-bus", 24, 28],
 		["pump-b", "/systems/electrical/left-bus", 24, 28],
-		["rudder", "elevator", "aileron"], ["ib-ground-spoiler", "landing-gear", "nwsteering", "ib-brakes"],
+		["rudder", "elevator", "aileron"], 
+		["ib-ground-spoiler", "landing-gear", "nwsteering", "ib-brakes"],
 	),
 ];
+
+foreach (h; hydraulics)
+	h.init();
 
 print("Hydraulic done.");
