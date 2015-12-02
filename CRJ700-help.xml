@@ -108,40 +108,32 @@
 		<desc alias="/input/keyboard/key[102]/desc" />
 	</key>
 
-	<text>Please see the checklists!
-Additional help is available in HTML format in the CRJ700-family/Docs/ folder.
+	<text>Please see the checklists! Additional help may be available in the CRJ700-family/Docs/ folder.
 
-Nominal cruise speed Mach 0.78 (0.80 for CRJ900).
-Refer to V-speed chart for approach and flap extension speeds.
-Remain below 250 knots below 10,000 feet at all times.
+Nominal cruise speed Mach 0.78 (0.80 for CRJ900). Refer to V-speed chart for approach and flap extension speeds. Remain below 250 knots below 10,000 feet at all times.
 
 _________V-speeds_________
-Gross wt  Flaps       Airspeed
-V1
-50,000.......8...........144 KIAS
-50,000.......20..........134 KIAS
-Vr
-50,000.......8...........144 KIAS
-50,000.......20..........135 KIAS
-V2
-50,000.......8...........154 KIAS
-50,000.......20..........143 KIAS
-Vref
+Gross wt  Flaps       V1             VR              V2
+50,000 .....  8  ....... 144 KIAS ... 144 KIAS ... 154 KIAS
+50,000 ..... 20 ....... 134 KIAS ... 135 KIAS ... 143 KIAS
+
+                            Vref
 59,000.......45..........125 KIAS
 61,000.......45..........128 KIAS
 73,000.......45..........141 KIAS
 77,000.......45..........145 KIAS
+
 Vmo               Mmo
 335 KIAS          0.85 Mach
 Va                Ma
 280 KIAS          0.85 Mach
 Vlo/Vle           Mlo/Mle
 220 KIAS          0.41 Mach
-Vfe
-1........................230 KIAS
-8........................230 KIAS
-20.......................230 KIAS
+
+Vfe (flaps extension max speed)
+1, 8, 20 ................230 KIAS
 30.......................185 KIAS
-45.......................170 KIAS</text>
+45.......................170 KIAS
+</text>
 
 </PropertyList>
