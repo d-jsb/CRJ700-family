@@ -31,11 +31,10 @@
 		<blue>0.427</blue>
 	</panel-marking-emit>
 
-	<!-- Visible only within 1/2 km -->
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>5</max-m>
 	</animation>
 
 	<animation>
