@@ -54,13 +54,13 @@ var HydraulicPump = {
 	},	
 
 	_update_output: func {
-		var i = me.inputN.getValue();
-		if (me.running and int(me.input) == int(i)) return;
-		me.input = i;
 		me.serviceable = me.serviceableN.getValue();
-		if (me.input == nil) me.input = 0;
-		print(me.name~"._update in: "~me.input~" ");
 		if (me.serviceable and (me.switch == 1 or me.switch == 2 and me.sw2)) {
+			var i = me.inputN.getValue();
+			if (me.running and int(me.input) == int(i)) return;
+			me.input = i;
+			if (me.input == nil) me.input = 0;
+			#print(me.name~"._update in: "~me.input~" ");
 			me.output = me.output_nominal;
 			if (me.input_lo > 0 and me.input < me.input_lo) {
 				me.output = me.output_nominal * me.input / me.input_lo;
