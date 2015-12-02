@@ -166,6 +166,20 @@
 		</offsets>
     </model>
     <model>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/nws.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.68245</x-m>
+			<y-m>-0.92331</y-m>
+			<z-m>0.919</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
+    </model>
+    <model>
 		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
 		<overlay>
 			<params>
@@ -3163,6 +3177,20 @@
 		</script>
 	    </binding>
 	</action>
+    </animation>
+    <!-- ADG manual deploy -->
+    <animation>
+		<type>pick</type>
+		<object-name>ADGManDeploy</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/electric/ADG</property>
+				<value>1</value>
+			</binding>
+		</action>
     </animation>
     <!-- Emer Flaps -->
     <animation>
