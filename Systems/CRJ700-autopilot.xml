@@ -344,7 +344,7 @@ Vertical modes:
 			<property>autopilot/autoflight-serviceable</property>
 			<property>controls/autoflight/autopilot/engage</property>
 			<greater-than>
-				<property>systems/electrical/outputs/autopilot</property>
+				<property>systems/DC/outputs/afcs-l</property>
 				<value>15</value>
 			</greater-than>
 			</and>
@@ -358,7 +358,7 @@ Vertical modes:
 			<property>autopilot/autothrottle-serviceable</property>
 			<property>controls/autoflight/autothrottle-engage</property>
 			<greater-than>
-				<property>systems/electrical/outputs/autopilot</property>
+				<property>systems/DC/outputs/afcs-l</property>
 				<value>15</value>
 			</greater-than>
 			</and>
@@ -372,7 +372,7 @@ Vertical modes:
 			<property>autopilot/flight-director-serviceable</property>
 			<property>controls/autoflight/flight-director/engage</property>
 			<greater-than>
-				<property>systems/electrical/outputs/autopilot</property>
+				<property>systems/DC/outputs/afcs-l</property>
 				<value>15</value>
 			</greater-than>
 			</and>

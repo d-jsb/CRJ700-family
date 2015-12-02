@@ -389,7 +389,7 @@ Engine.Jet = func(n)
         {
             jet.running = 0;
             jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
-            jet.n2 = math.max(jet.n2 - 15 * time_delta, 0);
+            jet.n2 = math.max(jet.n2 - 8 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
         elsif (jet.running)
@@ -414,7 +414,7 @@ Engine.Jet = func(n)
         {
             jet.running = 0;
             jet.n1 = math.max(jet.n1 - 1.5 * time_delta, 0);
-            jet.n2 = math.max(jet.n2 - 15 * time_delta, 0);
+            jet.n2 = math.max(jet.n2 - 8 * time_delta, 0);
             jet.fdm_throttle = 0;
         }
 
