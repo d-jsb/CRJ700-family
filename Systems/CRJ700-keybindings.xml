@@ -210,7 +210,7 @@
 		<desc>Toggle autopilot approach mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lateral-mode</property>
+			<property>controls/autoflight/lat-mode</property>
 			<value>3</value>
 			<value>0</value>
 		</binding>
@@ -220,7 +220,7 @@
 		<desc>Toggle autopilot heading mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lateral-mode</property>
+			<property>controls/autoflight/lat-mode</property>
 			<value>1</value>
 			<value>0</value>
 		</binding>
@@ -230,7 +230,7 @@
 		<desc>Toggle autopilot NAV mode</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/lateral-mode</property>
+			<property>controls/autoflight/lat-mode</property>
 			<value>2</value>
 			<value>0</value>
 		</binding>
@@ -257,7 +257,7 @@
 		<desc>Set autopilot hold heading/roll mode</desc>
 		<binding>
 			<command>property-assign</command>
-			<property>controls/autoflight/lateral-mode</property>
+			<property>controls/autoflight/lat-mode</property>
 			<value>0</value>
 		</binding>
 	</key>

@@ -1113,47 +1113,4 @@
 		</input>
 		<output>fcs/brake-right-cmd-norm</output>
 	</filter>
-	
-	<!-- Alarm logic -->
-	<logic>
-		<name>Overspeed alarm</name>
-		<input>
-			<or>
-				<!-- 3 kts greater than Vmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
-					<value>338</value>
-				</greater-than-equals>
-				<!-- 0.01 Mach greater than Mmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
-					<value>0.86</value>
-				</greater-than-equals>
-			</or>
-		</input>
-		<output>sim/alarms/overspeed-alarm</output>
-	</logic>
-	<logic>
-		<name>Master caution alarm</name>
-		<input>
-			<or>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-				<property>sim/alarms/overspeed-alarm</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-caution</output>
-	</logic>
-	<logic>
-		<name>Master warning alarm</name>
-		<input>
-			<or>
-				<property>engines/apu/on-fire</property>
-				<property>engines/engine[0]/on-fire</property>
-				<property>engines/engine[1]/on-fire</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-warning</output>
-	</logic>
-
 </PropertyList>

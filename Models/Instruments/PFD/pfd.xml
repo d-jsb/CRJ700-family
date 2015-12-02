@@ -101,7 +101,7 @@
 		<object-name>Autopilot 1/2 bank</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/bank-angle-select</property>
+				<property>controls/autoflight/bank-limit-deg</property>
 				<value>15</value>
 			</equals>
 		</condition>
@@ -131,7 +131,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -166,7 +166,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -201,7 +201,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>controls/autoflight/lateral-mode</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -293,7 +293,7 @@
 		<object-name>Autopilot APPR</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>3</value>
 			</equals>
 		</condition>
@@ -322,7 +322,7 @@
 		<object-name>Autopilot HDG</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/lateral-mode</property>
+				<property>controls/autoflight/lat-mode</property>
 				<value>1</value>
 			</equals>
 		</condition>

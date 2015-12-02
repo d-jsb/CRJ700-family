@@ -13,7 +13,7 @@ incAileron = func(v, a)
 	print("incAileron ");
     if (props.globals.getNode("controls/autoflight/autopilot/engage", 1).getBoolValue())
     {
-        var mode = props.globals.getNode("controls/autoflight/lateral-mode", 1).getValue();
+        var mode = props.globals.getNode("controls/autoflight/lat-mode", 1).getValue();
         if (mode == 0)
         {
             var roll_mode = props.globals.getNode("controls/autoflight/basic-roll-mode", 1).getValue();

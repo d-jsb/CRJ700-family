@@ -88,6 +88,14 @@
 				<name>Pushback</name>
 				<path>Aircraft/CRJ700-family/Systems/pushback.xml</path>
 			</autopilot>
+			<property-rule n="100">
+				<name>Propery rules</name>
+				<path>Aircraft/CRJ700-family/Systems/CRJ700-property-rules.xml</path>
+			</property-rule>
+			<property-rule n="101">
+				<name>Propery rules</name>
+				<path>Aircraft/CRJ700-family/Systems/CRJ700-ap-rules.xml</path>
+			</property-rule>
 		</systems>
 
 		<sound>
@@ -347,15 +355,17 @@
 			<basic-roll-mode type="int">0</basic-roll-mode>
 			<basic-roll-target-heading-deg type="double">0</basic-roll-target-heading-deg>
 			<basic-roll-target-roll-deg type="double">0</basic-roll-target-roll-deg>
-			<bank-angle-select type="float">30</bank-angle-select>
+			<bank-limit-deg type="float">30</bank-limit-deg>
 			<disengage-pos-norm type="int">0</disengage-pos-norm>
+			<half-bank type="bool">0</half-bank>
 			<heading-select type="double">360</heading-select>
-			<lateral-mode type="int">0</lateral-mode>
+			<lat-mode type="int">0</lat-mode>
 			<mach-select type="double">0</mach-select>
 			<nav-mode type="int">0</nav-mode>
 			<pitch-select type="double">0</pitch-select>
 			<speed-mode type="int">0</speed-mode>
 			<speed-select type="double">200</speed-select>
+			<toga-button type="bool">0</toga-button>
 			<vertical-mode type="int">0</vertical-mode>
 			<vertical-speed-select type="double">1800</vertical-speed-select>
 		</autoflight>

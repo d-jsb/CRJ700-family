@@ -198,7 +198,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/bank-angle-select</property>
+								<property>controls/autoflight/bank-limit-deg</property>
 								<value>15</value>
 							</equals>
 						</visible>
@@ -208,7 +208,7 @@
 						<pref-width>70</pref-width>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/bank-angle-select</property>
+							<property>controls/autoflight/bank-limit-deg</property>
 							<value>15</value>
 							<value>30</value>
 						</binding>
@@ -217,7 +217,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/bank-angle-select</property>
+								<property>controls/autoflight/bank-limit-deg</property>
 								<value>15</value>
 							</equals>
 						</visible>
@@ -630,7 +630,35 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
+								<value>6</value>
+							</equals>
+						</visible>
+					</text>
+					<button>
+						<legend>TOGA</legend>
+						<binding>
+							<command>property-toggle</command>
+							<property>controls/autoflight/toga-button</property>
+						</binding>
+					</button>
+					<text>
+						<label>O</label>
+						<visible>
+							<equals>
+								<property>controls/autoflight/lat-mode</property>
+								<value>6</value>
+							</equals>
+						</visible>
+					</text>
+				</group>
+				<group>
+					<layout>hbox</layout>
+					<text>
+						<label>O</label>
+						<visible>
+							<equals>
+								<property>controls/autoflight/lat-mode</property>
 								<value>1</value>
 							</equals>
 						</visible>
@@ -639,7 +667,7 @@
 						<legend>HDG</legend>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/lateral-mode</property>
+							<property>controls/autoflight/lat-mode</property>
 							<value>1</value>
 							<value>0</value>
 						</binding>
@@ -648,7 +676,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
 								<value>1</value>
 							</equals>
 						</visible>
@@ -660,7 +688,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
 								<value>2</value>
 							</equals>
 						</visible>
@@ -669,7 +697,7 @@
 						<legend>NAV</legend>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/lateral-mode</property>
+							<property>controls/autoflight/lat-mode</property>
 							<value>2</value>
 							<value>0</value>
 						</binding>
@@ -678,7 +706,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
 								<value>2</value>
 							</equals>
 						</visible>
@@ -690,7 +718,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
 								<value>3</value>
 							</equals>
 						</visible>
@@ -699,7 +727,7 @@
 						<legend>APPR</legend>
 						<binding>
 							<command>property-cycle</command>
-							<property>controls/autoflight/lateral-mode</property>
+							<property>controls/autoflight/lat-mode</property>
 							<value>3</value>
 							<value>0</value>
 						</binding>
@@ -708,7 +736,7 @@
 						<label>O</label>
 						<visible>
 							<equals>
-								<property>controls/autoflight/lateral-mode</property>
+								<property>controls/autoflight/lat-mode</property>
 								<value>3</value>
 							</equals>
 						</visible>
@@ -992,7 +1020,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -1010,7 +1038,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -1028,7 +1056,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1042,7 +1070,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -1056,7 +1084,7 @@
 				<and>
 					<property>autopilot/internal/autoflight-engaged</property>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 				</and>
@@ -1082,7 +1110,7 @@
 					</equals>
 					<not>
 						<equals>
-							<property>controls/autoflight/lateral-mode</property>
+							<property>controls/autoflight/lat-mode</property>
 							<value>3</value>
 						</equals>
 					</not>
@@ -1102,7 +1130,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/lateral-mode</property>
+						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 				</and>
