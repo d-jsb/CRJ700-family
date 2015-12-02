@@ -2391,7 +2391,127 @@
 	</center>
     </animation>
 
-    <!-- Aileron/rudder trim -->
+    <!-- EICAS controls -->
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Pri</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>1</value>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Stat</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>2</value>
+			</binding>
+		</action>
+    </animation>
+    <!--animation>
+		<type>pick</type>
+		<object-name>EICAS_ECS</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>1</value>
+			</binding>
+		</action>
+    </animation-->
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Hyd</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>6</value>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Elec</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>3</value>
+				<value>4</value>
+			</binding>
+		</action>
+    </animation>
+	<!--animation>
+		<type>pick</type>
+		<object-name>EICAS_Fuel</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>7</value>
+			</binding>
+		</action>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_FCTL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value></value>
+			</binding>
+		</action>
+    </animation>	
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_AICE</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>5</value>
+			</binding>
+		</action>
+    </animation-->	
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Doors</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>5</value>
+			</binding>
+		</action>
+    </animation>	
+	
+	<!-- Aileron/rudder trim -->
     <animation>
 	<type>pick</type>
 	<object-name>AileronTrimKnob</object-name>
