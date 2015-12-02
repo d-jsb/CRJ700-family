@@ -158,6 +158,10 @@
 			<path>/instrumentation/mfd[1]/page</path>
 			<path>/instrumentation/mfd[1]/tcas</path>
 			<path>/instrumentation/mfd[1]/wx</path>
+			<path>/instrumentation/adf[0]/frequencies/selected-khz</path>
+			<path>/instrumentation/adf[0]/frequencies/standby-khz</path>
+			<path>/instrumentation/adf[1]/frequencies/selected-khz</path>
+			<path>/instrumentation/adf[1]/frequencies/standby-khz</path>
 			<path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
 			<path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
 			<path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
