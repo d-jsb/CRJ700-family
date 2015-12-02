@@ -5,7 +5,7 @@
 
 <PropertyList>
 
-	<tutorial include="startup-700.xml" />
+	<tutorial include="startup-900.xml" />
 	<tutorial include="takeoff.xml" />
 	<tutorial include="landing.xml" />
 
