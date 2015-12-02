@@ -22,7 +22,7 @@
 		<solve-weight idx="1" weight="10.0" />
 	</approach>
 
-	<cruise speed="560" alt="35000" fuel="0.8">
+	<cruise speed="447" alt="35000" fuel="0.8">
 		<control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95" />
 		<control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95" />
 		<control-setting axis="/controls/flight/flaps" value="0.0" />
