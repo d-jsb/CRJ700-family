@@ -163,7 +163,7 @@
                 <heading-offset-deg>180</heading-offset-deg>
                 <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
             </config>
-        </view>
+        </view> 
 		<view n="110">
             <name>10A</name>
             <type>lookfrom</type>
