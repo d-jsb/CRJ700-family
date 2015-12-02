@@ -2404,6 +2404,11 @@
 				<value>1</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Pri</tooltip-id>
+			<label>EICAS Pri</label>
+		</binding></hovered>
     </animation>
     <animation>
 		<type>pick</type>
@@ -2417,6 +2422,11 @@
 				<value>2</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Stat</tooltip-id>
+			<label>EICAS Status</label>
+		</binding></hovered>		
     </animation>
     <!--animation>
 		<type>pick</type>
@@ -2430,6 +2440,11 @@
 				<value>1</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_ECS</tooltip-id>
+			<label>EICAS ECS</label>
+		</binding></hovered>		
     </animation-->
     <animation>
 		<type>pick</type>
@@ -2443,6 +2458,11 @@
 				<value>6</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Hyd</tooltip-id>
+			<label>EICAS Hydraulic</label>
+		</binding></hovered>		
     </animation>
     <animation>
 		<type>pick</type>
@@ -2457,6 +2477,11 @@
 				<value>4</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Elec</tooltip-id>
+			<label>EICAS Electrical</label>
+		</binding></hovered>		
     </animation>
 	<!--animation>
 		<type>pick</type>
@@ -2470,6 +2495,11 @@
 				<value>7</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Fuel</tooltip-id>
+			<label>EICAS Fuel</label>
+		</binding></hovered>		
     </animation>
     <animation>
 		<type>pick</type>
@@ -2483,6 +2513,11 @@
 				<value></value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_FCTL</tooltip-id>
+			<label>EICAS Flight Controlls</label>
+		</binding></hovered>		
     </animation>	
     <animation>
 		<type>pick</type>
@@ -2493,9 +2528,14 @@
 			<binding>
 				<command>property-assign</command>
 				<property>instrumentation/eicas[1]/page</property>
-				<value>5</value>
+				<value></value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_AICE</tooltip-id>
+			<label>EICAS Anti Ice</label>
+		</binding></hovered>		
     </animation-->	
     <animation>
 		<type>pick</type>
@@ -2509,6 +2549,11 @@
 				<value>5</value>
 			</binding>
 		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Doors</tooltip-id>
+			<label>EICAS Doors</label>
+		</binding></hovered>		
     </animation>	
 	
 	<!-- Aileron/rudder trim -->
