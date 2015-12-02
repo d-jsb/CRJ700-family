@@ -122,7 +122,7 @@ var EnergyConv = {
 
 	_switch_listener: func(v){
 		me.switch = v.getValue();
-		print(me.name~" "~me.switch);
+		#print(me.name~" "~me.switch);
 		me._update_output();
 	},
 
