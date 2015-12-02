@@ -55,6 +55,11 @@
 					<type>float</type>
 					<property>engines/engine[%i]/reverser-pos-norm</property>
 				</signal>
+				<signal>
+					<type>bool</type>
+					<property>engines/engine[%i]/running-nasal</property>
+				</signal>
+
 			</signals>
 			<!-- APU -->
 			<signal>
