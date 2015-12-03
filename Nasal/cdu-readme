@@ -9,16 +9,16 @@
 # WIKI
 
 The FlightGear wiki hosts additional information: http://wiki.flightgear.org/Control_Display_Unit
-
+	
 # IMPLEMENTATION
 
 First implement a V-speed calculator: http://wiki.flightgear.org/Howto:_Calculate_V-speeds
 
-Add the following tags below the </sim> tag of your aircraft's -set.xml file.
+Add the following tags below the </sim> tag of your aircraft's -set.xml file. 
 
 	<instrumentation>
 		...
-
+		
 		<cdu>
 			<display>IDENT</display>
 			<ident>
@@ -28,7 +28,7 @@ Add the following tags below the </sim> tag of your aircraft's -set.xml file.
 			<input type="string"/>
 			<serviceable>true</serviceable>
 		</cdu>
-
+		
 		...
 	</instrumentation>
 
@@ -36,13 +36,13 @@ If your aircraft uses a YASim FDM, ensure /instrumentation/cdu/yasim-empty-weigh
 
 	<instrumentation>
 		...
-
+		
 		<cdu>
 			...
 			<yasim-empty-weight-lbs>105000</yasim-empty-weight-lbs>
 			...
 		</cdu>
-
+		
 		...
 	</instrumentation>
 

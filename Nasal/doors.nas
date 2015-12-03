@@ -4,14 +4,15 @@
 
 var Door =
 {
-	new: func(name, transit_time)
+	new: func(name, transit_time, pos = 0)
 	{
-		return aircraft.door.new("sim/model/door-positions/" ~ name, transit_time);
+		return aircraft.door.new("sim/model/door-positions/" ~ name, transit_time, pos);
 	}
 };
+
 var doors =
 {
-	pax_left: Door.new("pax-left", 3),
+	pax_left: Door.new("pax-left", 3, 1),
 	fwd_service: Door.new("pax-right", 3),
 	av_bay: Door.new("av-bay", 3),
 	fwd_cargo: Door.new("fwd-cargo", 3),

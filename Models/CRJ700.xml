@@ -80,6 +80,11 @@
 	<model>
 		<name>Pushback</name>
 		<path>Models/Airport/Pushback/Goldhofert.xml</path>
+		<overlay>
+			<params>
+				<max-nw-degree>-80</max-nw-degree>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-14.233</x-m>
 			<y-m>0</y-m>
@@ -155,7 +160,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -169,7 +174,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -192,7 +197,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -206,7 +211,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -723,8 +728,28 @@
 	<!-- Livery select -->
 	<animation>
 		<type>material</type>
-		<object-name>Fuselage</object-name>
+		<object-name>Fuselage.001</object-name>
+		<object-name>Belly</object-name>
+		<object-name>Belly.001</object-name>
+		<object-name>GearLDoor2</object-name>
+		<object-name>GearLDoor2Int</object-name>
+		<object-name>GearRDoor2</object-name>
+		<object-name>GearRDoor2Int</object-name>
+		<object-name>ElevatorL</object-name>
+		<object-name>ElevatorR</object-name>
+		<object-name>EnginePylons</object-name>
+		<object-name>GearNDoorC</object-name>
+		<object-name>GearNDoorL</object-name>
+		<object-name>GearNDoorR</object-name>
+		<object-name>Hstabs</object-name>
+		<object-name>LeftDoor</object-name>
+		<object-name>RightDoor</object-name>
+		<object-name>Vstab</object-name>
+		<object-name>Vstab.001</object-name>
+		<object-name>Rudder</object-name>
 		<object-name>Winglets</object-name>
+		<object-name>APUDoor</object-name>
+		<object-name>CTRCargoDoor</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ700-Blank.png</texture>
@@ -773,7 +798,51 @@
 		<object-name>Wings</object-name>
 		<object-name>Winglets</object-name>
 	</effect>
+	<animation>
+		<type>rotate</type>
+		<object-name>APUDoor</object-name>
+		<property>engines/apu/door-norm</property>
+		<factor>45</factor>
+        <axis>
+			<x1-m>12.48046</x1-m>
+			<y1-m>0.1635</y1-m>
+			<z1-m>-0.31618</z1-m>
+			<x2-m>12.47303</x2-m>
+			<y2-m>0.28419</y2-m>
+			<z2-m>-0.50063</z2-m>
+        </axis>		
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>CTRCargoDoor</object-name>
+		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<factor>1</factor>
+		<offset-m>0</offset-m>
+		<axis>
+			<x1-m>-5.19349</x1-m>
+			<y1-m>-0.73111</y1-m>
+			<z1-m>-2.09801</z1-m>
+			<x2-m>-5.19349</x2-m>
+			<y2-m>-0.37773</y2-m>
+			<z2-m>-2.57441</z2-m>
+		</axis>
+ 	</animation>	
+	<animation>
+		<type>rotate</type>
+		<object-name>CTRCargoDoor</object-name>
+		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<factor>20</factor>
+        <axis>
+            <x1-m>-6.19349</x1-m>
+            <y1-m>-0.73111</y1-m>
+            <z1-m>-2.09801</z1-m>
+            <x2-m>-5.19349</x2-m>
+            <y2-m>-0.73111</y2-m>
+            <z2-m>-2.09801</z2-m>
+        </axis>		
+	</animation>
 
+	
 	<foo include="CRJ700-main.xml" omit-node="y" />
 
 </PropertyList>

@@ -13,30 +13,30 @@ incAileron = func(v, a)
 	print("incAileron ");
     if (props.globals.getNode("controls/autoflight/autopilot/engage", 1).getBoolValue())
     {
-        var mode = props.globals.getNode("controls/autoflight/lateral-mode", 1).getValue();
-        if (mode == 0)
+        var lat_mode = props.globals.getNode("controls/autoflight/lat-mode", 1).getValue();
+        if (lat_mode == 0)
         {
-            var roll_mode = props.globals.getNode("controls/autoflight/basic-roll-mode", 1).getValue();
-            if (roll_mode == 0)
+            var roll_mode = props.globals.getNode("controls/autoflight/roll-mode", 1).getValue();
+            if (roll_mode == 1)
             {
                 # incAileron() was only designed to adjust autopilot heading settings
                 # so for roll, just hardcode an increment of 1
                 var roll_step = 1.0;
 				if (a < 0) roll_step = -1.0;
 				fgcommand("property-adjust", props.Node.new(
-							  { property: "controls/autoflight/basic-roll-select",
+							  { property: "autopilot/ref/roll-deg",
 								step: roll_step
 							  }));
             }
-            elsif (roll_mode == 1)
+            elsif (roll_mode == 0)
             {
                 fgcommand("property-assign", props.Node.new(
-                              { property: "controls/autoflight/basic-roll-heading-select",
-                                value: norm_hdg(getprop("controls/autoflight/basic-roll-heading-select") + a)
+                              { property: "autopilot/ref/roll-hdg",
+                                value: norm_hdg(getprop("autopilot/ref/roll-hdg") + a)
                               }));
             }
         }
-        elsif (mode == 1)
+        elsif (lat_mode == 1)
         {
             fgcommand("property-assign", props.Node.new(
                           { property: "controls/autoflight/heading-select",
@@ -54,7 +54,7 @@ incElevator = func(v, a)
 {
     if (props.globals.getNode("controls/autoflight/autopilot/engage", 1).getBoolValue())
     {
-        var mode = props.globals.getNode("controls/autoflight/vertical-mode", 1).getValue();
+        var mode = props.globals.getNode("controls/autoflight/vert-mode", 1).getValue();
         if (mode == 0)
         {
             # incElevator() was only designed to adjust autopilot altitude settings

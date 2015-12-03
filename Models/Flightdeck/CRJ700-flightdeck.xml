@@ -49,16 +49,17 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 	<overlay>
 	    <params>
-		<indicated-pitch-deg>instrumentation/attitude-indicator[0]/indicated-pitch-deg</indicated-pitch-deg>
-		<indicated-roll-deg>instrumentation/attitude-indicator[0]/indicated-roll-deg</indicated-roll-deg>
-		<indicated-altitude-ft>instrumentation/altimeter[0]/indicated-altitude-ft</indicated-altitude-ft>
-		<indicated-speed-kt>instrumentation/airspeed-indicator[0]/indicated-speed-kt</indicated-speed-kt>
-		<indicated-mach>instrumentation/airspeed-indicator[0]/indicated-mach</indicated-mach>
-		<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
-		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</indicated-vertical-speed-fpm>
-		<radar-altitude-ft>instrumentation/radar-altimeter[0]/radar-altitude-ft</radar-altitude-ft>
-		<altimeter-setting-inhg>instrumentation/altimeter[0]/setting-inhg</altimeter-setting-inhg>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/pfd1</powerN>
+			<indicated-pitch-deg>instrumentation/attitude-indicator[0]/indicated-pitch-deg</indicated-pitch-deg>
+			<indicated-roll-deg>instrumentation/attitude-indicator[0]/indicated-roll-deg</indicated-roll-deg>
+			<indicated-altitude-ft>instrumentation/altimeter[0]/indicated-altitude-ft</indicated-altitude-ft>
+			<indicated-speed-kt>instrumentation/airspeed-indicator[0]/indicated-speed-kt</indicated-speed-kt>
+			<indicated-mach>instrumentation/airspeed-indicator[0]/indicated-mach</indicated-mach>
+			<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
+			<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</indicated-vertical-speed-fpm>
+			<radar-altitude-ft>instrumentation/radar-altimeter[0]/radar-altitude-ft</radar-altitude-ft>
+			<altimeter-setting-inhg>instrumentation/altimeter[0]/setting-inhg</altimeter-setting-inhg>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -77,13 +78,14 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/mfd[0]/page</page>
-		<tcas>instrumentation/mfd[0]/tcas</tcas>
-		<wx>instrumentation/mfd[0]/wx</wx>
-		<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
-		<true-airspeed-kt>instrumentation/airspeed-indicator[0]/true-speed-kt</true-airspeed-kt>
-		<radar-range>instrumentation/efis/inputs/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/mfd1</powerN>
+			<page>instrumentation/mfd[0]/page</page>
+			<tcas>instrumentation/mfd[0]/tcas</tcas>
+			<wx>instrumentation/mfd[0]/wx</wx>
+			<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
+			<true-airspeed-kt>instrumentation/airspeed-indicator[0]/true-speed-kt</true-airspeed-kt>
+			<radar-range>instrumentation/efis/inputs/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -102,8 +104,8 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/eicas[0]/page</page>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
+			<page>instrumentation/eicas[0]/page</page>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -114,101 +116,134 @@
 	</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.813</x-m>
-	    <y-m>-0.707</y-m>
-	    <z-m>0.922</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/DC/outputs/clock1</powerN>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.813</x-m>
+			<y-m>-0.707</y-m>
+			<z-m>0.922</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<mfd-tcas>instrumentation/mfd[0]/tcas</mfd-tcas>
-		<mfd-wx>instrumentation/mfd[0]/wx</mfd-wx>
-		<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
-		<radar-range>instrumentation/efis/inputs/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.768</x-m>
-	    <y-m>-0.78</y-m>
-	    <z-m>0.761</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<mfd-tcas>instrumentation/mfd[0]/tcas</mfd-tcas>
+			<mfd-wx>instrumentation/mfd[0]/wx</mfd-wx>
+			<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
+			<radar-range>instrumentation/efis/inputs/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.768</x-m>
+			<y-m>-0.78</y-m>
+			<z-m>0.761</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<wiper>controls/anti-ice/wiper[0]</wiper>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.663</x-m>
-	    <y-m>-0.957</y-m>
-	    <z-m>0.808</z-m>
-	    <heading-deg>30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<wiper>controls/anti-ice/wiper[0]</wiper>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.663</x-m>
+			<y-m>-0.957</y-m>
+			<z-m>0.808</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.756</x-m>
-	    <y-m>-0.152</y-m>
-	    <z-m>0.65</z-m>
-	    <pitch-deg>-50</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/nws.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.68245</x-m>
+			<y-m>-0.92331</y-m>
+			<z-m>0.919</z-m>
+			<heading-deg>30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-left.xml</path>
-	<offsets>
-	    <x-m>-1.311</x-m>
-	    <y-m>-0.157</y-m>
-	    <z-m>0.528</z-m>
-	    <pitch-deg>-64.5</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
+		<overlay>
+			<params>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
+			<powerN>systems/DC/outputs/bus1</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.756</x-m>
+			<y-m>-0.152</y-m>
+			<z-m>0.65</z-m>
+			<pitch-deg>-50</pitch-deg>
+		</offsets>
+    </model>
+    <model>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-left.xml</path>
+		<offsets>
+			<x-m>-1.311</x-m>
+			<y-m>-0.157</y-m>
+			<z-m>0.528</z-m>
+			<pitch-deg>-64.5</pitch-deg>
+		</offsets>
     </model>
 
     <!-- Shared instruments -->
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/MCP/mcp.xml</path>
-	<offsets>
-	    <x-m>-1.67</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.174</z-m>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MCP/mcp.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/center-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.67</x-m>
+			<y-m>0</y-m>
+			<z-m>1.174</z-m>
+		</offsets>
+    </model>
+		<model>
+		<path>Aircraft/CRJ700-family/Models/Instruments/OHP/ohpanel.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.333</x-m>
+			<y-m>0</y-m>
+			<z-m>1.635</z-m>
+			<pitch-deg>65</pitch-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/OHP/ohpanel.xml</path>
-	<offsets>
-	    <x-m>-1.333</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.635</z-m>
-	    <pitch-deg>65</pitch-deg>
-	</offsets>
-    </model>
-    <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/UpperPanel/uppanel.xml</path>
-	<offsets>
-	    <x-m>-1.514</x-m>
-	    <y-m>0</y-m>
-	    <z-m>1.5</z-m>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/UpperPanel/uppanel.xml</path>
+		<overlay>
+			<params>
+				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.514</x-m>
+			<y-m>0</y-m>
+			<z-m>1.5</z-m>
+		</offsets>
     </model>
     <model>
 	<path>Aircraft/CRJ700-family/Models/Instruments/Standby/standby.xml</path>
@@ -236,16 +271,17 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 	<overlay>
 	    <params>
-		<indicated-pitch-deg>instrumentation/attitude-indicator[2]/indicated-pitch-deg</indicated-pitch-deg>
-		<indicated-roll-deg>instrumentation/attitude-indicator[2]/indicated-roll-deg</indicated-roll-deg>
-		<indicated-altitude-ft>instrumentation/altimeter[2]/indicated-altitude-ft</indicated-altitude-ft>
-		<indicated-speed-kt>instrumentation/airspeed-indicator[2]/indicated-speed-kt</indicated-speed-kt>
-		<indicated-mach>instrumentation/airspeed-indicator[2]/indicated-mach</indicated-mach>
-		<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
-		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</indicated-vertical-speed-fpm>
-		<radar-altitude-ft>instrumentation/radar-altimeter[1]/radar-altitude-ft</radar-altitude-ft>
-		<altimeter-setting-inhg>instrumentation/altimeter[1]/setting-inhg</altimeter-setting-inhg>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/pfd2</powerN>
+			<indicated-pitch-deg>instrumentation/attitude-indicator[2]/indicated-pitch-deg</indicated-pitch-deg>
+			<indicated-roll-deg>instrumentation/attitude-indicator[2]/indicated-roll-deg</indicated-roll-deg>
+			<indicated-altitude-ft>instrumentation/altimeter[2]/indicated-altitude-ft</indicated-altitude-ft>
+			<indicated-speed-kt>instrumentation/airspeed-indicator[2]/indicated-speed-kt</indicated-speed-kt>
+			<indicated-mach>instrumentation/airspeed-indicator[2]/indicated-mach</indicated-mach>
+			<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
+			<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</indicated-vertical-speed-fpm>
+			<radar-altitude-ft>instrumentation/radar-altimeter[1]/radar-altitude-ft</radar-altitude-ft>
+			<altimeter-setting-inhg>instrumentation/altimeter[1]/setting-inhg</altimeter-setting-inhg>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -259,13 +295,14 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/mfd[1]/page</page>
-		<tcas>instrumentation/mfd[1]/tcas</tcas>
-		<wx>instrumentation/mfd[1]/wx</wx>
-		<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
-		<true-airspeed-kt>instrumentation/airspeed-indicator[2]/true-speed-kt</true-airspeed-kt>
-		<radar-range>instrumentation/radar[1]/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/mfd2</powerN>
+			<page>instrumentation/mfd[1]/page</page>
+			<tcas>instrumentation/mfd[1]/tcas</tcas>
+			<wx>instrumentation/mfd[1]/wx</wx>
+			<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
+			<true-airspeed-kt>instrumentation/airspeed-indicator[2]/true-speed-kt</true-airspeed-kt>
+			<radar-range>instrumentation/radar[1]/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -279,8 +316,9 @@
 	<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 	<overlay>
 	    <params>
-		<page>instrumentation/eicas[1]/page</page>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
+			<powerN>/systems/DC/outputs/eicas-disp</powerN>
+			<page>instrumentation/eicas[1]/page</page>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
 	    </params>
 	</overlay>
 	<offsets>
@@ -291,74 +329,78 @@
 	</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.813</x-m>
-	    <y-m>0.707</y-m>
-	    <z-m>0.922</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
+		<overlay>
+			<params>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
+				<powerN>systems/DC/outputs/clock2</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.813</x-m>
+			<y-m>0.707</y-m>
+			<z-m>0.922</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<mfd-tcas>instrumentation/mfd[1]/tcas</mfd-tcas>
-		<mfd-wx>instrumentation/mfd[1]/wx</mfd-wx>
-		<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
-		<radar-range>instrumentation/radar[1]/range</radar-range>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.768</x-m>
-	    <y-m>0.78</y-m>
-	    <z-m>0.761</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<mfd-tcas>instrumentation/mfd[1]/tcas</mfd-tcas>
+			<mfd-wx>instrumentation/mfd[1]/wx</mfd-wx>
+			<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
+			<radar-range>instrumentation/radar[1]/range</radar-range>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.768</x-m>
+			<y-m>0.78</y-m>
+			<z-m>0.761</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
-	<overlay>
-	    <params>
-		<wiper>controls/anti-ice/wiper[1]</wiper>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.663</x-m>
-	    <y-m>0.957</y-m>
-	    <z-m>0.808</z-m>
-	    <heading-deg>-30</heading-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<overlay>
+			<params>
+			<wiper>controls/anti-ice/wiper[1]</wiper>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
+			</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.663</x-m>
+			<y-m>0.957</y-m>
+			<z-m>0.808</z-m>
+			<heading-deg>-30</heading-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
-	<overlay>
-	    <params>
-		<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
-	    </params>
-	</overlay>
-	<offsets>
-	    <x-m>-1.756</x-m>
-	    <y-m>0.152</y-m>
-	    <z-m>0.65</z-m>
-	    <pitch-deg>-50</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
+		<overlay>
+			<params>
+			<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
+			<powerN>systems/DC/outputs/bus2</powerN>
+		</params>
+		</overlay>
+		<offsets>
+			<x-m>-1.756</x-m>
+			<y-m>0.152</y-m>
+			<z-m>0.65</z-m>
+			<pitch-deg>-50</pitch-deg>
+		</offsets>
     </model>
     <model>
-	<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-right.xml</path>
-	<offsets>
-	    <x-m>-1.311</x-m>
-	    <y-m>0.157</y-m>
-	    <z-m>0.528</z-m>
-	    <pitch-deg>-64.5</pitch-deg>
-	</offsets>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-right.xml</path>
+		<offsets>
+			<x-m>-1.311</x-m>
+			<y-m>0.157</y-m>
+			<z-m>0.528</z-m>
+			<pitch-deg>-64.5</pitch-deg>
+		</offsets>
     </model>
 
     <!-- Generic pilot models -->
@@ -416,48 +458,43 @@
     </animation>
 
     <animation>
-	<type>material</type>
-	<!--
-	<object-name>Furniture</object-name>
-	<object-name>MainPanel</object-name>
-	<object-name>Floor</object-name>
-	<object-name>Glareshield</object-name>
-	<object-name>GearLever_0</object-name>
-	<object-name>GearLever_1</object-name>
-	<object-name>LeftASIPlacard</object-name>
-	<object-name>LeftYoke</object-name>
-	<object-name>LeftYokeAP</object-name>
-	<object-name>LeftYokeBase</object-name>
-	<object-name>LeftYokeChecklist</object-name>
-	<object-name>PedestalTop</object-name>
-	<object-name>RightASIPlacard</object-name>
-	<object-name>RightYoke</object-name>
-	<object-name>RightYokeAP</object-name>
-	<object-name>RightYokeBase</object-name>
-	<object-name>RightYokeChecklist</object-name>
-	<object-name>Seats</object-name>
-	<object-name>Shell</object-name>
-	<object-name>SpeedbrakeLever</object-name>
-	<object-name>Tiller</object-name>
-	<object-name>TillerPanel</object-name>
-	<object-name>UpperPanel</object-name>
-	<object-name>Warnings</object-name>
-	<object-name>YokeFloorBases</object-name>
-	-->
-	<condition>
-	    <and>
-		<property>controls/lighting/dome</property>
-		<greater-than-equals>
-		    <property>systems/electrical/outputs/panel-lights</property>
-		    <value>15</value>
-		</greater-than-equals>
-	    </and>
-	</condition>
-	<emission>
-	    <red>0.5</red>
-	    <green>0.5</green>
-	    <blue>0.5</blue>
-	</emission>
+		<type>material</type>
+		<!--
+		<object-name>Furniture</object-name>
+		<object-name>MainPanel</object-name>
+		<object-name>Floor</object-name>
+		<object-name>Glareshield</object-name>
+		<object-name>GearLever_0</object-name>
+		<object-name>GearLever_1</object-name>
+		<object-name>LeftASIPlacard</object-name>
+		<object-name>LeftYoke</object-name>
+		<object-name>LeftYokeAP</object-name>
+		<object-name>LeftYokeBase</object-name>
+		<object-name>LeftYokeChecklist</object-name>
+		<object-name>PedestalTop</object-name>
+		<object-name>RightASIPlacard</object-name>
+		<object-name>RightYoke</object-name>
+		<object-name>RightYokeAP</object-name>
+		<object-name>RightYokeBase</object-name>
+		<object-name>RightYokeChecklist</object-name>
+		<object-name>Seats</object-name>
+		<object-name>Shell</object-name>
+		<object-name>SpeedbrakeLever</object-name>
+		<object-name>Tiller</object-name>
+		<object-name>TillerPanel</object-name>
+		<object-name>UpperPanel</object-name>
+		<object-name>Warnings</object-name>
+		<object-name>YokeFloorBases</object-name>
+		-->
+		<condition>
+			<!-- powered by battery direct bus -->
+			<property>controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.5</red>
+			<green>0.5</green>
+			<blue>0.5</blue>
+		</emission>
     </animation>
 
     <animation>
@@ -465,8 +502,8 @@
 	<object-name>PedestalMarkings</object-name>
 	<condition>
 	    <greater-than-equals>
-		<property>systems/electrical/outputs/panel-lights</property>
-		<value>15</value>
+		<property>systems/AC/outputs/center-panel-int-lights</property>
+		<value>100</value>
 	    </greater-than-equals>
 	</condition>
 	<emission>
@@ -484,15 +521,15 @@
 	<type>string-value</type>
 	<property>sim/model/livery/registration</property>
 	<axis-alignment>yz-plane</axis-alignment>
-	<alignment>center-center</alignment>
+	<alignment>center-top</alignment>
 	<character-size>0.014</character-size>
 	<character-aspect-ratio>0.6</character-aspect-ratio>
 	<font>Helvetica.txf</font>
 	<format>%s</format>
 	<offsets>
-	    <x-m>-1.918</x-m>
-	    <y-m>-0.459</y-m>
-	    <z-m>0.953</z-m>
+	    <x-m>-1.923</x-m>
+	    <y-m>-0.51396</y-m>
+	    <z-m>0.995</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
 	<font-resolution>
@@ -505,15 +542,15 @@
 	<type>string-value</type>
 	<property>sim/model/livery/registration</property>
 	<axis-alignment>yz-plane</axis-alignment>
-	<alignment>center-center</alignment>
+	<alignment>center-top</alignment>
 	<character-size>0.014</character-size>
 	<character-aspect-ratio>0.6</character-aspect-ratio>
 	<font>Helvetica.txf</font>
 	<format>%s</format>
 	<offsets>
-	    <x-m>-1.918</x-m>
-	    <y-m>0.459</y-m>
-	    <z-m>0.953</z-m>
+	    <x-m>-1.923</x-m>
+	    <y-m>0.51396</y-m>
+	    <z-m>0.995</z-m>
 	    <pitch-deg>-10</pitch-deg>
 	</offsets>
 	<font-resolution>
@@ -785,7 +822,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -813,7 +850,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -841,7 +878,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -870,7 +907,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -898,7 +935,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -926,7 +963,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -956,7 +993,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -978,7 +1015,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1028,7 +1065,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1066,7 +1103,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1133,7 +1170,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1171,7 +1208,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1238,7 +1275,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1276,7 +1313,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1477,7 +1514,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1561,7 +1598,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1733,7 +1770,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -1781,7 +1818,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2368,7 +2405,172 @@
 	</center>
     </animation>
 
-    <!-- Aileron/rudder trim -->
+    <!-- EICAS controls -->
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Pri</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>1</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Pri</tooltip-id>
+			<label>EICAS Pri</label>
+		</binding></hovered>
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Stat</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>2</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Stat</tooltip-id>
+			<label>EICAS Status</label>
+		</binding></hovered>		
+    </animation>
+    <!--animation>
+		<type>pick</type>
+		<object-name>EICAS_ECS</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>1</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_ECS</tooltip-id>
+			<label>EICAS ECS</label>
+		</binding></hovered>		
+    </animation-->
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Hyd</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>6</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Hyd</tooltip-id>
+			<label>EICAS Hydraulic</label>
+		</binding></hovered>		
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Elec</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>3</value>
+				<value>4</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Elec</tooltip-id>
+			<label>EICAS Electrical</label>
+		</binding></hovered>		
+    </animation>
+	<!--animation>
+		<type>pick</type>
+		<object-name>EICAS_Fuel</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>7</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Fuel</tooltip-id>
+			<label>EICAS Fuel</label>
+		</binding></hovered>		
+    </animation>
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_FCTL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value></value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_FCTL</tooltip-id>
+			<label>EICAS Flight Controlls</label>
+		</binding></hovered>		
+    </animation>	
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_AICE</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value></value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_AICE</tooltip-id>
+			<label>EICAS Anti Ice</label>
+		</binding></hovered>		
+    </animation-->	
+    <animation>
+		<type>pick</type>
+		<object-name>EICAS_Doors</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>5</value>
+			</binding>
+		</action>
+		<hovered><binding>
+			<command>set-tooltip</command>
+			<tooltip-id>EP_Doors</tooltip-id>
+			<label>EICAS Doors</label>
+		</binding></hovered>		
+    </animation>	
+	
+	<!-- Aileron/rudder trim -->
     <animation>
 	<type>pick</type>
 	<object-name>AileronTrimKnob</object-name>
@@ -2647,7 +2849,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2694,7 +2896,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2719,7 +2921,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>			
 				<or>
@@ -2740,7 +2942,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2845,7 +3047,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2893,7 +3095,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2941,7 +3143,7 @@
 		<condition>
 			<and>
 				<greater-than-equals>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/DC/outputs/efis</property>
 					<value>15</value>
 				</greater-than-equals>
 				<or>
@@ -2975,6 +3177,20 @@
 		</script>
 	    </binding>
 	</action>
+    </animation>
+    <!-- ADG manual deploy -->
+    <animation>
+		<type>pick</type>
+		<object-name>ADGManDeploy</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/electric/ADG</property>
+				<value>1</value>
+			</binding>
+		</action>
     </animation>
     <!-- Emer Flaps -->
     <animation>

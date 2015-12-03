@@ -3,260 +3,269 @@
 
 <PropertyList>
 	<title>Engine start</title>
-	<item>
-		<name>Parking Brake</name>
-		<value>SET</value>
-		<condition>
-			<equals>
+	<page>
+		<item>
+			<name>Parking Brake</name>
+			<value>SET</value>
+			<condition>
+				<equals>
+					<property>/controls/gear/brake-parking</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>/controls/gear/brake-parking</property>
 				<value>1</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/gear/brake-parking</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>APU</name>
-		<value>AVAIL</value>
-		<condition>
-			<and>
-				<property>/controls/APU/off-on</property>
-				<property>/engines/apu/running</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/electronic-control-unit</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/off-on</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>Bleed Air Souce</name>
-		<value>APU</value>
-		<condition>
-			<equals>
+			</binding>
+		</item>
+		<item>
+			<name>APU</name>
+			<value>AVAIL</value>
+			<marker>
+				<x-m>-15.4909</x-m>
+				<y-m>0.0314</y-m>
+				<z-m>-0.1893</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<and>
+					<property>/controls/APU/off-on</property>
+					<property>/engines/apu/running</property>
+				</and>
+			</condition>
+		</item>
+		<item>
+			<name>Bleed Air Souce</name>
+			<value>APU</value>
+			<marker>
+				<x-m>-15.4512</x-m>
+				<y-m>0.0438</y-m>
+				<z-m>-0.1793</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<equals>
+					<property>/controls/pneumatic/bleed-source</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>/controls/pneumatic/bleed-source</property>
 				<value>2</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/pneumatic/bleed-source</property>
-			<value>2</value>
-		</binding>		
-	</item>
-	<item>
-		<name>Throttle</name>
-		<value>IDLE</value>
-		<condition>
-			<and>
-				<not><property>/controls/engines/engine[0]/cutoff</property></not>
-				<not><property>/controls/engines/engine[1]/cutoff</property></not>
-				<less-than>
-					<property>/controls/engines/engine[0]/throttle</property>
-					<value>0.02</value>
-				</less-than>
-				<less-than>
-					<property>/controls/engines/engine[1]/throttle</property>
-					<value>0.02</value>
-				</less-than>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[0]/cutoff</property>
-			<value>0</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[1]/cutoff</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Engine Area</name>
-		<value>CLEAR</value>
-	</item>
-	<item>
-		<name>Fuel Pumps</name>
-		<value>ON</value>
-		<condition>
-			<and>
+			</binding>		
+		</item>
+		<item>
+			<name>Throttle</name>
+			<value>IDLE</value>
+			<condition>
+				<and>
+					<not><property>/controls/engines/engine[0]/cutoff</property></not>
+					<not><property>/controls/engines/engine[1]/cutoff</property></not>
+					<less-than>
+						<property>/controls/engines/engine[0]/throttle</property>
+						<value>0.02</value>
+					</less-than>
+					<less-than>
+						<property>/controls/engines/engine[1]/throttle</property>
+						<value>0.02</value>
+					</less-than>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[0]/cutoff</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[1]/cutoff</property>
+				<value>0</value>
+			</binding>
+		</item>
+		<item>
+			<name>Engine Area</name>
+			<value>CLEAR</value>
+		</item>
+		<item>
+			<name>Fuel Pumps</name>
+			<value>ON</value>
+			<marker>
+				<x-m>-15.3463</x-m>
+				<y-m>-0.0488</y-m>
+				<z-m>-0.1182</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<and>
+					<property>/consumables/fuel/tank[0]/selected</property>
+					<property>/consumables/fuel/tank[1]/selected</property>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>/consumables/fuel/tank[0]/selected</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
 				<property>/consumables/fuel/tank[1]/selected</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/consumables/fuel/tank[0]/selected</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/consumables/fuel/tank[1]/selected</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<!-- engine 1 -->
-	<item>
-		<name>Engine Starter Switch</name>
-		<value>ON</value>
-		<condition>
-			<not><property>/engines/engine[0]/running</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[0]/starter</property>
-			<value>1</value>
-		</binding>		
-	</item>
-	<item>
-		<name>N1 increases as N2 increases</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>ITT</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>Oil Pressure</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>Engine Starter Switch</name>
-		<value>OFF</value>
-		<condition>
-			<and>
+				<value>1</value>
+			</binding>
+		</item>
+		<!-- engine 1 -->
+		<item>
+			<name>Engine 1 Starter Switch Light</name>
+			<value>ON</value>
+			<marker>
+				<x-m>-15.5298</x-m>
+				<y-m>-0.0463</y-m>
+				<z-m>-0.2041</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<or>
+					<property>/controls/engines/engine[0]/starter</property>
+					<property>/engines/engine[0]/running</property>
+				</or>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[0]/starter</property>
+				<value>1</value>
+			</binding>		
+		</item>
+		<item>
+			<name>N1 increases as N2 increases</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>ITT</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>Oil Pressure</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>Engine 1 Starter Switch Light </name>
+			<value>CHECK OFF</value>
+			<condition>
 				<not><property>/controls/engines/engine[0]/starter</property></not>
 				<property>/engines/engine[0]/running</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[0]/starter</property>
-			<value>0</value>
-		</binding>		
-	</item>
-	<!-- engine 2 -->
-	<item>
-		<name>Engine Starter Switch</name>
-		<value>ON</value>
-		<condition>
-			<not><property>/engines/engine[1]/running</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[1]/starter</property>
-			<value>1</value>
-		</binding>		
-	</item>
-	<item>
-		<name>N1 increases as N2 increases</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>ITT</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>Oil Pressure</name>
-		<value>CHECK</value>
-	</item>
-	<item>
-		<name>Engine Starter Switch</name>
-		<value>OFF</value>
-		<condition>
-			<and>
-				<not><property>/controls/engines/engine[1]/starter</property></not>
-				<property>/engines/engine[1]/running</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/engines/engine[1]/starter</property>
-			<value>0</value>
-		</binding>		
-	</item>
-	
-	<item>
-		<name>Generator 1 and 2</name>
-		<value>ON</value>
-		<condition>
-			<and>
-				<property>/controls/electric/engine[0]/generator</property>
-				<property>/controls/electric/engine[1]/generator</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/electric/engine[0]/generator</property>
-			<value>1</value>
-		</binding>	
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/electric/engine[1]/generator</property>
-			<value>1</value>
-		</binding>	
-	</item>
-	
-	<item>
-		<name>APU/Generator</name>
-		<value>OFF</value>
-		<condition>
-			<and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[0]/starter</property>
+				<value>0</value>
+			</binding>		
+		</item>
+	</page>
+	<page>
+		<!-- engine 2 -->
+		<item>
+			<name>Engine 2 Starter Switch Light</name>
+			<value>ON</value>
+			<marker>
+				<x-m>-15.5298</x-m>
+				<y-m>-0.0190</y-m>
+				<z-m>-0.2041</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
 				<or>
-					<property>/controls/electric/engine[0]/generator</property>
-					<property>/controls/electric/engine[1]/generator</property>
-				</or>			
-				<not><property>/controls/electric/APU-generator</property></not>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/electric/APU-generator</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>APU</name>
-		<value>OFF</value>
-		<condition>
-			<and>
-				<or>
-					<property>/engines/engine[0]/running</property>
+					<property>/controls/engines/engine[1]/starter</property>
 					<property>/engines/engine[1]/running</property>
 				</or>
-				<not><property>/controls/APU/off-on</property></not>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/APU/off-on</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Bleed Air Souce</name>
-		<value>BOTH</value>
-		<condition>
-			<equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[1]/starter</property>
+				<value>1</value>
+			</binding>		
+		</item>
+		<item>
+			<name>N1 increases as N2 increases</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>ITT</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>Oil Pressure</name>
+			<value>CHECK</value>
+		</item>
+		<item>
+			<name>Engine 2 Starter Switch Light</name>
+			<value>CHECK OFF</value>
+			<condition>
+				<and>
+					<not><property>/controls/engines/engine[1]/starter</property></not>
+					<property>/engines/engine[1]/running</property>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/engines/engine[1]/starter</property>
+				<value>0</value>
+			</binding>		
+		</item>
+		
+		<item>
+			<name>Generator 1 and 2</name>
+			<value>ON</value>
+			<condition>
+				<and>
+					<property>/controls/electric/engine[0]/generator</property>
+					<property>/controls/electric/engine[1]/generator</property>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/electric/engine[0]/generator</property>
+				<value>1</value>
+			</binding>	
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/electric/engine[1]/generator</property>
+				<value>1</value>
+			</binding>	
+		</item>
+		
+		<item>
+			<name>APU</name>
+			<value>OFF</value>
+			<condition>
+				<and>
+					<or>
+						<property>/engines/engine[0]/running</property>
+						<property>/engines/engine[1]/running</property>
+					</or>
+					<not><property>/controls/APU/off-on</property></not>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/APU/off-on</property>
+				<value>0</value>
+			</binding>
+		</item>
+		<item>
+			<name>Bleed Air Souce</name>
+			<value>BOTH</value>
+			<condition>
+				<equals>
+					<property>/controls/pneumatic/bleed-source</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>/controls/pneumatic/bleed-source</property>
 				<value>0</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/pneumatic/bleed-source</property>
-			<value>0</value>
-		</binding>		
-	</item>
-	
+			</binding>		
+		</item>
+	</page>
 </PropertyList>

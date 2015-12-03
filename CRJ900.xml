@@ -106,21 +106,38 @@
 	<fuselage ax="-7.667" ay="2.27" az="-0.264" bx="-9.816" by="2.27" bz="-0.358" width="1.53" taper="0.9" midpoint="0.5" />
 	<fuselage ax="-7.667" ay="-2.27" az="-0.264" bx="-9.816" by="-2.27" bz="-0.358" width="1.53" taper="0.9" midpoint="0.5" />
 	<!-- Actual engines -->
-	<jet x="-8.925" y="2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="20.0" n1-max="99.5" n2-idle="56.5" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
+	<!--
+	<jet x="-8.925" y="2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
 		<control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" />
 		<control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST" />
 		<control-output control="REVERSE_THRUST" prop="/engines/engine[0]/reverser-pos-norm" />
 		<control-speed control="REVERSE_THRUST" transition-time="1.0" />
 		<actionpt x="-10.983" y="2.27" z="-0.409" />
 	</jet>
-	<jet x="-8.925" y="-2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="20.0" n1-max="99.5" n2-idle="56.5" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
+	<jet x="-8.925" y="-2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
 		<control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" />
 		<control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST" />
 		<control-output control="REVERSE_THRUST" prop="/engines/engine[1]/reverser-pos-norm" />
 		<control-speed control="REVERSE_THRUST" transition-time="1.0" />
 		<actionpt x="-10.983" y="-2.27" z="-0.409" />
 	</jet>
-
+	-->
+	<!-- GE CF34-8C5 -->
+	<jet x="-8.925" y="2.27" z="-0.319" mass="2450.0" thrust="14500.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="59.0" n2-max="99.4" tsfc="0.68" egt="1000.0" epr="28.0" exhaust-speed="1555.0" spool-time="3.0">
+		<control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" />
+		<control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST" />
+		<control-output control="REVERSE_THRUST" prop="/engines/engine[0]/reverser-pos-norm" />
+		<control-speed control="REVERSE_THRUST" transition-time="1.0" />
+		<actionpt x="-10.983" y="2.27" z="-0.409" />
+	</jet>
+	<jet x="-8.925" y="-2.27" z="-0.319" mass="2450.0" thrust="14500.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="59.0" n2-max="99.4" tsfc="0.68" egt="1000.0" epr="28.0" exhaust-speed="1555.0" spool-time="3.0">
+		<control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" />
+		<control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST" />
+		<control-output control="REVERSE_THRUST" prop="/engines/engine[1]/reverser-pos-norm" />
+		<control-speed control="REVERSE_THRUST" transition-time="1.0" />
+		<actionpt x="-10.983" y="-2.27" z="-0.409" />
+	</jet>
+	
 	<!-- Landing gear -->
 	<!-- Pushback -->
 	<thruster x="16.172" y="0.0" z="-3.459" vx="1" vy="0" vz="0" thrust="10000">

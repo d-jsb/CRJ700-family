@@ -7,9 +7,9 @@
 
     <sim>
         <description>Bombardier CRJ700 (with tutorials)</description>
-        <author>Ryan Miller (3d), Ryan Miller (FDM)</author>
-        <status>early-production</status>
-        <aircraft-version>1.1.0</aircraft-version>
+        <author>Ryan Miller, Henning S.</author>
+        <status>production</status>
+        <aircraft-version>1.5.0b</aircraft-version>
         <rating>
             <FDM type="int">3</FDM>
             <systems type="int">3</systems>
@@ -56,7 +56,7 @@
                 <y-offset-m archive="y">-0.468</y-offset-m>
                 <z-offset-m archive="y">0</z-offset-m>
             </config>
-        </view>
+		</view>
         <view n="101">
             <name>First Officer View</name>
             <type>lookfrom</type>
@@ -163,9 +163,9 @@
                 <heading-offset-deg>180</heading-offset-deg>
                 <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
             </config>
-        </view>
+        </view> 
 		<view n="110">
-            <name>Window left </name>
+            <name>10A</name>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -179,7 +179,7 @@
             </config>
         </view>
        <view n="111">
-            <name>Window left (wing)</name>
+            <name>17A</name>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -193,7 +193,7 @@
             </config>
         </view>
        <view n="120">
-            <name>Window right </name>
+            <name>10F</name>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -207,7 +207,7 @@
             </config>
         </view>
        <view n="121">
-            <name>Window right (wing)</name>
+            <name>17F</name>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -220,7 +220,50 @@
                 <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
             </config>
         </view>
-        <weight n="1">
+ 		<view n="122">
+            <name>L wing</name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">false</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">-2.2</x-offset-m>
+                <y-offset-m archive="y">-0.6</y-offset-m>
+                <z-offset-m archive="y">1.4</z-offset-m>
+                <pitch-offset-deg>-1</pitch-offset-deg>
+                <heading-offset-deg>10</heading-offset-deg>
+                <default-field-of-view-deg type="double">65</default-field-of-view-deg>
+            </config>
+        </view>
+		<view n="123">
+            <name>R wing</name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">false</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">10.71</x-offset-m>
+                <y-offset-m archive="y">-0.6</y-offset-m>
+                <z-offset-m archive="y">4.24</z-offset-m>
+                <pitch-offset-deg>-1</pitch-offset-deg>
+                <heading-offset-deg>130</heading-offset-deg>
+                <default-field-of-view-deg type="double">65</default-field-of-view-deg>
+            </config>
+        </view>		
+        <view n="124">
+            <name>Ground walk</name>
+            <type>lookfrom</type>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <x-offset-m archive="y">-3.95</x-offset-m>
+                <y-offset-m archive="y">-1.65</y-offset-m>
+				<!-- ground z ~ -3.35m -->
+                <z-offset-m archive="y">-15.65</z-offset-m>
+                <pitch-offset-deg>0</pitch-offset-deg>
+                <heading-offset-deg>180</heading-offset-deg>
+            </config>
+        </view>
+		
+		<weight n="1">
             <weight-lb>10000</weight-lb>
             <max-lb>18800</max-lb>
             <min-lb>0</min-lb>

@@ -4,7 +4,6 @@
 <!-- External sound configuration -->
 
 <PropertyList>
-
     <fx>
 	<!-- Engine 1 sound -->
 	<engine>
@@ -32,6 +31,11 @@
 		<offset>0.5</offset>
 		<factor>0.007</factor>
 	    </pitch>
+		<position>
+			<x>9.30</x>
+			<y>2.15</y>
+			<z>0</z>
+	    </position>
 	    <!-- stuttering issues -->
 	    <!--orientation>
 		<x>-1</x>
@@ -67,6 +71,11 @@
 		<offset>0</offset>
 		<factor>0.01</factor>
 	    </pitch>
+		<position>
+			<x>9.30</x>
+			<y>2.15</y>
+			<z>0</z>
+	    </position>
 	    <!-- stuttering issues -->
 	    <!--orientation>
 		<x>1</x>
@@ -98,6 +107,11 @@
 		<offset>0</offset>
 		<factor>0.01</factor>
 	    </volume>
+		<position>
+			<x>9.30</x>
+			<y>2.15</y>
+			<z>0</z>
+	    </position>
 	</engine>
 
 	<!-- Engine 2 sound -->
@@ -126,6 +140,11 @@
 		<offset>0.5</offset>
 		<factor>0.007</factor>
 	    </pitch>
+		<position>
+			<x>9.30</x>
+			<y>-2.15</y>
+			<z>0</z>
+	    </position>
 	    <!-- stuttering issues -->
 	    <!--orientation>
 		<x>-1</x>
@@ -161,6 +180,11 @@
 		<offset>0</offset>
 		<factor>0.01</factor>
 	    </pitch>
+		<position>
+			<x>9.30</x>
+			<y>-2.15</y>
+			<z>0</z>
+	    </position>
 	    <!-- stuttering issues -->
 	    <!--orientation>
 		<x>1</x>
@@ -192,6 +216,11 @@
 		<offset>0</offset>
 		<factor>0.01</factor>
 	    </volume>
+		<position>
+			<x>9.30</x>
+			<y>-2.15</y>
+			<z>0</z>
+	    </position>
 	</engine>
 
 	<!-- Landing gear -->
@@ -207,6 +236,16 @@
 		</greater-than>
 	    </condition-->
 	    <property>gear/gear[0]/position-norm</property>
+		<position>
+			<x>9.30</x>
+			<y>2.15</y>
+			<z>0</z>
+	    </position>
+		<position>
+			<x>1.30</x>
+			<y>0</y>
+			<z>-2.50</z>
+	    </position>
 	</gear>
 	<gear>
 	    <name>Gear door close</name>
@@ -233,6 +272,11 @@
 	    <volume>
 		<offset>-0.75</offset>
 	    </volume>
+		<position>
+			<x>1.30</x>
+			<y>0</y>
+			<z>-2.50</z>
+	    </position>
 	</gear>
 
 	<!-- Flaps -->
@@ -246,12 +290,26 @@
 				<not><property>controls/flight/flaps-stop-snd</property></not>
 			</and>
 		</condition>
+	    <position>
+			<x>0</x>
+			<y>0</y>
+			<z>-2.50</z>
+	    </position>
+		<max-dist>17</max-dist>
+		<reference-dist>2</reference-dist>
 	</flaps>
 	<flapsStop>
 	    <name>Flaps stopping</name>
 	    <path>Aircraft/CRJ700-family/Sounds/flaps-stop1.wav</path>
 	    <mode>once</mode>
 		<property>controls/flight/flaps-stop-snd</property>
+	    <position>
+			<x>0</x>
+			<y>0</y>
+			<z>-2.50</z>
+	    </position>
+		<max-dist>17</max-dist>
+		<reference-dist>2</reference-dist>
 	</flapsStop>
 	<slats>
 	    <name>Slats in transit</name>
@@ -259,10 +317,12 @@
 	    <mode>in-transit</mode>		
 		<property>surface-positions/slat-pos-norm</property>
 	    <position>
-			<x>1</x>
+			<x>0</x>
 			<y>0</y>
-			<z>0</z>
+			<z>-2.50</z>
 	    </position>
+		<max-dist>17</max-dist>
+		<reference-dist>2</reference-dist>
 	</slats>
 	
 	<!-- Speedbrakes/spoilers -->
@@ -315,6 +375,11 @@
 	    </condition>
 	    <reference-dist>10</reference-dist>
 	    <max-dist>30</max-dist>
+		<position>
+			<x>14.30</x>
+			<y>0</y>
+			<z>-0.80</z>
+	    </position>
 	</apu>
 	<apu>
 	    <name>APU running</name>
@@ -328,6 +393,11 @@
 	    </condition>
 	    <reference-dist>10</reference-dist>
 	    <max-dist>30</max-dist>
+		<position>
+			<x>14.30</x>
+			<y>0</y>
+			<z>-0.80</z>
+	    </position>
 	</apu>
 	<apu>
 	    <name>APU shutdown</name>
@@ -350,6 +420,11 @@
 	    </condition>
 	    <reference-dist>10</reference-dist>
 	    <max-dist>30</max-dist>
+		<position>
+			<x>14.30</x>
+			<y>0</y>
+			<z>-0.80</z>
+	    </position>
 	</apu>
 
 	<foo include="CRJ700-internal-sound.xml" omit-node="y" />

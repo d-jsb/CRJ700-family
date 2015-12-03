@@ -80,12 +80,17 @@
 	<model>
 		<name>Pushback</name>
 		<path>Models/Airport/Pushback/Goldhofert.xml</path>
+		<overlay>
+			<params>
+				<max-nw-degree>-80</max-nw-degree>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-16.173</x-m>
 			<y-m>0</y-m>
 			<z-m>-3.459</z-m>
 		</offsets>
-	</model>
+		</model>
 	<!-- Lights -->
 	<model>
 		<name>Port nav light</name>
@@ -155,7 +160,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -169,7 +174,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[0]</source>
+				<source>systems/DC/outputs/landing-lights[0]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -192,7 +197,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -206,7 +211,7 @@
 		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/electrical/outputs/landing-lights[2]</source>
+				<source>systems/DC/outputs/landing-lights[2]</source>
 			</params>
 		</overlay>
 		<offsets>
@@ -256,7 +261,191 @@
 			<z-m>0</z-m>
 		</center>
 	</animation>
-
+	<animation>
+		<type>rotate</type>
+		<object-name>APUDoor</object-name>
+		<property>engines/apu/door-norm</property>
+		<factor>45</factor>
+        <axis>
+			<x1-m>14.44046</x1-m>
+			<y1-m>0.1635</y1-m>
+			<z1-m>-0.31618</z1-m>
+			<x2-m>14.43303</x2-m>
+			<y2-m>0.28419</y2-m>
+			<z2-m>-0.50063</z2-m>
+        </axis>		
+	</animation>
+	<!-- Aft Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0.05</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>0.05</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>8.01757</x1-m>
+			<y1-m>-1.22626</y1-m>
+			<z1-m>-1.20368</z1-m>
+			<x2-m>7.967</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-1.042</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorAft</object-name>
+		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.05</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-35</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>7.967</x-m>
+			<y-m>0</y-m>
+			<z-m>-1.042</z-m>
+		</center>
+		<axis>
+			<x>1.09</x>
+			<y>0.06101</y>
+			<z>0.0108</z>
+        </axis>
+	</animation>
+	<!-- Fwd Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorFwd</object-name>
+		<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-0.1</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-0.5</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>-7.8381</x1-m>
+			<y1-m>-0.72405</y1-m>
+			<z1-m>-2.08164</z1-m>
+			<x2-m>-7.8381</x2-m>
+			<y2-m>-0.0083</y2-m>
+			<z2-m>-1.1303</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorFwd</object-name>
+		<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>25</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-7.8381</x-m>
+			<y-m>-0.0083</y-m>
+			<z-m>-1.1303</z-m>
+		</center>
+		<axis>
+			<x>1.02218</x>
+			<y>0</y>
+			<z>0</z>
+        </axis>
+	</animation>
+	<!-- Ctr Cargo Door -->
+	<animation>
+		<type>translate</type>
+		<object-name>CargoDoorCtr</object-name>
+		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-0.1</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-0.5</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>-5.08492</x1-m>
+			<y1-m>-0.71826</y1-m>
+			<z1-m>-2.10312</z1-m>
+			<x2-m>-5.0849</x2-m>
+			<y2-m>-0.008</y2-m>
+			<z2-m>-1.1295</z2-m>
+        </axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CargoDoorCtr</object-name>
+		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>25</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-5.0849</x-m>
+			<y-m>-0.008</y-m>
+			<z-m>-1.1295</z-m>
+		</center>
+		<axis>
+			<x>1.02218</x>
+			<y>0</y>
+			<z>0</z>
+        </axis>
+	</animation>
 	<!-- Wing animations -->
 	<!-- Ailerons -->
 	<animation>
@@ -756,7 +945,30 @@
 	<animation>
 		<type>material</type>
 		<object-name>Fuselage</object-name>
+		<object-name>Fuselage.001</object-name>
+		<object-name>Belly</object-name>
+		<object-name>Belly.001</object-name>
+		<object-name>GearLDoor2</object-name>
+		<object-name>GearLDoor2Int</object-name>
+		<object-name>GearRDoor2</object-name>
+		<object-name>GearRDoor2Int</object-name>
+		<object-name>ElevatorL</object-name>
+		<object-name>ElevatorR</object-name>
+		<object-name>EnginePylons</object-name>
+		<object-name>GearNDoorC</object-name>
+		<object-name>GearNDoorL</object-name>
+		<object-name>GearNDoorR</object-name>
+		<object-name>Hstabs</object-name>
+		<object-name>LeftDoor</object-name>
+		<object-name>RightDoor</object-name>
+		<object-name>Vstab</object-name>
+		<object-name>Vstab.001</object-name>
+		<object-name>Rudder</object-name>
 		<object-name>Winglets</object-name>
+		<object-name>APUDoor</object-name>
+		<object-name>CargoDoorFwd</object-name>
+		<object-name>CargoDoorCtr</object-name>
+		<object-name>CargoDoorAft</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ900-Blank.png</texture>
@@ -805,7 +1017,7 @@
 		<object-name>Wings</object-name>
 		<object-name>Winglets</object-name>
 	</effect>
-
+	
 	<foo include="CRJ700-main.xml" omit-node="y" />
 
 </PropertyList>

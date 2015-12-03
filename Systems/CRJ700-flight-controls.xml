@@ -527,61 +527,7 @@
 	</filter>
 
 	<!-- Throttles/FADEC thrust modes -->
-	<!-- Autothrottle -->
-	<filter>
-		<name>Engine 1 autopilot controller</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<and>
-					<property>autopilot/internal/autothrottle-engaged</property>
-					<equals>
-						<property>controls/engines/engine[0]/thrust-mode</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<table>
-					<property>fcs/autopilot/throttle-cmd-norm</property>
-					<entry><ind>0</ind><dep>0</dep></entry>
-					<entry><ind>1</ind><dep>0.92</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>fcs/throttle-cmd-norm[0]</output>
-	</filter>
-	<filter>
-		<name>Engine 2 autopilot controller</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<and>
-					<property>autopilot/internal/autothrottle-engaged</property>
-					<equals>
-						<property>controls/engines/engine[1]/thrust-mode</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<table>
-					<property>fcs/autopilot/throttle-cmd-norm</property>
-					<entry><ind>0</ind><dep>0</dep></entry>
-					<entry><ind>1</ind><dep>0.92</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>fcs/throttle-cmd-norm[1]</output>
-	</filter>
+	<!-- CRJ700 has NO autothrottle! -->
 	<!-- 0 : Manual control -->
 	<!-- Interpolates the user's throttles between 0% and 92% -->
 	<filter>
@@ -592,9 +538,6 @@
 		<enable>
 			<condition>
 				<and>
-					<not>
-						<property>autopilot/internal/autothrottle-engaged</property>
-					</not>
 					<equals>
 						<property>controls/engines/engine[0]/thrust-mode</property>
 						<value>0</value>
@@ -639,9 +582,6 @@
 			<condition>
 				<and>
 					<property>fcs/copilot/active</property>
-					<not>
-						<property>autopilot/internal/autothrottle-engaged</property>
-					</not>
 					<equals>
 						<property>controls/engines/engine[0]/thrust-mode</property>
 						<value>0</value>
@@ -680,9 +620,6 @@
 		<enable>
 			<condition>
 				<and>
-					<not>
-						<property>autopilot/internal/autothrottle-engaged</property>
-					</not>
 					<equals>
 						<property>controls/engines/engine[1]/thrust-mode</property>
 						<value>0</value>
@@ -727,9 +664,6 @@
 			<condition>
 				<and>
 					<property>fcs/copilot/active</property>
-					<not>
-						<property>autopilot/internal/autothrottle-engaged</property>
-					</not>
 					<equals>
 						<property>controls/engines/engine[1]/thrust-mode</property>
 						<value>0</value>
@@ -925,7 +859,12 @@
 		<output>fcs/throttle-cmd-norm[1]</output>
 	</filter>
 
-	<!-- Nose gear steering -->
+	<!-- Nose wheel steering -->
+	<!-- 
+	rudder controls NWS 100% if tiller is switched "off"?! 
+	Bad idea when landing with tiller switched off.
+	-->
+    <!--
 	<filter>
 		<name>Pilot tiller disabled nose gear steer</name>
 		<type>gain</type>
@@ -939,7 +878,6 @@
 					</not>
 					<property>gear/gear[0]/wow</property>
 				</and>
-				<property>systems/hydraulic/outputs/nwsteering</property>
 			</condition>
 		</enable>
 		<input>
@@ -947,6 +885,7 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
+	-->
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
@@ -964,9 +903,11 @@
 						</expression>
 						<value>8</value>
 					</less-than-equals>
-					<property>controls/gear/enable-tiller</property>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
 					<property>gear/gear[0]/wow</property>
-					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -991,9 +932,11 @@
 						</expression>
 						<value>8</value>
 					</greater-than>
-					<property>controls/gear/enable-tiller</property>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
 					<property>gear/gear[0]/wow</property>
-					<property>systems/hydraulic/outputs/nwsteering</property>
 				</and>
 			</condition>
 		</enable>
@@ -1028,7 +971,10 @@
 							</expression>
 						</greater-than-equals>
 					</or>
-					<property>systems/hydraulic/outputs/nwsteering</property>
+					<or>
+						<property>systems/hydraulic/outputs/nwsteering</property>
+						<property>sim/model/pushback/linked</property>
+					</or>
 				</and>
 			</condition>
 		</enable>
@@ -1042,7 +988,7 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
-		<enable>
+		<enable>/
 			<condition>
 				<and>
 					<property>gear/gear[0]/wow</property>
@@ -1061,7 +1007,10 @@
 							</expression>
 						</greater-than>
 					</and>
-					<property>systems/hydraulic/outputs/nwsteering</property>
+					<or>
+						<property>systems/hydraulic/outputs/nwsteering</property>
+						<property>sim/model/pushback/linked</property>
+					</or>
 				</and>
 			</condition>
 		</enable>
@@ -1070,6 +1019,7 @@
 		</input>
 		<output>fcs/nose-gear-steer-deg</output>
 	</filter>
+	<!-- center nose wheel after take off -->
 	<filter>
 		<name>Nose gear center</name>
 		<type>noise-spike</type>
@@ -1085,6 +1035,7 @@
 		<input>
 			<value>0</value>
 		</input>
+		<output>controls/gear/tiller-steer-deg</output>
 		<output>fcs/nose-gear-steer-deg</output>
 	</filter>
 
@@ -1162,47 +1113,4 @@
 		</input>
 		<output>fcs/brake-right-cmd-norm</output>
 	</filter>
-	
-	<!-- Alarm logic -->
-	<logic>
-		<name>Overspeed alarm</name>
-		<input>
-			<or>
-				<!-- 3 kts greater than Vmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
-					<value>338</value>
-				</greater-than-equals>
-				<!-- 0.01 Mach greater than Mmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
-					<value>0.86</value>
-				</greater-than-equals>
-			</or>
-		</input>
-		<output>sim/alarms/overspeed-alarm</output>
-	</logic>
-	<logic>
-		<name>Master caution alarm</name>
-		<input>
-			<or>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-				<property>sim/alarms/overspeed-alarm</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-caution</output>
-	</logic>
-	<logic>
-		<name>Master warning alarm</name>
-		<input>
-			<or>
-				<property>engines/apu/on-fire</property>
-				<property>engines/engine[0]/on-fire</property>
-				<property>engines/engine[1]/on-fire</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-warning</output>
-	</logic>
-
 </PropertyList>
