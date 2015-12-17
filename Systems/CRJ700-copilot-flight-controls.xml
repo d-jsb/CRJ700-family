@@ -13,9 +13,18 @@
 		<gain>80</gain>
 		<enable>
 			<condition>
-				<not>
+				<and>
+					<property>sim/config/rudder-to-tiller</property>
+					<less-than-equals>
+						<expression>
+							<abs>
+								<property>controls/gear/tiller-steer-deg</property>
+							</abs>
+						</expression>
+						<value>8</value>
+					</less-than-equals>
 					<property>controls/gear/enable-tiller</property>
-				</not>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -32,6 +41,9 @@
 		<enable>
 			<condition>
 				<and>
+					<not>
+						<property>sim/config/rudder-to-tiller</property>
+					</not>
 					<less-than-equals>
 						<expression>
 							<abs>
