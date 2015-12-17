@@ -34,14 +34,21 @@
 		<text>
 			<label>The following "features" are not found in real live, but are added for convenience.</label>
 		</text>
-		<group>
-			<layout>hbox</layout>
 		<checkbox>
 			<halign>left</halign>
-				<label>Make AP "speed mode" autothrottle</label>
-				<property>sim/config/speed-mode-autothrottle</property>
+			<label>Enable autothrottle (dialog only)</label>
+			<property>sim/config/allow-autothrottle</property>
 			<binding>
 				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (getprop("sim/config/allow-autothrottle"))
+						CRJ700.dialogs.autothrottle.open();
+					else
+						CRJ700.dialogs.autothrottle.close();
+				</script>
 			</binding>
 			<live type="bool">true</live>
 		</checkbox>	
@@ -63,6 +70,5 @@
 			</binding>
 			<live type="bool">true</live>
 		</checkbox>	
-	</group>
 	</group>
 </PropertyList>
