@@ -324,6 +324,7 @@ var ACPC = {
 			{
 				print("ACPC: !! ADG auto deploy !!");
 				setprop("controls/electric/ADG", 1);
+				setprop("controls/hydraulic/system[2]/pump-b", 1);
 			}
 		}
 		return me;

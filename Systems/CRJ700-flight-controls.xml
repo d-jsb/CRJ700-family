@@ -1139,16 +1139,23 @@
 		<debug type="bool">false</debug>
 		<gain>
 			<expression>
-				<sum>
-					<product>
-						<property>systems/hydraulic/outputs/ob-brakes</property>
-						<value>0.5</value>
-					</product>
-					<product>
-						<property>systems/hydraulic/outputs/ib-brakes</property>
-						<value>0.5</value>
-					</product>
-				</sum>
+				<min>					
+					<sum><!-- 50% per hydraulic system -->
+						<product>
+							<property>systems/hydraulic/outputs/ob-brakes</property>
+							<value>0.5</value>
+						</product>
+						<product>
+							<property>systems/hydraulic/outputs/ib-brakes</property>
+							<value>0.5</value>
+						</product>
+					</sum>
+					<!-- 
+					if all hydraulics fail, accumulators allow a few brake activations
+					as no details were found on this, I simplified this: 50% brake power always.
+					-->
+					<value>0.5</value> 
+				</min>
 			</expression>
 		</gain>
 		<input>

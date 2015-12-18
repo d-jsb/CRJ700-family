@@ -527,6 +527,46 @@
 		</condition>
 	</message-->
 	<message>
+		<priority type="int">2</priority>
+		<text type="string">IB BRAKE PRESS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<greater-than>
+					<property>systems/AC/outputs/bus2</property>
+					<value>108</value>
+				</greater-than>
+				<not>
+					<property>systems/hydraulic/outputs/ib-brakes</property>
+				</not>
+			</and>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">2</priority>
+		<text type="string">OB BRAKE PRESS</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<greater-than>
+					<property>systems/AC/outputs/bus2</property>
+					<value>108</value>
+				</greater-than>
+				<not>
+					<property>systems/hydraulic/outputs/ob-brakes</property>
+				</not>
+			</and>
+		</condition>
+	</message>
+	<message>
 		<priority type="int">1</priority>
 		<text type="string">GEN 1 OFF</text>
 		<color>
