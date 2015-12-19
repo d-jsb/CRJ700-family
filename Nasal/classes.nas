@@ -98,13 +98,40 @@ var EnergyConv = {
 			me.output_min = n;
 		return me;
 	},
+
+	getOutputMin: func () {
+		return me.output_min;
+	},
 	
 	setInputMin: func (n) {
 		if (num(n) >= 0)
 			me.input_min = n;
 		return me;
 	},
+
+	getInputMin: func () {
+		return me.input_min;
+	},
+
+	setInputLo: func (n) {
+		if (num(n) >= 0)
+			me.input_lo = n;
+		return me;
+	},
+
+	getInputLo: func () {
+		return me.input_lo;
+	},
 	
+	setInputHi: func (n) {
+		if (num(n) >= 0)
+			me.input_hi = n;
+		return me;
+	},
+
+	getInputHi: func () {
+		return me.input_hi;
+	},
 	
 	addSwitch: func(name = "") {
 		var path = "";

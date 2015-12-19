@@ -33,7 +33,7 @@
 var IDG = {
 	new: func (bus, name, input, discN) {
 		var obj = {
-			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 58.7, 95).setOutputMin(108)],
+			parents: [IDG, EnergyConv.new(bus, name, 115, input, 52.5, 60.0, 95).setOutputMin(108)],
 			freq: 0,
 			load: 0,
 			discN: discN,
@@ -74,9 +74,11 @@ var IDG = {
 		#if (me.running and int(me.input) == i) return;
 		
 		call(EnergyConv._update_output, [], me);
+		#simulate frequency
 		me.freq = 0;
 		if (me.output and me.input > me.input_min) {			
-			if (me.input < 57.5) 
+			if (!me.input_lo) me.freq = 400;
+			elsif (me.input < 57.5) 
 				#me.freq = 375 * (me.input - me.input_min)/5;
 				me.freq = 75 * int(me.input - me.input_min);
 			elsif (me.input < me.input_lo) 
@@ -455,11 +457,15 @@ var dc_buses = [
 #
 var acpc = ACPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5"]);
 var dcpc = DCPC.new(0, ["bus1", "bus2", "bus3", "bus4", "bus5", "bus6"]);
+var generators = [
+	IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2", "controls/electric/idg1-disc").addSwitch("/controls/electric/engine[0]/generator"),
+	IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2", "controls/electric/idg2-disc").addSwitch("/controls/electric/engine[1]/generator"),
+	APUGen.new(acpc, "apugen", "/engines/engine[2]/rpm").addSwitch("/controls/electric/APU-generator"),
+];
 
-acpc.addInput(IDG.new(acpc, "gen1", "/engines/engine[0]/rpm2", "controls/electric/idg1-disc").addSwitch("/controls/electric/engine[0]/generator"));
-acpc.addInput(IDG.new(acpc, "gen2", "/engines/engine[1]/rpm2", "controls/electric/idg2-disc").addSwitch("/controls/electric/engine[1]/generator"));
-acpc.addInput(APUGen.new(acpc, "apugen", "/engines/engine[2]/rpm").addSwitch("/controls/electric/APU-generator"));
-#acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-in-use"));
+acpc.addInput(generators[0]);
+acpc.addInput(generators[1]);
+acpc.addInput(generators[2]);
 acpc.addInput(ACext.new(acpc, "acext", 115).addSwitch("/controls/electric/ac-service-avail"));
 acpc.addInput(ADG.new(acpc).addSwitch("/controls/electric/ADG"));
 
