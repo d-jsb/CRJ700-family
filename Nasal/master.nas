@@ -251,6 +251,7 @@ setprop("controls/engines/engine[1]/cutoff", 1);
 
 ## Aircraft-specific dialogs
 var dialogs = {
+    adc: gui.Dialog.new("sim/gui/dialogs/adc/dialog", "Aircraft/CRJ700-family/Systems/adc-dlg.xml"),
     autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
     autothrottle: gui.Dialog.new("sim/gui/dialogs/autothrottle/dialog", "Aircraft/CRJ700-family/Systems/autothrottle-dlg.xml"),
     doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", "Aircraft/CRJ700-family/Systems/doors-dlg.xml"),

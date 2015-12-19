@@ -243,22 +243,6 @@
 						</binding>
 					</item>
 					<item>
-						<label>Pushback</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>pushback</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Tiller steering</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.tiller.open();
-							</script>
-						</binding>
-					</item>
-					<item>
 						<label>Lights</label>
 						<binding>
 							<command>nasal</command>
@@ -275,11 +259,11 @@
 						</binding>
 					</item>
 					<item>
-						<label>Doors</label>
+						<label>Air data reference</label>
 						<binding>
 							<command>nasal</command>
 							<script>
-								CRJ700.dialogs.doors.open();
+								CRJ700.dialogs.adc.open();
 							</script>
 						</binding>
 					</item>
@@ -366,6 +350,44 @@
 							</script>
 						</binding>
 					</item>
+				</menu>
+				<menu n="101">
+					<enabled type="bool">true</enabled>
+					<label>Ground ops</label>
+					<item>
+						<label>Fuel</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								gui.showWeightDialog();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Doors</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.doors.open();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Pushback</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>pushback</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Tiller steering</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.tiller.open();
+							</script>
+						</binding>
+					</item>	
 				</menu>
 			</default>
 		</menubar>
@@ -655,6 +677,16 @@
 	<instrumentation>
 		<use-metric-altitude type="bool" archive="y">false</use-metric-altitude>
 		<use-QNH type="bool" archive="y">true</use-QNH>
+		<adc>
+			<reference>
+				<v1 type="int">130</v1> <!-- takeoff decision speed -->
+				<v2 type="int">145</v2> <!-- takeoff safety speed -->
+				<vr type="int">135</vr> <!-- rotate airspeed -->
+				<vt type="int">180</vt> <!-- target speed -->
+				<dh type="int">300</dh> <!-- decision heigt, 0 - 999ft -->
+				<mda type="int">2000</mda> <!-- min descent altitude-->
+			</reference>
+		</adc>
 		<adf>
 			<ident-audible type="bool">true</ident-audible>
 			<volume-norm type="float">0</volume-norm>
