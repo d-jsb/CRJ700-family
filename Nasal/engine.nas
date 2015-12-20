@@ -417,7 +417,7 @@ Engine.Jet = func(n)
 		print("Engine toggle_reversers");
         jet.controls.throttle = jet.controls.throttle_node.getValue();
         jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
-        if (jet.controls.throttle == 0 and jet.controls.thrust_mode == 0)
+        if (jet.controls.throttle <= 0.01 and jet.controls.thrust_mode == 0)
         {
             jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
         }
