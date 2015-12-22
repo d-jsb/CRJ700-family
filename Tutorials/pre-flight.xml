@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<name>Pre flight</name>
+	<description>Learn about the pre-flight preparations.</description>
+	<presets>
+		<on-ground type="bool">true</on-ground>
+	</presets>
+	<step-time>4</step-time>
+	<exit-time>2</exit-time>
+	<init>
+		<set>
+			<property>/controls/gear/gear-down</property>
+			<value type="bool">true</value>
+		</set>
+		<set>
+			<property>controls/gear/brake-parking</property>
+			<value type="bool">true</value>
+		</set>
+		<set>
+			<property>/controls/flight/flaps</property>
+			<value type="int">0</value>
+		</set>
+		<set>
+			<property>controls/APU/off-on</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>controls/APU/electronic-control-unit</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[0]/cutoff</property>
+			<value type="bool">true</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[0]/throttle</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[0]/thrust-mode</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[0]/generator</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[1]/cutoff</property>
+			<value type="bool">true</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[1]/throttle</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[1]/thrust-mode</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>controls/engines/engine[1]/generator</property>
+			<value>0</value>
+		</set>
+		<set>
+			<property>engines/engine[0]/running</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>engines/engine[1]/running</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>controls/electric/battery-switch</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>consumables/fuel/tank[0]/selected</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>consumables/fuel/tank[1]/selected</property>
+			<value type="bool">false</value>
+		</set>
+		<set>
+			<property>instrumentation/eicas/page</property>
+			<value>1</value>
+		</set>
+		<set>
+			<property>instrumentation/eicas[1]/page</property>
+			<value>2</value>
+		</set>
+		<set>
+			<property>instrumentation/use-QNH</property>
+			<value type="bool">false</value>
+		</set>
+		<nasal>
+			<script><![CDATA[
+				# engine cutoff settings seem to get overridden
+				settimer(func
+				{
+					setprop("controls/engines/engine[0]/cutoff", 1);
+					setprop("controls/engines/engine[1]/cutoff", 1);
+					setprop("consumables/fuel/tank[0]/level-lbs", 80);
+					setprop("consumables/fuel/tank[1]/level-lbs", 80);
+					setprop("consumables/fuel/tank[2]/level-lbs", 70);
+				}, 0);
+			]]></script>
+		</nasal>
+	</init>
+
+	<step>
+		<message>Welcome aboard the Bombardier CRJ700/900/1000.</message>
+		<view>
+			<field-of-view>80</field-of-view>
+		</view>
+	</step>
+	<step>
+		<message>
+		In this tutorial you will learn about pre-flight preparations before you 
+		start the engines. 
+		This tutorial is based on the pre-flight checklist, some comments are added for better understanding.
+		It is a good idea to see the checklists... always  ;)		
+		</message>
+		<step-time>12</step-time>
+	</step>
+	<step>
+		<message>
+		Before we power up our aircraft, we have to check some basics to avoid 
+		accidents, e.g.	make sure that brakes are set etc. so we check that 
+		certain controls are set to the correct position.		
+		</message>
+		<step-time>10</step-time>
+	</step>
+	<!-- Check controls -->
+	<step>
+		<message>Parking Brake: CHECK SET</message>
+		<exit>
+			<condition>
+				<property>/controls/gear/brake-parking</property>
+			</condition>
+		</exit>
+		<view>
+			<heading-offset-deg>325.1</heading-offset-deg>
+			<pitch-offset-deg>-39.3</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>58.0</field-of-view>
+		</view>
+	</step>
+	<step>
+		<message>Landing gear lever: CHECK DOWN</message>
+		<marker>
+			<x-m>-13.9590</x-m>
+			<y-m>0.0339</y-m>
+			<z-m>-1.0876</z-m>
+			<scale>3.8760</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>/controls/gear/gear-down</property>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>Throttle: CUT OFF</message>
+		<marker>
+			<x-m>-13.6086</x-m>
+			<y-m>-0.0240</y-m>
+			<z-m>-1.1909</z-m>
+			<scale>3.8760</scale>
+		</marker>
+		<exit>
+			<condition>
+				<and>
+					<property>/controls/engines/engine[0]/cutoff</property>
+					<property>/controls/engines/engine[1]/cutoff</property>
+				</and>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>Flaps: UP (=0)</message>
+		<marker>
+			<x-m>-13.7086</x-m>
+			<y-m>0.1760</y-m>
+			<z-m>-1.1909</z-m>
+			<scale>3.8760</scale>
+		</marker>
+		<exit>
+			<condition>
+				<equals>
+					<property>/surface-positions/flap-pos-norm</property>
+					<value>0</value>
+				</equals>
+			</condition>
+		</exit>
+	</step>
+	<step>	
+		<message>All hydraulic pumps: OFF</message>
+		<view>
+			<heading-offset-deg>318.4</heading-offset-deg>
+			<pitch-offset-deg>17.6</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>45.7</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.6430</x-m>
+			<y-m>0.0000</y-m>
+			<z-m>-0.2455</z-m>
+			<scale>3</scale>
+		</marker>
+		<exit>
+			<condition>
+				<not><or>
+					<property>controls/hydraulic/system/pump-b</property>
+					<property>controls/hydraulic/system[1]/pump-b</property>
+					<property>controls/hydraulic/system[2]/pump-a</property>
+					<property>controls/hydraulic/system[2]/pump-b</property>
+				</or></not>
+			</condition>
+		</exit>
+	</step>
+	
+	<!-- Power up -->
+	<step>
+		<message>		
+		Now reach up to the overhead panel and turn on the battery. 
+		The battery shall be on all the time until you are parked again at you destination. 
+		It is the first thing to turn on and the very last thing to turn off.
+		</message>
+		<view>
+			<heading-offset-deg>311.9</heading-offset-deg>
+			<pitch-offset-deg>36.1</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>40</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.3950</x-m>
+			<y-m>-0.1842</y-m>
+			<z-m>-0.1408</z-m>
+			<scale>1.9667</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>controls/electric/battery-switch</property>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>
+			With battery power on, the computers will start and displays light up.
+		</message>
+		<view>
+			<heading-offset-deg>337.2</heading-offset-deg>
+			<pitch-offset-deg>-21.3</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>55</field-of-view>
+		</view>
+	</step>
+	<step>
+		<message>		
+		While your aircraft is on its parking position, you can usually request ground power.
+		If it is available, select it.
+		</message>
+		<view>
+			<heading-offset-deg>311.9</heading-offset-deg>
+			<pitch-offset-deg>36.1</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>40</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.4000</x-m>
+			<y-m>-0.1140</y-m>
+			<z-m>-0.1150</z-m>
+			<scale>1.1488</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>/controls/electric/ac-service-selected</property>
+			</condition>
+		</exit>
+	</step>
+	<!-- Lights -->
+	<step>
+		<message>
+		As we have electrical power now, we may want to switch on some lights inside and outside the aircraft.
+		</message>		
+	</step>
+	<step>
+		<message>Switch the nav lights on so we are better noticed on our parking position.</message>
+		<view>
+			<heading-offset-deg>320</heading-offset-deg>
+			<pitch-offset-deg>20.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<field-of-view>45.0</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.6608</x-m>
+			<y-m>-0.2290</y-m>
+			<z-m>-0.2355</z-m>			
+			<scale>1.0000</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>/controls/lighting/nav-lights</property>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>
+		As start boarding starts, we also should switch on the passengers signs (seatbelt, no-smoking).
+		They can be set to on, off or automatic. 
+		</message>
+		<marker>
+			<x-m>-13.7121</x-m>
+			<y-m>0.0992</y-m>
+			<z-m>-0.3107</z-m>
+			<scale>2.0909</scale>
+		</marker>
+		<exit>
+			<condition>
+				<and>
+					<not-equals>
+						<property>/controls/switches/no-smoking-sign</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/controls/switches/seatbelt-sign</property>
+						<value>1</value>
+					</not-equals>
+				</and>
+			</condition>
+		</exit>
+	</step>	
+	<!-- Fuel -->
+	<step>
+		<view>
+			<heading-offset-deg>355</heading-offset-deg>
+			<pitch-offset-deg>-27.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<field-of-view>50.0</field-of-view>
+		</view>
+		<message>
+		Before we start our engines, we need to fuel our aircraft. 
+		Two things to consider:
+		</message>
+		<step-time>6</step-time>
+	</step>
+	<step>
+		<message>
+		1) always add a fuel reserve for approx. 1h in case you have to go around or divert to another airport.
+		</message>
+	</step>
+	<step>
+		<message>
+		2) Not more fuel than necessary, more weight = higher consumption at take off and longer take off run.
+		You can find fuel planners on the internet to help.
+		</message>
+		<step-time>12</step-time>
+	</step>
+	<step>
+		<view>
+			<heading-offset-deg>358.8</heading-offset-deg>
+			<pitch-offset-deg>-23.1</pitch-offset-deg>
+			<field-of-view>50.0</field-of-view>
+		</view>
+		<marker>
+			<x-m>-14.0955</x-m>
+			<y-m>-0.1000</y-m>
+			<z-m>-0.9571</z-m>
+			<scale>2.0252</scale>
+		</marker>
+		<message>
+		You can see the level of all fuel tanks on the primary EICAS page. 
+		WARNING: EICAS display shows kilograms while the fuel dialog is in pounds.
+		Fuel at least 5000 pounds. Distribute them equally to left and right tank. Center tank only for long range.
+		</message>
+		<nasal>
+			<script>gui.showWeightDialog()</script>
+			<module></module>
+		</nasal>
+		<exit>
+			<condition>
+				<and><!-- not exactly, but ok... -->
+					<greater-than-equals>
+						<property>consumables/fuel/tank[0]/level-lbs</property>
+						<value>2500</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>consumables/fuel/tank[1]/level-lbs</property>
+						<value>2500</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>consumables/fuel/total-fuel-lbs</property>
+						<value>5000</value>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<nasal>
+				<script>fgcommand("dialog-close", props.Node.new({"dialog-name": "WeightAndFuel"}));</script>
+			</nasal>
+		</exit>
+		<step-time>14</step-time>
+	</step>
+
+	<!-- Weather -->
+	<step>
+		<message>
+		---
+		One of the most important things for a pilot it the weather. 
+		For our flight preparation we need to calibrate the altimeter to the current air pressure (QNH).
+		</message>
+		<step-time>6</step-time>
+	</step>
+	<step>
+		<message>
+		In Flightgear, we can get the current weather from the weather dialog. 
+		It is encoded as a so called METAR string (ask google or wikipedia about METAR).
+		</message>
+		<step-time>6</step-time>
+	</step>
+	<step>
+		<message>
+		QNH is given in hPa ranging from approx 990 to 1035 hPa. 
+		In the US the unit commonly used is inHg (default 1013,25 hPa = 29.92 inHg).
+		</message>
+		<step-time>6</step-time>
+	</step>
+	<step>
+		<message>
+		First we make sure our altimeter uses hPa, as we will enter the value in hPa later.
+		Have a look to the PFD. On the right side below the altimeter tape you 
+		find the reference value in blue color.
+		</message>
+		<view>
+			<heading-offset-deg>5.6</heading-offset-deg>
+			<pitch-offset-deg>-24.3</pitch-offset-deg>
+			<field-of-view>43.0</field-of-view>
+		</view>
+		<marker>
+			<x-m>-14.0978</x-m>
+			<y-m>-0.4571</y-m>
+			<z-m>-0.9595</z-m>
+			<scale>1.9</scale>
+		</marker>
+		<step-time>6</step-time>
+	</step>
+	<step>
+		<message>
+		Use the HPA/IN button on the sidepanel to change the units of the readout to hPa.
+		</message>
+		<marker>
+			<x-m>-13.9921</x-m>
+			<y-m>-0.7290</y-m>
+			<z-m>-1.0372</z-m>
+			<scale>1.0661</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>instrumentation/use-QNH</property>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>
+		Find the "Q" in the METAR string and note the number right after it (range approx 990-1035 hPa).
+		Enter this number by turning the baro knob on the sidepanel while watching the readout on PFD.
+		</message>
+		<nasal>
+			<script>fgcommand("dialog-show", props.Node.new({"dialog-name": "weather"}));</script>
+		</nasal>
+		<marker>
+			<x-m>-13.9590</x-m>
+			<y-m>-0.7215</y-m>
+			<z-m>-1.0521</z-m>
+			<scale>1.8760</scale>
+		</marker>
+		<exit>
+			<condition>
+				<less-than>
+					<property>instrumentation/altimeter/ref-deviation</property>
+					<value>0.01</value>
+				</less-than>
+			</condition>
+			<nasal>
+				<script>fgcommand("dialog-close", props.Node.new({"dialog-name": "weather"}));</script>
+			</nasal>
+		</exit>
+	</step>	
+	<step>
+		<message>
+		-- Hint --
+		To reset altimeter reference to default (1013hPa/29.92inHg), push the baro knob (click on face).
+		
+		</message>
+		<step-time>8</step-time>
+	</step>
+	<step>
+		<message>
+		Later for taxi we will need nose wheel steering, so enable it (middle click to toggle w/out opening dialog).
+		</message>
+		<view>
+			<heading-offset-deg>10</heading-offset-deg>
+		</view>
+		<marker>
+			<x-m>-13.8823</x-m>
+			<y-m>-0.9190</y-m>
+			<z-m>-0.8975</z-m>
+			<scale>1.6281</scale>
+		</marker>
+		<exit>
+			<condition>
+				<property>controls/gear/enable-tiller</property>
+			</condition>
+		</exit>
+	</step>
+	<!-- doors -->
+	<step>
+		<message>
+		We are almost done with our preparations. It is time to check the doors and close them.
+		Find and click the "doors" button on the EICAS control panel on the pedestal panel.
+		</message>
+		<view>
+			<heading-offset-deg>0.0</heading-offset-deg>
+			<pitch-offset-deg>-60.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>50.0</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.5377</x-m>
+			<y-m>-0.0074</y-m>
+			<z-m>-1.2669</z-m>
+			<scale>1.0000</scale>
+		</marker>
+		<exit>
+			<condition>
+				<equals>
+					<property>instrumentation/eicas[1]/page</property>
+					<value>5</value>
+				</equals>
+			</condition>
+		</exit>
+	</step>
+	<step>
+		<message>
+		The EICAS now shows the door status. Green means closed and secure. 
+		All doors shall be closed before engine startup.
+		Open the doors control dialog by clicking on the EICAS or via the menu.
+		Close all doors (be patient, it takes some seconds).
+		</message>
+		<view>
+			<heading-offset-deg>0.0</heading-offset-deg>
+			<pitch-offset-deg>-26.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>55.0</field-of-view>
+		</view>
+		<exit>
+			<condition>
+				<and>
+					<not><property>/sim/model/door-positions/aft-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/avionic/position-norm</property></not>
+					<not><property>/sim/model/door-positions/ctr-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-l1/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-l2/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-r1/position-norm</property></not>
+					<not><property>/sim/model/door-positions/emer-r2/position-norm</property></not>
+					<not><property>/sim/model/door-positions/fwd-cargo/position-norm</property></not>
+					<not><property>/sim/model/door-positions/pax-left/position-norm</property></not>
+					<not><property>/sim/model/door-positions/pax-right/position-norm</property></not>
+				</and>
+			</condition>
+		</exit>
+	</step>
+	
+	<step>
+		<message>
+		Congratulations, pre flight tutorial is completed :)
+		You may want to continue with startup tutorial or the checklists.
+		</message>
+		<view>
+			<heading-offset-deg>0.0</heading-offset-deg>
+			<pitch-offset-deg>0.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>71.7</field-of-view>
+		</view>
+	</step>
+	<end>
+		<message>Congratulations! You have successfully started your CRJ700.
+		Please make sure to look at the checklists for more information.</message>
+	</end>
+
+</PropertyList>
+

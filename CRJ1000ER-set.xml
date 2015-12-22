@@ -33,6 +33,7 @@
 			</limits>
 			<dimensions>
 				<nose-distance-m>20</nose-distance-m>
+				<cockpit-offset-x>-3.3</cockpit-offset-x>
 			</dimensions>	
 		</model>
 
