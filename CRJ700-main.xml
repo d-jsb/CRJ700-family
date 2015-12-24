@@ -958,6 +958,11 @@
 		<radar-altimeter>
 			<!-- FIXME: should be calibrated to main gear (~12ft) -->
 			<serviceable type="bool">true</serviceable>
+			<antenna>
+				<x-offset-m type="double">-0.986</x-offset-m>
+				<y-offset-m type="double">0</y-offset-m>
+				<z-offset-m type="double">3.72</z-offset-m>
+			</antenna>			
 		</radar-altimeter>
 		<radar-altimeter>
 			<serviceable type="bool">true</serviceable>
@@ -982,7 +987,7 @@
 				<category-5 type="int">0</category-5>
 				<category-6 type="int">0</category-6>
 				<category-7 type="int">124</category-7>
-				<category-8 type="int">3</category-8> <!-- radio altimeter select -->
+				<category-8 type="int">4</category-8> <!-- radio altimeter source: 3:from yasim, 4: instrumentation/radar-altimeter -->
 				<category-9 type="int">3</category-9>
 				<category-10 type="int">2</category-10>
 				<category-13 type="int">7</category-13>
