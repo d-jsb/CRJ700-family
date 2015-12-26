@@ -12,9 +12,13 @@
 		<h2>General aircraft information</h2>
 
 		<p id="author">
-		 Written by Ryan M
+		Written by Ryan M. 
+		Updated by D-JSB in 12/2015
 		</p>
-
+		<p class="warn">
+		This document may be inaccurate or partly outdated. Please refer to the checklists and tutorials within flightgear.
+		</p>
+		
 		<p>
 		 <img src="../thumbnail.jpg" alt="">
 		</p>
@@ -22,7 +26,6 @@
 		<h3>Other documents</h3>
 
 		<ul>
-			<li><a href="../README.txt">ReadMe</a></li>
 			<li><a href="Authors.html">Authors and credits</a></li>
 			<li><a href="Autopilot.html">Autopilot help</a></li>
 			<li><a href="License-FDL-1.3.txt">GNU Free Documentation License v1.3</a></li>
@@ -32,11 +35,15 @@
 		<h3>Introduction</h3>
 
 		<p>
-		 This small document describes various aspects of the Bombardier CRJ700 series in FlightGear, particularly the cockpit. While it does not describe the aircraft in full detail and certainly does not reflect the real CRJ700, it is intended as an introductory and reference guide pointing out things the casual simmer might miss.
+		 This small document describes various aspects of the Bombardier CRJ700 series in FlightGear, particularly the cockpit. 
+		 While it does not describe the aircraft in full detail and certainly does not reflect the real CRJ700, 
+		 it is intended as an introductory and reference guide pointing out things the casual simmer might miss.
 		</p>
 
 		<p>
-		 The Bombardier CRJ700 series consists of the CRJ700, CRJ900, and CRJ1000. The family targets the 70- to 100- seat regional aircraft market, stemming from Bombardier's CRJ100 and CRJ200. The series' primary competition is the Embraer E-jet family.
+		 The Bombardier CRJ700 series consists of the CRJ700, CRJ900, and CRJ1000. 
+		 The family targets the 70- to 100- seat regional aircraft market, stemming 
+		 from Bombardier's CRJ100 and CRJ200. The series' primary competition is the Embraer E-jet family.
 		<p>
 
 		<p>
@@ -69,8 +76,15 @@
 		 The overhead bins can be opened and closed (together, not individually) simply by clicking on them, as well as the cockpit door. The "no smoking" and "fasten seatbelt" signs can be toggled using the switches in the cockpit or in the lighting dialog. Cabin lighting is also controlled via the lighting dialog. Note that none of these lights will work if the electrical system is not powered.
 		</p>
 
+		<h3>Doors</h3>
+		<p>
+		The CRJ has a passenger door (front left), a service door (front right), 
+		emergency exits over the wings and cargo doors (number of doors varies
+		with model CRJ700 or CRJ900/1000). The flight crew can monitor the status
+		of the doors via the EICAS screen (see below).
+		</p>
+		
 		<h3>The cockpit</h3>
-
 		<p class="tip">
 		 Tip: Press Ctrl-C in the simulator to see what objects are clickable.
 		</p>
@@ -80,13 +94,15 @@
 		</p>
 
 		<p>
-		 <img src="Files/instruments.jpg" alt="The instruments">
+		 <img src="Files/cockpit-off.png">
 		</p>
 
 		<p>
-		 The first thing you will notice about the cockpit is the instruments. The CRJ700 includes 4 of them. In this image, left to right, they are the PFD ("Primary Flight Display"), the MFD ("Multi-Function Display"), the EICAS ("Engine Indication and Crew Alert System"), and the standby instrument. The MFD and EICAS have additional pages that can be viewed by clicking on the left and right sides of the little control pads on the borders.
+		 The first thing you will notice about the cockpit is the glas instruments. 
+		 There is a primary flight display (PFD) and a multi function dislay (MFD) on each side.
+		 In the center, two screens will show the pages of the EICAS (Engine Indication and Crew Alerting System).
+		 Between them, there is the standby instrument.
 		</p>
-
 		<p>
 		 The standby instrument is a combined altimeter/attitude/airspeed/ILS display to be used in the event the other displays fail- say, an electrical failure. The attitude indicator must be periodically "recharged" by clicking the "CAGE" button (this is not done automatically by the electrical system). In reality, this must be done flying straight and level and probably doesn't have to be done so often, but I have not yet found a practical way to simulate this properly in FG. The "+" and "-" buttons adjust the brightness of the display, and the knob adjusts the barometer setting of the instrument's altimeter.
 		</p>
@@ -96,13 +112,18 @@
 		</p>
 
 		<p>
-		 <img src="Files/side.jpg" alt="The side panels and clock">
+		 <img src="Files/pilot-sidepanels.png" alt="The side panels and clock">
 		</p>
 
 		<p>
-		 On the left side panel (this is the copilot's side; on the pilot's side, the panel positions will be flipped), you have various knobs for controlling the instruments. The format and range knob scrolls through the pages of the respective MFD and adjusts the radar range (the outer knob is the format knob, the inner is the range). The left "RDR/TERR" button turns the radar and terrain display on/off (read: terrain display not implemented) and the right "TFC" button turns the TCAS and traffic display on/off. The NAV source knob cycles through the navigation modes displayed on the PFD and used by the autopilot (see the autopilot document for further information).
+		 On the right side panel (this is the pilot's side; on the copilot's side, the panel positions will be flipped), you have various knobs for controlling the instruments. The format and range knob scrolls through the pages of the respective MFD and adjusts the radar range (the outer knob is the format knob, the inner is the range). The left "RDR/TERR" button turns the radar and terrain display on/off (read: terrain display not implemented) and the right "TFC" button turns the TCAS and traffic display on/off. The NAV source knob cycles through the navigation sources displayed on the PFD and used by the autopilot (see the autopilot document for further information).		 
 		</p>
-
+		<p>The HPA/IN button toggels the altimeter reference between mmHg to hPa, and the baro know is used to set the altimeter reference.
+		</p>
+		<p class="tip">
+		Push the face of the baro knob to reset altimeter reference to default
+		(29.92mm / 1013 hPa), e.g. when climbing through the transition altitude.
+		</p>
 		<p>
 		 The other side panel has controls for lighting, wipers, and the stall protection system. The display knob adjusts the brightness of the LCD displays in the cockpit. The "integ" knob adjusts the brightness of the "integrated panel lighting"- that's the markings on the panels that glow. (Note: The overhead panel has a separate knob on the panel itself for its integrated lighting.) Finally, the flood knob adjusts the panel flood lighting. The floor lighting and stall protection system are not implemented.
 		</p>
@@ -129,40 +150,58 @@
 		 The lower display shows "elapsed time"- which is basically a chronometer that times your flight from takeoff to landing. However, clicking the "CHR" button will switch it to chronometer mode, a timer that you can operate. Clicking the same button will start and stop the chronometer, and middle-clicking it will reset it. The chronometer's time is auto-saved by FG every time you quit. Clicking the "SEL" button will switch the display back to elapsed time mode (this is a one-way button, you must click "CHR" again to get back to chronometer mode). The "RST" button will reset the elapsed time counter, but this can only be done on the ground.
 		</p>
 
+		<h3>Center pedestal</h3>
+		<img src="Files/pedestal.jpg">
 		<p>
 		 In the middle of the cockpit, you have the center pedestal.
+		 The pedestal contains many buttons, switches, and controls- some of which work in FG. 
+		 Starting from the top, you have the gear lever, which raises and lowers the landing gear. 
+		 The ground proximity buttons mute the terrain and flaps callouts by the GPWS. 
+		 The spoiler and thrust reverser panels control the ground spoilers and 
+		 thrust reversers, and the adjacent lever controls the flight spoiler/speedbrake 
+		 (see the "slowing down" section below). 
+		 The throttle quadrant controls the engines (see the "power plant" section), and 
+		 the large control on the right deploys the flaps and slats. 
+		 The tiny switch buried in between them is the metric altitude switch. 
+		 When turned on, altitude displays on the PFD and MFD switch from feet to meters.
 		</p>
 
 		<p>
-		 <img src="Files/pedestal.jpg" alt="The pedestal">
+		 On the bottom, the radio panels control the radio stack. Use the buttons next to the display to  select a field.
+		 For COM and NAV you can only edit PREselected (right side).
+		 Turn the big knob to change values (this is split, the bigger lower part adjusts numbers before the decimal point,
+		 the smaller upper part adjusts numbers after the decimal point). 		 
+		 Push a select button again to swap PRE and ACTive.
 		</p>
-
-		<p>
-		 The pedestal contains many buttons, switches, and controls- some of which work in FG. Starting from the top, you have the gear lever, which raises and lowers the landing gear. The ground proximity buttons mute the terrain and flaps callouts by the GPWS. The spoiler and thrust reverser panels control the ground spoilers and thrust reversers, and the adjacent lever controls the flight spoiler/speedbrake (see the "slowing down" section below). The throttle quadrant controls the engines (see the "power plant" section), and the large control on the right deploys the flaps and slats. The tiny switch buried in between them is the metric altitude switch. When turned on, altitude displays on the PFD and MFD switch from feet to meters.
-		</p>
-
-		<p>
-		 On the bottom, the radio panels control the radio stack. (Press some buttons and move the knobs to get an idea of how it works.) Further down is another lighting panel, and not shown by this image are the yaw damper controls. (See the autopilot document for more information.)
-		</p>
-
+		
 		<p class="tip">
 		 Tip: Selecting a standby frequency twice using the buttons will swap it with the active frequency.
 		</p>
 
+		<h3>Glareshield</h3>
 		<p>
-		 On the glareshield, you'll find warning lights and the MCP ("Mode Control Panel"). The MCP controls the autopilot, which you can read about in that other document.
+		 On the glareshield, you'll find warning lights and the FCP ("Flight Control Panel"). The FCP controls the autopilot, which you can read about in that other document.
 		</p>
 
 		<p>
 		 <img src="Files/warning-lights.jpg" alt="Warning lights on the glareshield">
 		</p>
-
 		<p>
 		 The "master warning" and "master caution" lights are self-explanatory. The stall light would light up during a stall if the stall protection system was implemented. The "pull up"/"gnd prox" light illuminates when the GPWS system issues an alert. Finally, you have the engine fire controls. (See "in case of emergency...")
 		</p>
-
 		<p>
-		 The copilot-side glareshield is nearly a mirror of the pilot's side, but the fire controls are for engine 2 and the APU fire controls also reside there.</p>
+		 The copilot-side glareshield is nearly a mirror of the pilot's side, but the fire controls are for engine 2 and the APU fire controls also reside there.
+		</p>
+		
+		<h3>EICAS</h3>
+		<p>
+		The two screens below the FCP show the EICAS. Primary page is displayed on 
+		the left display, more pages can be displayed on the right display. Page
+		selection is done via the bunch of buttons in the center pedestal right below 
+		the flight deck door control. 
+		Unfortunately, labels are missing but popup help will show up when you hover 
+		the mouse cursor over the buttons.
+		</p>
 
 		<h3>Power plant</h3>
 
@@ -178,15 +217,33 @@
 		</ul>
 
 		<p>
-		 These thrust modes can be cycled by middle-clicking the thrust levers for each engine, or by pressing Ctrl-T. The current thrust mode(s) appears on page 1 of the EICAS beside the N1 readout.
+		 These thrust modes can be cycled by middle-clicking the thrust levers for each engine, or by pressing n/N on the keyboard.
+		 The current thrust mode(s) appears on page 1 of the EICAS beside the N1 readout.
 		</p>
 
 		<h3>Slowing down</h3>
 
 		<p>
-		 Need to steepen your descent path or lose speed quickly in the air? The CRJ700 is equipped with flight spoilers (more commonly called speedbrakes) with four settings: 25%, 50%, 75%, and 100%/max. You can control the speedbrakes by pressing Ctrl-B to cycle through these settings or by using the control on the pedestal.
+		 Need to steepen your descent path or lose speed quickly in the air? 
+		 The CRJ700 is equipped with flight spoilers (more commonly called speedbrakes) 
+		 with four settings: 25%, 50%, 75%, and 100%/max. 
+		 You can control the speedbrakes by pressing Ctrl-B to cycle through these 
+		 settings or by using the control on the pedestal.
 		<p>
-		 The CRJ700 has 3 ways to slow down during a landing; ground spoilers, thrust reversers, and wheel brakes. The ground spoilers are automatically controlled by the flight computer, but can be armed and disarmed manually using the "ground lift dump" switch on the pedestal. The thrust reversers redirect airflow from the engines forward to slow the airplane down. After being armed (press Ctrl-Delete or use the switches on the thrust reverser panel), they are deployed using the Delete key and controlled by your throttle. (Throttle must be at idle to engage or cancel reverse thrust.) Thrust reversers should not be used below 60 knots. The wheel brakes are regular brakes on the wheels and are controlled by your joystick or the b key.
+		 The CRJ700 has 3 ways to slow down during a landing; ground spoilers, thrust reversers, and wheel brakes. 
+		 The wheel brakes are regular hydraulic brakes on the wheels and are controlled by your joystick or the b key.
+		 The ground spoilers are automatically controlled by the flight computer, 
+		 but can be armed and disarmed manually using the "ground lift dump" switch on the pedestal. 
+		</p>
+		<p><b>Reversers</b></p>
+		<p>
+		The thrust reversers redirect airflow from the engines forward to slow the airplane down. 
+		They should not be used below 60 knots. 
+		</p>
+		<p class="tip">Reversers must be armed before they can be activated!</p>
+		<p>
+		Reversers are deployed (when armed) using the Delete key and controlled by your throttle. 
+		Throttle must be at idle to engage or cancel reverse thrust.
 		</p>
 
 		<h3>In case of emergency...</h3>
@@ -194,13 +251,18 @@
 		<p class="tip">
 		 Tip: You can find a failures dialog in the aircraft menu, controlling engine fires, APU failures, the autopilot, and more.
 		</p>
-
 		<p>
 		 On the glareshield, the large red engine fire light illuminates when the respective engine is on fire; pushing it will arm the extinguishing system, which is activated and deactivated using the green button below it. When the extinguishers are activated, "L/R ENG EXTINGUISH" will appear on page 2 of the EICAS.
 		</p>
 
 		<p>
-		 In case you lose all ability to generate electrical power- running out of fuel, for instance, the CRJ700 is equipped with a ram air turbine. To deploy it, look for the control in the "air cond" section of the overhead panel. Click the cover to open it up and press the button to deploy it. After a few seconds, the turbine should spool up and begin providing electrical power for the aircraft. "RAM AIR TURBINE" appears on page 2 of the EICAS when the turbine is deployed. Note that electrical power will decrease as you slow down and less force spins the turbine.
+		 In case you lose all ability to generate electrical power- running out of fuel, for instance, the CRJ700 is equipped with an air driven generator (ADG, aka ram air turbine). 
+		 It will deploy automatically if all other AC power is lost. Manual deployment is possible via the ADG handle at the bottom of the pedestal.
+		 "EMERGENCY POWER" appears on page 1 of the EICAS when ADG is deployed. 
+		 ADG will feed hydraulic pump 3B for emergency steering/brakes after landing.
+		</p>
+		<p class="warn">
+		 ADG will work only with air speed above 135kt (IAS), so do not get to slow!
 		</p>
 	</body>
 </html>
