@@ -447,6 +447,21 @@
 			<reference-dist>6</reference-dist>
 			<max-dist>25</max-dist>
 		</rumble>
-
+		<flaps-lever>
+			<name>Flapslever</name>
+			<path>Aircraft/CRJ700-family/Sounds/flaps-lever.wav</path>
+			<mode>once</mode>
+			<condition>
+				<property>sim/sound/flaps-lever</property>
+				<property>sim/current-view/internal</property>
+			</condition>
+			<position>
+				<x>-15.64</x>
+				<y>0.1760</y>
+				<z>-1.2</z>
+			</position>
+			<max-dist>2</max-dist>
+			<reference-dist>1</reference-dist>
+		</flaps-lever>
 	</fx>	
 </PropertyList>
