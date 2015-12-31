@@ -1397,10 +1397,10 @@
 		<scale>-100</scale>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
+		<character-size>0.008</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%+-3.1f%%</format>
+		<format>%+-03.0f%%</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>0.05324</y-m>
@@ -7748,7 +7748,7 @@ DIR BUS</text>
 		<scale>45</scale>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
+		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<format>SLATS / FLAPS %-2.f</format>

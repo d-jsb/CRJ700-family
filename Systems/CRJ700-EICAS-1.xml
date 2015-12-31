@@ -34,7 +34,7 @@
 	<!-- Warnings -->
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">APU fire</text>
+		<text type="string">APU FIRE</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -46,7 +46,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Config aileron</text>
+		<text type="string">CONFIG AILERON</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -85,7 +85,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Config AP</text>
+		<text type="string">CONFIG AP</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -115,7 +115,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Config flaps</text>
+		<text type="string">CONFIG FLAPS</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -154,7 +154,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Config rudder</text>
+		<text type="string">CONFIG RUDDER</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -193,7 +193,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Config splrs</text>
+		<text type="string">CONFIG SPLRS</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -232,7 +232,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">L eng fire</text>
+		<text type="string">L ENG FIRE</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -244,7 +244,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">R eng fire</text>
+		<text type="string">R ENG FIRE</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -256,7 +256,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">L eng oil press</text>
+		<text type="string">L ENG OIL PRESS</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -271,7 +271,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">R eng oil press</text>
+		<text type="string">R ENG OIL PRESS</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -286,7 +286,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Gear disagree</text>
+		<text type="string">GEAR DISAGREE</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -349,7 +349,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Nose door open</text>
+		<text type="string">NOSE DOOR OPEN</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -370,7 +370,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Parking brake</text>
+		<text type="string">PARKING BRAKE</text>
 		<color>
 			<red alias="../../../colors/red/red" />
 			<green alias="../../../colors/red/green" />
@@ -431,7 +431,7 @@
 	<!-- Cautions -->
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">APU bleed on</text>
+		<text type="string">APU BLEED ON</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -452,7 +452,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Flt splr deploy</text>
+		<text type="string">FLT SPLR DEPLOY</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -463,15 +463,11 @@
 				<or>
 					<greater-than>
 						<property>surface-positions/left-speedbrake-pos-norm</property>
-						<value>0.125</value> <!-- 5 degrees -->
+						<value>0.075</value> <!-- 3 degrees -->
 					</greater-than>
 					<greater-than>
 						<property>surface-positions/right-speedbrake-pos-norm</property>
-						<value>0.125</value> <!-- 5 degrees -->
-					</greater-than>
-					<greater-than>
-						<property>surface-positions/spoiler-ground-pos-norm</property>
-						<value>0.1</value> <!-- 4 degrees -->
+						<value>0.075</value> <!-- 3 degrees -->
 					</greater-than>
 				</or>
 				<or>
@@ -483,30 +479,21 @@
 					</not>
 				</or>
 				<or>
-					<greater-than>
-						<property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
-						<value>10</value>
-					</greater-than>
 					<less-than-equals>
 						<property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
 						<value>300</value>
 					</less-than-equals>
+					<equals>
+						<property>/controls/autoflight/vert-mode</property>
+						<value>7</value>
+					</equals>
 				</or>
-				<greater-than-equals>
-					<property>engines/engine[0]/rpm</property>
-					<value>79</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>engines/engine[1]/rpm</property>
-					<value>79</value>
-				</greater-than-equals>
 			</and>
 		</condition>
 	</message>
-	<!-- FIXME: <expression> is unsupported in <condition> when evaluated by Nasal via props.condition() -->
-	<!--message>
+	<message>
 		<priority type="int">1</priority>
-		<text type="string">Fuel imbalance</text>
+		<text type="string">FUEL IMBALANCE</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -514,18 +501,11 @@
 		</color>
 		<condition>
 			<greater-than>
-				<expression>
-					<abs>
-						<dif>
-							<property>consumables/fuel/tank[0]/level-lbs</property>
-							<property>consumables/fuel/tank[1]/level-lbs</property>
-						</dif>
-					</abs>
-				</expression>
+				<property>consumables/fuel/imbalance-lbs</property>
 				<value>800</value>
 			</greater-than>
 		</condition>
-	</message-->
+	</message>
 	<message>
 		<priority type="int">2</priority>
 		<text type="string">IB BRAKE PRESS</text>
@@ -690,26 +670,9 @@
 			<not><property>systems/AC/system[2]/serviceable</property></not>	
 		</condition>
 	</message>
-	
-	
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">GLD not armed</text>
-		<color>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
-		</color>
-		<condition>
-			<equals>
-				<property>controls/flight/ground-lift-dump</property>
-				<value>0</value>
-			</equals>
-		</condition>
-	</message>
-	<message>
-		<priority type="int">1</priority>
-		<text type="string">GLD splr deploy</text>
+		<text type="string">GLD NOT ARMED</text>
 		<color>
 			<red alias="../../../colors/amber/red" />
 			<green alias="../../../colors/amber/green" />
@@ -717,10 +680,25 @@
 		</color>
 		<condition>
 			<and>
-				<greater-than>
-					<property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
-					<value>10</value>
+				<not><property>controls/flight/ground-lift-dump</property></not>
+				<greater-than><!-- approach or take off config: -->
+					<property>controls/flight/flaps</property>
+					<value>1</value>
 				</greater-than>
+			</and>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">GND SPLR DEPLOY</text>
+		<color>
+			<red alias="../../../colors/amber/red" />
+			<green alias="../../../colors/amber/green" />
+			<blue alias="../../../colors/amber/blue" />
+		</color>
+		<condition>
+			<and>
+				<not><property>gear/on-ground</property></not>
 				<greater-than>
 					<property>surface-positions/spoiler-ground-pos-norm</property>
 					<value>0</value>
