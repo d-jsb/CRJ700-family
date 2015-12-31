@@ -12,20 +12,20 @@
 		<desc alias="/input/keyboard/key[2]/desc" />
 	</key>
 	<key>
-		<name>j</name>
-		<desc alias="/input/keyboard/key[106]/desc" />
-	</key>
-	<key>
-		<name>k</name>
-		<desc alias="/input/keyboard/key[107]/desc" />
-	</key>
-	<key>
 		<name>Delete</name>
 		<desc>Toggle thrust reversers</desc>
 	</key>
 	<key>
 		<name>Ctrl-Delete</name>
 		<desc>Arm/disarm thrust reversers</desc>
+	</key>
+	<key>
+		<name>d</name>
+		<desc alias="/input/keyboard/key[100]/desc" />
+	</key>
+	<key>
+		<name>D</name>
+		<desc alias="/input/keyboard/key[68]/desc" />
 	</key>
 	<key>
 		<name>n</name>
