@@ -160,8 +160,23 @@
 					<property>controls/hydraulic/system[%i]/pump-b</property>
 				</signal>
 			</signals>
-			
-			
+			<signal>
+				<type>int</type>
+				<property>controls/pneumatic/cross-bleed</property>
+			</signal>
+			<signal>
+				<type>int</type>
+				<property>controls/pneumatic/bleed-valve</property>
+			</signal>
+			<signal>
+				<type>int</type>
+				<property>controls/pneumatic/bleed-source</property>
+			</signal>
+			<signal>
+				<type>bool</type>
+				<property>controls/pneumatic/isol</property>
+			</signal>
+		
 			<!-- Landing gear -->
 			<signal>
 				<type>float</type>
