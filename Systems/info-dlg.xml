@@ -10,7 +10,7 @@
 			<stretch>1</stretch>
 		</empty>
 		<text>
-			<label>Info</label>
+			<label>Welcome to the CRJ700/900/1000 series</label>
 		</text>
 		<empty>
 			<stretch>1</stretch>
@@ -32,22 +32,17 @@
 		<layout>vbox</layout>
 		<halign>left</halign>
 		<text>
-			<label>CRJ700/900/1000 series Version 1.5beta</label>
+			<label>Documentation can be found in the ./Docs folder.</label>
 		</text>
 		<text>
-			<label>Documentation is currently outdated.</label>
-		</text>
-		<text>
-			<label>Please see the tutorials and checklists.</label>
-		</text>
-		<text>
-			<label>Startup tutorial is highly recommended!</label>
+			<label>Please use the tutorials and checklists.</label>
 			<color>
 				<red>0.0</red>
 				<green>0.9</green>
 				<blue>0.2</blue>
 			</color>
 		</text>
+	
 		<group>
 			<layout>hbox</layout>
 			<checkbox>
@@ -83,6 +78,13 @@
 				<binding>
 					<command>dialog-show</command>
 					<dialog-name>tutorial</dialog-name>
+				</binding>
+			</button>
+			<button>
+				<legend>Bugs/updates</legend>
+				<binding>
+					<command>open-browser</command>
+					<url>https://github.com/d-jsb/CRJ700-family/</url>
 				</binding>
 			</button>
 		</group>
