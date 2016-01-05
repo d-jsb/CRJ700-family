@@ -87,10 +87,16 @@
 				</ctr-cargo>
 				<aft-cargo>
 					<position-norm alias="/engines/engine[3]/rpm" />
-				</aft-cargo>
-				
+				</aft-cargo>				
 			</door-positions>
 			<sound-enabled type="bool">false</sound-enabled>
+			<limits>
+				<mtow-rw-m>1610</mtow-rw-m>
+				<mlw-rw-m>1550</mlw-rw-m>
+			</limits>
+			<dimensions>
+				<nose-distance-m>16</nose-distance-m>
+			</dimensions>			
 		</model>
 
 		<instrumentation>
@@ -1083,10 +1089,14 @@
 	</systems>
 
 	<nasal>
+        <raas>
+            <file>Aircraft/CRJ700-family/Nasal/raas.nas</file>
+        </raas>
 		<interactive_cdu>
 			<file>Aircraft/CRJ700-family/Nasal/cdu.nas</file>
 		</interactive_cdu>
 		<CRJ700>
+			<file>Aircraft/CRJ700-family/Nasal/runway.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/classes.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
 

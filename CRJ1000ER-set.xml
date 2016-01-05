@@ -25,6 +25,15 @@
 				<jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
 			<has-slats type="bool">true</has-slats>
+			<limits>
+				<mtow-rw-m>2120</mtow-rw-m>
+				<mlw-rw-m>1750</mlw-rw-m>
+				<mtow-lb>91800</mtow-lb>
+				<mlw-lb>81500</mlw-lb>
+			</limits>
+			<dimensions>
+				<nose-distance-m>20</nose-distance-m>
+			</dimensions>	
 		</model>
 
         <dimensions>

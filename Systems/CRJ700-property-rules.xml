@@ -15,7 +15,17 @@
 		</input>
 		<output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
 	</filter>
-
+	<logic>
+		<name>On ground</name>
+		<input>
+			<or>
+				<property>/gear/gear[0]/wow</property>
+				<property>/gear/gear[1]/wow</property>
+				<property>/gear/gear[2]/wow</property>
+			</or>
+		</input>
+		<output>/gear/on-ground</output>
+	</logic>	
 	<!-- Alarm logic -->
 	<logic>
 		<name>Overspeed alarm</name>
