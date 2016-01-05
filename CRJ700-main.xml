@@ -543,7 +543,10 @@
 			<lt-test type="bool">false</lt-test>
 		</lighting>
 		<pneumatic>
+			<cross-bleed type="int">0</cross-bleed>
+			<bleed-valve type="int">1</bleed-valve>
 			<bleed-source type="int">0</bleed-source>
+			<isol type="bool">false</isol>
 			<ram-air-turbine type="bool">false</ram-air-turbine>
 			<ram-air-turbine-cover type="bool">false</ram-air-turbine-cover>
 		</pneumatic>
