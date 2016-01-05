@@ -26,8 +26,13 @@
 			<count type="int">3</count>
 		</signals>
 
+
 		<!-- Custom properties -->
 		<signals>
+			<signal>
+				<type>float</type>
+				<property>velocities/groundspeed-kt</property>
+			</signal>
 			<!-- Engines -->
 			<signals>
 				<count type="int">2</count>
