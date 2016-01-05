@@ -81,8 +81,8 @@ Engine.Apu = func(n) {
 
     apu.serviceable_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/serviceable", 1);
     apu.serviceable_node.setBoolValue(apu.serviceable);
-
-    apu.door_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/door-norm", 1);
+	#abusing unused engine[2] MP enabled property to make door pos visible via MP
+    apu.door_node = props.globals.getNode("/engines/engine[2]/n1", 1);
     apu.door_node.setValue(apu.door);
     apu.eicas_door_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/door-msg", 1);
     apu.eicas_door_node.setValue(apu.eicas_door_msg[0]);
