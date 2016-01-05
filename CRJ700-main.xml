@@ -35,7 +35,7 @@
 
 		<config>
 			<hide-welcome-msg type="bool">false</hide-welcome-msg>
-			<speed-mode-autothrottle type="bool">false</speed-mode-autothrottle>
+			<allow-autothrottle type="bool">false</allow-autothrottle>
 			<rudder-to-tiller type="bool">false</rudder-to-tiller>
 			<developer type="bool">false</developer>
 		</config>
@@ -309,7 +309,7 @@
 							</script>
 						</binding>
 					</item>
-					<!-- for development 
+				<!-- for development -->
 						
 					<item>
 						<name>debug-output</name>
@@ -344,8 +344,7 @@
 								CRJ700.instastart();
 							</script>
 						</binding>
-					</item>
-					-->
+					</item>					
 
 					<item>
 						<name>crj-config</name>
