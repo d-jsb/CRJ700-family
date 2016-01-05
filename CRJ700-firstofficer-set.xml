@@ -18,12 +18,6 @@
 			<yokes type="bool">true</yokes>
 		</model>
 
-		<panel>
-			<!-- Note: Requires 737-300 for instruments -->
-			<path>Aircraft/CRJ700-family/Panels/CRJ700-panel.xml</path>
-			<visibility type="bool">false</visibility>
-		</panel>
-
 		<instrumentation>
 			<path></path>
 		</instrumentation>

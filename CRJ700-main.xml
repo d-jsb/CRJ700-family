@@ -7,15 +7,26 @@
 
 	<sim>
 		<description>Bombardier CRJ700 series</description>
-		<author>Ryan Miller (3d), Ryan Miller (FDM)</author>
-		<status>early-production</status>
+        <author>Ryan Miller, Henning S.</author>
+        <status>production</status>
+        <aircraft-version>1.5.0b</aircraft-version>
 		<rating>
 			<FDM type="int">3</FDM>
 			<systems type="int">3</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">4</model>
 		</rating>
-
+        
+        <tags>
+            <tag>transport</tag>
+            <tag>bombardier</tag>
+            <tag>jet</tag>
+            <tag>retractable-gear</tag>
+            <tag>ifr</tag>
+            <tag>twin-engine</tag>
+            <tag>glass-cockpit</tag>
+        </tags>
+		
 		<startup>
 			<splash-texture>Aircraft/CRJ700-family/splash.jpg</splash-texture>
 		</startup>
@@ -63,6 +74,17 @@
 				<emer-r2>
 					<position-norm type="float">0</position-norm>
 				</emer-r2>
+				
+				<fwd-cargo>
+					<position-norm alias="/engines/engine[3]/n1" />
+				</fwd-cargo>
+				<ctr-cargo>
+					<position-norm alias="/engines/engine[3]/n2" />
+				</ctr-cargo>
+				<aft-cargo>
+					<position-norm alias="/engines/engine[3]/rpm" />
+				</aft-cargo>
+				
 			</door-positions>
 			<sound-enabled type="bool">false</sound-enabled>
 			<hide-welcome-msg type="bool">false</hide-welcome-msg>
@@ -270,7 +292,7 @@
 						</binding>
 					</item>
 					<!-- for development -->
-<!--
+
 					<item>
 						<name>debug-output</name>
 						<label>Debug output</label>
@@ -300,7 +322,7 @@
 							</script>
 						</binding>
 					</item>
--->
+
 					<item>
 						<name>welcome-msg</name>
 						<label>Info</label>

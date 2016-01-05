@@ -7,15 +7,10 @@
 
 	<sim>
 		<description>Bombardier CRJ900ER</description>
-        <author>Ryan Miller, D-JSB, et al.</author>
-		<status>production</status>
-		<aircraft-version>1.5.0b</aircraft-version>
-		<rating>
-			<FDM type="int">3</FDM>
-			<systems type="int">3</systems>
-			<cockpit type="int">4</cockpit>
-			<model type="int">4</model>
-		</rating>
+        <author>Ryan Miller, Henning S.</author>
+        <status>production</status>
+        <aircraft-version>1.5.0b</aircraft-version>
+		
 		<variant-of>CRJ700</variant-of>
 		<flight-model>yasim</flight-model>
 		<aero>CRJ900ER</aero>
@@ -252,7 +247,7 @@
             </config>
         </view>
         <view n="124">
-            <name>Ground walk</name>
+            <name>GndWalk</name>
             <type>lookfrom</type>
             <internal type="bool" archive="y">false</internal>
             <config>
