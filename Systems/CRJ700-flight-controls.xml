@@ -358,26 +358,28 @@
 		<name>Automatic ground spoiler deployment logic</name>
 		<input>
 			<and>
-				<equals>
+				<less-than-equals>
 					<property>controls/engines/engine[0]/throttle</property>
-					<value>0</value>
-				</equals>
+					<value>0.01</value>
+				</less-than-equals>
 				<equals>
 					<property>controls/engines/engine[0]/thrust-mode</property>
 					<value>0</value>
 				</equals>
-				<equals>
+				<less-than-equals>
 					<property>controls/engines/engine[1]/throttle</property>
-					<value>0</value>
-				</equals>
+					<value>0.01</value>
+				</less-than-equals>
 				<equals>
 					<property>controls/engines/engine[1]/thrust-mode</property>
 					<value>0</value>
 				</equals>
-				<or>
-					<property>gear/gear[1]/wow</property>
-					<property>gear/gear[2]/wow</property>
-				</or>
+				<property>gear/gear[1]/wow</property>
+				<property>gear/gear[2]/wow</property>
+				<less-than-equals>
+					<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+					<value>3</value>
+				</less-than-equals>
 				<or>
 					<greater-than>
 						<property>gear/gear[1]/rollspeed-ms</property>
@@ -395,29 +397,23 @@
 	<logic>
 		<name>Ground spoilers deploy logic</name>
 		<input>
-			<and>
-				<or>
+			<or>
+				<and>
+					<equals>
+						<property>controls/flight/ground-lift-dump</property>
+						<value>2</value><!-- manual arm -->
+					</equals>
 					<property>controls/engines/engine[0]/reverser</property>
 					<property>controls/engines/engine[1]/reverser</property>
+				</and>
+				<and>
 					<equals>
 						<property>controls/flight/ground-lift-dump</property>
-						<value>2</value>
+						<value>1</value> <!-- auto arm -->
 					</equals>
-					<and>
-						<property>controls/flight/spoilers-ground-auto-cmd</property>
-						<equals>
-							<property>controls/flight/ground-lift-dump</property>
-							<value>1</value>
-						</equals>
-					</and>
-				</or>
-				<not>
-					<equals>
-						<property>controls/flight/ground-lift-dump</property>
-						<value>0</value>
-					</equals>
-				</not>
-			</and>
+					<property>controls/flight/spoilers-ground-auto-cmd</property>
+				</and>
+			</or>
 		</input>
 		<output>controls/flight/spoilers-ground-cmd</output>
 	</logic>
