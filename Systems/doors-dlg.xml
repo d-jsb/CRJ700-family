@@ -58,25 +58,6 @@
 				<command>nasal</command>
 				<script>CRJ700.doors.fwd_cargo.toggle();</script>
 			</binding>
-			<enabled>
-				<condition>
-					<not>
-					<or>
-						<equals>
-							<property>/sim/aero</property>
-							<value>CRJ700</value>
-						</equals>
-						<equals>
-							<property>/sim/aero</property>
-							<value>CRJ700ER</value>
-						</equals>
-						<equals>
-							<property>/sim/aero</property>
-							<value>CRJ700LR</value>
-						</equals>
-					</or></not>
-				</condition>
-			</enabled>
 		</button>
 		<button>
 			<pref-width>80</pref-width>
