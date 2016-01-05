@@ -123,57 +123,76 @@ var startid = 0;
 var startup = func {
     startid += 1;
     var id = startid;
-    setprop("controls/electric/battery-switch", 1);
-    setprop("controls/lighting/nav-lights", 1);
-    setprop("controls/lighting/beacon", 1);
-    setprop("controls/pneumatic/bleed-source", 2);
-    setprop("controls/APU/electronic-control-unit", 1);
-    setprop("controls/APU/off-on", 1);
-    settimer(func
-    {
-        if (id == startid)
-        {
-			setprop("controls/electric/engine[0]/generator", 1);
-			setprop("controls/electric/engine[1]/generator", 1);
-			setprop("controls/electric/APU-generator", 1);
-			setprop("controls/engines/engine[0]/cutoff", 0);
-			setprop("controls/engines/engine[1]/cutoff", 0);
-            setprop("/consumables/fuel/tank[0]/selected", 1);
-            setprop("/consumables/fuel/tank[1]/selected", 1);
-            setprop("/controls/engines/engine[0]/starter", 1);
-			settimer(func
-			{
-				if (id == startid)
-				{
-					setprop("/controls/engines/engine[1]/starter", 1);
-					settimer(func
-					{
-						if (id == startid)
-						{
-							setprop("controls/pneumatic/bleed-source", 0);
-							setprop("controls/APU/off-on", 0);
-							#setprop("controls/APU/electronic-control-unit", 0);
-							#setprop("controls/electric/battery-switch", 0);
-							setprop("controls/lighting/taxi-lights", 1);
-							setprop("controls/hydraulic/system[0]/pump-b", 2);
-							setprop("controls/hydraulic/system[1]/pump-b", 2);
-							setprop("controls/hydraulic/system[2]/pump-b", 2);
-							setprop("controls/hydraulic/system[2]/pump-a", 1);							
-						}
-					}, 38);
-				}
-            }, 37);
-        }
-    }, 22);
+	
+	var items = [
+		["controls/electric/battery-switch", 1, 0.8],
+		["controls/lighting/nav-lights", 1, 0.4],
+		["controls/lighting/beacon", 1, 0.8],
+		["controls/APU/electronic-control-unit", 1, 0.4],
+		["controls/APU/off-on", 1, 22],
+		["controls/pneumatic/bleed-source", 2, 0.8],
+		["controls/electric/engine[0]/generator", 1, 0.3],
+		["controls/electric/APU-generator", 1, 0.3],
+		["controls/electric/engine[1]/generator", 1, 1.5],
+		["controls/engines/engine[0]/cutoff", 0, 0.1],
+		["controls/engines/engine[1]/cutoff", 0, 2],
+		["/consumables/fuel/tank[0]/selected", 1, 0.4],
+		["/consumables/fuel/tank[1]/selected", 1, 0.8],
+		["/controls/engines/engine[0]/starter", 1, 37],
+		["/controls/engines/engine[1]/starter", 1, 38],
+		["controls/pneumatic/bleed-source", 0, 0.8],
+		["controls/APU/off-on", 0, 1],
+		["controls/lighting/taxi-lights", 1, 0.8],
+		["controls/hydraulic/system[0]/pump-b", 2, 0.1],
+		["controls/hydraulic/system[2]/pump-a", 1, 0.3],							
+		["controls/hydraulic/system[2]/pump-b", 2, 0.1],
+		["controls/hydraulic/system[1]/pump-b", 2, 0.3],
+	];
+	var exec = func (idx)
+	{
+        if (id == startid and items[idx] != nil) {
+			var item = items[idx];
+			setprop(item[0], item[1]);
+			if (size(items) > idx+1 and item[2] >= 0)
+				settimer(func exec(idx+1), item[2]);
+		}
+	}
+	exec(0);
 };
 
 var shutdown = func
 {
-    setprop("controls/engines/engine[0]/cutoff", 1);
-    setprop("controls/engines/engine[1]/cutoff", 1);
-    setprop("controls/electric/engine[0]/generator", 0);
-    setprop("controls/electric/engine[1]/generator", 0);
+    startid += 1;
+    var id = startid;
+	var items = [
+		["controls/lighting/landing-lights[0]", 0, 0.3],
+		["controls/lighting/landing-lights[1]", 0, 0.3],
+		["controls/lighting/landing-lights[2]", 0, 0.3],
+		["controls/lighting/taxi-lights", 0, 0.8],
+		["controls/electric/engine[0]/generator", 0, 0.5],
+		["controls/electric/engine[1]/generator", 0, 1.5],
+		["controls/engines/engine[0]/cutoff", 1, 0.0],
+		["controls/engines/engine[1]/cutoff", 1, 2],
+		["/consumables/fuel/tank[0]/selected", 0, 0.4],
+		["/consumables/fuel/tank[1]/selected", 0, 0.8],
+		["controls/lighting/beacon", 0, 0.8],
+		["controls/hydraulic/system[0]/pump-b", 0, 0.1],
+		["controls/hydraulic/system[2]/pump-a", 0, 0.3],							
+		["controls/hydraulic/system[2]/pump-b", 0, 0.1],
+		["controls/hydraulic/system[1]/pump-b", 0, 0.3],
+	];
+	var exec = func (idx)
+	{
+        if (id == startid and items[idx] != nil) {
+			var item = items[idx];
+			setprop(item[0], item[1]);
+			if (size(items) > idx+1 and item[2] >= 0)
+				settimer(func exec(idx+1), item[2]);
+		}
+	}
+	exec(0);
 };
+
 setlistener("sim/model/start-idling", func(v)
 {
     var run = v.getBoolValue();
