@@ -7,6 +7,7 @@
 
 	<path>CRJ900.ac</path>
 	<params>
+		<apu-door>engines/engine[2]/n1</apu-door>
 		<fwd-cargo-door>engines/engine[3]/n1</fwd-cargo-door>
 		<ctr-cargo-door>engines/engine[3]/n2</ctr-cargo-door>
 		<aft-cargo-door>engines/engine[3]/rpm</aft-cargo-door>
@@ -268,7 +269,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>APUDoor</object-name>
-		<property>engines/apu/door-norm</property>
+		<property alias="/params/apu-door" />
 		<factor>45</factor>
         <axis>
 			<x1-m>14.44046</x1-m>
