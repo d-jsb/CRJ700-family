@@ -26,9 +26,21 @@
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>5</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>ClockElements</name>
+		<object-name>Bezel</object-name>
+		<object-name>CHR</object-name>
+		<object-name>Face</object-name>
+		<object-name>MODE</object-name>
+		<object-name>Markings</object-name>
+		<object-name>RST</object-name>
+		<object-name>SEL</object-name>
+		<object-name>Screen</object-name>
+	</animation>
+	
 	<text>
 		<name>Date day/month</name>
 		<type>string-value</type>

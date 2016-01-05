@@ -36,7 +36,36 @@
 		<min-m>0</min-m>
 		<max-m>5</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>RadioPanelElements</name>
+		<object-name>1/2</object-name>
+		<object-name>ADF1</object-name>
+		<object-name>ADF2</object-name>
+		<object-name>BigKnob</object-name>
+		<object-name>Display</object-name>
+		<object-name>DME-H</object-name>
+		<object-name>DontWork</object-name>
+		<object-name>Emergency</object-name>
+		<object-name>Ident</object-name>
+		<object-name>L1</object-name>
+		<object-name>L2</object-name>
+		<object-name>L3</object-name>
+		<object-name>L4</object-name>
+		<object-name>Mask</object-name>
+		<object-name>NAV1</object-name>
+		<object-name>NAV2</object-name>
+		<object-name>Panel</object-name>
+		<object-name>R1</object-name>
+		<object-name>R2</object-name>
+		<object-name>R3</object-name>
+		<object-name>R4</object-name>
+		<object-name>RadioKnob</object-name>
+		<object-name>RT-IC</object-name>
+		<object-name>SmallKnob</object-name>
+		<object-name>SwitchSockets</object-name>
+		<object-name>Voice</object-name>		
+	</animation>
 	<animation>
 		<type>material</type>
 		<object-name>Markings</object-name>

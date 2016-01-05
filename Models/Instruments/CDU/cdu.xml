@@ -13,13 +13,95 @@
 	<small-text-size type="float">0.006</small-text-size>
 	<large-text-size type="float">0.008</large-text-size>
 
-	<!-- Visible only within 1/2 km -->
+	
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>15</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>CDUElements</name>
+		<object-name>Keys</object-name>
+		<object-name>+/-</object-name>
+		<object-name>.</object-name>
+		<object-name>/</object-name>
+		<object-name>0</object-name>
+		<object-name>1</object-name>
+		<object-name>2</object-name>
+		<object-name>3</object-name>
+		<object-name>4</object-name>
+		<object-name>5</object-name>
+		<object-name>6</object-name>
+		<object-name>7</object-name>
+		<object-name>8</object-name>
+		<object-name>9</object-name>
+		<object-name>A</object-name>
+		<object-name>ArrowDown</object-name>
+		<object-name>ArrowUp</object-name>
+		<object-name>B</object-name>
+		<object-name>C</object-name>
+		<object-name>CLR</object-name>
+		<object-name>D</object-name>
+		<object-name>DEL</object-name>
+		<object-name>DEP-ARR</object-name>
+		<object-name>DIR-INTC</object-name>
+		<object-name>E</object-name>
+		<object-name>EXEC</object-name>
+		<object-name>F</object-name>
+		<object-name>FIX</object-name>
+		<object-name>FPLN</object-name>
+		<object-name>G</object-name>
+		<object-name>H</object-name>
+		<object-name>HOLD</object-name>
+		<object-name>I</object-name>
+		<object-name>INDEX</object-name>
+		<object-name>J</object-name>
+		<object-name>K</object-name>
+		<object-name>L</object-name>
+		<object-name>L1</object-name>
+		<object-name>L2</object-name>
+		<object-name>L3</object-name>
+		<object-name>L4</object-name>
+		<object-name>L5</object-name>
+		<object-name>L6</object-name>
+		<object-name>LEGS</object-name>
+		<object-name>M</object-name>
+		<object-name>MDCU-MENU</object-name>
+		<object-name>MFD-ADV</object-name>
+		<object-name>MFD-DATA</object-name>
+		<object-name>MFD-MENU</object-name>
+		<object-name>MSG</object-name>
+		<object-name>N</object-name>
+		<object-name>NEXT-PAGE</object-name>
+		<object-name>O</object-name>
+		<object-name>P</object-name>
+		<object-name>PERF</object-name>
+		<object-name>PREV-PAGE</object-name>
+		<object-name>PROG</object-name>
+		<object-name>Q</object-name>
+		<object-name>R</object-name>
+		<object-name>R1</object-name>
+		<object-name>R2</object-name>
+		<object-name>R3</object-name>
+		<object-name>R4</object-name>
+		<object-name>R5</object-name>
+		<object-name>R6</object-name>
+		<object-name>RADIO</object-name>
+		<object-name>S</object-name>
+		<object-name>SEC-FPLN</object-name>
+		<object-name>SP</object-name>
+		<object-name>T</object-name>
+		<object-name>U</object-name>
+		<object-name>V</object-name>
+		<object-name>VNAV</object-name>
+		<object-name>W</object-name>
+		<object-name>X</object-name>
+		<object-name>Y</object-name>
+		<object-name>Z</object-name>
+		<object-name>Case</object-name>
+		<object-name>Display</object-name>
+	</animation>
 	<animation>
 		<type>material</type>
 		<object-name>Keys</object-name>

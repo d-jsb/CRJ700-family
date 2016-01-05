@@ -19,9 +19,28 @@
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>50</max-m>
 	</animation>
-
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>UpperPanelElements</name>
+		<object-name>SwitchSockets.002</object-name>
+		<object-name>SwitchSockets_1</object-name>
+		<object-name>CompassRef</object-name>
+		<object-name>CompassRefBorder</object-name>
+		<object-name>ELTSwitch</object-name>
+		<object-name>EmerLightSwitch</object-name>
+		<object-name>EmerOxygenBtn</object-name>
+		<object-name>LandingLtLSwitch</object-name>
+		<object-name>LandingLtNSwitch</object-name>
+		<object-name>LandingLtRSwitch</object-name>
+		<object-name>NoSmokingSwitch</object-name>
+		<object-name>Panel</object-name>
+		<object-name>SeatbeltSwitch</object-name>
+		<object-name>SwitchSockets.001</object-name>
+		<object-name>TaxiLightSwitch</object-name>
+		<object-name>UpperPanelHoles</object-name>
+	</animation>
 	<model>
 		<name>Compass</name>
 		<path>Aircraft/CRJ700-family/Models/Instruments/Compass/compass.xml</path>
