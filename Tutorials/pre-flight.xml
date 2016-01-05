@@ -396,19 +396,15 @@
 		</nasal>
 		<exit>
 			<condition>
-				<and><!-- not exactly, but ok... -->
-					<greater-than-equals>
-						<property>consumables/fuel/tank[0]/level-lbs</property>
-						<value>2500</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>consumables/fuel/tank[1]/level-lbs</property>
-						<value>2500</value>
-					</greater-than-equals>
+				<and>
 					<greater-than-equals>
 						<property>consumables/fuel/total-fuel-lbs</property>
 						<value>5000</value>
 					</greater-than-equals>
+					<less-than>
+						<property>consumables/fuel/imbalance-lbs</property>
+						<value>800</value>
+					</less-than>
 				</and>
 			</condition>
 			<nasal>
