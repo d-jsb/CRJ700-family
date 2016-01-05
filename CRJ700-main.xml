@@ -683,8 +683,8 @@
 				<v2 type="int">145</v2> <!-- takeoff safety speed -->
 				<vr type="int">135</vr> <!-- rotate airspeed -->
 				<vt type="int">180</vt> <!-- target speed -->
-				<dh type="int">300</dh> <!-- decision heigt, 0 - 999ft -->
-				<mda type="int">2000</mda> <!-- min descent altitude-->
+				<dh alias="/instrumentation/mk-viii/inputs/arinc429/decision-height" /> <!-- decision heigt, 0 - 999ft -->
+				<mda type="int">3000</mda> <!-- min descent altitude-->
 			</reference>
 		</adc>
 		<adf>
@@ -956,6 +956,7 @@
 			<selected-field type="int">0</selected-field>
 		</radio-stack>
 		<radar-altimeter>
+			<!-- FIXME: should be calibrated to main gear (~12ft) -->
 			<serviceable type="bool">true</serviceable>
 		</radar-altimeter>
 		<radar-altimeter>
@@ -981,7 +982,7 @@
 				<category-5 type="int">0</category-5>
 				<category-6 type="int">0</category-6>
 				<category-7 type="int">124</category-7>
-				<category-8 type="int">4</category-8>
+				<category-8 type="int">3</category-8> <!-- radio altimeter select -->
 				<category-9 type="int">3</category-9>
 				<category-10 type="int">2</category-10>
 				<category-13 type="int">7</category-13>
@@ -990,7 +991,7 @@
 			<inputs>
 				<arinc429>
 					<decision-height-ncd type="bool">false</decision-height-ncd>
-					<decision-height type="double">200</decision-height>
+					<decision-height type="double">250</decision-height>
 				</arinc429>
 			</inputs>
 			<speaker>

@@ -43,7 +43,53 @@
 			<blue>1</blue>
 		</white>
 	</colors>
-	
+
+	<animation>
+		<name>Page1</name>
+		<object-name>ADF1Ptr</object-name>
+		<object-name>ADF2Ptr</object-name>
+		<object-name>GS</object-name>
+		<object-name>GSPtr</object-name>
+		<object-name>HSI1</object-name>
+		<object-name>HSI1Bug</object-name>
+		<object-name>NAV1Ptr</object-name>
+		<object-name>NAV1Track</object-name>
+		<object-name>NAV2Ptr</object-name>
+		<object-name>NAV2Track</object-name>
+	</animation>
+	<animation>
+		<name>Page2</name>
+		<object-name>ADF1</object-name>
+		<object-name>ADF2</object-name>
+		<object-name>HSI2</object-name>
+		<object-name>HSI2Bug</object-name>
+		<object-name>NAV1From</object-name>
+		<object-name>NAV1To</object-name>
+		<object-name>NAV2From</object-name>
+		<object-name>NAV2To</object-name>
+	</animation>
+	<animation>
+		<name>Page3</name>
+		<object-name>HSI3</object-name>
+		<object-name>HSI3Bug</object-name>
+	</animation>
+	<animation>
+		<name>Page6</name>
+		<object-name>HSI6</object-name>
+		<object-name>HSI6Bug</object-name>
+	</animation>
+	<animation>
+		<name>LCD</name>
+		<object-name>HSIHdg</object-name>
+		<object-name>NoRadar</object-name>		
+		<object-name>Page1</object-name>
+		<object-name>Page2</object-name>
+		<object-name>Page3</object-name>
+		<object-name>Page6</object-name>
+		<object-name>Screen</object-name>
+		<object-name>Wind</object-name>		
+	</animation>
+		
     <!-- Visible only within 1/2 km -->
     <animation>
 		<type>range</type>

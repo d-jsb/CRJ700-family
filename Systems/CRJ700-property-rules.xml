@@ -5,6 +5,21 @@
 -->
 <PropertyList>
 	<filter>
+		<name>dhptr</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+				<property>instrumentation/adc/reference/dh</property>
+				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/radar-altimeter/dh-deviation</output>
+	</filter>
+	<filter>
 		<name>VS scaler</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
@@ -14,6 +29,81 @@
 			<scale>0.001</scale>
 		</input>
 		<output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
+	</filter>
+	<filter>
+		<name>SpeedTape</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>40</value>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/airspeed-indicator/ias-40</output>
+	</filter>
+	<filter>
+		<name>V1marker</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/adc/reference/v1</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/adc/v1-diff</output>
+	</filter>
+	<filter>
+		<name>VRmarker</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/adc/reference/vr</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/adc/vr-diff</output>
+	</filter>	
+	<filter>
+		<name>V2marker</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/adc/reference/v2</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/adc/v2-diff</output>
+	</filter>	
+	<filter>
+		<name>VTmarker</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>instrumentation/adc/reference/vt</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/adc/vt-diff</output>
 	</filter>
 	<logic>
 		<name>On ground</name>
