@@ -2,78 +2,136 @@
 	"http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 	<head>
-		<title>FlightGear Flight Simulator - Bombardier CRJ700 Series Authors and Credits</title>
+		<title>FlightGear - CRJ700 Series AFCS</title>
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="Files/styles.css">
 	</head>
 	<body>
-		<h1>Bombardier CRJ700 Series</h1>
+		<h1>Bombardier CRJ700 Series Automatic Flight Control System (AFCS)</h1>
 
-		<h2>Autopilot system</h2>
+		<p class="warn">
+		Please read the notes on implementation and bugs at the end of this document.
+		</p>
 
+		<h2>Introduction</h2>
+		<p>The CRJ700 features an automatic flight control system system (aka autopilot) comprising the following parts:</p>
+		<ol>
+			<li>Flight director (FD)</li>
+			<li>Autopilot (AP)</li>
+			<li>Yaw dampers (YD)</li>
+		</ol>
 		<p>
-		 The CRJ700 features a mostly realistic autopilot system. All the modes work, except backcourse ("B/C") mode, because I have no idea how to begin to implement that.
+		The FD (if engaged) will provide visual guidance to the pilot by showing 
+		command bars on the attitude indicator of the primary flight display (PFD).
+		This allows the pilot to fly manually but still use the instruments as a guide. 
+		It also shows to the pilot, what the AP would do when engaged.
 		</p>
-
-		<p class="tip">
-		 Tip: You can find a list of autopilot shortcut keys in the aircraft help inside the simulator.
-		</p>
-
-		<h3>Introduction</h3>
-
 		<p>
-		 The CRJ700's autopilot system can be divided into two parts (not including the yaw dampers and flight director, which are discussed below): the autopilot and autothrottle. The autopilot controls the aircraft's pitch and roll with separate lateral modes and vertical modes.
+		The AP is a rather simple part of the system, it controls pitch and roll 
+		of the aircraft. If engaged, it will follow the FD commands by using the 
+		elevator trim and the ailerons.
 		</p>
-
 		<p>
-		 Lateral modes:
+		While yaw dampers are officially needed to operate the AP, they are not 
+		implemented in this model (yet). Don't worry, somehow it flys with out it ;)
+		</p>
+		<p class="tip"> 
+		Tip: You can find a list of autopilot shortcut keys in the aircraft help inside the simulator.
 		</p>
 
+		
+		<h2>Flight director</h2>
+		<p>The FD has several modes that can be configured via the flight 
+		control panel (FCP, see below) or the AP dialog (hit F11 on your keyboard).
+		</p>
+		<p>
+		When the FD gets engaged, the basic lateral and vertical modes are active by default.
+		Pressing a button to engage any other mode in a category will disable the respective basic mode. 
+		Pressing that same button again will cause the autopilot to revert to the basic mode. 
+		</p>
+
+		<p><u>Lateral modes:</u></p>
 		<ul>
-			<li>Basic lateral mode*</li>
-			<li>Magnetic heading hold</li>
+			<li>Basic lateral mode (default)</li>
+			<li>Heading hold</li>
 			<li>NAV mode</li>
-			<li>Approach mode**</li>
+			<li>Approach mode</li>
 		</ul>
-
 		<p>
-		 Vertical modes:
+		Basic lateral mode holds the heading the plane was at when the mode was first activated; 
+		<em>however</em>, if the airplane is banked more than 5 degrees, 
+		this mode will hold the bank angle instead of the heading.
+		</p>
+		<p>
+		In heading mode the AP will turn to and hold a selected heading. 
+		The pilot selects this heading by rotating the HDG select knob. 
+		Selected heading is shown as readout on PFD and as heading bug 
+		on PDF and MFD compass.
+		</p>
+		<p class="tip">Push the HDG select knob to sync (select current heading).</p>
+		<p>
+		In NAV mode the AP will follow on of the navigation sources (NAV1, NAV2, FMS). 
+		You have to make sure you tune the NAV radio you want to use to a valid frequency 
+		and select it via the nav source selector on the side panel.
+		NAV mode will not work, if the nav source is invalid.
+		</p>
+		<p class="warn">
+		NAV mode will be automatically de-selected on nav source change,
+		e.g. FD lateral mode return to basic mode.
+		</p>
+		<p>
+		Approach mode is similar to NAV mode but will track a localizer/ILS.
+		If a glideslope (GS) sender is available, it will be intercepted 
+		(see below, vertical modes).
 		</p>
 
+		<p><u>Vertical modes:</u></p>
 		<ul>
-			<li>Basic vertical mode***</li>
+			<li>Basic vertical mode (default)</li>
 			<li>Altitude hold</li>
-			<li>Vertical speed hold</li>
+			<li>Vertical speed (VS) hold</li>
+			<li>Speed hold</li>
+			<li>Approach mode  (GS)</li>
 		</ul>
-
 		<p>
-		 When the autopilot is first engaged, the basic lateral and vertical modes are activated. Pressing a button to engage any other mode in a category will disable the respective basic mode. Pressing that same button again will cause the autopilot to revert to the basic mode. For example, if the pilot engages the autopilot, it would first be flying in basic vertical mode. If he pushed the altitude hold button, the autopilot would fly altitude hold mode. If he presses the altitude hold button again, the autopilot would revert back to basic vertical mode.
+		Basic vertical mode holds the pitch the plane was at when the mode is activated. 
+		You can change that pitch in 0.5° increments using the vertical speed wheel.
 		</p>
-
+		<p>
+		In altitude mode the AP will climb/descent to the pre-selected 
+		barometric altitude selected by the pilot via the altitude selection knob.
+		</p>
 		<p class="tip">
-		 * - Basic lateral mode holds the heading the plane was at when the mode was first activated; <em>however</em>, if the airplane is banked more than 5 degrees in either direction, this mode will hold the bank angle instead of the heading.
+		Make sure to calibrate the altimeter according to the current QNH 
+		1) at the departure airport before startup and 2) before descending 
+		thru the transition level of the destination.
 		</p>
-
-		<p class="tip">
-		 ** - Approach mode is a combined lateral <em>and</em> vertical mode. Pressing the approach button will deactivate any other active lateral modes and track the glideslope, however, it will not deactivate the current vertical mode to follow the glideslope down until you revert to basic vertical mode first. For best results, engage only within range of the localizer and leave a vertical mode on until you've intercepted the glideslope.
-		</p>
-
-		<p class="tip">
-		 *** - Basic vertical mode holds the pitch the plane was at when the mode was first activated. You can change that pitch in 0.5° increments using the vertical speed wheel.
-		</p>
-
 		<p>
-		 The autothrottle controls the engines to fly at a set speed. The autothrottle has two modes, IAS and Mach. The autothrottle only takes effect when the thrust modes for each engine are set to normal.
+		VS mode attempts to hold the selected VS, which is synced automatically on activation.
+		You can change that VS in 100fps increments using the vertical speed wheel.
+		</p>
+		<p>
+		Approach mode is a combined lateral <em>and</em> vertical mode. 
+		Pressing the approach button will deactivate any other active 
+		lateral modes and track the localizer/glideslope. 
+		It will deactivate any vertical mode when the glideslope is captured
+		and follow it.
 		</p>
 
+		<h2>Autopilot</h2>
 		<p>
-		 The autopilot and autothrottle can be controlled using the MCP ("Mode Control Panel") or autopilot settings dialog.
+		The FD itself will not control the aircraft, you have to activate the 
+		AP first. It will follow the FD commands and control the elevator trim
+		and ailerons.
+		</p>
+		<p class="tip">Engaging the AP automatically engages the FD in basic mode. 
+		However, you should activate the FD manually before the AP and watch the 
+		FD command bars, they should not deviate too much from the current aircraft attitude.
 		</p>
 
-		<h3>The MCP</h3>
-
+		<h3>The FCP</h3>
 		<p>
-		 <img src="Files/mcp.jpg" alt="The mode control panel">
+		 <img src="Files/fcp.jpg" alt="The flight control panel">
 		</p>
 
 		<table>
@@ -86,7 +144,7 @@
 			<tbody>
 				<tr>
 					<td>CRS1</td>
-					<td>Adjust the NAV1 course radial</td>
+					<td>Adjust the NAV1 course radial (click face to set direct from current position)</td>
 				</tr>
 				<tr>
 					<td>FD</td>
@@ -109,8 +167,8 @@
 					<td><em>Not implemented</em></td>
 				</tr>
 				<tr>
-					<td>SPEED</td>
-					<td>Engage/disengage the autothrottle</td>
+					<td>SPEED button</td>
+					<td>select speed hold vertical mode</td>
 				</tr>
 				<tr>
 					<td>SPEED knob</td>
@@ -118,35 +176,31 @@
 				</tr>
 				<tr>
 					<td>APPR</td>
-					<td>Turn approach mode on/off</td>
+					<td>Select approach mode</td>
 				</tr>
 				<tr>
 					<td>B/C</td>
 					<td><em>Not implemented</em></td>
 				</tr>
 				<tr>
-					<td>HDG</td>
-					<td>Turn heading hold mode on/off</td>
+					<td>HDG button</td>
+					<td>Select heading hold mode</td>
 				</tr>
 				<tr>
 					<td>HDG knob</td>
 					<td>Adjust the heading bug</td>
 				</tr>
 				<tr>
-					<td>CRS1</td>
-					<td>Adjust the NAV1 course radial</td>
-				</tr>
-				<tr>
 					<td>NAV</td>
-					<td>Turn NAV mode on/off</td>
+					<td>Select NAV mode.</td>
 				</tr>
 				<tr>
 					<td>1/2 BANK</td>
-					<td>Switch bank angle limit between 30° (full) and 15° (half)</td>
+					<td>Switch bank angle limit between 30° (full) and 15° (half). Not allowed in some modes.</td>
 				</tr>
 				<tr>
-					<td>ALT</td>
-					<td>Turn altitude hold mode on/off</td>
+					<td>ALT button</td>
+					<td>Select altitude hold mode</td>
 				</tr>
 				<tr>
 					<td>ALT knob</td>
@@ -154,7 +208,7 @@
 				</tr>
 				<tr>
 					<td>VS</td>
-					<td>Turn vertical speed hold mode on/off</td>
+					<td>Select vertical speed hold mode</td>
 				</tr>
 				<tr>
 					<td>VS wheel</td>
@@ -162,13 +216,15 @@
 				</tr>
 				<tr>
 					<td>CRS2</td>
-					<td>Adjust the NAV2 course radial</td>
+					<td>Adjust the NAV2 course radial (click face to set direct from current position)</td>
 				</tr>
 			</tbody>
 		</table>
 
 		<h3>The autopilot dialog</h3>
-
+		<p>
+		The AP dialog mimics the FCP plus some related buttons. See description above.
+		</p>
 		<p>
 		 <img src="Files/ap-dialog.jpg" alt="The autopilot dialog">
 		</p>
@@ -182,38 +238,6 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>AP</td>
-					<td>Engage/disengage the autopilot</td>
-				</tr>
-				<tr>
-					<td>AP DISC</td>
-					<td>Disengage the autopilot</td>
-				</tr>
-				<tr>
-					<td>FD</td>
-					<td>Turn the flight director on/off</td>
-				</tr>
-				<tr>
-					<td>SPEED</td>
-					<td>Engage/disengage the autothrottle</td>
-				</tr>
-				<tr>
-					<td>YD1</td>
-					<td>Turn yaw damper #1 on/off</td>
-				</tr>
-				<tr>
-					<td>YD2</td>
-					<td>Turn yaw damper #2 on/off</td>
-				</tr>
-				<tr>
-					<td>1/2 BANK</td>
-					<td>Switch bank angle limit between 30° (full) and 15° (half)</td>
-				</tr>
-				<tr>
-					<td>NAV SRC</td>
-					<td>Cycle NAV source (see "about nav mode" below)</td>
-				</tr>
-				<tr>
 					<td>IAS</td>
 					<td>Set autothrottle to IAS mode</td>
 				</tr>
@@ -222,24 +246,16 @@
 					<td>Set autothrottle to Mach mode</td>
 				</tr>
 				<tr>
-					<td>HDG</td>
-					<td>Turn heading hold mode on/off</td>
+					<td>NAV SRC</td>
+					<td>Cycle NAV source (see "about nav mode" below)</td>
 				</tr>
 				<tr>
-					<td>NAV</td>
-					<td>Turn NAV mode on/off</td>
+					<td>YD1 (not implemented yet)</td>
+					<td>Turn yaw damper #1 on/off</td>
 				</tr>
 				<tr>
-					<td>APPR</td>
-					<td>Turn approach mode on/off</td>
-				</tr>
-				<tr>
-					<td>ALT</td>
-					<td>Turn altitude hold mode on/off</td>
-				</tr>
-				<tr>
-					<td>VS</td>
-					<td>Turn vertical speed hold mode on/off</td>
+					<td>YD2 (not implemented yet)</td>
+					<td>Turn yaw damper #2 on/off</td>
 				</tr>
 			</tbody>
 		</table>
@@ -248,27 +264,12 @@
 		 When the autopilot is engaged, the current active modes will appear in the white spaces near the bottom.
 		</p>
 
-		<h3>Flight director</h3>
+		<h3>NAV mode</h3>
 
-		<p>
-		 The flight director is a pink horizon on the PFDs that alerts the pilot as to how the autopilot would fly the airplane if it were in command. To use it, turn on the flight director switch on the MCP or in the dialog and set the autopilot accordingly.
-		</p>
-
-		<h3>Yaw damper</h3>
-
-		<p>
-		 The yaw damper cushions out the <a href="http://en.wikipedia.org/wiki/Dutch_roll">Dutch roll</a> effect using the rudder. The CRJ700 has 2 separate yaw damper systems which can be turned on and off using the buttons on the pedestal or in the dialog.
-		</p>
-
-		<h3>About NAV mode</h3>
-
-		<p>
-		 NAV mode has 3 different sources to follow:
-		</p>
-
+		<p><u>NAV mode has 3 different sources to follow:</u></p>
 		<ul>
-			<li>LOC1 - NAV1 intercept</li>
-			<li>LOC2 - NAV2 intercept</li>
+			<li>NAV radio 1</li>
+			<li>NAV radio 2</li>
 			<li>FMS1 - follow GPS/Route Manager</li>
 		</ul>
 
@@ -279,15 +280,70 @@
 		<p>
 		 NAV modes are switched using the knob on the side panel, the autopilot dialog, or the shortcut key F6. The current NAV mode is displayed on the PFD.
 		</p>
-
-		<h3>Autolanding?</h3>
-
+		<img src="Files/pilot-sidepanels.png">
+		<p class="warn">Changing the NAV source while in NAV mode will deactivate NAV mode and return to basic lateral mode.</p>
 		<p>
-		 The real CRJ700 is not equipped with autoland, so do NOT expect the simulated CRJ700 to land itself with the autopilot. ;-)
+		NAV radios are tuned to a LOC/VOR/ILS via the radio stack panels on the pedestal panel or the dialog (F12). 
+		Enter a frequency into the standby field. Push the button to swap active and standby frequency.
+		</p>
+		
+		<h3>DME hold</h3>
+		<p>
+		Normally, the DME receiver will be tuned automatically to the same frequency as the NAV radio.
+		However, if a LOC/VOR does not support DME, the pilot may want to use a
+		separate frequency for DME. 
+		You can do so by tuning the NAV radio to the DME frequency and push the 
+		DME-H button on the right side of the radio panel ('H' in the dialog).
+		The DME receiver is now locked to that frequency and changes to the NAV 
+		frequency will not change DME until you  press the hold button again.
+		A yellow 'H' in the PFD and radio stack display will indicate DME-hold. 
+		DME frequency is shown on radio panel.
+		</p>
+		<img src="Files/pfd.jpg">
+		<img src="Files/radiostack.jpg">
+		
+		<h2>Yaw damper</h2>
+		<p>
+		not implemented
+<!-- 		 The yaw damper cushions out the <a href="http://en.wikipedia.org/wiki/Dutch_roll">Dutch roll</a> effect using the rudder. The CRJ700 has 2 separate yaw damper systems which can be turned on and off using the buttons on the pedestal or in the dialog.
+ -->		</p>
+
+		<h2>Limitations</h2>
+		<h3>(Auto)landing?</h3>
+		<p>
+		The real CRJ700 is not equipped with autoland, so do NOT expect 
+		the simulated CRJ700 to land itself with the autopilot.
+		Switchoff the AP at latest 300ft above. Set throttle to idle at
+		maybe 50ft above and carefully pull the nose up.
+		</p>
+		
+		<h3>(Auto)throttle?</h3>
+		<p>
+		The real CRJ700 has no autothrottle although its engines are controlled by FADECs.
+		Thrust is controlled manually with the two thrust levers. By pushing the levers 
+		further forward (keyboard 'n' / 'N'), special thrust modes 
+		can be activated for climb, take of/go around, and max. performance. 
+		In reality this is somehow influenced by the FMS which knows about 
+		performance relevant data like total weight.
+		</p>
+		<p>
+		For beginners and the lazy one we re-included the autothrottle as an option.
+		Find the config dialog at the bottom of the CRJ700 menu and select 
+		the corresponding option to get the magic button.
+		Believe me, once you lerned to fly this aircraft you won't have 
+		problems with manual throttle. It is not necessary to fly exactly 
+		the same speed all the time.		
 		</p>
 
-		<p class="tip">
-		 Actually, the above statement is a lie. As of version 1.0.2, when the autopilot is left in NAV mode, it will actually land <em>(sort of)</em>.
+		<h2>Implementation / known bugs</h2>
+		<p class="warn">
+		Warning: While most parts of the AP logic are implemented according 
+		to the FOM and work correctly, the controllers need an overhaul. 
+		You will sometimes see bad behaviour of the FD/AP system. Try to 
+		avoid engaging the AP when the FD command bars show extreme attitude.
 		</p>
+		<ul>
+			<li>Altitude mode sometimes needs very long time to catch the pre-selected altitude.</li>
+		</ul>
 	</body>
 </html>

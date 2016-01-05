@@ -19,11 +19,18 @@ Initial version and FDM and model made Ryan "Skyop" Miller.
 * New electrical AC and DC system
 * Added hydraulic system
 * New EICAS pages for AC, DC, hydraulic and doors
-* Add some EICAS details for APU, engine start
+* Added cargo doors
+* Many little details on PFD/MFD/EICAS:
+	- Marker beacons
+	- overspeed warning tape (flaps > 0)
+	- radar altimeter tape (below 1225ft radar altitude)
+	- ...
 * More OHP switch lights (try light test switch on lower center panel)
 * Side panel HPA/inch and baro knob work now to set QNH
-* Added checklists 
-* Documentation update is pending
+* Added checklists and tutorial for pre-flight and engine start.
+* Implemented DME hold feature (radio stack)
+* Many details on flight control panel / FD / AP
+* ...
 
 Liveries and models also contributed by fellow FlightGear fans:
 * ["Zbyszek"](http://www.flightgear.pl/)
