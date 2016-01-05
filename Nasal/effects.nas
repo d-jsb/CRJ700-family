@@ -51,6 +51,8 @@ var Switch_sound = {
         }, me.time);
     }
 };
+var sound_flapslever = Switch_sound.new("sim/sound/flaps-lever", 0.18,
+   "controls/flight/flaps");
 var sound_passalert = Switch_sound.new("sim/sound/passenger-sign", 2,
    "sim/model/lights/no-smoking-sign",
    "sim/model/lights/seatbelt-sign");
