@@ -41,7 +41,7 @@ if (getprop("/sim/flight-model") == "null")
 }
 
 # Engines and APU.
-var apu = CRJ700.Engine.Apu(0);
+var apu = CRJ700.Engine.Apu();
 var engines = [
     CRJ700.Engine.Jet(0),
     CRJ700.Engine.Jet(1)

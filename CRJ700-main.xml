@@ -43,6 +43,8 @@
 				<registration type="string" />
 			</livery>
 			<pushback>
+				<position-norm alias="/engines/engine[2]/n2" />
+				<enabled type="bool">0</enabled>
 				<kp type="double">0.05</kp>
 				<td type="double">0.00001</td>
 				<ti type="double">10</ti>
@@ -571,15 +573,23 @@
 			<serviceable type="bool">true</serviceable>
 			<pump-fail type="bool">false</pump-fail>
 			<SOV-fail type="bool">false</SOV-fail>
-			<door-norm alias="/engines/engine[2]/n1" />
+			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
 		</apu>
-		<engine>
+		<engine n="0">
 			<on-fire type="bool">false</on-fire>
 		</engine>
-		<engine>
+		<engine n="1">
 			<on-fire type="bool">false</on-fire>
 		</engine>
-	</engines>
+		<!-- engine 2 properties are used to transfer APU rpm and door position via MP -->
+		<engine n="2">
+			<rpm type="float">0</rpm>
+			<n1 type="float">0</n1>
+			<n2 type="float">0</n2>
+		</engine>		
+		<!-- engine 3 properties are used to transfer door positions via MP -->
+		<engine n="3"></engine>
+		</engines>
 
 	<fcs>
 		<autopilot>

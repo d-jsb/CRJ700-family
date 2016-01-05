@@ -1529,7 +1529,7 @@
 	<text>
 		<name>APU RPM</name>
 		<type>number-value</type>
-		<property>engines/apu/rpm</property>
+		<property>engines/engine[2]/rpm</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -7909,7 +7909,7 @@ DIR BUS</text>
 	<animation>
 		<type>rotate</type>
 		<object-name>APURPM</object-name>
-		<property>engines/apu/rpm</property>
+		<property>engines/engine[2]/rpm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>180</dep></entry>
 			<entry><ind>100</ind><dep>-58</dep></entry>
