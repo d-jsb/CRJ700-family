@@ -37,7 +37,9 @@
 			</dimensions>	
 		</model>
 
-		<tutorials include="Tutorials/CRJ900-tutorials.xml" />
+		<sound>
+			<path>Aircraft/CRJ700-family/Sounds/CRJ900-sounds.xml</path>
+		</sound>
 
 		<dimensions>
             <radius-m type="float">36.4</radius-m>
