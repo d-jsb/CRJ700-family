@@ -398,3 +398,22 @@ var update_spin = func
     settimer(update_spin, 5);
 };
 settimer(update_spin, 2);
+
+## DME-H
+setlistener("/instrumentation/dme[0]/hold", func(n) {
+	if (n.getBoolValue()) {
+		setprop("/instrumentation/dme[0]/frequencies/source", "/instrumentation/dme[0]/frequencies/selected-mhz");
+		#setprop("/instrumentation/dme[0]/frequencies/selected-mhz", getprop("/instrumentation/nav[0]/frequencies/selected-mhz"));
+	}
+	else
+		setprop("/instrumentation/dme[0]/frequencies/source", "/instrumentation/nav[0]/frequencies/selected-mhz");
+},1,0);
+
+setlistener("/instrumentation/dme[1]/hold", func(n) {
+	if (n.getBoolValue()) {
+		setprop("/instrumentation/dme[1]/frequencies/source", "/instrumentation/dme[1]/frequencies/selected-mhz");
+		#setprop("/instrumentation/dme[1]/frequencies/selected-mhz", getprop("/instrumentation/nav[1]/frequencies/selected-mhz"));
+	}
+	else
+		setprop("/instrumentation/dme[1]/frequencies/source", "/instrumentation/nav[1]/frequencies/selected-mhz");
+},1,0);

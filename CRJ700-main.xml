@@ -647,11 +647,19 @@
 			<time-display-mode type="int">1</time-display-mode>
 			<chronometer-display-mode type="int">0</chronometer-display-mode>
 		</clock>
+		<dme n="0">
+			<frequencies>
+				<source>/instrumentation/nav[0]/frequencies/selected-mhz</source>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<hold type="bool">false</hold>
+		</dme>		
 		<dme n="1">
 			<frequencies>
 				<source>/instrumentation/nav[1]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
+			<hold type="bool">false</hold>
 		</dme>
 		<fms>
 			<flight-number type="string" archive="y">1</flight-number>
