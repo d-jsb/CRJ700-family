@@ -91,7 +91,7 @@ var slow_loop = Loop(3, func {
 
 	# Instruments.
 	update_tat;
-
+	
 	# Multiplayer.
 	update_copilot_ints();
 
@@ -287,7 +287,7 @@ gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
 
 var known = getprop("/sim/model/known-version");
 var version = getprop("/sim/aircraft-version");
-if (!getprop("/sim/model/hide-welcome-msg") or known != version) {
-	if (known != version) setprop("/sim/model/hide-welcome-msg", 0);
+if (!getprop("/sim/config/hide-welcome-msg") or known != version) {
+	if (known != version) setprop("/sim/config/hide-welcome-msg", 0);
 	CRJ700.dialogs.info.open();
 }

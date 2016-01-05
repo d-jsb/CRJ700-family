@@ -53,7 +53,7 @@
 			<checkbox>
 				<halign>left</halign>
 				<label>Do not show on start</label>
-				<property>sim/model/hide-welcome-msg</property>
+				<property>sim/config/hide-welcome-msg</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
