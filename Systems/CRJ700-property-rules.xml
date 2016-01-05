@@ -4,6 +4,18 @@
 	What is what depends on how the files are included in CRJ700-main.xml
 -->
 <PropertyList>
+	<filter>
+		<name>VS scaler</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+			<scale>0.001</scale>
+		</input>
+		<output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
+	</filter>
+
 	<!-- Alarm logic -->
 	<logic>
 		<name>Overspeed alarm</name>
