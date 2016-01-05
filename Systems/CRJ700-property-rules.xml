@@ -25,6 +25,21 @@
 		<debug type="bool">false</debug>
 		<gain>1</gain>
 		<input>
+			<expression>
+				<abs><dif>
+				<property>instrumentation/altimeter/setting-inhg</property>
+				<property>environment/metar/pressure-inhg</property>
+				</dif></abs>
+			</expression>
+		</input>
+		<output>instrumentation/altimeter/ref-deviation</output>
+	</filter>
+	<filter>
+		<name>VS scaler</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
 			<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
 			<scale>0.001</scale>
 		</input>

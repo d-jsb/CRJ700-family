@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<!-- Bombardier CRJ700 series -->
-<!-- Tutorial list -->
-
-<PropertyList>
-	<tutorial include="startup-900.xml" />
-</PropertyList>

@@ -11,6 +11,10 @@
 		<name>Prepare descent / approach</name>
 	</item>
 	<item>
+		<name>Get wind and QNH info for destination</name>
+		<value></value>
+	</item>
+	<item>
 		<name>Get landing RW </name>
 		<value>from ATC or by weather</value>
 	</item>

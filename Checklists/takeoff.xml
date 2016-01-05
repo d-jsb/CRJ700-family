@@ -4,9 +4,27 @@
 <PropertyList>
 	<title>Take off</title>
 	<item>
+		<name>Line up on runway</name>
+		<value>COMPLETED</value>
+	</item>
+	<item>
 		<name>Take off clearance</name>
 		<value>OBTAIN from ATC</value>
 	</item>
+	<item>
+		<name>Flight director</name>
+		<value>SET TO/GA mode (optional)</value>
+		<condition>
+			<equals>
+				<property>controls/autoflight/lat-mode</property>
+				<value>6</value>
+			</equals>
+		</condition>
+		<binding>
+			<command>property-toggle</command>
+			<property>controls/autoflight/toga-button</property>
+		</binding>
+	</item>	
 	<item>
 		<name>Brakes</name>
 		<value>HOLD</value>
@@ -33,6 +51,10 @@
 	<item>
 		<name>Throttles</name>
 		<value>50% N1 UNTIL STABLE</value>
+	</item>
+	<item>
+		<name></name>
+		<value>Set takeoff thrust or TOGA detent</value>
 	</item>
 	<item>
 		<name>V1</name>

@@ -4,17 +4,17 @@
 <!-- Aircraft property settings common to all variants -->
 
 <PropertyList>
-		<checklist include="pre-start.xml" />
-		<checklist include="engine-start.xml" />
-		<checklist include="after-start.xml" />
-		<!--checklist include="taxi1.xml" /-->
-		<checklist include="before-takeoff.xml" />
-		<checklist include="takeoff.xml" />
-		<checklist include="climb.xml" />
-		<checklist include="cruise.xml" />
-		<checklist include="descent.xml" />
-		<checklist include="approach.xml" />
-		<checklist include="landing.xml" />
-		<checklist include="after-landing.xml" />
-		<checklist include="parking.xml" />
+	<checklist include="pre-flight.xml" />
+	<checklist include="engine-start.xml" />
+	<checklist include="before-taxi.xml" />
+	<!-- <checklist include="taxi.xml" /> -->
+	<checklist include="before-takeoff.xml" />
+	<checklist include="takeoff.xml" />
+	<checklist include="climb.xml" />
+	<checklist include="cruise.xml" />
+	<checklist include="descent.xml" />
+	<checklist include="approach.xml" />
+	<checklist include="landing.xml" />
+	<checklist include="after-landing.xml" />
+	<checklist include="parking.xml" />
 </PropertyList>

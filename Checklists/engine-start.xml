@@ -5,28 +5,91 @@
 	<title>Engine start</title>
 	<page>
 		<item>
-			<name>Parking Brake</name>
-			<value>SET</value>
+			<name>Beacon</name>
+			<value>ON</value>
+			<marker>
+				<x-m>-13.6567</x-m>
+				<y-m>-0.2033</y-m>
+				<z-m>-0.2380</z-m>
+				<scale>1.0000</scale>
+			</marker>
 			<condition>
 				<equals>
-					<property>/controls/gear/brake-parking</property>
+					<property>/controls/lighting/beacon</property>
 					<value>1</value>
 				</equals>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/gear/brake-parking</property>
+				<property>/controls/lighting/beacon</property>
+				<value>1</value>
+			</binding>
+		</item>
+		<item>
+			<name>APU ECU</name>
+			<value>PWR ON</value>
+			<marker>
+				<x-m>-13.5509</x-m>
+				<y-m>0.0000</y-m>
+				<z-m>-0.1893</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<property>/controls/APU/electronic-control-unit</property>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/APU/electronic-control-unit</property>
 				<value>1</value>
 			</binding>
 		</item>
 		<item>
 			<name>APU</name>
-			<value>AVAIL</value>
+			<value>START</value>
 			<marker>
-				<x-m>-15.4909</x-m>
+				<x-m>-13.5509</x-m>
 				<y-m>0.0314</y-m>
 				<z-m>-0.1893</z-m>
 				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<property>/controls/APU/off-on</property>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/APU/off-on</property>
+				<value>1</value>
+			</binding>
+		</item>
+		<item>
+			<name>APU/Generator</name>
+			<value>ON</value>
+			<marker>
+				<x-m>-13.4815</x-m>
+				<y-m>-0.1661</y-m>
+				<z-m>-0.1554</z-m>
+				<scale>1.4959</scale>
+			</marker>
+			<condition>
+				<equals>
+					<property>/controls/electric/APU-generator</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/electric/APU-generator</property>
+				<value>1</value>
+			</binding>
+		</item>
+		<item>
+			<name>APU</name>
+			<value>CHECK AVAIL</value>
+			<marker>
+				<x-m>-13.5526</x-m>
+				<y-m>0.0132</y-m>
+				<z-m>-0.1884</z-m>
+				<scale>2.0248</scale>
 			</marker>
 			<condition>
 				<and>
@@ -34,12 +97,13 @@
 					<property>/engines/apu/running</property>
 				</and>
 			</condition>
-		</item>
+		</item>		
 		<item>
+			<!-- FIXME: after pneumatic system has been modelled -->
 			<name>Bleed Air Souce</name>
 			<value>APU</value>
 			<marker>
-				<x-m>-15.4512</x-m>
+				<x-m>-13.5112</x-m>
 				<y-m>0.0438</y-m>
 				<z-m>-0.1793</z-m>
 				<scale>1.0000</scale>
@@ -55,7 +119,24 @@
 				<property>/controls/pneumatic/bleed-source</property>
 				<value>2</value>
 			</binding>		
+		</item>		
+		<item>
+			<name>Parking Brake</name>
+			<value>SET</value>
+			<condition>
+				<equals>
+					<property>/controls/gear/brake-parking</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/gear/brake-parking</property>
+				<value>1</value>
+			</binding>
 		</item>
+	</page>
+	<page>
 		<item>
 			<name>Throttle</name>
 			<value>IDLE</value>
@@ -92,7 +173,7 @@
 			<name>Fuel Pumps</name>
 			<value>ON</value>
 			<marker>
-				<x-m>-15.3463</x-m>
+				<x-m>-13.4063</x-m>
 				<y-m>-0.0488</y-m>
 				<z-m>-0.1182</z-m>
 				<scale>1.0000</scale>
@@ -119,7 +200,7 @@
 			<name>Engine 1 Starter Switch Light</name>
 			<value>ON</value>
 			<marker>
-				<x-m>-15.5298</x-m>
+				<x-m>-13.5898</x-m>
 				<y-m>-0.0463</y-m>
 				<z-m>-0.2041</z-m>
 				<scale>1.0000</scale>
@@ -168,7 +249,7 @@
 			<name>Engine 2 Starter Switch Light</name>
 			<value>ON</value>
 			<marker>
-				<x-m>-15.5298</x-m>
+				<x-m>-13.5898</x-m>
 				<y-m>-0.0190</y-m>
 				<z-m>-0.2041</z-m>
 				<scale>1.0000</scale>
@@ -212,7 +293,9 @@
 				<value>0</value>
 			</binding>		
 		</item>
-		
+		<item>
+			<name>---</name>
+		</item>
 		<item>
 			<name>Generator 1 and 2</name>
 			<value>ON</value>
@@ -233,7 +316,6 @@
 				<value>1</value>
 			</binding>	
 		</item>
-		
 		<item>
 			<name>APU</name>
 			<value>OFF</value>

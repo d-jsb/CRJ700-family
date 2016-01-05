@@ -32,6 +32,7 @@
 			</limits>
 			<dimensions>
 				<nose-distance-m>16</nose-distance-m>
+				<cockpit-offset-x>0</cockpit-offset-x>
 			</dimensions>	
 		</model>
         

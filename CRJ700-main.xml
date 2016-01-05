@@ -294,8 +294,8 @@
 						</binding>
 					</item>
 				<!-- for development -->
-						
-					<item>
+
+<!-- 					<item>
 						<name>debug-output</name>
 						<label>Debug output</label>
 						<binding>
@@ -305,6 +305,7 @@
 							</script>
 						</binding>
 					</item>
+
 					<item>
 						<name>apdev</name>
 						<label>AP development</label>
@@ -314,9 +315,10 @@
 								CRJ700.dialogs.apdev.open();
 							</script>
 						</binding>
-					</item>
-					<!-- /development -->
+					</item> -->
+
 					<item>
+						<name>separator</name>
 						<label>--------</label>
 						<enabled>false</enabled>
 					</item>					
@@ -328,7 +330,7 @@
 								CRJ700.instastart();
 							</script>
 						</binding>
-					</item>					
+					</item>
 
 					<item>
 						<name>crj-config</name>
@@ -956,7 +958,6 @@
 			<selected-field type="int">0</selected-field>
 		</radio-stack>
 		<radar-altimeter>
-			<!-- FIXME: should be calibrated to main gear (~12ft) -->
 			<serviceable type="bool">true</serviceable>
 			<antenna>
 				<x-offset-m type="double">-0.986</x-offset-m>

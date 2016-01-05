@@ -37,7 +37,7 @@ var Loop = func(interval, update)
 var is_slave = 0;
 if (getprop("/sim/flight-model") == "null")
 {
-    is_slave = 1;
+	is_slave = 1;
 }
 
 # Engines and APU.
@@ -274,6 +274,76 @@ setlistener("controls/gear/gear-down", func(v)
         if (on_ground) v.setBoolValue(1);
     }
 }, 0, 0);
+
+var reload_checklists = func()
+{
+	var path = getprop("/sim/aircraft-dir")~"Checklists/checklists.xml";
+	io.read_properties(path,"/sim/checklists");
+};
+
+# Cockpit position is different for C7/C9/C10 so we have to update all 
+# tutorial markes in all checklist items.	
+var update_offsets = func()
+{
+	var c_offset = getprop("/sim/model/dimensions/cockpit-offset-x");
+	var update_checklists = func {
+		print("Updating checklists...");
+		foreach (var cl; props.globals.getNode("sim/checklists").getChildren("checklist"))
+		{
+			#print("==="~cl.getNode("title").getValue());
+			var pages = cl.getChildren("page");
+			var items = [];
+			if (size(pages))
+				foreach (var p; pages)
+				{
+					items ~= p.getChildren("item");
+				}
+			else items = cl.getChildren("item");
+			foreach (var i; items)
+			{
+				var m = i.getNode("marker");
+				if (m != nil)
+				{					
+					#print("  Item " ~ i.getNode("name").getValue());
+					var x = m.getNode("x-m");
+					x.setValue(x.getValue()+c_offset);
+				}
+			}						
+		}
+	}
+	var update_tutorials = func {
+		print("Updating tutorials...");
+		foreach (var t; props.globals.getNode("sim/tutorials").getChildren("tutorial"))
+		{
+			#print("==="~t.getNode("name").getValue());
+			var steps = [];
+			steps = t.getChildren("step");
+			foreach (var step; steps)
+			{
+				#print(step.getNode("message").getValue());
+				var m = step.getNode("marker");
+				if (m != nil)
+				{					
+					var x = m.getNode("x-m");
+					x.setValue(x.getValue()+c_offset);
+				}
+				var v = step.getNode("view");
+				if (v != nil)
+				{					
+					var z = v.getNode("z-offset-m");
+					if (z != nil)
+						z.setValue(z.getValue()+c_offset);
+				}
+			}						
+		}
+	}
+	if (c_offset)
+	{
+		settimer(update_checklists,1);
+		settimer(update_tutorials,2);
+	}
+};
+update_offsets();
 
 ## Engines at cutoff by default (not specified in -set.xml because that means they will be set to 'true' on a reset)
 setprop("controls/engines/engine[0]/cutoff", 1);
