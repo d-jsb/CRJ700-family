@@ -5,7 +5,7 @@
 
 <PropertyList>
     <!-- Because of the way this file is "included," the <fx> element is already present and need not be defined -->
-
+	
     <!-- Engine 1 sound -->
     <engine>
         <name>Engine 1 sound internal</name>
@@ -17,19 +17,19 @@
                 <greater-than>
                     <property>engines/engine[0]/rpm</property>
                     <value>0</value>
-                </greater-than>
-            </and>
-        </condition>
+				</greater-than>
+			</and>
+		</condition>
         <volume>
             <property>engines/engine[0]/rpm</property>
             <offset>0.5</offset>
             <factor>0.006</factor>
-        </volume>
+		</volume>
         <pitch>
             <property>engines/engine[0]/rpm</property>
             <offset>0</offset>
             <factor>0.01</factor>
-        </pitch>
+		</pitch>
         <!-- stuttering issues -->
         <!--orientation>
             <x>-1</x>
@@ -38,8 +38,8 @@
             <inner-angle>75</inner-angle>
             <outer-angle>210</outer-angle>
             <outer-gain>0.1</outer-gain>
-        </orientation-->
-    </engine>
+		</orientation-->
+	</engine>
     <!-- Engine 2 sound -->
     <engine>
         <name>Engine 2 sound internal</name>
@@ -51,20 +51,20 @@
                 <greater-than>
                     <property>engines/engine[1]/rpm</property>
                     <value>0</value>
-                </greater-than>
-            </and>
-        </condition>
+				</greater-than>
+			</and>
+		</condition>
         <volume>
             <property>engines/engine[1]/rpm</property>
             <offset>0</offset>
             <factor>0.05</factor>
             <max>2</max>
-        </volume>
+		</volume>
         <pitch>
             <property>engines/engine[1]/rpm</property>
             <offset>0</offset>
             <factor>0.01</factor>
-        </pitch>
+		</pitch>
         <!-- stuttering issues -->
         <!--orientation>
             <x>-1</x>
@@ -73,8 +73,8 @@
             <inner-angle>75</inner-angle>
             <outer-angle>210</outer-angle>
             <outer-gain>0.1</outer-gain>
-        </orientation-->
-    </engine>
+		</orientation-->
+	</engine>
     <!-- Gear touchdown -->
     <gear>
         <name>Nose gear touchdown</name>
@@ -82,58 +82,58 @@
         <mode>once</mode>
         <condition>
 			<property>gear/gear[0]/wow</property>
-        </condition>
+		</condition>
         <volume>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
             <offset>-0.95</offset>
-        </volume>
+		</volume>
         <position>
             <x>-14</x>
             <y>0</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     <gear>
         <name>Nose gear touchdown 2</name>
         <path>Aircraft/CRJ700-family/Sounds/pressure-mid.wav</path>
         <mode>once</mode>
         <condition>
 			<property>gear/gear[0]/wow</property>
-        </condition>
+		</condition>
         <volume>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
             <offset>-0.95</offset>
-        </volume>
+		</volume>
         <position>
             <x>-14</x>
             <y>0</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     <gear>
         <name>Left main gear touchdown</name>
         <path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
         <mode>once</mode>
         <condition>
 			<property>gear/gear[1]/wow</property>
-        </condition>
+		</condition>
         <volume>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
             <offset>-0.95</offset>
-        </volume>
+		</volume>
         <position>
             <x>1</x>
             <y>-2</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     <gear>
         <name>Left main gear touchdown 2</name>
         <path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
         <mode>once</mode>
         <condition>
 			<property>gear/gear[1]/wow</property>
-        </condition>
+		</condition>
         <volume>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
             <offset>-0.5</offset>
@@ -142,8 +142,8 @@
             <x>1</x>
             <y>-2</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     <gear>
         <name>Right main gear touchdown</name>
         <path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
@@ -154,30 +154,30 @@
         <volume>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
             <offset>-0.95</offset>
-        </volume>
+		</volume>
         <position>
             <x>1</x>
             <y>2</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     <gear>
         <name>Right main gear touchdown 2</name>
         <path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
         <mode>once</mode>
         <condition>
 			<property>gear/gear[2]/wow</property>
-        </condition>
+		</condition>
         <volume>
             <offset>-0.5</offset>
 			<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
-        </volume>
+		</volume>
         <position>
             <x>1</x>
             <y>2</y>
             <z>-4</z>
-        </position>
-    </gear>
+		</position>
+	</gear>
     
     <rumble>
         <name>Nose gear rumble</name>
@@ -187,21 +187,21 @@
             <and>
 	            <property>gear/gear[0]/wow</property>
                 <property>sim/current-view/internal</property>
-            </and>
-        </condition>
+			</and>
+		</condition>
         <volume>
             <property>velocities/groundspeed-kt</property>
             <type>log</type>
             <factor>0.3</factor>
-        </volume>
+		</volume>
         <position>
             <x>-14</x>
             <y>0</y>
             <z>-4</z>
-        </position>
+		</position>
         <reference-dist>60</reference-dist>
         <max-dist>100</max-dist>
-    </rumble>
+	</rumble>
     <rumble>
         <name>Main gear rumble</name>
         <mode>looped</mode>
@@ -211,24 +211,24 @@
 	            <or>
                     <property>gear/gear[1]/wow</property>
                     <property>gear/gear[2]/wow</property>
-                </or>
+				</or>
                 <property>sim/current-view/internal</property>
-            </and>
-        </condition>
+			</and>
+		</condition>
         <volume>
             <property>velocities/groundspeed-kt</property>
             <type>log</type>
             <factor>0.5</factor>
-        </volume>
+		</volume>
         <position>
             <x>0</x>
             <y>0</y>
             <z>-4</z>
-        </position>
+		</position>
         <reference-dist>60</reference-dist>
         <max-dist>100</max-dist>
-    </rumble>
-
+	</rumble>
+	
     <!-- Switch effects -->
     <click>
         <name>Switch click</name>
@@ -236,24 +236,24 @@
         <path>Sounds/click.wav</path>
         <condition>
             <property>sim/sound/click</property>
-        </condition>
-    </click>
+		</condition>
+	</click>
     <click2>
         <name>Switch click2</name>
         <mode>once</mode>
         <path>Sounds/click2.wav</path>
         <condition>
             <property>sim/sound/click2</property>
-        </condition>
-    </click2>
+		</condition>
+	</click2>
     <swlclick>
         <name>Switch light click</name>
         <mode>once</mode>
         <path>Sounds/switchlight-click.wav</path>
         <condition>
             <property>sim/sound/swl-click</property>
-        </condition>
-    </swlclick>
+		</condition>
+	</swlclick>
     <sign>
         <name>Passenger sign</name>
         <mode>once</mode>
@@ -262,10 +262,10 @@
             <and>
                 <property>sim/sound/passenger-sign</property>
                 <property>sim/current-view/internal</property>
-            </and>
-        </condition>
-    </sign>
-
+			</and>
+		</condition>
+	</sign>
+	
     <!-- Alarms -->
     <alarm>
         <name>Master warning</name>
@@ -273,16 +273,16 @@
         <path>Aircraft/CRJ700-family/Sounds/warning.wav</path>
         <condition>
             <property>sim/alarms/master-warning</property>
-        </condition>
-    </alarm>
+		</condition>
+	</alarm>
     <alarm>
         <name>Overspeed alarm</name>
         <mode>looped</mode>
         <path>Aircraft/CRJ700-family/Sounds/overspeed.wav</path>
         <condition>
             <property>sim/alarms/overspeed-alarm</property>
-        </condition>
-    </alarm>
+		</condition>
+	</alarm>
     <alarm>
         <name>Autopilot disconnect</name>
         <mode>once</mode>
@@ -290,16 +290,16 @@
         <path>Aircraft/CRJ700-family/Sounds/autopilot-disconnect.wav</path>
         <condition>
             <equals>
-			<!--<property>controls/autoflight/disengage-pos-norm</property>     
-			<value>1</value> -->
+				<!--<property>controls/autoflight/disengage-pos-norm</property>     
+				<value>1</value> -->
                 <property>controls/autoflight/autopilot/engage</property>     
                 <value>0</value>
-            </equals>
-        </condition>
+			</equals>
+		</condition>
         <volume>
             <offset>1</offset>
-        </volume>
-    </alarm>
+		</volume>
+	</alarm>
     
     <!-- Speed callouts -->
     <callout>
@@ -313,22 +313,22 @@
                     <property>gear/gear[0]/wow</property>
                     <property>gear/gear[1]/wow</property>
                     <property>gear/gear[2]/wow</property>
-                </or>
+				</or>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <property>autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-                </less-than>
+				</less-than>
                 <greater-than>
                     <property>velocities/airspeed-kt</property>
                     <value>80</value>
-                </greater-than>
+				</greater-than>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <value>88</value>
-                </less-than>
-            </and>
-        </condition>
-    </callout>
+				</less-than>
+			</and>
+		</condition>
+	</callout>
     <callout>
         <name>V1</name>
         <mode>once</mode>
@@ -340,22 +340,22 @@
                     <property>gear/gear[0]/wow</property>
                     <property>gear/gear[1]/wow</property>
                     <property>gear/gear[2]/wow</property>
-                </or>
+				</or>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <property>autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-                </less-than>
-                <greater-than>
+				</less-than>
+                <greater-than-equals>
                     <property>velocities/airspeed-kt</property>
-                    <value>134</value>
-                </greater-than>
+                    <property>instrumentation/adc/reference/v1</property>
+				</greater-than-equals>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
-                    <value>143</value>
-                </less-than>
-            </and>
-        </condition>
-    </callout>
+                    <property>instrumentation/adc/reference/vr</property>
+				</less-than>
+			</and>
+		</condition>
+	</callout>
     <callout>
         <name>Vr</name>
         <mode>once</mode>
@@ -367,22 +367,22 @@
                     <property>gear/gear[0]/wow</property>
                     <property>gear/gear[1]/wow</property>
                     <property>gear/gear[2]/wow</property>
-                </or>
+				</or>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <property>autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-                </less-than>
-                <greater-than>
+				</less-than>
+                <greater-than-equals>
                     <property>velocities/airspeed-kt</property>
-                    <value>144</value>
-                </greater-than>
+                    <property>instrumentation/adc/reference/vr</property>
+				</greater-than-equals>
                 <less-than>
                     <property>velocities/airspeed-kt</property>
-                    <value>153</value>
-                </less-than>
-            </and>
-        </condition>
-    </callout>
+                    <property>instrumentation/adc/reference/v2</property>
+				</less-than>
+			</and>
+		</condition>
+	</callout>
     <callout>
         <name>V2</name>
         <mode>once</mode>
@@ -393,18 +393,18 @@
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <property>autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-                </less-than>
-                <greater-than>
+				</less-than>
+                <greater-than-equals>
                     <property>velocities/airspeed-kt</property>
-                    <value>154</value>
-                </greater-than>
+                    <property>instrumentation/adc/reference/v2</property>
+				</greater-than-equals>
                 <less-than>
                     <property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
                     <value>500</value>
-                </less-than>
-            </and>
-        </condition>
-    </callout>
+				</less-than>
+			</and>
+		</condition>
+	</callout>
     <callout>
         <name>Positive climb rate</name>
         <mode>once</mode>
@@ -415,33 +415,116 @@
                 <less-than>
                     <property>velocities/airspeed-kt</property>
                     <property>autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-                </less-than>
-                <greater-than>
+				</less-than>
+                <greater-than-equals>
                     <property>velocities/airspeed-kt</property>
-                    <value>154</value>
-                </greater-than>
+                    <property>instrumentation/adc/reference/v2</property>
+				</greater-than-equals>
                 <greater-than-equals>
                     <property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
                     <value>500</value>
-                </greater-than-equals>
+				</greater-than-equals>
                 <less-than>
                     <property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
                     <value>300</value>
-                </less-than>
+				</less-than>
                 <greater-than>
                     <property>instrumentation/attitude-indicator[0]/indicated-pitch-deg</property>
                     <value>7</value>
-                </greater-than>
+				</greater-than>
                 <less-than>
                     <property>instrumentation/attitude-indicator[0]/indicated-pitch-deg</property>
                     <value>17</value>
-                </less-than>
-                <less-than>
-                    <property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
-                    <value>500</value>
-                </less-than>
-            </and>
-        </condition>
-    </callout>
-
+				</less-than>
+			</and>
+		</condition>
+	</callout>
+    <wind>
+	    <name>Wind</name>
+	    <path>Aircraft/CRJ700-family/Sounds/wind.wav</path>
+	    <mode>looped</mode>
+	    <condition>
+			<greater-than>
+				<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<value>30</value>
+			</greater-than>
+		</condition>
+	    <volume>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<offset>-0.5</offset>
+			<factor>0.005</factor>
+			<max>1.5</max>
+		</volume>
+	</wind>    
+    <wind>
+	    <name>Turbulence Speedbrake L</name>
+	    <path>Aircraft/CRJ700-family/Sounds/speedbrake_turb.wav</path>
+	    <mode>looped</mode>
+	    <condition>
+			<and>
+				<greater-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>30</value>
+				</greater-than>
+				<greater-than>
+					<property>surface-positions/left-speedbrake-pos-norm</property>
+					<value>0></value>
+				</greater-than>
+			</and>
+		</condition>
+	    <volume>
+			<property>surface-positions/left-speedbrake-pos-norm</property>
+			<offset>0</offset>
+			<factor>0.5</factor>
+			<max>2</max>
+		</volume>
+	    <position>
+			<x>2.37</x>
+			<y>6</y>
+			<z>-1.95</z>
+		</position>	   
+	</wind>    
+	<wind>
+	    <name>Turbulence Speedbrake R</name>
+	    <path>Aircraft/CRJ700-family/Sounds/speedbrake_turb.wav</path>
+	    <mode>looped</mode>
+	    <condition>
+			<and>
+				<greater-than>
+					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>30</value>
+				</greater-than>
+				<greater-than>
+					<property>surface-positions/right-speedbrake-pos-norm</property>
+					<value>0></value>
+				</greater-than>
+			</and>
+		</condition>
+	    <volume>
+			<property>surface-positions/right-speedbrake-pos-norm</property>
+			<offset>0</offset>
+			<factor>0.5</factor>
+			<max>2</max>
+		</volume>
+	    <position>
+			<x>2.37</x>
+			<y>-6</y>
+			<z>-1.95</z>
+		</position>	   
+	</wind>
+    <avionics>
+		<name>avionics fan and noise</name>
+		<path>Sounds/avionics-400Hz.wav</path>
+		<mode>looped</mode>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/efis</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+		<volume>
+			<offset>-0.75</offset>
+		</volume>
+	</avionics>
+	
 </PropertyList>
