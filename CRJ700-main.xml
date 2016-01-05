@@ -35,6 +35,9 @@
 
 		<config>
 			<hide-welcome-msg type="bool">false</hide-welcome-msg>
+			<speed-mode-autothrottle type="bool">false</speed-mode-autothrottle>
+			<rudder-to-tiller type="bool">false</rudder-to-tiller>
+			<developer type="bool">false</developer>
 		</config>
 
 		<model>
@@ -182,6 +185,9 @@
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
 			<path>/sim/config/hide-welcome-msg</path>
+			<path>/sim/config/allow-autothrottle</path>
+			<path>/sim/config/rudder-to-tiller</path>
+			<path>/sim/config/developer</path>
 			<path>/sim/model/known-version</path>
 			<path>/sim/model/light-cones</path>
 			<path>/sim/model/yokes</path>
@@ -303,8 +309,8 @@
 							</script>
 						</binding>
 					</item>
-					<!-- for development -->
-
+					<!-- for development 
+						
 					<item>
 						<name>debug-output</name>
 						<label>Debug output</label>
@@ -325,8 +331,13 @@
 							</script>
 						</binding>
 					</item>
+					<!-- /development -->
 					<item>
-						<label>Engines instant on</label>
+						<label>--------</label>
+						<enabled>false</enabled>
+					</item>					
+					<item>
+						<label>In-flight start</label>
 						<binding>
 							<command>nasal</command>
 							<script>
@@ -334,7 +345,18 @@
 							</script>
 						</binding>
 					</item>
+					-->
 
+					<item>
+						<name>crj-config</name>
+						<label>Config</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								CRJ700.dialogs.config.open();
+							</script>
+						</binding>
+					</item>
 					<item>
 						<name>welcome-msg</name>
 						<label>Info</label>

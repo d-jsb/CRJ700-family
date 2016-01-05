@@ -105,9 +105,7 @@ var gravity_xflow = {};
 setlistener("sim/signals/fdm-initialized", func
 {
 	print("CRJ700 aircraft systems ... initialized");
-	gravity_xflow = aircraft.crossfeed_valve.new(0.5,
-												 "controls/fuel/gravity-xflow",
-												 0, 1);
+	gravity_xflow = aircraft.crossfeed_valve.new(0.5, "controls/fuel/gravity-xflow", 0, 1);
 	if (getprop("/sim/time/sun-angle-rad") > 1.57) 
 		setprop("controls/lighting/dome", 1);
 	fast_loop.start();
@@ -117,6 +115,8 @@ setlistener("sim/signals/fdm-initialized", func
 		print("Sound on.");
 		}, 3);
 }, 0, 0);
+
+
 
 ## Startup/shutdown functions
 var startid = 0;
@@ -207,9 +207,10 @@ setlistener("sim/model/start-idling", func(v)
 }, 0, 0);
 
 ## Instant start for tutorials and whatnot
-#broken
 var instastart = func
 {
+	if (getprop("position/altitude-agl-ft") < 500 and !getprop("/sim/config/developer"))
+		return;
 	setprop("/consumables/fuel/tank[0]/selected", 1);
 	setprop("/consumables/fuel/tank[1]/selected", 1);
     setprop("controls/electric/battery-switch", 1);
@@ -224,6 +225,9 @@ var instastart = func
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-a", 1);							
+
+	setprop("/controls/gear/brake-parking", 0);
+	setprop("/controls/lighting/strobe", 1);
 };
 
 ## Prevent the gear from being retracted on the ground
@@ -245,52 +249,6 @@ setlistener("controls/gear/gear-down", func(v)
 setprop("controls/engines/engine[0]/cutoff", 1);
 setprop("controls/engines/engine[1]/cutoff", 1);
 
-## RAT
-var Rat = {
-    new: func(node, trigger_prop)
-    {
-        var m = { parents: [Rat] };
-        m.powering = 0;
-        m.node = aircraft.makeNode(node);
-        var nodeP = m.node.getPath();
-        m.serviceableN = props.globals.initNode(nodeP ~ "/serviceable", 1, "BOOL");
-        m.positionN = props.globals.initNode(nodeP ~ "/position-norm", 0, "DOUBLE");
-        m.rpmN = props.globals.initNode(nodeP ~ "/rpm", 0, "DOUBLE");
-        m.triggerN = aircraft.makeNode(trigger_prop);
-        setlistener(m.triggerN, func(v)
-        {
-            if (v.getBoolValue()) m.deploy();
-        }, 0, 0);
-        m.deploy_time = 8; # typical RAT deploy time is ~8 seconds
-        return m;
-    },
-    deploy: func
-    {
-        if (me.serviceableN.getBoolValue()) interpolate(me.positionN, 1, me.deploy_time);
-    },
-    update: func
-    {
-        if (me.serviceableN.getBoolValue() and me.positionN.getValue() >= 1)
-        {
-            # the CRJ's RAT operates at ~7000 to ~12000 RPM
-            # "There are two different style Air Driven Generators (ADGs) used on CRJs.
-            # One rotates at approximately 7,000 RPM, the other is much higher at 12,000 RPM."
-            # see http://www.airliners.net/aviation-forums/tech_ops/read.main/274235/, reply #2
-            # the RPM of the RAT begins dropping at 250 KTAS (TOTAL GUESS!)
-            # threshold is 15 KTAS (ANOTHER TOTAL GUESS)
-            var rpm = aircraft.kias_to_ktas(getprop("velocities/airspeed-kt"), getprop("position/altitude-ft")) * 28 - 15;
-            if (rpm >= 7000) rpm = 7000;
-            elsif (rpm <= 0) rpm = 0;
-            me.rpmN.setDoubleValue(rpm);
-        }
-        else
-        {
-            me.rpmN.setDoubleValue(0);
-        }
-    }
-};
-#var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
-
 ## Aircraft-specific dialogs
 var dialogs = {
     autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
@@ -300,6 +258,7 @@ var dialogs = {
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),
     tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml"),
     info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", "Aircraft/CRJ700-family/Systems/info-dlg.xml"),
+    config: gui.Dialog.new("sim/gui/dialogs/config-crj700/dialog", "Aircraft/CRJ700-family/Systems/config-dlg.xml"),
     debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", "Aircraft/CRJ700-family/Systems/debug-dlg.xml"),
     apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dev-dlg.xml"),
 };
@@ -312,3 +271,5 @@ if (!getprop("/sim/config/hide-welcome-msg") or known != version) {
 	if (known != version) setprop("/sim/config/hide-welcome-msg", 0);
 	CRJ700.dialogs.info.open();
 }
+
+

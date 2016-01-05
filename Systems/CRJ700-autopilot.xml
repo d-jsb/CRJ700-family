@@ -222,7 +222,7 @@
 		<output>autopilot/internal/flight-director-engaged</output>
 	</logic>
 	
-    <!-- Speed -->
+    <!-- Speed mode (or autothrottle, if configured in "cheat menu") -->
     <!-- 0 : IAS hold -->
     <pid-controller>
 		<name>IAS speed mode controller</name>
@@ -230,6 +230,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>sim/config/speed-mode-autothrottle</property>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
 						<value>5</value>
@@ -266,6 +267,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>sim/config/speed-mode-autothrottle</property>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
 						<value>5</value>

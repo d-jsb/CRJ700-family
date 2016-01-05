@@ -860,32 +860,7 @@
 	</filter>
 
 	<!-- Nose wheel steering -->
-	<!-- 
-	rudder controls NWS 100% if tiller is switched "off"?! 
-	Bad idea when landing with tiller switched off.
-	-->
-    <!--
-	<filter>
-		<name>Pilot tiller disabled nose gear steer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>80</gain>
-		<enable>
-			<condition>
-				<and>
-					<not>
-						<property>controls/gear/enable-tiller</property>
-					</not>
-					<property>gear/gear[0]/wow</property>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>controls/flight/rudder</property>
-		</input>
-		<output>fcs/tiller-steer-deg</output>
-	</filter>
-	-->
+	
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
@@ -895,6 +870,9 @@
 		<enable>
 			<condition>
 				<and>
+					<not>
+						<property>sim/config/rudder-to-tiller</property>
+					</not>
 					<less-than-equals>
 						<expression>
 							<abs>
@@ -916,6 +894,38 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
+	<!-- user may prefere to use rudder pedals for tiller input -->
+	<filter>
+		<name>Pilot nose gear full rudder steer</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>80</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>sim/config/rudder-to-tiller</property>
+					<less-than-equals>
+						<expression>
+							<abs>
+								<property>controls/gear/tiller-steer-deg</property>
+							</abs>
+						</expression>
+						<value>8</value>
+					</less-than-equals>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
+					<property>gear/gear[0]/wow</property>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>controls/flight/rudder</property>
+		</input>
+		<output>fcs/tiller-steer-deg</output>
+	</filter>
+	
 	<filter>
 		<name>Pilot nose gear tiller steer</name>
 		<type>gain</type>
@@ -988,7 +998,7 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
-		<enable>/
+		<enable>
 			<condition>
 				<and>
 					<property>gear/gear[0]/wow</property>
