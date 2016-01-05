@@ -56,11 +56,11 @@ setlistener("engines/engine[0]/running-nasal", func(n)
 	if (n.getBoolValue()) {
 		idg1_ref = generators[0].getInputLo();
 		generators[0].setInputLo(0);
-		print("IDG1 set 0, was "~idg1_ref);
+		#print("IDG1 set 0, was "~idg1_ref);
 	}
 	else {
 		generators[0].setInputLo(idg1_ref);
-		print("IDG1 idg1_ref "~idg1_ref);
+		#print("IDG1 idg1_ref "~idg1_ref);
 	}
 }, 0, 0);
 
@@ -69,11 +69,11 @@ setlistener("engines/engine[1]/running-nasal", func(n)
 	if (n.getBoolValue()) {
 		idg2_ref = generators[1].getInputLo();
 		generators[1].setInputLo(0);
-		print("IDG2 set 0, was "~idg2_ref);
+		#print("IDG2 set 0, was "~idg2_ref);
 	}
 	else {
 		generators[1].setInputLo(idg2_ref);
-		print("IDG2 idg2_ref "~idg2_ref);
+		#print("IDG2 idg2_ref "~idg2_ref);
 	}
 }, 0, 0);
 
