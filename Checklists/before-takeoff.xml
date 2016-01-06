@@ -47,6 +47,24 @@
 		</binding>
 	</item>
 	<item>
+		<name>Reversers</name>
+		<value>ARM</value>
+		<condition>
+			<property>/controls/engines/engine[0]/reverser-armed</property>
+			<property>/controls/engines/engine[1]/reverser-armed</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/engines/engine[0]/reverser-armed</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/engines/engine[1]/reverser-armed</property>
+			<value>1</value>
+		</binding>
+	</item>
+	<item>
 		<name>Line up clearance</name>
 		<value>OBTAIN from ATC</value>
 	</item>
