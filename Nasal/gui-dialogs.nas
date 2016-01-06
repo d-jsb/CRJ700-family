@@ -13,6 +13,7 @@ var dialogs = {
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", aircraft_path~"lights-dlg.xml"),
     radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", aircraft_path~"radio-stack-dlg.xml"),
     tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", aircraft_path~"tiller-dlg.xml"),
+    viewselect: gui.Dialog.new("sim/gui/dialogs/views-crj700/dialog", aircraft_path~"viewselect-dlg.xml"),
 };
 gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
 gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
