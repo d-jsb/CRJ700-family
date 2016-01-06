@@ -349,24 +349,6 @@ update_offsets();
 setprop("controls/engines/engine[0]/cutoff", 1);
 setprop("controls/engines/engine[1]/cutoff", 1);
 
-## Aircraft-specific dialogs
-var dialogs = {
-    adc: gui.Dialog.new("sim/gui/dialogs/adc/dialog", "Aircraft/CRJ700-family/Systems/adc-dlg.xml"),
-    autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
-    autothrottle: gui.Dialog.new("sim/gui/dialogs/autothrottle/dialog", "Aircraft/CRJ700-family/Systems/autothrottle-dlg.xml"),
-    doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", "Aircraft/CRJ700-family/Systems/doors-dlg.xml"),
-    radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", "Aircraft/CRJ700-family/Systems/radio-stack-dlg.xml"),
-    lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
-    failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),
-    tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml"),
-    info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", "Aircraft/CRJ700-family/Systems/info-dlg.xml"),
-    config: gui.Dialog.new("sim/gui/dialogs/config-crj700/dialog", "Aircraft/CRJ700-family/Systems/config-dlg.xml"),
-    debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", "Aircraft/CRJ700-family/Systems/debug-dlg.xml"),
-    apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dev-dlg.xml"),
-};
-gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
-gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
-
 var known = getprop("/sim/model/known-version");
 var version = getprop("/sim/aircraft-version");
 if (!getprop("/sim/config/hide-welcome-msg") or known != version) {

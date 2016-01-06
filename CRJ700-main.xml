@@ -1176,6 +1176,7 @@
 			
 			<file>Aircraft/CRJ700-family/Nasal/multiplayer.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/vnav.nas</file>
+			<file>Aircraft/CRJ700-family/Nasal/gui-dialogs.nas</file>
 			<file>Aircraft/CRJ700-family/Nasal/master.nas</file>
 		</CRJ700>
 		<controls>
