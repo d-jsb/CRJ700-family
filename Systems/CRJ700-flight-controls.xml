@@ -403,8 +403,7 @@
 						<property>controls/flight/ground-lift-dump</property>
 						<value>2</value><!-- manual arm -->
 					</equals>
-					<property>controls/engines/engine[0]/reverser</property>
-					<property>controls/engines/engine[1]/reverser</property>
+					<property>controls/flight/speedbrake</property>
 				</and>
 				<and>
 					<equals>
