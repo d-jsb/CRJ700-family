@@ -1177,7 +1177,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/roll-mode</property>
+						<property>autopilot/internal/roll-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1195,7 +1195,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/roll-mode</property>
+						<property>autopilot/internal/roll-mode</property>
 						<value>0</value>
 					</equals>
 				</and>

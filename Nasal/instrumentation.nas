@@ -52,13 +52,13 @@ setlistener("autopilot/internal/roll-mode-engage", func(v)
     var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
     if (math.abs(roll) > 5)
     {
-        setprop("controls/autoflight/roll-mode", 1);
+        setprop("autopilot/internal/roll-mode", 1);
         setprop("autopilot/ref/roll-deg", roll);
     }
     else
     {
         var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
-        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/internal/roll-mode", 0);
         setprop("autopilot/ref/roll-hdg", heading);
     }
 }, 0, 0);
@@ -72,14 +72,6 @@ setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
     var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
     setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 }, 0, 0);
-
-#prevent half-bank in certain lateral modes
-setlistener("controls/autoflight/half-bank", func(v)
-{
-	var lm = getprop("controls/autoflight/lat-mode");
-    if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
-		v.setValue(0);
-}, 0, 1);
 
 #TO/GA mode
 setlistener("controls/autoflight/toga-button", func (n) {
@@ -98,7 +90,7 @@ setlistener("controls/autoflight/toga-button", func (n) {
 		}
 		# setprop("autopilot/internal/bank-limit-deg", 5);
 		setprop("controls/autoflight/pitch-select", 10);
-        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/internal/roll-mode", 0);
         setprop("autopilot/ref/roll-hdg", getprop("instrumentation/heading-indicator[0]/indicated-heading-deg"));
  		n.setBoolValue(0);
 	}
@@ -128,8 +120,8 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 	var mode = n.getValue();
 	var bank = getprop("autopilot/internal/bank-limit-deg");
 
-    if (mode == 2 or mode == 3)
-		setprop("controls/autoflight/half-bank", 0);
+#    if (mode == 2 or mode == 3)
+#		setprop("controls/autoflight/half-bank", 0);
 	
 	#GS handling in APPR mode 
 	if (mode == 3 and gs_rangeL == nil) {

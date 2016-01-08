@@ -32,9 +32,9 @@
 				</color>
 			</text>
 			<text>
-				<label>t_roll -00.0 </label>
+				<label>t_roll -00.00 </label>
 				<property>autopilot/internal/target-roll-deg</property>
-				<format>t_roll %2.1f </format>
+				<format>t_roll %2.3f </format>
 				<live>true</live>
 				<color>
 					<red>0.9</red>

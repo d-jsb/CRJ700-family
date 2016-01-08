@@ -16,7 +16,7 @@ incAileron = func(v, a)
         var lat_mode = props.globals.getNode("controls/autoflight/lat-mode", 1).getValue();
         if (lat_mode == 0)
         {
-            var roll_mode = props.globals.getNode("controls/autoflight/roll-mode", 1).getValue();
+            var roll_mode = props.globals.getNode("autopilot/internal/roll-mode", 1).getValue();
             if (roll_mode == 1)
             {
                 # incAileron() was only designed to adjust autopilot heading settings
