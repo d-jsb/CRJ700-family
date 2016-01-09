@@ -240,6 +240,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>Views</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>CRJViews</dialog-name>
+						</binding>
+					</item>
+					<item>
 						<label>Lights</label>
 						<binding>
 							<command>nasal</command>
