@@ -62,11 +62,11 @@
 			<property>engines/engine[1]/running</property>
 			<value type="bool">false</value>
 		</set>
-		<set>
+<!-- 		<set>
 			<property>controls/electric/battery-switch</property>
 			<value type="bool">false</value>
 		</set>
-		<set>
+ -->		<set>
 			<property>consumables/fuel/tank[0]/selected</property>
 			<value type="bool">false</value>
 		</set>
@@ -82,6 +82,18 @@
 			<property>instrumentation/eicas[1]/page</property>
 			<value>2</value>
 		</set>
+		<set>
+			<property>instrumentation/altimeter/setting-inhg</property>
+			<property>environment/metar/pressure-inhg</property>
+		</set>		
+		<set>
+			<property>consumables/fuel/tank[0]/level-lbs</property>
+			<value>3000</value>
+		</set>		
+		<set>
+			<property>consumables/fuel/tank[1]/level-lbs</property>
+			<value>3000</value>
+		</set>		
 		<nasal>
 			<script><![CDATA[
 				# engine cutoff settings seem to get overridden
@@ -90,26 +102,26 @@
 					setprop("controls/engines/engine[0]/cutoff", 1);
 					setprop("controls/engines/engine[1]/cutoff", 1);
 				}, 0);
+				CRJ700.doors.close();
 			]]></script>
 		</nasal>
 	</init>
 
 	<step>
-		<message>Welcome aboard the Bombardier CRJ700/900.</message>
+		<message>Welcome aboard the Bombardier CRJ700/900/1000.</message>
 		<view>
 			<field-of-view>80</field-of-view>
 		</view>
 	</step>
 	<step>
 		<message>
-		In this tutorial, you will learn how to start the engines and prepare for takeoff.
+		In this tutorial, you will learn how to start the engines.
 		If the ground staff did not switch on the lights for you, you will find the CRJ dark and cold.
 		</message>
 	</step>
 	<step>
 		<message>		
-		Reach up to the overhead panel and turn on the battery. 
-		The battery shall be on all the time until you are parked again at you destination. 
+		Turn on the battery if it is not on. The battery shall be on all the time until you are parked again at you destination. 
 		It is the first thing to turn on and the very last thing to turn off.
 		</message>
 		<view>
@@ -177,9 +189,8 @@
 	
 	<step>
 		<message>		
-		To start the engines, we the APU (auxilary power unit). 
-		First we need to engage the APU electronic control unit (ECU) which will start the APU fuel pump
-		and activate the APU status display on the EICAS screen.
+		To start the engines, we need the APU (auxilary power unit). 
+		First we need to engage the APU electronic control unit (ECU) which will start the APU fuel pump.
 		</message>
 		<view>
 			<heading-offset-deg>308.7</heading-offset-deg>
@@ -200,8 +211,9 @@
 			<condition>
 				<property>controls/APU/electronic-control-unit</property>
 			</condition>
+			<exit-time>1</exit-time>
 		</exit>
-		<interval>1</interval>
+		<step-time>1</step-time>
 	</step>
 	<step>
 		<message>
@@ -302,7 +314,7 @@
 	</step>
 
 	<step>
-		<message>Switch the bleed air source to the APU so we can start the engines.</message>
+		<message>Switch the bleed air source to APU so we can start the engines.</message>
 		<view>
 			<heading-offset-deg>305.1</heading-offset-deg>
 			<pitch-offset-deg>25.2</pitch-offset-deg>
@@ -328,7 +340,7 @@
 		</exit>
 	</step>
 	<step>
-		<message>Activate the two fuel pumps.</message>
+		<message>Activate the two fuel boost pumps.</message>
 		<view>
 			<heading-offset-deg>304.3</heading-offset-deg>
 			<pitch-offset-deg>33.0</pitch-offset-deg>
@@ -458,7 +470,6 @@
 
 	<step>
 		<message>
-
 		Now that the engines are running, switch the EICAS 2nd display to show AC status page 
 		by pushing the Electrical button on the EICAS control panel in the lower center panel.
 		(push again, if it shows DC status page).
@@ -639,7 +650,11 @@ the APU generator, as it is no longer needed.</message>
 		</exit>
 	</step>
 	<step>	
-		<message>Switch all hydraulic pumps to automatic (3A to on). You can check hydraulics on the EICAS.</message>
+		<message>
+		Switch hydraulic pumps 1B,2B and 3B to automatic and 3A to on. 
+		You can check hydraulics on the EICAS.
+		</message>
+		<interval>10</interval>
 		<view>
 			<heading-offset-deg>318.4</heading-offset-deg>
 			<pitch-offset-deg>17.6</pitch-offset-deg>
@@ -649,7 +664,6 @@ the APU generator, as it is no longer needed.</message>
 			<z-offset-m>-13.1</z-offset-m>
 			<field-of-view>45.7</field-of-view>
 		</view>
-
 		<marker>
 			<x-m>-13.6430</x-m>
 			<y-m>0.0000</y-m>
@@ -682,6 +696,10 @@ the APU generator, as it is no longer needed.</message>
 	<end>
 		<message>Congratulations! You have successfully started your CRJ700.
 		Please make sure to look at the checklists for more information.</message>
+		<exit>
+			<condition>
+			</condition>
+		</exit>
 	</end>
 
 </PropertyList>
