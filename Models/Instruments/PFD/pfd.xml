@@ -78,6 +78,7 @@
 		<object-name>AltBug</object-name>
 		<object-name>AltBugM</object-name>
 		<object-name>AltPtr</object-name>
+		<object-name>AltRadarPtr</object-name>
 		<object-name>AltTape</object-name>
 		<object-name>AltTapeM</object-name>
 		<object-name>AltRadarTape</object-name>
@@ -1982,7 +1983,6 @@ G</text>
 	<animation>
 		<type>material</type>
 		<object-name>ADF2</object-name>
-		<object-name>Heading bug setting</object-name>
 		<object-name>VOR2 course</object-name>
 		<object-name>VOR2 distance</object-name>
 		<object-name>VOR2NM</object-name>
@@ -2057,6 +2057,7 @@ G</text>
 		<object-name>Altitude setting</object-name>
 		<object-name>Speed knot setting</object-name>
 		<object-name>Speed mach setting</object-name>
+		<object-name>Heading bug setting</object-name>
 		<object-name>ADF1</object-name>
 		<object-name>VOR1 ID</object-name>
 		<object-name>VOR1 course</object-name>
@@ -2554,6 +2555,7 @@ G</text>
 	<animation><!-- tape only below 1225 ft radar altitude -->
 		<type>select</type>
 		<object-name>AltRadarTape</object-name>
+		<object-name>AltRadarPtr</object-name>
 		<object-name>DHptr</object-name>
 		<condition>
 			<less-than-equals>
