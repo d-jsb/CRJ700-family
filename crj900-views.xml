@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+	CRJ900 views 
+-->
+<PropertyList include="common-views.xml">
+	<view n="0">
+		<name>Captain View</name>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<x-offset-m archive="y">-0.528</x-offset-m>
+			<y-offset-m archive="y">-0.468</y-offset-m>
+			<z-offset-m archive="y">-15.045</z-offset-m>
+		</config>
+	</view>
+	<view n="100">
+		<name>Cabin View</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">0</x-offset-m>
+			<y-offset-m archive="y">-0.468</y-offset-m>
+			<z-offset-m archive="y">-2.0</z-offset-m>
+		</config>
+	</view>	
+	<view n="101">
+		<name>First Officer View</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">0.528</x-offset-m>
+			<y-offset-m archive="y">-0.468</y-offset-m>
+			<z-offset-m archive="y">-15.045</z-offset-m>
+		</config>
+	</view>
+	<view n="102">
+		<name>OHPanel</name>
+		<type>lookfrom</type>
+		<internal type="bool" >true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-0.468</y-offset-m>
+			<z-offset-m>-15.29</z-offset-m>
+			<pitch-offset-deg archive="y">59.2</pitch-offset-deg>
+			<heading-offset-deg>0</heading-offset-deg>
+			<default-field-of-view-deg type="double"  archive="y">85.3</default-field-of-view-deg>
+		</config>
+		<limits>
+			<enabled type="bool">true</enabled>
+			<left>
+			  <heading-max-deg type="double">0</heading-max-deg>
+			</left>
+			<right>
+			  <heading-max-deg type="double">0</heading-max-deg>
+			</right>
+		</limits>
+	</view>
+	<view n="103">
+		<name>Center Panel</name>
+		<type>lookfrom</type>
+		<internal type="bool" >true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-0.468</y-offset-m>
+			<z-offset-m>-15.29</z-offset-m>
+			<pitch-offset-deg>-55</pitch-offset-deg>
+			<heading-offset-deg>0</heading-offset-deg>
+			<default-field-of-view-deg type="double">56</default-field-of-view-deg>
+		</config>
+		<limits>
+			<enabled type="bool">true</enabled>
+			<left>
+			  <heading-max-deg type="double">0</heading-max-deg>
+			</left>
+			<right>
+			  <heading-max-deg type="double">0</heading-max-deg>
+			</right>
+		</limits>       
+	</view>
+	<view n="104">
+		<name>Radio Panel</name>
+		<type>lookfrom</type>
+		<internal type="bool" >true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-0.97</y-offset-m>
+			<z-offset-m>-15.22</z-offset-m>
+			<pitch-offset-deg>-64</pitch-offset-deg>
+			<heading-offset-deg>0</heading-offset-deg>
+			<default-field-of-view-deg type="double">77</default-field-of-view-deg>
+		</config>
+		<limits>
+			<enabled type="bool">true</enabled>
+			<left>
+			  <heading-max-deg type="double">5</heading-max-deg>
+			</left>
+			<right>
+			  <heading-max-deg type="double">5</heading-max-deg>
+			</right>
+		</limits>        
+	</view>
+	<view n="107">
+		<name>Ground walk</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">-3.95</x-offset-m>
+			<y-offset-m archive="y">-1.65</y-offset-m>
+			<!-- ground z ~ -3.35m -->
+			<z-offset-m archive="y">-15.65</z-offset-m>
+			<pitch-offset-deg>0</pitch-offset-deg>
+			<heading-offset-deg>180</heading-offset-deg>
+		</config>
+	</view>	
+	<view n="108">
+		<name>Nose gear</name>
+		<type>lookfrom</type>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m>0</x-offset-m>
+			<y-offset-m>-2.46</y-offset-m>
+			<z-offset-m>-13.6</z-offset-m>
+			<pitch-offset-deg>-10</pitch-offset-deg>
+			<heading-offset-deg>0</heading-offset-deg>
+			<default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+		</config>
+	</view>      
+	<view n="110">
+		<name>15A</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">-1.05</x-offset-m>
+			<y-offset-m archive="y">-0.59</y-offset-m>
+			<z-offset-m archive="y">-0.87</z-offset-m>
+			<pitch-offset-deg>-7</pitch-offset-deg>
+			<heading-offset-deg>90</heading-offset-deg>
+			<default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+		</config>
+	</view>
+	<view n="111">
+		<name>23A</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">-1.05</x-offset-m>
+			<y-offset-m archive="y">-0.6</y-offset-m>
+			<z-offset-m archive="y">4.26</z-offset-m>
+			<pitch-offset-deg>-10</pitch-offset-deg>
+			<heading-offset-deg>90</heading-offset-deg>
+			<default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+		</config>
+	</view>
+	<view n="120">
+		<name>15F </name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">1.05</x-offset-m>
+			<y-offset-m archive="y">-0.59</y-offset-m>
+			<z-offset-m archive="y">-0.87</z-offset-m>
+			<pitch-offset-deg>-7</pitch-offset-deg>
+			<heading-offset-deg>270</heading-offset-deg>
+			<default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
+		</config>
+	</view>
+	<view n="121">
+		<name>23F</name>
+		<type>lookfrom</type>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<x-offset-m archive="y">1.05</x-offset-m>
+			<y-offset-m archive="y">-0.6</y-offset-m>
+			<z-offset-m archive="y">4.26</z-offset-m>
+			<pitch-offset-deg>-10</pitch-offset-deg>
+			<heading-offset-deg>270</heading-offset-deg>
+			<default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+		</config>
+	</view>
+</PropertyList>

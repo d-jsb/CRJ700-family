@@ -45,7 +45,7 @@
 		<name>Landing Lights</name>
 		<value>ON BELOW 10,000ft</value>
 		<marker>
-			<x-m>-15.6471</x-m>
+			<x-m>-13.7071</x-m>
 			<y-m>-0.1545</y-m>
 			<z-m>-0.3190</z-m>
 			<scale>1.5124</scale>
@@ -114,7 +114,7 @@
 		<name>Autopilot</name>
 		<value>HDG HOLD FOR VECTORS</value>
 		<marker>
-			<x-m>-15.7967</x-m>
+			<x-m>-13.8567</x-m>
 			<y-m>0.0033</y-m>
 			<z-m>-0.6256</z-m>
 			<scale>1.3140</scale>
@@ -139,7 +139,7 @@
 		<name>ILS Course</name>
 		<value>SET CRS1</value>
 		<marker>
-			<x-m>-15.7802</x-m>
+			<x-m>-13.8402</x-m>
 			<y-m>-0.1802</y-m>
 			<z-m>-0.6298</z-m>
 			<scale>1.0000</scale>
@@ -149,7 +149,7 @@
 		<name>Nav Source</name>
 		<value>NAV1</value>
 		<marker>
-			<x-m>-15.9116</x-m>
+			<x-m>-13.9716</x-m>
 			<y-m>-0.7165</y-m>
 			<z-m>-0.9959</z-m>
 			<scale>1.0000</scale>

@@ -7,12 +7,12 @@
 		<name>Brakes</name>
 		<value>CHECK</value>
 	</item>
-	<item>
+<!-- 	<item>
 		<name>Gyro</name>
 		<value>CHECK DURING TURNS</value>
 	</item>
 	<item>
 		<name>Turn Coordinator</name>
 		<value>CHECK DURING TURNS</value>
-	</item>
+	</item> -->
 </PropertyList>

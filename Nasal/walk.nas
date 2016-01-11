@@ -3,7 +3,7 @@
 ############################################
 
 # view nodes and offsets
-var zNoseNode = props.globals.getNode("sim/current-view/y-offset-m", 1);
+var zViewNode = props.globals.getNode("sim/current-view/y-offset-m", 1);
 var xViewNode = props.globals.getNode("sim/current-view/z-offset-m", 1);
 var yViewNode = props.globals.getNode("sim/current-view/x-offset-m", 1);
 var hViewNode = props.globals.getNode("sim/current-view/heading-offset-deg", 1);
@@ -23,7 +23,14 @@ var walk_about = func(wa_distance)
 
 setlistener("sim/current-view/crouch", func(v) {
 	if (v.getBoolValue())
-		zNoseNode.setValue(zNoseNode.getValue() - 1);
+		zViewNode.setValue(zViewNode.getValue() - 0.8);
 	else
-		zNoseNode.setValue(zNoseNode.getValue() + 1);	
+		zViewNode.setValue(zViewNode.getValue() + 0.8);	
+},0,0);
+
+setlistener("sim/current-view/raise", func(v) {
+	if (v.getBoolValue())
+		zViewNode.setValue(zViewNode.getValue() + 0.2);
+	else
+		zViewNode.setValue(zViewNode.getValue() - 0.2);	
 },0,0);

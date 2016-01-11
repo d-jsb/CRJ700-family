@@ -37,15 +37,45 @@ var Loop = func(interval, update)
 var is_slave = 0;
 if (getprop("/sim/flight-model") == "null")
 {
-    is_slave = 1;
+	is_slave = 1;
 }
 
 # Engines and APU.
-var apu = CRJ700.Engine.Apu(0);
+var apu = CRJ700.Engine.Apu();
 var engines = [
     CRJ700.Engine.Jet(0),
     CRJ700.Engine.Jet(1)
 ];
+
+# Prevent IDG voltage drop on engine idle while in flight 
+# (idle N1,N2 can be much lower in flight than on ground)
+var idg1_ref = 0;
+var idg2_ref = 0;
+setlistener("engines/engine[0]/running-nasal", func(n)
+{
+	if (n.getBoolValue()) {
+		idg1_ref = generators[0].getInputLo();
+		generators[0].setInputLo(0);
+		#print("IDG1 set 0, was "~idg1_ref);
+	}
+	else {
+		generators[0].setInputLo(idg1_ref);
+		#print("IDG1 idg1_ref "~idg1_ref);
+	}
+}, 0, 0);
+
+setlistener("engines/engine[1]/running-nasal", func(n)
+{
+	if (n.getBoolValue()) {
+		idg2_ref = generators[1].getInputLo();
+		generators[1].setInputLo(0);
+		#print("IDG2 set 0, was "~idg2_ref);
+	}
+	else {
+		generators[1].setInputLo(idg2_ref);
+		#print("IDG2 idg2_ref "~idg2_ref);
+	}
+}, 0, 0);
 
 # Wipers.
 var wipers = [
@@ -91,7 +121,7 @@ var slow_loop = Loop(3, func {
 
 	# Instruments.
 	update_tat;
-
+	
 	# Multiplayer.
 	update_copilot_ints();
 
@@ -103,75 +133,96 @@ var slow_loop = Loop(3, func {
 # When the sim is ready, start the update loops and create the crossfeed valve.
 var gravity_xflow = {};
 setlistener("sim/signals/fdm-initialized", func
-            {
-                print("CRJ700 aircraft systems ... initialized");
-                gravity_xflow = aircraft.crossfeed_valve.new(0.5,
-                                                             "controls/fuel/gravity-xflow",
-                                                             0, 1);
-                fast_loop.start();
-                slow_loop.start();
-				settimer(func {
-					setprop("sim/model/sound-enabled",1);
-					print("Sound on.");
-					}, 3);
-            }, 0, 0);
+{
+	print("CRJ700 aircraft systems ... initialized");
+	gravity_xflow = aircraft.crossfeed_valve.new(0.5, "controls/fuel/gravity-xflow", 0, 1);
+	if (getprop("/sim/time/sun-angle-rad") > 1.57) 
+		setprop("controls/lighting/dome", 1);
+	fast_loop.start();
+	slow_loop.start();
+	settimer(func {
+		setprop("sim/model/sound-enabled",1);
+		print("Sound on.");
+		}, 3);
+}, 0, 0);
+
+
 
 ## Startup/shutdown functions
 var startid = 0;
 var startup = func {
     startid += 1;
     var id = startid;
-    setprop("controls/electric/battery-switch", 1);
-    setprop("controls/lighting/nav-lights", 1);
-    setprop("controls/lighting/beacon", 1);
-    setprop("controls/pneumatic/bleed-source", 2);
-    setprop("controls/APU/electronic-control-unit", 1);
-    setprop("controls/APU/off-on", 1);
-    settimer(func
-    {
-        if (id == startid)
-        {
-			setprop("controls/electric/engine[0]/generator", 1);
-			setprop("controls/electric/engine[1]/generator", 1);
-			setprop("controls/electric/APU-generator", 1);
-			setprop("controls/engines/engine[0]/cutoff", 0);
-			setprop("controls/engines/engine[1]/cutoff", 0);
-            setprop("/consumables/fuel/tank[0]/selected", 1);
-            setprop("/consumables/fuel/tank[1]/selected", 1);
-            setprop("/controls/engines/engine[0]/starter", 1);
-			settimer(func
-			{
-				if (id == startid)
-				{
-					setprop("/controls/engines/engine[1]/starter", 1);
-					settimer(func
-					{
-						if (id == startid)
-						{
-							setprop("controls/pneumatic/bleed-source", 0);
-							setprop("controls/APU/off-on", 0);
-							#setprop("controls/APU/electronic-control-unit", 0);
-							#setprop("controls/electric/battery-switch", 0);
-							setprop("controls/lighting/taxi-lights", 1);
-							setprop("controls/hydraulic/system[0]/pump-b", 2);
-							setprop("controls/hydraulic/system[1]/pump-b", 2);
-							setprop("controls/hydraulic/system[2]/pump-b", 2);
-							setprop("controls/hydraulic/system[2]/pump-a", 1);							
-						}
-					}, 38);
-				}
-            }, 37);
-        }
-    }, 22);
+	
+	var items = [
+		["controls/electric/battery-switch", 1, 0.8],
+		["controls/lighting/nav-lights", 1, 0.4],
+		["controls/lighting/beacon", 1, 0.8],
+		["controls/APU/electronic-control-unit", 1, 0.4],
+		["controls/APU/off-on", 1, 22],
+		["controls/pneumatic/bleed-source", 2, 0.8],
+		["controls/electric/engine[0]/generator", 1, 0.3],
+		["controls/electric/APU-generator", 1, 0.3],
+		["controls/electric/engine[1]/generator", 1, 1.5],
+		["controls/engines/engine[0]/cutoff", 0, 0.1],
+		["controls/engines/engine[1]/cutoff", 0, 2],
+		["/consumables/fuel/tank[0]/selected", 1, 0.4],
+		["/consumables/fuel/tank[1]/selected", 1, 0.8],
+		["/controls/engines/engine[0]/starter", 1, 37],
+		["/controls/engines/engine[1]/starter", 1, 38],
+		["controls/pneumatic/bleed-source", 0, 0.8],
+		["controls/APU/off-on", 0, 1],
+		["controls/lighting/taxi-lights", 1, 0.8],
+		["controls/hydraulic/system[0]/pump-b", 2, 0.1],
+		["controls/hydraulic/system[2]/pump-a", 1, 0.3],							
+		["controls/hydraulic/system[2]/pump-b", 2, 0.1],
+		["controls/hydraulic/system[1]/pump-b", 2, 0.3],
+	];
+	var exec = func (idx)
+	{
+        if (id == startid and items[idx] != nil) {
+			var item = items[idx];
+			setprop(item[0], item[1]);
+			if (size(items) > idx+1 and item[2] >= 0)
+				settimer(func exec(idx+1), item[2]);
+		}
+	}
+	exec(0);
 };
 
 var shutdown = func
 {
-    setprop("controls/engines/engine[0]/cutoff", 1);
-    setprop("controls/engines/engine[1]/cutoff", 1);
-    setprop("controls/electric/engine[0]/generator", 0);
-    setprop("controls/electric/engine[1]/generator", 0);
+    startid += 1;
+    var id = startid;
+	var items = [
+		["controls/lighting/landing-lights[0]", 0, 0.3],
+		["controls/lighting/landing-lights[1]", 0, 0.3],
+		["controls/lighting/landing-lights[2]", 0, 0.3],
+		["controls/lighting/taxi-lights", 0, 0.8],
+		["controls/electric/engine[0]/generator", 0, 0.5],
+		["controls/electric/engine[1]/generator", 0, 1.5],
+		["controls/engines/engine[0]/cutoff", 1, 0.0],
+		["controls/engines/engine[1]/cutoff", 1, 2],
+		["/consumables/fuel/tank[0]/selected", 0, 0.4],
+		["/consumables/fuel/tank[1]/selected", 0, 0.8],
+		["controls/lighting/beacon", 0, 0.8],
+		["controls/hydraulic/system[0]/pump-b", 0, 0.1],
+		["controls/hydraulic/system[2]/pump-a", 0, 0.3],							
+		["controls/hydraulic/system[2]/pump-b", 0, 0.1],
+		["controls/hydraulic/system[1]/pump-b", 0, 0.3],
+	];
+	var exec = func (idx)
+	{
+        if (id == startid and items[idx] != nil) {
+			var item = items[idx];
+			setprop(item[0], item[1]);
+			if (size(items) > idx+1 and item[2] >= 0)
+				settimer(func exec(idx+1), item[2]);
+		}
+	}
+	exec(0);
 };
+
 setlistener("sim/model/start-idling", func(v)
 {
     var run = v.getBoolValue();
@@ -186,9 +237,10 @@ setlistener("sim/model/start-idling", func(v)
 }, 0, 0);
 
 ## Instant start for tutorials and whatnot
-#broken
 var instastart = func
 {
+	if (getprop("position/altitude-agl-ft") < 500 and !getprop("/sim/config/developer"))
+		return;
 	setprop("/consumables/fuel/tank[0]/selected", 1);
 	setprop("/consumables/fuel/tank[1]/selected", 1);
     setprop("controls/electric/battery-switch", 1);
@@ -203,6 +255,9 @@ var instastart = func
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-a", 1);							
+
+	setprop("/controls/gear/brake-parking", 0);
+	setprop("/controls/lighting/strobe", 1);
 };
 
 ## Prevent the gear from being retracted on the ground
@@ -220,74 +275,87 @@ setlistener("controls/gear/gear-down", func(v)
     }
 }, 0, 0);
 
+var reload_checklists = func()
+{
+	var path = getprop("/sim/aircraft-dir")~"Checklists/checklists.xml";
+	io.read_properties(path,"/sim/checklists");
+};
+
+# Cockpit position is different for C7/C9/C10 so we have to update all 
+# tutorial markes in all checklist items.	
+var update_offsets = func()
+{
+	var c_offset = getprop("/sim/model/dimensions/cockpit-offset-x");
+	var update_checklists = func {
+		print("Updating checklists...");
+		foreach (var cl; props.globals.getNode("sim/checklists").getChildren("checklist"))
+		{
+			#print("==="~cl.getNode("title").getValue());
+			var pages = cl.getChildren("page");
+			var items = [];
+			if (size(pages))
+				foreach (var p; pages)
+				{
+					items ~= p.getChildren("item");
+				}
+			else items = cl.getChildren("item");
+			foreach (var i; items)
+			{
+				var m = i.getNode("marker");
+				if (m != nil)
+				{					
+					#print("  Item " ~ i.getNode("name").getValue());
+					var x = m.getNode("x-m");
+					x.setValue(x.getValue()+c_offset);
+				}
+			}						
+		}
+	}
+	var update_tutorials = func {
+		print("Updating tutorials...");
+		foreach (var t; props.globals.getNode("sim/tutorials").getChildren("tutorial"))
+		{
+			#print("==="~t.getNode("name").getValue());
+			var steps = [];
+			steps = t.getChildren("step");
+			foreach (var step; steps)
+			{
+				#print(step.getNode("message").getValue());
+				var m = step.getNode("marker");
+				if (m != nil)
+				{					
+					var x = m.getNode("x-m");
+					x.setValue(x.getValue()+c_offset);
+				}
+				var v = step.getNode("view");
+				if (v != nil)
+				{					
+					var z = v.getNode("z-offset-m");
+					if (z != nil)
+						z.setValue(z.getValue()+c_offset);
+				}
+			}						
+		}
+	}
+	if (c_offset)
+	{
+		settimer(update_checklists,1);
+		settimer(update_tutorials,2);
+	}
+};
+update_offsets();
+
 ## Engines at cutoff by default (not specified in -set.xml because that means they will be set to 'true' on a reset)
 setprop("controls/engines/engine[0]/cutoff", 1);
 setprop("controls/engines/engine[1]/cutoff", 1);
 
-## RAT
-var Rat = {
-    new: func(node, trigger_prop)
-    {
-        var m = { parents: [Rat] };
-        m.powering = 0;
-        m.node = aircraft.makeNode(node);
-        var nodeP = m.node.getPath();
-        m.serviceableN = props.globals.initNode(nodeP ~ "/serviceable", 1, "BOOL");
-        m.positionN = props.globals.initNode(nodeP ~ "/position-norm", 0, "DOUBLE");
-        m.rpmN = props.globals.initNode(nodeP ~ "/rpm", 0, "DOUBLE");
-        m.triggerN = aircraft.makeNode(trigger_prop);
-        setlistener(m.triggerN, func(v)
-        {
-            if (v.getBoolValue()) m.deploy();
-        }, 0, 0);
-        m.deploy_time = 8; # typical RAT deploy time is ~8 seconds
-        return m;
-    },
-    deploy: func
-    {
-        if (me.serviceableN.getBoolValue()) interpolate(me.positionN, 1, me.deploy_time);
-    },
-    update: func
-    {
-        if (me.serviceableN.getBoolValue() and me.positionN.getValue() >= 1)
-        {
-            # the CRJ's RAT operates at ~7000 to ~12000 RPM
-            # "There are two different style Air Driven Generators (ADGs) used on CRJs.
-            # One rotates at approximately 7,000 RPM, the other is much higher at 12,000 RPM."
-            # see http://www.airliners.net/aviation-forums/tech_ops/read.main/274235/, reply #2
-            # the RPM of the RAT begins dropping at 250 KTAS (TOTAL GUESS!)
-            # threshold is 15 KTAS (ANOTHER TOTAL GUESS)
-            var rpm = aircraft.kias_to_ktas(getprop("velocities/airspeed-kt"), getprop("position/altitude-ft")) * 28 - 15;
-            if (rpm >= 7000) rpm = 7000;
-            elsif (rpm <= 0) rpm = 0;
-            me.rpmN.setDoubleValue(rpm);
-        }
-        else
-        {
-            me.rpmN.setDoubleValue(0);
-        }
-    }
-};
-#var rat1 = Rat.new("systems/ram-air-turbine", "controls/pneumatic/ram-air-turbine");
-
-## Aircraft-specific dialogs
-var dialogs = {
-    autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dlg.xml"),
-    doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", "Aircraft/CRJ700-family/Systems/doors-dlg.xml"),
-    radio: gui.Dialog.new("sim/gui/dialogs/radio-stack/dialog", "Aircraft/CRJ700-family/Systems/radio-stack-dlg.xml"),
-    lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", "Aircraft/CRJ700-family/Systems/lights-dlg.xml"),
-    failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", "Aircraft/CRJ700-family/Systems/failures-dlg.xml"),
-    tiller: gui.Dialog.new("sim/gui/dialogs/tiller/dialog", "Aircraft/CRJ700-family/Systems/tiller-dlg.xml"),
-    info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", "Aircraft/CRJ700-family/Systems/info-dlg.xml"),
-    debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", "Aircraft/CRJ700-family/Systems/debug-dlg.xml"),
-    apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", "Aircraft/CRJ700-family/Systems/autopilot-dev-dlg.xml"),
-};
-gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
-gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
-
 var known = getprop("/sim/model/known-version");
 var version = getprop("/sim/aircraft-version");
-if (!getprop("/sim/model/hide-welcome-msg") or known != version) {
-	if (known != version) setprop("/sim/model/hide-welcome-msg", 0);
+if (!getprop("/sim/config/hide-welcome-msg") or known != version) {
+	if (known != version) setprop("/sim/config/hide-welcome-msg", 0);
 	CRJ700.dialogs.info.open();
+}
+
+if (getprop("/sim/config/allow-autothrottle") ) {
+	CRJ700.dialogs.autothrottle.open();
 }

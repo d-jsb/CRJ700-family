@@ -6,7 +6,12 @@
 <PropertyList>
 
 	<path>CRJ900.ac</path>
-
+	<params>
+		<apu-door>engines/engine[2]/n1</apu-door>
+		<fwd-cargo-door>engines/engine[3]/n1</fwd-cargo-door>
+		<ctr-cargo-door>engines/engine[3]/n2</ctr-cargo-door>
+		<aft-cargo-door>engines/engine[3]/rpm</aft-cargo-door>
+	</params>
 	<!-- Landing gear -->
 	<model>
 		<name>Nose gear</name>
@@ -264,7 +269,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>APUDoor</object-name>
-		<property>engines/apu/door-norm</property>
+		<property alias="/params/apu-door" />
 		<factor>45</factor>
         <axis>
 			<x1-m>14.44046</x1-m>
@@ -279,7 +284,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>CargoDoorAft</object-name>
-		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<property alias="/params/aft-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -306,7 +311,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorAft</object-name>
-		<property>sim/model/door-positions/aft-cargo/position-norm</property>
+		<property alias="/params/aft-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -336,7 +341,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>CargoDoorFwd</object-name>
-		<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		<property alias="/params/fwd-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -363,7 +368,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorFwd</object-name>
-		<property>sim/model/door-positions/fwd-cargo/position-norm</property>
+		<property alias="/params/fwd-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -393,7 +398,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>CargoDoorCtr</object-name>
-		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<property alias="/params/ctr-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -420,7 +425,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorCtr</object-name>
-		<property>sim/model/door-positions/ctr-cargo/position-norm</property>
+		<property alias="/params/ctr-cargo-door" />
 		<interpolation>
 			<entry>
 				<ind>0</ind>

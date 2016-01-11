@@ -933,7 +933,7 @@
 	<text>
 		<name>FF2</name>
 		<type>number-value</type>
-		<property>engines/engine[0]/fuel-flow_pph</property>
+		<property>engines/engine[1]/fuel-flow_pph</property>
 		<scale alias="../../lb-to-kg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
@@ -1397,10 +1397,10 @@
 		<scale>-100</scale>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
+		<character-size>0.008</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%+-3.1f%%</format>
+		<format>%+-03.0f%%</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>0.05324</y-m>
@@ -1529,7 +1529,7 @@
 	<text>
 		<name>APU RPM</name>
 		<type>number-value</type>
-		<property>engines/apu/rpm</property>
+		<property>engines/engine[2]/rpm</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -7748,7 +7748,7 @@ DIR BUS</text>
 		<scale>45</scale>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
+		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
 		<format>SLATS / FLAPS %-2.f</format>
@@ -7909,7 +7909,7 @@ DIR BUS</text>
 	<animation>
 		<type>rotate</type>
 		<object-name>APURPM</object-name>
-		<property>engines/apu/rpm</property>
+		<property>engines/engine[2]/rpm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>180</dep></entry>
 			<entry><ind>100</ind><dep>-58</dep></entry>

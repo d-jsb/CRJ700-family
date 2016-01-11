@@ -34,7 +34,7 @@
 	<!-- Advisories -->
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Flt splr deploy</text>
+		<text type="string">FLT SPLR DEPLOY</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -45,37 +45,28 @@
 				<or>
 					<greater-than>
 						<property>surface-positions/left-speedbrake-pos-norm</property>
-						<value>0.125</value> <!-- 5 degrees -->
+						<value>0.075</value> <!-- 3 degrees -->
 					</greater-than>
 					<greater-than>
 						<property>surface-positions/right-speedbrake-pos-norm</property>
-						<value>0.125</value> <!-- 5 degrees -->
-					</greater-than>
-					<greater-than>
-						<property>surface-positions/spoiler-ground-pos-norm</property>
-						<value>0.1</value> <!-- 4 degrees -->
+						<value>0.075</value> <!-- 3 degrees -->
 					</greater-than>
 				</or>
 				<greater-than>
 					<property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
 					<value>300</value>
 				</greater-than>
-				<or>
-					<greater-than-equals>
-						<property>engines/engine[0]/rpm</property>
-						<value>79</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>engines/engine[1]/rpm</property>
-						<value>79</value>
-					</greater-than-equals>
-				</or>
+				<not-equals>
+					<property>/controls/autoflight/vert-mode</property>
+					<value>7</value>
+				</not-equals>
+			
 			</and>
 		</condition>
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">GLD man arm</text>
+		<text type="string">GLD MAN ARM</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -90,7 +81,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Gnd splr deploy</text>
+		<text type="string">GND SPLR DEPLOY</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -98,28 +89,17 @@
 		</color>
 		<condition>
 			<and>
-				<or>
-					<not>
-						<property>gear/gear[1]/wow</property>
-					</not>
-					<not>
-						<property>gear/gear[2]/wow</property>
-					</not>
-				</or>
+				<property>gear/on-ground</property>
 				<greater-than>
 					<property>surface-positions/spoiler-ground-pos-norm</property>
 					<value>0</value>
 				</greater-than>
-				<less-than>
-					<property>instrumentation/radar-altimeter[0]/radar-altitude-ft</property>
-					<value>10</value>
-				</less-than>
 			</and>
 		</condition>
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Grav Xflow open</text>
+		<text type="string">GRAV XFLOW OPEN</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -131,7 +111,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Ice</text>
+		<text type="string">ICE</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -147,7 +127,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Ignition A</text>
+		<text type="string">IGNITION A</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -159,7 +139,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Ignition B</text>
+		<text type="string">IGNITION B</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -171,7 +151,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">L cowl anti ice on</text>
+		<text type="string">L COWL ANTI ICE ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -183,7 +163,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">R cowl anti ice on</text>
+		<text type="string">R COWL ANTI ICE ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -195,31 +175,31 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">L fuel pump on</text>
+		<text type="string">L FUEL PUMP ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
 			<blue alias="../../../colors/green/blue" />
 		</color>
 		<condition>
-			<property>consumables/fuel/tank[0]/selected</property>
+			<property>consumables/fuel/tank[0]/pump-running</property>
 		</condition>
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">R fuel pump on</text>
+		<text type="string">R FUEL PUMP ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
 			<blue alias="../../../colors/green/blue" />
 		</color>
 		<condition>
-			<property>consumables/fuel/tank[1]/selected</property>
+			<property>consumables/fuel/tank[1]/pump-running</property>
 		</condition>
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">L rev armed</text>
+		<text type="string">L REV ARMED</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -231,7 +211,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">R rev armed</text>
+		<text type="string">R REV ARMED</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -243,7 +223,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Parking brake on</text>
+		<text type="string">PARKING BRAKE ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -267,7 +247,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Wing anti ice on</text>
+		<text type="string">WING ANTI ICE ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -279,7 +259,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Cowl anti ice on</text>
+		<text type="string">COWL ANTI ICE ON</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -294,7 +274,7 @@
 	</message>
 	<message>
 		<priority type="int">0</priority>
-		<text type="string">Wing a/ice ok</text>
+		<text type="string">WING A/ICE OK</text>
 		<color>
 			<red alias="../../../colors/green/red" />
 			<green alias="../../../colors/green/green" />
@@ -332,7 +312,7 @@
 	<!-- Statuses -->
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">APU start</text>
+		<text type="string">APU START</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -342,11 +322,11 @@
 			<and>
 				<property>controls/APU/off-on</property>
 				<greater-than>
-					<property>engines/apu/rpm</property>
+					<property>engines/engine[2]/rpm</property>
 					<value>0</value>
 				</greater-than>
 				<less-than>
-					<property>engines/apu/rpm</property>
+					<property>engines/engine[2]/rpm</property>
 					<value>99</value>
 				</less-than>
 			</and>
@@ -406,7 +386,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Cont ignition</text>
+		<text type="string">CONT IGNITION</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -421,7 +401,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">FD 1 fail</text>
+		<text type="string">FD 1 FAIL</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -435,7 +415,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">FD 2 fail</text>
+		<text type="string">FD 2 FAIL</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -449,7 +429,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">GLD man disarm</text>
+		<text type="string">GLD MAN DISARM</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -464,7 +444,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">GPWS fail</text>
+		<text type="string">GPWS FAIL</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -478,7 +458,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">L eng start</text>
+		<text type="string">L ENG START</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -496,7 +476,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">R eng start</text>
+		<text type="string">R ENG START</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -514,7 +494,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">No smoking</text>
+		<text type="string">NO SMOKING</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -526,7 +506,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Ram air open</text>
+		<text type="string">RAM AIR OPEN</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -538,7 +518,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Seat belts</text>
+		<text type="string">SEAT BELTS</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -550,7 +530,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">Terrain not avail</text>
+		<text type="string">TERRAIN NOT AVAIL</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -559,7 +539,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">YD 1 inop</text>
+		<text type="string">YD 1 INOP</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -573,7 +553,7 @@
 	</message>
 	<message>
 		<priority type="int">1</priority>
-		<text type="string">YD 2 inop</text>
+		<text type="string">YD 2 INOP</text>
 		<color>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />

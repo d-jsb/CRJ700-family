@@ -15,6 +15,13 @@ table td {
  }
 
 .tip {
+ background-color: #A0B0FF;
+ font-family: Sans;
+ font-weight: bold;
+ border: 0.2em solid black;
+ padding: 0.5em;
+ }
+.warn {
  background-color: yellow;
  font-family: Sans;
  font-weight: bold;

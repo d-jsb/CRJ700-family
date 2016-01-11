@@ -12,22 +12,35 @@
 		<indicated-pitch-deg>instrumentation/attitude-indicator/indicated-pitch-deg</indicated-pitch-deg>
 		<indicated-roll-deg>instrumentation/attitude-indicator/indicated-roll-deg</indicated-roll-deg>
 		<indicated-altitude-ft>instrumentation/altimeter/indicated-altitude-ft</indicated-altitude-ft>
+		<ias-40>instrumentation/airspeed-indicator/ias-40</ias-40>
 		<indicated-speed-kt>instrumentation/airspeed-indicator/indicated-speed-kt</indicated-speed-kt>
 		<indicated-mach>instrumentation/airspeed-indicator/indicated-mach</indicated-mach>
 		<indicated-heading-deg>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading-deg>
 		<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator/indicated-speed-fpm</indicated-vertical-speed-fpm>
 		<radar-altitude-ft>instrumentation/radar-altimeter/radar-altitude-ft</radar-altitude-ft>
+		<dhptr>instrumentation/radar-altimeter/dh-deviation</dhptr>
 		<altimeter-setting-inhg>instrumentation/altimeter/setting-inhg</altimeter-setting-inhg>
 		<altimeter-setting-hpa>instrumentation/altimeter/setting-hpa</altimeter-setting-hpa>
 		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+		<nav-info-font-big>0.007</nav-info-font-big>
+		<nav-info-font-small>0.006</nav-info-font-small>
+		<nav-info-aspect>1.1</nav-info-aspect>
+		<nav-info-x>0.0005</nav-info-x>
+		<nav-info-y>-0.069</nav-info-y>
+		<dist-unit-literal-y>-0.051</dist-unit-literal-y>
+		<nav-src-z>-0.038</nav-src-z>
+		<crs-z>-0.045</crs-z>
+		<dist-z>-0.0545</dist-z>
+		<nav-id-z>-0.058</nav-id-z>
+		<vref-x>0.0000</vref-x>
 	</params>
 	<ft-to-m type="float">0.3048</ft-to-m>
 
 	<colors>
 		<blue>
 			<red>0.349</red>
-			<green>0.767</green>
-			<blue>0.808</blue>
+			<green>0.700</green>
+			<blue>0.908</blue>
 		</blue>
 		<green>
 			<red>0.133</red>
@@ -50,17 +63,60 @@
 			<blue>0</blue>
 		</yellow>
 	</colors>
-
-	<!-- Visible only within 1/2 km -->
+	
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>500</max-m>
+		<max-m>15</max-m>
 	</animation>
 	<!-- Instrument elements only visible inside -->
 	<animation>
+		<name>LCD</name>
+		<object-name>ADF1Ptr</object-name>
+		<object-name>ADF2Ptr</object-name>
+		<object-name>AIPtr</object-name>
+		<object-name>AltBug</object-name>
+		<object-name>AltBugM</object-name>
+		<object-name>AltPtr</object-name>
+		<object-name>AltRadarPtr</object-name>
+		<object-name>AltTape</object-name>
+		<object-name>AltTapeM</object-name>
+		<object-name>AltRadarTape</object-name>
+		<object-name>DHptr</object-name>
+		<object-name>FD</object-name>
+		<object-name>GS</object-name>
+		<object-name>GSPtr</object-name>
+		<object-name>HSI</object-name>
+		<object-name>HSIBug</object-name>
+		<object-name>HdgFrame</object-name>
+		<object-name>HdgPtr</object-name>
+		<object-name>IASBug</object-name>
+		<object-name>ILS</object-name>
+		<object-name>ILSPtr</object-name>
+		<object-name>MachBug</object-name>
+		<object-name>NAVPtr</object-name>
+		<object-name>NAVTrack</object-name>
+		<object-name>Off</object-name>
+		<object-name>Overspeed</object-name>
+		<object-name>Pitch</object-name>
+		<object-name>Roll</object-name>
+		<object-name>RollPtr</object-name>
+		<object-name>Screen</object-name>
+		<object-name>SpdPtr</object-name>
+		<object-name>SpdTape</object-name>
+		<object-name>SpdLimits</object-name>
+		<object-name>Symbols1</object-name>
+		<object-name>Symbols2</object-name>
+		<object-name>VNAVAdvise</object-name>
+		<object-name>VNAVPtr</object-name>
+		<object-name>VS</object-name>
+		<object-name>VSPtr</object-name>	
+		<object-name>VrefMask</object-name>
+	</animation>
+	<animation>
 		<type>select</type>
 		<object-name>LCD</object-name>
+		<object-name>Text</object-name>
 		<condition>
 			<property>sim/current-view/internal</property>
 		</condition>
@@ -436,6 +492,294 @@
 		</font-resolution>
 	</text>
 	<text>
+		<name>DHref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/dh</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.0055</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>DH %03.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.04</y-m>
+			<z-m>0.083</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>MDAref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/mda</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.0055</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>MDA %04.f</format>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.04</y-m>
+			<z-m>0.075</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DH</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>DH</text>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>0.030</y-m>
+			<z-m>0.034</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<animation>
+		<type>select</type>
+		<object-name>DH</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+				<value>-30</value>
+			</less-than>
+			<less-than-equals>
+				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+				<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+			</less-than-equals>			
+			<greater-than-equals>
+				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+				<expression>
+					<dif>
+						<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+						<value>50</value>
+					</dif>
+				</expression>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DH</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+				<value>-30</value>
+			</less-than>
+			<less-than-equals>
+				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+				<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+			</less-than-equals>			
+			<greater-than-equals>
+				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+				<expression>
+					<dif>
+						<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+						<value>50</value>
+					</dif>
+				</expression>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	<text>
+		<name>MDA</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>right-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>MDA</text>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>0.030</y-m>
+			<z-m>0.028</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<animation>
+		<type>select</type>
+		<object-name>MDA</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+				<value>-30</value>
+			</less-than>
+			<less-than-equals>
+				<property>instrumentation/altimeter/indicated-altitude-ft</property>
+				<property>instrumentation/adc/reference/mda</property>
+			</less-than-equals>
+			<!-- fixme: find out, if mda should disappear at some point -->
+<!-- 			<greater-than-equals>
+				<property>instrumentation/altimeter/indicated-altitude-ft</property>
+				<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+			</greater-than-equals>
+ -->		</condition>
+	</animation>
+	<!-- marker beacon indications -->
+	<text>
+		<name>OM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>OM</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>OMbox</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>OM</text>
+		<draw-text type="bool">false</draw-text>
+		<draw-boundingbox type="bool">true</draw-boundingbox>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>		
+	<animation>
+		<type>select</type>
+		<object-name>OM</object-name>
+		<object-name>OMbox</object-name>
+		<condition>
+			<property>instrumentation/marker-beacon/outer</property>
+		</condition>
+	</animation>
+	<text>
+		<name>MM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>MM</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>MMbox</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.009</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>MM</text>
+		<draw-text type="bool">false</draw-text>
+		<draw-boundingbox type="bool">true</draw-boundingbox>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<animation>
+		<type>select</type>
+		<object-name>MM</object-name>
+		<object-name>MMbox</object-name>
+		<condition>
+			<property>instrumentation/marker-beacon/middle</property>
+		</condition>
+	</animation>
+	<text>
+		<name>IM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>IM</text>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>IMbox</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>center-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>OM</text>
+		<draw-text type="bool">false</draw-text>		
+		<draw-boundingbox type="bool">true</draw-boundingbox>
+		<offsets>
+			<x-m>0.0001</x-m>
+			<y-m>0.031</y-m>
+			<z-m>0.0675</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<animation>
+		<type>select</type>
+		<object-name>IM</object-name>
+		<object-name>IMbox</object-name>
+		<condition>
+			<property>instrumentation/marker-beacon/inner</property>
+		</condition>
+	</animation>	
+	<text>
 		<name>Altitude setting</name>
 		<type>number-value</type>
 		<property>controls/autoflight/altitude-select</property>
@@ -558,20 +902,390 @@ G</text>
 			</less-than>
 		</condition>
 	</animation>
+
+	<!-- speed references -->
+	<animation>
+		<type>select</type>
+		<object-name>VTref</object-name>
+		<object-name>V2ref</object-name>
+		<object-name>VRref</object-name>
+		<object-name>V1ref</object-name>
+		<condition>
+			<less-than>
+				<property alias="/params/indicated-speed-kt" />
+				<value>80</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>VTref</object-name>
+		<object-name>V2ref</object-name>
+		<object-name>VRref</object-name>
+		<object-name>V1ref</object-name>
+		<condition>
+			<greater-than-equals>
+				<property alias="/params/ias-40" />
+				<value>0</value>
+			</greater-than-equals>
+		</condition>
+		<property alias="/params/ias-40" />		
+		<factor>-0.000880</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>	
+	</animation>
+	<text>
+		<name>VTref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/vt</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>%03.f</format>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.0563</y-m>
+			<z-m>0.01286</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>V2ref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/v2</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>%03.f</format>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.0563</y-m>
+			<z-m>0.00539</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>VRref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/vr</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>%03.f</format>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.0563</y-m>
+			<z-m>-0.002</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>V1ref</name>
+		<type>number-value</type>
+		<property>instrumentation/adc/reference/v1</property>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<format>%03.f</format>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.0563</y-m>
+			<z-m>-0.0096</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>VTref</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>VT</text>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.067</y-m>
+			<z-m>0.01286</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>V2ref</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>V2</text>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.067</y-m>
+			<z-m>0.00539</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>VRref</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>VR</text>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.067</y-m>
+			<z-m>-0.002</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>V1ref</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>V1</text>
+		<offsets>
+			<x-m alias="/params/vref-x" />
+			<y-m>-0.067</y-m>
+			<z-m>-0.0096</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+
+	<!-- V indicators -->
+	<text>
+		<name>V1ind</name>
+		<type>literal</type>
+		<text>--  1</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica.txf</font>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.055</y-m>
+			<z-m>0.02369</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+ 	<animation>
+		<type>select</type>
+		<object-name>V1ind</object-name>
+		<condition>
+			<greater-than>
+				<property>instrumentation/adc/v1-diff</property>
+				<value>-40</value>
+			</greater-than> 
+ 			<less-than>
+				<property>instrumentation/adc/v1-diff</property>
+				<value>40</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>V1ind</object-name>
+		<property>instrumentation/adc/v1-diff</property>
+		<factor>-0.000880</factor>
+		<axis>
+			<x>-0.036</x>
+			<y>0</y>
+			<z>0.999</z>
+		</axis>		
+	</animation>	
+	<text>
+		<name>V2ind</name>
+		<type>literal</type>
+		<text>--  2</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica.txf</font>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.055</y-m>
+			<z-m>0.02369</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+ 	<animation>
+		<type>select</type>
+		<object-name>V2ind</object-name>
+		<condition>
+			<greater-than>
+				<property>instrumentation/adc/v2-diff</property>
+				<value>-40</value>
+			</greater-than> 
+ 			<less-than>
+				<property>instrumentation/adc/v2-diff</property>
+				<value>40</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>V2ind</object-name>
+		<property>instrumentation/adc/v2-diff</property>
+		<factor>-0.000880</factor>
+		<axis>
+			<x>-0.036</x>
+			<y>0</y>
+			<z>0.999</z>
+		</axis>		
+	</animation>		
+	<text>
+		<name>VRind</name>
+		<type>literal</type>
+		<text>-- R</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica.txf</font>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.055</y-m>
+			<z-m>0.02369</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+ 	<animation>
+		<type>select</type>
+		<object-name>VRind</object-name>
+		<condition>
+			<greater-than>
+				<property>instrumentation/adc/vr-diff</property>
+				<value>-40</value>
+			</greater-than> 
+ 			<less-than>
+				<property>instrumentation/adc/vr-diff</property>
+				<value>40</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>VRind</object-name>
+		<property>instrumentation/adc/vr-diff</property>
+		<factor>-0.000880</factor>
+		<axis>
+			<x>-0.036</x>
+			<y>0</y>
+			<z>0.999</z>
+		</axis>		
+	</animation>	
+	<text>
+		<name>VTind</name>
+		<type>literal</type>
+		<text>-- T</text>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-center</alignment>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.1</character-aspect-ratio>
+		<font>helvetica.txf</font>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.055</y-m>
+			<z-m>0.02369</z-m>
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+ 	<animation>
+		<type>select</type>
+		<object-name>VTind</object-name>
+		<condition>
+			<greater-than>
+				<property>instrumentation/adc/vt-diff</property>
+				<value>-40</value>
+			</greater-than> 
+ 			<less-than>
+				<property>instrumentation/adc/vt-diff</property>
+				<value>40</value>
+			</less-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>VTind</object-name>
+		<property>instrumentation/adc/vt-diff</property>
+		<factor>-0.000880</factor>
+		<axis>
+			<x>-0.036</x>
+			<y>0</y>
+			<z>0.999</z>
+		</axis>		
+	</animation>		
+	<!-- heading bug-->
 	<text>
 		<name>Heading bug setting</name>
 		<type>number-value</type>
 		<property>controls/autoflight/heading-select</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.006</character-size>
+		<character-size>0.008</character-size>
 		<character-aspect-ratio>1.5</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
 		<format>HDG %03.f</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>-0.04127</y-m>
-			<z-m>-0.02723</z-m>
+			<z-m>-0.021</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -584,14 +1298,14 @@ G</text>
 		<property alias="../../params/radar-altitude-ft" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.4</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%04.f FT</format>
+		<format>%4.f FT</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>0.04145</y-m>
-			<z-m>-0.0266</z-m>
+			<y-m>0.040</y-m>
+			<z-m>-0.021</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -607,7 +1321,7 @@ G</text>
 					<property>instrumentation/use-metric-altitude</property>
 				</not>
 				<less-than-equals>
-					<property alias="../../../../../params/radar-altitude-ft" />
+					<property alias="/params/radar-altitude-ft" />
 					<value>2500</value>
 				</less-than-equals>
 			</and>
@@ -620,14 +1334,14 @@ G</text>
 		<scale alias="../../ft-to-m" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.008</character-size>
+		<character-aspect-ratio>1.4</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%04.f M</format>
+		<format>%4.f M</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>0.04145</y-m>
-			<z-m>-0.0266</z-m>
+			<y-m>0.040</y-m>
+			<z-m>-0.021</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -641,7 +1355,7 @@ G</text>
 			<and>
 				<property>instrumentation/use-metric-altitude</property>
 				<less-than-equals>
-					<property alias="../../../../../params/radar-altitude-ft" />
+					<property alias="/params/radar-altitude-ft" />
 					<value>2500</value>
 				</less-than-equals>
 			</and>
@@ -662,10 +1376,10 @@ G</text>
 		<property alias="../../params/altimeter-setting-inhg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%02.2f IN</format>
+		<format>%02.2fIN</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06691</y-m>
@@ -689,10 +1403,10 @@ G</text>
 		<property alias="../../params/altimeter-setting-hpa" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.007</character-size>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%4.0f hPa</format>
+		<format>%4.0fhPa</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06691</y-m>
@@ -703,6 +1417,7 @@ G</text>
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<!-- selected IAS -->
 	<text>
 		<name>Speed knot setting</name>
 		<type>number-value</type>
@@ -714,9 +1429,9 @@ G</text>
 		<font>helvetica_bold.txf</font>
 		<format>%03.f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05604</y-m>
-			<z-m>-0.02993</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m>-0.064</y-m>
+			<z-m>-0.020</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -745,8 +1460,8 @@ G</text>
 		<format>%1.2f</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.05604</y-m>
-			<z-m>-0.02993</z-m>
+			<y-m>-0.064</y-m>
+			<z-m>-0.020</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -763,19 +1478,21 @@ G</text>
 			</equals>
 		</condition>
 	</animation>
+
+	<!-- nav source info -->
 	<text>
 		<name>FMS</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<text>FMS</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04385</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-src-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -788,14 +1505,14 @@ G</text>
 		<property>autopilot/route-manager/wp[0]/bearing-deg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size>0.006</character-size>
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>CRS %03.f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04985</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/crs-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -807,15 +1524,34 @@ G</text>
 		<type>number-value</type>
 		<property>autopilot/route-manager/wp[0]/dist</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
-		<format>%3.1f NM</format>
+		<format>%3.1f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.05585</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/dist-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>FMSNM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
+		<font>helvetica_bold.txf</font>
+		<text>NM</text>
+		<offsets>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/dist-unit-literal-y" />
+			<z-m alias="/params/dist-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -828,14 +1564,14 @@ G</text>
 		<property>autopilot/route-manager/wp[0]/id</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>%s</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.06185</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-id-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -847,6 +1583,7 @@ G</text>
 		<object-name>FMS</object-name>
 		<object-name>FMS course</object-name>
 		<object-name>FMS distance</object-name>
+		<object-name>FMSNM</object-name>
 		<object-name>FMS waypoint ID</object-name>
 		<condition>
 			<and>
@@ -863,14 +1600,14 @@ G</text>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<text>VOR1</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04385</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-src-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -883,14 +1620,14 @@ G</text>
 		<property>instrumentation/nav[0]/radials/selected-deg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>CRS %03.f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04985</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/crs-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -902,15 +1639,15 @@ G</text>
 		<type>number-value</type>
 		<property>instrumentation/dme[0]/indicated-distance-nm</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
-		<format>%3.1f NM</format>
+		<format>%3.1f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.05585</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/dist-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -918,19 +1655,57 @@ G</text>
 		</font-resolution>
 	</text>
 	<text>
+		<name>VOR1NM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>NM</text>
+		<offsets>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/dist-unit-literal-y" />
+			<z-m alias="/params/dist-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DME1H</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>H</text>
+		<offsets>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/dist-unit-literal-y" />
+			<z-m alias="/params/dist-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
 		<name>VOR1 ID</name>
 		<type>string-value</type>
 		<property>instrumentation/nav[0]/nav-id</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>%s</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.06185</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-id-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -941,8 +1716,8 @@ G</text>
 		<type>select</type>
 		<object-name>VOR1</object-name>
 		<object-name>VOR1 course</object-name>
-		<object-name>VOR1 distance</object-name>
 		<object-name>VOR1 ID</object-name>
+		<object-name>VOR1 distance</object-name>
 		<condition>
 			<equals>
 				<property>controls/autoflight/nav-mode</property>
@@ -950,19 +1725,52 @@ G</text>
 			</equals>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>VOR1NM</object-name>
+		<condition>
+			<and>
+			<equals>
+				<property>controls/autoflight/nav-mode</property>
+				<value>0</value>
+			</equals>
+			<equals>
+				<property>instrumentation/dme[0]/hold</property>
+				<value>0</value>
+			</equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DME1H</object-name>
+		<condition>
+			<and>
+			<equals>
+				<property>controls/autoflight/nav-mode</property>
+				<value>0</value>
+			</equals>
+			<equals>
+				<property>instrumentation/dme[0]/hold</property>
+				<value>1</value>
+			</equals>
+			</and>
+		</condition>
+	</animation>
+	
 	<text>
 		<name>VOR2</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<text>VOR2</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04385</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-src-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -975,14 +1783,14 @@ G</text>
 		<property>instrumentation/nav[1]/radials/selected-deg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>CRS %03.f</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.04985</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/crs-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -994,15 +1802,53 @@ G</text>
 		<type>number-value</type>
 		<property>instrumentation/dme[1]/indicated-distance-nm</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-big" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
+		<font>helvetica_bold.txf</font>
+		<format>%3.1f</format>
+		<offsets>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/dist-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>VOR2NM</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-small" />
 		<character-aspect-ratio>1.5</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%3.1f NM</format>
+		<text>NM</text>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.05585</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/dist-unit-literal-y" />
+			<z-m alias="/params/dist-z" />
+		</offsets>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>	
+	<text>
+		<name>DME2H</name>
+		<type>literal</type>
+		<axis-alignment>yz-plane</axis-alignment>
+		<alignment>left-baseline</alignment>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<font>helvetica_bold.txf</font>
+		<text>H</text>
+		<offsets>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/dist-unit-literal-y" />
+			<z-m alias="/params/dist-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1015,14 +1861,14 @@ G</text>
 		<property>instrumentation/nav[1]/nav-id</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.005</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-size alias="/params/nav-info-font-small" />
+		<character-aspect-ratio alias="/params/nav-info-aspect" />
 		<font>helvetica_bold.txf</font>
 		<format>%s</format>
 		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.06385</y-m>
-			<z-m>-0.06185</z-m>
+			<x-m alias="/params/nav-info-x" />
+			<y-m alias="/params/nav-info-y" />
+			<z-m alias="/params/nav-id-z" />
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1033,13 +1879,45 @@ G</text>
 		<type>select</type>
 		<object-name>VOR2</object-name>
 		<object-name>VOR2 course</object-name>
-		<object-name>VOR2 distance</object-name>
 		<object-name>VOR2 ID</object-name>
+		<object-name>VOR2 distance</object-name>
 		<condition>
 			<equals>
 				<property>controls/autoflight/nav-mode</property>
 				<value>1</value>
 			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>VOR2NM</object-name>
+		<condition>
+			<and>
+			<equals>
+				<property>controls/autoflight/nav-mode</property>
+				<value>1</value>
+			</equals>
+			<equals>
+				<property>instrumentation/dme[1]/hold</property>
+				<value>0</value>
+			</equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DME2H</object-name>
+		<condition>
+			<and>
+			<equals>
+				<property>controls/autoflight/nav-mode</property>
+				<value>1</value>
+			</equals>
+			<equals>
+				<property>instrumentation/dme[1]/hold</property>
+				<value>1</value>
+			</equals>
+			</and>
 		</condition>
 	</animation>
 	<text>
@@ -1085,17 +1963,17 @@ G</text>
 	<text>
 		<name>Vertical speed indicator</name>
 		<type>number-value</type>
-		<property alias="../../params/indicated-vertical-speed-fpm" />
+		<property>instrumentation/vertical-speed-indicator/indicated-speed-scaled</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio>1.4</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<format>%04.0f</format>
+		<format>%1.1f</format>
 		<offsets>
 			<x-m>0.0003</x-m>
 			<y-m>0.06874</y-m>
-			<z-m>-0.05108</z-m>
+			<z-m>-0.056</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -1105,7 +1983,24 @@ G</text>
 	<animation>
 		<type>material</type>
 		<object-name>ADF2</object-name>
-		<object-name>Heading bug setting</object-name>
+		<object-name>VOR2 course</object-name>
+		<object-name>VOR2 distance</object-name>
+		<object-name>VOR2NM</object-name>
+		<object-name>VOR2 ID</object-name>
+		<object-name>Altimeter setting</object-name>
+		<object-name>Altimeter-hpa</object-name>
+		<object-name>DHref</object-name>
+		<object-name>MDAref</object-name>
+		<object-name>OM</object-name>
+		<object-name>OMbox</object-name>
+		<object-name>V1ref</object-name>
+		<object-name>V2ref</object-name>
+		<object-name>VRref</object-name>
+		<object-name>VTref</object-name>		
+		<object-name>V1ind</object-name>
+		<object-name>V2ind</object-name>
+		<object-name>VRind</object-name>
+		<object-name>VTind</object-name>
 		<ambient>
 			<red alias="../../../colors/blue/red" />
 			<green alias="../../../colors/blue/green" />
@@ -1162,7 +2057,12 @@ G</text>
 		<object-name>Altitude setting</object-name>
 		<object-name>Speed knot setting</object-name>
 		<object-name>Speed mach setting</object-name>
+		<object-name>Heading bug setting</object-name>
 		<object-name>ADF1</object-name>
+		<object-name>VOR1 ID</object-name>
+		<object-name>VOR1 course</object-name>
+		<object-name>VOR1 distance</object-name>
+		<object-name>VOR1NM</object-name>
 		<ambient>
 			<red alias="../../../colors/pink/red" />
 			<green alias="../../../colors/pink/green" />
@@ -1185,20 +2085,15 @@ G</text>
 		<object-name>Autopilot 1/2 bank</object-name>
 		<object-name>Altimeter thousands counter</object-name>
 		<object-name>Altimeter thousands counter (metric)</object-name>
-		<object-name>Altimeter setting</object-name>
-		<object-name>Altimeter-hpa</object-name>
 		<object-name>FMS</object-name>
 		<object-name>FMS course</object-name>
 		<object-name>FMS distance</object-name>
+		<object-name>FMSNM</object-name>
 		<object-name>FMS waypoint ID</object-name>
 		<object-name>VOR1</object-name>
-		<object-name>VOR1 course</object-name>
-		<object-name>VOR1 distance</object-name>
-		<object-name>VOR1 ID</object-name>
 		<object-name>VOR2</object-name>
-		<object-name>VOR2 course</object-name>
-		<object-name>VOR2 distance</object-name>
-		<object-name>VOR2 ID</object-name>
+		<object-name>IM</object-name>
+		<object-name>IMbox</object-name>
 		<ambient>
 			<red alias="../../../colors/white/red" />
 			<green alias="../../../colors/white/green" />
@@ -1219,6 +2114,12 @@ G</text>
 	<animation>
 		<type>material</type>
 		<object-name>Altimeter negative</object-name>
+		<object-name>DME1H</object-name>
+		<object-name>DME2H</object-name>
+		<object-name>MM</object-name>
+		<object-name>MMbox</object-name>
+		<object-name>DH</object-name>
+		<object-name>MDA</object-name>
 		<ambient>
 			<red alias="../../../colors/yellow/red" />
 			<green alias="../../../colors/yellow/green" />
@@ -1266,15 +2167,22 @@ G</text>
 		<object-name>FMS</object-name>
 		<object-name>FMS course</object-name>
 		<object-name>FMS distance</object-name>
+		<object-name>FMSNM</object-name>
 		<object-name>FMS waypoint ID</object-name>
 		<object-name>VOR1</object-name>
 		<object-name>VOR1 course</object-name>
 		<object-name>VOR1 distance</object-name>
+		<object-name>VOR1NM</object-name>
 		<object-name>VOR1 ID</object-name>
 		<object-name>VOR2</object-name>
 		<object-name>VOR2 course</object-name>
 		<object-name>VOR2 distance</object-name>
 		<object-name>VOR2 ID</object-name>
+		<object-name>VOR1NM</object-name>
+		<object-name>V1ref</object-name>
+		<object-name>VRref</object-name>
+		<object-name>V2ref</object-name>
+		<object-name>VTref</object-name>
 	</animation>
 
 	<animation>
@@ -1291,12 +2199,59 @@ G</text>
 	<animation>
 		<type>textranslate</type>
 		<object-name>SpdTape</object-name>
-		<property alias="../../params/indicated-speed-kt" />
+		<property alias="/params/ias-40" />
+		<condition>
+			<greater-than-equals>
+				<property alias="/params/indicated-speed-kt" />
+				<value>40</value>
+			</greater-than-equals>
+		</condition>
 		<factor>0.001344299</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
 		</axis>
+	</animation>
+	<animation>
+		<type>texmultiple</type>
+		<object-name>SpdLimits</object-name>
+		<transform>
+			<subtype>textranslate</subtype>
+			<property alias="/params/indicated-speed-kt" />
+			<condition>
+				<greater-than-equals>
+					<property alias="/params/indicated-speed-kt" />
+					<value>40</value>
+				</greater-than-equals>
+			</condition>
+			<factor>0.001344299</factor>
+			<axis>
+				<x>0</x>
+				<y>1</y>
+			</axis>
+		</transform>
+		<transform>
+			<subtype>textranslate</subtype>
+			<property>/sim/flaps/current-setting</property>
+			<factor>0.0625</factor>
+			<axis>
+				<x>1</x>
+				<y>0</y>
+			</axis>
+		</transform>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>SpdLimits</object-name>
+		<condition>
+			<and>
+				<not><property>gear/gear[1]/wow</property></not>
+				<greater-than-equals>
+					<property>instrumentation/clock/elapsed-time-sec</property>
+					<value>3</value>
+				</greater-than-equals>
+			</and>
+		</condition>		
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1312,7 +2267,7 @@ G</text>
 		<type>textranslate</type>
 		<object-name>IASBug</object-name>
 		<property>autopilot/internal/speed-bug-difference-kt</property>
-		<factor>0.001344299</factor>
+		<factor>0.00224</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1332,7 +2287,7 @@ G</text>
 		<type>textranslate</type>
 		<object-name>MachBug</object-name>
 		<property>autopilot/internal/mach-bug-difference-kt</property>
-		<factor>0.001344299</factor>
+		<factor>0.00224</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1345,7 +2300,7 @@ G</text>
 		<transform>
 			<subtype>textranslate</subtype>
 			<property alias="../../../params/indicated-pitch-deg" />
-			<factor>0.00314</factor>
+			<factor>0.004</factor>
 			<axis>
 				<x>0</x>
 				<y>1</y>
@@ -1470,7 +2425,7 @@ G</text>
 		<type>translate</type>
 		<object-name>ILSPtr</object-name>
 		<property>instrumentation/nav[0]/heading-needle-deflection-norm</property>
-		<factor>0.00295</factor>
+		<factor>0.026</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1499,7 +2454,7 @@ G</text>
 		<type>translate</type>
 		<object-name>GSPtr</object-name>
 		<property>instrumentation/nav[0]/gs-needle-deflection-norm</property>
-		<factor>0.00295</factor>
+		<factor>0.02191</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -1533,7 +2488,7 @@ G</text>
 			<z>1</z>
 		</axis>
 	</animation>
-
+	<!-- altimeter -->
 	<animation>
 		<type>select</type>
 		<object-name>AltTape</object-name>
@@ -1591,6 +2546,40 @@ G</text>
 		<factor>0.0003048</factor>
 		<min>-0.499023437</min>
 		<max>0.499023437</max>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	<!-- radar altimeter -->
+	<animation><!-- tape only below 1225 ft radar altitude -->
+		<type>select</type>
+		<object-name>AltRadarTape</object-name>
+		<object-name>AltRadarPtr</object-name>
+		<object-name>DHptr</object-name>
+		<condition>
+			<less-than-equals>
+				<property alias="/params/radar-altitude-ft" />
+				<value>1225</value>
+			</less-than-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>DHptr</object-name>
+		<property alias="/params/dhptr" />
+		<factor>0.0000162</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>		
+	</animation>	
+	<animation>
+		<type>textranslate</type>
+		<object-name>AltRadarTape</object-name>
+		<property alias="/params/radar-altitude-ft" />
+		<factor>0.00009765625</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1805,6 +2794,7 @@ G</text>
 		<object-name>NAVPtr</object-name>
 		<object-name>Overspeed</object-name>
 		<object-name>SpdTape</object-name>
+		<object-name>SpdLimits</object-name>
 		<object-name>Symbols1</object-name>
 		<object-name>Symbols2</object-name>
 	</effect>

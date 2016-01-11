@@ -33,6 +33,27 @@
 		<max-m>500</max-m>
 	</animation>
 
+	<!-- non-emitting elements (for dome light animation) -->
+	<animation>
+		<name>Sidepanel1Elements</name>
+		<object-name>BaroKnbFace</object-name>
+		<object-name>BarometerKnob</object-name>
+		<object-name>BrgBtn1</object-name>
+		<object-name>BrgBtn2</object-name>
+		<object-name>DisplayModeKnob</object-name>
+		<object-name>FormatKnob</object-name>
+		<object-name>HPAinBtn</object-name>
+		<object-name>NavSourceKnob</object-name>
+		<object-name>Panel</object-name>
+		<object-name>RadarTerrainBtn</object-name>
+		<object-name>RangeKnob</object-name>
+		<object-name>RATestBtn</object-name>
+		<object-name>SelBtn</object-name>
+		<object-name>SpeedRefKnob</object-name>
+		<object-name>TCASKnob</object-name>
+		<object-name>TrafficBtn</object-name>
+	</animation>
+	
 	<animation>
 		<type>material</type>
 		<object-name>Markings</object-name>
@@ -56,10 +77,11 @@
 		<object-name>FormatKnob</object-name>
 		<action>
 			<button>0</button>
+			<button>3</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property alias="../../../../params/mfd-page" />
+				<property alias="/params/mfd-page" />
 				<!--value>1</value>
 				<value>2</value>
 				<value>3</value>
@@ -73,10 +95,11 @@
 		</action>
 		<action>
 			<button>1</button>
+			<button>4</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property alias="../../../../params/mfd-page" />
+				<property alias="/params/mfd-page" />
 				<!--value>6</value>
 				<value>5</value>
 				<value>4</value>
@@ -92,7 +115,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>FormatKnob</object-name>
-		<property alias="../../params/mfd-page" />
+		<property alias="/params/mfd-page" />
 		<factor>60</factor>
 		<axis>
 			<x>-1</x>
@@ -111,10 +134,11 @@
 		<object-name>RangeKnob</object-name>
 		<action>
 			<button>0</button>
+			<button>3</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property alias="../../../../params/radar-range" />
+				<property alias="/params/radar-range" />
 				<value>5</value>
 				<value>10</value>
 				<value>20</value>
@@ -127,10 +151,11 @@
 		</action>
 		<action>
 			<button>1</button>
+			<button>4</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property alias="../../../../params/radar-range" />
+				<property alias="/params/radar-range" />
 				<value>640</value>
 				<value>320</value>
 				<value>160</value>
@@ -145,7 +170,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RangeKnob</object-name>
-		<property alias="../../params/radar-range" />
+		<property alias="/params/radar-range" />
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -211,6 +236,7 @@
 		<object-name>NavSourceKnob</object-name>
 		<action>
 			<button>0</button>
+			<button>3</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
@@ -234,6 +260,7 @@
 		</action>
 		<action>
 			<button>1</button>
+			<button>4</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>

@@ -97,8 +97,10 @@ setlistener("controls/autoflight/toga-button", func (n) {
 			setprop("controls/autoflight/vert-mode", 7);
 		}
 		# setprop("autopilot/internal/bank-limit-deg", 5);
-		setprop("controls/autoflight/pitch-select", 10);		
-		setprop("controls/autoflight/toga-button", 0);
+		setprop("controls/autoflight/pitch-select", 10);
+        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/ref/roll-hdg", getprop("instrumentation/heading-indicator[0]/indicated-heading-deg"));
+ 		n.setBoolValue(0);
 	}
 }, 1, 0);
 
@@ -107,7 +109,7 @@ var gs_rateL = nil;
 # catch GS if in range and FD in approach mode
 var gs_mon = func(v) {
 	if (getprop("instrumentation/nav[0]/gs-in-range") == 0) return;
-	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-needle-deflection-norm") <= 0) {
+	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
 		print("GS capture");
 		setprop("controls/autoflight/vert-mode", 0);
 		if (gs_rateL != nil) {
@@ -138,7 +140,7 @@ setlistener("controls/autoflight/lat-mode", func (n) {
 						gs_rangeL = nil;
 					}
 					# if GS in range, wait 1s and track GS
-					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-needle-deflection-norm", gs_mon, 1, 0); }, 1);	
+					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);	
 				}
 			}, 1, 0);
 		print("gs_rangeL "~gs_rangeL);
@@ -396,3 +398,22 @@ var update_spin = func
     settimer(update_spin, 5);
 };
 settimer(update_spin, 2);
+
+## DME-H
+setlistener("/instrumentation/dme[0]/hold", func(n) {
+	if (n.getBoolValue()) {
+		setprop("/instrumentation/dme[0]/frequencies/source", "/instrumentation/dme[0]/frequencies/selected-mhz");
+		#setprop("/instrumentation/dme[0]/frequencies/selected-mhz", getprop("/instrumentation/nav[0]/frequencies/selected-mhz"));
+	}
+	else
+		setprop("/instrumentation/dme[0]/frequencies/source", "/instrumentation/nav[0]/frequencies/selected-mhz");
+},1,0);
+
+setlistener("/instrumentation/dme[1]/hold", func(n) {
+	if (n.getBoolValue()) {
+		setprop("/instrumentation/dme[1]/frequencies/source", "/instrumentation/dme[1]/frequencies/selected-mhz");
+		#setprop("/instrumentation/dme[1]/frequencies/selected-mhz", getprop("/instrumentation/nav[1]/frequencies/selected-mhz"));
+	}
+	else
+		setprop("/instrumentation/dme[1]/frequencies/source", "/instrumentation/nav[1]/frequencies/selected-mhz");
+},1,0);

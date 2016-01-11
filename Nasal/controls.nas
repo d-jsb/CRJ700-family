@@ -111,10 +111,10 @@ incThrottle = func(v, a)
     }
 };
 
-var cycleSpeedbrake = func
+var cycleSpeedbrake = func(offset=1)
 {
     var vals = [0,0.25,0.5,0.75,1];
-    fgcommand("property-cycle", props.Node.new({property: "controls/flight/speedbrake",value: vals}));
+    fgcommand("property-cycle", props.Node.new({property: "controls/flight/speedbrake",value: vals, offset: offset}));
 };
 
 var stepGroundDump = func(v)
@@ -188,16 +188,17 @@ controls.flapsDown = func(step) {
     var curr = getprop("sim/flaps/current-setting");
 	var f_pos = getprop("surface-positions/flap-pos-norm");
 	var s_pos = getprop("surface-positions/slat-pos-norm");
+	var has_power = getprop("/systems/AC/outputs/flaps-a") or getprop("/systems/AC/outputs/flaps-b");
 	#print("Flaps CMD ("~has_slats~"): "~curr~" f:"~f_pos~" s:"~s_pos);
 
 	if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
 	# command slats if flaps are retracted (1deg counts as retracted to have EICAS show "1" while extending flaps) (and slats are not moving; <- reality check needed)
 	#if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
-	if (has_slats and f_pos <= step1_norm) {
+	if (has_power and has_slats and f_pos <= step1_norm) {
 		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
 	}
 	#command flaps if slats are extended or model has no slats 
-	if (s_pos == 1.0 or !has_slats) {
+	if (has_power and (s_pos == 1.0 or !has_slats)) {
 		var f_cmd = getprop("controls/flight/flaps");
 		setprop("controls/flight/flaps-cmd", f_cmd);
 		# flap sound; 1deg move is to short so skip it

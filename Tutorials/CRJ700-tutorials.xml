@@ -4,9 +4,8 @@
 <!-- Tutorial list -->
 
 <PropertyList>
-
-	<tutorial include="startup-700.xml" />
-	<tutorial include="takeoff.xml" />
-	<tutorial include="landing.xml" />
-
+	<tutorial include="pre-flight.xml" />
+	<tutorial include="startup.xml" />
+	<!-- <tutorial include="takeoff.xml" /> -->
+	<!-- <tutorial include="landing.xml" /> -->
 </PropertyList>

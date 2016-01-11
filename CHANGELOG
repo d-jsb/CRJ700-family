@@ -1,0 +1,42 @@
+Changelog
+
+v. 1.5.0 beta 1
+- Cabin window views added
+- Fix wind indicator on MFD
+- Bearing pointers on nav display will now work with ADF, pointer color corrected
+- Add tooltip to most of the knobs and dials
+- Implement baro knob on air data reference panel, switchable from mmHg to hPa
+- Implement psuh of CRS1/CRS2/HDG knob will select direct radial 
+- fix symbols on mfd map/TCAS
+- switches and switchlights on overhead panel
+- implement light test switch
+- slat and flap control for all variants and correct display in EICAS
+- APU door animated, run-up and cool down time and indicator
+- complex hydraulic system and EICAS page (Note: emergency system not realistic yet)
+- readability of glass instruments improved
+- Initial status changed to full cold and dark
+- complex checklists with indications
+- complex electrical system and EICAS page
+- engines tuned on all variants (CRJ1000 will now take off actually)
+- Doors dialog (click on EICAS page), added cargo doors
+- Flight recorder improved
+- tutorials and checklists for new startup procedure
+- additional outside and panel views
+- Air driven generator (emergency power) and auto deploy
+- In-flight generator is irrevertible
+- DME-Hold added
+- Removed auto throttle (default - can be re-enabled via config menu)
+- Flight director TO/GA mode (ctrl-t)
+- GS capture in APR mode
+- sync VS on activation of VS mode
+- AP dialog updated
+- Flight director updated
+- Welcome dialog
+- AP pitch mode sync
+- VS mode limits
+- walk view
+- Config dialog
+- marker beacon indicators
+- overspeed and low speed tape markings. Values for stall not correct yet
+- fixed speedbrakes
+- add wind sounds and sounds for spoilers

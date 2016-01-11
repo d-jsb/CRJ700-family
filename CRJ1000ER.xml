@@ -44,15 +44,15 @@
 		<stall aoa="10.0" width="7" peak="1.5" />
 		<flap0 start="0.05" end="0.99" lift="1.4" drag="2.0" />
 		<slat start="0.22" end="1.0" aoa="3.0" drag="1.1" />
-		<spoiler start="0.18" end="0.94" lift="0.0" drag="2.0" />
-		<control-input axis="/controls/flight/flaps" control="FLAP0" />
-		<control-input axis="/controls/flight/flaps" control="SLAT" />
+		<spoiler start="0.18" end="0.94" lift="0.0" drag="6.123" />
+		<control-input axis="/controls/flight/flaps-cmd" control="FLAP0" />
+		<control-input axis="/controls/flight/slats-cmd" control="SLAT" />
 		<control-input axis="/surface-positions/spoiler-ground-pos-norm" control="SPOILER" />
 		<control-output control="FLAP0" prop="/surface-positions/flap-pos-norm" />
 		<control-output control="SLAT" prop="/surface-positions/slat-pos-norm" />
 		<control-output control="SPOILER" side="left" prop="/surface-positions/fdm-spoiler-inner-pos-norm" />
-		<control-speed control="FLAP0" transition-time="40.0" />
-		<control-speed control="SLAT" transition-time="30.0" />
+		<control-speed control="FLAP0" transition-time="16.72" />
+		<control-speed control="SLAT" transition-time="8.9" />
 		<control-speed control="SPOILER" transition-time="0.7" />
 	</mstab>
 	<!-- Outer segment -->
@@ -61,20 +61,20 @@
 		<flap0 start="0.0" end="0.51" lift="1.4" drag="2.0" />
 		<flap1 start="0.51" end="0.8" lift="1.35" drag="1.3" />
 		<slat start="0.0" end="0.94" aoa="3.0" drag="1.1" />
-		<spoiler start="0.06" end="0.31" lift="0.0" drag="2.0" />
-		<control-input axis="/controls/flight/flaps" control="FLAP0" />
+		<spoiler start="0.06" end="0.31" lift="0.0" drag="10.0" />
+		<control-input axis="/controls/flight/flaps-cmd" control="FLAP0" />
 		<control-input axis="/fcs/aileron-cmd-norm" control="FLAP1" split="true" />
 		<control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true" />
-		<control-input axis="/controls/flight/flaps" control="SLAT" />
+		<control-input axis="/controls/flight/slats-cmd" control="SLAT" />
 		<control-input axis="/controls/flight/speedbrake" control="SPOILER" />
 		<control-output control="FLAP0" prop="/surface-positions/flap-pos-norm" />
 		<control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm" />
 		<control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm" />
 		<control-output control="SLAT" prop="/surface-positions/slat-pos-norm" />
 		<control-output control="SPOILER" side="left" prop="/surface-positions/fdm-spoiler-outer-pos-norm" />
-		<control-speed control="FLAP0" transition-time="40.0" />
+		<control-speed control="FLAP0" transition-time="16.72" />
 		<control-speed control="FLAP1" transition-time="2.0" />
-		<control-speed control="SLAT" transition-time="30.0" />
+		<control-speed control="SLAT" transition-time="8.9" />
 		<control-speed control="SPOILER" transition-time="0.7" />
 	</wing>
 
@@ -106,14 +106,14 @@
 	<fuselage ax="-9.017" ay="2.27" az="-0.264" bx="-11.166" by="2.27" bz="-0.358" width="1.53" taper="0.9" midpoint="0.5" />
 	<fuselage ax="-9.017" ay="-2.27" az="-0.264" bx="-11.166" by="-2.27" bz="-0.358" width="1.53" taper="0.9" midpoint="0.5" />
 	<!-- Actual engines -->
-	<jet x="-9.075" y="2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
+	<jet x="-9.075" y="2.27" z="-0.319" mass="9047.0" thrust="13630.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
 		<control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" />
 		<control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST" />
 		<control-output control="REVERSE_THRUST" prop="/engines/engine[0]/reverser-pos-norm" />
 		<control-speed control="REVERSE_THRUST" transition-time="1.0" />
 		<actionpt x="-12.333" y="2.27" z="-0.409" />
 	</jet>
-	<jet x="-9.075" y="-2.27" z="-0.319" mass="9047.0" thrust="13360.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
+	<jet x="-9.075" y="-2.27" z="-0.319" mass="9047.0" thrust="13630.0" afterburner="0" rotate="-2.5" n1-idle="21.0" n1-max="99.5" n2-idle="60.0" n2-max="99.4" tsfc="0.39" egt="1050.0" epr="3.0" exhaust-speed="1555.0" spool-time="3.0">
 		<control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" />
 		<control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST" />
 		<control-output control="REVERSE_THRUST" prop="/engines/engine[1]/reverser-pos-norm" />

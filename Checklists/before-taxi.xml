@@ -2,33 +2,7 @@
 
 
 <PropertyList>
-	<title>After engine start</title>
-	<item>
-		<name>Anti-ice Switches</name>
-		<value>ON below freezing</value>
-		<condition>
-			<and>
-				<property>/controls/anti-ice/wing-heat</property>
-				<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-				<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/wing-heat</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[0]/inlet-heat</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/anti-ice/engine[1]/inlet-heat</property>
-			<value>1</value>
-		</binding>
-	</item>
+	<title>Before taxi</title>
 	<item>
 		<name>Hydraulic pump switch</name>
 		<value>CHECK ON</value>
@@ -61,6 +35,25 @@
 			<value>1</value>
 		</binding>
 	</item>
+	<item>
+		<name>NWS (tiller)</name>
+		<value>ARMED</value>
+		<condition>
+			<property>/controls/gear/enable-tiller</property>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/gear/enable-tiller</property>
+			<value>1</value>
+		</binding>
+		<marker>
+			<x-m>-13.8831</x-m>
+			<y-m>-0.9240</y-m>
+			<z-m>-0.8975</z-m>
+			<scale>1.6942</scale>
+		</marker>
+	</item>
+
 	<!-- not yet implemented
 	<item>
 		<name>Flight controls</name>
@@ -75,6 +68,32 @@
 		<value>FREE AND CORRECT</value>
 	</item>
 
+	<item>
+		<name>Anti-ice Switches</name>
+		<value>ON below freezing</value>
+		<condition>
+			<and>
+				<property>/controls/anti-ice/wing-heat</property>
+				<property>/controls/anti-ice/engine[0]/inlet-heat</property>
+				<property>/controls/anti-ice/engine[1]/inlet-heat</property>
+			</and>
+		</condition>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/wing-heat</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/engine[0]/inlet-heat</property>
+			<value>1</value>
+		</binding>
+		<binding>
+			<command>property-assign</command>
+			<property>/controls/anti-ice/engine[1]/inlet-heat</property>
+			<value>1</value>
+		</binding>
+	</item>
 	<item>
 		<name>Flaps</name>
 		<value>8 (20 if heavy)</value>
@@ -167,10 +186,14 @@
 		<value>OBTAIN</value>
 	</item>
 	<item>
+		<name>Transponder</name>
+		<value>SET AND STANDBY</value>
+	</item>	
+	<item>
 		<name>Taxi Lights</name>
 		<value>ON</value>
 		<marker>
-			<x-m>-15.6479</x-m>
+			<x-m>-13.7079</x-m>
 			<y-m>-0.0959</y-m>
 			<z-m>-0.3083</z-m>
 			<scale>1.0000</scale>
@@ -183,10 +206,6 @@
 			<property>/controls/lighting/taxi-lights</property>
 			<value>1</value>
 		</binding>
-	</item>
-	<item>
-		<name>Transponder</name>
-		<value>SET AND STANDBY</value>
 	</item>
 	<item>
 		<name>Parking Brake</name>

@@ -63,41 +63,41 @@ Engine.poll_fuel_tanks = func
 #
 #   n - index of APU: /engines/apu[n]
 #
-Engine.Apu = func(n) {
+Engine.Apu = func() {
     var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
     # Based on the fuel consumption of a 757 APU.
     apu.fuel_burn_pph = 200;
 	apu.eicas_door_msg = ["----", "CLSD", "OPEN"];
     apu.controls = { ecu : 0, on : 0, fire_ex : 0 };
 
-    apu.controls.ecu_node = props.globals.getNode("/controls/APU[" ~ n ~ "]/electronic-control-unit", 1);
+    apu.controls.ecu_node = props.globals.getNode("/controls/APU/electronic-control-unit", 1);
     apu.controls.ecu_node.setBoolValue(apu.controls.ecu);
 
-    apu.controls.fire_ex_node = props.globals.getNode("/controls/APU[" ~ n ~ "]/fire-switch", 1);
+    apu.controls.fire_ex_node = props.globals.getNode("/controls/APU/fire-switch", 1);
     apu.controls.fire_ex_node.setBoolValue(apu.controls.fire_ex);
 
-    apu.controls.on_node = props.globals.getNode("/controls/APU[" ~ n ~ "]/off-on", 1);
+    apu.controls.on_node = props.globals.getNode("/controls/APU/off-on", 1);
     apu.controls.on_node.setBoolValue(apu.controls.on);
 
-    apu.serviceable_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/serviceable", 1);
+    apu.serviceable_node = props.globals.getNode("/engines/apu/serviceable", 1);
     apu.serviceable_node.setBoolValue(apu.serviceable);
-
-    apu.door_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/door-norm", 1);
+	#abusing unused engine[2] MP enabled property to make door pos visible via MP
+    apu.door_node = props.globals.getNode("/engines/engine[2]/n1", 1);
     apu.door_node.setValue(apu.door);
-    apu.eicas_door_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/door-msg", 1);
+    apu.eicas_door_node = props.globals.getNode("/engines/apu/door-msg", 1);
     apu.eicas_door_node.setValue(apu.eicas_door_msg[0]);
 
-    apu.running_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/running", 1);
+    apu.running_node = props.globals.getNode("/engines/apu/running", 1);
     apu.running_node.setBoolValue(apu.running);
 
-    apu.rpm_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/rpm", 1);
+    apu.rpm_node = props.globals.getNode("/engines/engine[2]/rpm", 1);
     apu.rpm_node.setValue(apu.rpm);
 
     apu.egt = getprop_safe("/environment/temperature-degc");
-    apu.egt_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/egt-degc", 1);
+    apu.egt_node = props.globals.getNode("/engines/apu/egt-degc", 1);
     apu.egt_node.setValue(apu.egt);
 
-    apu.on_fire_node = props.globals.getNode("/engines/apu[" ~ n ~ "]/on-fire", 1);
+    apu.on_fire_node = props.globals.getNode("/engines/apu/on-fire", 1);
     apu.on_fire_node.setBoolValue(apu.on_fire);
 
     var read_props = func
@@ -143,12 +143,21 @@ Engine.Apu = func(n) {
 	}
 	#setlistener("/engines/apu", apu.state_listener, 1, 2);
 
+	apu.open_door = func
+	{
+		# on gnd. open to 45 deg (=1) in 2s
+		var pos = 1;
+		# if (altitude < limit)		
+		interpolate(apu.door_node, pos, 2);
+	}
 	#-- spin up --
 	apu.start = func
 	{
 		read_props();
         if (apu.serviceable and apu.controls.ecu and apu.controls.on and size(Engine.valid_fuel_tanks) > 0)
         {
+			if (!apu.door) 
+				apu.open_door();
 			interpolate(apu.rpm_node, 100, 20 * (100 - apu.rpm)/100, 103,0.5, 100,0.5 );
 			interpolate(apu.egt_node, 400, 4, 517,3.5, 468,2, 485,1.5, 415,9, 384,4);
 		}
@@ -212,10 +221,9 @@ Engine.Apu = func(n) {
 		if (node.getBoolValue())
 		{
 			# init value
-			apu.egt_node.setValue(getprop("/environment/temperature-degc"));
-			# open to 45 deg (=1) in 2s
+			apu.egt_node.setValue(getprop("/environment/temperature-degc"));			
 			apu.door_node.setValue(0);
-			interpolate(apu.door_node, 1, 2);
+			apu.open_door();
 		}
 		else
 		{
@@ -409,7 +417,7 @@ Engine.Jet = func(n)
 		print("Engine toggle_reversers");
         jet.controls.throttle = jet.controls.throttle_node.getValue();
         jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
-        if (jet.controls.throttle == 0 and jet.controls.thrust_mode == 0)
+        if (jet.controls.throttle <= 0.01 and jet.controls.thrust_mode == 0)
         {
             jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
         }
@@ -420,7 +428,7 @@ Engine.Jet = func(n)
     jet._has_bleed_air = func
     {
 		var bleed_source = getprop("/controls/pneumatic/bleed-source");
-		var apu_rpm = getprop_safe("/engines/apu/rpm");
+		var apu_rpm = getprop_safe("/engines/engine[2]/rpm");
 		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");
 		var eng2_rpm = getprop_safe("/engines/engine[1]/rpm");
 		#print("Bleed source " ~ bleed_source~" a:"~apu_rpm~" 1:"~eng1_rpm~" 2:"~eng2_rpm);

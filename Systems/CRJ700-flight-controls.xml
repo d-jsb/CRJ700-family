@@ -358,26 +358,28 @@
 		<name>Automatic ground spoiler deployment logic</name>
 		<input>
 			<and>
-				<equals>
+				<less-than-equals>
 					<property>controls/engines/engine[0]/throttle</property>
-					<value>0</value>
-				</equals>
+					<value>0.01</value>
+				</less-than-equals>
 				<equals>
 					<property>controls/engines/engine[0]/thrust-mode</property>
 					<value>0</value>
 				</equals>
-				<equals>
+				<less-than-equals>
 					<property>controls/engines/engine[1]/throttle</property>
-					<value>0</value>
-				</equals>
+					<value>0.01</value>
+				</less-than-equals>
 				<equals>
 					<property>controls/engines/engine[1]/thrust-mode</property>
 					<value>0</value>
 				</equals>
-				<or>
-					<property>gear/gear[1]/wow</property>
-					<property>gear/gear[2]/wow</property>
-				</or>
+				<property>gear/gear[1]/wow</property>
+				<property>gear/gear[2]/wow</property>
+				<less-than-equals>
+					<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+					<value>3</value>
+				</less-than-equals>
 				<or>
 					<greater-than>
 						<property>gear/gear[1]/rollspeed-ms</property>
@@ -395,29 +397,22 @@
 	<logic>
 		<name>Ground spoilers deploy logic</name>
 		<input>
-			<and>
-				<or>
-					<property>controls/engines/engine[0]/reverser</property>
-					<property>controls/engines/engine[1]/reverser</property>
+			<or>
+				<and>
 					<equals>
 						<property>controls/flight/ground-lift-dump</property>
-						<value>2</value>
+						<value>2</value><!-- manual arm -->
 					</equals>
-					<and>
-						<property>controls/flight/spoilers-ground-auto-cmd</property>
-						<equals>
-							<property>controls/flight/ground-lift-dump</property>
-							<value>1</value>
-						</equals>
-					</and>
-				</or>
-				<not>
+					<property>controls/flight/speedbrake</property>
+				</and>
+				<and>
 					<equals>
 						<property>controls/flight/ground-lift-dump</property>
-						<value>0</value>
+						<value>1</value> <!-- auto arm -->
 					</equals>
-				</not>
-			</and>
+					<property>controls/flight/spoilers-ground-auto-cmd</property>
+				</and>
+			</or>
 		</input>
 		<output>controls/flight/spoilers-ground-cmd</output>
 	</logic>
@@ -527,7 +522,61 @@
 	</filter>
 
 	<!-- Throttles/FADEC thrust modes -->
-	<!-- CRJ700 has NO autothrottle! -->
+	<!-- Autothrottle -->
+	<filter>
+		<name>Engine 1 autopilot controller</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>autopilot/internal/autothrottle-engaged</property>
+					<equals>
+						<property>controls/engines/engine[0]/thrust-mode</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<table>
+					<property>fcs/autopilot/throttle-cmd-norm</property>
+					<entry><ind>0</ind><dep>0</dep></entry>
+					<entry><ind>1</ind><dep>0.92</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>fcs/throttle-cmd-norm[0]</output>
+	</filter>
+	<filter>
+		<name>Engine 2 autopilot controller</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>autopilot/internal/autothrottle-engaged</property>
+					<equals>
+						<property>controls/engines/engine[1]/thrust-mode</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<table>
+					<property>fcs/autopilot/throttle-cmd-norm</property>
+					<entry><ind>0</ind><dep>0</dep></entry>
+					<entry><ind>1</ind><dep>0.92</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>fcs/throttle-cmd-norm[1]</output>
+	</filter>
 	<!-- 0 : Manual control -->
 	<!-- Interpolates the user's throttles between 0% and 92% -->
 	<filter>
@@ -538,6 +587,9 @@
 		<enable>
 			<condition>
 				<and>
+					<not>
+						<property>autopilot/internal/autothrottle-engaged</property>
+					</not>
 					<equals>
 						<property>controls/engines/engine[0]/thrust-mode</property>
 						<value>0</value>
@@ -582,6 +634,9 @@
 			<condition>
 				<and>
 					<property>fcs/copilot/active</property>
+					<not>
+						<property>autopilot/internal/autothrottle-engaged</property>
+					</not>
 					<equals>
 						<property>controls/engines/engine[0]/thrust-mode</property>
 						<value>0</value>
@@ -620,6 +675,9 @@
 		<enable>
 			<condition>
 				<and>
+					<not>
+						<property>autopilot/internal/autothrottle-engaged</property>
+					</not>
 					<equals>
 						<property>controls/engines/engine[1]/thrust-mode</property>
 						<value>0</value>
@@ -664,6 +722,9 @@
 			<condition>
 				<and>
 					<property>fcs/copilot/active</property>
+					<not>
+						<property>autopilot/internal/autothrottle-engaged</property>
+					</not>
 					<equals>
 						<property>controls/engines/engine[1]/thrust-mode</property>
 						<value>0</value>
@@ -860,32 +921,7 @@
 	</filter>
 
 	<!-- Nose wheel steering -->
-	<!-- 
-	rudder controls NWS 100% if tiller is switched "off"?! 
-	Bad idea when landing with tiller switched off.
-	-->
-    <!--
-	<filter>
-		<name>Pilot tiller disabled nose gear steer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>80</gain>
-		<enable>
-			<condition>
-				<and>
-					<not>
-						<property>controls/gear/enable-tiller</property>
-					</not>
-					<property>gear/gear[0]/wow</property>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>controls/flight/rudder</property>
-		</input>
-		<output>fcs/tiller-steer-deg</output>
-	</filter>
-	-->
+	
 	<!-- Rudder can steer up to 8°, tiller steers up to 80° -->
 	<filter>
 		<name>Pilot nose gear rudder steer</name>
@@ -895,6 +931,9 @@
 		<enable>
 			<condition>
 				<and>
+					<not>
+						<property>sim/config/rudder-to-tiller</property>
+					</not>
 					<less-than-equals>
 						<expression>
 							<abs>
@@ -916,6 +955,38 @@
 		</input>
 		<output>fcs/tiller-steer-deg</output>
 	</filter>
+	<!-- user may prefere to use rudder pedals for tiller input -->
+	<filter>
+		<name>Pilot nose gear full rudder steer</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>80</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>sim/config/rudder-to-tiller</property>
+					<less-than-equals>
+						<expression>
+							<abs>
+								<property>controls/gear/tiller-steer-deg</property>
+							</abs>
+						</expression>
+						<value>8</value>
+					</less-than-equals>
+					<or>
+						<property>sim/model/pushback/linked</property>
+						<property>controls/gear/enable-tiller</property>
+					</or>
+					<property>gear/gear[0]/wow</property>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>controls/flight/rudder</property>
+		</input>
+		<output>fcs/tiller-steer-deg</output>
+	</filter>
+	
 	<filter>
 		<name>Pilot nose gear tiller steer</name>
 		<type>gain</type>
@@ -988,7 +1059,7 @@
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
-		<enable>/
+		<enable>
 			<condition>
 				<and>
 					<property>gear/gear[0]/wow</property>
@@ -1063,16 +1134,23 @@
 		<debug type="bool">false</debug>
 		<gain>
 			<expression>
-				<sum>
-					<product>
-						<property>systems/hydraulic/outputs/ob-brakes</property>
-						<value>0.5</value>
-					</product>
-					<product>
-						<property>systems/hydraulic/outputs/ib-brakes</property>
-						<value>0.5</value>
-					</product>
-				</sum>
+				<min>					
+					<sum><!-- 50% per hydraulic system -->
+						<product>
+							<property>systems/hydraulic/outputs/ob-brakes</property>
+							<value>0.5</value>
+						</product>
+						<product>
+							<property>systems/hydraulic/outputs/ib-brakes</property>
+							<value>0.5</value>
+						</product>
+					</sum>
+					<!-- 
+					if all hydraulics fail, accumulators allow a few brake activations
+					as no details were found on this, I simplified this: 50% brake power always.
+					-->
+					<value>0.5</value> 
+				</min>
 			</expression>
 		</gain>
 		<input>

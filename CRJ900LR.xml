@@ -44,7 +44,7 @@
 		<stall aoa="10.0" width="7" peak="1.5" />
 		<flap0 start="0.05" end="0.99" lift="1.4" drag="2.0" />
 		<slat start="0.22" end="1.0" aoa="3.0" drag="1.1" />
-		<spoiler start="0.18" end="0.94" lift="0.0" drag="2.0" />
+		<spoiler start="0.18" end="0.94" lift="0.0" drag="6.123" />
 		<control-input axis="/controls/flight/flaps-cmd" control="FLAP0" />
 		<control-input axis="/controls/flight/slats-cmd" control="SLAT" />
 		<control-input axis="/surface-positions/spoiler-ground-pos-norm" control="SPOILER" />
@@ -61,7 +61,7 @@
 		<flap0 start="0.0" end="0.51" lift="1.4" drag="2.0" />
 		<flap1 start="0.51" end="0.8" lift="1.35" drag="1.3" />
 		<slat start="0.0" end="0.94" aoa="3.0" drag="1.1" />
-		<spoiler start="0.06" end="0.31" lift="0.0" drag="2.0" />
+		<spoiler start="0.06" end="0.31" lift="0.0" drag="10.0" />
 		<control-input axis="/controls/flight/flaps-cmd" control="FLAP0" />
 		<control-input axis="/fcs/aileron-cmd-norm" control="FLAP1" split="true" />
 		<control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true" />

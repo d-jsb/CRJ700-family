@@ -6,70 +6,55 @@
 <PropertyList>
 	<!-- Developer key bindings (disabled for users) -->
 	<!-- Overrides instant replay shortcut -->
-	<!--key n="18">
+<!--
+	<key n="18">
 		<name>Ctrl-R</name>
 		<desc>Reload interactive CDU</desc>
 		<binding>
-		<command>nasal</command>
-		<script>
-		CRJ700.cdu1.reload();
-		</script>
+			<command>nasal</command>
+			<script>
+				CRJ700.cdu1.reload();
+			</script>
 		</binding>
-		</key>
-		<key n="115">
-		<name>s</name>
-		<desc>Instant start</desc>
-		<binding>
-		<command>nasal</command>
-		<script>
-		CRJ700.instastart();
-		</script>
-		</binding>
-	</key-->
+	</key>
+-->
 	<!-- Speedbrakes/spoilers -->
 	<key n="2">
-		<name>Ctrl-B</name>
-		<desc>Cycle speedbrake setting</desc>
+		<name>Ctrl-(Shift)-B</name>
+		<desc>Cycle speedbrake setting (backward)</desc>
 		<binding>
 			<command>nasal</command>
 			<script>
-				controls.cycleSpeedbrake();
+				controls.cycleSpeedbrake(1);
 			</script>
-			<!--command>property-cycle</command>
-				<property>controls/flight/speedbrake</property>
-				<value>0</value>
-				<value>0.25</value>
-				<value>0.5</value>
-				<value>0.75</value>
-			<value>1</value-->
 		</binding>
+		<mod-shift>
+			<binding>
+				<command>nasal</command>
+				<script>
+					controls.cycleSpeedbrake(-1);
+				</script>
+			</binding>
+		</mod-shift>
 	</key>
-	<key n="106">
-		<name>j</name>
-		<desc>Decrease ground lift dumping setting</desc>
-		<binding>
-			<command>nasal</command>
-			<script>
-				controls.stepGroundDump(-1);
-			</script>
-			<!--command>property-adjust</command>
-				<property>controls/flight/ground-lift-dump</property>
-				<step>-1</step>
-			<min>0</min-->
-		</binding>
-	</key>
-	<key n="107">
-		<name>k</name>
-		<desc>Increase ground lift dumping setting</desc>
+	<key n="100">
+		<name>d</name>
+		<desc>Step ground lift dumping setting to man. arm</desc>
 		<binding>
 			<command>nasal</command>
 			<script>
 				controls.stepGroundDump(1);
 			</script>
-			<!--command>property-adjust</command>
-				<property>controls/flight/ground-lift-dump</property>
-				<step>1</step>
-			<max>2</max-->
+		</binding>
+	</key>
+	<key n="68">
+		<name>D</name>
+		<desc>Step ground lift dumping setting to man. disarm</desc>
+		<binding>
+			<command>nasal</command>
+			<script>
+				controls.stepGroundDump(-1);
+			</script>
 		</binding>
 	</key>
 	<!-- Walk -->
@@ -95,6 +80,23 @@
 				walk.walk_about(0.25);
 			</script>
 		</binding>
+	</key>
+	<key n="89">
+		<name>Y</name>
+		<desc>raise</desc>
+		<repeatable type="bool">false</repeatable>
+		<binding>
+			<command>property-assign</command>
+			<property>sim/current-view/raise</property>
+			<value>1</value>
+		</binding>
+		<mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>sim/current-view/raise</property>
+				<value></value>
+			</binding>
+		</mod-up>
 	</key>
 	<key n="102">
 		<name>f</name>

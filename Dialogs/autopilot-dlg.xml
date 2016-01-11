@@ -1010,6 +1010,36 @@
 				</equals>
 			</visible>
 		</text>
+		<!-- auto throttle -->
+<!--
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label>O</label>
+				<visible>
+					<property>controls/autoflight/autothrottle-engage</property>
+				</visible>
+			</text>
+			<button>
+				<legend>AutoThr.</legend>
+				<pref-height>25</pref-height>
+				<pref-width>65</pref-width>
+				<enable>
+					<property>sim/config/allow-autothrottle</property>
+				</enable>
+				<binding>
+					<command>property-toggle</command>
+					<property>controls/autoflight/autothrottle-engage</property>
+				</binding>
+			</button>
+			<text>
+				<label>O</label>
+				<visible>
+					<property>controls/autoflight/autothrottle-engage</property>
+				</visible>
+			</text>
+		</group>
+-->
 		<group><!-- TOGA -->
 			<layout>hbox</layout>
 			<text>
