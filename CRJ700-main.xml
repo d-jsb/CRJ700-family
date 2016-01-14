@@ -247,6 +247,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>EICAS control panel</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>eicas</dialog-name>
+						</binding>
+					</item>
+					<item>
 						<label>Lights</label>
 						<binding>
 							<command>nasal</command>
@@ -758,7 +765,7 @@
 		</eicas>
 		<eicas>
 			<!--page type="int">2</page-->
-			<page type="int">5</page>
+			<page type="int">10</page>
 		</eicas>
 		<eicas-messages>
 			<page>

@@ -9,6 +9,7 @@ var dialogs = {
     debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", aircraft_path~"debug-dlg.xml"),
     developer: gui.Dialog.new("sim/gui/dialogs/developer/dialog", aircraft_path~"developer-dlg.xml"),
     doors: gui.Dialog.new("sim/gui/dialogs/doors/dialog", aircraft_path~"doors-dlg.xml"),
+    eicas: gui.Dialog.new("sim/gui/dialogs/eicas/dialog", aircraft_path~"eicas-dlg.xml"),
     failures: gui.Dialog.new("sim/gui/dialogs/failures/dialog", aircraft_path~"failures-dlg.xml"),
     info: gui.Dialog.new("sim/gui/dialogs/info-crj700/dialog", aircraft_path~"info-dlg.xml"),
     lights: gui.Dialog.new("sim/gui/dialogs/lights/dialog", aircraft_path~"lights-dlg.xml"),
@@ -18,3 +19,4 @@ var dialogs = {
 };
 gui.menuBind("autopilot", "CRJ700.dialogs.autopilot.open();");
 gui.menuBind("radio", "CRJ700.dialogs.radio.open();");
+dialogs.eicas.open();

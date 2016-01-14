@@ -2,11 +2,16 @@
 
 <!-- Bombardier CRJ700 series -->
 <!-- Engine instrumentation and crew alert system -->
-<!-- page 3 AC -->
-<!-- page 4 DC -->
-<!-- page 5 Doors -->
-<!-- page 6 Hyd -->
-
+<!-- 
+page 3 ECS 
+page 4 HYD
+page 5 AC 
+page 6 DC 
+page 7 FUEL 
+page 8 F/CTL 
+page 9 A/ICE 
+page 10 Doors 
+-->
 
 <PropertyList>
 
@@ -1697,7 +1702,7 @@
 	</animation>
 	
 	<!-- End page 2 text -->
-	<!-- Begin page 3 text -->
+	<!-- Begin page AC text -->
 	<text>
 		<name>PageACTitle</name>
 		<type>literal</type>
@@ -3046,9 +3051,8 @@ APU</text>
 			<property>controls/electric/idg2-disc</property>
 		</condition>
 	</animation>	
-	<!-- End page 3 AC text -->
-	
-	<!-- Begin page 4 DC text -->
+	<!-- End page AC text -->	
+	<!-- Begin page DC text -->
 	<text>
 		<name>PageDCTitle</name>
 		<type>literal</type>
@@ -3999,8 +4003,8 @@ DIR BUS</text>
 			<property>controls/electric/dc-service-switch</property>
 		</condition>
 	</animation>
-	<!-- End page 4 text -->
-	<!-- Begin page 5 text -->
+	<!-- End page DC text -->
+	<!-- Begin page Doors text -->
 	<text>
 		<name>PageDoorsTitle</name>
 		<type>literal</type>
@@ -4441,8 +4445,8 @@ DIR BUS</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>	
-	<!-- End page 5 text -->
-	<!-- Begin page 6 text -->
+	<!-- End page doors text -->
+	<!-- Begin page hyd text -->
 	<text>
 		<name>PageHydraulicTitle</name>
 		<type>literal</type>
@@ -5943,7 +5947,7 @@ DIR BUS</text>
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>	
 	</animation>		
-	<!-- End page 6 text -->
+	<!-- End page hyd text -->
 	
 	<!-- Begin page 1 messages -->
 	<text>
@@ -7443,7 +7447,7 @@ DIR BUS</text>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
-				<value>3</value>
+				<value>5</value>
 			</equals>
 		</condition>
 	</animation>
@@ -7454,7 +7458,7 @@ DIR BUS</text>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
-				<value>4</value>
+				<value>6</value>
 			</equals>
 		</condition>
 	</animation>
@@ -7465,7 +7469,7 @@ DIR BUS</text>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
-				<value>5</value>
+				<value>10</value>
 			</equals>
 		</condition>
 	</animation>
@@ -7476,11 +7480,12 @@ DIR BUS</text>
 		<condition>
 			<equals>
 				<property alias="../../../../params/page" />
-				<value>6</value>
+				<value>4</value>
 			</equals>
 		</condition>
 	</animation>
 	<!-- controls  -->
+	<!--
 	<animation>
 		<type>pick</type>
 		<object-name>LeftControl</object-name>
@@ -7488,10 +7493,14 @@ DIR BUS</text>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/page" />
-				<step>-1</step>
-				<min>1</min>
+				<command>property-cycle</command>
+				<property alias="/params/page" />
+				<value>10</value>
+				<value>6</value>
+				<value>5</value>
+				<value>4</value>
+				<value>2</value>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>
@@ -7502,14 +7511,31 @@ DIR BUS</text>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/page" />
-				<step>1</step>
-				<max>6</max>
+				<command>property-cycle</command>
+				<property alias="/params/page" />
+				<value>1</value>
+				<value>2</value>
+				<value>4</value>
+				<value>5</value>
+				<value>6</value>
+				<value>10</value>
 			</binding>
 		</action>
 	</animation>
-
+	-->
+	<animation>
+		<type>pick</type>
+		<object-name>LeftControl</object-name>
+		<object-name>RightControl</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name>eicas</dialog-name>
+			</binding>
+		</action>		
+	</animation>
 	<!-- animations -->
 	<animation>
 		<type>rotate</type>

@@ -425,7 +425,7 @@
 			</condition>
 			<set>
 				<property>instrumentation/eicas[1]/page</property>
-				<value>6</value>
+				<value>4</value>
 			</set>
 		</exit>
 	</step>
@@ -472,7 +472,7 @@
 		<message>
 		Now that the engines are running, switch the EICAS 2nd display to show AC status page 
 		by pushing the Electrical button on the EICAS control panel in the lower center panel.
-		(push again, if it shows DC status page).
+		(push again, if it shows DC status page). You can open the EICAS control panel via the menu.
 		</message>
 		<view>
 			<heading-offset-deg>315.8</heading-offset-deg>
@@ -493,7 +493,7 @@
 			<condition>
 				<equals>
 					<property>instrumentation/eicas[1]/page</property>
-					<value>3</value>
+					<value>5</value>
 				</equals>
 			</condition>
 		</exit>
