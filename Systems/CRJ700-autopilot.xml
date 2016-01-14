@@ -7,8 +7,8 @@
 	Properties:
 	/controls/autoflight/autopilot/engage			autopilot on/off
 	/controls/autoflight/flight-director/engage		flight director on/off
-
-	/controls/autoflight/roll-mode			basic roll mode
+	
+	/autopilot/internal/roll-mode			basic roll mode
 	/autopilot/ref/roll-hdg		basic roll mode heading setting
 	/autopilot/ref/roll-deg			basic roll mode roll setting
 	/controls/autoflight/pitch-select			basic pitch mode setting
@@ -18,7 +18,7 @@
 	/controls/autoflight/mach-select			mach speed setting
 	/controls/autoflight/speed-select			IAS speed setting
 	/controls/autoflight/vertical-speed-select		vertical speed seting
-
+	
 	/controls/autoflight/lat-mode			lateral mode
 	/controls/autoflight/vert-mode			vertical mode
 	/controls/autoflight/speed-mode			speed mode
@@ -234,7 +234,7 @@
 			</and>
 		</input>
 		<output>autopilot/internal/autothrottle-engaged</output>
-    </logic>	
+	</logic>	
     <!-- Speed mode (or autothrottle, if configured in "cheat menu") -->
     <!-- 0 : IAS hold -->
     <pid-controller>
@@ -328,7 +328,7 @@
 						<value>7</value>
 					</equals>
 				</or>
-			<!--	<not><property>gear/gear[1]/wow</property></not> -->
+				<!--	<not><property>gear/gear[1]/wow</property></not> -->
 			</and>
 		</input>
 		<output>autopilot/internal/roll-mode-engage</output>
@@ -343,7 +343,7 @@
 				<and>
 					<property>autopilot/internal/roll-mode-engage</property>
 					<equals>
-						<property>controls/autoflight/roll-mode</property>
+						<property>autopilot/internal/roll-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -357,12 +357,13 @@
     <pid-controller>
 		<name>Roll mode heading controller</name>
 		<debug type="bool">false</debug>
+		<!-- <feedback-if-disabled>true</feedback-if-disabled> -->
 		<enable>
 			<condition>
 				<and>
 					<property>autopilot/internal/roll-mode-engage</property>
 					<equals>
-						<property>controls/autoflight/roll-mode</property>
+						<property>autopilot/internal/roll-mode</property>
 						<value>0</value>
 					</equals>
 				</and>
@@ -654,7 +655,7 @@
 			<u_max>5</u_max>
 		</config>
 	</pid-controller>
-
+	
 	
 	<!-- Vertical -->
     <!-- 0 : Basic pitch mode -->
@@ -833,6 +834,7 @@
     <pid-controller>
 		<name>Roll controller</name>
 		<debug type="bool">false</debug>
+		<!-- <feedback-if-disabled>true</feedback-if-disabled> -->
 		<enable>
 			<condition>
 				<property>autopilot/internal/autoflight-engaged</property>
@@ -859,37 +861,38 @@
 	
     <!-- Yaw damper -->
     <!-- practically doesn't work, needs an overhaul -->
-    <!--filter>
+    <!--
+	<filter>
 		<name>Yaw damper</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>0.167</gain> <!- - 5 / 30 deg - ->
 		<enable>
-	    <condition>
-		<and>
-		<property>autopilot/yaw-damper-serviceable</property>
-		<or>
-		<property>controls/autoflight/yaw-damper[0]/engage</property>
-		<property>controls/autoflight/yaw-damper[1]/engage</property>
-		</or>
-		</and>
-	    </condition>
+			<condition>
+				<and>
+					<property>autopilot/yaw-damper-serviceable</property>
+					<or>
+						<property>controls/autoflight/yaw-damper[0]/engage</property>
+						<property>controls/autoflight/yaw-damper[1]/engage</property>
+					</or>
+				</and>
+			</condition>
 		</enable>
 		<input>
-	    <expression>
-		<div>
-		<max>
-		<min>
-		<property>orientation/side-slip-deg</property>
-		<value>5</value>
-		</min>
-		<value>-5</value>
-		</max>
-		<value>5</value>
-		</div>
-	    </expression>
+			<expression>
+				<div>
+					<max>
+						<min>
+							<property>orientation/side-slip-deg</property>
+							<value>5</value>
+						</min>
+						<value>-5</value>
+					</max>
+					<value>5</value>
+				</div>
+			</expression>
 		</input>
 		<output>fcs/autopilot/rudder-cmd-norm</output>
-	</filter-->
-	
+	</filter>
+	-->
 </PropertyList>

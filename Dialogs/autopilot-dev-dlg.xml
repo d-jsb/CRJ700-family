@@ -130,7 +130,7 @@
 				<legend>roll hold</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/roll-mode</property>
+					<property>autopilot/internal/roll-mode</property>
 					<value>1</value>
 				</binding>
 			</button>
@@ -141,7 +141,7 @@
 				<legend>hdg hold</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/roll-mode</property>
+					<property>autopilot/internal/roll-mode</property>
 					<value>0</value>
 				</binding>
 			</button>

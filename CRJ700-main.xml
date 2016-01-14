@@ -430,6 +430,11 @@
 			<roll-deg type="float">0</roll-deg>
 			<roll-hdg type="float">0</roll-hdg>
 		</ref>
+		<internal>
+			<target-roll-deg>0</target-roll-deg>
+			<target-pitch-deg>0</target-pitch-deg>
+			<target-climb-rate-fpm>0</target-climb-rate-fpm>
+		</internal>
 	</autopilot>
 	
 	<consumables>
