@@ -391,7 +391,9 @@
 				<property>gear/gear[0]/wow</property>
 			</condition>
 			<volume>
-				<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
+				<property>sim/model/sound-enabled</property>
+			</volume>
+			<volume>
 				<offset>-0.95</offset>
 			</volume>
 			<position>
@@ -410,7 +412,9 @@
 				<property>gear/gear[0]/wow</property>
 			</condition>
 			<volume>
-				<!-- <factor><property>/sim/model/sound-enabled</property></factor> -->
+				<property>sim/model/sound-enabled</property>
+			</volume>
+			<volume>
 				<offset>-0.95</offset>
 			</volume>
 			<position>
