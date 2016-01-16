@@ -8,7 +8,7 @@
         <description>Bombardier CRJ700 (with tutorials)</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.5.0b</aircraft-version>
+        <aircraft-version>1.5.2</aircraft-version>
 		
         <flight-model>yasim</flight-model>
         <aero>CRJ700</aero>
