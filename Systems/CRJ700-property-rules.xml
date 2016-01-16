@@ -20,6 +20,21 @@
 		<output>instrumentation/radar-altimeter/dh-deviation</output>
 	</filter>
 	<filter>
+		<name>mdaptr</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<dif>
+				<property>instrumentation/altimeter/indicated-altitude-ft</property>
+				<property>instrumentation/adc/reference/mda</property>
+				</dif>
+			</expression>
+		</input>
+		<output>instrumentation/altimeter/mda-deviation</output>
+	</filter>	
+	<filter>
 		<name>fuel-imbalance</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>

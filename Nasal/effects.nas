@@ -97,7 +97,7 @@ var sound_switchclick2 = Switch_sound.new("sim/sound/click2", 0.1,
 	"controls/lighting/panel-norm",
 	"controls/lighting/panel-flood-norm",
 	"controls/anti-ice/wiper",
-	"controls/autoflight/nav-mode",
+	"controls/autoflight/nav-source",
 	"instrumentation/use-QNH",
 	"instrumentation/altimeter/setting-hpa",
 	"instrumentation/efis/mfd/mode-num",
@@ -178,6 +178,9 @@ var tiresmoke_system = aircraft.tyresmoke_system.new(0, 1, 2);
 # Exterior lights
 var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 2.1], "controls/lighting/beacon");
 var strobe_light = aircraft.light.new("sim/model/lights/strobe", [0.05, 2], "controls/lighting/strobe");
+
+# cockpit
+var altitude_flash = aircraft.light.new("autopilot/annunciators/altitude-flash", [0.4, 0.8], "autopilot/annunciators/altitude-flash-cmd");
 
 # No smoking/seatbelt signs
 var nosmoking_controlN = props.globals.getNode("controls/switches/no-smoking-sign", 1);

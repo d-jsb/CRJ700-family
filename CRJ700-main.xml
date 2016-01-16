@@ -166,6 +166,7 @@
 			<master-caution type="bool">false</master-caution>
 			<master-warning type="bool">false</master-warning>
 			<overspeed-warning type="bool">false</overspeed-warning>
+			<altitude-alert type="bool">false</altitude-alert>
 		</alarms>
 		
 		<dimensions>
@@ -424,6 +425,13 @@
 		<flight-director-serviceable type="bool">true</flight-director-serviceable>
 		<autoflight-serviceable type="bool">true</autoflight-serviceable>
 		<yaw-damper-serviceable type="bool">true</yaw-damper-serviceable>
+		<annunciators>
+			<lat-armed></lat-armed>
+			<vert-armed type="bool">1</vert-armed>
+			<lat-capture>ROLL</lat-capture>
+			<vert-capture>PTCH</vert-capture>
+			<altitude-flash type="bool">false</altitude-flash>
+		</annunciators>
 		<route-manager>
 			<vnav>
 				<climb-speed-kt type="int">400</climb-speed-kt>
@@ -436,6 +444,7 @@
 		<ref>
 			<roll-deg type="float">0</roll-deg>
 			<roll-hdg type="float">0</roll-hdg>
+			<alt-hold type="int">0</alt-hold>
 		</ref>
 		<internal>
 			<target-roll-deg>0</target-roll-deg>
@@ -497,7 +506,7 @@
 			<heading-select type="double">360</heading-select>
 			<lat-mode type="int">0</lat-mode>
 			<mach-select type="double">0</mach-select>
-			<nav-mode type="int">0</nav-mode>
+			<nav-source type="int">0</nav-source>
 			<pitch-select type="double">0</pitch-select>
 			<speed-mode type="int">0</speed-mode>
 			<speed-select type="double">200</speed-select>

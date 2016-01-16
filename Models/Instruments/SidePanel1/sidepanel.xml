@@ -240,7 +240,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -264,7 +264,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
@@ -286,7 +286,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>NavSourceKnob</object-name>
-		<property>controls/autoflight/nav-mode</property>
+		<property>controls/autoflight/nav-source</property>
 		<factor>90</factor>
 		<axis>
 			<x>-1</x>
