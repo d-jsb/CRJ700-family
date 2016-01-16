@@ -152,6 +152,17 @@ positions or are almost the same position for C700/900/1000.
 				<offset>1</offset>
 			</volume>
 		</alarm>
+		<altitude-alert>
+			<name>Altitude alert</name>
+			<mode>once</mode>
+			<path>Aircraft/CRJ700-family/Sounds/c-chord.wav</path>
+			<condition>
+				<property>sim/alarms/altitude-alert</property>
+			</condition>
+			<volume>
+				<property>sim/model/sound-enabled</property>
+			</volume>
+		</altitude-alert>
 		<!-- Speed callouts -->
 		<callout>
 			<name>80 knots</name>

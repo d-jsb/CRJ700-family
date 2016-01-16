@@ -381,7 +381,7 @@
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vert-mode</property>
-				<value>5</value>
+				<value>4</value>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -415,7 +415,7 @@
 		<condition>
 			<equals>
 				<property>controls/autoflight/vert-mode</property>
-				<value>5</value>
+				<value>4</value>
 			</equals>
 		</condition>
 	</animation>
@@ -993,9 +993,28 @@
 		<type>pick</type>
 		<object-name>VSKnb</object-name>
 		<action>
-			<button>0</button>
-			<button>3</button>
+			<button>1</button>
+			<button>4</button>
 			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<condition>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>0</value>
+					</not-equals>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>2</value>
+					</not-equals>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>5</value>
+					</not-equals>
+				</condition>
+				<property>controls/autoflight/vert-mode</property>
+				<value>0</value>
+			</binding>
 			<binding>
 				<command>property-adjust</command>
 				<condition>
@@ -1022,9 +1041,28 @@
 			</binding>
 		</action>
 		<action>
-			<button>1</button>
-			<button>4</button>
+			<button>0</button>
+			<button>3</button>
 			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<condition>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>0</value>
+					</not-equals>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>2</value>
+					</not-equals>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>5</value>
+					</not-equals>
+				</condition>
+				<property>controls/autoflight/vert-mode</property>
+				<value>0</value>
+			</binding>
 			<binding>
 				<command>property-adjust</command>
 				<condition>

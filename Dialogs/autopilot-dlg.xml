@@ -227,7 +227,7 @@
 					<visible>
 						<equals>
 							<property>controls/autoflight/vert-mode</property>
-							<value>5</value>
+							<value>4</value>
 						</equals>						
 					</visible>
 				</text>
@@ -238,7 +238,7 @@
 					<binding>
 						<command>property-cycle</command>
 						<property>controls/autoflight/vert-mode</property>
-						<value>5</value>
+						<value>4</value>
 						<value>0</value>
 					</binding>
 				</button>
@@ -247,7 +247,7 @@
 					<visible>
 						<equals>
 							<property>controls/autoflight/vert-mode</property>
-							<value>5</value>
+							<value>4</value>
 						</equals>
 					</visible>
 				</text>
@@ -783,7 +783,26 @@
 							<command>property-adjust</command>
 							<property>controls/autoflight/vertical-speed-select</property>
 							<step>-100</step>
-							<min>-9000</min>
+							<min>-9900</min>
+						</binding>
+						<binding>
+							<command>property-assign</command>
+							<condition>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>0</value>
+								</not-equals>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>2</value>
+								</not-equals>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>5</value>
+								</not-equals>
+							</condition>
+							<property>controls/autoflight/vert-mode</property>
+							<value>0</value>
 						</binding>
 					</button>
 					<input>
@@ -800,10 +819,29 @@
 						<halign>left</halign>
 						<legend>&gt;</legend>
 						<binding>
+							<command>property-assign</command>
+							<condition>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>0</value>
+								</not-equals>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>2</value>
+								</not-equals>
+								<not-equals>
+									<property>controls/autoflight/vert-mode</property>
+									<value>5</value>
+								</not-equals>
+							</condition>
+							<property>controls/autoflight/vert-mode</property>
+							<value>0</value>
+						</binding>
+						<binding>
 							<command>property-adjust</command>
 							<property>controls/autoflight/vertical-speed-select</property>
 							<step>100</step>
-							<max>9000</max>
+							<max>9900</max>
 						</binding>
 					</button>
 				</group>
@@ -966,7 +1004,7 @@
 			<pref-width>65</pref-width>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -987,7 +1025,7 @@
 			<label>[ LOC1 ]</label>
 			<visible>
 				<equals>
-					<property>controls/autoflight/nav-mode</property>
+					<property>controls/autoflight/nav-source</property>
 					<value>0</value>
 				</equals>
 			</visible>
@@ -996,7 +1034,7 @@
 			<label>[ LOC2 ]</label>
 			<visible>
 				<equals>
-					<property>controls/autoflight/nav-mode</property>
+					<property>controls/autoflight/nav-source</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -1005,7 +1043,7 @@
 			<label>[ FMS1 ]</label>
 			<visible>
 				<equals>
-					<property>controls/autoflight/nav-mode</property>
+					<property>controls/autoflight/nav-source</property>
 					<value>2</value>
 				</equals>
 			</visible>

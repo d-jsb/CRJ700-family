@@ -22,7 +22,7 @@
 	/controls/autoflight/lat-mode			lateral mode
 	/controls/autoflight/vert-mode			vertical mode
 	/controls/autoflight/speed-mode			speed mode
-	/controls/autoflight/nav-mode				nav mode
+	/controls/autoflight/nav-source				nav mode
 	
 	
 	Speed modes:
@@ -48,9 +48,9 @@
 	0	basic pitch mode
 	1	altitude (hold)
 	2	vertical speed
-	#3	altitude preselect
+	3	altitude (track)
 	#4	speed mode (this is NOT an auto throttle but a vertical (pitch) mode!)
-	#5	glideslope mode
+	5	glideslope mode
 	6	TO mode
 	7	GA mode
 -->
@@ -305,34 +305,6 @@
 	
     <!-- Lateral -->
     <!-- 0 : Basic roll mode -->
-	<!-- roll-mode-engage is used in instrumentation.nas for sync -->
-    <logic>
-		<name>Basic roll mode logic</name>
-		<input>
-			<and>
-				<or>
-					<property>autopilot/internal/autoflight-engaged</property>
-					<property>autopilot/internal/flight-director-engaged</property>
-				</or>
-				<or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>7</value>
-					</equals>
-				</or>
-				<!--	<not><property>gear/gear[1]/wow</property></not> -->
-			</and>
-		</input>
-		<output>autopilot/internal/roll-mode-engage</output>
-	</logic>
     <filter>
 		<name>Basic roll mode</name>
 		<type>gain</type>
@@ -341,7 +313,21 @@
 		<enable>
 			<condition>
 				<and>
-					<property>autopilot/internal/roll-mode-engage</property>
+					<property>autopilot/internal/flight-director-engaged</property>
+					<or>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>6</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>7</value>
+						</equals>
+					</or>
 					<equals>
 						<property>autopilot/internal/roll-mode</property>
 						<value>1</value>
@@ -354,22 +340,50 @@
 		</input>
 		<output>autopilot/internal/target-roll-deg</output>
 	</filter>
-    <pid-controller>
-		<name>Roll mode heading controller</name>
+    <!-- 1 : heading hold -->
+	<pi-simple-controller>
+		<name>Heading controller</name>
 		<debug type="bool">false</debug>
-		<!-- <feedback-if-disabled>true</feedback-if-disabled> -->
 		<enable>
 			<condition>
+				<property>autopilot/internal/flight-director-engaged</property>
+				<not>
+					<property>autopilot/internal/roll-mode</property>
+				</not>
+			</condition>
+		</enable>
+		<input>
+			<condition>
+				<equals>
+					<property>controls/autoflight/lat-mode</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>autopilot/internal/heading-bug-error-deg</property>
+		</input>
+		<input>
+			<condition>
 				<and>
-					<property>autopilot/internal/roll-mode-engage</property>
+					<or>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>6</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>7</value>
+						</equals>
+					</or>
 					<equals>
 						<property>autopilot/internal/roll-mode</property>
 						<value>0</value>
 					</equals>
 				</and>
 			</condition>
-		</enable>
-		<input>
 			<property>autopilot/internal/roll-mode-heading-error-deg</property>
 		</input>
 		<reference>
@@ -378,184 +392,77 @@
 		<output>autopilot/internal/target-roll-deg</output>
 		<config>
 			<Kp>-5</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>10</Ti>
-			<Td>0.00001</Td>
-			<u_min>
-				<property>autopilot/internal/bank-limit-deg</property>
-				<scale>-1</scale>
-			</u_min>
-			<u_max>
-				<property>autopilot/internal/bank-limit-deg</property>
-			</u_max>
+			<Ki>-0.1</Ki>
 		</config>
-	</pid-controller>
-    <!-- 1 : Magnetic heading hold -->
-    <pid-controller>
-		<name>Magnetic heading controller</name>
-		<debug type="bool">false</debug>
-		<enable>
-			<condition>
-				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>1</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>autopilot/internal/heading-bug-error-deg</property>
-		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>autopilot/internal/target-roll-deg</output>
-		<config>
-			<Kp>-5</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>10</Ti>
-			<Td>0.00001</Td>
-			<u_min>
-				<property>autopilot/internal/bank-limit-deg</property>
-				<scale>-1</scale>
-			</u_min>
-			<u_max>
-				<property>autopilot/internal/bank-limit-deg</property>
-			</u_max>
-		</config>
-	</pid-controller>
-    <!-- 2 : Nav hold -->
+		<min>
+			<property>autopilot/internal/bank-limit-deg</property>
+			<scale>-1</scale>
+		</min>
+		<max>
+			<property>autopilot/internal/bank-limit-deg</property>
+		</max>
+	</pi-simple-controller>
+
+	<!-- 2 : NAV/APPR -->
     <pi-simple-controller>
-		<name>NAV1 intercept controller</name>
+		<name>NAV intercept controller</name>
 		<debug type="bool">false</debug>
 		<enable>
 			<condition>
 				<and>
+					<property>autopilot/internal/flight-director-engaged</property>
 					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
+						<and>
+							<equals>
+								<property>controls/autoflight/lat-mode</property>
+								<value>2</value>
+							</equals>
+							<greater-than>
+								<property>instrumentation/nav[0]/nav-distance</property>
+								<value>1852</value>
+							</greater-than>
+						</and>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>3</value>
+						</equals>
 					</or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/nav-mode</property>
-						<value>0</value>
-					</equals>
-					<!-- Stop computing a target roll within 1 nm of the target -->
-					<!-- This is not the prettiest way to stop waypoint oscillation, but it works... -->
-					<greater-than>
-						<property>instrumentation/nav[0]/nav-distance</property>
-						<value>1852</value>
-					</greater-than>
 				</and>
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<equals>
+					<property>controls/autoflight/nav-source</property>
+					<value>0</value>
+				</equals>
+				<property>instrumentation/nav[0]/data-is-valid</property>
+			</condition>
 			<property>autopilot/internal/nav1-heading-error-deg</property>
-			<scale>10</scale>
 		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>autopilot/internal/target-roll-deg</output>
-		<config>
-			<Kp>-0.6</Kp>
-			<Ki>0</Ki>
-		</config>
-		<min>
-			<property>autopilot/internal/bank-limit-deg</property>
-			<scale>-1</scale>
-		</min>
-		<max>
-			<property>autopilot/internal/bank-limit-deg</property>
-		</max>
-	</pi-simple-controller>
-    <pi-simple-controller>
-		<name>NAV2 intercept controller</name>
-		<debug type="bool">false</debug>
-		<enable>
-			<condition>
-				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/nav-mode</property>
-						<value>1</value>
-					</equals>
-					<!-- Stop computing a target roll within 1 nm of the target -->
-					<!-- This is not the prettiest way to stop waypoint oscillation, but it works... -->
-					<greater-than>
-						<property>instrumentation/nav[1]/nav-distance</property>
-						<value>1852</value>
-					</greater-than>
-				</and>
-			</condition>
-		</enable>
 		<input>
+			<condition>
+				<equals>
+					<property>controls/autoflight/nav-source</property>
+					<value>1</value>
+				</equals>
+				<property>instrumentation/nav[1]/data-is-valid</property>
+			</condition>
 			<property>autopilot/internal/nav2-heading-error-deg</property>
-			<scale>10</scale>
 		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>autopilot/internal/target-roll-deg</output>
-		<config>
-			<Kp>-0.6</Kp>
-			<Ki>0</Ki>
-		</config>
-		<min>
-			<property>autopilot/internal/bank-limit-deg</property>
-			<scale>-1</scale>
-		</min>
-		<max>
-			<property>autopilot/internal/bank-limit-deg</property>
-		</max>
-	</pi-simple-controller>
-    <pid-controller>
-		<name>FMS1 course controller</name>
-		<debug type="bool">false</debug>
-		<enable>
+		<input>
 			<condition>
 				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
 					<equals>
 						<property>controls/autoflight/lat-mode</property>
 						<value>2</value>
 					</equals>
 					<equals>
-						<property>controls/autoflight/nav-mode</property>
+						<property>controls/autoflight/nav-source</property>
 						<value>2</value>
 					</equals>
-					<!-- Stop computing a target roll within 1 nm of the next waypoint -->
-					<!-- This is not the prettiest way to stop waypoint oscillation, but it works... -->
-					<greater-than>
-						<property>autopilot/route-manager/wp[0]/dist</property>
-						<value>1</value>
-					</greater-than>
 				</and>
 			</condition>
-		</enable>
-		<input>
 			<property>autopilot/internal/true-heading-error-deg</property>
 		</input>
 		<reference>
@@ -563,49 +470,7 @@
 		</reference>
 		<output>autopilot/internal/target-roll-deg</output>
 		<config>
-			<Kp>-5</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>10</Ti>
-			<Td>0.00001</Td>
-			<u_min>
-				<property>autopilot/internal/bank-limit-deg</property>
-				<scale>-1</scale>
-			</u_min>
-			<u_max>
-				<property>autopilot/internal/bank-limit-deg</property>
-			</u_max>
-		</config>
-	</pid-controller>
-    <!-- 3 : Approach hold -->
-    <pi-simple-controller>
-		<name>Approach lateral controller</name>
-		<debug type="bool">false</debug>
-		<enable>
-			<condition>
-				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>3</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>autopilot/internal/nav1-heading-error-deg</property>
-			<scale>10</scale>
-		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>autopilot/internal/target-roll-deg</output>
-		<config>
-			<Kp>-0.6</Kp>
+			<Kp>-6</Kp>
 			<Ki>0</Ki>
 		</config>
 		<min>
@@ -616,23 +481,21 @@
 			<property>autopilot/internal/bank-limit-deg</property>
 		</max>
 	</pi-simple-controller>
+
     <pid-controller>
 		<name>Approach vertical controller</name>
 		<debug type="bool">false</debug>
 		<enable>
 			<condition>
 				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
+					<property>autopilot/internal/flight-director-engaged</property>
 					<equals>
 						<property>controls/autoflight/lat-mode</property>
 						<value>3</value>
 					</equals>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
-						<value>0</value>
+						<value>5</value>
 					</equals>
 				</and>
 			</condition>
@@ -656,43 +519,8 @@
 		</config>
 	</pid-controller>
 	
-	
 	<!-- Vertical -->
     <!-- 0 : Basic pitch mode -->
-	<!-- basic-pitch-mode-engage is used in instrumentation.nas for sync -->
-	<logic>
-		<name>Basic pitch mode logic</name>
-		<input>
-			<and>
-				<or>
-					<property>autopilot/internal/autoflight-engaged</property>
-					<property>autopilot/internal/flight-director-engaged</property>
-				</or>
-				<or>
-					<equals>
-						<property>controls/autoflight/vert-mode</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/vert-mode</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/vert-mode</property>
-						<value>7</value>
-					</equals>
-				</or>
-				<not>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>3</value><!-- approach mode -->
-					</equals>
-				</not>
-				<not><property>gear/gear[1]/wow</property></not>
-			</and>
-		</input>
-		<output>autopilot/internal/basic-pitch-mode-engage</output>
-	</logic>
     <filter>
 		<name>Basic pitch mode</name>
 		<type>gain</type>
@@ -700,7 +528,29 @@
 		<gain>1</gain>
 		<enable>
 			<condition>
-				<property>autopilot/internal/basic-pitch-mode-engage</property>
+				<and>
+					<property>autopilot/internal/flight-director-engaged</property>
+					<or>
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>6</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>7</value>
+						</equals>
+					</or>
+					<not>
+						<equals>
+							<property>controls/autoflight/lat-mode</property>
+							<value>3</value><!-- approach mode -->
+						</equals>
+					</not>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -715,14 +565,17 @@
 		<enable>
 			<condition>
 				<and>
+					<property>autopilot/internal/flight-director-engaged</property>
 					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>                                                        
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>3</value>
+						</equals>
 					</or>
-					<equals>
-						<property>controls/autoflight/vert-mode</property>
-						<value>1</value>
-					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -730,13 +583,13 @@
 			<property>instrumentation/altimeter[0]/indicated-altitude-ft</property>
 		</input>
 		<reference>
-			<property>controls/autoflight/altitude-select</property>
+			<property>autopilot/ref/alt-hold</property>
 		</reference>
 		<output>autopilot/internal/target-climb-rate-fpm</output>
 		<min>-1500</min>
 		<max>1500</max>
 		<config>
-			<Kp>10</Kp>
+			<Kp>6.6</Kp>
 			<Ki>0</Ki>
 		</config>
 	</pi-simple-controller>
@@ -749,10 +602,7 @@
 		<enable>
 			<condition>
 				<and>
-					<or>
-						<property>autopilot/internal/autoflight-engaged</property>
-						<property>autopilot/internal/flight-director-engaged</property>
-					</or>
+					<property>autopilot/internal/flight-director-engaged</property>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
 						<value>2</value>
@@ -765,9 +615,37 @@
 		</input>
 		<output>autopilot/internal/target-climb-rate-fpm</output>
 	</filter>
-	
+    <!-- 4 : IAS hold -->
+    <pi-simple-controller>
+		<name>Altitude controller</name>
+		<debug type="bool">false</debug>
+		<enable>
+			<condition>
+				<and>
+					<property>autopilot/internal/flight-director-engaged</property>
+					<equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>4</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		</input>
+		<reference>
+			<property>controls/autoflight/speed-select</property>
+		</reference>
+		<output>autopilot/internal/target-pitch-deg</output>
+		<min>-8</min>
+		<max>10</max>
+		<config>
+			<Kp>-1.1</Kp>
+			<Ki>-0.015</Ki>
+		</config>
+	</pi-simple-controller>	
     <!-- Pitch and roll controllers -->
-    <pid-controller>
+    <pi-simple-controller>
 		<name>Vertical speed to pitch controller</name>
 		<debug type="bool">false</debug>
 		<enable>
@@ -775,11 +653,15 @@
 				<or>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
-						<value>1</value> <!-- ALT -->
+						<value>1</value> 
 					</equals>
 					<equals>
 						<property>controls/autoflight/vert-mode</property>
-						<value>2</value> <!-- VS -->
+						<value>2</value> 
+					</equals>
+					<equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>3</value> 
 					</equals>
 				</or>
 			</condition>
@@ -793,16 +675,39 @@
 		<output>autopilot/internal/target-pitch-deg</output>
 		<config>
 			<Kp>0.002</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>20</Ti>
-			<Td>0.00001</Td>
-			<u_min>-10</u_min>
-			<u_max>10</u_max>
+			<Ki>0.00075</Ki>
 		</config>
-	</pid-controller>
-    <pid-controller>
+		<min>-10</min>
+		<max>10</max>
+	</pi-simple-controller>	
+	
+	<pi-simple-controller>
+		<name>Pitch controller simple test</name>
+		<debug type="bool">false</debug>
+		<enable>
+			<condition>
+				<and>
+					<property>autopilot/internal/autoflight-engaged</property>
+					<property>systems/hydraulic/outputs/elevator</property>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>instrumentation/attitude-indicator[0]/indicated-pitch-deg</property>
+		</input>
+		<reference>
+			<property>autopilot/internal/target-pitch-deg</property>
+		</reference>
+		<output>controls/flight/elevator-trim</output>
+		<config>
+			<Kp>-0.05</Kp>
+			<Ti>-0.10</Ti>
+		</config>
+		<min>-1</min>
+		<max>1</max>
+	</pi-simple-controller>
+<!-- 
+	<pid-controller>
 		<name>Pitch controller</name>
 		<debug type="bool">false</debug>
 		<enable>
@@ -825,12 +730,13 @@
 			<beta>1</beta>
 			<alpha>0.1</alpha>
 			<gamma>0</gamma>
-			<Ti>1</Ti>
+			<Ti>10</Ti>
 			<Td>0.00001</Td>
 			<u_min>-1</u_min>
 			<u_max>1</u_max>
 		</config>
 	</pid-controller>
+ -->	
     <pid-controller>
 		<name>Roll controller</name>
 		<debug type="bool">false</debug>

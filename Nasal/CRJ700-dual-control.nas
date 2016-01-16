@@ -95,7 +95,7 @@ var pilot_send_S_properties =
 	"controls/autoflight/autothrottle-engage",
 	"controls/autoflight/disengage-pos-norm",
 	"controls/autoflight/lat-mode",
-	"controls/autoflight/nav-mode",
+	"controls/autoflight/nav-source",
 	"controls/autoflight/speed-mode",
 	"controls/autoflight/vert-mode",
 	# flight controls

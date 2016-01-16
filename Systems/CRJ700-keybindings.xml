@@ -295,7 +295,7 @@
 		<desc>Cycle NAV source</desc>
 		<binding>
 			<command>property-cycle</command>
-			<property>controls/autoflight/nav-mode</property>
+			<property>controls/autoflight/nav-source</property>
 			<value>0</value>
 			<value>1</value>
 			<value>2</value>

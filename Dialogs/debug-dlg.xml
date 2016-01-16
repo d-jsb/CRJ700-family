@@ -51,9 +51,21 @@
 			<layout>vbox</layout>
 			<halign>left</halign>
 			<text>
-				<label>ref_deg -10.0 </label>
+				<label>lat mode 0</label>
+				<property>controls/autoflight/lat-mode</property>
+				<format>lat_mode %1.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>ref_roll -10.0 </label>
 				<property>autopilot/ref/roll-deg</property>
-				<format>ref_deg %2.1f </format>
+				<format>ref_roll %2.1f </format>
 				<live>true</live>
 				<color>
 					<red>0.9</red>
@@ -139,6 +151,30 @@
 		<group>
 			<layout>vbox</layout>
 			<text>
+				<label>vert mode 0</label>
+				<property>controls/autoflight/vert-mode</property>
+				<format>vert_mode %1.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>AltHold 00000</label>
+				<property>autopilot/ref/alt-hold</property>
+				<format>AltHold %5.0f</format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
 				<label>TgtFpm -0000 </label>
 				<property>autopilot/internal/target-climb-rate-fpm</property>
 				<format>TgtFpm %4.0f </format>
@@ -198,6 +234,38 @@
 					<alpha>1</alpha>
 				</color>
 			</text>		
+			<text>
+				<label>GS -10.0 deg</label>
+				<property>instrumentation/nav[0]/gs-needle-deflection-deg</property>
+				<format>GS %2.1f deg</format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.1</green>
+					<blue>0.1</blue>
+					<alpha>1</alpha>
+				</color>
+				<visible>
+					<not>
+						<property>instrumentation/nav[0]/gs-in-range</property>
+					</not>
+				</visible>			
+			</text>	
+			<text>
+				<label>GS -10.0 deg</label>
+				<property>instrumentation/nav[0]/gs-needle-deflection-deg</property>
+				<format>GS %2.1f deg</format>
+				<live>true</live>
+				<color>
+					<red>0.1</red>
+					<green>0.9</green>
+					<blue>0.1</blue>
+					<alpha>1</alpha>
+				</color>
+				<visible>
+					<property>instrumentation/nav[0]/gs-in-range</property>
+				</visible>			
+			</text>				
 			<text>
 				<label>GS -1000 fpm</label>
 				<property>instrumentation/nav[0]/gs-rate-of-climb-fpm</property>
