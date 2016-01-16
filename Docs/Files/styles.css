@@ -2,17 +2,17 @@ h1, h2, h3, h4, h5, h6 {
  font-family: sans;
  }
 table {
+ border: 0.125em solid black;
  border-collapse: collapse;
  }
 table th {
  font-family: sans;
- border-bottom: 0.125em solid black;
+ border: 0.125em solid black;
+ padding: 0.2em;
  }
 table td {
- border-left: 0.125em solid black;
- border-right: 0.125em solid black;
- padding: 0.25em;
- }
+ border: 0.125em solid black;
+}
 
 .tip {
  background-color: #A0B0FF;

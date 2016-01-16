@@ -81,25 +81,35 @@
 		</p>
 		<p>
 		Approach mode is similar to NAV mode but will track a localizer/ILS.
-		If a glideslope (GS) sender is available, it will be intercepted 
-		(see below, vertical modes).
+		If a glideslope (GS) sender is available, it can be intercepted from
+		below or above (see vertical modes below).
 		</p>
 
 		<p><u>Vertical modes:</u></p>
 		<ul>
-			<li>Basic vertical mode (default)</li>
-			<li>Altitude hold</li>
+			<li>Pitch mode (PTCH, default)</li>
+			<li>Altitude hold (ALT)</li>
+			<li>Altitude pre-select (ALTS)</li>
 			<li>Vertical speed (VS) hold</li>
-			<li>Speed hold</li>
-			<li>Approach mode  (GS)</li>
+			<li>Speed hold (IAS)</li>
+			<li>Glideslope (GS, approach mode)</li>
 		</ul>
 		<p>
-		Basic vertical mode holds the pitch the plane was at when the mode is activated. 
-		You can change that pitch in 0.5° increments using the vertical speed wheel.
+		Basic vertical mode (PTCH) holds the pitch the plane was at when the 
+		mode is activated. You can change that pitch in 0.5° increments using 
+		the vertical speed wheel.
 		</p>
 		<p>
-		In altitude mode the AP will climb/descent to the pre-selected 
-		barometric altitude selected by the pilot via the altitude selection knob.
+		Altitude hold mode is selected by pushing the ALT button. The AP will 
+		sync the current barometric altitude and try to hold the aircraft at 
+		this altitude but not the pre-selected altitude.
+		</p>
+		<p>
+		Altitude pre-select mode is armed by selecting a target altitude with 
+		the altitude knob. A white ALTS is shown on PFD when armed.
+		Select pitch or VS mode to climb/descent. A 1s tone will sound ~1000ft 
+		before reaching the pre-selected altitude. The AP will capture at +-200ft 
+		and level off. A green ALTS message indicates pre-selected altitude is tracked.
 		</p>
 		<p class="tip">
 		Make sure to calibrate the altimeter according to the current QNH 
@@ -108,7 +118,7 @@
 		</p>
 		<p>
 		VS mode attempts to hold the selected VS, which is synced automatically on activation.
-		You can change that VS in 100fps increments using the vertical speed wheel.
+		You can change the VS reference in 100fps increments using the vertical speed wheel.
 		</p>
 		<p>
 		Approach mode is a combined lateral <em>and</em> vertical mode. 
@@ -124,9 +134,8 @@
 		AP first. It will follow the FD commands and control the elevator trim
 		and ailerons.
 		</p>
-		<p class="tip">Engaging the AP automatically engages the FD in basic mode. 
-		However, you should activate the FD manually before the AP and watch the 
-		FD command bars, they should not deviate too much from the current aircraft attitude.
+		<p class="tip">Engaging the AP automatically engages the FD in basic mode
+		and syncs the references for pitch and roll.
 		</p>
 
 		<h3>The FCP</h3>
@@ -168,7 +177,7 @@
 				</tr>
 				<tr>
 					<td>SPEED button</td>
-					<td>select speed hold vertical mode</td>
+					<td>Select speed hold mode (it's NOT an autothrottle!)</td>
 				</tr>
 				<tr>
 					<td>SPEED knob</td>
@@ -239,11 +248,11 @@
 			<tbody>
 				<tr>
 					<td>IAS</td>
-					<td>Set autothrottle to IAS mode</td>
+					<td>Switch to IAS reference</td>
 				</tr>
 				<tr>
 					<td>MACH</td>
-					<td>Set autothrottle to Mach mode</td>
+					<td>Switch to Mach reference</td>
 				</tr>
 				<tr>
 					<td>NAV SRC</td>
@@ -337,13 +346,13 @@
 
 		<h2>Implementation / known bugs</h2>
 		<p class="warn">
-		Warning: While most parts of the AP logic are implemented according 
-		to the FOM and work correctly, the controllers need an overhaul. 
-		You will sometimes see bad behaviour of the FD/AP system. Try to 
-		avoid engaging the AP when the FD command bars show extreme attitude.
+		Warning: Most parts of the AP logic are implemented according to the 
+		FOM and work correctly. The controllers had an overhaul but may still 
+		become unstable when switched in extreme attitude.		
 		</p>
 		<ul>
-			<li>Altitude mode sometimes needs very long time to catch the pre-selected altitude.</li>
+			<li>VS reference should stay below 2000fpm on altitude alert sound (better <= 1500fpm).</li>
+			<li>Speed hold controller is a last-minute first-try implementation. No comment...</li>
 		</ul>
 	</body>
 </html>
