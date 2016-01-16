@@ -8,14 +8,14 @@
 	<foo include="radiopanel-main.xml" omit-node="y" />
 
 	<text>
-		<name>COM1 text</name>
+		<name>COM2 text</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
 		<character-size alias="/params/fontsize-label-l" />
 		<character-aspect-ratio>1</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<text>COM1</text>
+		<text>COM2</text>
 		<offsets>
 			<x-m>-0.0006</x-m>
 			<y-m>-0.01269</y-m>
@@ -27,7 +27,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>COM1 active</name>
+		<name>COM2 active</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
@@ -46,7 +46,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>COM1 standby</name>
+		<name>COM2 standby</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
@@ -65,7 +65,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>COM1 active frequency</name>
+		<name>COM2 active frequency</name>
 		<type>number-value</type>
 		<property>instrumentation/comm[1]/frequencies/selected-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -85,7 +85,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>COM1 standby frequency</name>
+		<name>COM2 standby frequency</name>
 		<type>number-value</type>
 		<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -106,7 +106,7 @@
 	</text>
 	<animation>
 		<type>select</type>
-		<object-name>COM1 standby frequency</object-name>
+		<object-name>COM2 standby frequency</object-name>
 		<condition>
 			<not>
 				<equals>
@@ -117,7 +117,7 @@
 		</condition>
 	</animation>
 	<text>
-		<name>COM1 standby frequency selected</name>
+		<name>COM2 standby frequency selected</name>
 		<type>number-value</type>
 		<property>instrumentation/comm[1]/frequencies/standby-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -139,7 +139,7 @@
 	</text>
 	<animation>
 		<type>select</type>
-		<object-name>COM1 standby frequency selected</object-name>
+		<object-name>COM2 standby frequency selected</object-name>
 		<condition>
 			<equals>
 				<property>instrumentation/radio-stack[1]/selected-field</property>
@@ -148,14 +148,14 @@
 		</condition>
 	</animation>
 	<text>
-		<name>NAV1 text</name>
+		<name>NAV2 text</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
 		<character-size alias="/params/fontsize-label-l" />
 		<character-aspect-ratio>1</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<text>NAV1</text>
+		<text>NAV2</text>
 		<offsets>
 			<x-m>-0.0006</x-m>
 			<y-m>-0.01269</y-m>
@@ -167,7 +167,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>NAV1 active</name>
+		<name>NAV2 active</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
@@ -186,7 +186,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>NAV1 standby</name>
+		<name>NAV2 standby</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>center-bottom</alignment>
@@ -205,7 +205,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>NAV1 active frequency</name>
+		<name>NAV2 active frequency</name>
 		<type>number-value</type>
 		<property>instrumentation/nav[1]/frequencies/selected-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -225,7 +225,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>NAV1 standby frequency</name>
+		<name>NAV2 standby frequency</name>
 		<type>number-value</type>
 		<property>instrumentation/nav[1]/frequencies/standby-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -246,7 +246,7 @@
 	</text>
 	<animation>
 		<type>select</type>
-		<object-name>NAV1 standby frequency</object-name>
+		<object-name>NAV2 standby frequency</object-name>
 		<condition>
 			<not>
 				<equals>
@@ -257,7 +257,7 @@
 		</condition>
 	</animation>
 	<text>
-		<name>NAV1 standby frequency selected</name>
+		<name>NAV2 standby frequency selected</name>
 		<type>number-value</type>
 		<property>instrumentation/nav[1]/frequencies/standby-mhz</property>
 		<axis-alignment>yz-plane</axis-alignment>
@@ -279,7 +279,7 @@
 	</text>
 	<animation>
 		<type>select</type>
-		<object-name>NAV1 standby frequency selected</object-name>
+		<object-name>NAV2 standby frequency selected</object-name>
 		<condition>
 			<equals>
 				<property>instrumentation/radio-stack[1]/selected-field</property>
@@ -538,8 +538,8 @@
 	</animation>
 	<animation>
 		<type>material</type>
-		<object-name>COM1 active frequency</object-name>
-		<object-name>NAV1 active frequency</object-name>
+		<object-name>COM2 active frequency</object-name>
+		<object-name>NAV2 active frequency</object-name>
 		<object-name>ADF1 active frequency</object-name>
 		<object-name>DME frequency</object-name>
 		<ambient>
@@ -561,16 +561,16 @@
 	</animation>
 	<animation>
 		<type>material</type>
-		<object-name>COM1 text</object-name>
-		<object-name>COM1 active</object-name>
-		<object-name>COM1 standby</object-name>
-		<object-name>COM1 standby frequency</object-name>
-		<object-name>COM1 standby frequency selected</object-name>
-		<object-name>NAV1 text</object-name>
-		<object-name>NAV1 active</object-name>
-		<object-name>NAV1 standby</object-name>
-		<object-name>NAV1 standby frequency</object-name>
-		<object-name>NAV1 standby frequency selected</object-name>
+		<object-name>COM2 text</object-name>
+		<object-name>COM2 active</object-name>
+		<object-name>COM2 standby</object-name>
+		<object-name>COM2 standby frequency</object-name>
+		<object-name>COM2 standby frequency selected</object-name>
+		<object-name>NAV2 text</object-name>
+		<object-name>NAV2 active</object-name>
+		<object-name>NAV2 standby</object-name>
+		<object-name>NAV2 standby frequency</object-name>
+		<object-name>NAV2 standby frequency selected</object-name>
 		<object-name>ADF1 text</object-name>
 		<object-name>ADF1 active frequency selected</object-name>
 		<object-name>TCAS</object-name>
@@ -597,19 +597,19 @@
 	<animation>
 		<name>Text</name>
 		<object-name>TCAS status</object-name>
-		<object-name>COM1 active frequency</object-name>
-		<object-name>NAV1 active frequency</object-name>
+		<object-name>COM2 active frequency</object-name>
+		<object-name>NAV2 active frequency</object-name>
 		<object-name>ADF1 active frequency</object-name>
-		<object-name>COM1 text</object-name>
-		<object-name>COM1 active</object-name>
-		<object-name>COM1 standby</object-name>
-		<object-name>COM1 standby frequency</object-name>
-		<object-name>COM1 standby frequency selected</object-name>
-		<object-name>NAV1 text</object-name>
-		<object-name>NAV1 active</object-name>
-		<object-name>NAV1 standby</object-name>
-		<object-name>NAV1 standby frequency</object-name>
-		<object-name>NAV1 standby frequency selected</object-name>
+		<object-name>COM2 text</object-name>
+		<object-name>COM2 active</object-name>
+		<object-name>COM2 standby</object-name>
+		<object-name>COM2 standby frequency</object-name>
+		<object-name>COM2 standby frequency selected</object-name>
+		<object-name>NAV2 text</object-name>
+		<object-name>NAV2 active</object-name>
+		<object-name>NAV2 standby</object-name>
+		<object-name>NAV2 standby frequency</object-name>
+		<object-name>NAV2 standby frequency selected</object-name>
 		<object-name>DME frequency</object-name>
 		<object-name>DME-H text</object-name>
 		<object-name>ADF1 text</object-name>

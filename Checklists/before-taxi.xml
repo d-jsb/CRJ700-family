@@ -140,38 +140,8 @@
 		</binding>
 	</item>
 	<item>
-		<name>Heading Hold</name>
-		<value>ON</value>
-		<condition>
-			<equals>
-				<property>controls/autoflight/lat-mode</property>
-				<value>1</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/lat-mode</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
 		<name>Heading Bug</name>
 		<value>SET for departure</value>
-	</item>
-	<item>
-		<name>Altitude Hold</name>
-		<value>ON</value>
-		<condition>
-			<equals>
-				<property>controls/autoflight/vert-mode</property>
-				<value>1</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/vert-mode</property>
-			<value>1</value>
-		</binding>
 	</item>
 	<item>
 		<name>Altitude bug</name>

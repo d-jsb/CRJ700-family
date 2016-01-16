@@ -56,6 +56,11 @@
 			<z-m>-1.0521</z-m>
 			<scale>1.8760</scale>
 		</marker>
+		<binding>
+			<command>property-assign</command>
+			<property>instrumentation/altimeter/setting-hpa</property>
+			<value>1013.25</value>
+		</binding>
 	</item>
 	<item>
 		<name>Landing Light (ABOVE 10,000ft)</name>
@@ -71,10 +76,10 @@
 					<not><property>/controls/lighting/landing-lights[0]</property></not>
 					<not><property>/controls/lighting/landing-lights[1]</property></not>
 					<not><property>/controls/lighting/landing-lights[2]</property></not>
-					<greater-equal>
+					<greater-than>
 						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
 						<value>10000</value>
-					</greater-equal>
+					</greater-than>
 				</and>
 		</condition>
 		<binding>
@@ -93,9 +98,4 @@
 			<value>0</value>
 		</binding>
 	</item>
-	<item>
-		<name>FIXME</name>
-		<value>...</value>
-	</item>
-
 </PropertyList>
