@@ -68,6 +68,15 @@
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (getprop("sim/config/developer"))
+						CRJ700.dialogs.developer.open();
+					else
+						CRJ700.dialogs.developer.close();
+				</script>
+			</binding>
 			<live type="bool">true</live>
 		</checkbox>	
 	</group>

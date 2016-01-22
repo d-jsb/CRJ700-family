@@ -11,7 +11,7 @@
 		<status>early-production</status>
 		<aircraft-version>1.1.0</aircraft-version>
 		<flight-model>null</flight-model>
-		<!-- <variant-of>CRJ700</variant-of> -->
+	  <variant-of>CRJ700</variant-of>
 
 		<model>
 			<path>Aircraft/CRJ700-family/Models/CRJ700-firstofficer.xml</path>
@@ -74,7 +74,7 @@
 				</dual-control>
 			</dialogs>
 		</gui>
-		
+
 		<aircraft-data>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
@@ -84,7 +84,7 @@
 
 		<allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
 		<virtual-cockpit type="bool">true</virtual-cockpit>
-		
+
 		<menubar>
 			<default>
 				<menu n="100">
@@ -142,7 +142,7 @@
 			</generic>
 		</multiplay>
 	</sim>
-	
+
 	<controls>
 		<engines>
 			<arm-reversers type="bool">false</arm-reversers>

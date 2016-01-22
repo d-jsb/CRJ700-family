@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
-	<name>autopilot-dev</name>
+	<name>apdev</name>
     <layout>vbox</layout>
 	
 	<color>
@@ -16,7 +16,7 @@
 			<stretch>1</stretch>
 		</empty>
 		<text>
-			<label>Autopilot Settings</label>
+			<label>Dev - Autopilot internals</label>
 		</text>
 		<empty>
 			<stretch>1</stretch>
@@ -43,25 +43,10 @@
 	<hrule/>
 	<group>
 		<layout>table</layout>
-		<group>
-			<row>0</row>
-			<col>0</col>
-			<layout>hbox</layout>
-			<empty>
-				<stretch>1</stretch>
-			</empty>		
-			<text>
-				<halign>center</halign>
-				<label>Developer</label>
-			</text>
-			<empty>
-				<stretch>1</stretch>
-			</empty>
-		</group>
 		<text>
 			<row>1</row>
 			<col>0</col>
-			<label>Target roll:</label>
+			<label>Ref. roll:</label>
 		</text>
 		<group>
 			<layout>hbox</layout>
@@ -130,8 +115,70 @@
 				<legend>roll hold</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/roll-mode</property>
+					<property>autopilot/internal/roll-mode</property>
 					<value>1</value>
+				</binding>
+			</button>
+		</group>
+		<text>
+			<row>2</row>
+			<col>0</col>
+			<label>Ref HDG:</label>
+		</text>
+		<group>
+			<layout>hbox</layout>
+			<row>2</row>
+			<col>1</col>
+			<button>
+				<pref-height>25</pref-height>
+				<pref-width>25</pref-width>
+				<halign>right</halign>
+				<legend>&lt;&lt;</legend>
+				<binding>
+					<command>property-adjust</command>
+					<property>autopilot/ref/roll-hdg</property>
+					<step>-10</step>
+				</binding>
+			</button>
+			<button>
+				<pref-height>25</pref-height>
+				<pref-width>25</pref-width>
+				<halign>right</halign>
+				<legend>&lt;</legend>
+				<binding>
+					<command>property-adjust</command>
+					<property>autopilot/ref/roll-hdg</property>
+					<step>-1</step>
+				</binding>
+			</button>
+			<input>
+				<pref-width>55</pref-width>
+				<property>autopilot/ref/roll-hdg</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live type="bool">true</live>
+			</input>
+			<button>
+				<pref-height>25</pref-height>
+				<pref-width>25</pref-width>
+				<halign>left</halign>
+				<legend>&gt;</legend>
+				<binding>
+					<command>property-adjust</command>
+					<property>autopilot/ref/roll-hdg</property>
+					<step>1</step>
+				</binding>
+			</button>
+			<button>
+				<pref-height>25</pref-height>
+				<pref-width>25</pref-width>
+				<halign>left</halign>
+				<legend>&gt;&gt;</legend>
+				<binding>
+					<command>property-adjust</command>
+					<property>autopilot/ref/roll-hdg</property>
+					<step>10</step>
 				</binding>
 			</button>
 			<button>
@@ -141,19 +188,19 @@
 				<legend>hdg hold</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/autoflight/roll-mode</property>
+					<property>autopilot/internal/roll-mode</property>
 					<value>0</value>
 				</binding>
 			</button>
 		</group>
 		<text>
-			<row>2</row>
+			<row>4</row>
 			<col>0</col>
 			<label>Elevator Trim:</label>
 		</text>
 		<group>
 			<layout>hbox</layout>
-			<row>2</row>
+			<row>4</row>
 			<col>1</col>
 			<button>
 				<pref-height>25</pref-height>
@@ -211,7 +258,6 @@
 					<max>0.5</max>
 				</binding>
 			</button>
-
 		</group>
 	</group>
 </PropertyList>

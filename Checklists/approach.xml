@@ -99,13 +99,13 @@
 			</marker>
 			<condition>
 				<equals>
-					<property>controls/autoflight/nav-mode</property>
+					<property>controls/autoflight/nav-source</property>
 					<value>0</value>
 				</equals>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 			</binding>
 		</item>

@@ -359,3 +359,7 @@ if (!getprop("/sim/config/hide-welcome-msg") or known != version) {
 if (getprop("/sim/config/allow-autothrottle") ) {
 	CRJ700.dialogs.autothrottle.open();
 }
+
+if (getprop("/sim/config/developer") ) {
+	CRJ700.dialogs.developer.open();
+}

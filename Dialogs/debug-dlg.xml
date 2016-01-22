@@ -4,7 +4,7 @@
 	<name>debug</name>
 	<x>10</x>
 	<y>2</y>
-	<layout>hbox</layout>
+	<layout>vbox</layout>
 	<default-padding>2</default-padding>
 	<font>
 		<name>HELVETICA_12</name>
@@ -15,14 +15,45 @@
 		<blue>0</blue>
 		<alpha>0.8</alpha>
 	</color>
+    
 	<group>
-		<layout>vbox</layout>
+		<layout>hbox</layout>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<text>
+			<label>Autopilot debug</label>
+		</text>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<button>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+				<alpha>0.8</alpha>
+			</color>	
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend>X</legend>
+			<keynum>27</keynum>
+			<border>2</border>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+	<group>
+		<layout>hbox</layout>
 		<group>
-			<layout>hbox</layout>
+			<layout>vbox</layout>
+			<halign>left</halign>
 			<text>
-				<label>HDG_err 000.0 </label>
-				<property>autopilot/internal/heading-bug-error-deg</property>
-				<format>HDG_err %3.1f </format>
+				<label>lat mode 0</label>
+				<property>controls/autoflight/lat-mode</property>
+				<format>lat_mode %1.0f </format>
 				<live>true</live>
 				<color>
 					<red>0.9</red>
@@ -32,48 +63,9 @@
 				</color>
 			</text>
 			<text>
-				<label>t_roll -00.0 </label>
-				<property>autopilot/internal/target-roll-deg</property>
-				<format>t_roll %2.1f </format>
-				<live>true</live>
-				<color>
-					<red>0.9</red>
-					<green>0.4</green>
-					<blue>0.2</blue>
-					<alpha>1</alpha>
-				</color>
-			</text>
-			<text>
-				<label>bank -00.0 </label>
-				<property>instrumentation/attitude-indicator[0]/indicated-roll-deg</property>
-				<format>bank %2.1f </format>
-				<live>true</live>
-				<color>
-					<red>0.9</red>
-					<green>0.4</green>
-					<blue>0.2</blue>
-					<alpha>1</alpha>
-				</color>
-			</text>		
-			<text>
-				<label>a_cmd -0.000 </label>
-				<property>fcs/autopilot/aileron-cmd-norm</property>
-				<format>a_cmd %1.3f </format>
-				<live>true</live>
-				<color>
-					<red>0.9</red>
-					<green>0.4</green>
-					<blue>0.2</blue>
-					<alpha>1</alpha>
-				</color>
-			</text>	
-		</group>
-		<group>
-			<layout>hbox</layout>
-			<text>
-				<label>ref_deg -10.0 </label>
+				<label>ref_roll -10.0 </label>
 				<property>autopilot/ref/roll-deg</property>
-				<format>ref_deg %2.1f </format>
+				<format>ref_roll %2.1f </format>
 				<live>true</live>
 				<color>
 					<red>0.9</red>
@@ -94,25 +86,110 @@
 					<alpha>1</alpha>
 				</color>
 			</text>
+			<text>
+				<label>HDG_err 000.0 </label>
+				<property>autopilot/internal/heading-bug-error-deg</property>
+				<format>HDG_err %3.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>t_roll -00.00 </label>
+				<property>autopilot/internal/target-roll-deg</property>
+				<format>t_roll %2.3f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>ind_roll -00.0 </label>
+				<property>instrumentation/attitude-indicator[0]/indicated-roll-deg</property>
+				<format>ind_roll %2.1f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>		
+			<text>
+				<label>error -0.000 </label>
+				<property>autopilot/internal/roll-error</property>
+				<format>err %1.3f </format>
+				<live>true</live>
+				<color>
+					<red>0.6</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>		
+			<text>
+				<label>a_cmd -0.000 </label>
+				<property>fcs/autopilot/aileron-cmd-norm</property>
+				<format>a_cmd %1.3f </format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.4</green>
+					<blue>0.2</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
 		</group>
-	</group>
-	<text>
-		<label>| </label>
-		<color>
-			<red>0.9</red>
-			<green>0.2</green>
-			<blue>0.4</blue>
-			<alpha>1</alpha>
-		</color>
-	</text>	
-	<group>
-		<layout>vbox</layout>
+
 		<group>
-			<layout>hbox</layout>
+			<layout>vbox</layout>
+			<text>
+				<label>vert mode 0</label>
+				<property>controls/autoflight/vert-mode</property>
+				<format>vert_mode %1.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
+			<text>
+				<label>AltHold 00000</label>
+				<property>autopilot/ref/alt-hold</property>
+				<format>AltHold %5.0f</format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>
 			<text>
 				<label>TgtFpm -0000 </label>
 				<property>autopilot/internal/target-climb-rate-fpm</property>
 				<format>TgtFpm %4.0f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>	
+			<text>
+				<label>CurFpm -0000 </label>
+				<property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
+				<format>CurFpm %4.0f </format>
 				<live>true</live>
 				<color>
 					<red>0.2</red>
@@ -134,33 +211,6 @@
 				</color>
 			</text>	
 			<text>
-				<label>ElvTrim -0.0000 </label>
-				<property>controls/flight/elevator-trim</property>
-				<format>ElvTrim %1.4f </format>
-				<live>true</live>
-				<color>
-					<red>0.2</red>
-					<green>0.9</green>
-					<blue>0.4</blue>
-					<alpha>1</alpha>
-				</color>
-			</text>		
-		</group>
-		<group>
-			<layout>hbox</layout>
-			<text>
-				<label>CurFpm -0000 </label>
-				<property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
-				<format>CurFpm %4.0f </format>
-				<live>true</live>
-				<color>
-					<red>0.2</red>
-					<green>0.9</green>
-					<blue>0.4</blue>
-					<alpha>1</alpha>
-				</color>
-			</text>	
-			<text>
 				<label>CurPitch -00.00 </label>
 				<property>instrumentation/attitude-indicator[0]/indicated-pitch-deg</property>
 				<format>CurPitch %2.2f </format>
@@ -172,7 +222,50 @@
 					<alpha>1</alpha>
 				</color>
 			</text>	
-
+			<text>
+				<label>ElvTrim -0.0000 </label>
+				<property>controls/flight/elevator-trim</property>
+				<format>ElvTrim %1.4f </format>
+				<live>true</live>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.4</blue>
+					<alpha>1</alpha>
+				</color>
+			</text>		
+			<text>
+				<label>GS -10.0 deg</label>
+				<property>instrumentation/nav[0]/gs-needle-deflection-deg</property>
+				<format>GS %2.1f deg</format>
+				<live>true</live>
+				<color>
+					<red>0.9</red>
+					<green>0.1</green>
+					<blue>0.1</blue>
+					<alpha>1</alpha>
+				</color>
+				<visible>
+					<not>
+						<property>instrumentation/nav[0]/gs-in-range</property>
+					</not>
+				</visible>			
+			</text>	
+			<text>
+				<label>GS -10.0 deg</label>
+				<property>instrumentation/nav[0]/gs-needle-deflection-deg</property>
+				<format>GS %2.1f deg</format>
+				<live>true</live>
+				<color>
+					<red>0.1</red>
+					<green>0.9</green>
+					<blue>0.1</blue>
+					<alpha>1</alpha>
+				</color>
+				<visible>
+					<property>instrumentation/nav[0]/gs-in-range</property>
+				</visible>			
+			</text>				
 			<text>
 				<label>GS -1000 fpm</label>
 				<property>instrumentation/nav[0]/gs-rate-of-climb-fpm</property>

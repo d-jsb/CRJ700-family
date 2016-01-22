@@ -550,7 +550,7 @@
 			<condition>
 				<equals>
 					<property>instrumentation/eicas[1]/page</property>
-					<value>5</value>
+					<value>10</value>
 				</equals>
 			</condition>
 		</exit>

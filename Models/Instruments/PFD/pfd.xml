@@ -162,240 +162,144 @@
 			</equals>
 		</condition>
 	</animation>
+	<!-- APs - needs rework: find out what armed / captured means in the different modes -->
 	<text>
-		<name>Autopilot FMS</name>
-		<type>literal</type>
+		<name>AP lat cap</name>
+		<type>string-value</type>
+		<property>autopilot/annunciators/lat-capture</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-baseline</alignment>
 		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<text>FMS1</text>
+		<format>%s</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.033</y-m>
-			<z-m>0.079</z-m>
+			<y-m>-0.038</y-m>
+			<z-m>0.072</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot FMS</object-name>
-		<condition>
-			<and>
-				<equals>
-					<property>controls/autoflight/lat-mode</property>
-					<value>2</value>
-				</equals>
-				<equals>
-					<property>controls/autoflight/nav-mode</property>
-					<value>2</value>
-				</equals>
-			</and>
-		</condition>
-	</animation>
+	</text>	
 	<text>
-		<name>Autopilot LOC1</name>
-		<type>literal</type>
+		<name>AP vert cap</name>
+		<type>string-value</type>
+		<property>autopilot/annunciators/vert-capture</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-baseline</alignment>
 		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<text>LOC1</text>
+		<format>%s</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.033</y-m>
-			<z-m>0.079</z-m>
+			<y-m>-0.038</y-m>
+			<z-m>0.064</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot LOC1</object-name>
-		<condition>
-			<and>
-				<equals>
-					<property>controls/autoflight/lat-mode</property>
-					<value>2</value>
-				</equals>
-				<equals>
-					<property>controls/autoflight/nav-mode</property>
-					<value>0</value>
-				</equals>
-			</and>
-		</condition>
-	</animation>
+	</text>	
 	<text>
-		<name>Autopilot LOC2</name>
-		<type>literal</type>
+		<name>AP lat arm</name>
+		<type>string-value</type>
+		<property>autopilot/annunciators/lat-armed</property>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-baseline</alignment>
 		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<text>LOC2</text>
+		<format>%s</format>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.033</y-m>
-			<z-m>0.079</z-m>
+			<y-m>-0.015</y-m>
+			<z-m>0.072</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot LOC2</object-name>
-		<condition>
-			<and>
-				<equals>
-					<property>controls/autoflight/lat-mode</property>
-					<value>2</value>
-				</equals>
-				<equals>
-					<property>controls/autoflight/nav-mode</property>
-					<value>1</value>
-				</equals>
-			</and>
-		</condition>
-	</animation>
+	</text>	
 	<text>
-		<name>Autopilot ALTS</name>
+		<name>AP vert arm</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-baseline</alignment>
 		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
 		<text>ALTS</text>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.033</y-m>
-			<z-m>0.072</z-m>
+			<y-m>-0.015</y-m>
+			<z-m>0.064</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot ALTS</object-name>
-		<condition>
-			<equals>
-				<property>controls/autoflight/vert-mode</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
+	</text>	
 	<text>
-		<name>Autopilot VS</name>
+		<name>AP GS arm</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
+		<alignment>left-baseline</alignment>
 		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
+		<character-aspect-ratio>1.3</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
-		<text>VS</text>
+		<text>GS</text>
 		<offsets>
 			<x-m>0.0001</x-m>
-			<y-m>-0.033</y-m>
-			<z-m>0.072</z-m>
+			<y-m>0.005</y-m>
+			<z-m>0.064</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
 			<height type="int">32</height>
 		</font-resolution>
-	</text>
+	</text>	
 	<animation>
 		<type>select</type>
-		<object-name>Autopilot VS</object-name>
+		<object-name>AP vert arm</object-name>
 		<condition>
-			<equals>
-				<property>controls/autoflight/vert-mode</property>
-				<value>2</value>
-			</equals>
+			<property>autopilot/internal/flight-director-engaged</property>
+			<property>autopilot/annunciators/vert-armed</property>
 		</condition>
 	</animation>
-	<text>
-		<name>Autopilot APPR</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>APPR</text>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.006</y-m>
-			<z-m>0.079</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
 	<animation>
 		<type>select</type>
-		<object-name>Autopilot APPR</object-name>
+		<object-name>AP GS arm</object-name>
 		<condition>
-			<equals>
-				<property>controls/autoflight/lat-mode</property>
-				<value>3</value>
-			</equals>
+			<property>autopilot/internal/flight-director-engaged</property>
+			<property>autopilot/annunciators/gs-armed</property>
 		</condition>
 	</animation>
-	<text>
-		<name>Autopilot HDG</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<text>HDG</text>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.006</y-m>
-			<z-m>0.079</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
 	<animation>
 		<type>select</type>
-		<object-name>Autopilot HDG</object-name>
+		<object-name>AP lat cap</object-name>
+		<object-name>AP vert cap</object-name>
+		<object-name>AP lat arm</object-name>
 		<condition>
-			<equals>
-				<property>controls/autoflight/lat-mode</property>
-				<value>1</value>
-			</equals>
+			<property>autopilot/internal/flight-director-engaged</property>
 		</condition>
 	</animation>
+
 	<text>
 		<name>Autopilot on</name>
 		<type>literal</type>
 		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
+		<alignment>left-top</alignment>
 		<character-size>0.006</character-size>
 		<character-aspect-ratio>1.5</character-aspect-ratio>
 		<font>helvetica_bold.txf</font>
 		<text>AP</text>
 		<offsets>
 			<x-m>0.0005</x-m>
-			<y-m>-0.042</y-m>
-			<z-m>0.064</z-m>
+			<y-m>-0.036</y-m>
+			<z-m>0.057</z-m>
 		</offsets>
 		<font-resolution>
 			<width type="int">32</width>
@@ -409,67 +313,7 @@
 			<property>autopilot/internal/autoflight-engaged</property>
 		</condition>
 	</animation>
-	<text>
-		<name>Autopilot IAS</name>
-		<type>number-value</type>
-		<property>controls/autoflight/speed-select</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>IAS %03.f</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.006</y-m>
-			<z-m>0.072</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot IAS</object-name>
-		<condition>
-			<equals>
-				<property>controls/autoflight/speed-mode</property>
-				<value>0</value>
-			</equals>
-		</condition>
-	</animation>
-	<text>
-		<name>Autopilot Mach</name>
-		<type>number-value</type>
-		<property>controls/autoflight/mach-select</property>
-		<scale>100</scale>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-center</alignment>
-		<character-size>0.006</character-size>
-		<character-aspect-ratio>1.5</character-aspect-ratio>
-		<font>helvetica_bold.txf</font>
-		<format>MACH .%2.f</format>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.006</y-m>
-			<z-m>0.072</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>Autopilot Mach</object-name>
-		<condition>
-			<equals>
-				<property>controls/autoflight/speed-mode</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
+
 	<text>
 		<name>Mach indicator</name>
 		<type>number-value</type>
@@ -491,6 +335,16 @@
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<animation>
+		<type>select</type>
+		<object-name>Mach indicator</object-name>
+		<condition>
+			<greater-than>
+				<property alias="/params/indicated-mach" />
+				<value>0.4</value>
+			</greater-than>
+		</condition>
+	</animation>	
 	<text>
 		<name>DHref</name>
 		<type>number-value</type>
@@ -623,16 +477,8 @@
 				<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
 				<value>-30</value>
 			</less-than>
-			<less-than-equals>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<property>instrumentation/adc/reference/mda</property>
-			</less-than-equals>
-			<!-- fixme: find out, if mda should disappear at some point -->
-<!-- 			<greater-than-equals>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
-			</greater-than-equals>
- -->		</condition>
+			<property>autopilot/annunciators/mda-alert</property>
+		</condition>
 	</animation>
 	<!-- marker beacon indications -->
 	<text>
@@ -799,6 +645,15 @@
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<animation>
+		<type>select</type>
+		<object-name>Altitude setting</object-name>
+		<condition>
+			<not>
+				<property>autopilot/annunciators/altitude-flash/state</property>
+			</not>
+		</condition>
+	</animation>
 	<text>
 		<name>Altimeter thousands counter</name>
 		<type>number-value</type>
@@ -1589,7 +1444,7 @@ G</text>
 			<and>
 				<property>autopilot/route-manager/active</property>
 				<equals>
-					<property>controls/autoflight/nav-mode</property>
+					<property>controls/autoflight/nav-source</property>
 					<value>2</value>
 				</equals>
 			</and>
@@ -1720,7 +1575,7 @@ G</text>
 		<object-name>VOR1 distance</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -1731,7 +1586,7 @@ G</text>
 		<condition>
 			<and>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 			</equals>
 			<equals>
@@ -1747,7 +1602,7 @@ G</text>
 		<condition>
 			<and>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
 			</equals>
 			<equals>
@@ -1883,7 +1738,7 @@ G</text>
 		<object-name>VOR2 distance</object-name>
 		<condition>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -1894,7 +1749,7 @@ G</text>
 		<condition>
 			<and>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>1</value>
 			</equals>
 			<equals>
@@ -1910,7 +1765,7 @@ G</text>
 		<condition>
 			<and>
 			<equals>
-				<property>controls/autoflight/nav-mode</property>
+				<property>controls/autoflight/nav-source</property>
 				<value>1</value>
 			</equals>
 			<equals>
@@ -2020,17 +1875,9 @@ G</text>
 	</animation>
 	<animation>
 		<type>material</type>
-		<object-name>Autopilot FMS</object-name>
-		<object-name>Autopilot LOC1</object-name>
-		<object-name>Autopilot LOC2</object-name>
-		<object-name>Autopilot ALTS</object-name>
-		<object-name>Autopilot VS</object-name>
-		<object-name>Autopilot APPR</object-name>
-		<object-name>Autopilot HDG</object-name>
 		<object-name>Autopilot on</object-name>
-		<object-name>Autopilot IAS</object-name>
-		<object-name>Autopilot Mach</object-name>
-		
+		<object-name>AP vert cap</object-name>
+		<object-name>AP lat cap</object-name>
 		<object-name>Radar altimeter</object-name>
 		<object-name>Radar altimeter (metric)</object-name>
 		<object-name>Vertical speed indicator</object-name>
@@ -2083,6 +1930,9 @@ G</text>
 	<animation>
 		<type>material</type>
 		<object-name>Autopilot 1/2 bank</object-name>
+		<object-name>AP vert arm</object-name>
+		<object-name>AP lat arm</object-name>
+		<object-name>AP GS arm</object-name>
 		<object-name>Altimeter thousands counter</object-name>
 		<object-name>Altimeter thousands counter (metric)</object-name>
 		<object-name>FMS</object-name>
@@ -2142,15 +1992,6 @@ G</text>
 		<object-name>ADF2</object-name>
 		<object-name>Heading bug setting</object-name>
 		<object-name>Autopilot 1/2 bank</object-name>
-		<object-name>Autopilot FMS</object-name>
-		<object-name>Autopilot LOC1</object-name>
-		<object-name>Autopilot LOC2</object-name>
-		<object-name>Autopilot ALTS</object-name>
-		<object-name>Autopilot VS</object-name>
-		<object-name>Autopilot APPR</object-name>
-		<object-name>Autopilot HDG</object-name>
-		<object-name>Autopilot IAS</object-name>
-		<object-name>Autopilot Mach</object-name>
 		<object-name>Autopilot on</object-name>
 		<object-name>ADF1</object-name>
 		<object-name>Radar altimeter</object-name>
@@ -2492,7 +2333,6 @@ G</text>
 	<animation>
 		<type>select</type>
 		<object-name>AltTape</object-name>
-		<object-name>AltBug</object-name>
 		<condition>
 			<not>
 				<property>instrumentation/use-metric-altitude</property>
@@ -2502,9 +2342,44 @@ G</text>
 	<animation>
 		<type>select</type>
 		<object-name>AltTapeM</object-name>
+		<condition>
+			<property>instrumentation/use-metric-altitude</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AltBug</object-name>
+		<condition>
+			<not>
+				<property>instrumentation/use-metric-altitude</property>
+			</not>
+			<not>
+				<property>autopilot/annunciators/altitude-flash/state</property>
+			</not>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
 		<object-name>AltBugM</object-name>
 		<condition>
 			<property>instrumentation/use-metric-altitude</property>
+			<not>
+				<property>autopilot/annunciators/altitude-flash/state</property>
+			</not>
+		</condition>
+	</animation>	
+	<animation>
+		<type>select</type>
+		<object-name>MDAptr</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/altimeter/mda-deviation</property>
+				<value>300</value>
+			</less-than>
+			<greater-than>
+				<property>instrumentation/altimeter/mda-deviation</property>
+				<value>-300</value>
+			</greater-than>
 		</condition>
 	</animation>
 	<animation>
@@ -2544,6 +2419,18 @@ G</text>
 		<object-name>AltBugM</object-name>
 		<property>autopilot/internal/altitude-bug-difference-ft</property>
 		<factor>0.0003048</factor>
+		<min>-0.499023437</min>
+		<max>0.499023437</max>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>MDAptr</object-name>
+		<property>instrumentation/altimeter/mda-deviation</property>
+		<factor>0.001</factor>
 		<min>-0.499023437</min>
 		<max>0.499023437</max>
 		<axis>

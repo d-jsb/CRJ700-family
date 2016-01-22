@@ -6,83 +6,81 @@
 var cdu1 = interactive_cdu.Cdu.new("instrumentation/cdu", "Aircraft/CRJ700-family/Systems/CRJ700-cdu.xml");
 
 ## Autopilot
-setlistener("autopilot/internal/autoflight-engaged", func(v)
-{
-	var lm = getprop("controls/autoflight/lat-mode");
-	var vm = getprop("controls/autoflight/vert-mode");
-	#clear toga
-	if (v.getBoolValue()) {
-		setprop("controls/autoflight/flight-director/engage", 1);
-		if (lm == 6 or lm == 7) setprop("controls/autoflight/lat-mode", 0);
-		if (vm == 6 or vm == 7) setprop("controls/autoflight/vert-mode", 0);
-	}
-}, 0, 0);
 
-# sync
-setlistener("controls/autoflight/flight-director/sync", func(v)
+# Basic roll mode sync
+var roll_sync = func()
 {
-    if (!v.getBoolValue()) return;
-	if (getprop("controls/autoflight/autopilot/engage")) return;
-	print("sync");
-    var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
-	var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
-	setprop("autopilot/ref/roll-deg", roll);
-	setprop("autopilot/ref/roll-hdg", heading);
-
-	var vmode = getprop("controls/autoflight/vert-mode");
-	if (vmode == 1) { #ALT
-		setprop("controls/autoflight/altitude-select", getprop("instrumentation/altimeter[0]/indicated-altitude-ft"));
-	} elsif (vmode == 2) { #VS
-		setprop("controls/autoflight/vertical-speed-select", getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm"));
-	} elsif (vmode == 4) { #SPEED
-		setprop("controls/autoflight/speed-select", getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));	
-		setprop("controls/autoflight/mach-select", getprop("instrumentation/airspeed-indicator/indicated-mach"));	
-	} else {
-		var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
-		setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
-	}
-	v.setBoolValue(0);
-}, 0, 0);
-
-# Basic roll mode controller
-setlistener("autopilot/internal/roll-mode-engage", func(v)
-{
-    if (!v.getBoolValue()) return;
-	#print("roll mode engage");
+	#print("sync roll/hdg");
     var roll = getprop("instrumentation/attitude-indicator[0]/indicated-roll-deg");
     if (math.abs(roll) > 5)
     {
-        setprop("controls/autoflight/roll-mode", 1);
+        setprop("autopilot/internal/roll-mode", 1);
         setprop("autopilot/ref/roll-deg", roll);
     }
     else
     {
         var heading = getprop("instrumentation/heading-indicator[0]/indicated-heading-deg");
-        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/internal/roll-mode", 0);
         setprop("autopilot/ref/roll-hdg", heading);
     }
+};
+
+# Basic pitch mode sync
+var pitch_sync = func()
+{
+	var vmode = getprop("controls/autoflight/vert-mode");
+	#print("sync pitch (m:"~vmode~")");    
+	if (vmode == 1) { #ALT
+		setprop("autopilot/ref/alt-hold", int(getprop("instrumentation/altimeter[0]/indicated-altitude-ft")));
+	} elsif (vmode == 2) { #VS
+		#setprop("controls/autoflight/vertical-speed-select", int(getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm")/100)*100);
+		setprop("controls/autoflight/vertical-speed-select", getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm"));
+	} elsif (vmode == 3) { #ALTS
+		setprop("autopilot/ref/alt-hold", getprop("controls/autoflight/altitude-select"));
+	} elsif (vmode == 4) { #SPEED
+		setprop("controls/autoflight/speed-select", int(getprop("instrumentation/airspeed-indicator/indicated-speed-kt")));	
+		setprop("controls/autoflight/mach-select", getprop("instrumentation/airspeed-indicator/indicated-mach"));	
+	} elsif (vmode == 0) { #PTCH
+		var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
+		#setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
+		setprop("controls/autoflight/pitch-select", pitch); 
+	}
+};
+
+# sync
+setlistener("controls/autoflight/flight-director/sync", func(n)
+{
+    if (!n.getBoolValue()) return;
+	if (getprop("controls/autoflight/autopilot/engage")) return;
+	#print("sync");
+	roll_sync();
+	pitch_sync();
+	n.setBoolValue(0);
 }, 0, 0);
 
-# Basic pitch mode controller
-setlistener("autopilot/internal/basic-pitch-mode-engage", func(v)
+setlistener("autopilot/internal/autoflight-engaged", func(n)
 {
-    if (!v.getBoolValue()) return;
-	#print("Basic pitch mode");
-	if (getprop("controls/autoflight/vert-mode") != 0) return; #toga
-    var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
-    setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
+	if (n.getBoolValue()) {
+		var lm = getprop("controls/autoflight/lat-mode");
+		var vm = getprop("controls/autoflight/vert-mode");
+		setprop("controls/autoflight/flight-director/engage", 1);
+		#clear toga
+		if (lm == 6 or lm == 7) {
+			setprop("controls/autoflight/lat-mode", 0);
+			lm = 0;
+		}
+		if (vm == 6 or vm == 7) {
+			setprop("controls/autoflight/vert-mode", 0);
+			vm = 0;
+		}
+		if (lm == 0) roll_sync();
+		if (vm == 0) pitch_sync();
+	}
 }, 0, 0);
-
-#prevent half-bank in certain lateral modes
-setlistener("controls/autoflight/half-bank", func(v)
-{
-	var lm = getprop("controls/autoflight/lat-mode");
-    if (lm == 2 or lm == 3 or lm == 6 or lm == 7)
-		v.setValue(0);
-}, 0, 1);
 
 #TO/GA mode
-setlistener("controls/autoflight/toga-button", func (n) {
+setlistener("controls/autoflight/toga-button", func (n) 
+{
 	var on_ground = getprop("gear/gear[1]/wow");
 	if (n.getValue()) {
 		setprop("controls/autoflight/autopilot/engage", 0);
@@ -98,61 +96,202 @@ setlistener("controls/autoflight/toga-button", func (n) {
 		}
 		# setprop("autopilot/internal/bank-limit-deg", 5);
 		setprop("controls/autoflight/pitch-select", 10);
-        setprop("controls/autoflight/roll-mode", 0);
+        setprop("autopilot/internal/roll-mode", 0);
         setprop("autopilot/ref/roll-hdg", getprop("instrumentation/heading-indicator[0]/indicated-heading-deg"));
  		n.setBoolValue(0);
 	}
 }, 1, 0);
 
 var gs_rangeL = nil;
-var gs_rateL = nil;
+var gs_captureL = nil;
 # catch GS if in range and FD in approach mode
-var gs_mon = func(v) {
+var gs_mon = func(n) 
+{
 	if (getprop("instrumentation/nav[0]/gs-in-range") == 0) return;
-	if (getprop("controls/autoflight/lat-mode") == 3 and getprop("instrumentation/nav[0]/gs-rate-of-climb") <= 0) {
-		print("GS capture");
-		setprop("controls/autoflight/vert-mode", 0);
-		if (gs_rateL != nil) {
-			removelistener(gs_rateL);
-			gs_rateL = nil;	
+	var lm = getprop("controls/autoflight/lat-mode");
+	var gsdefl = n.getValue(); 
+	if (lm == 3 and (gsdefl < 0.1 and gsdefl > -0.1)) 
+	{
+		#print("GS capture");
+		setprop("controls/autoflight/vert-mode", 5);
+		setprop("autopilot/annunciators/gs-armed", 0);
+		if (gs_captureL != nil) {
+			removelistener(gs_captureL);
+			gs_captureL = nil;	
 		}
 	}
 	#if not in APPR mode, cancel GS monitoring
-	if (getprop("controls/autoflight/lat-mode") != 3 and gs_rateL != nil) {
-		removelistener(gs_rateL);
-		gs_rateL = nil;		
+	if (getprop("controls/autoflight/lat-mode") != 3 and gs_captureL != nil) {
+		removelistener(gs_captureL);
+		gs_captureL = nil;		
 	}
 }
 
-setlistener("controls/autoflight/lat-mode", func (n) {
+# lateral mode handler
+#2do: arm/capture logic
+setlistener("controls/autoflight/lat-mode", func (n) 
+{
 	var mode = n.getValue();
-	var bank = getprop("autopilot/internal/bank-limit-deg");
+	var mode_txt = {
+		0: "ROLL",
+		1: "HDG",
+		6: "TO",
+		7: "GA",
+	};
+	#print("l:"~mode);
+	if (mode != 0)
+        setprop("autopilot/internal/roll-mode", 0);
+	if (mode == 0 or mode == 6 or mode == 7) 
+		roll_sync();
 
-    if (mode == 2 or mode == 3)
-		setprop("controls/autoflight/half-bank", 0);
-	
-	#GS handling in APPR mode 
-	if (mode == 3 and gs_rangeL == nil) {
-		gs_rangeL = setlistener("instrumentation/nav[0]/gs-in-range", func (v) {
-				if (v.getBoolValue()) {
+	#GS arming for APPR mode 
+	if (mode == 3 and gs_rangeL == nil) 
+	{
+		gs_rangeL = setlistener("instrumentation/nav[0]/gs-in-range", func (n) {
+				setprop("autopilot/annunciators/gs-armed", 1);
+				if (n.getBoolValue()) {
 					if (gs_rangeL != nil) {
 						removelistener(gs_rangeL);
 						gs_rangeL = nil;
 					}
-					# if GS in range, wait 1s and track GS
-					settimer(func { gs_rateL = setlistener("instrumentation/nav[0]/gs-rate-of-climb", gs_mon, 1, 0); }, 1);	
+					# if GS in range, wait some seconds and track GS
+					settimer(func { gs_captureL = setlistener("instrumentation/nav[0]/gs-needle-deflection-deg", gs_mon, 0, 0); }, 4);	
 				}
 			}, 1, 0);
-		print("gs_rangeL "~gs_rangeL);
+		#print("gs_rangeL "~gs_rangeL);
 	}
-	#remove GS capture if leaving APPR mode
-	if (mode != 3 and gs_rangeL != nil) {
-		removelistener(gs_rangeL);
-		gs_rangeL = nil;
-		print("gs_rangeL nil");
+	#remove GS arm if leaving APPR mode
+	if (mode != 3) 
+	{
+		setprop("autopilot/annunciators/gs-armed", 0);
+		if (gs_rangeL != nil) {
+			removelistener(gs_rangeL);
+			gs_rangeL = nil;
+			#print("gs_rangeL nil");
+		}
+		if (getprop("/controls/autoflight/vert-mode") == 5)
+			setprop("/controls/autoflight/vert-mode", 0);
 	}
-}, 1, 1);
+	if (mode == 0 or mode == 1 or mode == 6 or mode == 7) {
+		setprop("autopilot/annunciators/lat-capture", mode_txt[mode]);
+		setprop("autopilot/annunciators/lat-armed", "");
+	}
+	#nav/appr
+	if (mode == 2 or mode == 3) 
+		nav_annunciator();
+}, 0, 1);
 
+# vertical mode handler
+#2do: arm/capture logic
+setlistener("controls/autoflight/vert-mode", func (n) {
+	var mode = n.getValue();
+	#capture txt # vert arm only ALTS or GS
+	var mode_txt = {
+		0: "PTCH",
+		1: "ALT", #hold!
+		2: "VS",
+		3: "ALTS",
+		4: "IAS",
+		5: "GS",
+		6: "TO",
+		7: "GA",
+	};
+	#print("v:"~mode);
+	pitch_sync();
+	setprop("autopilot/annunciators/vert-capture", mode_txt[mode]);
+	if (mode == 1)
+		setprop("autopilot/annunciators/altitude-flash-cmd", 0);
+	if (mode == 2)
+		vs_annunciator();
+	if (mode == 4)
+		speed_annunciator();
+}, 0, 1);
+
+var nav_annunciator = func ()
+{
+	var nsrc = getprop("controls/autoflight/nav-source");
+	var nav_src = ["VOR1", "VOR2", "FMS1", "FMS2"];
+	var lm = getprop("controls/autoflight/lat-mode");
+
+	if (lm == 2 or lm == 3) 
+	{
+		if (nsrc == 0 and getprop("autopilot/internal/vor1-captured") or 
+			nsrc == 1 and getprop("autopilot/internal/vor2-captured") or
+			nsrc == 2 and getprop("autopilot/internal/fms1-captured"))
+		{
+			setprop("autopilot/annunciators/lat-capture", nav_src[nsrc]);
+			setprop("autopilot/annunciators/lat-armed", "");
+		}
+		else 
+		{
+			setprop("autopilot/annunciators/lat-capture", "HDG");
+			setprop("autopilot/annunciators/lat-armed", nav_src[nsrc]);
+		}
+	}	
+}
+setlistener("autopilot/internal/vor1-captured", nav_annunciator, 0, 0);
+setlistener("autopilot/internal/vor2-captured", nav_annunciator, 0, 0);
+
+var vs_annunciator = func () 
+{
+	var ref = sprintf("%1.1f", getprop("controls/autoflight/vertical-speed-select")/1000);
+	if (getprop("controls/autoflight/vert-mode") == 2)
+		setprop("autopilot/annunciators/vert-capture", "VS "~ref);
+}
+setlistener("controls/autoflight/vertical-speed-select", vs_annunciator, 0, 0);
+
+var speed_annunciator = func () 
+{
+	var ref = int(getprop("controls/autoflight/speed-select"));
+	if (getprop("controls/autoflight/vert-mode") == 4) 
+		setprop("autopilot/annunciators/vert-capture", "IAS "~ref);
+	
+}
+setlistener("controls/autoflight/speed-select", speed_annunciator, 0, 0);
+
+# Altitude alert
+var flash_alt_bug = func()
+{
+	setprop("autopilot/annunciators/altitude-flash-cmd", 1);
+	settimer(func { setprop("autopilot/annunciators/altitude-flash-cmd", 0); }, 10);
+}
+var altitude_alert = func(n) 
+{
+	if (n.getBoolValue())
+	{
+		#print("ALT alert ");
+		setprop("sim/alarms/altitude-alert", 1);
+		settimer(func { setprop("sim/alarms/altitude-alert", 0); }, 1.5);
+		flash_alt_bug();
+	}
+}
+setlistener("autopilot/internal/alts-threshold", altitude_alert, 0, 0);
+
+var mda_alert = func(n) 
+{
+	if (n.getBoolValue())
+	{
+		setprop("sim/alarms/altitude-alert", 1);
+		settimer(func { setprop("sim/alarms/altitude-alert", 0); }, 1.5);		
+	}
+}
+setlistener("autopilot/annunciators/mda-alert", mda_alert, 0, 0);
+
+var altitude_capture = func(n)
+{
+	#capture = within 200ft of preselected alt and not in alt hold mode
+	if (getprop("controls/autoflight/vert-mode") == 1) 
+		return;
+	if (n.getBoolValue())
+	{
+		#print("ALT capture 200");
+		setprop("autopilot/annunciators/altitude-flash-cmd", 0);
+		setprop("autopilot/annunciators/vert-capture", "ALTS CAP");
+		setprop("controls/autoflight/vert-mode", 3); #alt track
+	}
+	#elsif ()
+}
+setlistener("autopilot/internal/alts-capture", altitude_capture, 0, 0);
 
 ## EICAS message system
 var Eicas_messages =
