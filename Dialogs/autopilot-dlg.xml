@@ -41,6 +41,7 @@
 	<!-- MCP -->
     <group>
 		<layout>table</layout>
+		<default-padding>0</default-padding>
 		<group><!-- CRS1 -->
 			<layout>vbox</layout>
 			<valign>top</valign>
@@ -49,7 +50,7 @@
 			<button>
 				<legend>CRS1</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>50</pref-width>
 				<binding>
 					<command>property-assign</command>
 					<property>instrumentation/nav[0]/radials/selected-deg</property>
@@ -58,9 +59,9 @@
 			</button>
 			<group>
 				<layout>hbox</layout>
-				<button>
+<!-- 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>right</halign>
 					<legend>&lt;</legend>
 					<binding>
@@ -79,7 +80,7 @@
 						<property>instrumentation/nav[0]/radials/selected-deg</property>
 						<value>360</value>
 					</binding>
-				</button>
+				</button> -->
 				<input>
 					<pref-width>39</pref-width>
 					<property>instrumentation/nav[0]/radials/selected-deg</property>
@@ -88,9 +89,9 @@
 					</binding>
 					<live type="bool">true</live>
 				</input>
-				<button>
+<!-- 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>left</halign>
 					<legend>&gt;</legend>
 					<binding>
@@ -109,7 +110,7 @@
 						<property>instrumentation/nav[0]/radials/selected-deg</property>
 						<value>1</value>
 					</binding>
-				</button>
+				</button> -->
 			</group>
 			<group>
 				<layout>hbox</layout>
@@ -122,7 +123,7 @@
 				<button>
 					<legend>FD</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>35</pref-width>
 					<binding>
 						<command>property-toggle</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -166,7 +167,7 @@
 				<button>
 					<legend>AP</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>32</pref-width>
 					<binding>
 						<command>property-toggle</command>
 						<property>controls/autoflight/autopilot/engage</property>
@@ -181,7 +182,7 @@
 			</group>
 			<button>
 				<legend>AP DISC</legend>
-				<pref-width>65</pref-width>
+				<pref-width>58</pref-width>
 				<binding>
 					<command>property-assign</command>
 					<property>controls/autoflight/autopilot/engage</property>
@@ -189,7 +190,7 @@
 				</binding>
 			</button>		
 		</group>
-		<group><!-- XFR -->
+<!-- 		<group>
 			<layout>vbox</layout>
 			<valign>top</valign>
 			<row>0</row>
@@ -197,7 +198,7 @@
 			<button>
 				<legend>XFR </legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<enable>
 					<false />
 				</enable>
@@ -205,12 +206,12 @@
 			<button>
 				<legend>Turb</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<enable>
 					<false />
 				</enable>
 			</button>
-		</group>
+		</group> -->
 		<vrule>
 			<row>0</row>
 			<col>4</col>
@@ -234,7 +235,7 @@
 				<button>
 					<legend>SPEED</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-cycle</command>
 						<property>controls/autoflight/vert-mode</property>
@@ -254,6 +255,7 @@
 			</group>
 			<group>
 				<layout>table</layout>
+				<default-padding>0</default-padding>
 				<group><!-- IAS -->
 					<row>0</row>
 					<col>0</col>
@@ -270,7 +272,7 @@
 					<button>
 						<legend>IAS</legend>
 						<pref-height>25</pref-height>
-						<pref-width>40</pref-width>
+						<pref-width>45</pref-width>
 						<binding>
 							<command>property-assign</command>
 							<property>controls/autoflight/speed-mode</property>
@@ -285,7 +287,7 @@
 					<col>1</col>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>right</halign>
 						<legend>&lt;</legend>
 						<binding>
@@ -305,7 +307,7 @@
 					</input>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>left</halign>
 						<legend>&gt;</legend>
 						<binding>
@@ -332,7 +334,7 @@
 					<button>
 						<legend>MACH</legend>
 						<pref-height>25</pref-height>
-						<pref-width>40</pref-width>
+						<pref-width>45</pref-width>
 						<binding>
 							<command>property-assign</command>
 							<property>controls/autoflight/speed-mode</property>
@@ -346,7 +348,7 @@
 					<col>1</col>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>right</halign>
 						<legend>&lt;</legend>
 						<binding>
@@ -366,7 +368,7 @@
 					</input>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>left</halign>
 						<legend>&gt;</legend>
 						<binding>
@@ -402,7 +404,7 @@
 				<button>
 					<legend>APPR</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-assign</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -436,7 +438,7 @@
 				<button>
 					<legend>B/C</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<enable>
 						<false />
 					</enable>					
@@ -472,7 +474,7 @@
 				<button>
 					<legend>HDG</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-assign</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -499,7 +501,7 @@
 				<layout>hbox</layout>
 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>right</halign>
 					<legend>&lt;</legend>
 					<binding>
@@ -529,7 +531,7 @@
 				</input>
 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>left</halign>
 					<legend>&gt;</legend>
 					<binding>
@@ -553,7 +555,7 @@
 			<button>
 				<legend>sync</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<binding>
 					<command>property-assign</command>
 					<property>controls/autoflight/heading-select</property>
@@ -580,7 +582,7 @@
 				<button>
 					<legend>NAV</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-assign</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -615,9 +617,9 @@
 					</visible>
 				</text>
 				<button>
-					<legend>1/2 BANK</legend>
+					<legend>1/2 Bnk</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-toggle</command>
 						<property>controls/autoflight/half-bank</property>
@@ -657,7 +659,7 @@
 				<button>
 					<legend>ALT</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-assign</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -666,6 +668,12 @@
 					<binding>
 						<command>property-cycle</command>
 						<property>controls/autoflight/vert-mode</property>
+						<condition>
+							<not-equals>
+								<property>controls/autoflight/vert-mode</property>
+								<value>5</value>
+							</not-equals>
+						</condition>
 						<value>1</value>
 						<value>0</value>
 					</binding>
@@ -684,7 +692,7 @@
 				<layout>hbox</layout>
 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>right</halign>
 					<legend>&lt;</legend>
 					<binding>
@@ -704,7 +712,7 @@
 				</input>
 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>left</halign>
 					<legend>&gt;</legend>
 					<binding>
@@ -718,7 +726,7 @@
 			<button>
 				<legend>dummy</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<enable>
 					<false />
 				</enable>
@@ -747,7 +755,7 @@
 				<button>
 					<legend>VS</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>55</pref-width>
 					<binding>
 						<command>property-assign</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -776,7 +784,7 @@
 					<layout>hbox</layout>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>right</halign>
 						<legend>&lt;</legend>
 						<binding>
@@ -815,7 +823,7 @@
 					</input>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>left</halign>
 						<legend>&gt;</legend>
 						<binding>
@@ -849,7 +857,7 @@
 					<layout>hbox</layout>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>right</halign>
 						<legend>&lt;</legend>
 						<binding>
@@ -869,7 +877,7 @@
 					</input>
 					<button>
 						<pref-height>25</pref-height>
-						<pref-width>25</pref-width>
+						<pref-width>20</pref-width>
 						<halign>left</halign>
 						<legend>&gt;</legend>
 						<binding>
@@ -893,7 +901,7 @@
 			<col>15</col>
 			<button>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>50</pref-width>
 				<legend>CRS2</legend>
 				<binding>
 					<command>property-assign</command>
@@ -904,9 +912,9 @@
 			
 			<group>
 				<layout>hbox</layout>
-				<button>
+<!-- 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>right</halign>
 					<legend>&lt;</legend>
 					<binding>
@@ -925,7 +933,7 @@
 						<property>instrumentation/nav[1]/radials/selected-deg</property>
 						<value>360</value>
 					</binding>
-				</button>
+				</button> -->
 				<input>
 					<pref-width>39</pref-width>
 					<property>instrumentation/nav[1]/radials/selected-deg</property>
@@ -934,9 +942,9 @@
 					</binding>
 					<live type="bool">true</live>
 				</input>
-				<button>
+<!-- 				<button>
 					<pref-height>25</pref-height>
-					<pref-width>25</pref-width>
+					<pref-width>20</pref-width>
 					<halign>left</halign>
 					<legend>&gt;</legend>
 					<binding>
@@ -955,7 +963,7 @@
 						<property>instrumentation/nav[1]/radials/selected-deg</property>
 						<value>1</value>
 					</binding>
-				</button>
+				</button> -->
 			</group>
 			<group>
 				<layout>hbox</layout>
@@ -968,7 +976,7 @@
 				<button>
 					<legend>FD</legend>
 					<pref-height>25</pref-height>
-					<pref-width>65</pref-width>
+					<pref-width>35</pref-width>
 					<binding>
 						<command>property-toggle</command>
 						<property>controls/autoflight/flight-director/engage</property>
@@ -1061,7 +1069,7 @@
 			<button>
 				<legend>AutoThr.</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<enable>
 					<property>sim/config/allow-autothrottle</property>
 				</enable>
@@ -1092,7 +1100,7 @@
 			<button>
 				<legend>TOGA</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
+				<pref-width>55</pref-width>
 				<binding>
 					<command>property-toggle</command>
 					<property>controls/autoflight/toga-button</property>
@@ -1119,10 +1127,7 @@
 			<button>
 				<legend>YD1</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
-				<enable>
-					<false />
-				</enable>
+				<pref-width>50</pref-width>
 				<binding>
 					<command>property-toggle</command>
 					<property>controls/autoflight/yaw-damper[0]/engage</property>
@@ -1146,10 +1151,7 @@
 			<button>
 				<legend>YD2</legend>
 				<pref-height>25</pref-height>
-				<pref-width>65</pref-width>
-				<enable>
-					<false />
-				</enable>
+				<pref-width>50</pref-width>
 				<binding>
 					<command>property-toggle</command>
 					<property>controls/autoflight/yaw-damper[1]/engage</property>
@@ -1167,6 +1169,7 @@
 	<hrule/>
 	<group>
 		<layout>table</layout>
+		<default-padding>0</default-padding>
 		<text>
 			<row>0</row>
 			<col>0</col>

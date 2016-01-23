@@ -64,9 +64,18 @@
 					<property>controls/autoflight/vert-mode</property>
 					<value>5</value>
 				</not-equals>
-				<not>
-					<property>autopilot/internal/alts-capture</property>
-				</not>
+				<or>
+					<not>
+						<property>autopilot/internal/alts-capture</property>
+					</not>
+					<and>
+						<property>autopilot/internal/alts-capture</property>
+						<equals>
+							<property>controls/autoflight/vert-mode</property>
+							<value>1</value>
+						</equals>
+					</and>
+				</or>
 			</and>
 		</input>
 		<output>autopilot/annunciators/vert-armed</output>
