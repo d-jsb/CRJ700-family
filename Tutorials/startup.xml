@@ -365,7 +365,7 @@
 			</condition>
 		</exit>
 	</step>
-
+	
 	<step>
 		<message>
 		Now let's start the engines. Activate an engine starter by clicking the start button.
@@ -389,8 +389,8 @@
 		<exit>
 			<condition>
 				<or>
-					<property>controls/engines/engine[0]/starter</property>
-					<property>controls/engines/engine[1]/starter</property>
+					<property>controls/engines/engine[0]/starter-cmd</property>
+					<property>controls/engines/engine[1]/starter-cmd</property>
 				</or>
 			</condition>
 			<set>
@@ -399,7 +399,7 @@
 			</set>
 		</exit>
 	</step>
-	
+
 	<step>
 		<message>
 		At ~20% N2 thust lever must be set from cutoff to idle to allow fuel flow.			
@@ -433,7 +433,7 @@
 			</condition>
 		</exit>
 	</step>
-	
+
 	<step>
 		<message>
 		Now wait for the engines to spool up to about 20% N1 and become responsive.

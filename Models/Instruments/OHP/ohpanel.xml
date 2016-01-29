@@ -1878,7 +1878,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/engines/engine[0]/starter</property>
+				<property>controls/engines/engine[0]/starter-cmd</property>
 				<value type="bool">true</value>
 			</binding>
 		</action>
@@ -1887,7 +1887,7 @@
 		<type>translate</type>
 		<object-name>Eng1StartBtn</object-name>
 		<object-name>Eng1StartLight</object-name>
-		<property>controls/engines/engine[0]/starter</property>
+		<property>controls/engines/engine[0]/starter-cmd</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -1906,7 +1906,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/engines/engine[0]/starter</property>
+					<property>engines/engine[0]/starter</property>
 				</or>					
 			</and>
 		</condition>
@@ -1927,7 +1927,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/engines/engine[0]/starter</property>
+				<property>controls/engines/engine[0]/starter-cmd</property>
 				<value type="bool">false</value>
 			</binding>
 		</action>
@@ -1936,7 +1936,7 @@
 		<type>translate</type>
 		<object-name>Eng1StopBtn</object-name>
 		<object-name>Eng1StopLight</object-name>
-		<property>controls/engines/engine[0]/starter</property>
+		<property>controls/engines/engine[0]/starter-cmd</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 		<x>-1</x>
@@ -1956,7 +1956,7 @@
 				<or>
 					<property>controls/lighting/lt-test</property>
 					<and>
-						<not><property>controls/engines/engine[0]/starter</property></not>
+						<not><property>controls/engines/engine[0]/starter-cmd</property></not>
 						<not><property>engines/engine[0]/running</property></not>
 						<greater-than>
 							<property>engines/engine[0]/rpm2</property>
@@ -1983,7 +1983,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/engines/engine[1]/starter</property>
+				<property>controls/engines/engine[1]/starter-cmd</property>
 				<value type="bool">true</value>
 			</binding>
 		</action>
@@ -1992,7 +1992,7 @@
 		<type>translate</type>
 		<object-name>Eng2StartBtn</object-name>
 		<object-name>Eng2StartLight</object-name>
-		<property>controls/engines/engine[1]/starter</property>
+		<property>controls/engines/engine[1]/starter-cmd</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -2011,7 +2011,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/engines/engine[1]/starter</property>
+					<property>engines/engine[1]/starter</property>
 				</or>					
 			</and>
 		</condition>
@@ -2032,7 +2032,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/engines/engine[1]/starter</property>
+				<property>controls/engines/engine[1]/starter-cmd</property>
 				<value type="bool">false</value>
 			</binding>
 		</action>
@@ -2041,7 +2041,7 @@
 		<type>translate</type>
 		<object-name>Eng2StopBtn</object-name>
 		<object-name>Eng2StopLight</object-name>
-		<property>controls/engines/engine[1]/starter</property>
+		<property>controls/engines/engine[1]/starter-cmd</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 		<x>-1</x>
@@ -2061,7 +2061,7 @@
 				<or>
 					<property>controls/lighting/lt-test</property>
 					<and>
-						<not><property>controls/engines/engine[1]/starter</property></not>
+						<not><property>controls/engines/engine[1]/starter-cmd</property></not>
 						<not><property>engines/engine[1]/running</property></not>
 						<greater-than>
 							<property>engines/engine[1]/rpm2</property>

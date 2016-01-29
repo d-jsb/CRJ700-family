@@ -281,134 +281,186 @@ Engine.Apu = func() {
 #
 Engine.Jet = func(n)
 {
-    var jet = {n : n, serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
-    jet.fdm_throttle_idle = 0.01;
+	var flight_model = getprop("/sim/flight-model");
+  var jet = {n : n, serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
+  jet.fdm_throttle_idle = 0.01;
 
-    jet.controls = {cutoff: 0, fire_ex: 0, reverser_arm: 0, reverser_cmd: 0, starter: 0, thrust_mode: 0, throttle: 0};
+  jet.controls = {cutoff: 0, fire_ex: 0, reverser_arm: 0, reverser_cmd: 0, starter_cmd: 0, thrust_mode: 0, throttle: 0};
 
-    jet.controls.cutoff_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/cutoff", 1);
-    jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
+  jet.controls.cutoff_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/cutoff", 1);
+  jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
 
-    jet.controls.fire_ex_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/fire-bottle-discharge", 1);
-    jet.controls.fire_ex_node.setBoolValue(jet.controls.fire_ex);
+  jet.controls.fire_ex_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/fire-bottle-discharge", 1);
+  jet.controls.fire_ex_node.setBoolValue(jet.controls.fire_ex);
 
-    jet.controls.reverser_arm_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-armed", 1);
-    jet.controls.reverser_arm_node.setBoolValue(jet.controls.reverser_arm);
+  jet.controls.reverser_arm_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-armed", 1);
+  jet.controls.reverser_arm_node.setBoolValue(jet.controls.reverser_arm);
 
-    jet.controls.reverser_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-cmd", 1);
-    jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
+  jet.controls.reverser_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-cmd", 1);
+  jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
 
+  jet.controls.starter_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/starter-cmd", 1);
+  jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
+    
+  jet.controls.thrust_mode_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/thrust-mode", 1);
+  jet.controls.thrust_mode_node.setIntValue(jet.controls.thrust_mode);
+
+  jet.controls.throttle_node = props.globals.getNode("/fcs/throttle-cmd-norm[" ~ n ~ "]", 1);
+  jet.controls.throttle_node.setValue(jet.controls.throttle);
+
+	jet.starter_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/starter", 1);
+
+	jet.fdm_throttle_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/throttle-lever", 1);
+  jet.fdm_reverser_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser", 1);
+
+	#EICAS display
+	jet.n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm", 1);
+	jet.n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm2", 1);
+
+  #YASim FDM values, set to minimum values from XML if engine is off
+	jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
+	jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
+
+	if (flight_model == "yasim")
+	{
+		jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
+		jet.running_node.setBoolValue(jet.running);
+	}
+	elsif (flight_model == "jsb")
+	{
+    #for jsbsim
     jet.controls.starter_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/starter", 1);
-    jet.controls.starter_node.setBoolValue(jet.controls.starter);
-
-    jet.controls.thrust_mode_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/thrust-mode", 1);
-    jet.controls.thrust_mode_node.setIntValue(jet.controls.thrust_mode);
-
-    jet.controls.throttle_node = props.globals.getNode("/fcs/throttle-cmd-norm[" ~ n ~ "]", 1);
-    jet.controls.throttle_node.setValue(jet.controls.throttle);
-
-    jet.fdm_throttle_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/throttle-lever", 1);
-    jet.fdm_reverser_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser", 1);
-    jet.n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm", 1);
-    jet.n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm2", 1);
-    jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
-    jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
-
-    jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
-    jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
-	jet.running_node.setBoolValue(jet.running);
-    jet.on_fire_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/on-fire", 1);
-    jet.on_fire_node.setBoolValue(jet.on_fire);
-    jet.serviceable_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/serviceable", 1);
-    jet.serviceable_node.setBoolValue(jet.serviceable);
+		jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running");
+	}
+  jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
+  jet.on_fire_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/on-fire", 1);
+  jet.on_fire_node.setBoolValue(jet.on_fire);
+  jet.serviceable_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/serviceable", 1);
+  jet.serviceable_node.setBoolValue(jet.serviceable);
 
 
 	#instant on
 	jet.on = func
 	{
-		jet.controls.cutoff = 0;
-		jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
-		jet.n1 = jet.fdm_n1;
-		jet.n2 = jet.fdm_n2;
-        jet.n1_node.setValue(jet.n1);
-        jet.n2_node.setValue(jet.n2);
-		jet.running = 1;
-        jet.running_node.setBoolValue(jet.running);
-		jet.out_of_fuel_node.setBoolValue(0);
-		jet.controls.starter = 0;
-        jet.controls.starter_node.setBoolValue(jet.controls.starter);
-	};
-
-    jet.update = func
-    {
-		jet.serviceable = jet.serviceable_node.getBoolValue();
-		jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
-        jet.fdm_n1 = jet.fdm_n1_node.getValue();
-        jet.fdm_n2 = jet.fdm_n2_node.getValue();
-        jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
-        jet.controls.starter = jet.controls.starter_node.getBoolValue();
-        jet.controls.throttle = jet.controls.throttle_node.getValue();
-		jet.running = jet.running_node.getBoolValue();
-
-        var time_delta = getprop_safe("sim/time/delta-sec");
-		# possible states: 
-		# running
-		# starting
-		# off/spin down
-		if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
-		
-		if (jet.running) {
-			jet.controls.starter = 0;
-			jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
+		if (flight_model == "yasim")
+		{
+			jet.controls.cutoff = 0;
+			jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
 			jet.n1 = jet.fdm_n1;
 			jet.n2 = jet.fdm_n2;
-		}
-		elsif (jet.serviceable and jet.controls.starter and jet._has_bleed_air()) {
-			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
-			if (jet.n2 > 25 and jet.controls.cutoff) jet.n2 = 25;
-			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
-			if (jet.n1 >= jet.fdm_n1) {
-				jet.running = 1;
-				jet.controls.starter = 0;
-			}
-		}
-		else {
-			#shutdown: N1 25->0 ~15s; N2 60
-            jet.running = 0;
-            jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
-			if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
-			else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
-            jet.fdm_throttle = 0;
-		}
+			jet.n1_node.setValue(jet.n1);
+			jet.n2_node.setValue(jet.n2);
+			jet.running = 1;
+			jet.running_node.setBoolValue(jet.running);
+			jet.controls.starter_cmd = 0;
+			jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
+		}	
+		elsif (flight_model == "jsb")
+		{
+			jet.controls.starter_cmd = 0;
+			jet.controls.cutoff = 0;			
 
-		jet.running_node.setBoolValue(jet.running);
-        jet.controls.starter_node.setBoolValue(jet.controls.starter);
-        jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
-        jet.n1_node.setValue(jet.n1);
-        jet.n2_node.setValue(jet.n2);
-    };
+			jet.controls.cutoff_node.setBoolValue(1);
+			jet.controls.starter_node.setBoolValue(1);
+			settimer(func () {
+				jet.controls.cutoff_node.setBoolValue(0);
+			}, 1);
+		}
+	};
 
-    jet.toggle_reversers = func
+  jet.update = func
+  {
+    jet.serviceable = jet.serviceable_node.getBoolValue();
+    jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
+    jet.fdm_n1 = jet.fdm_n1_node.getValue();
+    jet.fdm_n2 = jet.fdm_n2_node.getValue();
+    jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
+    jet.controls.starter_cmd = jet.controls.starter_cmd_node.getBoolValue();
+    jet.controls.throttle = jet.controls.throttle_node.getValue();
+    jet.running = jet.running_node.getBoolValue();
+
+    var time_delta = getprop_safe("sim/time/delta-sec");
+    # possible states: 
+    # running
+    # starting
+    # off/spin down
+    if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
+
+    if (flight_model == "yasim")
     {
-		print("Engine toggle_reversers");
-        jet.controls.throttle = jet.controls.throttle_node.getValue();
-        jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
-        if (jet.controls.throttle <= 0.01 and jet.controls.thrust_mode == 0)
-        {
-            jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
+      if (jet.running) {
+        jet.starter_node.setValue(0); #write status of starter, used by OHP switch light
+        jet.controls.starter_cmd = 0;
+        jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
+        jet.n1 = jet.fdm_n1;
+        jet.n2 = jet.fdm_n2;
+      }
+      elsif (jet.serviceable and jet.controls.starter_cmd and jet._has_bleed_air()) 
+      {
+        jet.starter_node.setValue(1);
+        jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
+        if (jet.n2 > 25 and jet.controls.cutoff) jet.n2 = 25;
+        if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
+        if (jet.n1 >= jet.fdm_n1) {
+          jet.running = 1;
+          jet.controls.starter_cmd = 0;
         }
-        jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
+      }
+      else 
+      {
+        #shutdown: N1 25->0 ~15s; N2 60
+        jet.running = 0;
+        jet.controls.starter_cmd = 0;
+        jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
+        if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
+        else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
+        jet.fdm_throttle = 0;
+      }
+      jet.running_node.setBoolValue(jet.running);
+      #jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
+      #jet.fuel_flow_pph_node.setValue(jet.fuel_flow_gph * Engine.fuel_density());
+    }
+    elsif (flight_model == "jsb") 
+    {
+      jet.n1 = jet.fdm_n1;
+      jet.n2 = jet.fdm_n2;
+      if (jet.running) 
+      {
+        jet.controls.starter_cmd = 0;
+        jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
+      }
+      elsif (jet._has_bleed_air() and jet.controls.starter_cmd) 
+      {
+        jet.controls.starter_node.setValue(1); #activate jsbsim starter
+      }
+    }
+    jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
+    jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
+    #update properties for EICAS 
+    jet.n1_node.setValue(jet.n1);
+    jet.n2_node.setValue(jet.n2);
+  };
+
+  jet.toggle_reversers = func
+  {
+    print("Engine toggle_reversers");
+    jet.controls.throttle = jet.controls.throttle_node.getValue();
+    jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
+    if (jet.controls.throttle <= 0.01 and jet.controls.thrust_mode == 0)
+    {
+        jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
+    }
+    jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
 	};
 
 
-    jet._has_bleed_air = func
-    {
+  jet._has_bleed_air = func
+  {
 		var pressure = 0;
 		if (jet.n == 0) pressure = getprop_safe("systems/pneumatic/pressure-left");
 		if (jet.n == 1) pressure = getprop_safe("systems/pneumatic/pressure-right");
-		
 		return (pressure > 0);
-    }
+  }
 
 #-- set listeners for rare events, e.g. not necessary to poll in the update loop
 	setlistener(jet.on_fire_node, func (v)
