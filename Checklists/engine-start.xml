@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml-stylesheet type="text/xsl" href="checklist.xsl"?>
 
 <PropertyList>
 	<title>Engine start</title>
@@ -207,13 +207,13 @@
 			</marker>
 			<condition>
 				<or>
-					<property>/controls/engines/engine[0]/starter</property>
+					<property>/controls/engines/engine[0]/starter-cmd</property>
 					<property>/engines/engine[0]/running</property>
 				</or>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/engines/engine[0]/starter</property>
+				<property>/controls/engines/engine[0]/starter-cmd</property>
 				<value>1</value>
 			</binding>		
 		</item>
@@ -233,14 +233,9 @@
 			<name>Engine 1 Starter Switch Light </name>
 			<value>CHECK OFF</value>
 			<condition>
-				<not><property>/controls/engines/engine[0]/starter</property></not>
+				<not><property>/engines/engine[0]/starter</property></not>
 				<property>/engines/engine[0]/running</property>
 			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/engines/engine[0]/starter</property>
-				<value>0</value>
-			</binding>		
 		</item>
 	</page>
 	<page>
@@ -256,13 +251,13 @@
 			</marker>
 			<condition>
 				<or>
-					<property>/controls/engines/engine[1]/starter</property>
+					<property>/controls/engines/engine[1]/starter-cmd</property>
 					<property>/engines/engine[1]/running</property>
 				</or>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/engines/engine[1]/starter</property>
+				<property>/controls/engines/engine[1]/starter-cmd</property>
 				<value>1</value>
 			</binding>		
 		</item>
@@ -283,15 +278,10 @@
 			<value>CHECK OFF</value>
 			<condition>
 				<and>
-					<not><property>/controls/engines/engine[1]/starter</property></not>
+					<not><property>/engines/engine[1]/starter</property></not>
 					<property>/engines/engine[1]/running</property>
 				</and>
 			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/engines/engine[1]/starter</property>
-				<value>0</value>
-			</binding>		
 		</item>
 		<item>
 			<name>---</name>

@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml-stylesheet type="text/xsl" href="checklist.xsl"?>
 
 <PropertyList>
 	<title>Landing</title>
-	<item>
-		<name>Autopilot</name>
-		<value>OFF</value>
-		<condition>
-			<not><property>/controls/autoflight/autopilot/engage</property></not>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/autoflight/autopilot/engage</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Throttles</name>
-		<value>IDLE</value>
-	</item>
-	<item>
-		<name>Flare	50ft AGL</name>
-	</item>
-	<item>
-		<name>Auto spoilers</name>
-		<value>CHECK EXTENDED</value>
-	</item>
-	<item>
-		<name>Throttles</name>
-		<value>REVERSE THRUST</value>
-		<value>IDLE BELOW 60 KIAS</value>
-	</item>
-	<item>
-		<name>Brake</name>
-		<value>AS NECESSARY</value>
-	</item>	
+	<page>
+		<item>
+			<name>Autopilot</name>
+			<value>OFF</value>
+			<condition>
+				<not><property>/controls/autoflight/autopilot/engage</property></not>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/autoflight/autopilot/engage</property>
+				<value>0</value>
+			</binding>
+		</item>
+		<item>
+			<name>Throttles</name>
+			<value>IDLE</value>
+		</item>
+		<item>
+			<name>Flare	50ft AGL</name>
+		</item>
+		<item>
+			<name>Auto spoilers</name>
+			<value>CHECK EXTENDED</value>
+		</item>
+		<item>
+			<name>Throttles</name>
+			<value>REVERSE THRUST</value>
+			<value>IDLE BELOW 60 KIAS</value>
+		</item>
+		<item>
+			<name>Brake</name>
+			<value>AS NECESSARY</value>
+		</item>
+	</page>		
 </PropertyList>
