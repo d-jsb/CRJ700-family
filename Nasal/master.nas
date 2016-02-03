@@ -345,6 +345,18 @@ var update_offsets = func()
 };
 update_offsets();
 
+var tiller_last = 0;
+setlistener("controls/gear/tiller-steer-deg", func(n) 
+{
+	var enabled = getprop("/sim/config/view-follows-tiller");
+	if (enabled) {
+		var hdg = getprop("/sim/current-view/heading-offset-deg");
+		var dt = n.getValue() - tiller_last;
+		tiller_last = n.getValue();
+		setprop("/sim/current-view/heading-offset-deg", hdg-dt);
+	}
+}, 1, 0);
+
 ## Engines at cutoff by default (not specified in -set.xml because that means they will be set to 'true' on a reset)
 setprop("controls/engines/engine[0]/cutoff", 1);
 setprop("controls/engines/engine[1]/cutoff", 1);
