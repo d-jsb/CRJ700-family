@@ -1,183 +1,185 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml-stylesheet type="text/xsl" href="checklist.xsl"?>
 
 <PropertyList>
 	<title>Descent</title>
-	<item>
-		<name>ATIS / Airport info</name>
-		<value>CHECK</value>
-		<binding>
-			<command>dialog-show</command>
-			<dialog-name>weather</dialog-name>
-		</binding>
-	</item>
-	<item>
-		<name>Passenger signs</name>
-		<value>ON</value>
-		<condition>
-			<and>
-				<not-equals>
-					<property>/controls/switches/no-smoking-sign</property>
-					<value>1</value>
-				</not-equals>
-				<not-equals>
-					<property>/controls/switches/seatbelt-sign</property>
-					<value>1</value>
-				</not-equals>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/switches/no-smoking-sign</property>
-			<value>2</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/switches/seatbelt-sign</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Anti-ice</name>
-		<value>ON BELOW 20C</value>
-	</item>
-	<item>
-		<name>Landing Lights</name>
-		<value>ON BELOW 10,000ft</value>
-		<marker>
-			<x-m>-13.7071</x-m>
-			<y-m>-0.1545</y-m>
-			<z-m>-0.3190</z-m>
-			<scale>1.5124</scale>
-		</marker>
-		<condition>
-			<and>
+	<page>
+		<item>
+			<name>ATIS / Airport info</name>
+			<value>CHECK</value>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name>weather</dialog-name>
+			</binding>
+		</item>
+		<item>
+			<name>Passenger signs</name>
+			<value>ON</value>
+			<condition>
+				<and>
+					<not-equals>
+						<property>/controls/switches/no-smoking-sign</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/controls/switches/seatbelt-sign</property>
+						<value>1</value>
+					</not-equals>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/switches/no-smoking-sign</property>
+				<value>2</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/switches/seatbelt-sign</property>
+				<value>0</value>
+			</binding>
+		</item>
+		<item>
+			<name>Anti-ice</name>
+			<value>ON BELOW 20C</value>
+		</item>
+		<item>
+			<name>Landing Lights</name>
+			<value>ON BELOW 10,000ft</value>
+			<marker>
+				<x-m>-13.7071</x-m>
+				<y-m>-0.1545</y-m>
+				<z-m>-0.3190</z-m>
+				<scale>1.5124</scale>
+			</marker>
+			<condition>
+				<and>
+					<equals>
+						<property>/controls/lighting/landing-lights[0]</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/controls/lighting/landing-lights[1]</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/controls/lighting/landing-lights[2]</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/lighting/landing-lights[0]</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/lighting/landing-lights[1]</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/lighting/landing-lights[2]</property>
+				<value>1</value>
+			</binding>
+		</item>
+		<item>
+			<name>Airspeed</name>
+			<value>max 250 KIAS BELOW 10,000ft</value>
+			<condition>
+				<and>
+					<less-than-equals>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>10000</value>
+					</less-than-equals>
+					<less-than-equals>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<value>250</value>
+					</less-than-equals>
+				</and>
+			</condition>
+		</item>
+		<item>
+			<name>Altimeter</name>
+			<value>SET BELOW TRANSITION LEVEL</value>
+		</item>
+		<item>
+			<name>Airspeed (Vref)</name>
+			<value>COMPUTE</value>
+		</item>
+		<item>
+			<name>Clearance</name>
+			<value>OBTAIN from ATC</value>
+		</item>
+		<item>
+			<name>Autopilot</name>
+			<value>HDG HOLD FOR VECTORS</value>
+			<marker>
+				<x-m>-13.8567</x-m>
+				<y-m>0.0033</y-m>
+				<z-m>-0.6256</z-m>
+				<scale>1.3140</scale>
+			</marker>
+			<condition>
 				<equals>
-					<property>/controls/lighting/landing-lights[0]</property>
+					<property>controls/autoflight/lat-mode</property>
 					<value>1</value>
 				</equals>
-				<equals>
-					<property>/controls/lighting/landing-lights[1]</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>/controls/lighting/landing-lights[2]</property>
-					<value>1</value>
-				</equals>
-			</and>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/landing-lights[0]</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/landing-lights[1]</property>
-			<value>1</value>
-		</binding>
-		<binding>
-			<command>property-assign</command>
-			<property>/controls/lighting/landing-lights[2]</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>Airspeed</name>
-		<value>max 250 KIAS BELOW 10,000ft</value>
-		<condition>
-			<and>
-				<less-than-equals>
-					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
-					<value>10000</value>
-				</less-than-equals>
-				<less-than-equals>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>250</value>
-				</less-than-equals>
-			</and>
-		</condition>
-	</item>
-	<item>
-		<name>Altimeter</name>
-		<value>SET BELOW TRANSITION LEVEL</value>
-	</item>
-	<item>
-		<name>Airspeed (Vref)</name>
-		<value>COMPUTE</value>
-	</item>
-	<item>
-		<name>Clearance</name>
-		<value>OBTAIN from ATC</value>
-	</item>
-	<item>
-		<name>Autopilot</name>
-		<value>HDG HOLD FOR VECTORS</value>
-		<marker>
-			<x-m>-13.8567</x-m>
-			<y-m>0.0033</y-m>
-			<z-m>-0.6256</z-m>
-			<scale>1.3140</scale>
-		</marker>
-		<condition>
-			<equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/autoflight/lat-mode</property>
 				<value>1</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/lat-mode</property>
-			<value>1</value>
-		</binding>
-	</item>
-	<item>
-		<name>ILS Frequency</name>
-		<value>SET ON NAV1</value>
-	</item>
-	<item>
-		<name>ILS Course</name>
-		<value>SET CRS1</value>
-		<marker>
-			<x-m>-13.8402</x-m>
-			<y-m>-0.1802</y-m>
-			<z-m>-0.6298</z-m>
-			<scale>1.0000</scale>
-		</marker>
-	</item>
-	<item>
-		<name>Nav Source</name>
-		<value>NAV1</value>
-		<marker>
-			<x-m>-13.9716</x-m>
-			<y-m>-0.7165</y-m>
-			<z-m>-0.9959</z-m>
-			<scale>1.0000</scale>
-		</marker>
-		<condition>
-			<equals>
+			</binding>
+		</item>
+		<item>
+			<name>ILS Frequency</name>
+			<value>SET ON NAV1</value>
+		</item>
+		<item>
+			<name>ILS Course</name>
+			<value>SET CRS1</value>
+			<marker>
+				<x-m>-13.8402</x-m>
+				<y-m>-0.1802</y-m>
+				<z-m>-0.6298</z-m>
+				<scale>1.0000</scale>
+			</marker>
+		</item>
+		<item>
+			<name>Nav Source</name>
+			<value>NAV1</value>
+			<marker>
+				<x-m>-13.9716</x-m>
+				<y-m>-0.7165</y-m>
+				<z-m>-0.9959</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<equals>
+					<property>controls/autoflight/nav-source</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/autoflight/nav-source</property>
 				<value>0</value>
-			</equals>
-		</condition>
-		<binding>
-			<command>property-assign</command>
-			<property>controls/autoflight/nav-source</property>
-			<value>0</value>
-		</binding>
-	</item>
-	<item>
-		<name>Approach Procedure</name>
-		<value>REVIEW</value>
-	</item>
-	<item>
-		<name>Airspeed</name>
-		<value>max 220 KIAS for approach</value>
-		<condition>
-			<less-than-equals>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<value>220</value>
-			</less-than-equals>
-		</condition>
-	</item>
+			</binding>
+		</item>
+		<item>
+			<name>Approach Procedure</name>
+			<value>REVIEW</value>
+		</item>
+		<item>
+			<name>Airspeed</name>
+			<value>max 220 KIAS for approach</value>
+			<condition>
+				<less-than-equals>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>220</value>
+				</less-than-equals>
+			</condition>
+		</item>
+	</page>
 </PropertyList>
