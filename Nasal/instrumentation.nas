@@ -571,3 +571,41 @@ setlistener("/instrumentation/dme[1]/hold", func(n) {
 	else
 		setprop("/instrumentation/dme[1]/frequencies/source", "/instrumentation/nav[1]/frequencies/selected-mhz");
 },1,0);
+
+var view_indices = {};
+forindex (var i; view.views) {
+	var n = view.views[i].getIndex();
+	view_indices[n] = i;
+}
+
+var update_als_landinglights = func () 
+{
+	var cv = getprop("sim/current-view/view-number");
+	var tl = getprop("/systems/DC/outputs/taxi-lights");
+	var ll = getprop("/systems/DC/outputs/landing-lights");
+	var lr = getprop("/systems/DC/outputs/landing-lights[2]");
+	var ln = getprop("/systems/DC/outputs/landing-lights[1]");
+	
+	if (cv == 0 or cv == view_indices[101]) {
+		if (ll >= 24) setprop("/sim/rendering/als-secondary-lights/landing-light1-offset-deg", -4);
+		elsif (ln >= 24) setprop("/sim/rendering/als-secondary-lights/landing-light1-offset-deg", -1);
+		else setprop("/sim/rendering/als-secondary-lights/landing-light1-offset-deg", 0);
+		if (lr >= 24) setprop("/sim/rendering/als-secondary-lights/landing-light2-offset-deg", 4);
+		elsif (ln >= 24) setprop("/sim/rendering/als-secondary-lights/landing-light2-offset-deg", 1);
+		else setprop("/sim/rendering/als-secondary-lights/landing-light2-offset-deg", 0);
+		setprop("/sim/rendering/als-secondary-lights/use-landing-light", (ll >= 24 or ln >= 24 or tl >= 24));
+		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", (lr >= 24 or ll >= 24 and ln >= 24));
+		
+		#setprop("/sim/rendering/als-secondary-lights/use-landing-light", (ln >= 24));
+	}
+	else {
+		setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
+		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+	}
+}
+
+setlistener("/systems/DC/outputs/taxi-lights", update_als_landinglights, 1, 0);
+setlistener("/systems/DC/outputs/landing-lights", update_als_landinglights, 0, 0);
+setlistener("/systems/DC/outputs/landing-lights[1]", update_als_landinglights, 0, 0);
+setlistener("/systems/DC/outputs/landing-lights[2]", update_als_landinglights, 0, 0);
+setlistener("/sim/current-view/view-number", update_als_landinglights, 0, 0);
