@@ -840,6 +840,12 @@
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/autoflight/vert-mode</property>
+				<condition>
+					<not-equals>
+						<property>controls/autoflight/vert-mode</property>
+						<value>5</value>					
+					</not-equals>
+				</condition>
 				<value>1</value>
 				<value>0</value>
 			</binding>

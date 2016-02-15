@@ -35,6 +35,7 @@ var pitch_sync = func()
 	} elsif (vmode == 2) { #VS
 		#setprop("controls/autoflight/vertical-speed-select", int(getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm")/100)*100);
 		setprop("controls/autoflight/vertical-speed-select", getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm"));
+		interpolate("controls/autoflight/vertical-speed-select", int(getprop("instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm")/100)*100, 0.5);
 	} elsif (vmode == 3) { #ALTS
 		setprop("autopilot/ref/alt-hold", getprop("controls/autoflight/altitude-select"));
 	} elsif (vmode == 4) { #SPEED
@@ -42,8 +43,8 @@ var pitch_sync = func()
 		setprop("controls/autoflight/mach-select", getprop("instrumentation/airspeed-indicator/indicated-mach"));	
 	} elsif (vmode == 0) { #PTCH
 		var pitch = getprop("instrumentation/attitude-indicator[0]/indicated-pitch-deg");
-		#setprop("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5); # round to 0.5 steps
 		setprop("controls/autoflight/pitch-select", pitch); 
+		interpolate("controls/autoflight/pitch-select", int((pitch / 0.5) + 0.5) * 0.5, 0.5); # round to 0.5 steps
 	}
 };
 
@@ -257,7 +258,8 @@ var flash_alt_bug = func()
 }
 var altitude_alert = func(n) 
 {
-	if (n.getBoolValue())
+	var vm = getprop("controls/autoflight/vert-mode");
+	if (n.getBoolValue() and vm != 1 and vm != 3)
 	{
 		#print("ALT alert ");
 		setprop("sim/alarms/altitude-alert", 1);
@@ -280,18 +282,31 @@ setlistener("autopilot/annunciators/mda-alert", mda_alert, 0, 0);
 var altitude_capture = func(n)
 {
 	#capture = within 200ft of preselected alt and not in alt hold mode
-	if (getprop("controls/autoflight/vert-mode") == 1) 
+	var vm = getprop("controls/autoflight/vert-mode");
+	if (vm == 1) 
 		return;
-	if (n.getBoolValue())
+	#capture
+	if (n.getBoolValue() and vm != 3 and vm != 5)
 	{
 		#print("ALT capture 200");
 		setprop("autopilot/annunciators/altitude-flash-cmd", 0);
 		setprop("autopilot/annunciators/vert-capture", "ALTS CAP");
 		setprop("controls/autoflight/vert-mode", 3); #alt track
 	}
-	#elsif ()
+
 }
-setlistener("autopilot/internal/alts-capture", altitude_capture, 0, 0);
+setlistener("autopilot/internal/alts-capture", altitude_capture, 0, 1);
+
+#ALTS rearm / ALT hold
+var alts_rearm = func ()
+{
+	var vm = getprop("controls/autoflight/vert-mode");
+	if (vm == 3) 
+	{
+		setprop("controls/autoflight/vert-mode", 1);
+	}	
+}
+setlistener("controls/autoflight/altitude-select",alts_rearm, 0, 0);
 
 ## EICAS message system
 var Eicas_messages =
