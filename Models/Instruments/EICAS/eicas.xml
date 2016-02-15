@@ -1119,8 +1119,12 @@ page 10 Doors
 	<animation>
 		<type>select</type>
 		<object-name>Gear</object-name>
+		<object-name>GearLInd</object-name>
+		<object-name>GearNInd</object-name>
+		<object-name>GearRInd</object-name>
 		<condition>
 			<or>
+				<property>controls/flight/flaps</property>
 				<greater-than>
 					<property>gear/gear[0]/position-norm</property>
 					<value>0</value>
@@ -7694,21 +7698,12 @@ DIR BUS</text>
 	</animation>
 
 	<animation>
-		<type>select</type>
-		<object-name>GearLInd</object-name>
-		<condition>
-			<greater-than>
-				<property>gear/gear[1]/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
-	</animation>
-	<animation>
 		<type>textranslate</type>
 		<object-name>GearLInd</object-name>
 		<property>gear/gear[1]/position-norm</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>0.1640625</dep></entry>
+			<entry><ind>0</ind><dep>0.328125</dep></entry>
+			<entry><ind>0.0000001</ind><dep>0.1640625</dep></entry>
 			<entry><ind>0.999999999</ind><dep>0.1640625</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
 		</interpolation>
@@ -7722,7 +7717,8 @@ DIR BUS</text>
 		<object-name>GearNInd</object-name>
 		<property>gear/gear[0]/position-norm</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>0.1640625</dep></entry>
+			<entry><ind>0</ind><dep>0.328125</dep></entry>
+			<entry><ind>0.0000001</ind><dep>0.1640625</dep></entry>
 			<entry><ind>0.999999999</ind><dep>0.1640625</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
 		</interpolation>
@@ -7730,23 +7726,14 @@ DIR BUS</text>
 			<x>1</x>
 			<y>0</y>
 		</axis>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>GearNInd</object-name>
-		<condition>
-			<greater-than>
-				<property>gear/gear[0]/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
 	</animation>
 	<animation>
 		<type>textranslate</type>
 		<object-name>GearRInd</object-name>
 		<property>gear/gear[2]/position-norm</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>0.1640625</dep></entry>
+			<entry><ind>0</ind><dep>0.328125</dep></entry>
+			<entry><ind>0.0000001</ind><dep>0.1640625</dep></entry>
 			<entry><ind>0.999999999</ind><dep>0.1640625</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
 		</interpolation>
@@ -7754,16 +7741,6 @@ DIR BUS</text>
 			<x>1</x>
 			<y>0</y>
 		</axis>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>GearRInd</object-name>
-		<condition>
-			<greater-than>
-				<property>gear/gear[2]/position-norm</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
 	</animation>
 
 	<text>
