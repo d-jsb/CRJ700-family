@@ -277,23 +277,8 @@
 			</binding>
 		</item>
 		<item>
-			<name>Parking Brake (if pushback)</name>
-			<value>RELEASE</value>
-			<condition>
-				<equals>
-					<property>/controls/gear/brake-parking</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/gear/brake-parking</property>
-				<value>0</value>
-			</binding>
-		</item>
-		<item>
-			<name>Pushback</name>
-			<value>AS REQUIRED</value>
-		</item>
+			<name>Before pushback: APU</name>
+			<value>ON</value>
+		</item>		
 	</page>
 </PropertyList>
