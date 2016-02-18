@@ -40,7 +40,12 @@
 			<rudder-to-tiller type="bool">false</rudder-to-tiller>
 			<developer type="bool">false</developer>
 		</config>
-		
+		<rendering>
+			<als-secondary-lights>
+ 				<landing-light1-offset-deg>-1</landing-light1-offset-deg>
+				<landing-light2-offset-deg>1</landing-light2-offset-deg>
+			</als-secondary-lights>
+		</rendering>
 		<model>
 			<livery>
 				<file>Blank</file>

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml-stylesheet type="text/xsl" href="checklist.xsl"?>
 
 <PropertyList>
 	<title>Taxi</title>
-	<item>
-		<name>Brakes</name>
-		<value>CHECK</value>
-	</item>
-<!-- 	<item>
-		<name>Gyro</name>
-		<value>CHECK DURING TURNS</value>
-	</item>
-	<item>
-		<name>Turn Coordinator</name>
-		<value>CHECK DURING TURNS</value>
-	</item> -->
+	<page>
+		<item>
+			<name>Brakes</name>
+			<value>CHECK</value>
+		</item>
+	<!-- 	<item>
+			<name>Gyro</name>
+			<value>CHECK DURING TURNS</value>
+		</item>
+		<item>
+			<name>Turn Coordinator</name>
+			<value>CHECK DURING TURNS</value>
+		</item> -->
+	</page>
 </PropertyList>
