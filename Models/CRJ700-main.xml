@@ -77,7 +77,7 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
 
     <!-- Tutorial marker -->
     <model>
-        <path>Models/Aircraft/marker.xml</path>
+        <path>Aircraft/Generic/marker.xml</path>
     </model>
 
     <!-- Hide windshield in interior views with virtual cockpit off -->
