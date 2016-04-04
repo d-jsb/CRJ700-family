@@ -47,8 +47,8 @@ Engine.poll_fuel_tanks = func
 #
 Engine.Apu = func() {
     var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
-    # Based on the fuel consumption of a 757 APU.
-    apu.fuel_burn_pph = 200;
+    # Honeywell RE220
+    apu.fuel_burn_pph = 270;
 	apu.eicas_door_msg = ["----", "CLSD", "OPEN"];
     apu.controls = { ecu : 0, on : 0, fire_ex : 0 };
 
