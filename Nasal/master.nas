@@ -138,11 +138,17 @@ setlistener("sim/signals/fdm-initialized", func
 	gravity_xflow = aircraft.crossfeed_valve.new(0.5, "controls/fuel/gravity-xflow", 0, 1);
 	if (getprop("/sim/time/sun-angle-rad") > 1.57) 
 		setprop("controls/lighting/dome", 1);
+
+	setprop("consumables/fuel/tank[0]/level-lbs", 2000);
+	setprop("consumables/fuel/tank[1]/level-lbs", 2000);
+	setprop("consumables/fuel/tank[2]/level-lbs", 100);
+	
 	fast_loop.start();
 	slow_loop.start();
 	settimer(func {
 		setprop("sim/model/sound-enabled",1);
 		print("Sound on.");
+		gui.showWeightDialog();
 		}, 3);
 }, 0, 0);
 
@@ -210,6 +216,8 @@ var shutdown = func
 		["controls/hydraulic/system[2]/pump-a", 0, 0.3],							
 		["controls/hydraulic/system[2]/pump-b", 0, 0.1],
 		["controls/hydraulic/system[1]/pump-b", 0, 0.3],
+		["controls/autoflight/yaw-damper/engage", 0, 0.5],
+		["controls/autoflight/yaw-damper/engage[1]", 0, 0.5],
 	];
 	var exec = func (idx)
 	{
@@ -258,7 +266,9 @@ var instastart = func
 
 	setprop("/controls/gear/brake-parking", 0);
 	setprop("/controls/lighting/strobe", 1);
-};
+	setprop("/controls/autoflight/yaw-damper/engage", 1);
+	setprop("/controls/autoflight/yaw-damper[1]/engage", 1);
+	};
 
 ## Prevent the gear from being retracted on the ground
 setlistener("controls/gear/gear-down", func(v)
