@@ -4,6 +4,18 @@
 <!-- Aircraft property settings specific to the CRJ1000 -->
 
 <PropertyList include="CRJ700-main.xml">
+	<limits>
+		<mtow-rw-m>1760</mtow-rw-m>
+		<mlw-rw-m>1603</mlw-rw-m>
+		<mass-and-balance>
+			<maximum-ramp-mass-lbs>90500</maximum-ramp-mass-lbs>
+			<maximum-takeoff-mass-lbs>90000</maximum-takeoff-mass-lbs>
+			<maximum-landing-mass-lbs>81500</maximum-landing-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>77500</maximum-zero-fuel-mass-lbs>
+			<maximum-payload-lbs>26380</maximum-payload-lbs>
+			<maximum-cargo-mass-lbs>7180</maximum-cargo-mass-lbs>
+		</mass-and-balance>		
+	</limits>
     <sim include="crj1000-views.xml">
 		<description>Bombardier CRJ1000</description>
         <author>Ryan Miller, Henning S.</author>
@@ -44,11 +56,18 @@
             <radius-m type="float">39.13</radius-m>
         </dimensions>
 
-        <weight n="1">
-            <weight-lb>18000</weight-lb>
-            <max-lb>26400</max-lb>
-            <min-lb>0</min-lb>
-        </weight>
+		<weight n="1">
+			<name>PAX</name>
+			<max-lb>18600</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Main Cargo</name>
+			<max-lb>3590</max-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Cargo</name>
+			<max-lb>3590</max-lb>
+		</weight>
 
         <menubar>
             <default>

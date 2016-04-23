@@ -4,7 +4,19 @@
 <!-- Aircraft property settings specific to the CRJ900LR -->
 
 <PropertyList include="CRJ700-main.xml">
-    <sim include="crj900-views.xml">
+   	<limits>
+		<mtow-rw-m>1940</mtow-rw-m>
+		<mlw-rw-m>1603</mlw-rw-m>
+		<mass-and-balance>
+			<maximum-ramp-mass-lbs>85000</maximum-ramp-mass-lbs>
+			<maximum-takeoff-mass-lbs>84500</maximum-takeoff-mass-lbs>
+			<maximum-landing-mass-lbs>75100</maximum-landing-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>70750</maximum-zero-fuel-mass-lbs>
+			<maximum-payload-lbs>22590</maximum-payload-lbs>
+			<maximum-cargo-mass-lbs>6075</maximum-cargo-mass-lbs>
+		</mass-and-balance>	
+	</limits>
+	<sim include="crj900-views.xml">
 		<description>Bombardier CRJ900LR</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
@@ -24,12 +36,6 @@
 				<jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
 			<has-slats type="bool">true</has-slats>
-			<limits>
-				<mtow-rw-m>1940</mtow-rw-m>
-				<mlw-rw-m>1632</mlw-rw-m>
-				<mtow-lb>84500</mtow-lb>
-				<mlw-lb>75100</mlw-lb>
-			</limits>
 			<dimensions>
 				<nose-distance-m>18</nose-distance-m>
 				<cockpit-offset-x>-1.940</cockpit-offset-x>
@@ -44,11 +50,18 @@
             <radius-m type="float">36.4</radius-m>
         </dimensions>
 
-        <weight n="1">
-            <weight-lb>14000</weight-lb>
-            <max-lb>23350</max-lb>
-            <min-lb>0</min-lb>
-        </weight>
+		<weight n="1">
+			<name>PAX</name>
+			<max-lb>15915</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Main Cargo</name>
+			<max-lb>3036</max-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Cargo</name>
+			<max-lb>3036</max-lb>
+		</weight>
 
         <menubar>
             <default>

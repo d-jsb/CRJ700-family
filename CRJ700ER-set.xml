@@ -4,6 +4,18 @@
 <!-- Aircraft property settings specific to the CRJ700ER -->
 
 <PropertyList include="CRJ700-main.xml">
+	<limits>
+		<mtow-rw-m>1605</mtow-rw-m>
+		<mlw-rw-m>1536</mlw-rw-m>
+		<mass-and-balance>
+			<maximum-ramp-mass-lbs>75250</maximum-ramp-mass-lbs>
+			<maximum-takeoff-mass-lbs>75000</maximum-takeoff-mass-lbs>
+			<maximum-landing-mass-lbs>67000</maximum-landing-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>62300</maximum-zero-fuel-mass-lbs>
+			<maximum-payload-lbs>18055</maximum-payload-lbs>
+			<maximum-cargo-mass-lbs>5375</maximum-cargo-mass-lbs>
+		</mass-and-balance>		
+	</limits>
     <sim include="crj700-views.xml">
         <description>Bombardier CRJ700ER (with tutorials)</description>
         <author>Ryan Miller, Henning S.</author>
@@ -24,12 +36,6 @@
                 <jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
 			<has-slats type="bool">true</has-slats>
-			<limits>
-				<mtow-rw-m>1605</mtow-rw-m>
-				<mlw-rw-m>1536</mlw-rw-m>
-				<mtow-lb>75000</mtow-lb>
-				<mlw-lb>67000</mlw-lb>
-			</limits>
 			<dimensions>
 				<nose-distance-m>16</nose-distance-m>
 				<cockpit-offset-x>0</cockpit-offset-x>
@@ -44,10 +50,20 @@
             <radius-m type="float">32.51</radius-m>
 		</dimensions>
 		
-        <weight n="1">
-            <weight-lb>10000</weight-lb>
-            <max-lb>18800</max-lb>
+		<weight n="1">
+			<name>PAX</name>
             <min-lb>0</min-lb>
+			<max-lb>12080</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Main Cargo</name>
+            <min-lb>0</min-lb>
+			<max-lb>2687</max-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Cargo</name>
+            <min-lb>0</min-lb>
+			<max-lb>2687</max-lb>
 		</weight>
 		
         <menubar>

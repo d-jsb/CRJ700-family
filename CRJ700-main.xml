@@ -4,7 +4,10 @@
 <!-- Aircraft property settings common to all variants -->
 
 <PropertyList>
-	
+	<limits>
+		<mtow-rw-m>1610</mtow-rw-m>
+		<mlw-rw-m>1550</mlw-rw-m>
+	</limits>	
 	<sim>
 		<description>Bombardier CRJ700 series</description>
         <author>Ryan Miller, Henning S.</author>
@@ -114,10 +117,7 @@
 				</aft-cargo>				
 			</door-positions>
 			<sound-enabled type="bool">false</sound-enabled>
-			<limits>
-				<mtow-rw-m>1610</mtow-rw-m>
-				<mlw-rw-m>1550</mlw-rw-m>
-			</limits>
+
 			<dimensions>
 				<nose-distance-m>16</nose-distance-m>
 			</dimensions>			
@@ -181,11 +181,23 @@
 		<weight n="0">
 			<name>Crew</name>
 			<weight-lb>250</weight-lb>
-			<max-lb>600</max-lb>
 			<min-lb>120</min-lb>
+			<max-lb>600</max-lb>
 		</weight>
 		<weight n="1">
-			<name>PAX/Baggage</name>
+			<name>PAX</name>
+			<weight-lb>2000</weight-lb>
+            <min-lb>0</min-lb>
+		</weight>
+		<weight n="2">
+			<name>Main Cargo</name>
+			<weight-lb>500</weight-lb>
+            <min-lb>0</min-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Cargo</name>
+			<weight-lb>500</weight-lb>
+            <min-lb>0</min-lb>
 		</weight>
 		
 		<help include="CRJ700-help.xml" />
@@ -223,6 +235,8 @@
 			<path>/sim/model/yokes</path>
 			<path>/sim/weight[0]/weight-lb</path>
 			<path>/sim/weight[1]/weight-lb</path>
+			<path>/sim/weight[2]/weight-lb</path>
+			<path>/sim/weight[3]/weight-lb</path>
 			<path>/controls/gear/enable-tiller</path>
 			<path>/instrumentation/mfd[0]/page</path>
 			<path>/instrumentation/mfd[0]/tcas</path>
@@ -401,7 +415,7 @@
 					<enabled type="bool">true</enabled>
 					<label>Ground ops</label>
 					<item>
-						<label>Fuel</label>
+						<label>Fuel/Cargo</label>
 						<binding>
 							<command>nasal</command>
 							<script>

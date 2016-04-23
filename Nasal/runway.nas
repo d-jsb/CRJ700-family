@@ -97,11 +97,11 @@ var tmp = getprop("sim/model/dimensions/nose-distance-m");
 if (tmp != nil and typeof(tmp) == "int") 
 	landing_config.distance_center_nose_m = tmp;
 
-var tmp = getprop("sim/model/limits/mtow-rw-m");
+var tmp = getprop("limits/mtow-rw-m");
 if (tmp != nil and typeof(tmp) == "int") 
 	takeoff_config.nominal_distance_takeoff_m = tmp;
 
-var tmp = getprop("sim/model/limits/mlw-rw-m");
+var tmp = getprop("limits/mlw-rw-m");
 if (tmp != nil and typeof(tmp) == "int") 
 	takeoff_config.nominal_distance_landing_m = tmp;
 
