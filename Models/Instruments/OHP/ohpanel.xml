@@ -1126,7 +1126,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>consumables/fuel/tank[0]/selected</property>
+				<property>consumables/fuel/boost-pump[0]/selected</property>
 			</binding>
 		</action>
 	</animation>
@@ -1135,7 +1135,7 @@
 		<object-name>LFuelBtn</object-name>
 		<object-name>LFuelOn</object-name>
 		<object-name>LFuelINOP</object-name>
-		<property>consumables/fuel/tank[0]/selected</property>
+		<property>consumables/fuel/boost-pump[0]/selected</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -1154,7 +1154,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>consumables/fuel/tank[0]/selected</property>
+					<property>consumables/fuel/boost-pump[0]/running</property>
 				</or>
 			</and>
 		</condition>
@@ -1176,7 +1176,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>consumables/fuel/tank[0]/selected</property></not>
+					<not><property>consumables/fuel/boost-pump[0]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1270,7 +1270,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>consumables/fuel/tank[1]/selected</property>
+				<property>consumables/fuel/boost-pump[1]/selected</property>
 			</binding>
 		</action>
 	</animation>
@@ -1279,7 +1279,7 @@
 		<object-name>RFuelBtn</object-name>
 		<object-name>RFuelOn</object-name>
 		<object-name>RFuelINOP</object-name>
-		<property>consumables/fuel/tank[1]/selected</property>
+		<property>consumables/fuel/boost-pump[1]/selected</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -1298,7 +1298,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>consumables/fuel/tank[1]/selected</property>
+					<property>consumables/fuel/boost-pump[1]/running</property>
 				</or>
 			</and>
 		</condition>
@@ -1320,7 +1320,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>consumables/fuel/tank[1]/selected</property></not>
+					<not><property>consumables/fuel/boost-pump[1]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1741,7 +1741,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>engines/apu/pump-fail</property>
+					<property>engines/engine[2]/pump-fail</property>
 				</or>
 			</and>
 		</condition>
@@ -1763,7 +1763,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>engines/apu/SOV-fail</property>
+					<property>engines/engine[2]/SOV-fail</property>
 				</or>
 			</and>
 		</condition>
@@ -1847,7 +1847,7 @@
 					<property>controls/lighting/lt-test</property>
 					<and>
 						<property>controls/APU/off-on</property>
-						<property>engines/apu/running</property>
+						<property>engines/engine[2]/running</property>
 					</and>
 				</or>					
 			</and>

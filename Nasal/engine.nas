@@ -19,25 +19,7 @@
 
 var Engine = {};
 
-# Default fuel density (for YASim jets this is 6.72 lb/gal).
-Engine.FUEL_DENSITY = 6.72;
-Engine.FUEL_UNUSABLE = 62; #lbs
-
-# Returns fuel density.
-Engine.fuel_density = func
-{
-    var total_gal = getprop_safe("/consumables/fuel/total-fuel-gal_us");
-    var total_lbs = getprop_safe("/consumables/fuel/total-fuel-lbs");
-    if (total_gal != 0)
-    {
-        return total_lbs / total_gal;
-    }
-    else
-    {
-        return Engine.FUEL_DENSITY;
-    }
-};
-# Array of valid (level > 0)  fuel tank nodes.
+# Array of non-empty fuel tank nodes.
 Engine.valid_fuel_tanks = [];
 # Updates the array.
 Engine.poll_fuel_tanks = func
@@ -45,11 +27,11 @@ Engine.poll_fuel_tanks = func
     Engine.valid_fuel_tanks = [];
     foreach (var tank; props.globals.getNode("/consumables/fuel").getChildren("tank"))
     {
-        var levelN = tank.getNode("level-lbs", 0);
-        if (levelN != nil)
+        var emptyN = tank.getNode("empty", 0);
+        if (emptyN != nil)
         {
-            var level = levelN.getValue();
-            if (level != nil and level > Engine.FUEL_UNUSABLE) # and tank.getNode("selected",1).getBoolValue()
+            var empty = emptyN.getValue();
+            if (empty != nil and !empty) # and tank.getNode("selected",1).getBoolValue()
             {
                 append(Engine.valid_fuel_tanks, tank);
             }
@@ -61,7 +43,7 @@ Engine.poll_fuel_tanks = func
 
 # APU class
 #
-#   n - index of APU: /engines/apu[n]
+#   n - index of APU: /engines/engine[2][n]
 #
 Engine.Apu = func() {
     var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
@@ -79,25 +61,25 @@ Engine.Apu = func() {
     apu.controls.on_node = props.globals.getNode("/controls/APU/off-on", 1);
     apu.controls.on_node.setBoolValue(apu.controls.on);
 
-    apu.serviceable_node = props.globals.getNode("/engines/apu/serviceable", 1);
+    apu.serviceable_node = props.globals.getNode("/engines/engine[2]/serviceable", 1);
     apu.serviceable_node.setBoolValue(apu.serviceable);
 	#abusing unused engine[2] MP enabled property to make door pos visible via MP
     apu.door_node = props.globals.getNode("/engines/engine[2]/n1", 1);
     apu.door_node.setValue(apu.door);
-    apu.eicas_door_node = props.globals.getNode("/engines/apu/door-msg", 1);
+    apu.eicas_door_node = props.globals.getNode("/engines/engine[2]/door-msg", 1);
     apu.eicas_door_node.setValue(apu.eicas_door_msg[0]);
 
-    apu.running_node = props.globals.getNode("/engines/apu/running", 1);
+    apu.running_node = props.globals.getNode("/engines/engine[2]/running", 1);
     apu.running_node.setBoolValue(apu.running);
 
     apu.rpm_node = props.globals.getNode("/engines/engine[2]/rpm", 1);
     apu.rpm_node.setValue(apu.rpm);
 
     apu.egt = getprop_safe("/environment/temperature-degc");
-    apu.egt_node = props.globals.getNode("/engines/apu/egt-degc", 1);
+    apu.egt_node = props.globals.getNode("/engines/engine[2]/egt-degc", 1);
     apu.egt_node.setValue(apu.egt);
 
-    apu.on_fire_node = props.globals.getNode("/engines/apu/on-fire", 1);
+    apu.on_fire_node = props.globals.getNode("/engines/engine[2]/on-fire", 1);
     apu.on_fire_node.setBoolValue(apu.on_fire);
 
     var read_props = func
@@ -141,7 +123,7 @@ Engine.Apu = func() {
 		print("APU rpm " ~ apu.rpm );
 		print("APU egt " ~ apu.egt );
 	}
-	#setlistener("/engines/apu", apu.state_listener, 1, 2);
+	#setlistener("/engines/engine[2]", apu.state_listener, 1, 2);
 
 	apu.open_door = func
 	{
@@ -332,10 +314,6 @@ Engine.Jet = func(n)
     jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
     jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
 
-    jet.fuel_flow_gph = 0;
-    jet.fuel_flow_gph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow-gph", 1);
-    jet.fuel_flow_pph_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/fuel-flow_pph", 1);
-
     jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
     jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
 	jet.running_node.setBoolValue(jet.running);
@@ -366,7 +344,6 @@ Engine.Jet = func(n)
 		jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
         jet.fdm_n1 = jet.fdm_n1_node.getValue();
         jet.fdm_n2 = jet.fdm_n2_node.getValue();
-        jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
         jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
         jet.controls.starter = jet.controls.starter_node.getBoolValue();
         jet.controls.throttle = jet.controls.throttle_node.getValue();
@@ -408,8 +385,6 @@ Engine.Jet = func(n)
         jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
         jet.n1_node.setValue(jet.n1);
         jet.n2_node.setValue(jet.n2);
-        jet.fuel_flow_gph_node.setValue(jet.fuel_flow_gph);
-        jet.fuel_flow_pph_node.setValue(jet.fuel_flow_gph * Engine.fuel_density());
     };
 
     jet.toggle_reversers = func
