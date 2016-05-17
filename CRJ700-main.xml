@@ -62,10 +62,14 @@
 			<lights>
 				<no-smoking-sign type="bool">false</no-smoking-sign>
 				<seatbelt-sign type="bool">false</seatbelt-sign>
-				<fuselage-lightmap type="bool">false</fuselage-lightmap>
+				<logo-lightmap type="float">0</logo-lightmap>
 				<wing-lightmap type="bool">false</wing-lightmap>
-				<panel-lightmap type="float">0.0</panel-lightmap>
-				<cabin-lightmap type="float">0.0</cabin-lightmap>
+				<panel-lightmap type="float">0</panel-lightmap>
+				<cabin-lightmap type="float">0</cabin-lightmap>
+				<taxi-lightmap type="float">0</taxi-lightmap>
+				<landing-left-lightmap type="float">0</landing-left-lightmap>
+				<landing-nose-lightmap type="float">0</landing-nose-lightmap>
+				<landing-right-lightmap type="float">0</landing-right-lightmap>
 			</lights>
 			<yokes type="bool">true</yokes>
 			<door-positions>

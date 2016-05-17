@@ -15,7 +15,7 @@
 	<!-- Landing gear -->
 	<model>
 		<name>Nose gear</name>
-		<path>Aircraft/CRJ700-family/Models/CRJ700-nosegear.xml</path>
+		<path>CRJ700-nosegear.xml</path>
 		<offsets>
 			<x-m>-16.172</x-m>
 			<y-m>0</y-m>
@@ -24,7 +24,7 @@
 	</model>
 	<model>
 		<name>Main gears</name>
-		<path>Aircraft/CRJ700-family/Models/CRJ700-maingear.xml</path>
+		<path>CRJ700-maingear.xml</path>
 		<offsets>
 			<x-m>1.356</x-m>
 			<y-m>0</y-m>
@@ -34,7 +34,7 @@
 	<!-- Engines -->
 	<model>
 		<name>Engine 1</name>
-		<path>Aircraft/CRJ700-family/Models/CRJ700-engine.xml</path>
+		<path>CRJ700-engine.xml</path>
 		<overlay>
 			<params>
 				<n1>engines/engine[0]/rpm</n1>
@@ -51,7 +51,7 @@
 	</model>
 	<model>
 		<name>Engine 2</name>
-		<path>Aircraft/CRJ700-family/Models/CRJ700-engine.xml</path>
+		<path>CRJ700-engine.xml</path>
 		<overlay>
 			<params>
 				<n1>engines/engine[1]/rpm</n1>
@@ -69,7 +69,7 @@
 	<!-- Flight deck -->
 	<model>
 		<name>Flight deck</name>
-		<path>Aircraft/CRJ700-family/Models/Flightdeck/CRJ700-flightdeck.xml</path>
+		<path>Flightdeck/CRJ700-flightdeck.xml</path>
 		<offsets>
 			<x-m>-14.14</x-m>
 			<y-m>0</y-m>
@@ -79,7 +79,7 @@
 	<!-- Interior -->
 	<model>
 		<name>Interior</name>
-		<path>Aircraft/CRJ700-family/Models/Interior/CRJ900-interior.xml</path>
+		<path>Interior/CRJ900-interior.xml</path>
 	</model>
 	<!-- Pushback -->
 	<model>
@@ -99,7 +99,7 @@
 	<!-- Lights -->
 	<model>
 		<name>Port nav light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/rednav.xml</path>
+		<path>Lights/rednav.xml</path>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>-11.588</y-m>
@@ -108,7 +108,7 @@
 	</model>
 	<model>
 		<name>Starboard nav light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/greennav.xml</path>
+		<path>Lights/greennav.xml</path>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>11.588</y-m>
@@ -117,7 +117,7 @@
 	</model>
 	<model>
 		<name>Port strobe light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/strobe.xml</path>
+		<path>Lights/strobe.xml</path>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>-11.588</y-m>
@@ -126,7 +126,7 @@
 	</model>
 	<model>
 		<name>Rear strobe light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/strobe.xml</path>
+		<path>Lights/strobe.xml</path>
 		<offsets>
 			<x-m>17.551</x-m>
 			<y-m>0</y-m>
@@ -135,7 +135,7 @@
 	</model>
 	<model>
 		<name>Starboard strobe light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/strobe.xml</path>
+		<path>Lights/strobe.xml</path>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>11.588</y-m>
@@ -144,7 +144,7 @@
 	</model>
 	<model>
 		<name>Top beacon</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/beacon.xml</path>
+		<path>Lights/beacon.xml</path>
 		<offsets>
 			<x-m>-7.226</x-m>
 			<y-m>0</y-m>
@@ -153,7 +153,7 @@
 	</model>
 	<model>
 		<name>Bottom beacon</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/beacon.xml</path>
+		<path>Lights/beacon.xml</path>
 		<offsets>
 			<x-m>-8.247</x-m>
 			<y-m>0</y-m>
@@ -162,7 +162,7 @@
 	</model>
 	<model>
 		<name>Port landing light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
+		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
 				<source>systems/DC/outputs/landing-lights[0]</source>
@@ -176,7 +176,7 @@
 	</model>
 	<model>
 		<name>Port landing light (inside)</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
+		<path>Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
 				<source>systems/DC/outputs/landing-lights[0]</source>
@@ -190,7 +190,7 @@
 	</model>
 	<model>
 		<name>Port taxi light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/taxi.xml</path>
+		<path>Lights/taxi.xml</path>
 		<offsets>
 			<x-m>-2.574</x-m>
 			<y-m>-1.511</y-m>
@@ -199,7 +199,7 @@
 	</model>
 	<model>
 		<name>Starboard landing light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing.xml</path>
+		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
 				<source>systems/DC/outputs/landing-lights[2]</source>
@@ -213,7 +213,7 @@
 	</model>
 	<model>
 		<name>Starboard landing light (inside)</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/landing-wing-inside.xml</path>
+		<path>Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
 				<source>systems/DC/outputs/landing-lights[2]</source>
@@ -227,7 +227,7 @@
 	</model>
 	<model>
 		<name>Starboard taxi light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/taxi.xml</path>
+		<path>Lights/taxi.xml</path>
 		<offsets>
 			<x-m>-2.574</x-m>
 			<y-m>1.511</y-m>
@@ -237,7 +237,7 @@
 	<!-- APU fire -->
 	<model>
 		<name>APU fire</name>
-		<path>Aircraft/CRJ700-family/Models/Effects/enginefire.xml</path>
+		<path>Effects/enginefire.xml</path>
 		<condition>
 			<property>engines/apu/on-fire</property>
 		</condition>
@@ -249,6 +249,20 @@
 	</model>
 
 	<!-- Door animations -->
+	<animation>
+		<type>rotate</type>
+		<object-name>PwrHatch</object-name>
+		<property>controls/electric/ac-service-avail</property>
+		<factor>-60</factor>
+		<axis>
+			<x1-m>-16.72868</x1-m>
+			<y1-m>0.63527</y1-m>
+			<z1-m>-2.05204</z1-m>
+			<x2-m>-16.87717</x2-m>
+			<y2-m>0.59056</y2-m>
+			<z2-m>-2.03641</z2-m>
+		</axis>		
+	</animation>	
 	<animation>
 		<type>rotate</type>
 		<object-name>RightDoor</object-name>
@@ -567,10 +581,10 @@
 		<axis>
 			<x1-m>-0.289</x1-m>
 			<y1-m>-4.749</y1-m>
-			<z1-m>-1.791</z1-m>
+			<z1-m>-1.78</z1-m>
 			<x2-m>-0.691</x2-m>
 			<y2-m>-4.976</y2-m>
-			<z2-m>-1.931</z2-m>
+			<z2-m>-1.9</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -582,10 +596,40 @@
 		<axis>
 			<x1-m>-0.289</x1-m>
 			<y1-m>4.749</y1-m>
-			<z1-m>-1.791</z1-m>
+			<z1-m>-1.78</z1-m>
 			<x2-m>-0.691</x2-m>
 			<y2-m>4.976</y2-m>
-			<z2-m>-1.931</z2-m>
+			<z2-m>-1.9</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Left slats rot</name>
+		<type>rotate</type>
+		<object-name>SlatsL</object-name>
+		<property>surface-positions/slat-pos-norm</property>
+		<factor>20</factor>
+		<axis>
+			<x1-m>-1.39</x1-m>
+			<y1-m>-2.01725</y1-m>
+			<z1-m>-1.69832</z1-m>
+			<x2-m>3.37857</x2-m>
+			<y2-m>-10.8747</y2-m>
+			<z2-m>-1.79568</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Right slats rot</name>
+		<type>rotate</type>
+		<object-name>SlatsR</object-name>
+		<property>surface-positions/slat-pos-norm</property>
+		<factor>20</factor>
+		<axis>
+			<x1-m>3.37857</x1-m>
+			<y1-m>10.8747</y1-m>
+			<z1-m>-1.79568</z1-m>
+			<x2-m>-1.39</x2-m>
+			<y2-m>2.01725</y2-m>
+			<z2-m>-1.69832</z2-m>
 		</axis>
 	</animation>
 	<!-- Speedbrakes/spoilers -->
@@ -848,104 +892,6 @@
 		</center>
 	</animation>
 
-	<!-- Left -->
-	<animation>
-		<name>Left main gear upper door</name>
-		<type>rotate</type>
-		<object-name>GearLDoor1</object-name>
-		<object-name>GearLDoor1Int</object-name>
-		<object-name>GearLDoor2</object-name>
-		<object-name>GearLDoor2Int</object-name>
-		<property>gear/gear[1]/position-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.2</ind><dep>0</dep></entry>
-			<entry><ind>0.8</ind><dep>-90</dep></entry>
-			<entry><ind>1</ind><dep>-90</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-2.184</y-m>
-			<z-m>-2.266</z-m>
-		</center>
-	</animation>
-	<animation>
-		<name>Left main gear lower door</name>
-		<type>rotate</type>
-		<object-name>GearLDoor2</object-name>
-		<object-name>GearLDoor2Int</object-name>
-		<property>gear/gear[1]/position-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.4</ind><dep>-80</dep></entry>
-			<entry><ind>1</ind><dep>-80</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-1.862</y-m>
-			<z-m>-2.279</z-m>
-		</center>
-	</animation>
-
-	<!-- Right -->
-	<animation>
-		<name>Right main gear upper door</name>
-		<type>rotate</type>
-		<object-name>GearRDoor1</object-name>
-		<object-name>GearRDoor1Int</object-name>
-		<object-name>GearRDoor2</object-name>
-		<object-name>GearRDoor2Int</object-name>
-		<property>gear/gear[2]/position-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.2</ind><dep>0</dep></entry>
-			<entry><ind>0.8</ind><dep>90</dep></entry>
-			<entry><ind>1</ind><dep>90</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>2.184</y-m>
-			<z-m>-2.266</z-m>
-		</center>
-	</animation>
-	<animation>
-		<name>Right main gear lower door</name>
-		<type>rotate</type>
-		<object-name>GearRDoor2</object-name>
-		<object-name>GearRDoor2Int</object-name>
-		<property>gear/gear[2]/position-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.4</ind><dep>80</dep></entry>
-			<entry><ind>1</ind><dep>80</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>1.862</y-m>
-			<z-m>-2.279</z-m>
-		</center>
-	</animation>
-
 	<!-- Livery select -->
 	<animation>
 		<type>material</type>
@@ -960,6 +906,9 @@
 		<object-name>ElevatorL</object-name>
 		<object-name>ElevatorR</object-name>
 		<object-name>EnginePylons</object-name>
+		<object-name>GearNDoorCInt</object-name>
+		<object-name>GearNDoorLInt</object-name>
+		<object-name>GearNDoorRInt</object-name>
 		<object-name>GearNDoorC</object-name>
 		<object-name>GearNDoorL</object-name>
 		<object-name>GearNDoorR</object-name>
@@ -970,10 +919,27 @@
 		<object-name>Vstab.001</object-name>
 		<object-name>Rudder</object-name>
 		<object-name>Winglets</object-name>
+		<object-name>Wings.001</object-name>
+		<object-name>Wings</object-name>
+		<object-name>AileronL</object-name>
+		<object-name>AileronR</object-name>
+		<object-name>FlapL1</object-name>
+		<object-name>FlapR1</object-name>
+		<object-name>FlapL2</object-name>
+		<object-name>FlapR2</object-name>
+		<object-name>SpoilerL1</object-name>
+		<object-name>SpoilerL2</object-name>
+		<object-name>SpoilerL3</object-name>
+		<object-name>SpoilerL4</object-name>
+		<object-name>SpoilerR1</object-name>
+		<object-name>SpoilerR2</object-name>
+		<object-name>SpoilerR3</object-name>
+		<object-name>SpoilerR4</object-name>
 		<object-name>APUDoor</object-name>
 		<object-name>CargoDoorFwd</object-name>
 		<object-name>CargoDoorCtr</object-name>
 		<object-name>CargoDoorAft</object-name>
+		<object-name>PwrHatch</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ900-Blank.png</texture>
@@ -981,46 +947,38 @@
 
 	<!-- Lightmaps -->
 	<effect>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap-lowreflect</inherits-from>
+		<inherits-from>Effects/CRJ700lightmap-lowreflect</inherits-from>
 		<parameters>
-			<lightmap-factor-prop>sim/model/lights/fuselage-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
+			<lightmap-multi>1</lightmap-multi>
+			<lightmap-factor n="0"><use>sim/model/lights/landing-left-lightmap</use></lightmap-factor>
+			<!-- <lightmap-color type="vec3d" n="0"> 1.0 0.95 0.6 </lightmap-color> -->
+			<lightmap-factor n="1"><use>sim/model/lights/landing-right-lightmap</use></lightmap-factor>
+			<!-- <lightmap-color type="vec3d" n="1"> 1.0 0.95 0.6 </lightmap-color> -->
+			<lightmap-factor n="2"><use>sim/model/lights/logo-lightmap</use></lightmap-factor>
+			<!-- <lightmap-color type="vec3d" n="2"> 1.0 1.0 1.0 </lightmap-color> -->
+			<lightmap-factor n="3"><use>sim/model/lights/landing-nose-lightmap</use></lightmap-factor>
+			<!-- <lightmap-color type="vec3d" n="3"> 1.0 1.0 1.0 </lightmap-color> -->
 			<texture n="3">
-				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/CRJ900-logo-lightmap.png</image>
+				<image>Effects/Lightmaps/CRJ900-fuselage-lightmap.png</image>
 			</texture>
 		</parameters>
-		<object-name>Fuselage</object-name>
+		<object-name>Fuselage.001</object-name>
+		<object-name>LeftDoor</object-name>
+		<object-name>RightDoor</object-name>
+		<object-name>APUDoor</object-name>
+		<object-name>CargoDoorFwd</object-name>
+		<object-name>CargoDoorCtr</object-name>
+		<object-name>GearNDoorLInt</object-name>
+		<object-name>GearNDoorCInt</object-name>
+		<object-name>GearNDoorRInt</object-name>
+		<object-name>GearNDoorL</object-name>
+		<object-name>GearNDoorC</object-name>
+		<object-name>GearNDoorR</object-name>
 		<object-name>Hstabs</object-name>
+		<object-name>Vstab.001</object-name>
+		<object-name>Rudder</object-name>
 		<object-name>ElevatorL</object-name>
 		<object-name>ElevatorR</object-name>
-	</effect>
-	<effect>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap-hireflect</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/wing-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/wing-lightmap.png</image>
-			</texture>
-		</parameters>
-		<object-name>Wings</object-name>
-		<object-name>Winglets</object-name>
 	</effect>
 	
 	<foo include="CRJ700-main.xml" omit-node="y" />

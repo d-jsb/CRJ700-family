@@ -41,7 +41,7 @@ var model_dict = {
     ]
 };
 var variant = model.getNode("sim/model/variant").getValue();
-var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/"
+var livery_update = aircraft.livery_update.new("Liveries/"
                                                ~ model_dict[model_name][variant]);
 
 # Animated jetways.
@@ -75,6 +75,107 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
         </unload>
     </nasal>
 
+	<!-- Landing gear door animations -->
+	<!-- Left -->
+	<animation>
+		<name>Left main gear upper door</name>
+		<type>rotate</type>
+		<object-name>GearLDoor1</object-name>
+		<object-name>GearLDoor1Int</object-name>
+		<object-name>GearLDoor2</object-name>
+		<object-name>GearLDoor2Int</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.2</ind><dep>0</dep></entry>
+			<entry><ind>0.8</ind><dep>-90</dep></entry>
+			<entry><ind>1</ind><dep>-90</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-2.184</y-m>
+			<z-m>-2.266</z-m>
+		</center>
+	</animation>
+	<animation>
+		<name>Left main gear lower door</name>
+		<type>rotate</type>
+		<object-name>GearLDoor2</object-name>
+		<object-name>GearLDoor2Int</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.4</ind><dep>-80</dep></entry>
+			<entry><ind>1</ind><dep>-80</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-1.862</y-m>
+			<z-m>-2.279</z-m>
+		</center>
+	</animation>
+
+	<!-- Right -->
+	<animation>
+		<name>Right main gear upper door</name>
+		<type>rotate</type>
+		<object-name>GearRDoor1</object-name>
+		<object-name>GearRDoor1Int</object-name>
+		<object-name>GearRDoor2</object-name>
+		<object-name>GearRDoor2Int</object-name>
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.2</ind><dep>0</dep></entry>
+			<entry><ind>0.8</ind><dep>90</dep></entry>
+			<entry><ind>1</ind><dep>90</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>2.184</y-m>
+			<z-m>-2.266</z-m>
+		</center>
+	</animation>
+	<animation>
+		<name>Right main gear lower door</name>
+		<type>rotate</type>
+		<object-name>GearRDoor2</object-name>
+		<object-name>GearRDoor2Int</object-name>
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.4</ind><dep>80</dep></entry>
+			<entry><ind>1</ind><dep>80</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>1.862</y-m>
+			<z-m>-2.279</z-m>
+		</center>
+	</animation>
+
+
+	
     <!-- Tutorial marker -->
     <model>
         <path>Aircraft/Generic/marker.xml</path>
@@ -243,10 +344,47 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
         </center>
     </animation>
 
+	<effect>
+		<inherits-from>Effects/CRJ700lightmap-hireflect</inherits-from>
+		<parameters>
+			<lightmap-factor-prop>sim/model/lights/wing-lightmap</lightmap-factor-prop>
+			<lightmap-factor n="0">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="1">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<lightmap-factor n="2">
+				<use alias="../../lightmap-factor-prop" />
+			</lightmap-factor>
+			<texture n="3">
+				<image>Effects/Lightmaps/wing-lightmap.png</image>
+			</texture>
+		</parameters>
+		<object-name>AileronL</object-name>
+		<object-name>AileronR</object-name>
+		<object-name>FlapL1</object-name>
+		<object-name>FlapR1</object-name>
+		<object-name>FlapL2</object-name>
+		<object-name>FlapR2</object-name>
+		<object-name>SpoilerL1</object-name>
+		<object-name>SpoilerL2</object-name>
+		<object-name>SpoilerL3</object-name>
+		<object-name>SpoilerL4</object-name>
+		<object-name>SpoilerR1</object-name>
+		<object-name>SpoilerR2</object-name>
+		<object-name>SpoilerR3</object-name>
+		<object-name>SpoilerR4</object-name>		
+        <object-name>SlatsL</object-name>
+        <object-name>SlatsR</object-name>
+		<object-name>Wings.001</object-name>
+		<object-name>Winglets</object-name>
+	</effect>
+	
     <!-- Reflection shaders -->
     <effect>
         <name>Chrome reflect</name>
-        <inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700reflect</inherits-from>
+        <inherits-from>Effects/CRJ700reflect</inherits-from>
         <object-name>WingChrome</object-name>
         <object-name>CockpitFrame</object-name>
         <object-name>LandingLts</object-name>
