@@ -39,6 +39,7 @@
 			<allow-autothrottle type="bool">false</allow-autothrottle>
 			<rudder-to-tiller type="bool">false</rudder-to-tiller>
 			<developer type="bool">false</developer>
+			<view-follows-tiller type="bool">false</view-follows-tiller>
 		</config>
 		<rendering>
 			<als-secondary-lights>
@@ -188,6 +189,7 @@
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
 			<path>/sim/config/hide-welcome-msg</path>
+			<path>/sim/config/view-follows-tiller</path>
 			<path>/sim/config/allow-autothrottle</path>
 			<path>/sim/config/rudder-to-tiller</path>
 			<path>/sim/config/developer</path>

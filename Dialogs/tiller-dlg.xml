@@ -8,19 +8,15 @@
 
 	<group>
 		<layout>hbox</layout>
-
 		<empty>
 			<stretch>1</stretch>
 		</empty>
-
 		<text>
 			<label>Tiller steering</label>
 		</text>
-
 		<empty>
 			<stretch>1</stretch>
 		</empty>
-
 		<button>
 			<pref-width>16</pref-width>
 			<pref-height>16</pref-height>
@@ -44,7 +40,15 @@
 		</binding>
 		<live type="bool">true</live>
 	</checkbox>
-
+	<checkbox>
+		<halign>left</halign>
+		<label>View follows tiller</label>
+		<property>sim/config/view-follows-tiller</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live type="bool">true</live>
+	</checkbox>	
 	<text>
 		<label>XX.X degrees</label>
 		<visible>
