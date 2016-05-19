@@ -12,7 +12,7 @@
 		</texture>
 		<!-- Reflection -->
 		<reflection-enabled type="int">1</reflection-enabled>
-		<reflection-correction type="float">-1.5</reflection-correction>
+		<reflection-correction type="float">-1</reflection-correction>
 		<reflection-dynamic type="int">1</reflection-dynamic>
 	</parameters>
 </PropertyList>

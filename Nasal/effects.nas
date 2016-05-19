@@ -175,7 +175,7 @@ var sound_switchlightclick = Switch_sound.new("sim/sound/swl-click", 0.1,
 var tiresmoke_system = aircraft.tyresmoke_system.new(0, 1, 2);
 
 ## Lights
-# Exterior lights
+# Exterior lights; sim/model/lights/... is used by electrical system to switch outputs
 var beacon_light = aircraft.light.new("sim/model/lights/beacon", [0.05, 2.1], "controls/lighting/beacon");
 var strobe_light = aircraft.light.new("sim/model/lights/strobe", [0.05, 2], "controls/lighting/strobe");
 
@@ -242,26 +242,25 @@ var update_pass_signs = func
 ## Lightmaps
 var update_lightmaps = func
 {
-    var fuse = props.globals.getNode("sim/model/lights/fuselage-lightmap");
-    fuse.setBoolValue(getprop("systems/AC/outputs/logo-lights") > 108);
+    var logo = props.globals.getNode("sim/model/lights/logo-lightmap");
     var wing = props.globals.getNode("sim/model/lights/wing-lightmap");
-    wing.setBoolValue(getprop("systems/DC/outputs/wing-lights") > 15);
     var panel = props.globals.getNode("sim/model/lights/panel-lightmap");
-    if (getprop("systems/DC/outputs/instrument-flood-lights") > 15)
-    {
-        panel.setDoubleValue(getprop("controls/lighting/panel-flood-norm"));
-    }
-    else
-    {
-        panel.setDoubleValue(0);
-    }
     var cabin = props.globals.getNode("sim/model/lights/cabin-lightmap");
+    var taxi = props.globals.getNode("sim/model/lights/taxi-lightmap");
+    var ll = props.globals.getNode("sim/model/lights/landing-left-lightmap");
+    var ln = props.globals.getNode("sim/model/lights/landing-nose-lightmap");
+    var lr = props.globals.getNode("sim/model/lights/landing-right-lightmap");
+
+	logo.setValue((getprop("systems/AC/outputs/logo-lights") > 108));
+    wing.setValue(getprop("systems/DC/outputs/wing-lights") > 15);
+    ll.setValue((getprop("systems/DC/outputs/landing-lights[0]") > 20));
+    #ln.setValue((getprop("systems/DC/outputs/landing-lights[1]") > 20));
+    lr.setValue((getprop("systems/DC/outputs/landing-lights[2]") > 20));
+	
+    if (getprop("systems/DC/outputs/instrument-flood-lights") > 15)
+        panel.setDoubleValue(getprop("controls/lighting/panel-flood-norm"));
+    else panel.setDoubleValue(0);
     if (getprop("systems/AC/outputs/cabin-lights") > 100)
-    {
         cabin.setDoubleValue(getprop("controls/lighting/cabin-norm"));
-    }
-    else
-    {
-        cabin.setDoubleValue(0);
-    }
+    else cabin.setDoubleValue(0);
 };
