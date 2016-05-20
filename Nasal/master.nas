@@ -273,16 +273,11 @@ var instastart = func
 ## Prevent the gear from being retracted on the ground
 setlistener("controls/gear/gear-down", func(v)
 {
-    if (!v.getBoolValue())
+    if (getprop("gear/on-ground")) 
     {
-        var on_ground = 0;
-        foreach (var gear; props.globals.getNode("gear").getChildren("gear"))
-        {
-            var wow = gear.getNode("wow", 0);
-            if (wow != nil and wow.getBoolValue()) on_ground = 1;
-        }
-        if (on_ground) v.setBoolValue(1);
-    }
+		v.setBoolValue(1);
+	}
+	else setprop("controls/gear/gear-lever-moved", v.getBoolValue());
 }, 0, 0);
 
 var reload_checklists = func()

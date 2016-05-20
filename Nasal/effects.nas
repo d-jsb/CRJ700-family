@@ -20,6 +20,8 @@ var Switch_sound = {
         }
         return m;
     },
+
+	#sound is called for each property change
     sound: func
     {
         var soundid = me.soundid += 1;
@@ -42,6 +44,7 @@ var Switch_sound = {
             me._setstoptimer_(soundid);
         }
     },
+	
     _setstoptimer_: func(soundid)
     {
         settimer(func
@@ -53,6 +56,8 @@ var Switch_sound = {
 };
 var sound_flapslever = Switch_sound.new("sim/sound/flaps-lever", 0.18,
    "controls/flight/flaps");
+var sound_gearlever = Switch_sound.new("sim/sound/gear-lever", 0.5,
+   "controls/gear/gear-lever-moved");
 var sound_passalert = Switch_sound.new("sim/sound/passenger-sign", 2,
    "sim/model/lights/no-smoking-sign",
    "sim/model/lights/seatbelt-sign");
