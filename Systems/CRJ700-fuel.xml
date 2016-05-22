@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
+	What is what depends on how the files are included in CRJ700-main.xml
+-->
+<PropertyList>
+	<filter>
+		<name>fuel-imbalance</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<abs>
+					<dif>
+						<property>consumables/fuel/tank[0]/level-lbs</property>
+						<property>consumables/fuel/tank[1]/level-lbs</property>
+					</dif>
+				</abs>
+			</expression>
+		</input>
+		<output>consumables/fuel/imbalance-lbs</output>
+	</filter>
+</PropertyList>
