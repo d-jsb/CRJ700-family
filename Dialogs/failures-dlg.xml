@@ -83,15 +83,6 @@
 		</checkbox>
 		<checkbox>
 			<halign>left</halign>
-			<label>Ram air turbine</label>
-			<property>systems/ram-air-turbine/serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
 			<label>AC power center</label>
 			<property>systems/AC/system/serviceable</property>
 			<binding>
