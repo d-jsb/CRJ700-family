@@ -1126,7 +1126,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>consumables/fuel/boost-pump[0]/selected</property>
+				<property>systems/fuel/boost-pump[0]/selected</property>
 			</binding>
 		</action>
 	</animation>
@@ -1135,7 +1135,7 @@
 		<object-name>LFuelBtn</object-name>
 		<object-name>LFuelOn</object-name>
 		<object-name>LFuelINOP</object-name>
-		<property>consumables/fuel/boost-pump[0]/selected</property>
+		<property>systems/fuel/boost-pump[0]/selected</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -1154,7 +1154,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>consumables/fuel/boost-pump[0]/running</property>
+					<property>systems/fuel/boost-pump[0]/running</property>
 				</or>
 			</and>
 		</condition>
@@ -1176,7 +1176,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>consumables/fuel/boost-pump[0]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[0]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1226,7 +1226,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/fuel/gravity-xflow</property>
+					<property>systems/fuel/gravity-xflow/open</property>
 				</or>					
 			</and>
 		</condition>
@@ -1248,7 +1248,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<property>systems/fuel/gravity-xflow/fail</property>
 				</or>					
 			</and>
 		</condition>
@@ -1270,7 +1270,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>consumables/fuel/boost-pump[1]/selected</property>
+				<property>systems/fuel/boost-pump[1]/selected</property>
 			</binding>
 		</action>
 	</animation>
@@ -1279,7 +1279,7 @@
 		<object-name>RFuelBtn</object-name>
 		<object-name>RFuelOn</object-name>
 		<object-name>RFuelINOP</object-name>
-		<property>consumables/fuel/boost-pump[1]/selected</property>
+		<property>systems/fuel/boost-pump[1]/selected</property>
 		<factor alias="../../button-translate-m" />
 		<axis>
 			<x>-1</x>
@@ -1298,7 +1298,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>consumables/fuel/boost-pump[1]/running</property>
+					<property>systems/fuel/boost-pump[1]/running</property>
 				</or>
 			</and>
 		</condition>
@@ -1320,7 +1320,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<not><property>consumables/fuel/boost-pump[1]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[1]/selected</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1371,7 +1371,10 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/fuel/xflow-left</property>
+					<equals>
+						<property>systems/fuel/xflow-pump/running</property>
+						<value>-1</value>
+					</equals>
 				</or>
 			</and>
 		</condition>
@@ -1393,7 +1396,13 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<and>
+						<property>controls/fuel/xflow-left</property>
+						<not-equals>
+							<property>systems/fuel/xflow-pump/running</property>
+							<value>-1</value>
+						</not-equals>
+					</and>
 				</or>
 			</and>
 		</condition>
@@ -1491,7 +1500,10 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<property>controls/fuel/xflow-right</property>
+					<equals>
+						<property>systems/fuel/xflow-pump/running</property>
+						<value>1</value>
+					</equals>
 				</or>
 			</and>
 		</condition>
@@ -1513,7 +1525,13 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<!-- FIXME: property here -->
+					<and>
+						<property>controls/fuel/xflow-right</property>
+						<not-equals>
+							<property>systems/fuel/xflow-pump/running</property>
+							<value>1</value>
+						</not-equals>
+					</and>
 				</or>
 			</and>
 		</condition>

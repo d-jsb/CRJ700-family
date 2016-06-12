@@ -99,25 +99,24 @@
 			</condition>
 		</item>		
 		<item>
-			<!-- FIXME: after pneumatic system has been modelled -->
-			<name>Bleed Air Souce</name>
-			<value>APU</value>
+			<name>Bleed valves</name>
+			<value>AUTO</value>
 			<marker>
 				<x-m>-13.5112</x-m>
-				<y-m>0.0438</y-m>
-				<z-m>-0.1793</z-m>
+				<y-m>-0.0455</y-m>
+				<z-m>-0.1768</z-m>
 				<scale>1.0000</scale>
 			</marker>
 			<condition>
 				<equals>
-					<property>/controls/pneumatic/bleed-source</property>
-					<value>2</value>
+					<property>/controls/pneumatic/bleed-valves</property>
+					<value>1</value> <!-- 1 = automatic, 2 = manual -->
 				</equals>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/pneumatic/bleed-source</property>
-				<value>2</value>
+				<property>/controls/pneumatic/bleed-valve</property>
+				<value>1</value>
 			</binding>		
 		</item>		
 		<item>
@@ -180,18 +179,18 @@
 			</marker>
 			<condition>
 				<and>
-					<property>/consumables/fuel/tank[0]/selected</property>
-					<property>/consumables/fuel/tank[1]/selected</property>
+					<property>systems/fuel/boost-pump[0]/selected</property>
+					<property>systems/fuel/boost-pump[1]/selected</property>
 				</and>
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/consumables/fuel/tank[0]/selected</property>
+				<property>systems/fuel/boost-pump[0]/selected</property>
 				<value>1</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>/consumables/fuel/tank[1]/selected</property>
+				<property>systems/fuel/boost-pump[1]/selected</property>
 				<value>1</value>
 			</binding>
 		</item>
@@ -323,21 +322,6 @@
 				<property>/controls/APU/off-on</property>
 				<value>0</value>
 			</binding>
-		</item>
-		<item>
-			<name>Bleed Air Souce</name>
-			<value>BOTH</value>
-			<condition>
-				<equals>
-					<property>/controls/pneumatic/bleed-source</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/pneumatic/bleed-source</property>
-				<value>0</value>
-			</binding>		
 		</item>
 	</page>
 </PropertyList>
