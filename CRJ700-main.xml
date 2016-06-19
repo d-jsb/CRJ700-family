@@ -9,7 +9,7 @@
 		<description>Bombardier CRJ700 series</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.5.2</aircraft-version>
+        <aircraft-version>1.6.0</aircraft-version>
 		<rating>
 			<FDM type="int">3</FDM>
 			<systems type="int">3</systems>

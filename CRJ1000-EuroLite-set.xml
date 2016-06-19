@@ -8,7 +8,6 @@
 		<description>Bombardier CRJ1000 EuroLite</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.5.2</aircraft-version>
 
 		<variant-of>CRJ700</variant-of>
 		<flight-model>yasim</flight-model>

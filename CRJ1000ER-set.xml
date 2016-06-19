@@ -8,8 +8,7 @@
 		<description>Bombardier CRJ1000ER</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.5.2</aircraft-version>
-	
+ 	
 		<variant-of>CRJ700</variant-of>
 		<flight-model>yasim</flight-model>
 		<aero>CRJ1000ER</aero>
