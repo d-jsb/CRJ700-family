@@ -32,7 +32,7 @@
 		<layout>vbox</layout>
 		<halign>left</halign>
 		<text>
-			<label>Welcome aboard! May I have your attention for the safety briefing...</label>
+			<label>This message appears after update to a newer version. You SHOULD have a look to the changelog and ./Docs.</label>
 			<color>
 				<red>0.9</red>
 				<green>0.9</green>
@@ -43,13 +43,10 @@
 			<label>This aircraft is equipped with documentation, tutorials and checklists.</label>
 		</text>
 		<text>
-			<label>Illuminated buttons at the dialog floor will guide you to this help.</label>
-		</text>
-		<text>
 			<label>Tutorials are highly recommended for pilots flying this aircraft for the first time.</label>
 		</text>
 		<text>
-			<label>As many details were added, please refer to ./Docs especially for the autopilot documentation</label>
+			<label>Please refer to ./Docs especially for the autopilot documentation</label>
 		</text>
 		<text>
 			<label>Thank you for your attention, we wish you a pleasant flight :)</label>
