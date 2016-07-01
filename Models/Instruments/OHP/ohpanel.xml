@@ -1177,6 +1177,7 @@
 				<or>
 					<property>controls/lighting/lt-test</property>
 					<not><property>systems/fuel/boost-pump[0]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[0]/serviceable</property></not>
 				</or>
 			</and>
 		</condition>
@@ -1396,13 +1397,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/fuel/xflow-left</property>
-						<not-equals>
-							<property>systems/fuel/xflow-pump/running</property>
-							<value>-1</value>
-						</not-equals>
-					</and>
+					<property>systems/fuel/xflow-pump/inop</property>
 				</or>
 			</and>
 		</condition>
@@ -1525,13 +1520,7 @@
 				</greater-than-equals>
 				<or>
 					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/fuel/xflow-right</property>
-						<not-equals>
-							<property>systems/fuel/xflow-pump/running</property>
-							<value>1</value>
-						</not-equals>
-					</and>
+					<property>systems/fuel/xflow-pump/inop</property>
 				</or>
 			</and>
 		</condition>

@@ -156,7 +156,11 @@
 		</input>
 		<output>systems/fuel/circuit[1]/powered</output>
 	</logic>	
-	<!-- xflow -->
+	<!-- 
+	xflow: balance left and right wing tanks
+	When a fuel imbalance of 200lbs exists, the fuel computer activates the xflow pump
+	In case of a pump fault, the crew can use the gravity xflow.
+	-->
 	<filter>
 		<name>gravity-xflow</name>
 		<type>gain</type>
@@ -172,6 +176,23 @@
 		</input>
 		<output>systems/fuel/gravity-xflow/open</output>
 	</filter>	
+	<logic>
+		<name>gravity-xflow fail</name>
+		<input>
+			<or>
+				<and>
+					<property>controls/fuel/gravity-xflow</property>				
+					<not><property>systems/fuel/gravity-xflow/open</property></not>
+				</and>
+				<and>
+					<not><property>controls/fuel/gravity-xflow</property></not>
+					<property>systems/fuel/gravity-xflow/open</property>
+				</and>
+			</or>
+		</input>
+		<output>systems/fuel/gravity-xflow/fail</output>
+	</logic>		
+
 	<filter>
 		<name>xflow pump</name>
 		<type>gain</type>
@@ -190,12 +211,13 @@
 									<property>consumables/fuel/tank[0]/level-lbs</property>
 								</dif>
 							</expression>
-							<value>800</value>
+							<value>200</value>
 						</greater-than>			
 					</and>
 					<and>
 						<property>controls/fuel/xflow-manual</property>
 						<property>controls/fuel/xflow-left</property>
+						<not><property>controls/fuel/xflow-right</property></not>
 					</and>
 				</or>
 			</condition>
@@ -215,12 +237,13 @@
 									<property>consumables/fuel/tank[1]/level-lbs</property>
 								</dif>
 							</expression>
-							<value>800</value>
+							<value>200</value>
 						</greater-than>
 					</and>
 					<and>
 						<property>controls/fuel/xflow-manual</property>
 						<property>controls/fuel/xflow-right</property>
+						<not><property>controls/fuel/xflow-left</property></not>
 					</and>
 				</or>
 			</condition>
@@ -231,5 +254,24 @@
 		</input>
 		<output>systems/fuel/xflow-pump/running</output>
 	</filter>	
-	
+	<logic>
+		<name>xflow-pump inop</name>
+		<input>
+			<or>
+				<and>
+					<property>controls/fuel/xflow-left</property>
+					<property>controls/fuel/xflow-right</property>
+				</and>
+				<and>
+					<property>controls/fuel/xflow-left</property>
+					<not><property>systems/fuel/xflow-pump/serviceable</property></not>
+				</and>
+				<and>
+					<property>controls/fuel/xflow-right</property>
+					<not><property>systems/fuel/xflow-pump/serviceable</property></not>
+				</and>
+			</or>
+		</input>
+		<output>systems/fuel/xflow-pump/inop</output>
+	</logic>	
 </PropertyList>

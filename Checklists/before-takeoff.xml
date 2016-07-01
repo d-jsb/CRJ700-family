@@ -137,5 +137,37 @@
 				<value>1</value>
 			</binding>
 		</item>
+		<item>
+			<name>Fuel xflow</name>
+			<value>MANUAL OFF</value>
+			<marker>
+				<x-m>-13.4355</x-m>
+				<y-m>0.0000</y-m>
+				<z-m>-0.1331</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<and>
+					<property>controls/fuel/xflow-manual</property>
+					<not><property>controls/fuel/xflow-left</property></not>
+					<not><property>controls/fuel/xflow-right</property></not>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/fuel/xflow-manual</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/fuel/xflow-left</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/fuel/xflow-right</property>
+				<value>0</value>
+			</binding>
+		</item>		
 	</page>
 </PropertyList>
