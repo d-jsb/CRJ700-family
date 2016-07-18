@@ -107,6 +107,17 @@
 				<z-m>-0.1768</z-m>
 				<scale>1.0000</scale>
 			</marker>
+			<condition>
+				<equals>
+					<property>/controls/pneumatic/bleed-valve</property>
+					<value>1</value> <!-- 1 = automatic, 2 = manual -->
+				</equals>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/pneumatic/bleed-valve</property>
+				<value>1</value>
+			</binding>		
 		</item>		
 		<item>
 			<name>Parking Brake</name>
