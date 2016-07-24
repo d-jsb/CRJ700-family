@@ -1322,6 +1322,7 @@
 				<or>
 					<property>controls/lighting/lt-test</property>
 					<not><property>systems/fuel/boost-pump[1]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[1]/serviceable</property></not>
 				</or>
 			</and>
 		</condition>

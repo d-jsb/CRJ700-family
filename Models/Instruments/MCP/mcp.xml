@@ -345,13 +345,13 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/autoflight/disengage-pos-norm</property>
+			<property>controls/autoflight/disc-pos</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
 				<condition>
 					<equals>
-						<property>controls/autoflight/disengage-pos-norm</property>
+						<property>controls/autoflight/disc-pos</property>
 						<value>1</value>
 					</equals>
 				</condition>
@@ -363,7 +363,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>APDISC</object-name>
-		<property>controls/autoflight/disengage-pos-norm</property>
+		<property>controls/autoflight/disc-pos</property>
 		<factor>0.0095</factor>
 		<axis>
 			<x>0</x>

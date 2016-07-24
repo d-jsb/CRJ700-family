@@ -28,7 +28,6 @@
 		<object-name>Ring</object-name>
 		<condition>
 			<and>
-				<property>controls/lighting/standby-compass</property>
 				<greater-than-equals>
 					<property>systems/DC/outputs/standby-instrument</property>
 					<value>15</value>

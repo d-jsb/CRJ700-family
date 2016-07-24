@@ -534,7 +534,7 @@
 			<autothrottle-engage type="bool">false</autothrottle-engage>
 			<roll-mode type="int">1</roll-mode>
 			<bank-limit-deg type="float">30</bank-limit-deg>
-			<disengage-pos-norm type="int">0</disengage-pos-norm>
+			<disc-pos type="bool">false</disc-pos>
 			<half-bank type="bool">0</half-bank>
 			<heading-select type="double">360</heading-select>
 			<lat-mode type="int">0</lat-mode>

@@ -124,10 +124,6 @@
 				<property>controls/lighting/standby-compass</property>
 			</signal>
 			<signal>
-				<type>bool</type>
-				<property>controls/lighting/panel-lights</property>
-			</signal>
-			<signal>
 				<type>float</type>
 				<property>controls/lighting/panel-norm</property>
 			</signal>
