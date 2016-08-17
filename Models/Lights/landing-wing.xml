@@ -1,70 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
-
 	<path>landing.ac</path>
-
+    
 	<params>
 		<power-source>systems/DC/outputs/landing-lights</power-source>
-	</params>
-
+        <x-m />
+        <y-m />
+        <z-m />
+    </params>
+    
 	<animation>
 		<type>select</type>
 		<condition>
-			<and>
-				<not>
-					<property>sim/current-view/internal</property>
-				</not>
-				<greater-than>
-					<property alias="/params/power-source" />
-					<value>22</value>
-				</greater-than>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>light</type>
-		<light-type>spot</light-type>
-		<object-name>Cone</object-name>
-		<nopreview />
+ 			<not>
+                <property>sim/current-view/internal</property>
+            </not>	
+            <greater-than>
+                <property alias="/params/power-source" />
+                <value>22</value>
+            </greater-than>
+        </condition>
+    </animation>
+	<light>
+		<type>point</type>
 		<position>
-			<x>0</x>
-			<y>0</y>
-			<z>0</z>
-		</position>
+            <x alias="/params/x-m" />
+            <y alias="/params/y-m" />
+            <z alias="/params/z-m" />
+        </position>
 		<direction>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</direction>
+            <pitch-deg>70</pitch-deg>
+            <roll-deg>0</roll-deg>
+            <heading-deg>0</heading-deg>
+        </direction>
 		<ambient>
 			<r>0.8</r>
 			<g>0.8</g>
 			<b>0.8</b>
 			<a>1.0</a>
-		</ambient>
+        </ambient>
+		<debug-color>
+			<r>0.1</r>
+			<g>1</g>
+			<b>0.1</b>
+			<a>1.0</a>
+        </debug-color>
 		<diffuse>
 			<r>0.7</r>
 			<g>0.7</g>
 			<b>0.6</b>
 			<a>1.0</a>
-		</diffuse>
+        </diffuse>
 		<specular>
 			<r>0.7</r>
 			<g>0.7</g>
 			<b>0.7</b>
 			<a>1.0</a>
-		</specular>
+        </specular>
 		<attenuation>
 			<c>1.0</c>
 			<l>0.002</l>
 			<q>0.00005</q>
-		</attenuation>
-		<exponent>30.0</exponent>
-		<near-m>15</near-m>
-		<far-m>1500</far-m>
-		<cutoff>2000</cutoff>
-	</animation>
+        </attenuation>
+        <spot-cutoff>20</spot-cutoff>
+        <spot-exponent>2</spot-exponent>
+		<range-m>2</range-m>
+    </light>
 	<animation>
 		<type>flash</type>
 		<object-name>Light</object-name>
@@ -77,13 +79,6 @@
 			<x>-1</x>
 			<y>0</y>
 			<z>0</z>
-		</axis>
-	</animation>
-	
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Light</object-name>
-	</effect>
-
+        </axis>
+    </animation>
 </PropertyList>

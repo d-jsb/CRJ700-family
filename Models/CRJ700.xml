@@ -4,7 +4,7 @@
 <!-- Main model, CRJ700 -->
 
 <PropertyList>
-
+	
 	<path>CRJ700.ac</path>
 	<params>
 		<apu-door>engines/engine[2]/n1</apu-door>
@@ -66,20 +66,11 @@
 			<heading-deg>-1</heading-deg>
 		</offsets>
 	</model>
-	<!-- Flight deck -->
-	<model>
-		<name>Flight deck</name>
-		<path>Flightdeck/CRJ700-flightdeck.xml</path>
-		<offsets>
-			<x-m>-12.2</x-m>
-			<y-m>0</y-m>
-			<z-m>-1.81</z-m>
-		</offsets>
-	</model>
 	<!-- Interior -->
 	<model>
 		<name>Interior</name>
 		<path>Interior/CRJ700-interior.xml</path>
+        <usage>interior</usage>
 	</model>
 	<!-- Pushback -->
 	<model>
@@ -98,6 +89,13 @@
 	<model>
 		<name>Port nav light</name>
 		<path>Lights/rednav.xml</path>
+		<overlay>
+			<params>
+                <x-m>2.94</x-m>
+                <y-m>-11.27</y-m>
+                <z-m>-1.866</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>2.94</x-m>
 			<y-m>-11.27</y-m>
@@ -107,6 +105,13 @@
 	<model>
 		<name>Starboard nav light</name>
 		<path>Lights/greennav.xml</path>
+		<overlay>
+			<params>
+                <x-m>2.94</x-m>
+                <y-m>11.27</y-m>
+                <z-m>-1.866</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>2.94</x-m>
 			<y-m>11.27</y-m>
@@ -116,6 +121,13 @@
 	<model>
 		<name>Port strobe light</name>
 		<path>Lights/strobe.xml</path>
+		<overlay>
+			<params>
+                <x-m>2.94</x-m>
+                <y-m>-11.27</y-m>
+                <z-m>-1.866</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>2.94</x-m>
 			<y-m>-11.27</y-m>
@@ -128,6 +140,9 @@
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/rear-ac-light</power-source>
+                <x-m>15.611</x-m>
+                <y-m>0</y-m>
+                <z-m>2.723</z-m>
 			</params>
 		</overlay>
 		<offsets>
@@ -139,6 +154,13 @@
 	<model>
 		<name>Starboard strobe light</name>
 		<path>Lights/strobe.xml</path>
+		<overlay>
+			<params>
+                <x-m>2.94</x-m>
+                <y-m>11.27</y-m>
+                <z-m>-1.866</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>2.94</x-m>
 			<y-m>11.27</y-m>
@@ -148,6 +170,13 @@
 	<model>
 		<name>Top beacon</name>
 		<path>Lights/beacon.xml</path>
+		<overlay>
+			<params>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-5.286</x-m>
 			<y-m>0</y-m>
@@ -157,6 +186,13 @@
 	<model>
 		<name>Bottom beacon</name>
 		<path>Lights/beacon.xml</path>
+		<overlay>
+			<params>
+                <x-m>-6.307</x-m>
+                <y-m>0</y-m>
+                <z-m>-2.386</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-6.307</x-m>
 			<y-m>0</y-m>
@@ -169,6 +205,9 @@
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
+                <x-m>-2.776</x-m>
+                <y-m>-1.75</y-m>
+                <z-m>-2.199</z-m>
 			</params>
 		</overlay>
 		<offsets>
@@ -178,22 +217,16 @@
 		</offsets>
 	</model>
 	<model>
-		<name>Port landing light (inside)</name>
-		<path>Lights/landing-wing-inside.xml</path>
-		<overlay>
-			<params>
-				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>-5.642</x-m>
-			<y-m>-7.22</y-m>
-			<z-m>-1.906</z-m>
-		</offsets>
-	</model>
-	<model>
 		<name>Port taxi light</name>
 		<path>Lights/taxi.xml</path>
+		<overlay>
+			<params>
+				<power-source>systems/DC/outputs/taxi-lights</power-source>
+                <x-m>-2.944</x-m>
+                <y-m>-1.511</y-m>
+                <z-m>-2.203</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-2.944</x-m>
 			<y-m>-1.511</y-m>
@@ -206,6 +239,9 @@
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
+                <x-m>-2.776</x-m>
+                <y-m>1.75</y-m>
+                <z-m>-2.199</z-m>
 			</params>
 		</overlay>
 		<offsets>
@@ -215,22 +251,16 @@
 		</offsets>
 	</model>
 	<model>
-		<name>Starboard landing light (inside)</name>
-		<path>Lights/landing-wing-inside.xml</path>
-		<overlay>
-			<params>
-				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>-5.642</x-m>
-			<y-m>7.22</y-m>
-			<z-m>-1.906</z-m>
-		</offsets>
-	</model>
-	<model>
 		<name>Starboard taxi light</name>
 		<path>Lights/taxi.xml</path>
+		<overlay>
+			<params>
+				<power-source>systems/DC/outputs/taxi-lights</power-source>
+                <x-m>-2.944</x-m>
+                <y-m>1.511</y-m>
+                <z-m>-2.203</z-m>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>-2.944</x-m>
 			<y-m>1.511</y-m>
@@ -250,7 +280,7 @@
 			<z-m>-0.715</z-m>
 		</offsets>
 	</model>
-
+	
 	<!-- Door animations -->
 	<animation>
 		<type>rotate</type>
@@ -295,7 +325,7 @@
 			<x2-m>12.47303</x2-m>
 			<y2-m>0.28419</y2-m>
 			<z2-m>-0.50063</z2-m>
-        </axis>		
+		</axis>		
 	</animation>
 	<!-- Aft Cargo Door -->
 	<animation>
@@ -323,7 +353,7 @@
 			<x2-m>7.967</x2-m>
 			<y2-m>0</y2-m>
 			<z2-m>-1.042</z2-m>
-        </axis>
+		</axis>
 	</animation>
 	<animation>
 		<type>rotate</type>
@@ -352,9 +382,9 @@
 			<x>1.09</x>
 			<y>0.06101</y>
 			<z>0.0108</z>
-        </axis>
+		</axis>
 	</animation>
-
+	
 	<!-- Ctr Cargo Door -->
 	<animation>
 		<type>translate</type>
@@ -381,7 +411,7 @@
 			<x2-m>-5.0849</x2-m>
 			<y2-m>-0.008</y2-m>
 			<z2-m>-1.1295</z2-m>
-        </axis>
+		</axis>
 	</animation>
 	<animation>
 		<type>rotate</type>
@@ -410,9 +440,9 @@
 			<x>1.02218</x>
 			<y>0</y>
 			<z>0</z>
-        </axis>
+		</axis>
 	</animation>
-
+	
 	<!-- Wing animations -->
 	<!-- Ailerons -->
 	<animation>
@@ -581,127 +611,127 @@
 		</axis>
 	</animation>
 	<!-- Speedbrakes/spoilers -->
-        <animation>
-                <name>Left outboard speedbrake</name>
-                <type>rotate</type>
-                <object-name>SpoilerL4</object-name>
-                <property>surface-positions/left-speedbrake-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.908</x1-m>
-                        <y1-m>-6.068</y1-m>
-                        <z1-m>-1.949</z1-m>
-                        <x2-m>2.209</x2-m>
-                        <y2-m>-6.857</y2-m>
-                        <z2-m>-1.924</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Left inboard speedbrake</name>
-                <type>rotate</type>
-                <object-name>SpoilerL3</object-name>
-                <property>surface-positions/left-speedbrake-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.598</x1-m>
-                        <y1-m>-5.258</y1-m>
-                        <z1-m>-1.974</z1-m>
-                        <x2-m>1.9</x2-m>
-                        <y2-m>-6.048</y2-m>
-                        <z2-m>-1.95</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Left outboard spoiler</name>
-                <type>rotate</type>
-                <object-name>SpoilerL2</object-name>
-                <property>surface-positions/spoiler-ground-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.269</x1-m>
-                        <y1-m>-3.392</y1-m>
-                        <z1-m>-2.017</z1-m>
-                        <x2-m>1.334</x2-m>
-                        <y2-m>-4.551</y2-m>
-                        <z2-m>-1.987</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Left inboard spoiler</name>
-                <type>rotate</type>
-                <object-name>SpoilerL1</object-name>
-                <property>surface-positions/spoiler-ground-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.173</x1-m>
-                        <y1-m>-1.892</y1-m>
-                        <z1-m>-2.074</z1-m>
-                        <x2-m>1.247</x2-m>
-                        <y2-m>-3.052</y2-m>
-                        <z2-m>-2.025</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Right outboard speedbrake</name>
-                <type>rotate</type>
-                <object-name>SpoilerR4</object-name>
-                <property>surface-positions/right-speedbrake-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>2.209</x1-m>
-                        <y1-m>6.857</y1-m>
-                        <z1-m>-1.924</z1-m>
-                        <x2-m>1.908</x2-m>
-                        <y2-m>6.068</y2-m>
-                        <z2-m>-1.949</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Right inboard speedbrake</name>
-                <type>rotate</type>
-                <object-name>SpoilerR3</object-name>
-                <property>surface-positions/right-speedbrake-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.9</x1-m>
-                        <y1-m>6.048</y1-m>
-                        <z1-m>-1.95</z1-m>
-                        <x2-m>1.598</x2-m>
-                        <y2-m>5.258</y2-m>
-                        <z2-m>-1.974</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Right outboard spoiler</name>
-                <type>rotate</type>
-                <object-name>SpoilerR2</object-name>
-                <property>surface-positions/spoiler-ground-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.334</x1-m>
-                        <y1-m>4.551</y1-m>
-                        <z1-m>-1.987</z1-m>
-                        <x2-m>1.269</x2-m>
-                        <y2-m>3.392</y2-m>
-                        <z2-m>-2.017</z2-m>
-                </axis>
-        </animation>
-        <animation>
-                <name>Right inboard spoiler</name>
-                <type>rotate</type>
-                <object-name>SpoilerR1</object-name>
-                <property>surface-positions/spoiler-ground-pos-norm</property>
-                <factor>40</factor>
-                <axis>
-                        <x1-m>1.247</x1-m>
-                        <y1-m>3.052</y1-m>
-                        <z1-m>-2.025</z1-m>
-                        <x2-m>1.173</x2-m>
-                        <y2-m>1.892</y2-m>
-                        <z2-m>-2.074</z2-m>
-                </axis>
-        </animation>
-
+	<animation>
+		<name>Left outboard speedbrake</name>
+		<type>rotate</type>
+		<object-name>SpoilerL4</object-name>
+		<property>surface-positions/left-ob-mfs-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.908</x1-m>
+			<y1-m>-6.068</y1-m>
+			<z1-m>-1.949</z1-m>
+			<x2-m>2.209</x2-m>
+			<y2-m>-6.857</y2-m>
+			<z2-m>-1.924</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Left inboard speedbrake</name>
+		<type>rotate</type>
+		<object-name>SpoilerL3</object-name>
+		<property>surface-positions/left-ib-mfs-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.598</x1-m>
+			<y1-m>-5.258</y1-m>
+			<z1-m>-1.974</z1-m>
+			<x2-m>1.9</x2-m>
+			<y2-m>-6.048</y2-m>
+			<z2-m>-1.95</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Left outboard spoiler</name>
+		<type>rotate</type>
+		<object-name>SpoilerL2</object-name>
+		<property>surface-positions/spoiler-ob-ground-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.269</x1-m>
+			<y1-m>-3.392</y1-m>
+			<z1-m>-2.017</z1-m>
+			<x2-m>1.334</x2-m>
+			<y2-m>-4.551</y2-m>
+			<z2-m>-1.987</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Left inboard spoiler</name>
+		<type>rotate</type>
+		<object-name>SpoilerL1</object-name>
+		<property>surface-positions/spoiler-ib-ground-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.173</x1-m>
+			<y1-m>-1.892</y1-m>
+			<z1-m>-2.074</z1-m>
+			<x2-m>1.247</x2-m>
+			<y2-m>-3.052</y2-m>
+			<z2-m>-2.025</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Right outboard speedbrake</name>
+		<type>rotate</type>
+		<object-name>SpoilerR4</object-name>
+		<property>surface-positions/right-ob-mfs-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>2.209</x1-m>
+			<y1-m>6.857</y1-m>
+			<z1-m>-1.924</z1-m>
+			<x2-m>1.908</x2-m>
+			<y2-m>6.068</y2-m>
+			<z2-m>-1.949</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Right inboard speedbrake</name>
+		<type>rotate</type>
+		<object-name>SpoilerR3</object-name>
+		<property>surface-positions/right-ib-mfs-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.9</x1-m>
+			<y1-m>6.048</y1-m>
+			<z1-m>-1.95</z1-m>
+			<x2-m>1.598</x2-m>
+			<y2-m>5.258</y2-m>
+			<z2-m>-1.974</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Right outboard spoiler</name>
+		<type>rotate</type>
+		<object-name>SpoilerR2</object-name>
+		<property>surface-positions/spoiler-ob-ground-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.334</x1-m>
+			<y1-m>4.551</y1-m>
+			<z1-m>-1.987</z1-m>
+			<x2-m>1.269</x2-m>
+			<y2-m>3.392</y2-m>
+			<z2-m>-2.017</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<name>Right inboard spoiler</name>
+		<type>rotate</type>
+		<object-name>SpoilerR1</object-name>
+		<property>surface-positions/spoiler-ib-ground-pos-norm</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>1.247</x1-m>
+			<y1-m>3.052</y1-m>
+			<z1-m>-2.025</z1-m>
+			<x2-m>1.173</x2-m>
+			<y2-m>1.892</y2-m>
+			<z2-m>-2.074</z2-m>
+		</axis>
+	</animation>
+	
 	<!-- Vstab animations -->
 	<!-- Elevators -->
 	<animation>
@@ -727,7 +757,7 @@
 		<name>Left elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorL</object-name>
-		<property>fcs/elevator-cmd-norm</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>15.66</x1-m>
@@ -742,7 +772,7 @@
 		<name>Right elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorR</object-name>
-		<property>fcs/elevator-cmd-norm</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>14.291</x1-m>
@@ -770,7 +800,7 @@
 			<z2-m>-0.054</z2-m>
 		</axis>
 	</animation>
-
+	
 	<!-- Landing gear door animations -->
 	<!-- Nose -->
 	<animation>
@@ -836,7 +866,7 @@
 			<z-m>-2.344</z-m>
 		</center>
 	</animation>
-
+	
 	<!-- Livery select -->
 	<animation>
 		<type>material</type>
@@ -928,5 +958,5 @@
 	</effect>
 	
 	<foo include="CRJ700-main.xml" omit-node="y" />
-
+	
 </PropertyList>

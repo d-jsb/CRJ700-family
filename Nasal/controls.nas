@@ -243,14 +243,25 @@ setlistener("surface-positions/flap-pos-norm", func (n) {
 
 
 ## elevator trim handler
-var _elevatorTrim = controls.elevatorTrim;
-var TRIM_RATE = 0.01745;
-
-controls.elevatorTrim = func(x) {
-    if (getprop("/systems/hstab/powered")) {
-        if (getprop("/controls/flight/hstab-trim") >= 1)
-            _elevatorTrim(x);
-        else 
-            slewProp("/controls/flight/hstab-trim", x * TRIM_RATE);
-    }
-};
+if (getprop("/sim/flight-model") == "yasim") {
+    var TRIM_RATE = 0.2 * D2R;
+    var original_elevatorTrim = controls.elevatorTrim;
+    var crj_trim = func(x) {
+        if (getprop("/systems/stab-trim/engaged")) {
+            if (getprop("/controls/flight/hstab-trim") >= 1) {
+                original_elevatorTrim(x);
+            } else {
+                controls.slewProp("/controls/flight/hstab-trim", 
+                    (x > 0) ? TRIM_RATE :
+                    (x < 0) ? -TRIM_RATE : 0);
+            }
+        }
+    };
+    setlistener("/sim/config/hstab-trim", func(n) {
+        if (n.getValue()) {
+            controls.elevatorTrim = crj_trim;
+        } else {
+            controls.elevatorTrim = original_elevatorTrim;
+        }
+    }, 1, 0);
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList include="CRJ700-main.xml">
+  <sim include="crj900-views.xml">
+    <description>Bombardier CRJ900 (JSBSim)</description>
+    <author>Ryan Miller, Henning S., Daniel Meissner (JSBSim FDM and FCS)</author>
+    <status>alpha</status>
+    <aircraft-version>0.0.1</aircraft-version>
+    <!-- <variant-of>CRJ700</variant-of> -->
+    
+    <flight-model>jsb</flight-model>
+    <aero>CRJ900jsb</aero>
+    
+    <model>
+      <path>Models/CRJ900.xml</path>
+      <variant type="int">10</variant>
+      <door>
+        <position-x-m type="float">-11.519</position-x-m>
+        <position-y-m type="float">-1.139</position-y-m>
+        <position-z-m type="float">-1.796</position-z-m>
+        <jetway-hood-deg type="float">3</jetway-hood-deg>
+      </door>
+      <has-slats type="bool">true</has-slats>
+      <limits>
+        <mtow-rw-m>1564</mtow-rw-m>
+        <mlw-rw-m>1536</mlw-rw-m>
+        <mtow-lb>72750</mtow-lb>
+        <mlw-lb>67000</mlw-lb>
+      </limits>
+      <dimensions>
+        <nose-distance-m>16</nose-distance-m>
+        <cockpit-offset-x>0</cockpit-offset-x>
+      </dimensions>
+      <sound>
+        <path>Sounds/CRJ700-sounds-external.xml</path>
+      </sound>
+    </model>
+    
+    <sound>
+      <path>Sounds/CRJ700-sounds.xml</path>
+    </sound>
+    
+    <dimensions>
+      <radius-m type="float">32.51</radius-m>
+    </dimensions>
+    
+    <menubar>
+      <default>
+        <menu n="100">
+          <label>Bombardier CRJ700</label>
+        </menu>
+      </default>
+    </menubar>
+</sim>
+
+<payload>
+	<weight>
+		<name type="string">Passengers and Cargo</name>
+		<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+		<min-lb type="double">0</min-lb>
+		<max-lb type="double">22590</max-lb>
+	</weight>
+</payload>  
+  
+<systems>
+    <reverser>
+        <command type="float">0</command>
+    </reverser>
+</systems>
+</PropertyList>

@@ -4,14 +4,14 @@
 <!-- Main model, CRJ900 -->
 
 <PropertyList>
-
+    
 	<path>CRJ900.ac</path>
 	<params>
 		<apu-door>engines/engine[2]/n1</apu-door>
 		<fwd-cargo-door>engines/engine[3]/n1</fwd-cargo-door>
 		<ctr-cargo-door>engines/engine[3]/n2</ctr-cargo-door>
 		<aft-cargo-door>engines/engine[3]/rpm</aft-cargo-door>
-	</params>
+    </params>
 	<!-- Landing gear -->
 	<model>
 		<name>Nose gear</name>
@@ -20,8 +20,8 @@
 			<x-m>-16.172</x-m>
 			<y-m>0</y-m>
 			<z-m>-3.201</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Main gears</name>
 		<path>CRJ700-maingear.xml</path>
@@ -29,8 +29,8 @@
 			<x-m>1.356</x-m>
 			<y-m>0</y-m>
 			<z-m>-3.357</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<!-- Engines -->
 	<model>
 		<name>Engine 1</name>
@@ -40,15 +40,15 @@
 				<n1>engines/engine[0]/rpm</n1>
 				<on-fire>engines/engine[0]/on-fire</on-fire>
 				<reverser-pos-norm>engines/engine[0]/reverser-pos-norm</reverser-pos-norm>
-			</params>
-		</overlay>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>8.736</x-m>
 			<y-m>-2.27</y-m>
 			<z-m>-0.31</z-m>
 			<heading-deg>1</heading-deg>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Engine 2</name>
 		<path>CRJ700-engine.xml</path>
@@ -57,200 +57,228 @@
 				<n1>engines/engine[1]/rpm</n1>
 				<on-fire>engines/engine[1]/on-fire</on-fire>
 				<reverser-pos-norm>engines/engine[1]/reverser-pos-norm</reverser-pos-norm>
-			</params>
-		</overlay>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>8.736</x-m>
 			<y-m>2.27</y-m>
 			<z-m>-0.31</z-m>
 			<heading-deg>-1</heading-deg>
-		</offsets>
-	</model>
-	<!-- Flight deck -->
-	<model>
-		<name>Flight deck</name>
-		<path>Flightdeck/CRJ700-flightdeck.xml</path>
-		<offsets>
-			<x-m>-14.14</x-m>
-			<y-m>0</y-m>
-			<z-m>-1.81</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<!-- Interior -->
 	<model>
 		<name>Interior</name>
 		<path>Interior/CRJ900-interior.xml</path>
-	</model>
+        <usage>interior</usage>
+    </model>
 	<!-- Pushback -->
 	<model>
 		<name>Pushback</name>
 		<path>Pushback/Goldhofert.xml</path>
 		<condition>
-			 <property>sim/hitches/aerotow/is-slave</property>
-		</condition>
+            <property>sim/hitches/aerotow/is-slave</property>
+        </condition>
 		<offsets>
 			<x-m>-16.173</x-m>
 			<y-m>0</y-m>
 			<z-m>-3.459</z-m>
-		</offsets>
-		</model>
+        </offsets>
+    </model>
 	<!-- Lights -->
 	<model>
 		<name>Port nav light</name>
 		<path>Lights/rednav.xml</path>
+		<overlay>
+			<params>
+                <x-m>3.647</x-m>
+                <y-m>-11.588</y-m>
+                <z-m>-1.866</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>-11.588</y-m>
 			<z-m>-1.866</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Starboard nav light</name>
 		<path>Lights/greennav.xml</path>
+		<overlay>
+			<params>
+                <x-m>3.647</x-m>
+                <y-m>11.588</y-m>
+                <z-m>-1.866</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>11.588</y-m>
 			<z-m>-1.866</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Port strobe light</name>
 		<path>Lights/strobe.xml</path>
+		<overlay>
+			<params>
+                <x-m>3.647</x-m>
+                <y-m>-11.588</y-m>
+                <z-m>-1.866</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>-11.588</y-m>
 			<z-m>-1.866</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Rear strobe light</name>
 		<path>Lights/strobe.xml</path>
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/rear-ac-light</power-source>
-			</params>
-		</overlay>
+                <x-m>17.551</x-m>
+                <y-m>0</y-m>
+                <z-m>2.723</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>17.551</x-m>
 			<y-m>0</y-m>
 			<z-m>2.723</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Starboard strobe light</name>
 		<path>Lights/strobe.xml</path>
+		<overlay>
+			<params>
+                <x-m>3.647</x-m>
+                <y-m>11.588</y-m>
+                <z-m>-1.866</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>3.647</x-m>
 			<y-m>11.588</y-m>
 			<z-m>-1.866</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Top beacon</name>
 		<path>Lights/beacon.xml</path>
+		<overlay>
+			<params>
+                <x-m>-7.226</x-m>
+                <y-m>0</y-m>
+                <z-m>0.3</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-7.226</x-m>
 			<y-m>0</y-m>
 			<z-m>0.3</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Bottom beacon</name>
 		<path>Lights/beacon.xml</path>
+		<overlay>
+			<params>
+                <x-m>-8.247</x-m>
+                <y-m>0</y-m>
+                <z-m>-2.386</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-8.247</x-m>
 			<y-m>0</y-m>
 			<z-m>-2.386</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Port landing light</name>
 		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
-			</params>
-		</overlay>
+                <x-m>-2.406</x-m>
+                <y-m>-1.75</y-m>
+                <z-m>-2.199</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-2.406</x-m>
 			<y-m>-1.75</y-m>
 			<z-m>-2.199</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Port landing light (inside)</name>
-		<path>Lights/landing-wing-inside.xml</path>
-		<overlay>
-			<params>
-				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>-7.582</x-m>
-			<y-m>-7.22</y-m>
-			<z-m>-1.906</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Port taxi light</name>
 		<path>Lights/taxi.xml</path>
+		<overlay>
+			<params>
+                <x-m>-2.574</x-m>
+                <y-m>-1.511</y-m>
+                <z-m>-2.203</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-2.574</x-m>
 			<y-m>-1.511</y-m>
 			<z-m>-2.203</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Starboard landing light</name>
 		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
 				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
-			</params>
-		</overlay>
+                <x-m>-2.406</x-m>
+                <y-m>1.75</y-m>
+                <z-m>-2.199</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-2.406</x-m>
 			<y-m>1.75</y-m>
 			<z-m>-2.199</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Starboard landing light (inside)</name>
-		<path>Lights/landing-wing-inside.xml</path>
-		<overlay>
-			<params>
-				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>-7.582</x-m>
-			<y-m>7.22</y-m>
-			<z-m>-1.906</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<model>
 		<name>Starboard taxi light</name>
 		<path>Lights/taxi.xml</path>
+		<overlay>
+			<params>
+                <x-m>-2.574</x-m>
+                <y-m>1.511</y-m>
+                <z-m>-2.203</z-m>
+            </params>
+        </overlay>
 		<offsets>
 			<x-m>-2.574</x-m>
 			<y-m>1.511</y-m>
 			<z-m>-2.203</z-m>
-		</offsets>
-	</model>
+        </offsets>
+    </model>
 	<!-- APU fire -->
 	<model>
 		<name>APU fire</name>
 		<path>Effects/enginefire.xml</path>
 		<condition>
 			<property>engines/engine[2]/on-fire</property>
-		</condition>
+        </condition>
 		<offsets>
 			<x-m>14.46</x-m>
 			<y-m>0</y-m>
 			<z-m>-0.715</z-m>
-		</offsets>
-	</model>
-
+        </offsets>
+    </model>
+    
 	<!-- Door animations -->
 	<animation>
 		<type>rotate</type>
@@ -264,8 +292,8 @@
 			<x2-m>-16.87717</x2-m>
 			<y2-m>0.59056</y2-m>
 			<z2-m>-2.03641</z2-m>
-		</axis>		
-	</animation>	
+        </axis>		
+    </animation>	
 	<animation>
 		<type>rotate</type>
 		<object-name>RightDoor</object-name>
@@ -276,13 +304,13 @@
 			<x>0</x>
 			<y>0</y>
 			<z>-1</z>
-		</axis>
+        </axis>
 		<center>
 			<x-m>-13.002</x-m>
 			<y-m>1.39</y-m>
 			<z-m>0</z-m>
-		</center>
-	</animation>
+        </center>
+    </animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>APUDoor</object-name>
@@ -296,7 +324,7 @@
 			<y2-m>0.28419</y2-m>
 			<z2-m>-0.50063</z2-m>
         </axis>		
-	</animation>
+    </animation>
 	<!-- Aft Cargo Door -->
 	<animation>
 		<type>translate</type>
@@ -306,16 +334,16 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.05</ind>
 				<dep>0.05</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>0.05</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<axis>
 			<x1-m>8.01757</x1-m>
 			<y1-m>-1.22626</y1-m>
@@ -324,7 +352,7 @@
 			<y2-m>0</y2-m>
 			<z2-m>-1.042</z2-m>
         </axis>
-	</animation>
+    </animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorAft</object-name>
@@ -333,27 +361,27 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.05</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>-35</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<center>
 			<x-m>7.967</x-m>
 			<y-m>0</y-m>
 			<z-m>-1.042</z-m>
-		</center>
+        </center>
 		<axis>
 			<x>1.09</x>
 			<y>0.06101</y>
 			<z>0.0108</z>
         </axis>
-	</animation>
+    </animation>
 	<!-- Fwd Cargo Door -->
 	<animation>
 		<type>translate</type>
@@ -363,16 +391,16 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.1</ind>
 				<dep>-0.1</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>-0.1</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<axis>
 			<x1-m>-7.8381</x1-m>
 			<y1-m>-0.72405</y1-m>
@@ -381,7 +409,7 @@
 			<y2-m>-0.0083</y2-m>
 			<z2-m>-1.1303</z2-m>
         </axis>
-	</animation>
+    </animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorFwd</object-name>
@@ -390,27 +418,27 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.1</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>25</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<center>
 			<x-m>-7.8381</x-m>
 			<y-m>-0.0083</y-m>
 			<z-m>-1.1303</z-m>
-		</center>
+        </center>
 		<axis>
 			<x>1.02218</x>
 			<y>0</y>
 			<z>0</z>
         </axis>
-	</animation>
+    </animation>
 	<!-- Ctr Cargo Door -->
 	<animation>
 		<type>translate</type>
@@ -420,16 +448,16 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.1</ind>
 				<dep>-0.1</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>-0.1</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<axis>
 			<x1-m>-5.08492</x1-m>
 			<y1-m>-0.71826</y1-m>
@@ -438,7 +466,7 @@
 			<y2-m>-0.008</y2-m>
 			<z2-m>-1.1295</z2-m>
         </axis>
-	</animation>
+    </animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>CargoDoorCtr</object-name>
@@ -447,27 +475,27 @@
 			<entry>
 				<ind>0</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>0.1</ind>
 				<dep>0</dep>
-			</entry>
+            </entry>
 			<entry>
 				<ind>1</ind>
 				<dep>25</dep>
-			</entry>
-		</interpolation>
+            </entry>
+        </interpolation>
 		<center>
 			<x-m>-5.0849</x-m>
 			<y-m>-0.008</y-m>
 			<z-m>-1.1295</z-m>
-		</center>
+        </center>
 		<axis>
 			<x>1.02218</x>
 			<y>0</y>
 			<z>0</z>
         </axis>
-	</animation>
+    </animation>
 	<!-- Wing animations -->
 	<!-- Ailerons -->
 	<animation>
@@ -484,8 +512,8 @@
 			<x2-m>3.013</x2-m>
 			<y2-m>-8.133</y2-m>
 			<z2-m>-1.945</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right aileron</name>
 		<type>rotate</type>
@@ -500,8 +528,8 @@
 			<x2-m>3.704</x2-m>
 			<y2-m>9.955</y2-m>
 			<z2-m>-1.889</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<!-- Flaps -->
 	<animation>
 		<name>Left inner flap</name>
@@ -516,8 +544,8 @@
 			<x2-m>1.813</x2-m>
 			<y2-m>-1.372</y2-m>
 			<z2-m>-2.208</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Left outer flap</name>
 		<type>rotate</type>
@@ -531,8 +559,8 @@
 			<x2-m>2.141</x2-m>
 			<y2-m>-4.96</y2-m>
 			<z2-m>-2.08</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right inner flap</name>
 		<type>rotate</type>
@@ -546,8 +574,8 @@
 			<x2-m>2.017</x2-m>
 			<y2-m>4.706</y2-m>
 			<z2-m>-2.088</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right outer flap</name>
 		<type>rotate</type>
@@ -561,8 +589,8 @@
 			<x2-m>3.234</x2-m>
 			<y2-m>8.133</y2-m>
 			<z2-m>-1.953</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<!-- Slats -->
 	<animation>
 		<type>select</type>
@@ -572,9 +600,9 @@
 			<greater-than>
 				<property>surface-positions/slat-pos-norm</property>
 				<value>0</value>
-			</greater-than>
-		</condition>
-	</animation>
+            </greater-than>
+        </condition>
+    </animation>
 	<animation>
 		<name>Left slats</name>
 		<type>translate</type>
@@ -588,8 +616,8 @@
 			<x2-m>-0.691</x2-m>
 			<y2-m>-4.976</y2-m>
 			<z2-m>-1.9</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right slats</name>
 		<type>translate</type>
@@ -603,8 +631,8 @@
 			<x2-m>-0.691</x2-m>
 			<y2-m>4.976</y2-m>
 			<z2-m>-1.9</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Left slats rot</name>
 		<type>rotate</type>
@@ -618,8 +646,8 @@
 			<x2-m>3.37857</x2-m>
 			<y2-m>-10.8747</y2-m>
 			<z2-m>-1.79568</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right slats rot</name>
 		<type>rotate</type>
@@ -633,14 +661,14 @@
 			<x2-m>-1.39</x2-m>
 			<y2-m>2.01725</y2-m>
 			<z2-m>-1.69832</z2-m>
-		</axis>
-	</animation>
-	<!-- Speedbrakes/spoilers -->
+        </axis>
+    </animation>
+	<!-- multifunction/ground spoilers, 1..4 ~ inner to outer -->
 	<animation>
 		<name>Left outboard speedbrake</name>
 		<type>rotate</type>
 		<object-name>SpoilerL4</object-name>
-		<property>surface-positions/left-speedbrake-pos-norm</property>
+		<property>surface-positions/left-ob-mfs-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>2.278</x1-m>
@@ -649,13 +677,13 @@
 			<x2-m>2.579</x2-m>
 			<y2-m>-6.857</y2-m>
 			<z2-m>-1.924</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Left inboard speedbrake</name>
 		<type>rotate</type>
 		<object-name>SpoilerL3</object-name>
-		<property>surface-positions/left-speedbrake-pos-norm</property>
+		<property>surface-positions/left-ib-mfs-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>1.968</x1-m>
@@ -664,13 +692,13 @@
 			<x2-m>2.27</x2-m>
 			<y2-m>-6.048</y2-m>
 			<z2-m>-1.95</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Left outboard spoiler</name>
 		<type>rotate</type>
 		<object-name>SpoilerL2</object-name>
-		<property>surface-positions/spoiler-ground-pos-norm</property>
+		<property>surface-positions/spoiler-ob-ground-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>1.639</x1-m>
@@ -679,13 +707,13 @@
 			<x2-m>1.704</x2-m>
 			<y2-m>-4.551</y2-m>
 			<z2-m>-1.987</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Left inboard spoiler</name>
 		<type>rotate</type>
 		<object-name>SpoilerL1</object-name>
-		<property>surface-positions/spoiler-ground-pos-norm</property>
+		<property>surface-positions/spoiler-ib-ground-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>1.543</x1-m>
@@ -694,13 +722,13 @@
 			<x2-m>1.617</x2-m>
 			<y2-m>-3.052</y2-m>
 			<z2-m>-2.025</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right outboard speedbrake</name>
 		<type>rotate</type>
 		<object-name>SpoilerR4</object-name>
-		<property>surface-positions/right-speedbrake-pos-norm</property>
+		<property>surface-positions/right-ob-mfs-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>2.579</x1-m>
@@ -709,13 +737,13 @@
 			<x2-m>2.278</x2-m>
 			<y2-m>6.068</y2-m>
 			<z2-m>-1.949</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right inboard speedbrake</name>
 		<type>rotate</type>
 		<object-name>SpoilerR3</object-name>
-		<property>surface-positions/right-speedbrake-pos-norm</property>
+		<property>surface-positions/right-ib-mfs-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>2.27</x1-m>
@@ -724,13 +752,13 @@
 			<x2-m>1.968</x2-m>
 			<y2-m>5.258</y2-m>
 			<z2-m>-1.974</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right outboard spoiler</name>
 		<type>rotate</type>
 		<object-name>SpoilerR2</object-name>
-		<property>surface-positions/spoiler-ground-pos-norm</property>
+		<property>surface-positions/spoiler-ob-ground-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>1.704</x1-m>
@@ -739,13 +767,13 @@
 			<x2-m>1.639</x2-m>
 			<y2-m>3.392</y2-m>
 			<z2-m>-2.017</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right inboard spoiler</name>
 		<type>rotate</type>
 		<object-name>SpoilerR1</object-name>
-		<property>surface-positions/spoiler-ground-pos-norm</property>
+		<property>surface-positions/spoiler-ib-ground-pos-norm</property>
 		<factor>40</factor>
 		<axis>
 			<x1-m>1.617</x1-m>
@@ -754,9 +782,9 @@
 			<x2-m>1.543</x2-m>
 			<y2-m>1.892</y2-m>
 			<z2-m>-2.074</z2-m>
-		</axis>
-	</animation>
-
+        </axis>
+    </animation>
+    
 	<!-- Vstab animations -->
 	<!-- Elevators -->
 	<animation>
@@ -771,18 +799,18 @@
 			<x>0</x>
 			<y>1</y>
 			<z>0</z>
-		</axis>
+        </axis>
 		<center>
 			<x-m>16.197</x-m>
 			<y-m>0</y-m>
 			<z-m>2.823</z-m>
-		</center>
-	</animation>
+        </center>
+    </animation>
 	<animation>
 		<name>Left elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorL</object-name>
-		<property>fcs/elevator-cmd-norm</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>17.62</x1-m>
@@ -791,13 +819,13 @@
 			<x2-m>16.251</x2-m>
 			<y2-m>-0.142</y2-m>
 			<z2-m>2.815</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Right elevator</name>
 		<type>rotate</type>
 		<object-name>ElevatorR</object-name>
-		<property>fcs/elevator-cmd-norm</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<factor>15</factor>
 		<axis>
 			<x1-m>16.251</x1-m>
@@ -806,8 +834,8 @@
 			<x2-m>17.62</x2-m>
 			<y2-m>3.529</y2-m>
 			<z2-m>2.54</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<!-- Rudder -->
 	<animation>
 		<name>Rudder</name>
@@ -823,9 +851,9 @@
 			<x2-m>14.016</x2-m>
 			<y2-m>0</y2-m>
 			<z2-m>-0.054</z2-m>
-		</axis>
-	</animation>
-
+        </axis>
+    </animation>
+    
 	<!-- Landing gear door animations -->
 	<!-- Nose -->
 	<animation>
@@ -838,7 +866,7 @@
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.2</ind><dep>85</dep></entry>
 			<entry><ind>1</ind><dep>85</dep></entry>
-		</interpolation>
+        </interpolation>
 		<axis>
 			<x1-m>-16.862</x1-m>
 			<y1-m>-0.345</y1-m>
@@ -846,8 +874,8 @@
 			<x2-m>-17.644</x2-m>
 			<y2-m>-0.345</y2-m>
 			<z2-m>-1.905</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Nose gear right door</name>
 		<type>rotate</type>
@@ -858,7 +886,7 @@
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.2</ind><dep>85</dep></entry>
 			<entry><ind>1</ind><dep>85</dep></entry>
-		</interpolation>
+        </interpolation>
 		<axis>
 			<x1-m>-17.644</x1-m>
 			<y1-m>0.345</y1-m>
@@ -866,8 +894,8 @@
 			<x2-m>-16.862</x2-m>
 			<y2-m>0.345</y2-m>
 			<z2-m>-2.177</z2-m>
-		</axis>
-	</animation>
+        </axis>
+    </animation>
 	<animation>
 		<name>Nose gear center door</name>
 		<type>rotate</type>
@@ -879,19 +907,19 @@
 			<entry><ind>0.1</ind><dep>0</dep></entry>
 			<entry><ind>0.9</ind><dep>-120</dep></entry>
 			<entry><ind>1</ind><dep>-120</dep></entry>
-		</interpolation>
+        </interpolation>
 		<axis>
 			<x>0</x>
 			<y>1</y>
 			<z>0</z>
-		</axis>
+        </axis>
 		<center>
 			<x-m>-16.098</x-m>
 			<y-m>0</y-m>
 			<z-m>-2.344</z-m>
-		</center>
-	</animation>
-
+        </center>
+    </animation>
+    
 	<!-- Livery select -->
 	<animation>
 		<type>material</type>
@@ -943,8 +971,8 @@
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>CRJ900-Blank.png</texture>
-	</animation>
-
+    </animation>
+    
 	<!-- Lightmaps -->
 	<effect>
 		<inherits-from>Effects/CRJ700lightmap-lowreflect</inherits-from>
@@ -960,8 +988,8 @@
 			<!-- <lightmap-color type="vec3d" n="3"> 1.0 1.0 1.0 </lightmap-color> -->
 			<texture n="3">
 				<image>Effects/Lightmaps/CRJ900-fuselage-lightmap.png</image>
-			</texture>
-		</parameters>
+            </texture>
+        </parameters>
 		<object-name>Fuselage.001</object-name>
 		<object-name>Belly</object-name>
 		<object-name>Belly.001</object-name>
@@ -983,8 +1011,8 @@
 		<object-name>ElevatorL</object-name>
 		<object-name>ElevatorR</object-name>
 		<object-name>EnginePylons</object-name>
-	</effect>
+    </effect>
 	
 	<foo include="CRJ700-main.xml" omit-node="y" />
-
+    
 </PropertyList>

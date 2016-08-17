@@ -4,3035 +4,3007 @@
 <!-- Overhead panel -->
 
 <PropertyList>
-	
     <path>ohpanel.ac</path>
-	
     <panel-marking-emit>
-		<red>1</red>
-		<green>0.871</green>
-		<blue>0.427</blue>
-	</panel-marking-emit>
-	
+        <red>1</red>
+        <green>0.871</green>
+        <blue>0.427</blue>
+    </panel-marking-emit>
+
     <button-emit-white>
-		<red>1</red>
-		<green>0.871</green>
-		<blue>0.6</blue>
-	</button-emit-white>
+        <red>1</red>
+        <green>0.871</green>
+        <blue>0.6</blue>
+    </button-emit-white>
     <button-emit-green>
-		<red>0.0</red>
-		<green>1</green>
-		<blue>0.12</blue>
-	</button-emit-green>
+        <red>0.0</red>
+        <green>1</green>
+        <blue>0.12</blue>
+    </button-emit-green>
     <button-emit-amber>
-		<red>1</red>
-		<green>0.304</green>
-		<blue>0.007</blue>
-	</button-emit-amber>
-	
+        <red>1</red>
+        <green>0.304</green>
+        <blue>0.007</blue>
+    </button-emit-amber>
+
     <button-translate-m type="float">0.001</button-translate-m>
     <cover-rotate-deg type="float">110</cover-rotate-deg>
     <switch-rotate-deg type="float">35</switch-rotate-deg>
     <switch-rotate-neg-deg type="float">-35</switch-rotate-neg-deg>
-	
-    <!-- Visible only within 1/2 km -->
+
     <animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>50</max-m>
-	</animation>
-	
+        <type>material</type>
+        <object-name>Markings</object-name>
+        <condition>
+            <greater-than-equals>
+                <property alias="../../../../params/powerN" />
+                <value>104</value>
+            </greater-than-equals>
+        </condition>
+        <emission>
+            <red alias="../../../panel-marking-emit/red" />
+            <green alias="../../../panel-marking-emit/green" />
+            <blue alias="../../../panel-marking-emit/blue" />
+            <factor-prop>controls/lighting/panel-overhead-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Markings</object-name>
-		<condition>
-			<greater-than-equals>
-				<property alias="../../../../params/powerN" />
-				<value>104</value>
-			</greater-than-equals>
-		</condition>
-		<emission>
-			<red alias="../../../panel-marking-emit/red" />
-			<green alias="../../../panel-marking-emit/green" />
-			<blue alias="../../../panel-marking-emit/blue" />
-			<factor-prop>controls/lighting/panel-overhead-norm</factor-prop>
-		</emission>
-	</animation>
-	<animation>
-		<name>OHPElementsEmit</name>
-		<object-name>ACAvailLight</object-name>
-		<object-name>ACCargoSwitch</object-name>
-		<object-name>ACEssXferLight</object-name>
-		<object-name>ACInUseLight</object-name>
-		<object-name>AITestLight</object-name>
-		<object-name>APUAvail</object-name>
-		<object-name>APUPumpFail</object-name>
-		<object-name>APUSOVFail</object-name>
-		<object-name>APUStarting</object-name>
-		<object-name>CONTLight</object-name>
-		<object-name>EmerDepressLight</object-name>
-		<object-name>Eng1StartLight</object-name>
-		<object-name>Eng1StopLight</object-name>
-		<object-name>Eng2StartLight</object-name>
-		<object-name>Eng2StopLight</object-name>
-		<object-name>HydSOVLightL</object-name>
-		<object-name>HydSOVLightR</object-name>
-		<object-name>IDG1Disc</object-name>
-		<object-name>IDG1Fault</object-name>
-		<object-name>IDG1TransferFail</object-name>
-		<object-name>IDG1TransferOff</object-name>
-		<object-name>IDG2Disc</object-name>
-		<object-name>IDG2Fault</object-name>
-		<object-name>IDG2TransferFail</object-name>
-		<object-name>IDG2TransferOff</object-name>
-		<object-name>LFuelINOP</object-name>
-		<object-name>LFuelOn</object-name>
-		<object-name>Markings</object-name>
-		<object-name>PackLFail</object-name>
-		<object-name>PackLManLight</object-name>
-		<object-name>PackLOff</object-name>
-		<object-name>PackRFail</object-name>
-		<object-name>PackRManLight</object-name>
-		<object-name>PackROff</object-name>
-		<object-name>PressContFault</object-name>
-		<object-name>PressContMan</object-name>
-		<object-name>RamAirLight</object-name>
-		<object-name>RFuelINOP</object-name>
-		<object-name>RFuelOn</object-name>
-		<object-name>XflowFail</object-name>
-		<object-name>XflowManLight</object-name>
-		<object-name>XflowOpen</object-name>
-		<object-name>XflowToLeftINOP</object-name>
-		<object-name>XflowToLeftOn</object-name>
-		<object-name>XflowToRightINOP</object-name>
-		<object-name>XflowToRightOn</object-name>
-	</animation>
-	<animation>
-		<name>OHPElements</name>
-		<object-name>ACBtn</object-name>
-		<object-name>ACEssXferBtn</object-name>
-		<object-name>ACFanSwitch</object-name>
-		<object-name>ACTempLKnob</object-name>
-		<object-name>ACTempLSwitch</object-name>
-		<object-name>ACTempRKnob</object-name>
-		<object-name>ACTempRSwitch</object-name>
-		<object-name>AICowlLSwitch</object-name>
-		<object-name>AICowlRSwitch</object-name>
-		<object-name>AIProbeLSwitch</object-name>
-		<object-name>AIProbeRSwitch</object-name>
-		<object-name>AITestBtn</object-name>
-		<object-name>AIWingSwitch</object-name>
-		<object-name>AIWndshldLSwitch</object-name>
-		<object-name>AIWndshldRSwitch</object-name>
-		<object-name>APUGenSwitch</object-name>
-		<object-name>APUPwrBtn</object-name>
-		<object-name>APUStartBtn</object-name>
-		<object-name>BatterySwitch</object-name>
-		<object-name>BeaconLightSwitch</object-name>
-		<object-name>BleedSourceKnob</object-name>
-		<object-name>BleedValveKnob</object-name>
-		<object-name>CabinPressKnob</object-name>
-		<object-name>CabinRateKnob</object-name>
-		<object-name>CONTBtn</object-name>
-		<object-name>CrossBleedKnob</object-name>
-		<object-name>DCSwitch</object-name>
-		<object-name>DomeLightSwitch</object-name>
-		<object-name>EmerDepCoverFrame</object-name>
-		<object-name>EmerDepCoverGlas</object-name>
-		<object-name>EmerDepressBtn</object-name>
-		<object-name>Eng1StartBtn</object-name>
-		<object-name>Eng1StopBtn</object-name>
-		<object-name>Eng2StartBtn</object-name>
-		<object-name>Eng2StopBtn</object-name>
-		<object-name>Gen1Switch</object-name>
-		<object-name>Gen2Switch</object-name>
-		<object-name>Hydraulic1Switch</object-name>
-		<object-name>Hydraulic2Switch</object-name>
-		<object-name>Hydraulic3ASwitch</object-name>
-		<object-name>Hydraulic3BSwitch</object-name>
-		<object-name>HydSOVBtnL</object-name>
-		<object-name>HydSOVBtnR</object-name>
-		<object-name>HydSOVCoverL</object-name>
-		<object-name>HydSOVCoverR</object-name>
-		<object-name>IDG1Btn</object-name>
-		<object-name>IDG1Cover</object-name>
-		<object-name>IDG1TransferBtn</object-name>
-		<object-name>IDG2Btn</object-name>
-		<object-name>IDG2Cover</object-name>
-		<object-name>IDG2TransferBtn</object-name>
-		<object-name>ISOLSwitch</object-name>
-		<object-name>LFuelBtn</object-name>
-		<object-name>LogoLightSwitch</object-name>
-		<object-name>NavLightSwitch</object-name>
-		<object-name>OverheadLightKnob</object-name>
-		<object-name>PackLBtn</object-name>
-		<object-name>PackLManBtn</object-name>
-		<object-name>PackRBtn</object-name>
-		<object-name>PackRManBtn</object-name>
-		<object-name>Panel_0</object-name>
-		<object-name>Panel_1</object-name>
-		<object-name>PressContBtn</object-name>
-		<object-name>RamAirBtn</object-name>
-		<object-name>RamAirCover</object-name>
-		<object-name>RFuelBtn</object-name>
-		<object-name>StandbyLightSwitch</object-name>
-		<object-name>StrobeLightSwitch</object-name>
-		<object-name>SwitchSocket_3</object-name>
-		<object-name>SwitchSockets</object-name>
-		<object-name>SwitchSockets_1</object-name>
-		<object-name>WingLightSwitch</object-name>
-		<object-name>XflowBtn</object-name>
-		<object-name>XflowManBtn</object-name>
-		<object-name>XflowToLeft</object-name>
-		<object-name>XflowToRight</object-name>		
-	</animation>
+        <name>OHPElementsEmit</name>
+        <object-name>ACAvailLight</object-name>
+        <object-name>ACCargoSwitch</object-name>
+        <object-name>ACEssXferLight</object-name>
+        <object-name>ACInUseLight</object-name>
+        <object-name>AITestLight</object-name>
+        <object-name>APUAvail</object-name>
+        <object-name>APUPumpFail</object-name>
+        <object-name>APUSOVFail</object-name>
+        <object-name>APUStarting</object-name>
+        <object-name>CONTLight</object-name>
+        <object-name>EmerDepressLight</object-name>
+        <object-name>Eng1StartLight</object-name>
+        <object-name>Eng1StopLight</object-name>
+        <object-name>Eng2StartLight</object-name>
+        <object-name>Eng2StopLight</object-name>
+        <object-name>HydSOVLightL</object-name>
+        <object-name>HydSOVLightR</object-name>
+        <object-name>IDG1Disc</object-name>
+        <object-name>IDG1Fault</object-name>
+        <object-name>IDG1TransferFail</object-name>
+        <object-name>IDG1TransferOff</object-name>
+        <object-name>IDG2Disc</object-name>
+        <object-name>IDG2Fault</object-name>
+        <object-name>IDG2TransferFail</object-name>
+        <object-name>IDG2TransferOff</object-name>
+        <object-name>LFuelINOP</object-name>
+        <object-name>LFuelOn</object-name>
+        <object-name>Markings</object-name>
+        <object-name>PackLFail</object-name>
+        <object-name>PackLManLight</object-name>
+        <object-name>PackLOff</object-name>
+        <object-name>PackRFail</object-name>
+        <object-name>PackRManLight</object-name>
+        <object-name>PackROff</object-name>
+        <object-name>PressContFault</object-name>
+        <object-name>PressContMan</object-name>
+        <object-name>RamAirLight</object-name>
+        <object-name>RFuelINOP</object-name>
+        <object-name>RFuelOn</object-name>
+        <object-name>XflowFail</object-name>
+        <object-name>XflowManLight</object-name>
+        <object-name>XflowOpen</object-name>
+        <object-name>XflowToLeftINOP</object-name>
+        <object-name>XflowToLeftOn</object-name>
+        <object-name>XflowToRightINOP</object-name>
+        <object-name>XflowToRightOn</object-name>
+    </animation>
+    <animation>
+        <name>OHPElements</name>
+        <object-name>ACBtn</object-name>
+        <object-name>ACEssXferBtn</object-name>
+        <object-name>ACFanSwitch</object-name>
+        <object-name>ACTempLKnob</object-name>
+        <object-name>ACTempLSwitch</object-name>
+        <object-name>ACTempRKnob</object-name>
+        <object-name>ACTempRSwitch</object-name>
+        <object-name>AICowlLSwitch</object-name>
+        <object-name>AICowlRSwitch</object-name>
+        <object-name>AIProbeLSwitch</object-name>
+        <object-name>AIProbeRSwitch</object-name>
+        <object-name>AITestBtn</object-name>
+        <object-name>AIWingSwitch</object-name>
+        <object-name>AIWndshldLSwitch</object-name>
+        <object-name>AIWndshldRSwitch</object-name>
+        <object-name>APUGenSwitch</object-name>
+        <object-name>APUPwrBtn</object-name>
+        <object-name>APUStartBtn</object-name>
+        <object-name>BatterySwitch</object-name>
+        <object-name>BeaconLightSwitch</object-name>
+        <object-name>BleedSourceKnob</object-name>
+        <object-name>BleedValveKnob</object-name>
+        <object-name>CabinPressKnob</object-name>
+        <object-name>CabinRateKnob</object-name>
+        <object-name>CONTBtn</object-name>
+        <object-name>CrossBleedKnob</object-name>
+        <object-name>DCSwitch</object-name>
+        <object-name>DomeLightSwitch</object-name>
+        <object-name>EmerDepCoverFrame</object-name>
+        <object-name>EmerDepCoverGlas</object-name>
+        <object-name>EmerDepressBtn</object-name>
+        <object-name>Eng1StartBtn</object-name>
+        <object-name>Eng1StopBtn</object-name>
+        <object-name>Eng2StartBtn</object-name>
+        <object-name>Eng2StopBtn</object-name>
+        <object-name>Gen1Switch</object-name>
+        <object-name>Gen2Switch</object-name>
+        <object-name>Hydraulic1Switch</object-name>
+        <object-name>Hydraulic2Switch</object-name>
+        <object-name>Hydraulic3ASwitch</object-name>
+        <object-name>Hydraulic3BSwitch</object-name>
+        <object-name>HydSOVBtnL</object-name>
+        <object-name>HydSOVBtnR</object-name>
+        <object-name>HydSOVCoverL</object-name>
+        <object-name>HydSOVCoverR</object-name>
+        <object-name>IDG1Btn</object-name>
+        <object-name>IDG1Cover</object-name>
+        <object-name>IDG1TransferBtn</object-name>
+        <object-name>IDG2Btn</object-name>
+        <object-name>IDG2Cover</object-name>
+        <object-name>IDG2TransferBtn</object-name>
+        <object-name>ISOLSwitch</object-name>
+        <object-name>LFuelBtn</object-name>
+        <object-name>LogoLightSwitch</object-name>
+        <object-name>NavLightSwitch</object-name>
+        <object-name>OverheadLightKnob</object-name>
+        <object-name>PackLBtn</object-name>
+        <object-name>PackLManBtn</object-name>
+        <object-name>PackRBtn</object-name>
+        <object-name>PackRManBtn</object-name>
+        <object-name>Panel_0</object-name>
+        <object-name>Panel_1</object-name>
+        <object-name>PressContBtn</object-name>
+        <object-name>RamAirBtn</object-name>
+        <object-name>RamAirCover</object-name>
+        <object-name>RFuelBtn</object-name>
+        <object-name>StandbyLightSwitch</object-name>
+        <object-name>StrobeLightSwitch</object-name>
+        <object-name>SwitchSocket_3</object-name>
+        <object-name>SwitchSockets</object-name>
+        <object-name>SwitchSockets_1</object-name>
+        <object-name>WingLightSwitch</object-name>
+        <object-name>XflowBtn</object-name>
+        <object-name>XflowManBtn</object-name>
+        <object-name>XflowToLeft</object-name>
+        <object-name>XflowToRight</object-name>
+    </animation>
     <!-- Electrical power -->
     <animation>
-		<type>pick</type>
-		<object-name>DCSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/dc-service-switch</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>DCSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/dc-service-switch</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>DCSwitch</object-name>
-		<property>controls/electric/dc-service-switch</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>0.139</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>DCSwitch</object-name>
+        <property>controls/electric/dc-service-switch</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0.139</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>BatterySwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/battery-switch</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>BatterySwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/battery-switch</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>BatterySwitch</object-name>
-		<property>controls/electric/battery-switch</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.002</x-m>
-			<y-m>-0.183</y-m>
-			<z-m>0.136</z-m>
-		</center>
-	</animation>
-	<!-- AC switch -->
+        <type>rotate</type>
+        <object-name>BatterySwitch</object-name>
+        <property>controls/electric/battery-switch</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.183</y-m>
+            <z-m>0.136</z-m>
+        </center>
+    </animation>
+    <!-- AC switch -->
     <animation>
-		<type>pick</type>
-		<object-name>ACBtn</object-name>
-		<object-name>ACAvailLight</object-name>
-		<object-name>ACInUseLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/ac-service-selected</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>ACBtn</object-name>
+        <object-name>ACAvailLight</object-name>
+        <object-name>ACInUseLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/ac-service-selected</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>ACBtn</object-name>
-		<object-name>ACAvailLight</object-name>
-		<object-name>ACInUseLight</object-name>
-		<property>controls/electric/ac-service-selected</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>ACBtn</object-name>
+        <object-name>ACAvailLight</object-name>
+        <object-name>ACInUseLight</object-name>
+        <property>controls/electric/ac-service-selected</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>ACAvailLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/electric/ac-service-avail</property>
-						<not><property>controls/electric/ac-service-in-use</property></not>
-					</and>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-green/red" />
-			<green alias="../../../button-emit-green/green" />
-			<blue alias="../../../button-emit-green/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>ACAvailLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <and>
+                        <property>controls/electric/ac-service-avail</property>
+                        <not><property>controls/electric/ac-service-in-use</property></not>
+                    </and>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-green/red" />
+            <green alias="../../../button-emit-green/green" />
+            <blue alias="../../../button-emit-green/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>ACInUseLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/electric/ac-service-avail</property>
-						<property>controls/electric/ac-service-selected</property>
-						<property>controls/electric/ac-service-in-use</property>
-					</and>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<!-- IDG switch -->
+        <type>material</type>
+        <object-name>ACInUseLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <and>
+                        <property>controls/electric/ac-service-avail</property>
+                        <property>controls/electric/ac-service-selected</property>
+                        <property>controls/electric/ac-service-in-use</property>
+                    </and>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+    <!-- IDG switch -->
     <animation>
-		<type>pick</type>
-		<object-name>IDG1Cover</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/idg1-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG1Cover</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/idg1-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>IDG1Cover</object-name>
-		<property>controls/electric/idg1-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>0.11024</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>IDG1Cover</object-name>
+        <property>controls/electric/idg1-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>0.11024</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>IDG2Cover</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/idg2-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG2Cover</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/idg2-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>IDG2Cover</object-name>
-		<property>controls/electric/idg2-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>0.11024</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>IDG2Cover</object-name>
+        <property>controls/electric/idg2-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>0.11024</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>IDG1Btn</object-name>
-		<object-name>IDG1Disc</object-name>
-		<object-name>IDG1Fault</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/electric/idg1-disc</property>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG1Btn</object-name>
+        <object-name>IDG1Disc</object-name>
+        <object-name>IDG1Fault</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/electric/idg1-disc</property>
+                <value>1</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>IDG1Btn</object-name>
-		<object-name>IDG1Disc</object-name>
-		<object-name>IDG1Fault</object-name>
-		<property>controls/electric/idg1-disc</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>IDG1Btn</object-name>
+        <object-name>IDG1Disc</object-name>
+        <object-name>IDG1Fault</object-name>
+        <property>controls/electric/idg1-disc</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG1Disc</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/electric/idg1-disc</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>IDG1Disc</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/electric/idg1-disc</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG1Fault</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/AC/system/gen1-serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>IDG1Fault</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>systems/AC/system/gen1-serviceable</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>IDG2Btn</object-name>
-		<object-name>IDG2Disc</object-name>
-		<object-name>IDG2Fault</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/electric/idg2-disc</property>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG2Btn</object-name>
+        <object-name>IDG2Disc</object-name>
+        <object-name>IDG2Fault</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/electric/idg2-disc</property>
+                <value>1</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>IDG2Btn</object-name>
-		<object-name>IDG2Disc</object-name>
-		<object-name>IDG2Fault</object-name>
-		<property>controls/electric/idg2-disc</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>IDG2Btn</object-name>
+        <object-name>IDG2Disc</object-name>
+        <object-name>IDG2Fault</object-name>
+        <property>controls/electric/idg2-disc</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG2Disc</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/electric/idg2-disc</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>IDG2Disc</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/electric/idg2-disc</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG2Fault</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/AC/system/gen2-serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<!-- AC ESS xfer switch -->
+        <type>material</type>
+        <object-name>IDG2Fault</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>systems/AC/system/gen2-serviceable</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+    <!-- AC ESS xfer switch -->
     <animation>
-		<type>pick</type>
-		<object-name>ACEssXferBtn</object-name>
-		<object-name>ACEssXferLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/ac-ess-xfer</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>ACEssXferBtn</object-name>
+        <object-name>ACEssXferLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/ac-ess-xfer</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>ACEssXferBtn</object-name>
-		<object-name>ACEssXferLight</object-name>
-		<property>controls/electric/ac-ess-xfer</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>ACEssXferBtn</object-name>
+        <object-name>ACEssXferLight</object-name>
+        <property>controls/electric/ac-ess-xfer</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>ACEssXferLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/electric/ac-ess-xfer</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<!-- Auto xfer switches -->
+        <type>material</type>
+        <object-name>ACEssXferLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/electric/ac-ess-xfer</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+    <!-- Auto xfer switches -->
     <animation>
-		<type>pick</type>
-		<object-name>IDG1TransferBtn</object-name>
-		<object-name>IDG1TransferOff</object-name>
-		<object-name>IDG1TransferFail</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/auto-xfer1</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG1TransferBtn</object-name>
+        <object-name>IDG1TransferOff</object-name>
+        <object-name>IDG1TransferFail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/auto-xfer1</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>IDG1TransferBtn</object-name>
-		<object-name>IDG1TransferOff</object-name>
-		<object-name>IDG1TransferFail</object-name>
-		<condition><not><property>controls/electric/auto-xfer1</property></not></condition>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>IDG1TransferBtn</object-name>
+        <object-name>IDG1TransferOff</object-name>
+        <object-name>IDG1TransferFail</object-name>
+        <condition><not><property>controls/electric/auto-xfer1</property></not></condition>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG1TransferOff</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>controls/electric/auto-xfer1</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>IDG1TransferOff</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>controls/electric/auto-xfer1</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG1TransferFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/AC/system[1]/serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>IDG1TransferFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>systems/AC/system[1]/serviceable</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>IDG2TransferBtn</object-name>
-		<object-name>IDG2TransferOff</object-name>
-		<object-name>IDG2TransferFail</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/auto-xfer2</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>IDG2TransferBtn</object-name>
+        <object-name>IDG2TransferOff</object-name>
+        <object-name>IDG2TransferFail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/auto-xfer2</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>IDG2TransferBtn</object-name>
-		<object-name>IDG2TransferOff</object-name>
-		<object-name>IDG2TransferFail</object-name>
-		<condition><not><property>controls/electric/auto-xfer2</property></not></condition>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>IDG2TransferBtn</object-name>
+        <object-name>IDG2TransferOff</object-name>
+        <object-name>IDG2TransferFail</object-name>
+        <condition><not><property>controls/electric/auto-xfer2</property></not></condition>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG2TransferOff</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>controls/electric/auto-xfer2</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>IDG2TransferOff</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>controls/electric/auto-xfer2</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>IDG2TransferFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/AC/system[2]/serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<!-- generators -->
+        <type>material</type>
+        <object-name>IDG2TransferFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>systems/AC/system[2]/serviceable</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+    <!-- generators -->
     <animation>
-		<type>pick</type>
-		<object-name>Gen1Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/engine[0]/generator</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>Gen1Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[0]/generator</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>Gen1Switch</object-name>
-		<property>controls/electric/engine[0]/generator</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.002</x-m>
-			<y-m>-0.221</y-m>
-			<z-m>0.054</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>Gen1Switch</object-name>
+        <property>controls/electric/engine[0]/generator</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.221</y-m>
+            <z-m>0.054</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>APUGenSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/APU-generator</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>APUGenSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[2]/generator</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>APUGenSwitch</object-name>
-		<property>controls/electric/APU-generator</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.002</x-m>
-			<y-m>-0.166</y-m>
-			<z-m>0.054</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>APUGenSwitch</object-name>
+        <property>controls/electric/engine[2]/generator</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.166</y-m>
+            <z-m>0.054</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>Gen2Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/electric/engine[1]/generator</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>Gen2Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[1]/generator</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>Gen2Switch</object-name>
-		<property>controls/electric/engine[1]/generator</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.002</x-m>
-			<y-m>-0.110</y-m>
-			<z-m>0.054</z-m>
-		</center>
-	</animation>
-	
-	<!-- Hyd SOV -->
+        <type>rotate</type>
+        <object-name>Gen2Switch</object-name>
+        <property>controls/electric/engine[1]/generator</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.110</y-m>
+            <z-m>0.054</z-m>
+        </center>
+    </animation>
+
+    <!-- Hyd SOV -->
     <animation>
-		<type>pick</type>
-		<object-name>HydSOVCoverL</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulic/system[0]/hyd-sov-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>HydSOVCoverL</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulic/system[0]/hyd-sov-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>HydSOVCoverL</object-name>
-		<property>controls/hydraulic/system[0]/hyd-sov-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.06482</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>HydSOVCoverL</object-name>
+        <property>controls/hydraulic/system[0]/hyd-sov-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.06482</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>HydSOVCoverR</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulic/system[1]/hyd-sov-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>HydSOVCoverR</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulic/system[1]/hyd-sov-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>HydSOVCoverR</object-name>
-		<property>controls/hydraulic/system[1]/hyd-sov-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.06482</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>HydSOVCoverR</object-name>
+        <property>controls/hydraulic/system[1]/hyd-sov-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.06482</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>HydSOVBtnL</object-name>
-		<object-name>HydSOVLightL</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulic/system[0]/pump-a</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>HydSOVBtnL</object-name>
+        <object-name>HydSOVLightL</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulic/system[0]/pump-a</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>HydSOVBtnL</object-name>
-		<object-name>HydSOVLightL</object-name>
-		<condition>
-			<not><property>controls/hydraulic/system[0]/pump-a</property></not>
-		</condition>		
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>HydSOVBtnL</object-name>
+        <object-name>HydSOVLightL</object-name>
+        <condition>
+            <not><property>controls/hydraulic/system[0]/pump-a</property></not>
+        </condition>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>HydSOVLightL</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>controls/hydraulic/system[0]/pump-a</property></not>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>HydSOVLightL</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>controls/hydraulic/system[0]/pump-a</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>HydSOVBtnR</object-name>
-		<object-name>HydSOVLightR</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulic/system[1]/pump-a</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>HydSOVBtnR</object-name>
+        <object-name>HydSOVLightR</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulic/system[1]/pump-a</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>HydSOVBtnR</object-name>
-		<object-name>HydSOVLightR</object-name>
-		<condition>
-			<not><property>controls/hydraulic/system[1]/pump-a</property></not>
-		</condition>		
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>HydSOVBtnR</object-name>
+        <object-name>HydSOVLightR</object-name>
+        <condition>
+            <not><property>controls/hydraulic/system[1]/pump-a</property></not>
+        </condition>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>HydSOVLightR</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>controls/hydraulic/system[1]/pump-a</property></not>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>HydSOVLightR</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <not><property>controls/hydraulic/system[1]/pump-a</property></not>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- External lights -->
     <animation>
-		<type>pick</type>
-		<object-name>NavLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/nav-lights</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>NavLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>NavLightSwitch</object-name>
-		<property>controls/lighting/nav-lights</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>-0.230</y-m>
-			<z-m>-0.142</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>NavLightSwitch</object-name>
+        <property>controls/lighting/nav-lights</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>-0.230</y-m>
+            <z-m>-0.142</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>BeaconLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/beacon</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>BeaconLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/beacon</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>BeaconLightSwitch</object-name>
-		<property>controls/lighting/beacon</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>-0.200</y-m>
-			<z-m>-0.142</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>BeaconLightSwitch</object-name>
+        <property>controls/lighting/beacon</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>-0.200</y-m>
+            <z-m>-0.142</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>StrobeLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/strobe</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>StrobeLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/strobe</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>StrobeLightSwitch</object-name>
-		<property>controls/lighting/strobe</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>-0.171</y-m>
-			<z-m>-0.142</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>StrobeLightSwitch</object-name>
+        <property>controls/lighting/strobe</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>-0.171</y-m>
+            <z-m>-0.142</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>LogoLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/logo-lights</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>LogoLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/logo-lights</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>LogoLightSwitch</object-name>
-		<property>controls/lighting/logo-lights</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>-0.142</y-m>
-			<z-m>-0.142</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>LogoLightSwitch</object-name>
+        <property>controls/lighting/logo-lights</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>-0.142</y-m>
+            <z-m>-0.142</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>WingLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/wing-lights</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>WingLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/wing-lights</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>WingLightSwitch</object-name>
-		<property>controls/lighting/wing-lights</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>-0.112</y-m>
-			<z-m>-0.142</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>WingLightSwitch</object-name>
+        <property>controls/lighting/wing-lights</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>-0.112</y-m>
+            <z-m>-0.142</z-m>
+        </center>
+    </animation>
+
     <!-- Fuel -->
     <animation>
-		<type>pick</type>
-		<object-name>LFuelBtn</object-name>
-		<object-name>LFuelOn</object-name>
-		<object-name>LFuelINOP</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>systems/fuel/boost-pump[0]/selected</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>LFuelBtn</object-name>
+        <object-name>LFuelOn</object-name>
+        <object-name>LFuelINOP</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>systems/fuel/boost-pump[0]/selected</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>LFuelBtn</object-name>
-		<object-name>LFuelOn</object-name>
-		<object-name>LFuelINOP</object-name>
-		<property>systems/fuel/boost-pump[0]/selected</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>LFuelBtn</object-name>
+        <object-name>LFuelOn</object-name>
+        <object-name>LFuelINOP</object-name>
+        <property>systems/fuel/boost-pump[0]/selected</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>LFuelOn</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/boost-pump[0]/running</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>LFuelOn</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/boost-pump[0]/running</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>LFuelINOP</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/fuel/boost-pump[0]/selected</property></not>
-					<not><property>systems/fuel/boost-pump[0]/serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>LFuelINOP</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/boost-pump[0]/inop</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>XflowBtn</object-name>
-		<object-name>XflowOpen</object-name>
-		<object-name>XflowFail</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/fuel/gravity-xflow</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>XflowBtn</object-name>
+        <object-name>XflowOpen</object-name>
+        <object-name>XflowFail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/gravity-xflow</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>XflowBtn</object-name>
-		<object-name>XflowOpen</object-name>
-		<object-name>XflowFail</object-name>
-		<property>controls/fuel/gravity-xflow</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>XflowBtn</object-name>
+        <object-name>XflowOpen</object-name>
+        <object-name>XflowFail</object-name>
+        <property>controls/fuel/gravity-xflow</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowOpen</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/gravity-xflow/open</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>XflowOpen</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/gravity-xflow/open</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/gravity-xflow/fail</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>XflowFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/gravity-xflow/fail</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>RFuelBtn</object-name>
-		<object-name>RFuelOn</object-name>
-		<object-name>RFuelINOP</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>systems/fuel/boost-pump[1]/selected</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>RFuelBtn</object-name>
+        <object-name>RFuelOn</object-name>
+        <object-name>RFuelINOP</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>systems/fuel/boost-pump[1]/selected</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>RFuelBtn</object-name>
-		<object-name>RFuelOn</object-name>
-		<object-name>RFuelINOP</object-name>
-		<property>systems/fuel/boost-pump[1]/selected</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>RFuelBtn</object-name>
+        <object-name>RFuelOn</object-name>
+        <object-name>RFuelINOP</object-name>
+        <property>systems/fuel/boost-pump[1]/selected</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>RFuelOn</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/boost-pump[1]/running</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>RFuelOn</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/boost-pump[1]/running</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>RFuelINOP</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<not><property>systems/fuel/boost-pump[1]/selected</property></not>
-					<not><property>systems/fuel/boost-pump[1]/serviceable</property></not>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<!-- Xflow -->
+        <type>material</type>
+        <object-name>RFuelINOP</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/boost-pump[1]/inop</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+    <!-- Xflow -->
     <animation>
-		<type>pick</type>
-		<object-name>XflowToLeft</object-name>
-		<object-name>XflowToLeftOn</object-name>
-		<object-name>XflowToLeftINOP</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/fuel/xflow-left</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>XflowToLeft</object-name>
+        <object-name>XflowToLeftOn</object-name>
+        <object-name>XflowToLeftINOP</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/xflow-left</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>XflowToLeft</object-name>
-		<object-name>XflowToLeftOn</object-name>
-		<object-name>XflowToLeftINOP</object-name>
-		<property>controls/fuel/xflow-left</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>XflowToLeft</object-name>
+        <object-name>XflowToLeftOn</object-name>
+        <object-name>XflowToLeftINOP</object-name>
+        <property>controls/fuel/xflow-left</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowToLeftOn</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<equals>
-						<property>systems/fuel/xflow-pump/running</property>
-						<value>-1</value>
-					</equals>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>XflowToLeftOn</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <equals>
+                        <property>systems/fuel/xflow-pump/running</property>
+                        <value>-1</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowToLeftINOP</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/xflow-pump/inop</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>XflowToLeftINOP</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/xflow-pump/inop</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>XflowManBtn</object-name>
-		<object-name>XflowManLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/fuel/xflow-manual</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>XflowManBtn</object-name>
+        <object-name>XflowManLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/xflow-manual</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>XflowManBtn</object-name>
-		<object-name>XflowManLight</object-name>
-		<property>controls/fuel/xflow-manual</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>XflowManBtn</object-name>
+        <object-name>XflowManLight</object-name>
+        <property>controls/fuel/xflow-manual</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowManLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/fuel/xflow-manual</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>XflowManLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/fuel/xflow-manual</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>XflowToRight</object-name>
-		<object-name>XflowToRightOn</object-name>
-		<object-name>XflowToRightINOP</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/fuel/xflow-right</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>XflowToRight</object-name>
+        <object-name>XflowToRightOn</object-name>
+        <object-name>XflowToRightINOP</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/xflow-right</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>XflowToRight</object-name>
-		<object-name>XflowToRightOn</object-name>
-		<object-name>XflowToRightINOP</object-name>
-		<property>controls/fuel/xflow-right</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>XflowToRight</object-name>
+        <object-name>XflowToRightOn</object-name>
+        <object-name>XflowToRightINOP</object-name>
+        <property>controls/fuel/xflow-right</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowToRightOn</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<equals>
-						<property>systems/fuel/xflow-pump/running</property>
-						<value>1</value>
-					</equals>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>XflowToRightOn</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <equals>
+                        <property>systems/fuel/xflow-pump/running</property>
+                        <value>1</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>XflowToRightINOP</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>systems/fuel/xflow-pump/inop</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>XflowToRightINOP</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>systems/fuel/xflow-pump/inop</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- Bleed air -->
     <animation>
-		<type>pick</type>
-		<object-name>CrossBleedKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/cross-bleed</property>
-				<wrap>0</wrap>
-				<value>1</value>
-				<value>0</value>
-				<value>2</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/cross-bleed</property>
-				<wrap>0</wrap>
-				<value>2</value>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>CrossBleedKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/cross-bleed</property>
+                <wrap>0</wrap>
+                <value>-1</value>
+                <value>0</value>
+                <value>1</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/cross-bleed</property>
+                <wrap>0</wrap>
+                <value>1</value>
+                <value>0</value>
+                <value>-1</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>CrossBleedKnob</object-name>
-		<property>controls/pneumatic/cross-bleed</property>
-		<interpolation>
-			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.00323</y-m>
-			<z-m>0.05979</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>CrossBleedKnob</object-name>
+        <property>controls/pneumatic/cross-bleed</property>
+        <factor>35</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.00323</y-m>
+            <z-m>0.05979</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>BleedValveKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/bleed-valve</property>
-				<wrap>0</wrap>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/bleed-valve</property>
-				<wrap>0</wrap>
-				<value>2</value>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>BleedValveKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/bleed-valve</property>
+                <wrap>0</wrap>
+                <value>0</value>
+                <value>1</value>
+                <value>2</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/bleed-valve</property>
+                <wrap>0</wrap>
+                <value>2</value>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>BleedValveKnob</object-name>
-		<property>controls/pneumatic/bleed-valve</property>
-		<factor>30</factor>
-		<offset-deg>-30</offset-deg>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.04756</y-m>
-			<z-m>0.02011</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>BleedValveKnob</object-name>
+        <property>controls/pneumatic/bleed-valve</property>
+        <factor>30</factor>
+        <offset-deg>-30</offset-deg>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.04756</y-m>
+            <z-m>0.02011</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>ISOLSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/pneumatic/isol</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>ISOLSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/pneumatic/isol</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>ISOLSwitch</object-name>
-		<property>controls/pneumatic/isol</property>
-		<factor>60</factor>
-		<offset-deg>-30</offset-deg>
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.00305</y-m>
-			<z-m>0.02296</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>ISOLSwitch</object-name>
+        <property>controls/pneumatic/isol</property>
+        <factor>60</factor>
+        <offset-deg>-30</offset-deg>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.00305</y-m>
+            <z-m>0.02296</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>BleedSourceKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/bleed-source</property>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-				<value>3</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/pneumatic/bleed-source</property>
-				<value>3</value>
-				<value>2</value>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>BleedSourceKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/bleed-source</property>
+                <value>0</value>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/pneumatic/bleed-source</property>
+                <value>3</value>
+                <value>2</value>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>BleedSourceKnob</object-name>
-		<property>controls/pneumatic/bleed-source</property>
-		<factor>90</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.0445</y-m>
-			<z-m>0.02068</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>BleedSourceKnob</object-name>
+        <property>controls/pneumatic/bleed-source</property>
+        <factor>90</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.0445</y-m>
+            <z-m>0.02068</z-m>
+        </center>
+    </animation>
+
     <!-- APU -->
     <animation>
-		<type>pick</type>
-		<object-name>APUPwrBtn</object-name>
-		<object-name>APUPumpFail</object-name>
-		<object-name>APUSOVFail</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/APU/electronic-control-unit</property>
-				<property>controls/APU/fuel-pump</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>APUPwrBtn</object-name>
+        <object-name>APUPumpFail</object-name>
+        <object-name>APUSOVFail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/APU/electronic-control-unit</property>
+                <property>controls/APU/fuel-pump</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>APUPwrBtn</object-name>
-		<object-name>APUPumpFail</object-name>
-		<object-name>APUSOVFail</object-name>
-		<property>controls/APU/electronic-control-unit</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>APUPwrBtn</object-name>
+        <object-name>APUPumpFail</object-name>
+        <object-name>APUSOVFail</object-name>
+        <property>controls/APU/electronic-control-unit</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>APUPumpFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>engines/engine[2]/pump-fail</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>    
-	<animation>
-		<type>material</type>
-		<object-name>APUSOVFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>engines/engine[2]/SOV-fail</property>
-				</or>
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>APUPumpFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[2]/pump-fail</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>APUStartBtn</object-name>
-		<object-name>APUAvail</object-name>
-		<object-name>APUStarting</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/APU/off-on</property>
-			</binding>
-		</action>
-	</animation>
+        <type>material</type>
+        <object-name>APUSOVFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[2]/SOV-fail</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>translate</type>
-		<object-name>APUStartBtn</object-name>
-		<object-name>APUAvail</object-name>
-		<object-name>APUStarting</object-name>
-		<property>controls/APU/off-on</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>pick</type>
+        <object-name>APUStartBtn</object-name>
+        <object-name>APUAvail</object-name>
+        <object-name>APUStarting</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/APU/off-on</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>APUStarting</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/APU/off-on</property>
-						<greater-than>
-							<property>engines/engine[2]/rpm</property>
-							<value>0</value>
-						</greater-than>
-						<less-than>
-							<property>engines/engine[2]/rpm</property>
-							<value>46</value>
-						</less-than>
-					</and>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>translate</type>
+        <object-name>APUStartBtn</object-name>
+        <object-name>APUAvail</object-name>
+        <object-name>APUStarting</object-name>
+        <property>controls/APU/off-on</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>APUAvail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<property>controls/APU/off-on</property>
-						<property>engines/engine[2]/running</property>
-					</and>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-green/red" />
-			<green alias="../../../button-emit-green/green" />
-			<blue alias="../../../button-emit-green/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>APUStarting</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[2]/starting</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>APUAvail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[2]/available</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-green/red" />
+            <green alias="../../../button-emit-green/green" />
+            <blue alias="../../../button-emit-green/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- Engine controls -->
     <animation>
-		<type>pick</type>
-		<object-name>Eng1StartBtn</object-name>
-		<object-name>Eng1StartLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/engines/engine[0]/starter-cmd</property>
-				<value type="bool">true</value>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>Eng1StartBtn</object-name>
+        <object-name>Eng1StartLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[0]/starter-cmd</property>
+                <value type="bool">true</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>Eng1StartBtn</object-name>
-		<object-name>Eng1StartLight</object-name>
-		<property>controls/engines/engine[0]/starter-cmd</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>Eng1StartBtn</object-name>
+        <object-name>Eng1StartLight</object-name>
+        <property>controls/engines/engine[0]/starter-cmd</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Eng1StartLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>engines/engine[0]/starter</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Eng1StopBtn</object-name>
-		<object-name>Eng1StopLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/engines/engine[0]/starter-cmd</property>
-				<value type="bool">false</value>
-			</binding>
-		</action>
-	</animation>	
-	<!--     <animation>
-		<type>translate</type>
-		<object-name>Eng1StopBtn</object-name>
-		<object-name>Eng1StopLight</object-name>
-		<property>controls/engines/engine[0]/starter-cmd</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-		<x>-1</x>
-		<y>0</y>
-		<z>0</z>
-		</axis>
-	</animation> -->
+        <type>material</type>
+        <object-name>Eng1StartLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[0]/starter</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>material</type>
-		<object-name>Eng1StopLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<not><property>controls/engines/engine[0]/starter-cmd</property></not>
-						<not><property>engines/engine[0]/running</property></not>
-						<greater-than>
-							<property>engines/engine[0]/rpm2</property>
-							<value>10</value>
-						</greater-than>
-					</and>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>pick</type>
+        <object-name>Eng1StopBtn</object-name>
+        <object-name>Eng1StopLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[0]/starter-cmd</property>
+                <value type="bool">false</value>
+            </binding>
+        </action>
+    </animation>
+    <!--     <animation>
+        <type>translate</type>
+        <object-name>Eng1StopBtn</object-name>
+        <object-name>Eng1StopLight</object-name>
+        <property>controls/engines/engine[0]/starter-cmd</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+        </axis>
+    </animation> -->
     <animation>
-		<type>pick</type>
-		<object-name>Eng2StartBtn</object-name>
-		<object-name>Eng2StartLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/engines/engine[1]/starter-cmd</property>
-				<value type="bool">true</value>
-			</binding>
-		</action>
-	</animation>
+        <type>material</type>
+        <object-name>Eng1StopLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <and>
+                        <not><property>controls/engines/engine[0]/starter-cmd</property></not>
+                        <not><property>engines/engine[0]/running-nasal</property></not>
+                        <greater-than>
+                            <property>engines/engine[0]/rpm2</property>
+                            <value>10</value>
+                        </greater-than>
+                    </and>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>translate</type>
-		<object-name>Eng2StartBtn</object-name>
-		<object-name>Eng2StartLight</object-name>
-		<property>controls/engines/engine[1]/starter-cmd</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>pick</type>
+        <object-name>Eng2StartBtn</object-name>
+        <object-name>Eng2StartLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[1]/starter-cmd</property>
+                <value type="bool">true</value>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>Eng2StartLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>engines/engine[1]/starter</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>translate</type>
+        <object-name>Eng2StartBtn</object-name>
+        <object-name>Eng2StartLight</object-name>
+        <property>controls/engines/engine[1]/starter-cmd</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>Eng2StopBtn</object-name>
-		<object-name>Eng2StopLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/engines/engine[1]/starter-cmd</property>
-				<value type="bool">false</value>
-			</binding>
-		</action>
-	</animation>
-	<!--     <animation>
-		<type>translate</type>
-		<object-name>Eng2StopBtn</object-name>
-		<object-name>Eng2StopLight</object-name>
-		<property>controls/engines/engine[1]/starter-cmd</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-		<x>-1</x>
-		<y>0</y>
-		<z>0</z>
-		</axis>
-	</animation> -->
+        <type>material</type>
+        <object-name>Eng2StartLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>engines/engine[1]/starter</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>material</type>
-		<object-name>Eng2StopLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<and>
-						<not><property>controls/engines/engine[1]/starter-cmd</property></not>
-						<not><property>engines/engine[1]/running</property></not>
-						<greater-than>
-							<property>engines/engine[1]/rpm2</property>
-							<value>10</value>
-						</greater-than>
-					</and>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>CONTBtn</object-name>
-		<object-name>CONTLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/engines/cont-ignition</property>
-				<value type="bool">false</value>
-			</binding>
-		</action>
-	</animation>	
+        <type>pick</type>
+        <object-name>Eng2StopBtn</object-name>
+        <object-name>Eng2StopLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[1]/starter-cmd</property>
+                <value type="bool">false</value>
+            </binding>
+        </action>
+    </animation>
+    <!--     <animation>
+        <type>translate</type>
+        <object-name>Eng2StopBtn</object-name>
+        <object-name>Eng2StopLight</object-name>
+        <property>controls/engines/engine[1]/starter-cmd</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+        </axis>
+    </animation> -->
     <animation>
-		<type>translate</type>
-		<object-name>CONTBtn</object-name>
-		<object-name>CONTLight</object-name>
-		<property>controls/engines/cont-ignition</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation> 
+        <type>material</type>
+        <object-name>Eng2StopLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <and>
+                        <not><property>controls/engines/engine[1]/starter-cmd</property></not>
+                        <not><property>engines/engine[1]/running-nasal</property></not>
+                        <greater-than>
+                            <property>engines/engine[1]/rpm2</property>
+                            <value>10</value>
+                        </greater-than>
+                    </and>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>material</type>
-		<object-name>CONTLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/engines/cont-ignition</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>pick</type>
+        <object-name>CONTBtn</object-name>
+        <object-name>CONTLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/cont-ignition</property>
+                <value type="bool">false</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>CONTBtn</object-name>
+        <object-name>CONTLight</object-name>
+        <property>controls/engines/cont-ignition</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>CONTLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/engines/cont-ignition</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- Hydraulic switches -->
-	<animation>
-		<type>pick</type>
-		<object-name>Hydraulic1Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[0]/pump-b</property>
-				<wrap>0</wrap>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[0]/pump-b</property>
-				<offset>-1</offset>
-				<wrap>0</wrap>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Hydraulic1Switch</object-name>
-		<property>controls/hydraulic/system[0]/pump-b</property>
-		<interpolation>
-			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.14211</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Hydraulic3ASwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulic/system[2]/pump-a</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Hydraulic3ASwitch</object-name>
-		<property>controls/hydraulic/system[2]/pump-a</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.14211</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Hydraulic3BSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[2]/pump-b</property>
-				<wrap>0</wrap>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[2]/pump-b</property>
-				<offset>-1</offset>
-				<wrap>0</wrap>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Hydraulic3BSwitch</object-name>
-		<property>controls/hydraulic/system[2]/pump-b</property>
-		<interpolation>
-			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.14211</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Hydraulic2Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[1]/pump-b</property>
-				<wrap>0</wrap>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/hydraulic/system[1]/pump-b</property>
-				<wrap>0</wrap>
-				<offset>-1</offset>
-				<value type="int">1</value>
-				<value type="int">0</value>
-				<value type="int">2</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Hydraulic2Switch</object-name>
-		<property>controls/hydraulic/system[1]/pump-b</property>
-		<interpolation>
-			<entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.14211</z-m>
-		</center>
-	</animation>	
-	
+    <animation>
+        <type>pick</type>
+        <object-name>Hydraulic1Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[0]/pump-b</property>
+                <wrap>0</wrap>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[0]/pump-b</property>
+                <offset>-1</offset>
+                <wrap>0</wrap>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Hydraulic1Switch</object-name>
+        <property>controls/hydraulic/system[0]/pump-b</property>
+        <interpolation>
+            <entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.14211</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Hydraulic3ASwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulic/system[2]/pump-a</property>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Hydraulic3ASwitch</object-name>
+        <property>controls/hydraulic/system[2]/pump-a</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.14211</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Hydraulic3BSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[2]/pump-b</property>
+                <wrap>0</wrap>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[2]/pump-b</property>
+                <offset>-1</offset>
+                <wrap>0</wrap>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Hydraulic3BSwitch</object-name>
+        <property>controls/hydraulic/system[2]/pump-b</property>
+        <interpolation>
+            <entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.14211</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Hydraulic2Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[1]/pump-b</property>
+                <wrap>0</wrap>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>controls/hydraulic/system[1]/pump-b</property>
+                <wrap>0</wrap>
+                <offset>-1</offset>
+                <value type="int">1</value>
+                <value type="int">0</value>
+                <value type="int">2</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Hydraulic2Switch</object-name>
+        <property>controls/hydraulic/system[1]/pump-b</property>
+        <interpolation>
+            <entry><ind>1</ind><dep alias="../../../../switch-rotate-neg-deg" /></entry>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>2</ind><dep alias="../../../../switch-rotate-deg" /></entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.14211</z-m>
+        </center>
+    </animation>
+
     <!-- Cabin Press -->
     <animation>
-		<type>pick</type>
-		<object-name>EmerDepCoverFrame</object-name>
-		<object-name>EmerDepCoverGlas</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/emer-depress-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>EmerDepCoverFrame</object-name>
+        <object-name>EmerDepCoverGlas</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/emer-depress-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>EmerDepCoverFrame</object-name>
-		<object-name>EmerDepCoverGlas</object-name>
-		<property>controls/ECS/emer-depress-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0.219</y-m>
-			<z-m>0.120</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>EmerDepCoverFrame</object-name>
+        <object-name>EmerDepCoverGlas</object-name>
+        <property>controls/ECS/emer-depress-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0.219</y-m>
+            <z-m>0.120</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>EmerDepressBtn</object-name>
-		<object-name>EmerDepressLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/emer-depress</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>EmerDepressBtn</object-name>
+        <object-name>EmerDepressLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/emer-depress</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>EmerDepressBtn</object-name>
-		<object-name>EmerDepressLight</object-name>
-		<property>controls/ECS/emer-depress</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>EmerDepressBtn</object-name>
+        <object-name>EmerDepressLight</object-name>
+        <property>controls/ECS/emer-depress</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>EmerDepressLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/emer-depress</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>EmerDepressLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/emer-depress</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>PressContBtn</object-name>
-		<object-name>PressContFault</object-name>
-		<object-name>PressContMan</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/press-man</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>PressContBtn</object-name>
+        <object-name>PressContFault</object-name>
+        <object-name>PressContMan</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/press-man</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>PressContBtn</object-name>
-		<object-name>PressContFault</object-name>
-		<object-name>PressContMan</object-name>
-		<property>controls/ECS/press-man</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>PressContBtn</object-name>
+        <object-name>PressContFault</object-name>
+        <object-name>PressContMan</object-name>
+        <property>controls/ECS/press-man</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PressContMan</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/press-man</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>PressContMan</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/press-man</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PressContFault</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	
+        <type>material</type>
+        <object-name>PressContFault</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <!-- FIXME -->
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+
     <!-- Pack controls -->
     <animation>
-		<type>pick</type>
-		<object-name>PackLBtn</object-name>
-		<object-name>PackLFail</object-name>
-		<object-name>PackLOff</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/pack-l-off</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>PackLBtn</object-name>
+        <object-name>PackLFail</object-name>
+        <object-name>PackLOff</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/pack-l-off</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>PackLBtn</object-name>
-		<object-name>PackLFail</object-name>
-		<object-name>PackLOff</object-name>
-		<property>controls/ECS/pack-l-off</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>PackLBtn</object-name>
+        <object-name>PackLFail</object-name>
+        <object-name>PackLOff</object-name>
+        <property>controls/ECS/pack-l-off</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackLOff</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/pack-l-off</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>PackLOff</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/pack-l-off</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackLFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>PackLFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <!-- FIXME -->
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>PackRBtn</object-name>
-		<object-name>PackRFail</object-name>
-		<object-name>PackROff</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/pack-r-off</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>PackRBtn</object-name>
+        <object-name>PackRFail</object-name>
+        <object-name>PackROff</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/pack-r-off</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>PackRBtn</object-name>
-		<object-name>PackRFail</object-name>
-		<object-name>PackROff</object-name>
-		<property>controls/ECS/pack-r-off</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>PackRBtn</object-name>
+        <object-name>PackRFail</object-name>
+        <object-name>PackROff</object-name>
+        <property>controls/ECS/pack-r-off</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackROff</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/pack-r-off</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <object-name>PackROff</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/pack-r-off</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackRFail</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<!-- FIXME -->
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>PackRFail</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <!-- FIXME -->
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>PackLManBtn</object-name>
-		<object-name>PackLManLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/pack-l-man</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>PackLManBtn</object-name>
+        <object-name>PackLManLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/pack-l-man</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>PackLManBtn</object-name>
-		<object-name>PackLManLight</object-name>
-		<property>controls/ECS/pack-l-man</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>PackLManBtn</object-name>
+        <object-name>PackLManLight</object-name>
+        <property>controls/ECS/pack-l-man</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackLManLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/pack-l-man</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>PackLManLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/pack-l-man</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>PackRManBtn</object-name>
-		<object-name>PackRManLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/pack-r-man</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>PackRManBtn</object-name>
+        <object-name>PackRManLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/pack-r-man</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>PackRManBtn</object-name>
-		<object-name>PackRManLight</object-name>
-		<property>controls/ECS/pack-r-man</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>PackRManBtn</object-name>
+        <object-name>PackRManLight</object-name>
+        <property>controls/ECS/pack-r-man</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>PackRManLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/pack-r-man</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	
+        <type>material</type>
+        <object-name>PackRManLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/pack-r-man</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
+
     <!-- Ram Air  -->
     <animation>
-		<type>pick</type>
-		<object-name>RamAirCover</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/ram-air-cover</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>RamAirCover</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/ram-air-cover</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>RamAirCover</object-name>
-		<property>controls/ECS/ram-air-cover</property>
-		<factor alias="../../cover-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0.219</y-m>
-			<z-m>0.081</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>RamAirCover</object-name>
+        <property>controls/ECS/ram-air-cover</property>
+        <factor alias="../../cover-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0.219</y-m>
+            <z-m>0.081</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>RamAirBtn</object-name>
-		<object-name>RamAirLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/ECS/ram-air</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>RamAirBtn</object-name>
+        <object-name>RamAirLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/ECS/ram-air</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>RamAirBtn</object-name>
-		<object-name>RamAirLight</object-name>
-		<property>controls/ECS/ram-air</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>RamAirBtn</object-name>
+        <object-name>RamAirLight</object-name>
+        <property>controls/ECS/ram-air</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>RamAirLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/ECS/ram-air</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-white/red" />
-			<green alias="../../../button-emit-white/green" />
-			<blue alias="../../../button-emit-white/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>RamAirLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/ECS/ram-air</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-white/red" />
+            <green alias="../../../button-emit-white/green" />
+            <blue alias="../../../button-emit-white/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- Anti-ice -->
     <animation>
-		<type>pick</type>
-		<object-name>AIWingSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/anti-ice/wing-heat</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>AIWingSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/wing-heat</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>AIWingSwitch</object-name>
-		<property>controls/anti-ice/wing-heat</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>AIWingSwitch</object-name>
+        <property>controls/anti-ice/wing-heat</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.05</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>AICowlLSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/anti-ice/engine[0]/inlet-heat</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>AICowlLSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/engine[0]/inlet-heat</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>AICowlLSwitch</object-name>
-		<property>controls/anti-ice/engine[0]/inlet-heat</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>AICowlLSwitch</object-name>
+        <property>controls/anti-ice/engine[0]/inlet-heat</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.05</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>AICowlRSwitch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/anti-ice/engine[1]/inlet-heat</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>AICowlRSwitch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/engine[1]/inlet-heat</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>AICowlRSwitch</object-name>
-		<property>controls/anti-ice/engine[1]/inlet-heat</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.001</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.05</z-m>
-		</center>
-	</animation>
-	
+        <type>rotate</type>
+        <object-name>AICowlRSwitch</object-name>
+        <property>controls/anti-ice/engine[1]/inlet-heat</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0.001</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.05</z-m>
+        </center>
+    </animation>
+
     <animation>
-		<type>pick</type>
-		<object-name>AITestBtn</object-name>
-		<object-name>AITestLight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/anti-ice/det-test</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>AITestBtn</object-name>
+        <object-name>AITestLight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/det-test</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>translate</type>
-		<object-name>AITestBtn</object-name>
-		<object-name>AITestLight</object-name>
-		<property>controls/anti-ice/det-test</property>
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+        <type>translate</type>
+        <object-name>AITestBtn</object-name>
+        <object-name>AITestLight</object-name>
+        <property>controls/anti-ice/det-test</property>
+        <factor alias="../../button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
     <animation>
-		<type>material</type>
-		<object-name>AITestLight</object-name>
-		<condition>
-			<and>
-				<greater-than-equals>
-					<property>systems/DC/outputs/ohp-lights</property>
-					<value>15</value>
-				</greater-than-equals>
-				<or>
-					<property>controls/lighting/lt-test</property>
-					<property>controls/anti-ice/det-test</property>
-				</or>					
-			</and>
-		</condition>
-		<emission>	
-			<red alias="../../../button-emit-amber/red" />
-			<green alias="../../../button-emit-amber/green" />
-			<blue alias="../../../button-emit-amber/blue" />
-			<factor-prop>controls/lighting/ind-lts-norm</factor-prop>
-		</emission>
-	</animation>
-	
+        <type>material</type>
+        <object-name>AITestLight</object-name>
+        <condition>
+            <and>
+                <greater-than-equals>
+                    <property>systems/DC/outputs/ohp-lights</property>
+                    <value>15</value>
+                </greater-than-equals>
+                <or>
+                    <property>controls/lighting/lt-test</property>
+                    <property>controls/anti-ice/det-test</property>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red alias="../../../button-emit-amber/red" />
+            <green alias="../../../button-emit-amber/green" />
+            <blue alias="../../../button-emit-amber/blue" />
+            <factor-prop>controls/lighting/ind-lts-norm</factor-prop>
+        </emission>
+    </animation>
+
     <!-- Miscellaneous lights -->
     <animation>
-		<type>pick</type>
-		<object-name>DomeLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/dome</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>DomeLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/dome</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>DomeLightSwitch</object-name>
-		<property>controls/lighting/dome</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>0.149</y-m>
-			<z-m>-0.152</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>DomeLightSwitch</object-name>
+        <property>controls/lighting/dome</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>0.149</y-m>
+            <z-m>-0.152</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>StandbyLightSwitch</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/standby-compass</property>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>StandbyLightSwitch</object-name>
+        <action>
+            <button>0</button>
+            <button>1</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/standby-compass</property>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>StandbyLightSwitch</object-name>
-		<property>controls/lighting/standby-compass</property>
-		<factor alias="../../switch-rotate-deg" />
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-0.001</x-m>
-			<y-m>0.179</y-m>
-			<z-m>-0.152</z-m>
-		</center>
-	</animation>
+        <type>rotate</type>
+        <object-name>StandbyLightSwitch</object-name>
+        <property>controls/lighting/standby-compass</property>
+        <factor alias="../../switch-rotate-deg" />
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-0.001</x-m>
+            <y-m>0.179</y-m>
+            <z-m>-0.152</z-m>
+        </center>
+    </animation>
     <animation>
-		<type>pick</type>
-		<object-name>OverheadLightKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-overhead-norm</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-overhead-norm</property>
-				<step>-0.05</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
+        <type>pick</type>
+        <object-name>OverheadLightKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/panel-overhead-norm</property>
+                <step>0.05</step>
+                <max>1</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/panel-overhead-norm</property>
+                <step>-0.05</step>
+                <min>0</min>
+            </binding>
+        </action>
+    </animation>
     <animation>
-		<type>rotate</type>
-		<object-name>OverheadLightKnob</object-name>
-		<property>controls/lighting/panel-overhead-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>119</dep></entry>
-			<entry><ind>1</ind><dep>-119</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.211</y-m>
-			<z-m>-0.144</z-m>
-		</center>
-	</animation>
-    
+        <type>rotate</type>
+        <object-name>OverheadLightKnob</object-name>
+        <property>controls/lighting/panel-overhead-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>119</dep></entry>
+            <entry><ind>1</ind><dep>-119</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.211</y-m>
+            <z-m>-0.144</z-m>
+        </center>
+    </animation>
+
     <!-- Rembrandt !! -->
     <effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Markings</object-name>
-		<object-name>PlasticCovers</object-name>
-		<object-name>RamAirCover</object-name>
-		<object-name>EmerDepCoverFrame</object-name>
-		<object-name>EmerDepCoverGlas</object-name>
-		<object-name>HydSOVCoverL</object-name>
-		<object-name>HydSOVCoverR</object-name>
-		<object-name>IDG1Cover</object-name>
-		<object-name>IDG2Cover</object-name>
-	</effect>
-	
+        <name>REMBRANDT transparency</name>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Markings</object-name>
+        <object-name>PlasticCovers</object-name>
+        <object-name>RamAirCover</object-name>
+        <object-name>EmerDepCoverFrame</object-name>
+        <object-name>EmerDepCoverGlas</object-name>
+        <object-name>HydSOVCoverL</object-name>
+        <object-name>HydSOVCoverR</object-name>
+        <object-name>IDG1Cover</object-name>
+        <object-name>IDG2Cover</object-name>
+    </effect>
+
 </PropertyList>

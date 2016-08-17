@@ -207,7 +207,7 @@
 			<condition>
 				<or>
 					<property>/controls/engines/engine[0]/starter-cmd</property>
-					<property>/engines/engine[0]/running</property>
+					<property>/engines/engine[0]/running-nasal</property>
 				</or>
 			</condition>
 			<binding>
@@ -233,7 +233,7 @@
 			<value>CHECK OFF</value>
 			<condition>
 				<not><property>/engines/engine[0]/starter</property></not>
-				<property>/engines/engine[0]/running</property>
+				<property>/engines/engine[0]/running-nasal</property>
 			</condition>
 		</item>
 	</page>
@@ -251,7 +251,7 @@
 			<condition>
 				<or>
 					<property>/controls/engines/engine[1]/starter-cmd</property>
-					<property>/engines/engine[1]/running</property>
+					<property>/engines/engine[1]/running-nasal</property>
 				</or>
 			</condition>
 			<binding>
@@ -278,7 +278,7 @@
 			<condition>
 				<and>
 					<not><property>/engines/engine[1]/starter</property></not>
-					<property>/engines/engine[1]/running</property>
+					<property>/engines/engine[1]/running-nasal</property>
 				</and>
 			</condition>
 		</item>
@@ -311,8 +311,8 @@
 			<condition>
 				<and>
 					<or>
-						<property>/engines/engine[0]/running</property>
-						<property>/engines/engine[1]/running</property>
+						<property>/engines/engine[0]/running-nasal</property>
+						<property>/engines/engine[1]/running-nasal</property>
 					</or>
 					<not><property>/controls/APU/off-on</property></not>
 				</and>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    CRJ700 family electric system
+    
+    see also Nasal/electrical.nas
+    
+-->
+<PropertyList>
+    <filter>
+        <name>EICAS display</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <property>systems/DC/outputs/eicas-disp-a</property>
+                    <property>systems/DC/outputs/eicas-disp-b</property>
+                </max>
+            </expression>
+        </input>
+        <output>systems/DC/outputs/eicas-disp</output>
+    </filter>
+  
+    
+</PropertyList>

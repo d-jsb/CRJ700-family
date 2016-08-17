@@ -55,11 +55,21 @@
 			</marker>
 		</item>
 
-		<!-- not yet implemented
 		<item>
 			<name>Flight controls</name>
 			<value>SELECT ON EICAS</value>
-		</item> -->
+            <condition>
+                <equals>
+                    <property>instrumentation/eicas/page</property>
+                    <value>7</value>                
+                </equals>
+            </condition>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/eicas/page</property>
+                <value>7</value>
+            </binding>
+		</item> 
 		<item>
 			<name>Spoilers</name>
 			<value>RETRACTED</value>

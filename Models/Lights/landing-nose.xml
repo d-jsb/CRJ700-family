@@ -1,67 +1,92 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
-
 	<path>landing.ac</path>
-
+    
+	<params>
+		<power-source>systems/DC/outputs/landing-lights[1]</power-source>
+        <x-m>0</x-m>
+        <y-m>0</y-m>
+        <z-m>0</z-m>
+    </params>
+    
 	<animation>
 		<type>select</type>
 		<condition>
-			<and>
-				<equals>
-					<property>gear/gear[0]/position-norm</property>
-					<value>1</value>
-				</equals>
-				<greater-than>
-					<property>systems/DC/outputs/landing-lights[1]</property>
-					<value>22</value>
-				</greater-than>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>light</type>
-		<light-type>spot</light-type>
-		<object-name>Cone</object-name>
-		<nopreview />
+			<not>
+                <property>sim/current-view/internal</property>
+            </not>	
+            <equals>
+                <property>gear/gear[0]/position-norm</property>
+                <value>1</value>
+            </equals>
+            <greater-than>
+                <property alias="/params/power-source" />
+                <value>22</value>
+            </greater-than>
+        </condition>
+    </animation>
+	<light>
+        <name>landing-light-nose</name>
+		<type>spot</type>
 		<position>
-			<x>0</x>
-			<y>0</y>
-			<z>0</z>
-		</position>
+            <x alias="/params/x-m" />
+            <y alias="/params/y-m" />
+            <z alias="/params/z-m" />
+        </position>
 		<direction>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</direction>
+            <pitch-deg>80</pitch-deg>
+            <roll-deg>0</roll-deg>
+            <heading-deg>0</heading-deg>
+        </direction>
 		<ambient>
 			<r>0.8</r>
 			<g>0.8</g>
 			<b>0.8</b>
 			<a>1.0</a>
-		</ambient>
+        </ambient>
+		<debug-color>
+			<r>0.1</r>
+			<g>1</g>
+			<b>0.1</b>
+			<a>1.0</a>
+        </debug-color>
 		<diffuse>
 			<r>0.7</r>
 			<g>0.7</g>
 			<b>0.6</b>
 			<a>1.0</a>
-		</diffuse>
+        </diffuse>
 		<specular>
 			<r>0.7</r>
 			<g>0.7</g>
 			<b>0.7</b>
 			<a>1.0</a>
-		</specular>
+        </specular>
 		<attenuation>
 			<c>1.0</c>
 			<l>0.002</l>
 			<q>0.00005</q>
-		</attenuation>
-		<exponent>30.0</exponent>
-		<near-m>15</near-m>
-		<far-m>1500</far-m>
-		<cutoff>2000</cutoff>
-	</animation>
+        </attenuation>
+        <spot-cutoff>15</spot-cutoff>
+        <spot-exponent>2</spot-exponent>
+		<range-m>2000</range-m>
+    </light>
+    <animation>
+        <type>rotate</type>
+        <object-name>landing-light-nose</object-name>
+        <property>/_lights/ll-nose/pitch</property>
+        <center>
+            <x-m alias="/params/x-m" />
+            <y-m alias="/params/y-m" />
+            <z-m alias="/params/z-m" />
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 	<animation>
 		<type>flash</type>
 		<object-name>Light</object-name>
@@ -74,13 +99,7 @@
 			<x>-1</x>
 			<y>0</y>
 			<z>0</z>
-		</axis>
-	</animation>
-	
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Light</object-name>
-	</effect>
-
-</PropertyList>
+        </axis>
+    </animation>
+    </PropertyList>
+        

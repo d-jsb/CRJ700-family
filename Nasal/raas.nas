@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+props.globals.initNode("/position/gear-agl-ft", 0, "DOUBLE");
 var sin = func(a) { math.sin(a * globals.D2R) }
 var cos = func(a) { math.cos(a * globals.D2R) }
 var max = func(a, b) { a > b ? a : b }

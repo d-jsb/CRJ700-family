@@ -14,6 +14,8 @@
 			<maximum-zero-fuel-mass-lbs>77500</maximum-zero-fuel-mass-lbs>
 			<maximum-payload-lbs>26380</maximum-payload-lbs>
 			<maximum-cargo-mass-lbs>7180</maximum-cargo-mass-lbs>
+			<cg-x-max>-0.526</cg-x-max>
+			<cg-x-min>0.700</cg-x-min>
 		</mass-and-balance>		
 	</limits>
     <sim include="crj1000-views.xml">
@@ -36,12 +38,6 @@
 				<jetway-hood-deg type="float">3</jetway-hood-deg>
 			</door>
 			<has-slats type="bool">true</has-slats>
-			<limits>
-				<mtow-rw-m>1876</mtow-rw-m>
-				<mlw-rw-m>1750</mlw-rw-m>
-				<mtow-lb>85900</mtow-lb>
-				<mlw-lb>81500</mlw-lb>
-			</limits>
 			<dimensions>
 				<nose-distance-m>20</nose-distance-m>
 				<cockpit-offset-x>-3.3</cockpit-offset-x>
@@ -62,11 +58,11 @@
 		</weight>
 		<weight n="2">
 			<name>Main Cargo</name>
-			<max-lb>3590</max-lb>
+			<max-lb>5030</max-lb>
 		</weight>
 		<weight n="3">
 			<name>Aft Cargo</name>
-			<max-lb>3590</max-lb>
+			<max-lb>2150</max-lb>
 		</weight>
 
         <menubar>

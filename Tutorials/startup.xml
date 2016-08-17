@@ -8,7 +8,7 @@
 		<on-ground type="bool">true</on-ground>
 	</presets>
 	<step-time>4</step-time>
-	<exit-time>2</exit-time>
+	<exit-time>1</exit-time>
 	<init>
 		<set>
 			<property>controls/gear/brake-parking</property>
@@ -55,18 +55,6 @@
 			<value>0</value>
 		</set>
 		<set>
-			<property>engines/engine[0]/running</property>
-			<value type="bool">false</value>
-		</set>
-		<set>
-			<property>engines/engine[1]/running</property>
-			<value type="bool">false</value>
-		</set>
-<!-- 		<set>
-			<property>controls/electric/battery-switch</property>
-			<value type="bool">false</value>
-		</set>
- -->		<set>
 			<property>systems/fuel/boost-pump[0]/selected</property>
 			<value type="bool">false</value>
 		</set>
@@ -79,10 +67,6 @@
 			<value>1</value>
 		</set>
 		<set>
-			<property>instrumentation/eicas[1]/page</property>
-			<value>2</value>
-		</set>
-		<set>
 			<property>instrumentation/altimeter/setting-inhg</property>
 			<property>environment/metar/pressure-inhg</property>
 		</set>		
@@ -93,7 +77,19 @@
 		<set>
 			<property>consumables/fuel/tank[1]/level-lbs</property>
 			<value>3000</value>
-		</set>		
+		</set>	
+        <set>
+            <property>sim/current-view/x-offset-m</property>
+            <property>sim/view[0]/config/x-offset-m</property>
+        </set>
+        <set>
+            <property>sim/current-view/y-offset-m</property>
+            <property>sim/view[0]/config/y-offset-m</property>
+        </set>
+        <set>
+            <property>sim/current-view/z-offset-m</property>
+            <property>sim/view[0]/config/z-offset-m</property>
+        </set>
 		<nasal>
 			<script><![CDATA[
 				# engine cutoff settings seem to get overridden
@@ -103,13 +99,16 @@
 					setprop("controls/engines/engine[1]/cutoff", 1);
 				}, 0);
 				CRJ700.doors.close();
-			]]></script>
-		</nasal>
-	</init>
+            ]]></script>
+        </nasal>
+    </init>
 
 	<step>
-		<message>Welcome aboard the Bombardier CRJ700/900/1000.</message>
+		<message>Welcome aboard the Bombardier CRJ700.</message>
 		<view>
+			<heading-offset-deg>0</heading-offset-deg>
+			<pitch-offset-deg>-14.5</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
 			<field-of-view>80</field-of-view>
 		</view>
 	</step>
@@ -118,115 +117,170 @@
 		In this tutorial, you will learn how to start the engines.
 		If the ground staff did not switch on the lights for you, you will find the CRJ dark and cold.
 		</message>
+		<wait>10</wait>
 	</step>
 	<step>
 		<message>		
 		Turn on the battery if it is not on. The battery shall be on all the time until you are parked again at you destination. 
 		It is the first thing to turn on and the very last thing to turn off.
 		</message>
-		<view>
-			<heading-offset-deg>311.9</heading-offset-deg>
-			<pitch-offset-deg>36.1</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>40</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.3950</x-m>
-			<y-m>-0.1842</y-m>
-			<z-m>-0.1408</z-m>
-			<scale>1.9667</scale>
-		</marker>
+        <view>
+            <heading-offset-deg>306.9</heading-offset-deg>
+            <pitch-offset-deg>38.8</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <field-of-view>63</field-of-view>
+        </view>
+        <marker>
+            <x-m>-13.41</x-m>
+            <y-m>-0.1825</y-m>
+            <z-m>-0.1318</z-m>
+            <scale>1.9667</scale>
+        </marker>
 		<exit>
 			<condition>
 				<property>controls/electric/battery-switch</property>
 			</condition>
 		</exit>
+		<wait>15</wait>
 	</step>
 
-	<step>
-		<message>
-			With battery power on, the computers will start and displays light up.
-		</message>
-		<view>
-			<heading-offset-deg>337.2</heading-offset-deg>
-			<pitch-offset-deg>-21.3</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>55</field-of-view>
-		</view>
-	</step>
-	<step>
+    <step>
+        <message>
+            With battery power on, the computers will start and displays light up.
+            You will see many warnings and cautions on the EICAS and the 
+            master caution and master warning switch lights on the glare shield
+            will light up. They will light up again, when new messages come up.
+        </message>
+        
+    </step>
+    <step>
+        <message>
+            For now, just push them to acknowledge the messages.            
+        </message>
+        <view>
+            <heading-offset-deg>337.2</heading-offset-deg>
+            <pitch-offset-deg>-21.3</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <field-of-view>62</field-of-view>
+        </view>
+        <marker>
+            <x-m>-13.8686</x-m>
+            <y-m>-0.5281</y-m>
+            <z-m>-0.6578</z-m>
+            <scale>3.5</scale>
+        </marker>
+        <exit>
+            <condition>
+                <not>
+                <property>instrumentation/eicas/master-warning</property>
+                </not>
+                <not>
+                <property>instrumentation/eicas/master-caution</property>
+                </not>
+            </condition>
+        </exit>    
+		<wait>25</wait>
+    </step>
+    <step>
+        <message>
+        While your aircraft is on its parking position, you can usually request ground power.
+        If it is available, select it.
+        </message>
+        <view>
+            <heading-offset-deg>311.9</heading-offset-deg>
+            <pitch-offset-deg>36.1</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>            
+            <field-of-view>58</field-of-view>
+        </view>
+        <marker>
+            <x-m>-13.4000</x-m>
+            <y-m>-0.1140</y-m>
+            <z-m>-0.1150</z-m>
+            <scale>1.1488</scale>
+        </marker>
+        <exit>
+            <condition>
+                <property>/controls/electric/ac-service-selected</property>
+            </condition>
+        </exit>
+    </step>
+    <!-- Lights -->
+    <step>
+        <message>
+        As we have electrical power now, we want to switch on some lights on the aircraft.
+        </message>
+    </step>
+    <step>
+        <message>Switch the nav lights on so we are better noticed on our parking position.</message>
+        <view>
+            <heading-offset-deg>320</heading-offset-deg>
+            <pitch-offset-deg>20.0</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <field-of-view>60.0</field-of-view>
+        </view>
+        <marker>
+            <x-m>-13.6608</x-m>
+            <y-m>-0.2290</y-m>
+            <z-m>-0.2355</z-m>
+            <scale>1.0000</scale>
+        </marker>
+        <exit>
+            <condition>
+                <property>/controls/lighting/nav-lights</property>
+            </condition>
+        </exit>
+    </step>	
+    <step>
 		<message>		
-		While your aircraft is on its parking position, you can usually request ground power.
-		If it is available, select it.
+		Before you start the A P U or engine, you must switch on the beacon to warn the ground personal.
 		</message>
-		<view>
-			<heading-offset-deg>311.9</heading-offset-deg>
-			<pitch-offset-deg>36.1</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>40</field-of-view>
-		</view>
 		<marker>
-			<x-m>-13.4000</x-m>
-			<y-m>-0.1140</y-m>
-			<z-m>-0.1150</z-m>
-			<scale>1.1488</scale>
+			<x-m>-13.6567</x-m>
+			<y-m>-0.2033</y-m>
+			<z-m>-0.2380</z-m>
+			<scale>1.0000</scale>
 		</marker>
 		<exit>
 			<condition>
-				<property>/controls/electric/ac-service-selected</property>
+				<property>/controls/lighting/beacon</property>
 			</condition>
 		</exit>
-	</step>
-	
+	</step>	
 	<step>
 		<message>		
-		To start the engines, we need the APU (auxilary power unit). 
-		First we need to engage the APU electronic control unit (ECU) which will start the APU fuel pump.
+		To start the engines, we need the A P U. 
+		First turn on the electronic control unit.
 		</message>
-		<view>
-			<heading-offset-deg>308.7</heading-offset-deg>
-			<pitch-offset-deg>21.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>26.9</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.5358</x-m>
-			<y-m>-0.0142</y-m>
-			<z-m>-0.1967</z-m>
-			<scale>1.9667</scale>
-		</marker>
+        <view>
+            <heading-offset-deg>299.7</heading-offset-deg>
+            <pitch-offset-deg>27.2</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <field-of-view>54.4</field-of-view>
+        </view>
+
+        <marker>
+            <x-m>-13.5515</x-m>
+            <y-m>-0.0092</y-m>
+            <z-m>-0.1909</z-m>
+            <scale>1.9667</scale>
+        </marker>
 		<exit>
 			<condition>
 				<property>controls/APU/electronic-control-unit</property>
 			</condition>
 			<exit-time>1</exit-time>
 		</exit>
-		<step-time>1</step-time>
+		<wait>10</wait>
 	</step>
 	<step>
-		<message>
-		You can monitor the APU on the EICAS.
+		<message>You can monitor the A P U on the EICAS. For convenience you can 
+        open a window for a display unit by clicking on its screen.
 		</message>
 		<view>
 			<heading-offset-deg>328.4</heading-offset-deg>
 			<pitch-offset-deg>-19.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>42.8</field-of-view>
+			<field-of-view>50</field-of-view>
 		</view>
 		<marker>
 			<x-m>-14.1016</x-m>
@@ -234,28 +288,28 @@
 			<z-m>-0.9421</z-m>
 			<scale>4.4711</scale>
 		</marker>
-		<interval>3</interval>
+		<wait>15</wait>
+        <exit>
+            <nasal><script>CRJ_EFIS.efis.displayWindow(3);</script></nasal>
+        </exit>
 	</step>
 	<step>
 		<message>
-		Now push the APU start/stop switch light. It will light "start" until APU reaches 46%. 
-		When the APU reaches 100%, the green AVAIL light turns on.
+		Now push the A P U start-stop switch light. It will light start for a while. 
+		When the A P U reaches full RPM, the green AVAIL light turns on.
 		</message>
-		<view>
-			<heading-offset-deg>308.7</heading-offset-deg>
-			<pitch-offset-deg>21.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>26.9</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.5358</x-m>
-			<y-m>0.0142</y-m>
-			<z-m>-0.1967</z-m>
-			<scale>1.9667</scale>
-		</marker>
+        <view>
+            <heading-offset-deg>292.4</heading-offset-deg>
+            <pitch-offset-deg>22.1</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <field-of-view>50</field-of-view>
+        </view>
+        <marker>
+            <x-m>-13.5465</x-m>
+            <y-m>0.0266</y-m>
+            <z-m>-0.1959</z-m>
+            <scale>1.9667</scale>
+        </marker>
 		<exit>
 			<condition>
 				<property>controls/APU/off-on</property>
@@ -265,96 +319,126 @@
 	</step>
 	<step>
 		<message>
-		You can monitor the APU on the EICAS.
+		You can monitor the A P U on the EICAS.
 		</message>
 		<view>
 			<heading-offset-deg>328.4</heading-offset-deg>
 			<pitch-offset-deg>-19.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>35.8</field-of-view>
+			<field-of-view>50</field-of-view>
 		</view>
 	</step>
 
 	<step>
-		<message>The APU will now spool up. During this time, "APU START" will appear on the EICAS.</message>
+		<message>The A P U will now spool up.</message>
 		<exit>
 			<condition>
-				<property>engines/engine[2]/running</property>
+				<property>engines/engine[2]/running-nasal</property>
 			</condition>
 		</exit>
 	</step>
 
+    <step>
+        <message>Good, the A P U is running. Let's check our electric power supply. 
+        </message>    
+    </step>
+    <step>
+        <message>
+            Select the AC EICAS page (either from the dialog or the 3D panel). 
+        </message>
+		<exit>
+			<condition>
+				<equals>
+					<property>instrumentation/eicas/page</property>
+					<value>4</value>
+				</equals>
+			</condition>
+		</exit>
+    </step>
 	<step>
 		<message>
-		Turn on the APU electric generator, which will provide AC power to the airplane and recharge the battery.
+		Turn on the A P U electric generator, which will provide AC power to the airplane and recharge the battery.
 		</message>
-		<view>
-			<heading-offset-deg>316.8</heading-offset-deg>
-			<pitch-offset-deg>29.4</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>33.5</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.4825</x-m>
-			<y-m>-0.1542</y-m>
-			<z-m>-0.1650</z-m>
-			<scale>1.9667</scale>
-		</marker>
+        <view>
+            <heading-offset-deg>346.9</heading-offset-deg>
+            <pitch-offset-deg>57.1</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.3</x-offset-m>
+            <field-of-view>73.5</field-of-view>
+        </view>
+
+        <marker>
+            <x-m>-13.4825</x-m>
+            <y-m>-0.1682</y-m>
+            <z-m>-0.1625</z-m>
+            <scale>1.9667</scale>
+        </marker>
 		<exit>
 			<condition>
-				<property>controls/electric/APU-generator</property>
+				<property>controls/electric/engine[2]/generator</property>
 			</condition>
 		</exit>
 	</step>
 
 	<step>
-		<message>Set the bleed valves to AUTO.</message>
-		<view>
-			<heading-offset-deg>305.1</heading-offset-deg>
-			<pitch-offset-deg>25.2</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>32.8</field-of-view>
-		</view>
+		<message>Check that bleed valves are set to AUTO.</message>
 		<marker>
 				<x-m>-13.5112</x-m>
-				<y-m>-0.0455</y-m>
+				<y-m>-0.055</y-m>
 				<z-m>-0.1768</z-m>
-				<scale>2.0833</scale>
+				<scale>2.5833</scale>
 		</marker>
+        <set>
+            <property>instrumentation/eicas/page</property>
+            <value>2</value>
+        </set>        
+        <wait>5</wait>
 		<exit>
 			<condition>
 				<equals>
 					<property>controls/pneumatic/bleed-valve</property>
 					<value>1</value>
 				</equals>
-			</condition>
+			</condition>            
 		</exit>
 	</step>
+    <step>
+        <message>Check the ECS page on the EICAS for status of the pneumatic system.</message>
+
+		<view>
+			<heading-offset-deg>326.8</heading-offset-deg>
+			<pitch-offset-deg>-15.8</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<field-of-view>55.5</field-of-view>
+		</view> 
+        <set>
+            <property>instrumentation/eicas/page</property>
+            <value>2</value>
+        </set>        
+    </step>
+    <step>
+        <message>Continue with a check of the fuel system.</message>
+        <set>
+            <property>instrumentation/eicas/page</property>
+            <value>6</value>
+        </set>   
+        <wait>10</wait>
+    </step>
 	<step>
 		<message>Activate the two fuel boost pumps.</message>
-		<view>
-			<heading-offset-deg>304.3</heading-offset-deg>
-			<pitch-offset-deg>33.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>37.5</field-of-view>
-		</view>
+        <view>
+            <heading-offset-deg>336.9</heading-offset-deg>
+            <pitch-offset-deg>51.1</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.3</x-offset-m>
+            <field-of-view>80.5</field-of-view>
+        </view>
+
 		<marker>
 			<x-m>-13.4012</x-m>
 			<y-m>-0.0527</y-m>
-			<z-m>-0.1197</z-m>
-			<scale>1</scale>
+			<z-m>-0.118</z-m>
+			<scale>0.58</scale>
 		</marker>
 		<exit>
 			<condition>
@@ -363,24 +447,20 @@
 					<property>/systems/fuel/boost-pump[1]/selected</property>
 				</and>
 			</condition>
+
 		</exit>
 	</step>
 	
 	<step>
 		<message>
-		Now let's start the engines. Activate an engine starter by clicking the start button.
+		Now let's start the engines. Clicking the left start button.
 		Bleed air will run the starter and accelerate the N2 stage.
 		</message>
-		<view>
-			<heading-offset-deg>314.5</heading-offset-deg>
-			<pitch-offset-deg>21.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>40</field-of-view>
-		</view>
-		<marker>
+        <set>
+            <property>instrumentation/eicas/page</property>
+            <value>2</value>
+        </set>
+        <marker>
 			<x-m>-13.5825</x-m>
 			<y-m>-0.0408</y-m>
 			<z-m>-0.2108</z-m>
@@ -393,26 +473,27 @@
 					<property>controls/engines/engine[1]/starter-cmd</property>
 				</or>
 			</condition>
-			<set>
-				<property>instrumentation/eicas[1]/page</property>
-				<value>4</value>
-			</set>
 		</exit>
 	</step>
-
+    <step>
+		<view>
+			<heading-offset-deg>329.5</heading-offset-deg>
+			<pitch-offset-deg>-40.6</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<field-of-view>77.0</field-of-view>
+		</view>
+        <message>Watch the engine monitoring on the left EICAS display</message>
+    </step>
 	<step>
 		<message>
-		At ~20% N2 thust lever must be set from cutoff to idle to allow fuel flow.			
+		At 20% N2 thust lever must be set from cutoff to idle to allow fuel flow.			
 		Click the thrust levers to set them to idle. 
 		</message>
 		<view>
-			<heading-offset-deg>314.5</heading-offset-deg>
-			<pitch-offset-deg>-43.0</pitch-offset-deg>
+			<heading-offset-deg>329.5</heading-offset-deg>
+			<pitch-offset-deg>-40.6</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>50.0</field-of-view>
+			<field-of-view>77.0</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.6250</x-m>
@@ -422,14 +503,14 @@
 		</marker>
 		<exit>
 			<condition>
-				<and>
+				<or>
 					<not>
 						<property>controls/engines/engine[0]/cutoff</property>
 					</not>
 					<not>
 						<property>controls/engines/engine[1]/cutoff</property>
 					</not>
-				</and>
+				</or>
 			</condition>
 		</exit>
 	</step>
@@ -438,15 +519,12 @@
 		<message>
 		Now wait for the engines to spool up to about 20% N1 and become responsive.
 		</message>
-		<interval>30</interval>
+		<wait>30</wait>
 		<view>
 			<heading-offset-deg>339.3</heading-offset-deg>
 			<pitch-offset-deg>-20.4</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>25.8</field-of-view>
+			<field-of-view>55.8</field-of-view>
 		</view>
 		<exit>
 			<condition>
@@ -477,14 +555,16 @@
 		by pushing the Electrical button on the EICAS control panel in the lower center panel.
 		(push again, if it shows DC status page). You can open the EICAS control panel via the menu.
 		</message>
+	</step>
+	<step>
+		<message>
+		Select the AC status page on EICAS
+		</message>
 		<view>
-			<heading-offset-deg>315.8</heading-offset-deg>
-			<pitch-offset-deg>-45.8</pitch-offset-deg>
+			<heading-offset-deg>327.8</heading-offset-deg>
+			<pitch-offset-deg>-59</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>42.8</field-of-view>
+			<field-of-view>83.8</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.5512</x-m>
@@ -495,8 +575,8 @@
 		<exit>
 			<condition>
 				<equals>
-					<property>instrumentation/eicas[1]/page</property>
-					<value>5</value>
+					<property>instrumentation/eicas/page</property>
+					<value>4</value>
 				</equals>
 			</condition>
 		</exit>
@@ -509,98 +589,57 @@
 			<heading-offset-deg>326.8</heading-offset-deg>
 			<pitch-offset-deg>-15.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>37.5</field-of-view>
+			<field-of-view>45.5</field-of-view>
 		</view>
 	</step>	
 	<step>
-		<message>Turn on the engine 1 electric generator.</message>
-		<view>
-			<heading-offset-deg>319.1</heading-offset-deg>
-			<pitch-offset-deg>31.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>35.4</field-of-view>
-		</view>
+		<message>Turn on both engine electric generators.</message>
+        <view>
+            <heading-offset-deg>325.3</heading-offset-deg>
+            <pitch-offset-deg>22.5</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.5</x-offset-m>
+            <y-offset-m>-0.5</y-offset-m>
+            <z-offset-m>-13.3</z-offset-m>
+            <field-of-view>85.8</field-of-view>
+        </view>
 		<marker>
-			<x-m>-13.4850</x-m>
-			<y-m>-0.2042</y-m>
-			<z-m>-0.1650</z-m>
+			<x-m>-13.481</x-m>
+			<y-m>-0.212</y-m>
+			<z-m>-0.160</z-m>
 			<scale>2.0000</scale>
 		</marker>
 		<exit>
 			<condition>
 				<property>controls/electric/engine[0]/generator</property>
-			</condition>
-		</exit>
-	</step>
-	<step>
-		<message>You may want to check the EICAS screen again</message>
-		<view>
-			<heading-offset-deg>326.8</heading-offset-deg>
-			<pitch-offset-deg>-15.8</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>37.5</field-of-view>
-		</view>		
-	</step>
-
-	<step>
-		<message>Turn on the engine 2 electric generator.</message>
-		<marker>
-			<x-m>-13.4850</x-m>
-			<y-m>-0.1033</y-m>
-			<z-m>-0.1650</z-m>
-			<scale>2.0000</scale>
-		</marker>
-		<exit>
-			<condition>
 				<property>controls/electric/engine[1]/generator</property>
 			</condition>
 		</exit>
 	</step>
 
 	<step>
-		<message>We are now generating electrical power through the engines.  Turn off
-the APU generator, as it is no longer needed.</message>
-		<marker>
-			<x-m>-13.4850</x-m>
-			<y-m>-0.1583</y-m>
-			<z-m>-0.1650</z-m>
-			<scale>2.0000</scale>
-		</marker>
-		<exit>
-			<condition>
-				<not>
-					<property>controls/electric/APU-generator</property>
-				</not>
-			</condition>
-		</exit>
-	</step>
+		<message>We don't need the A P U anymore, so shut it down.</message>
+        <view>
+            <heading-offset-deg>332.5</heading-offset-deg>
+            <pitch-offset-deg>20.1</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.5</x-offset-m>
+            <y-offset-m>-0.5</y-offset-m>
+            <z-offset-m>-13.3</z-offset-m>
+            <field-of-view>83.6</field-of-view>
+        </view>
 
-	<step>
-		<message>We don't need the APU anymore, so shut it down.</message>
-		<view>
-			<heading-offset-deg>309.6</heading-offset-deg>
-			<pitch-offset-deg>22.2</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>37.5</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.5417</x-m>
-			<y-m>0.0217</y-m>
-			<z-m>-0.1933</z-m>
-			<scale>1.7000</scale>
-		</marker>
+        <marker>
+            <x-m>-13.5566</x-m>
+            <y-m>0.0275</y-m>
+            <z-m>-0.1908</z-m>
+            <scale>1.7000</scale>
+        </marker>
+        <set>
+            <property>instrumentation/eicas/page</property>
+            <value>1</value>
+        </set>
+
 		<exit>
 			<condition>
 				<not>
@@ -608,21 +647,18 @@ the APU generator, as it is no longer needed.</message>
 				</not>
 			</condition>
 			<set>
-				<property>instrumentation/eicas[1]/page</property>
+				<property>instrumentation/eicas/page</property>
 				<value>2</value>
 			</set>
 		</exit>
 	</step>
 	<step>	
-		<message>The APU will shut down ...</message>
+		<message>The A P U will shut down ...</message>
 		<view>
 			<heading-offset-deg>326.8</heading-offset-deg>
 			<pitch-offset-deg>-15.8</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>37.5</field-of-view>
+			<field-of-view>50.5</field-of-view>
 		</view>
 		<exit>
 			<condition>
@@ -633,7 +669,7 @@ the APU generator, as it is no longer needed.</message>
 		</exit>
 	</step>
 	<step>	
-		<message>... and its ECU will close the APU door.</message>
+		<message>... and its ECU will close the A P U door.</message>
 		<view>
 			<heading-offset-deg>128.9</heading-offset-deg>
 			<pitch-offset-deg>4.4</pitch-offset-deg>
@@ -657,15 +693,21 @@ the APU generator, as it is no longer needed.</message>
 		Switch hydraulic pumps 1B,2B and 3B to automatic and 3A to on. 
 		You can check hydraulics on the EICAS.
 		</message>
+ 
+		<set>
+			<property>instrumentation/eicas/page</property>
+			<value>3</value>
+		</set>
+
 		<interval>10</interval>
 		<view>
+            <x-offset-m>-0.5</x-offset-m>
+            <y-offset-m>-0.5</y-offset-m>
+            <z-offset-m>-13.3</z-offset-m>
 			<heading-offset-deg>318.4</heading-offset-deg>
 			<pitch-offset-deg>17.6</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>45.7</field-of-view>
+			<field-of-view>60.7</field-of-view>
 		</view>
 		<marker>
 			<x-m>-13.6430</x-m>
@@ -688,17 +730,20 @@ the APU generator, as it is no longer needed.</message>
 		<message>That's it. Now use the checklists to complete the start configuration.</message>
 		<view>
 			<heading-offset-deg>0.0</heading-offset-deg>
-			<pitch-offset-deg>0.0</pitch-offset-deg>
+			<pitch-offset-deg>-14.0</pitch-offset-deg>
 			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
 			<field-of-view>71.7</field-of-view>
 		</view>
-	</step>
+        <nasal>
+            <script><![CDATA[
+                fgcommand("dialog-show", props.Node.new({"dialog-name":"checklist"}));
+            ]]></script>
+        </nasal>
+    </step>
 	<end>
 		<message>Congratulations! You have successfully started your CRJ700.
 		Please make sure to look at the checklists for more information.</message>
+
 		<exit>
 			<condition>
 			</condition>

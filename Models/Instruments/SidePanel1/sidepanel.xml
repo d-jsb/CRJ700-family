@@ -5,473 +5,561 @@
 
 <PropertyList>
 
-	<path>sidepanel.ac</path>
+    <path>sidepanel.ac</path>
 
-	<params>
-		<barometer>instrumentation/altimeter/setting-hpa</barometer>
-		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
-		<mfd-tcas>instrumentation/mfd/tcas</mfd-tcas>
-		<mfd-wx>instrumentation/mfd/wx</mfd-wx>
-		<mfd-page>instrumentation/mfd/page</mfd-page>
-		<radar-range>instrumentation/radar/range</radar-range>
-		<use-QNH>instrumentation/use-QNH</use-QNH>
-		<brg-src1>instrumentation/brg-src1</brg-src1>
-		<brg-src2>instrumentation/brg-src2</brg-src2>
-	</params>
+    <params>
+        <brg-src0 />
+        <brg-src1 />
 
-	<panel-marking-emit>
-		<red>1</red>
-		<green>0.871</green>
-		<blue>0.427</blue>
-	</panel-marking-emit>
-	<button-translate-m type="float">0.001</button-translate-m>
+        <mfd-format />
+        <radar-range />
+        <mfd-rtb />
+        <mfd-tcas />
 
-	<!-- Visible only within 1/2 km -->
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>500</max-m>
-	</animation>
+        <nav-source />
+        <nav-xside />
+        <use-QNH />
+        <barometer />
 
-	<!-- non-emitting elements (for dome light animation) -->
-	<animation>
-		<name>Sidepanel1Elements</name>
-		<object-name>BaroKnbFace</object-name>
-		<object-name>BarometerKnob</object-name>
-		<object-name>BrgBtn1</object-name>
-		<object-name>BrgBtn2</object-name>
-		<object-name>DisplayModeKnob</object-name>
-		<object-name>FormatKnob</object-name>
-		<object-name>HPAinBtn</object-name>
-		<object-name>NavSourceKnob</object-name>
-		<object-name>Panel</object-name>
-		<object-name>RadarTerrainBtn</object-name>
-		<object-name>RangeKnob</object-name>
-		<object-name>RATestBtn</object-name>
-		<object-name>SelBtn</object-name>
-		<object-name>SpeedRefKnob</object-name>
-		<object-name>TCASKnob</object-name>
-		<object-name>TrafficBtn</object-name>
-	</animation>
-	
-	<animation>
-		<type>material</type>
-		<object-name>Markings</object-name>
-		<condition>
-			<greater-than-equals>
-				<property alias="../../../../params/powerN" />
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-		<emission>
-			<red alias="../../../panel-marking-emit/red" />
-			<green alias="../../../panel-marking-emit/green" />
-			<blue alias="../../../panel-marking-emit/blue" />
-			<factor-prop>controls/lighting/panel-norm</factor-prop>
-		</emission>
-	</animation>
+        <display-reversion />
 
-	<!-- Display control panel -->
-	<animation>
-		<type>pick</type>
-		<object-name>FormatKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="/params/mfd-page" />
-				<!--value>1</value>
-				<value>2</value>
-				<value>3</value>
-				<value>4</value>
-				<value>5</value>
-				<value>6</value-->
-				<value>1</value>
-				<value>2</value>
-				<value>3</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="/params/mfd-page" />
-				<!--value>6</value>
-				<value>5</value>
-				<value>4</value>
-				<value>3</value>
-				<value>2</value>
-				<value>1</value-->
-				<value>3</value>
-				<value>2</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>FormatKnob</object-name>
-		<property alias="/params/mfd-page" />
-		<factor>60</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.0012</y-m>
-			<z-m>0.0708</z-m>
-		</center>
-	</animation>
+        <powerN />
+        <lightmap-texture-path />
+        <lightmap-factor />
+        <panel-lights />
+    </params>
 
-	<animation>
-		<type>pick</type>
-		<object-name>RangeKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="/params/radar-range" />
-				<value>5</value>
-				<value>10</value>
-				<value>20</value>
-				<value>40</value>
-				<value>80</value>
-				<value>160</value>
-				<value>320</value>
-				<value>640</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="/params/radar-range" />
-				<value>640</value>
-				<value>320</value>
-				<value>160</value>
-				<value>80</value>
-				<value>40</value>
-				<value>20</value>
-				<value>10</value>
-				<value>5</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>RangeKnob</object-name>
-		<property alias="/params/radar-range" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.0012</y-m>
-			<z-m>0.0708</z-m>
-		</center>
-	</animation>
+    <panel-marking-emit>
+        <red>1</red>
+        <green>0.871</green>
+        <blue>0.427</blue>
+    </panel-marking-emit>
+    <button-translate-m type="float">0.001</button-translate-m>
+    <!-- non-emitting elements (for dome light animation) -->
+    <animation>
+        <name>Sidepanel1Elements</name>
+        <object-name>BaroKnbFace</object-name>
+        <object-name>BarometerKnob</object-name>
+        <object-name>BrgBtn1</object-name>
+        <object-name>BrgBtn2</object-name>
+        <object-name>DisplayModeKnob</object-name>
+        <object-name>FormatKnob</object-name>
+        <object-name>HPAinBtn</object-name>
+        <object-name>NavSourceKnob</object-name>
+        <object-name>NavSourceKnobFace</object-name>
+        <object-name>Panel</object-name>
+        <object-name>RadarTerrainBtn</object-name>
+        <object-name>RangeKnob</object-name>
+        <object-name>RATestBtn</object-name>
+        <object-name>SelBtn</object-name>
+        <object-name>SpeedRefKnob</object-name>
+        <object-name>DHMDAKnob</object-name>
+        <object-name>TrafficBtn</object-name>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>RadarTerrainBtn</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property alias="../../../../params/mfd-wx" />
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>RadarTerrainBtn</object-name>
-		<property alias="../../params/mfd-wx" />
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+    <animation>
+        <type>material</type>
+        <object-name>Markings</object-name>
+        <condition>
+            <greater-than-equals>
+                <property alias="/params/powerN" />
+                <value>100</value>
+            </greater-than-equals>
+        </condition>
+        <emission>
+            <red alias="/panel-marking-emit/red" />
+            <green alias="/panel-marking-emit/green" />
+            <blue alias="/panel-marking-emit/blue" />
+            <factor-prop alias="/params/panel-lights" />
+        </emission>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>TrafficBtn</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property alias="../../../../params/mfd-tcas" />
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>TrafficBtn</object-name>
-		<property alias="../../params/mfd-tcas" />
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+    <!-- Display control panel -->
+    <animation>
+        <type>pick</type>
+        <object-name>FormatKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/mfd-format" />
+                <step>1</step>
+                <min>0</min>
+                <max>5</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/mfd-format" />
+                <step>-1</step>
+                <min>0</min>
+                <max>5</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>MFD mode</tooltip-id>
+                <mapping>nasal</mapping>
+                <script>
+                    return CRJ_EFIS.MFDCanvas.MFD_FORMATS[arg[0]];
+                </script>
+                <property alias="/params/mfd-format" />
+                <label>Mode: %s</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>FormatKnob</object-name>
+        <property alias="/params/mfd-format" />
+        <factor>60</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.0012</y-m>
+            <z-m>0.0708</z-m>
+        </center>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>NavSourceKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/autoflight/nav-source</property>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-			</binding>
-			<!-- NAV mode is deselected, if nav source is changed -->
-			<binding>
-				<condition>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<command>property-assign</command>
-				<property>controls/autoflight/lat-mode</property>
-				<value>0</value>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/autoflight/nav-source</property>
-				<value>2</value>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-			<!-- NAV mode is deselected, if nav source is changed -->
-			<binding>
-				<condition>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<command>property-assign</command>
-				<property>controls/autoflight/lat-mode</property>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>NavSourceKnob</object-name>
-		<property>controls/autoflight/nav-source</property>
-		<factor>90</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.057</y-m>
-			<z-m>0.054</z-m>
-		</center>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>RangeKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>                
+                <property alias="/params/radar-range" />
+                <wrap>0</wrap>
+                <value>5</value>
+                <value>10</value>
+                <value>20</value>
+                <value>40</value>
+                <value>80</value>
+                <value>160</value>
+                <value>320</value>
+                <value>640</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property alias="/params/radar-range" />
+                <wrap>0</wrap>
+                <value>640</value>
+                <value>320</value>
+                <value>160</value>
+                <value>80</value>
+                <value>40</value>
+                <value>20</value>
+                <value>10</value>
+                <value>5</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RangeKnob</object-name>
+        <property alias="/params/radar-range" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.0012</y-m>
+            <z-m>0.0708</z-m>
+        </center>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>BarometerKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/barometer" />
-				<step type="double">1</step>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/barometer" />
-				<step type="double">-1</step>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>BaroKnbFace</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property alias="../../../../params/barometer" />
-				<value type="double">1013.25</value>
-			</binding>
-		</action>
-		<action>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/barometer" />
-				<step type="double">1</step>
-			</binding>
-		</action>
-		<action>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/barometer" />
-				<step type="double">-1</step>
-			</binding>
-		</action>	
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>BarometerKnob</object-name>
-		<object-name>BaroKnbFace</object-name>
-		<property alias="../../params/barometer" />
-		<factor>10</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.057</y-m>
-			<z-m>-0.0168</z-m>
-		</center>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>RadarTerrainBtn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property alias="/params/mfd-rtb" />
+                <value>0</value>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>RadarTerrainBtn</object-name>
+        <property alias="/params/mfd-rtb" />
+        <factor alias="/button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>HPAinBtn</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property alias="../../../../params/use-QNH" />
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>HPAinBtn</object-name>
-		<property alias="../../params/use-QNH" />
-		<factor alias="../../button-translate-m" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>BrgBtn1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="../../../../params/brg-src1" />
-				<value>FMS</value>
-				<value>VOR1</value>
-				<value>ADF1</value>
-				<value>OFF</value>
-			</binding>
-		</action>
-		<hovered><binding>
-				<command>set-tooltip</command>
-				<tooltip-id>BRGSRC1</tooltip-id>
-				<!--<mapping>heading</mapping>-->
-				<label>Brg1 Src: %s</label>
-				<property>instrumentation/brg-src1</property>
-		</binding></hovered>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>BrgBtn2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property alias="../../../../params/brg-src2" />
-				<value>FMS</value>
-				<value>VOR2</value>
-				<value>ADF2</value>
-				<value>OFF</value>
-			</binding>
-		</action>
-		<hovered><binding>
-				<command>set-tooltip</command>
-				<tooltip-id>BRGSRC2</tooltip-id>
-				<!--<mapping>heading</mapping>-->
-				<label>Brg2 Src: %s</label>
-				<property>instrumentation/brg-src2</property>
-		</binding></hovered>
-	</animation>
-	
-	
-	<!-- Lightmaps -->
-	<effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image alias="../../../../params/lightmap-texture-path" />
-			</texture>
-		</parameters>
-		<object-name>Panel</object-name>
-	</effect>
-	
-	<!-- Rembrandt !! -->
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Markings</object-name>
-	</effect>
+    <animation>
+        <type>pick</type>
+        <object-name>TrafficBtn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property alias="/params/mfd-tcas" />
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>TrafficBtn</object-name>
+        <property alias="/params/mfd-tcas" />
+        <factor alias="/button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>NavSourceKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/nav-source" />
+                <step>1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>true</wrap>
+            </binding>
+            <!-- NAV mode is deselected, if nav source is changed -->
+            <!-- FIXME: logic should be moved to autopilot nasal script -->
+            <binding>
+                <condition>
+                    <equals>
+                        <property>controls/autoflight/lat-mode</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/autoflight/lat-mode</property>
+                <value>0</value>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/nav-source" />
+                <step>-1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>true</wrap>
+            </binding>
+            <!-- NAV mode is deselected, if nav source is changed -->
+            <binding>
+                <condition>
+                    <equals>
+                        <property>controls/autoflight/lat-mode</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/autoflight/lat-mode</property>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>NavSourceKnob</object-name>
+        <object-name>NavSourceKnobFace</object-name>
+        <property alias="/params/nav-source" />
+        <factor>90</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.057</y-m>
+            <z-m>0.054</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>NavSourceKnobFace</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property alias="/params/nav-xside" />
+            </binding>
+        </action>
+        <action>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/nav-source" />
+                <step type="int">1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+        <action>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/nav-source" />
+                <step type="int">-1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BarometerKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/barometer" />
+                <step type="double">1</step>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/barometer" />
+                <step type="double">-1</step>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>BaroKnbFace</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property alias="/params/barometer" />
+                <value type="double">1013.25</value>
+            </binding>
+        </action>
+        <action>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/barometer" />
+                <step type="double">1</step>
+            </binding>
+        </action>
+        <action>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/barometer" />
+                <step type="double">-1</step>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>BarometerKnob</object-name>
+        <object-name>BaroKnbFace</object-name>
+        <property alias="/params/barometer" />
+        <factor>10</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.057</y-m>
+            <z-m>-0.0168</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>HPAinBtn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property alias="/params/use-QNH" />
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>HPAinBtn</object-name>
+        <property alias="/params/use-QNH" />
+        <factor alias="/button-translate-m" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BrgBtn1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property alias="/params/brg-src0" />
+                <value>0</value>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BrgBtn2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property alias="/params/brg-src1" />
+                <value>0</value>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>DisplayModeKnob</object-name>
+
+        <action>
+            <button>0</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/display-reversion" />
+                <step type="int">-1</step>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/display-reversion" />
+                <step type="int">1</step>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>DisplayModeKnob</object-name>
+        <expression>
+            <prod>
+                <sum>
+                    <property alias="/params/display-reversion" />
+                    <value>-1</value>
+                </sum>
+                <value>60</value>
+            </prod>
+        </expression>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.06</z-m>
+        </center>
+    </animation>
+
+    <!-- Lightmaps -->
+    <effect>
+        <inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+        <parameters>
+            <lightmap-factor-prop alias="/params/lightmap-factor" />
+            <lightmap-factor n="0">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="1">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="2">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <texture n="3">
+                <image alias="/params/lightmap-texture-path" />
+            </texture>
+        </parameters>
+        <object-name>Panel</object-name>
+    </effect>
+
+    <!-- Rembrandt !! -->
+    <effect>
+        <name>REMBRANDT transparency</name>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Markings</object-name>
+    </effect>
 
 </PropertyList>

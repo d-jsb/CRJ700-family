@@ -10,369 +10,477 @@
         <blue type="float">0.35</blue>
         <alpha type="float">0.9</alpha>
     </color>
-	
+
     <group>
-		<layout>hbox</layout>
-		<empty><stretch>1</stretch></empty>
-		<text><label>Failures</label></text>
-		<empty><stretch>1</stretch></empty>
-		
-		<button>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<legend></legend>
-			<keynum>27</keynum>
-			<border>2</border>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <layout>hbox</layout>
+        <empty><stretch>1</stretch></empty>
+        <text><label>Failures</label></text>
+        <empty><stretch>1</stretch></empty>
+
+        <button>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <legend></legend>
+            <keynum>27</keynum>
+            <border>2</border>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
     </group>
 
     <hrule/>
     <text><label>Engine fire</label></text>
 
     <group>
-		<layout>hbox</layout>
+        <layout>hbox</layout>
 
-		<checkbox>
-			<label>Engine 1</label>
-			<property>engines/engine[0]/on-fire</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<label>Engine 2</label>
-			<property>engines/engine[1]/on-fire</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<label>APU</label>
-			<property>engines/engine[2]/on-fire</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-	</group>
+        <checkbox>
+            <label>Engine 1</label>
+            <property>engines/engine[0]/on-fire</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <label>Engine 2</label>
+            <property>engines/engine[1]/on-fire</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <label>APU</label>
+            <property>engines/engine[2]/on-fire</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+    </group>
     <hrule />
-    <text><label>Systems</label></text>
-
-    <text>
-		<halign>left</halign>
-		<label>Uncheck a system to fail it.</label>
-    </text>
+    <text><label>Systems serviceable</label></text>
 
     <group>
-		<halign>left</halign>
-		<layout>vbox</layout>
+        <valign>top</valign>
+        <layout>hbox</layout>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
 
-		<checkbox>
-			<halign>left</halign>
-			<label>APU</label>
-			<property>engines/engine[2]/serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>AC power center</label>
-			<property>systems/AC/system/serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>DC power center</label>
-			<property>systems/DC/system/serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>Autopilot</label>
-			<property>autopilot/autoflight-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>Autothrottle</label>
-			<property>autopilot/autothrottle-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>Flight director</label>
-			<property>autopilot/flight-director-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>Yaw damper</label>
-			<property>autopilot/yaw-damper-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-			<enable>
-			<false />
-			</enable>
-		</checkbox>
-	</group>
-	<hrule/>
-	<text>
-		<label>Hydraulic systems</label>
-	</text>
-	<text>
-		<halign>left</halign>
-		<label>Pumps serviceable</label>
-	</text>
-	<group>
-		<layout>hbox</layout>
-		<checkbox>
-			<halign>left</halign>
-			<label>1A</label>
-			<property>systems/hydraulic/system[0]/pump-a-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>1B</label>
-			<property>systems/hydraulic/system[0]/pump-b-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>2A</label>
-			<property>systems/hydraulic/system[1]/pump-a-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>2B</label>
-			<property>systems/hydraulic/system[1]/pump-b-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>3A</label>
-			<property>systems/hydraulic/system[2]/pump-a-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>3B</label>
-			<property>systems/hydraulic/system[2]/pump-b-serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-	</group>
+            <checkbox>
+                <halign>left</halign>
+                <label>APU</label>
+                <property>engines/engine[2]/serviceable</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Autopilot</label>
+                <property>autopilot/autoflight-serviceable</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Autothrottle</label>
+                <property>autopilot/autothrottle-serviceable</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Flight director</label>
+                <property>autopilot/flight-director-serviceable</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Yaw damper</label>
+                <property>autopilot/yaw-damper-serviceable</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+                <enable>
+                <false />
+                </enable>
+            </checkbox>
+        </group>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>AC power center</label>
+                <property>systems/AC/system/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>AC Bus 1</label>
+                <property>systems/AC/system[1]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>AC Bus 2</label>
+                <property>systems/AC/system[2]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>AC ESS Bus</label>
+                <property>systems/AC/system[3]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>AC Service Bus</label>
+                <property>systems/AC/system[4]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>ADG</label>
+                <property>systems/AC/system[5]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+        </group>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>DC power center</label>
+                <property>systems/DC/system/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>TRU1</label>
+                <property>systems/DC/system/tru1-serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>TRU2</label>
+                <property>systems/DC/system/tru2-serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>ESS TRU1</label>
+                <property>systems/DC/system/esstru1-serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>ESS TRU2</label>
+                <property>systems/DC/system/esstru2-serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>DC Bus 1</label>
+                <property>systems/DC/system[1]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>DC Bus 2</label>
+                <property>systems/DC/system[2]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>DC ESS Bus </label>
+                <property>systems/DC/system[3]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>DC Service Bus</label>
+                <property>systems/DC/system[4]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Battery Bus </label>
+                <property>systems/DC/system[5]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Utility Bus </label>
+                <property>systems/DC/system[6]/serviceable</property>
+                <binding><command>dialog-apply</command></binding>
+                <live type="bool">true</live>
+            </checkbox>
+        </group>
+    </group>
+    <hrule/>
+    <text>
+        <label>Hydraulic systems</label>
+    </text>
+    <text>
+        <halign>left</halign>
+        <label>Pumps serviceable</label>
+    </text>
+    <group>
+        <layout>hbox</layout>
+        <checkbox>
+            <halign>left</halign>
+            <label>1A</label>
+            <property>systems/hydraulic/system[0]/pump-a-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>1B</label>
+            <property>systems/hydraulic/system[0]/pump-b-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>2A</label>
+            <property>systems/hydraulic/system[1]/pump-a-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>2B</label>
+            <property>systems/hydraulic/system[1]/pump-b-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>3A</label>
+            <property>systems/hydraulic/system[2]/pump-a-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>3B</label>
+            <property>systems/hydraulic/system[2]/pump-b-serviceable</property>
+            <binding>
+            <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+    </group>
 
-	<text>
-		<halign>left</halign>	
-		<label>Outputs auto update (uncheck to manually set outputs)</label>
-	</text>
-	<group>
-		<layout>hbox</layout>
-		<checkbox>
-			<label>Sys1</label>
-			<property>systems/hydraulic/system[0]/update-enabled</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<label>Sys2</label>
-			<property>systems/hydraulic/system[1]/update-enabled</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>		
-		<checkbox>
-			<label>Sys3</label>
-			<property>systems/hydraulic/system[2]/update-enabled</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>		
-	</group>
-	<text>
-		<halign>left</halign>
-		<label>Hydraulic outputs</label>
-	</text>
-	<group>
-		<layout>hbox</layout>
+    <text>
+        <halign>left</halign>
+        <label>Outputs auto update (uncheck to manually set outputs)</label>
+    </text>
+    <group>
+        <layout>hbox</layout>
+        <checkbox>
+            <label>Sys1</label>
+            <property>systems/hydraulic/system[0]/update-enabled</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <label>Sys2</label>
+            <property>systems/hydraulic/system[1]/update-enabled</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <label>Sys3</label>
+            <property>systems/hydraulic/system[2]/update-enabled</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+    </group>
+    <text>
+        <halign>left</halign>
+        <label>Hydraulic outputs</label>
+    </text>
+    <group>
+        <layout>hbox</layout>
 
-		<group>
-			<halign>left</halign>
-			<layout>vbox</layout>
-			<checkbox>
-				<halign>left</halign>
-				<label>Rudder (1,2,3)</label>
-				<property>systems/hydraulic/outputs/rudder</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Rudder (1,2,3)</label>
+                <property>systems/hydraulic/outputs/rudder</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
 
-			<checkbox>
-				<halign>left</halign>
-				<label>OB flight spoiler</label>
-				<property>systems/hydraulic/outputs/ob-flight-spoiler</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>OB ground spoiler</label>
-				<property>systems/hydraulic/outputs/ob-ground-spoiler</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>L Reverser</label>
-				<property>systems/hydraulic/outputs/left-reverser</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-		</group>
-		<group>
-			<halign>left</halign>
-			<layout>vbox</layout>
-			<checkbox>
-				<halign>left</halign>
-				<label>Elevator (1,2,3)</label>
-				<property>systems/hydraulic/outputs/elevator</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>OB flight spoiler</label>
+                <property>systems/hydraulic/outputs/ob-flight-spoiler</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>OB ground spoiler</label>
+                <property>systems/hydraulic/outputs/ob-ground-spoiler</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>L Reverser</label>
+                <property>systems/hydraulic/outputs/left-reverser</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+        </group>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Elevator (1,2,3)</label>
+                <property>systems/hydraulic/outputs/elevator</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
 
-			<checkbox>
-				<halign>left</halign>
-				<label>IB ground spoiler</label>
-				<property>systems/hydraulic/outputs/ib-ground-spoiler</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Landing gear</label>
-				<property>systems/hydraulic/outputs/landing-gear</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Nose wheel steering</label>
-				<property>systems/hydraulic/outputs/nwsteering</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>IB Brakes</label>
-				<property>systems/hydraulic/outputs/ib-brakes</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-		</group>
-		<group>
-			<halign>left</halign>
-			<layout>vbox</layout>
-			<checkbox>
-				<halign>left</halign>
-				<label>Ailerons (1,2,3)</label>
-				<property>systems/hydraulic/outputs/aileron</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>IB flight spoiler</label>
-				<property>systems/hydraulic/outputs/ib-flight-spoiler</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Reverser R</label>
-				<property>systems/hydraulic/outputs/right-reverser</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-			<checkbox>
-				<halign>left</halign>
-				<label>Brakes (outboard)</label>
-				<property>systems/hydraulic/outputs/ob-brakes</property>
-				<binding>
-				<command>dialog-apply</command>
-				</binding>
-				<live type="bool">true</live>
-			</checkbox>
-		</group>
-	</group>
+            <checkbox>
+                <halign>left</halign>
+                <label>IB ground spoiler</label>
+                <property>systems/hydraulic/outputs/ib-ground-spoiler</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Landing gear</label>
+                <property>systems/hydraulic/outputs/landing-gear</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Nose wheel steering</label>
+                <property>systems/hydraulic/outputs/nwsteering</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>IB Brakes</label>
+                <property>systems/hydraulic/outputs/ib-brakes</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+        </group>
+        <group>
+            <halign>left</halign>
+            <layout>vbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Ailerons (1,2,3)</label>
+                <property>systems/hydraulic/outputs/aileron</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>IB flight spoiler</label>
+                <property>systems/hydraulic/outputs/ib-flight-spoiler</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Reverser R</label>
+                <property>systems/hydraulic/outputs/right-reverser</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Brakes (outboard)</label>
+                <property>systems/hydraulic/outputs/ob-brakes</property>
+                <binding>
+                <command>dialog-apply</command>
+                </binding>
+                <live type="bool">true</live>
+            </checkbox>
+        </group>
+    </group>
 </PropertyList>

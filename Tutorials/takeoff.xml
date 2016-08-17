@@ -70,14 +70,6 @@
 			<property>controls/engines/engine[1]/thrust-mode</property>
 			<value>0</value>
 		</set>
-		<set>
-			<property>engines/engine[0]/running</property>
-			<value type="bool">true</value>
-		</set>
-		<set>
-			<property>engines/engine[1]/running</property>
-			<value type="bool">true</value>
-		</set>
 		<nasal>
 			<script><![CDATA[
 				CRJ700.instastart();

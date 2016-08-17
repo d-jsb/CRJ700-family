@@ -108,14 +108,6 @@ var pilot_send_S_properties =
 	"controls/flight/speedbrake",
 	"controls/flight/ground-lift-dump",
 	# instrumentation
-	"instrumentation/eicas[0]/page",
-	"instrumentation/eicas[1]/page",
-	"instrumentation/mfd[0]/page",
-	"instrumentation/mfd[0]/tcas",
-	"instrumentation/mfd[0]/wx",
-	"instrumentation/mfd[1]/page",
-	"instrumentation/mfd[1]/tcas",
-	"instrumentation/mfd[1]/wx",
 	"instrumentation/use-metric-altitude",
 	# systems controls
 	"controls/anti-ice/wiper[0]",

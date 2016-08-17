@@ -193,6 +193,48 @@ print("--END-- CRJ700 MP model code");
         <path>Aircraft/Generic/marker.xml</path>
     </model>
 
+	<model>
+		<name>cursor</name>
+        <path>Aircraft/ufo/Models/cursor.ac</path>
+    </model>	
+    <animation>
+        <type>select</type>
+        <object-name>cursor</object-name>
+        <condition>
+			<property>sim/config/developer</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cursor</object-name>
+		<property>yasim/cg-x-m</property>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cursor</object-name>
+		<property>yasim/cg-y-m</property>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cursor</object-name>
+		<property>yasim/cg-z-m</property>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
     <!-- Hide windshield in interior views with virtual cockpit off -->
     <animation>
         <type>select</type>
@@ -309,7 +351,7 @@ print("--END-- CRJ700 MP model code");
         <type>translate</type>
         <object-name>RAT</object-name>
         <object-name>RATBlades</object-name>
-        <property>systems/AC/system/adg-position-norm</property>
+        <property>systems/AC/system/gen5-position-norm</property>
         <interpolation>
             <entry><ind>1</ind><dep>0</dep></entry>
             <entry><ind>0</ind><dep>0.2</dep></entry>
@@ -324,7 +366,7 @@ print("--END-- CRJ700 MP model code");
         <type>rotate</type>
         <object-name>RAT</object-name>
         <object-name>RATBlades</object-name>
-        <property>systems/AC/system/adg-position-norm</property>
+        <property>systems/AC/system/gen5-position-norm</property>
         <interpolation>
             <entry><ind>1</ind><dep>0</dep></entry>
             <entry><ind>0</ind><dep>-40</dep></entry>
@@ -343,7 +385,7 @@ print("--END-- CRJ700 MP model code");
     <animation>
         <type>spin</type>
         <object-name>RATBlades</object-name>
-        <property>systems/AC/system/adg-rpm</property>
+        <property>systems/AC/system/gen5-rpm</property>
         <axis>
             <x>1</x>
             <y>0</y>

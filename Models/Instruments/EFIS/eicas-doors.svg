@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="1200"
+   viewBox="0 0 1000 1200"
+   version="1.1"
+   id="svg3737"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="eicas-doors.svg"
+   style="enable-background:new">
+  <defs
+     id="defs3731">
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="426.5,26.066658"
+       end_point="426.5,1050.0667"
+       center_point="426.5,538.06666"
+       id="path-effect4629"
+       is_visible="true"
+       mode="vertical"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="false" />
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="426.5,26.066658"
+       end_point="426.5,1050.0667"
+       center_point="426.5,538.06666"
+       id="path-effect4625"
+       is_visible="true"
+       mode="vertical"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="false" />
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="598.32967,543.66469"
+       end_point="598.32967,927.27182"
+       center_point="598.32967,735.46825"
+       id="path-effect4623"
+       is_visible="true"
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="false"
+       oposite_fuse="false" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#00ff00"
+     borderopacity="1"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.5124229"
+     inkscape:cx="275.14241"
+     inkscape:cy="794.67964"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3734">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,213.93334)">
+    <path
+       style="fill:none;stroke:#4c4cff;stroke-width:2.34166479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 369.4616,900.06669 14.53254,-61.99729 -50.13432,-0.34712 50.13432,0.34712 8.27593,0.26248 c 17.85293,-35.00076 18.39878,-76.87693 -1.20738,-113.53727 l -64.74559,-0.21167 c -18.42076,38.41588 -15.02989,76.83177 0.92636,113.11393 l 6.61636,0.0254 15.15134,62.37821 20.45044,-0.0338 66.9187,46.67159 c -9.20477,-19.9075 -20.32431,-79.6035 -22.44225,-118.59179 L 413.10174,609.86987 229.28105,626.59606 43.871374,716.91741 43.139604,581.95806 232.75173,491.90851 m 387.48066,408.15818 -14.53254,-61.99729 50.13433,-0.34712 -50.13433,0.34712 -8.27593,0.26248 c -17.85293,-35.00076 -18.39878,-76.87693 1.20738,-113.53727 l 64.74559,-0.21167 c 18.42076,38.41588 15.02989,76.83177 -0.92636,113.11393 l -6.61635,0.0254 -15.15135,62.37821 -20.45044,-0.0338 -66.9187,46.67159 c 9.20477,-19.90744 20.32431,-79.60344 22.44225,-118.59174 l 0.83631,-218.27662 183.8207,16.72619 185.40967,90.32135 0.73177,-134.95934 -189.61213,-90.04956"
+       id="path3801"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccc" />
+    <path
+       style="fill:none;stroke:#4c4cff;stroke-width:2.34166479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 494.847,-80.836224 C 458.51835,-38.769609 423.61221,13.25449 412.88851,106.531 l -0.1627,278.32091 -93.56858,65.40456 93.56858,-65.40456 0.37593,225.01796 M 494.847,-80.836224 c 36.32864,42.066615 71.23478,94.090714 81.95848,187.367224 l 0.1627,278.32091 93.56858,65.40456 -93.56858,-65.40456 -0.37593,225.01796"
+       id="path4627"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccc" />
+    <g
+       id="fwdservice"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_fwd_service"
+         y="284.96017"
+         x="561.42114"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1;stroke:none;stroke-opacity:1"
+           y="284.96017"
+           x="561.42114"
+           id="tspan4631-7-3"
+           sodipodi:role="line">FWD SERVICE</tspan></text>
+      <rect
+         y="317.85971"
+         x="464.96881"
+         height="45.357952"
+         width="24.298903"
+         id="fwd_service"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="passenger"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_passenger"
+         y="284.96017"
+         x="91.184952"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="284.96017"
+           x="91.184952"
+           id="tspan4631-7"
+           sodipodi:role="line">PASSENGER</tspan></text>
+      <rect
+         y="317.45471"
+         x="356.0509"
+         height="45.357952"
+         width="41.236115"
+         id="rect86"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:3.25675845;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="fwdcargo"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_fwd_cargo"
+         y="431.76566"
+         x="83.525864"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="431.76566"
+           x="83.525864"
+           id="tspan4631"
+           sodipodi:role="line">FWD CARGO</tspan></text>
+      <rect
+         y="391.57349"
+         x="355.98602"
+         height="65.592789"
+         width="16.994982"
+         id="fwd_cargo"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:2.51424956;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="ctrcargo"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_ctr_cargo"
+         y="506.46024"
+         x="92.601959"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="506.46024"
+           x="92.601959"
+           id="tspan4631-5"
+           sodipodi:role="line">CTR CARGO</tspan></text>
+      <rect
+         y="465.57324"
+         x="355.75098"
+         height="65.592789"
+         width="16.994982"
+         id="ctr_cargo"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:2.51424956;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="aftcargo"
+       transform="matrix(1.1718246,0,0,1.1718246,0.6912371,-244.89718)">
+      <text
+         id="txt_aft_cargo"
+         y="869.90735"
+         x="76.832291"
+         style="font-style:normal;font-weight:normal;font-size:39.9661293px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none;stroke-width:0.99915326"
+         xml:space="preserve"><tspan
+           id="tspan4679"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.97290421px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1;stroke-width:0.99915326"
+           y="869.90735"
+           x="76.832291"
+           sodipodi:role="line">AFT CARGO</tspan></text>
+      <rect
+         y="827.99231"
+         x="355.11722"
+         height="65.537247"
+         width="16.980593"
+         id="aft_cargo"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:2.51212072;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="lfwdemer"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_emer_l1"
+         y="623.83972"
+         x="193.07291"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="623.83972"
+           x="193.07291"
+           id="tspan4631-5-4"
+           sodipodi:role="line">EMER</tspan></text>
+      <rect
+         y="582.02612"
+         x="355.73404"
+         height="53.989243"
+         width="12.639278"
+         id="emer_l1"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:1.96713769;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="laftemer"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_emer_l2"
+         y="717.51959"
+         x="192.83051"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="717.51959"
+           x="192.83051"
+           id="tspan4631-5-4-3"
+           sodipodi:role="line">EMER</tspan></text>
+      <rect
+         y="674.73236"
+         x="355.90192"
+         height="53.989243"
+         width="12.639278"
+         id="emer_l2"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:1.96713769;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="rfwdemer"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_emer_r1"
+         y="623.65198"
+         x="562.99805"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="623.65198"
+           x="562.99805"
+           id="tspan4631-5-4-7"
+           sodipodi:role="line">EMER</tspan></text>
+      <rect
+         y="581.13733"
+         x="476.85477"
+         height="53.989243"
+         width="12.639278"
+         id="emer_r1"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:1.96713769;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="raftemer"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)">
+      <text
+         id="txt_emer_r2"
+         y="717.33185"
+         x="562.75562"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="717.33185"
+           x="562.75562"
+           id="tspan4631-5-4-3-6"
+           sodipodi:role="line">EMER</tspan></text>
+      <rect
+         y="675.13733"
+         x="476.75647"
+         height="53.989243"
+         width="12.639278"
+         id="emer_r2"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:1.96713769;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="av-bay"
+       transform="matrix(1.1708324,0,0,1.1708324,-0.03484177,-244.07948)"
+       inkscape:label="#avionics">
+      <text
+         id="txt_avionic_bay"
+         y="472.06174"
+         x="559.5708"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#10ff10;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#10ff10;fill-opacity:1"
+           y="472.06174"
+           x="559.5708"
+           id="tspan4631-76"
+           sodipodi:role="line">AVIONIC BAY</tspan></text>
+      <rect
+         y="444.44852"
+         x="400.87711"
+         height="35.524548"
+         width="45.202278"
+         id="rect98"
+         style="fill:none;fill-opacity:1;stroke:#10ff10;stroke-width:3.01761937;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:46.83329391px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#4c4cff;fill-opacity:1;stroke:none;stroke-width:1.1708324"
+       x="404.33051"
+       y="-136.02666"
+       id="doors"><tspan
+         sodipodi:role="line"
+         id="tspan4862"
+         x="404.33051"
+         y="-136.02666"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.95552063px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#4c4cff;fill-opacity:1;stroke-width:1.1708324">DOORS</tspan></text>
+  </g>
+</svg>

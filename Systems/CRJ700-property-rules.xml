@@ -1,282 +1,763 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
-	What is what depends on how the files are included in CRJ700-main.xml
+    CRJ700-property-rules.xml - generic property-rules
+
+    This file is included in CRJ700-main.xml as <property-rules>, e.g.
+    property rules in this file will be run once per frame.
 -->
+
 <PropertyList>
-	<filter>
-    <!-- for users with throttle quadrant ;) -->
-		<name>mixt2speedbrake</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>sim/config/mixt-to-speedbrake</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<value>1</value>
-					<property>controls/engines/engine/mixture</property>
-				</dif>
-			</expression>
-		</input>
-		<output>controls/flight/speedbrake</output>
-	</filter>
     <logic>
-        <name>hstab powered</name>
+        <name>Pushback enable</name>
+        <input>
+            <and>
+                <property>/sim/model/pushback/enabled</property>
+                <property>/gear/gear[0]/wow</property>
+            </and>
+        </input>
+        <!-- abuse MP enabled prop to make pushback visible in MP -->
+        <output>/sim/hitches/aerotow/is-slave</output>
+    </logic>
+    <!-- APU -->
+    <logic>
+        <name>APU starting</name>
+        <input>
+            <and>
+                <property>controls/APU/off-on</property>
+                <greater-than>
+                    <property>engines/engine[2]/rpm</property>
+                    <value>0</value>
+                </greater-than>
+                <less-than>
+                    <property>engines/engine[2]/rpm</property>
+                    <value>46</value>
+                </less-than>
+            </and>
+        </input>
+        <output>engines/engine[2]/starting</output>
+    </logic>
+    <logic>
+        <input>
+            <and>
+                <property>controls/APU/off-on</property>
+                <property>engines/engine[2]/running-nasal</property>
+            </and>
+        </input>
+        <output>engines/engine[2]/available</output>
+    </logic>
+
+    <!-- logic for several EICAS messages -->
+    <logic>
+        <name>EICAS caution APU gen off</name>
+        <input>
+            <property>engines/engine[2]/available</property>
+            <not>
+                <property>controls/electric/engine[2]/generator</property>
+            </not>
+        </input>
+        <output>instrumentation/eicas/caution/apu-gen-off</output>
+    </logic>
+
+    <!-- logic for EICAS config warnings -->
+    <logic>
+        <name>T/O warnings enable</name>
+        <input>
+            <property>gear/on-ground</property>
+            <greater-than>
+                <property>engines/engine[0]/n1</property>
+                <value>70</value>
+            </greater-than>
+            <greater-than>
+                <property>engines/engine[1]/n1</property>
+                <value>70</value>
+            </greater-than>
+            <not><property>controls/engines/engine[0]/reverser</property></not>
+            <not><property>controls/engines/engine[1]/reverser</property></not>
+        </input>
+        <output>instrumentation/eicas/to-warnings-ena</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg ap</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <property>controls/autoflight/autopilot/engage</property>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-ap</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg brakes</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <property>controls/gear/brake-parking</property>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-brakes</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg flaps</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <or>
+                <less-than>
+                    <property>surface-positions/flap-pos-norm</property>
+                    <value>0.177</value>
+                </less-than>
+                <greater-than>
+                    <property>surface-positions/flap-pos-norm</property>
+                    <value>0.444</value>
+                </greater-than>
+            </or>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-flaps</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg spoilers</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <or>
+                <property>surface-positions/spoiler-ob-ground-pos-norm</property>
+                <property>surface-positions/spoiler-ib-ground-pos-norm</property>
+<!--                 <property>surface-positions/left-ob-mfs-pos-norm</property>
+                <property>surface-positions/left-ib-mfs-pos-norm</property>
+                <property>surface-positions/right-ib-mfs-pos-norm</property>
+                <property>surface-positions/right-ob-mfs-pos-norm</property>
+ -->            </or>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-spoilers</output>
+    </logic>
+    <!-- config trim -->
+    <logic>
+        <name>EICAS cfg aileron</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <greater-than>
+                <expression>
+                    <abs>
+                        <property>controls/flight/aileron-trim</property>
+                    </abs>
+                </expression>
+                <value>0.04</value>
+            </greater-than>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-aileron</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg stab</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <less-than>
+                <property>instrumentation/eicas/hstab-trim</property>
+                <value>4</value>
+            </less-than>
+            <greater-than>
+                <property>instrumentation/eicas/hstab-trim</property>
+                <value>11</value>
+            </greater-than>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-stab</output>
+    </logic>
+    <logic>
+        <name>EICAS cfg rudder</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <greater-than>
+                <expression>
+                    <abs>
+                        <property>controls/flight/rudder-trim</property>
+                    </abs>
+                </expression>
+                <value>0.0303</value>
+            </greater-than>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-rudder</output>
+    </logic>
+    <logic>
+        <name>EICAS config trim</name>
         <input>
             <or>
+                <property>instrumentation/eicas/warning/cfg-aileron</property>
+                <property>instrumentation/eicas/warning/cfg-stab</property>
+                <property>instrumentation/eicas/warning/cfg-rudder</property>
+            </or>
+        </input>
+        <output>instrumentation/eicas/warning/cfg-trim</output>
+    </logic>
+    <logic>
+        <name>EICAS advisory T/O ok</name>
+        <input>
+            <property>instrumentation/eicas/to-warnings-ena</property>
+            <not>
+                <or>
+                    <property>instrumentation/eicas/warning/cfg-ap</property>
+                    <property>instrumentation/eicas/warning/cfg-brakes</property>
+                    <property>instrumentation/eicas/warning/cfg-flaps</property>
+                    <property>instrumentation/eicas/warning/cfg-spoilers</property>
+                    <property>instrumentation/eicas/warning/cfg-trim</property>
+                </or>
+            </not>
+        </input>
+        <output>instrumentation/eicas/advisory/to-cfg-ok</output>
+    </logic>
+    <!-- EICAS message inhibits -->
+    <logic>
+        <name>initial T/O phase enable</name>
+        <input>
+            <property>gear/on-ground</property>
+            <greater-than>
+                <property>engines/engine[0]/n1</property>
+                <value>79</value>
+            </greater-than>
+            <greater-than>
+                <property>engines/engine[1]/n1</property>
+                <value>79</value>
+            </greater-than>
+            <less-than>
+                <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                <value>100</value>
+            </less-than>
+        </input>
+        <output>instrumentation/eicas/inhibits/initial-takeoff-set</output>
+    </logic>
+    <logic>
+        <name>initial T/O phase remove</name>
+        <input>
+            <or>
+                <property>instrumentation/eicas/inhibits/final-takeoff-set</property>
+                <and>
+                    <less-than>
+                        <property>engines/engine[0]/n1</property>
+                        <value>67.6</value>
+                    </less-than>
+                    <less-than>
+                        <property>engines/engine[1]/n1</property>
+                        <value>67.6</value>
+                    </less-than>
+                </and>
+            </or>
+        </input>
+        <output>instrumentation/eicas/inhibits/initial-takeoff-reset</output>
+    </logic>
+    <flipflop>
+        <type>RS</type> <!-- or SR -->
+        <S>
+            <property>instrumentation/eicas/inhibits/initial-takeoff-set</property>
+        </S>
+        <R>
+            <property>instrumentation/eicas/inhibits/initial-takeoff-reset</property>
+        </R>
+        <output>instrumentation/eicas/inhibits/initial-takeoff</output>
+    </flipflop>
+    <logic>
+        <name>final T/O phase enable</name>
+        <input>
+            <greater-than>
+                <property>engines/engine[0]/n1</property>
+                <value>79</value>
+            </greater-than>
+            <greater-than>
+                <property>engines/engine[1]/n1</property>
+                <value>79</value>
+            </greater-than>
+            <greater-than>
+                <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                <value>100</value>
+            </greater-than>
+        </input>
+        <output>instrumentation/eicas/inhibits/final-takeoff-set</output>
+    </logic>
+    <logic>
+        <name>final T/O phase remove</name>
+        <input>
+            <or>
+                <and>
+                    <less-than>
+                        <property>engines/engine[0]/n1</property>
+                        <value>67.6</value>
+                    </less-than>
+                    <less-than>
+                        <property>engines/engine[1]/n1</property>
+                        <value>67.6</value>
+                    </less-than>
+                </and>
+                <greater-than>
+                    <property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+                    <value>400</value>
+                </greater-than>
+            </or>
+        </input>
+        <output>instrumentation/eicas/inhibits/final-takeoff-reset</output>
+    </logic>
+    <flipflop>
+        <type>RS</type> <!-- or SR -->
+        <S>
+            <property>instrumentation/eicas/inhibits/final-takeoff-set</property>
+        </S>
+        <R>
+            <property>instrumentation/eicas/inhibits/final-takeoff-reset</property>
+        </R>
+        <output>instrumentation/eicas/inhibits/final-takeoff</output>
+    </flipflop>
+
+    <logic>
+        <name>EICAS inhibits landing phase</name>
+        <input>
+            <less-than>
+                <property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+                <value>400</value>
+            </less-than>
+            <equals>
+                <property>gear/gear[0]/position-norm</property>
+                <value>1</value>
+            </equals>
+            <equals>
+                <property>gear/gear[1]/position-norm</property>
+                <value>1</value>
+            </equals>
+            <equals>
+                <property>gear/gear[2]/position-norm</property>
+                <value>1</value>
+            </equals>
+        </input>
+        <output>instrumentation/eicas/inhibits/landing-set</output>
+    </logic>
+    <filter>
+        <name>mixt2speedbrake</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <enable>
+            <condition>
+                <equals>
+                    <property>sim/config/mixt-to-speedbrake</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <expression>
+                <dif>
+                    <value>1</value>
+                    <property>controls/engines/engine/mixture</property>
+                </dif>
+            </expression>
+        </input>
+        <output>controls/flight/speedbrake</output>
+    </filter>
+    <filter>
+        <name>dhptr</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                <property>instrumentation/adc/reference/dh</property>
+                <property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/radar-altimeter/dh-deviation</output>
+    </filter>
+    <filter>
+        <name>mdaptr</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <property>instrumentation/adc/reference/mda</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/altimeter/mda-deviation</output>
+    </filter>
+
+    <filter>
+        <name>alt-ref-deviation</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <abs><dif>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <property>environment/metar/pressure-inhg</property>
+                </dif></abs>
+            </expression>
+        </input>
+        <output>instrumentation/altimeter/ref-deviation</output>
+    </filter>
+    <filter>
+        <name>VS scaler</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+            <scale>0.001</scale>
+        </input>
+        <output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
+    </filter>
+    <filter>
+        <name>SpeedTape</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <value>40</value>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/airspeed-indicator/ias-40</output>
+    </filter>
+<!-- 
+    <filter>
+        <name>V1marker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/v1</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/v1-diff</output>
+    </filter>
+    <filter>
+        <name>VRmarker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/vr</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/vr-diff</output>
+    </filter>
+    <filter>
+        <name>V2marker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/v2</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/v2-diff</output>
+    </filter>
+    <filter>
+        <name>VTmarker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/vt</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/vt-diff</output>
+    </filter>
+-->
+    <logic>
+        <name>On ground</name>
+        <input>
+            <or>
+                <property>/gear/gear[0]/wow</property>
+                <property>/gear/gear[1]/wow</property>
+                <property>/gear/gear[2]/wow</property>
+            </or>
+        </input>
+        <output>/gear/on-ground</output>
+    </logic>
+    <logic>
+        <name>Gear up</name>
+        <input>
+            <and>
+                <equals>
+                    <property>/gear/gear[0]/position-norm</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>/gear/gear[1]/position-norm</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>/gear/gear[2]/position-norm</property>
+                    <value>0</value>
+                </equals>
+            </and>
+        </input>
+        <output>/gear/is-up</output>
+    </logic>
+    <logic>
+        <name>Gear down</name>
+        <input>
+            <and>
+                <equals>
+                    <property>/gear/gear[0]/position-norm</property>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property>/gear/gear[1]/position-norm</property>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property>/gear/gear[2]/position-norm</property>
+                    <value>1</value>
+                </equals>
+            </and>
+        </input>
+        <output>/gear/is-down</output>
+    </logic>
+    <logic>
+        <name>gear traveling</name>
+        <input>
+            <not>
+                <or>
+                    <property>/gear/is-down</property>
+                    <property>/gear/is-up</property>
+                </or>
+            </not>
+        </input>
+        <output>/gear/is-travelling</output>
+    </logic>
+    <!-- Alarm logic -->
+    <logic>
+        <name>Overspeed alarm</name>
+        <input>
+            <or>
+                <!-- 3 kts greater than Vmo -->
                 <greater-than-equals>
-                    <property>/systems/AC/outputs/pitch-trim1</property>
-                    <value>105</value>
+                    <property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
+                    <expression>
+                        <sum>
+                            <property>instrumentation/efis/pfd[0]/vmo</property>
+                            <value>3</value>
+                        </sum>
+                    </expression>
                 </greater-than-equals>
+                <!-- 0.01 Mach greater than Mmo -->
                 <greater-than-equals>
-                    <property>/systems/AC/outputs/pitch-trim2-1</property>
-                    <value>105</value>
-                </greater-than-equals>
-                <greater-than-equals>
-                    <property>/systems/AC/outputs/pitch-trim2-2</property>
-                    <value>105</value>
+                    <property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
+                    <value>0.86</value>
                 </greater-than-equals>
             </or>
         </input>
-        <output>/systems/hstab/powered</output>
+        <output>sim/alarms/overspeed-alarm</output>
     </logic>
-	<filter>
-        <name>legacy trim</name>
+
+    <filter>
+        <name>pfd_pitch</name>
         <type>gain</type>
         <debug type="bool">false</debug>
         <gain>1</gain>
         <input>
-            <!-- FG < v2018.1 do not support hstab trim, so we fake it -->
+            <expression>
+                <table>
+                <property>/orientation/pitch-deg</property>
+                <entry><ind>-90</ind><dep>-1200</dep></entry>
+                <entry><ind>-10</ind><dep>-80</dep></entry>
+                <entry><ind>-5</ind><dep>-44</dep></entry>
+                <entry><ind>0</ind><dep>0</dep></entry>
+                <entry><ind>5</ind><dep>44</dep></entry>
+                <entry><ind>10</ind><dep>80</dep></entry>
+                <entry><ind>90</ind><dep>1200</dep></entry>
+                </table>
+            </expression>
+        </input>
+        <output>instrumentation/efis/pfd[0]/pitch</output>
+    </filter>
+
+
+    <filter>
+        <name>pfd_vsi_needle</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <table>
+                <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+                <entry><ind>3000</ind><dep>90</dep></entry>
+                <entry><ind>2000</ind><dep>77</dep></entry>
+                <entry><ind>1000</ind><dep>64.4</dep></entry>
+                <entry><ind>0</ind><dep>0</dep></entry>
+                <entry><ind>-1000</ind><dep>-64.4</dep></entry>
+                <entry><ind>-2000</ind><dep>-77</dep></entry>
+                <entry><ind>-3000</ind><dep>-90</dep></entry>
+                </table>
+            </expression>
+        </input>
+        <output>instrumentation/efis/pfd[0]/vsi</output>
+    </filter>
+
+    <filter>
+        <name>pfd_vmo</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+
+        <input>
             <condition>
-                <greater-than-equals>
-                    <property>controls/flight/hstab-trim</property>
-                    <value>0.99</value>
-                </greater-than-equals>
-            </condition>        
+                <!-- gear retracting -->
+                <and>
+                    <property>/gear/is-travelling</property>
+                    <equals>
+                        <property>/controls/gear/gear-down</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+            <value>200</value>
+        </input>
+        <input>
+            <condition>
+                <!-- gear extending, no flaps -->
+                <and>
+                    <equals>
+                        <property>/surface-positions/flap-pos-norm</property>
+                        <value>0</value>
+                    </equals>
+                    <or>
+                        <and>
+                            <property>/gear/is-travelling</property>
+                            <equals>
+                                <property>/controls/gear/gear-down</property>
+                                <value>1</value>
+                            </equals>
+                        </and>
+                        <property>/gear/is-down</property>
+                    </or>
+                </and>
+            </condition>
+            <value>250</value>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <not-equals>
+                        <property>/surface-positions/flap-pos-norm</property>
+                        <value>0</value>
+                    </not-equals>
+                </and>
+            </condition>
+
             <expression>
-                <prod>
-                    <sum>
-                        <property>controls/flight/elevator-trim</property>
-                        <value>0.8</value>
-                    </sum>
-                    <value>-0.1309</value>
-                </prod>
+                <table>
+                    <property>/surface-positions/flap-pos-norm</property>
+                    <entry><ind>0.177</ind><dep>230</dep></entry>
+                    <entry><ind>0.444</ind><dep>230</dep></entry>
+                    <entry><ind>0.666</ind><dep>196</dep></entry>
+                    <entry><ind>1</ind><dep>191</dep></entry>
+                </table>
             </expression>
         </input>
         <input>
-            <property>surface-positions/hstab-yasim-rad</property>
+            <condition>
+                <!-- clean config -->
+                <and>
+                    <property>/gear/is-up</property>
+                    <equals>
+                        <property>/surface-positions/flap-pos-norm</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+            <expression>
+                <table>
+                <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                <entry><ind>0</ind><dep>330</dep></entry>
+                <entry><ind>8000</ind><dep>330</dep></entry>
+                <entry><ind>8001</ind><dep>335</dep></entry>
+                <entry><ind>28300</ind><dep>315</dep></entry>
+                </table>
+            </expression>
         </input>
-        <output>surface-positions/hstab-rad</output>
+        <output>instrumentation/efis/pfd[0]/vmo</output>
     </filter>
+
+
+    <predict-simple>
+        <name>predicted IAS 10 seconds ahead</name>
+        <debug>false</debug>
+        <input>instrumentation/airspeed-indicator/indicated-speed-kt</input>
+        <output>instrumentation/efis/pfd/airspeed-10-sec-ahead</output>
+        <seconds>10.0</seconds>
+        <filter-gain>0.1</filter-gain>
+    </predict-simple>
     <filter>
-        <name>eicas-hstab-trim-units</name>
+        <name>pfd_asi_predict_diff</name>
         <type>gain</type>
         <debug type="bool">false</debug>
         <gain>1</gain>
-        <!-- map [+2,-13]deg to [0,15]trim units -->
         <input>
             <expression>
-                <sum>
-                    <product>
-                        <property>surface-positions/hstab-rad</property>
-                        <value>-57.29578</value>
-                    </product>                            
-                    <value>2</value>
-                </sum>
+                <difference>
+                    <property>instrumentation/efis/pfd/airspeed-10-sec-ahead</property>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                </difference>
             </expression>
-        </input>    
-        <output>eicas/hstab-trim</output>
+        </input>
+        <output>instrumentation/efis/pfd[0]/asi-predict-diff</output>
     </filter>
     <filter>
-		<name>dhptr</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-				<property>instrumentation/adc/reference/dh</property>
-				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/radar-altimeter/dh-deviation</output>
-	</filter>
-	<filter>
-		<name>mdaptr</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<property>instrumentation/adc/reference/mda</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/altimeter/mda-deviation</output>
-	</filter>	
-	
-	<filter>
-		<name>alt-ref-deviation</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<abs><dif>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<property>environment/metar/pressure-inhg</property>
-				</dif></abs>
-			</expression>
-		</input>
-		<output>instrumentation/altimeter/ref-deviation</output>
-	</filter>
-	<filter>
-		<name>VS scaler</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
-			<scale>0.001</scale>
-		</input>
-		<output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
-	</filter>
-	<filter>
-		<name>SpeedTape</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>40</value>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/airspeed-indicator/ias-40</output>
-	</filter>
-	<filter>
-		<name>V1marker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/v1</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/v1-diff</output>
-	</filter>
-	<filter>
-		<name>VRmarker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/vr</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/vr-diff</output>
-	</filter>	
-	<filter>
-		<name>V2marker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/v2</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/v2-diff</output>
-	</filter>	
-	<filter>
-		<name>VTmarker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/vt</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/vt-diff</output>
-	</filter>
-	<logic>
-		<name>On ground</name>
-		<input>
-			<or>
-				<property>/gear/gear[0]/wow</property>
-				<property>/gear/gear[1]/wow</property>
-				<property>/gear/gear[2]/wow</property>
-			</or>
-		</input>
-		<output>/gear/on-ground</output>
-	</logic>	
-	<!-- Alarm logic -->
-	<logic>
-		<name>Overspeed alarm</name>
-		<input>
-			<or>
-				<!-- 3 kts greater than Vmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
-					<value>338</value>
-				</greater-than-equals>
-				<!-- 0.01 Mach greater than Mmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
-					<value>0.86</value>
-				</greater-than-equals>
-			</or>
-		</input>
-		<output>sim/alarms/overspeed-alarm</output>
-	</logic>
-	<logic>
-		<name>Master caution alarm</name>
-		<input>
-			<or>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-				<property>sim/alarms/overspeed-alarm</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-caution</output>
-	</logic>
-	<logic>
-		<name>Master warning alarm</name>
-		<input>
-			<or>
-				<property>engines/engine[2]/on-fire</property>
-				<property>engines/engine[0]/on-fire</property>
-				<property>engines/engine[1]/on-fire</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-warning</output>
-	</logic>
+        <type>noise-spike</type>
+        <max-rate-of-change>50</max-rate-of-change>
+        <input>instrumentation/efis/pfd[0]/asi-predict-diff</input>
+        <output>instrumentation/efis/pfd[0]/asi-predict-diff-damped</output>
+    </filter>
+
+    <filter>
+        <name>ias_ref_diff</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <difference>
+                    <property>controls/autoflight/speed-select</property>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                </difference>
+            </expression>
+        </input>
+        <output>instrumentation/efis/pfd[0]/ias-ref-diff</output>
+        <min>-40</min>
+        <max>40</max>
+    </filter>
+
+    <filter>
+        <name>radar_alt_bar</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <table>
+                    <property>/position/gear-agl-ft</property>
+                    <entry><ind>0.0</ind><dep>0</dep></entry>
+                    <entry><ind>500</ind><dep>600</dep></entry>
+                    <entry><ind>1300</ind><dep>1080</dep></entry>
+                </table>
+            </expression>
+        </input>
+        <output>instrumentation/efis/pfd[0]/radio-altitude-ft</output>
+    </filter>
 </PropertyList>

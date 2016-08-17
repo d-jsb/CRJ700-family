@@ -6,12 +6,16 @@
 <PropertyList>
 
 	<path>CRJ700-interior.ac</path>
-
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>1000</max-m>
-	</animation>
+	<!-- Flight deck -->
+	<model>
+		<name>Flight deck</name>
+		<path>../Flightdeck/CRJ700-flightdeck.xml</path>
+		<offsets>
+			<x-m>-12.2</x-m>
+			<y-m>0</y-m>
+			<z-m>-1.81</z-m>
+		</offsets>
+	</model>
 	<animation>
 		<type>select</type>
 		<object-name>Bins</object-name>

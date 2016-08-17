@@ -13,7 +13,9 @@
 			<maximum-landing-mass-lbs>67000</maximum-landing-mass-lbs>
 			<maximum-zero-fuel-mass-lbs>62300</maximum-zero-fuel-mass-lbs>
 			<maximum-payload-lbs>18055</maximum-payload-lbs>
-			<maximum-cargo-mass-lbs>5375</maximum-cargo-mass-lbs>
+			<maximum-cargo-mass-lbs>4700</maximum-cargo-mass-lbs>
+			<cg-x-max>0.190</cg-x-max>
+			<cg-x-min>0.020</cg-x-min>
 		</mass-and-balance>		
 	</limits>
     <sim include="crj700-views.xml">
@@ -58,12 +60,12 @@
 		<weight n="2">
 			<name>Main Cargo</name>
             <min-lb>0</min-lb>
-			<max-lb>2687</max-lb>
+			<max-lb>3739</max-lb>
 		</weight>
 		<weight n="3">
 			<name>Aft Cargo</name>
             <min-lb>0</min-lb>
-			<max-lb>2687</max-lb>
+			<max-lb>961</max-lb>
 		</weight>
 		
         <menubar>

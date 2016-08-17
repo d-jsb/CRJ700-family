@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    CRJ700 family electric system
+    
+    see also Nasal/electrical.nas
+    
+    /controls/electric/
+        ac-service-in-use, idg1-disc, idg2-disc, 
+        engine[i]/generator
+            
+    /systems/AC/
+        idg[i]
+            disconnect, serviceable
+        generator[i]/
+            id, voltage, freq, serviceable, tie
+        bus[i]/
+            id, voltage, freq, serviceable
+-->
+<PropertyList>
+    <filter>
+        <name>Flaps channel a</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <property>systems/AC/outputs/flaps-a-1</property>
+                    <property>systems/AC/outputs/flaps-a-2</property>
+                </max>
+            </expression>
+        </input>
+        <output>systems/AC/outputs/flaps-a</output>
+    </filter>
+    <filter>
+        <name>Flaps channel b</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <property>systems/AC/outputs/flaps-b-1</property>
+                    <property>systems/AC/outputs/flaps-b-2</property>
+                </max>
+            </expression>
+        </input>
+        <output>systems/AC/outputs/flaps-b</output>
+    </filter>
+    <filter>
+        <name>Hydraulic 3B</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <property>systems/AC/outputs/hyd-pump3B-1</property>
+                    <property>systems/AC/outputs/hyd-pump3B-2</property>
+                </max>
+            </expression>
+        </input>
+        <output>systems/AC/outputs/hyd-pump3B</output>
+    </filter>
+    <filter>
+        <name>Pitch trim 2</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <property>systems/AC/outputs/pitch-trim2-1</property>
+                    <property>systems/AC/outputs/pitch-trim2-2</property>
+                </max>
+            </expression>
+        </input>
+        <output>systems/AC/outputs/pitch-trim2</output>
+    </filter>
+    <filter>
+        <name>mkviii ac-dc</name>
+        <!-- FG mk-viii wants 28V DC but CRJ700 EGPWS is on AC so we 
+            fake this -->
+        <type>gain</type>
+        <gain>
+            <condition>
+                <greater-than>
+                    <property>/systems/AC/outputs/egpws</property>
+                    <!-- just a random guess -->
+                    <value>40</value>
+                </greater-than>
+            </condition>
+            <value>28</value> 
+        </gain>
+        <gain>
+            <value>0</value>
+        </gain>
+        <input>1</input>
+        <output>/systems/electrical/outputs/mk-viii</output>
+    </filter>
+    <logic>
+        <name>AC service selected</name>
+        <input>
+            <property>controls/electric/ac-service-selected</property>
+        </input>
+        <output>controls/electric/ac-service-in-use</output>
+    </logic>    
+    <logic>
+        <name>ext AC service avail</name>
+        <input>
+            <property>controls/gear/brake-parking</property>
+        </input>
+        <output>controls/electric/ac-service-avail</output>
+    </logic>    
+    <filter>
+        <name>IDG1</name>
+        <type>noise-spike</type>
+        <max-rate-of-change>150</max-rate-of-change>
+        <debug>false</debug>
+        <input>
+            <condition>
+                <less-than>
+                    <property>/engines/engine[0]/rpm2</property>
+                    <value>50</value>
+                </less-than>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <not><property>/controls/electric/idg1-disc</property></not>
+                    <greater-than>
+                        <property>/engines/engine[0]/rpm2</property>
+                        <value>57</value>
+                    </greater-than>
+                </and>
+            </condition>
+            <value>400</value>
+        </input> 
+        <input>
+            <condition>
+                <not><property>/controls/electric/idg1-disc</property></not>
+            </condition>
+            <expression>
+                <product>
+                    <property>/engines/engine[0]/rpm2</property>
+                    <value>7</value>
+                </product>
+            </expression>
+        </input>
+        <input>0</input>
+        <output>/systems/AC/idg1/rpm</output>
+    </filter>    
+    <filter>
+        <name>Gen1</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <input>
+            <condition>
+                <property>/controls/electric/engine[0]/generator</property>
+            </condition>
+            <property>/systems/AC/idg1/rpm</property>
+        </input>
+        <input>0</input>
+        <output>/systems/AC/gen1/freq</output>
+    </filter>    
+
+</PropertyList>

@@ -1,101 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
-	<name>config-crj700</name>
+    <name>config-crj700</name>
     <layout>vbox</layout>
-	
+    
     <group>
-		<layout>hbox</layout>
-		<empty>
-			<stretch>1</stretch>
-		</empty>
-		<text>
-			<label>CRJ700/900/1000 config/cheat menu</label>
-		</text>
-		<empty>
-			<stretch>1</stretch>
-		</empty>
-		<button>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<legend>X</legend>
-			<keynum>27</keynum>
-			<border>2</border>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-	</group>
-	
-	<hrule/>
-	<group>
-		<layout>vbox</layout>
-		<halign>left</halign>
-		<text>
-			<label>The following "features" are not found in real live, but are added for convenience.</label>
-		</text>
-		<checkbox>
-			<halign>left</halign>
-			<label>Enable autothrottle (dialog only)</label>
-			<property>sim/config/allow-autothrottle</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("sim/config/allow-autothrottle"))
-						CRJ700.dialogs.autothrottle.open();
-					else
-						CRJ700.dialogs.autothrottle.close();
-				</script>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>	
-		<checkbox>
-			<halign>left</halign>
-			<label>Rudder pedals to tiller (full 80 deg nose wheel steering below 20kt)</label>
-			<property>sim/config/rudder-to-tiller</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>	
-		<checkbox>
-			<halign>left</halign>
-			<label>View follows tiller</label>
-			<property>sim/config/view-follows-tiller</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>	
-		<checkbox>
-			<halign>left</halign>
-			<label>Mixture lever controls speedbrake</label>
-			<property>sim/config/mixt-to-speedbrake</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>	
-		<checkbox>
-			<halign>left</halign>
-			<label>Developer mode</label>
-			<property>sim/config/developer</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("sim/config/developer"))
-						CRJ700.dialogs.developer.open();
-					else
-						CRJ700.dialogs.developer.close();
-				</script>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>	
-	</group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+        <text>
+            <label>CRJ700/900/1000 config/cheat menu</label>
+        </text>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+        <button>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <legend>X</legend>
+            <keynum>27</keynum>
+            <border>2</border>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+    
+    <hrule/>
+    <group>
+        <layout>vbox</layout>
+        <halign>left</halign>
+        <text>
+            <label>The following "features" are not found in real live, but are added for convenience.</label>
+        </text>
+        <checkbox>
+            <halign>left</halign>
+            <label>Enable autothrottle (dialog only)</label>
+            <property>sim/config/allow-autothrottle</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    if (getprop("sim/config/allow-autothrottle"))
+                    CRJ700.dialogs.autothrottle.open();
+                    else
+                    CRJ700.dialogs.autothrottle.close();
+                </script>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>Rudder pedals to tiller (full 80 deg nose wheel steering below 20kt)</label>
+            <property>sim/config/rudder-to-tiller</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>View follows tiller</label>
+            <property>sim/config/view-follows-tiller</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>Mixture lever controls speedbrake</label>
+            <property>sim/config/mixt-to-speedbrake</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+        <checkbox>
+            <halign>left</halign>
+            <label>Developer mode</label>
+            <property>sim/config/developer</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    if (getprop("sim/config/developer"))
+                    CRJ700.dialogs.developer.open();
+                    else
+                    CRJ700.dialogs.developer.close();
+                </script>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>        
+        <checkbox>
+            <halign>left</halign>
+            <label>Enable horizontal stab. trim</label>
+            <property>/sim/config/hstab-trim</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <live type="bool">true</live>
+        </checkbox>
+    </group>
 </PropertyList>

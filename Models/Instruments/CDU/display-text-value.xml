@@ -6,52 +6,51 @@
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
+    <params>
+        <property type="string">engines/engine[0]/mp-inhg</property>
+        <format type="string">%2.1f</format>
+        <character-size type="float">0.01</character-size>
+        <alignment type="string">center-center</alignment>
+        <color>
+            <red-prop type="string">instrumentation/cdu/color-red-norm</red-prop>
+            <blue-prop type="string">instrumentation/cdu/color-blue-norm</blue-prop>
+            <green-prop type="string">instrumentation/cdu/color-green-norm</green-prop>
+        </color>
+        <display-norm />
+    </params>
 
-	<params>
-		<property type="string">engines/engine[0]/mp-inhg</property>
-		<format type="string">%2.1f</format>
-		<character-size type="float">0.01</character-size>
-		<alignment type="string">center-center</alignment>
-		<color>
-			<red-prop type="string">instrumentation/cdu/color-red-norm</red-prop>
-			<blue-prop type="string">instrumentation/cdu/color-blue-norm</blue-prop>
-			<green-prop type="string">instrumentation/cdu/color-green-norm</green-prop>
-		</color>
-	</params>
+    <text>
+        <name>Text</name>
+        <type>text-value</type>
+        <property alias="/params/property" />
+        <format alias="/params/format" />
+        <font>Helvetica.txf</font> <!-- Font has to be hardcoded, unfortunately -->
+        <alignment alias="/params/alignment" />
+        <character-size alias="/params/character-size" />
+        <axis-alignment>yz-plane</axis-alignment>
+        <truncate type="bool">false</truncate>
+        <draw-text type="bool">true</draw-text>
+        <draw-alignment type="bool">false</draw-alignment>
+        <draw-boundingbox type="bool">false</draw-boundingbox>
+    </text>
 
-	<text>
-		<name>Text</name>
-		<type>text-value</type>
-		<property alias="../../params/property" />
-		<format alias="../../params/format" />
-		<font>Helvetica.txf</font> <!-- Font has to be hardcoded, unfortunately -->
-		<alignment alias="../../params/alignment" />
-		<character-size alias="../../params/character-size" />
-		<axis-alignment>yz-plane</axis-alignment>
-		<truncate type="bool">false</truncate>
-		<draw-text type="bool">true</draw-text>
-		<draw-alignment type="bool">false</draw-alignment>
-		<draw-boundingbox type="bool">false</draw-boundingbox>
-	</text>
-
-	<animation>
-		<type>material</type>
-		<diffuse>
-			<red-prop alias="../../../params/color/red-prop" />
-			<green-prop alias="../../../params/color/green-prop" />
-			<blue-prop alias="../../../params/color/blue-prop" />
-		</diffuse>
-		<ambient>
-			<red-prop alias="../../../params/color/red-prop" />
-			<green-prop alias="../../../params/color/green-prop" />
-			<blue-prop alias="../../../params/color/blue-prop" />
-		</ambient>
-		<emission>
-			<red-prop alias="../../../params/color/red-prop" />
-			<green-prop alias="../../../params/color/green-prop" />
-			<blue-prop alias="../../../params/color/blue-prop" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
-
+    <animation>
+        <type>material</type>
+        <diffuse>
+            <red-prop alias="/params/color/red-prop" />
+            <green-prop alias="/params/color/green-prop" />
+            <blue-prop alias="/params/color/blue-prop" />
+        </diffuse>
+        <ambient>
+            <red-prop alias="/params/color/red-prop" />
+            <green-prop alias="/params/color/green-prop" />
+            <blue-prop alias="/params/color/blue-prop" />
+        </ambient>
+        <emission>
+            <red-prop alias="/params/color/red-prop" />
+            <green-prop alias="/params/color/green-prop" />
+            <blue-prop alias="/params/color/blue-prop" />
+            <factor-prop alias="/params/display-norm"/>
+        </emission>
+    </animation>
 </PropertyList>

@@ -15,12 +15,6 @@
 	<switch-rotate-deg type="float">35</switch-rotate-deg>
 	<switch-rotate-neg-deg type="float">-35</switch-rotate-neg-deg>
 
-	<!-- Visible only within 1/2 km -->
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>50</max-m>
-	</animation>
 	<!-- non-emitting elements (for dome light animation) -->
 	<animation>
 		<name>UpperPanelElements</name>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+	<name>canvas-nd</name>
+	<modal>false</modal>
+    <layout>vbox</layout>
+	<color>
+		<red>0.3</red>
+		<green>0.3</green>
+		<blue>0.3</blue>
+		<alpha>0.6</alpha>
+	</color>	
+    <group>
+		<layout>hbox</layout>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<text>
+			<label>Canvas NavDisplay</label>
+		</text>
+		<empty>
+			<stretch>1</stretch>
+		</empty>
+		<button>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+				<alpha>0.8</alpha>
+			</color>	
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend>X</legend>
+			<keynum>27</keynum>
+			<border>2</border>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+	<widget-templates>
+		<!--
+			The following markup is processed by the dialog's nasal/open block to instantiate independent ND instances, including widgets to control them
+		-->
+		<nd-checkbox>
+			<name>checkbox-template</name>
+			<checkbox>
+				<pref-width>40</pref-width>
+				<pref-height>22</pref-height>
+				
+				<label>nd-checkbox</label>
+				<halign>left</halign>
+				<property></property>
+				<live>true</live>
+				
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<!--
+					<binding>
+					<command>dialog-toggle</command>
+					</binding>
+				-->
+			</checkbox>
+		</nd-checkbox>
+		
+		<canvas-widget>
+			<name>canvas-mfd</name>
+			<!--
+				<group>
+				<layout>vbox</layout>
+				<name>mfd-controls2</name>
+				
+				<checkbox>
+				<pref-width>30</pref-width>
+				<pref-height>22</pref-height>
+				
+				<label>Test</label>
+				<halign>left</halign>
+				<property>/sim/none/foo</property>
+				</checkbox>
+				
+				
+				</group>
+			-->
+			<frame>
+				<layout>vbox</layout>
+				<padding>15</padding>
+				<stretch>true</stretch>
+				
+				<!-- style selector (property will be overridden) -->
+				<combo>
+					<label>Style</label>
+					<name>unchanged</name>
+					<property>WILL BE FILLED IN PROCEDURALLY</property>
+					
+					<binding>
+						<command>dialog-apply</command>
+						<object-name>unchanged</object-name>
+					</binding>
+					
+					<!-- This actually works but triggers a Canvas related segfault if we don't use the timer -->
+					<binding>
+						<command>nasal</command>
+						<script>
+							fgcommand("dialog-close", props.Node.new({"dialog-name": "canvas-nd"}));
+							fgcommand("reinit", props.Node.new({subsystem:'gui'}));
+							settimer(func fgcommand("dialog-show", props.Node.new({"dialog-name": "canvas-nd"})), 0);
+						</script>
+					</binding>
+					
+				</combo>
+				<!-- this is where our checkboxes end up TODO: should be moved somewhere else and become a vbox-->
+				<group>
+					<layout>hbox</layout>
+					<padding>5</padding>
+					<name>mfd-controls</name>
+				</group>
+				
+				<canvas>
+					<name></name>
+					<!--
+						<valign>fill</valign>
+						<halign>fill</halign>
+						<stretch>false</stretch>
+					-->
+					<!-- reducing the dimensions even more will look weird due to layouting issues, given the number of hbox aligned checkbox widgets -->
+					<pref-width>256</pref-width>
+					<pref-height>256</pref-height>
+					<view>1024</view>
+					<view>1024</view>
+					<nasal>      
+						<load>
+						</load>
+					</nasal>
+				</canvas>
+				<!-- ND/Canvas specific controls placed at the bottom of the display (e.g. range) -->
+				<group> <!-- move this down for better layout -->
+					<layout>hbox</layout>
+					
+					<combo>
+						<label>Mode</label>
+						<name>unchanged mode!!!</name>
+						<property>WILL BE FILLED IN PROCEDURALLY</property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name>unchanged mode !!!</object-name>
+						</binding>   
+					</combo>
+					<combo>
+						<label></label>
+						<name></name>
+						<property></property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name></object-name>
+						</binding>   
+					</combo>
+					<combo>
+						<name>unchanged range</name>
+						<label>nm</label>
+						<property>WILL BE FILLED IN PROCEDURALLY</property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name>unchanged range</object-name>
+						</binding>   
+					</combo>
+					<combo>
+						<label></label>
+						<name></name>
+						<property></property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name></object-name>
+						</binding>   
+					</combo>
+				</group>
+			</frame>
+		</canvas-widget>
+	</widget-templates>
+	
+	<nasal>
+		<open><![CDATA[
+			# to be used for shutting down each created instance upon closing the dialog (see the close block below)
+			# variable not visible in close block, if defined in included nasal file, so defined here
+			var MFDInstances = {};
+
+			io.include("Dialogs/canvas-nd-dlg-open.nas");
+		]]>
+		</open>
+		
+		<close><![CDATA[
+			print("invoking nasal/close block canvas-nd.xml");
+			foreach(var mfd; keys(MFDInstances) ) {
+			MFDInstances[mfd].del();
+			}
+		]]>
+		</close>
+		
+	</nasal>
+	
+	<group>
+		<layout>hbox</layout>
+		<name>canvas-placeholder</name>
+		<!-- this will be populated dynamically when the dialog is opened -->
+	</group>
+	
+	<group>
+		<layout>hbox</layout>
+		<button>
+			<legend>Exit</legend>
+			<equal>true</equal>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+		
+		<combo>
+			<label>Instances</label>
+			<name>TotalNDInstances</name>
+			<property>/fgcanvas/total-nd-instances</property>
+			
+			<value>1</value>
+			<value>2</value>
+			<value>3</value>
+			<value>4</value>
+			<value>5</value>
+			
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>TotalNDInstances</object-name>
+			</binding>   
+			
+			<binding>
+				<command>nasal</command>
+				<script>
+					fgcommand("dialog-close", props.Node.new({"dialog-name": "canvas-nd"}));
+					fgcommand("reinit", props.Node.new({subsystem:'gui'}));
+					settimer(func fgcommand("dialog-show", props.Node.new({"dialog-name": "canvas-nd"})), 0);
+				</script>
+			</binding>			
+		</combo>
+		
+		<combo>
+			<label>Size</label>
+			<name>NDResolution</name>
+			<property>/fgcanvas/nd-resolution</property>
+			
+			<value>256</value>
+			<value>384</value>
+			<value>512</value>
+			<value>768</value>
+			
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>NDResolution</object-name>
+			</binding>   
+			
+			<binding>
+				<command>nasal</command>
+				<script>
+					fgcommand("dialog-close", props.Node.new({"dialog-name": "canvas-nd"}));
+					fgcommand("reinit", props.Node.new({subsystem:'gui'}));
+					settimer(func fgcommand("dialog-show", props.Node.new({"dialog-name": "canvas-nd"})), 0);
+				</script>
+			</binding>
+		</combo>		
+	</group>
+</PropertyList>

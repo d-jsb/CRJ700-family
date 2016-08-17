@@ -8,8 +8,10 @@
 		<internal type="bool" archive="y">true</internal>
 		<config>
 			<x-offset-m archive="y">-0.528</x-offset-m>
-			<y-offset-m archive="y">-0.468</y-offset-m>
-			<z-offset-m archive="y">-13.105</z-offset-m>
+			<y-offset-m archive="y">-0.48</y-offset-m>
+			<z-offset-m archive="y">-13.305</z-offset-m>
+			<pitch-offset-deg>-14.5</pitch-offset-deg>
+			<default-field-of-view-deg type="double">75.0</default-field-of-view-deg>
 		</config>
 	</view>
 	<view n="100">
@@ -30,9 +32,11 @@
 		<config>
 			<from-model type="bool">true</from-model>
 			<x-offset-m archive="y">0.528</x-offset-m>
-			<y-offset-m archive="y">-0.468</y-offset-m>
-			<z-offset-m archive="y">-13.105</z-offset-m>
-		</config>
+			<y-offset-m archive="y">-0.48</y-offset-m>
+			<z-offset-m archive="y">-13.335</z-offset-m>
+			<pitch-offset-deg>-14.5</pitch-offset-deg>
+			<default-field-of-view-deg type="double">75.0</default-field-of-view-deg>
+    </config>
 	</view>
 	<view n="102">
 		<name>OHPanel</name>
@@ -150,11 +154,11 @@
 		<internal type="bool" >true</internal>
 		<config>
 			<from-model type="bool">true</from-model>
-			<x-offset-m >-1.04</x-offset-m>
+			<x-offset-m >-1.06</x-offset-m>
 			<y-offset-m >-0.55</y-offset-m>
-			<z-offset-m >-2.4</z-offset-m>
-			<pitch-offset-deg>-14</pitch-offset-deg>
-			<heading-offset-deg>67</heading-offset-deg>
+			<z-offset-m >-2.59</z-offset-m>
+			<pitch-offset-deg>-12.5</pitch-offset-deg>
+			<heading-offset-deg>97</heading-offset-deg>
 			<default-field-of-view-deg type="double">85.0</default-field-of-view-deg>
 		</config>
 	</view>
@@ -178,9 +182,9 @@
 		<internal type="bool" >true</internal>
 		<config>
 			<from-model type="bool">true</from-model>
-			<x-offset-m >1.04</x-offset-m>
+			<x-offset-m >1.07</x-offset-m>
 			<y-offset-m >-0.55</y-offset-m>
-			<z-offset-m >-2.4</z-offset-m>
+			<z-offset-m >-2.52</z-offset-m>
 			<pitch-offset-deg>-14</pitch-offset-deg>
 			<heading-offset-deg>285</heading-offset-deg>
 			<default-field-of-view-deg type="double">85.0</default-field-of-view-deg>

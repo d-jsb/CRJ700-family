@@ -27,11 +27,6 @@
 			</white>
 	</colors>
 
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>20</max-m>
-	</animation>
 	<!-- non-emitting elements (for dome light animation) -->
 	<animation>
 		<name>StandbyElements</name>
@@ -56,7 +51,7 @@
 		<object-name>PlusBtnText</object-name>
 		<object-name>StdBtn</object-name>
 		<object-name>StdBtnText</object-name>
-		</animation>
+    </animation>
 	<animation>
 		<type>material</type>
 		<object-name>LCD</object-name>

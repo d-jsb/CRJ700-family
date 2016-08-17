@@ -17,483 +17,454 @@
 # specific-fuel-consumption, which is calculated with kg/h/kN and data refers to TO --> max thrust
 #
 
-var Engine = {};
-
-# Array of non-empty fuel tank nodes.
-Engine.valid_fuel_tanks = [];
-# Updates the array.
-Engine.poll_fuel_tanks = func
-{
-    Engine.valid_fuel_tanks = [];
-    foreach (var tank; props.globals.getNode("/consumables/fuel").getChildren("tank"))
-    {
-        var emptyN = tank.getNode("empty", 0);
-        if (emptyN != nil)
-        {
-            var empty = emptyN.getValue();
-            if (empty != nil and !empty) # and tank.getNode("selected",1).getBoolValue()
-            {
-                append(Engine.valid_fuel_tanks, tank);
-            }
-        }
-        setprop("/consumables/fuel/valid-tanks", size(Engine.valid_fuel_tanks));
-    }
-};
-
 
 # APU class
 #
-#   n - index of APU: /engines/engine[2][n]
-#
-Engine.Apu = func() {
-    var apu = { serviceable : 1, door : 0, running : 0, rpm : 0, egt : 0, on_fire : 0 };
-    # Honeywell RE220
-    apu.fuel_burn_pph = 270;
-	apu.eicas_door_msg = ["----", "CLSD", "OPEN"];
-    apu.controls = { ecu : 0, on : 0, fire_ex : 0 };
+var Apu = {
+    new: func() {
+        var obj = {
+            parents: [me],
+            fuel_burn_pps: 270/3600,   # Honeywell RE220
+            serviceable: 1,
+            door: 0,
+            running: 0,
+            rpm: 0,
+            eicas_door_msg:  ["----", "CLSD", "OPEN"],
+            controls: { ecu: 0, on: 0},
+            dt: 0.5, #intervall for fuel consumption
+        };
+        obj.fuel_consumer = maketimer(obj.dt, obj, obj.consume_fuel);
+        obj.fuel_consumer.simulatedTime = 1;
+        return obj;
+    },
 
-    apu.controls.ecu_node = props.globals.getNode("/controls/APU/electronic-control-unit", 1);
-    apu.controls.ecu_node.setBoolValue(apu.controls.ecu);
+    init: func() {
+        # create property objects
+        me.controls.ecuN = props.getNode("/controls/APU/electronic-control-unit", 1);
+        me.controls.fire_exN = props.getNode("/controls/APU/fire-switch", 1);
+        me.controls.onN = props.getNode("/controls/APU/off-on", 1);
+        me.controls.ecuN.setBoolValue(me.controls.ecu);
+        me.controls.onN.setBoolValue(me.controls.on);
 
-    apu.controls.fire_ex_node = props.globals.getNode("/controls/APU/fire-switch", 1);
-    apu.controls.fire_ex_node.setBoolValue(apu.controls.fire_ex);
+        me.serviceableN = props.getNode("/engines/engine[2]/serviceable", 1);
+        me.serviceableN.setBoolValue(me.serviceable);
+        #abusing unused engine[2] MP enabled property to make door pos visible via MP
+        me.doorN = props.getNode("/engines/engine[2]/n1", 1);
+        me.doorN.setValue(me.door);
+        me.eicas_doorN = props.getNode("/engines/engine[2]/door-msg", 1);
+        me.eicas_doorN.setValue(me.eicas_door_msg[0]);
 
-    apu.controls.on_node = props.globals.getNode("/controls/APU/off-on", 1);
-    apu.controls.on_node.setBoolValue(apu.controls.on);
+        me.runningN = props.getNode("/engines/engine[2]/running-nasal", 1);
+        me.runningN.setBoolValue(me.running);
 
-    apu.serviceable_node = props.globals.getNode("/engines/engine[2]/serviceable", 1);
-    apu.serviceable_node.setBoolValue(apu.serviceable);
-	#abusing unused engine[2] MP enabled property to make door pos visible via MP
-    apu.door_node = props.globals.getNode("/engines/engine[2]/n1", 1);
-    apu.door_node.setValue(apu.door);
-    apu.eicas_door_node = props.globals.getNode("/engines/engine[2]/door-msg", 1);
-    apu.eicas_door_node.setValue(apu.eicas_door_msg[0]);
+        me.rpmN = props.getNode("/engines/engine[2]/rpm", 1);
+        me.rpmN.setValue(0);
 
-    apu.running_node = props.globals.getNode("/engines/engine[2]/running", 1);
-    apu.running_node.setBoolValue(apu.running);
+        me.sovN = props.getNode("/engines/engine[2]/sov", 1);
+        me.sovN.setValue(0);
 
-    apu.rpm_node = props.globals.getNode("/engines/engine[2]/rpm", 1);
-    apu.rpm_node.setValue(apu.rpm);
+        me.egtN = props.getNode("/engines/engine[2]/egt-degc", 1);
+        me.egtN.setValue(getprop_safe("/environment/temperature-degc"));
 
-    apu.egt = getprop_safe("/environment/temperature-degc");
-    apu.egt_node = props.globals.getNode("/engines/engine[2]/egt-degc", 1);
-    apu.egt_node.setValue(apu.egt);
+        me.on_fireN = props.getNode("/engines/engine[2]/on-fire", 1);
+        me.on_fireN.setBoolValue(0);
 
-    apu.on_fire_node = props.globals.getNode("/engines/engine[2]/on-fire", 1);
-    apu.on_fire_node.setBoolValue(apu.on_fire);
+        me.fuel_consumedN = props.globals.initNode("/engines/engine[2]/fuel-consumed-lbs", 0, "DOUBLE");
+        me.oofN = props.globals.getNode("/engines/engine[2]/out-of-fuel", 1);
 
-    var read_props = func
+        #-- set listeners for rare events, e.g. not necessary to poll in the update loop
+        # APU master switch (ECU = electronic control unit)
+        setlistener(me.controls.ecuN, func(n) {
+            me.controls.ecu = n.getBoolValue();
+            if (me.controls.ecu) {
+                # init value
+                #me.egtN.setValue(getprop("/environment/temperature-degc"));
+                #me.doorN.setValue(0);
+                me.open_door();
+                setprop("systems/fuel/boost-pump[2]/running",1);
+            }
+            else {
+                # unset start/stop switch, in case the pilot did not
+                me.controls.on = 0;
+                me.controls.onN.setBoolValue(0);
+                setprop("systems/fuel/boost-pump[2]/running",0);
+                me.sovN.setBoolValue(0);
+            }
+        }, 1);
+
+        setlistener(me.controls.onN, func(n) {
+            print("APU on/off");
+            me.controls.on = n.getBoolValue();
+            if (me.controls.on) {
+                me.sovN.setBoolValue(1);
+                me.start();
+            }
+            else {
+                me.stop();
+            }
+        }, 1);
+
+        #listener to update door indication for EICAS
+        setlistener(me.doorN, func(n) {
+            me.door = n.getValue();
+            if (me.door == 0)
+                me.eicas_doorN.setValue(me.eicas_door_msg[1]);
+            if (me.door == 1)
+                me.eicas_doorN.setValue(me.eicas_door_msg[2]);
+        }, 1);
+
+        setlistener(me.on_fireN, func(n) {
+            if (n.getBoolValue()) {
+                print("APU fire");
+                me.serviceableN.setBoolValue(0);
+            }
+        });
+
+        setlistener(me.controls.fire_exN, func(n) {
+            if (n.getBoolValue())
+            {
+                print("APU fire bottle discharge");
+                me.on_fireN.setBoolValue(0);
+                me.serviceableN.setBoolValue(0);
+            }
+        });
+
+        setlistener(me.oofN, func(n) {
+            if (n.getBoolValue()) {
+                me.stop();
+            }
+        });
+
+        setlistener(me.serviceableN, func(n) {
+            me.serviceable = n.getBoolValue();
+            if (!me.serviceable) {
+                me.stop();
+            }
+        }, 1);
+
+        #-- monitor RPM to set running (available) flag;
+        rpm_timer_lock = 0;
+        setlistener(me.rpmN, func(n) {
+            #print("apu rpm");
+            me.rpm = n.getValue() or 0;
+            if (me.rpm < 99) {
+                me.runningN.setBoolValue(me.running = 0);
+                me.fuel_consumer.stop();
+                if (me.rpm < 12 and !me.controls.on)
+                    interpolate(me.doorN, 0, 2);
+            }
+            elsif (99 <= me.rpm and me.rpm <= 106)
+            {
+                #set running flag after 2s
+                if (rpm_timer_lock == 0)
+                {
+                    rpm_timer_lock = 1;
+                    me.fuel_consumer.start();
+                    settimer(func {
+                        rpm_timer_lock = 0;
+                        if (me.rpm >= 99) {
+                            me.runningN.setBoolValue(me.running = 1);
+                        }
+                    }, 2);
+                }
+            }
+        }, 0, 0);
+
+    },
+
+    open_door: func {
+        # on gnd. open to 45 deg (=1) in 2s
+        var pos = 1;
+        # if (altitude < limit) #TODO
+        interpolate(me.doorN, pos, 2);
+    },
+
+    #-- spin up --
+    start: func
     {
-        apu.controls.ecu = apu.controls.ecu_node.getValue();
-        apu.controls.on = apu.controls.on_node.getValue();
-        apu.controls.fire_ex = apu.controls.fire_ex_node.getValue();
-        apu.serviceable = apu.serviceable_node.getBoolValue();
-		apu.door = apu.door_node.getValue();
-		apu.running = apu.running_node.getBoolValue();
-		apu.rpm = apu.rpm_node.getValue();
-		apu.egt = apu.egt_node.getValue();
-        apu.on_fire = apu.on_fire_node.getBoolValue();
-    };
-
-    var write_props = func
-    {
-    #    apu.rpm_node.setValue(apu.rpm);
-        apu.egt_node.setValue(apu.egt);
-        apu.running_node.setBoolValue(apu.running);
-        apu.on_fire_node.setBoolValue(apu.on_fire);
-        apu.serviceable_node.setBoolValue(apu.serviceable);
-    };
-
-	#-- for debugging
-	apu.controls_listener = func
-	{
-		read_props();
-		print("APU ecu " ~ apu.controls.ecu );
-		print("APU on/off " ~ apu.controls.on );
-		print("APU fire ex " ~ apu.controls.fire_ex );
-	}
-	#setlistener("/controls/APU", apu.controls_listener, 1, 2);
-
-	#-- for debugging
-	apu.state_listener = func
-	{
-		read_props();
-		print("APU serviceable " ~ apu.serviceable);
-		print("APU running " ~ apu.running);
-		print("APU rpm " ~ apu.rpm );
-		print("APU egt " ~ apu.egt );
-	}
-	#setlistener("/engines/engine[2]", apu.state_listener, 1, 2);
-
-	apu.open_door = func
-	{
-		# on gnd. open to 45 deg (=1) in 2s
-		var pos = 1;
-		# if (altitude < limit)		
-		interpolate(apu.door_node, pos, 2);
-	}
-	#-- spin up --
-	apu.start = func
-	{
-		read_props();
-        if (apu.serviceable and apu.controls.ecu and apu.controls.on and size(Engine.valid_fuel_tanks) > 0)
+        if (!me.running and me.serviceable and me.controls.ecu and me.controls.on and !me.oofN.getValue())
         {
-			if (!apu.door) 
-				apu.open_door();
-			interpolate(apu.rpm_node, 100, 20 * (100 - apu.rpm)/100, 103,0.5, 100,0.5 );
-			interpolate(apu.egt_node, 400, 4, 517,3.5, 468,2, 485,1.5, 415,9, 384,4);
-		}
-	}
-
-	#-- spin down --
-	apu.stop = func
-	{
-		read_props();
-        if (!apu.controls.on)
-        {
-			#print("APU off");
-			#apu.running = 0; # done by rpm listener
-			#-- spin down (20s) --
-			interpolate(apu.rpm_node, 0, 20 * apu.rpm / 100);
-			#-- cool down --
-			var outside_temperature = getprop("/environment/temperature-degc");
-			if (outside_temperature == nil)
-				outside_temperature = 10;
-
-			if (apu.rpm >=100) {
-				interpolate(apu.egt_node, 231,4, 197,4, outside_temperature, (197 - outside_temperature)/2);
-			}
-			elsif (apu.rpm >=50) {
-				interpolate(apu.egt_node, 197,4, outside_temperature, (197 - outside_temperature)/2);
-			}
-			else {
-				cooling_time = (apu.egt - outside_temperature)/2;
-				if (cooling_time < 1) cooling_time = 1;
-				#print("APU cool down to " ~ outside_temperature ~ " in " ~ cooling_time ~ "s");
-				interpolate(apu.egt_node, outside_temperature, cooling_time);
-			}
+            if (!me.door)
+                me.open_door();
+            interpolate(me.rpmN, 100, 20 * (100 - me.rpm)/100, 103, 0.5, 100, 0.5);
+            interpolate(me.egtN, 400, 4, 517, 3.5, 468, 2, 485, 1.5, 415, 9, 384, 4);
         }
-#        write_props();
-	}
+    },
 
-    apu.update = func
-    {
-        read_props();
-
-        var time_delta = getprop_safe("sim/time/delta-sec");
-        if (apu.serviceable and size(Engine.valid_fuel_tanks) > 0 and apu.controls.on and apu.controls.ecu)
-        {
-			# Fuel consumption.
-			for (var i = 0; i < size(Engine.valid_fuel_tanks); i += 1)
-			{
-				var level_node = Engine.valid_fuel_tanks[i].getNode("level-lbs", 1);
-				var level = level_node.getValue() - (apu.fuel_burn_pph / 3600 * time_delta) / size(Engine.valid_fuel_tanks);
-				if (level >= 0) {level_node.setValue(level);}
-				else {level_node.setValue(0);}
-			}
+    #-- spin down --
+    stop: func {
+        if (!me.rpm) {
+            return;
         }
-#        write_props();
-    };
-
-#-- set listeners for rare events, e.g. not necessary to poll in the update loop
-
-	# APU master switch (ECU = electronic control unit)
-	setlistener(apu.controls.ecu_node, func (node)
-	{
-		if (node.getBoolValue())
-		{
-			# init value
-			apu.egt_node.setValue(getprop("/environment/temperature-degc"));			
-			apu.door_node.setValue(0);
-			apu.open_door();
-		}
-		else
-		{
-			# unset start/stop switch, in case the pilot didn't
-			apu.controls.on = 0;
-			apu.controls.on_node.setBoolValue(apu.controls.on);
-		}
-	});
-
-	setlistener(apu.controls.on_node, func (node)
-	{
-        if (node.getBoolValue())
-			apu.start();
-		else
-			apu.stop();
-	});
-
-	setlistener(apu.on_fire_node, func (node)
-	{
-		if (node.getBoolValue())
-            apu.serviceable_node.setBoolValue(0);
-	});
-
-	setlistener(apu.controls.fire_ex_node, func(node)
-	{
-        if (node.getBoolValue())
-        {
-            apu.on_fire_node.setBoolValue(0);
-            apu.serviceable_node.setBoolValue(0);
+        print("APU off");
+        #-- spin down (20s), will trigger rpm listener --
+        interpolate(me.rpmN, 0, 20 * me.rpm / 100);
+        #-- cool down, depending on current rpm --
+        var outside_temperature = getprop("/environment/temperature-degc") or 10;
+        if (me.rpm >=100) {
+            interpolate(me.egtN, 231,4, 197,4, outside_temperature, (197 - outside_temperature)/2);
         }
-	});
+        elsif (me.rpm >=50) {
+            interpolate(me.egtN, 197,4, outside_temperature, (197 - outside_temperature)/2);
+        }
+        else {
+            cooling_time = (me.egtN.getValue() - outside_temperature)/2;
+            if (cooling_time < 1) cooling_time = 1;
+            #print("APU cool down to " ~ outside_temperature ~ " in " ~ cooling_time ~ "s");
+            interpolate(me.egtN, outside_temperature, cooling_time);
+        }
+    },
 
-	#-- monitor RPM to set running (available) flag;
-	var rpm_timer = 0;
-	setlistener(apu.rpm_node, func(node)
-	{
-		rpm = node.getValue();
-		if (rpm < 99) {
-			apu.running_node.setBoolValue(0);
-			var on = apu.controls.on_node.getBoolValue();
-			if (rpm < 12 and !on)
-				interpolate(apu.door_node, 0, 2);
-		}
-		elsif (99 <= rpm and rpm <= 106)
-		{
-			if (rpm_timer == 0)
-			{
-				timer = 1;
-				settimer(func
-				{
-					apu.running_node.setBoolValue(1);
-					rpm_timer=0;
-				}, 2);
-			}
-		}
-	});
-
-	setlistener(apu.door_node, func(node)
-	{
-		var door = node.getValue();
-		if (door == 0)
-			apu.eicas_door_node.setValue(apu.eicas_door_msg[1]);
-		if (door == 1)
-			apu.eicas_door_node.setValue(apu.eicas_door_msg[2]);
-	});
-
-    return apu;
+    consume_fuel: func {
+        #ignores consumption at startup, but that should be ok
+        if (me.running) {
+            me.fuel_consumedN.setValue(me.fuel_consumedN.getValue() + me.fuel_burn_pps * me.dt);
+        }
+    },
+    
+    update: func {},
 };
 
 # Jet class
 #
-#   n - index of jet: /engines/engine[n]
-#
-Engine.Jet = func(n)
-{
-	var flight_model = getprop("/sim/flight-model");
-  var jet = {n : n, serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
-  jet.fdm_throttle_idle = 0.01;
+var Jet = {
+    flight_model: getprop("/sim/flight-model"),
 
-  jet.controls = {cutoff: 0, fire_ex: 0, reverser_arm: 0, reverser_cmd: 0, starter_cmd: 0, thrust_mode: 0, throttle: 0};
+    new: func(idx) {
+        var obj = {
+            parents: [me],
+            idx: idx,
+            serviceable: 1,
+            fdm_reverser: 0,
+            n1: 0, n2: 0,
+            fdm_n1: 0, fdm_n2: 0,
+            running: 0,
+            on_fire: 0,
+            out_of_fuel: 1,
+            fdm_throttle_idle: 0.01,
+            #-- controls --
+            cutoff: 0,
+            starter_cmd: 0,
+            has_bleed_air: 0,
+        };
+        return obj;
+    },
 
-  jet.controls.cutoff_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/cutoff", 1);
-  jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
-
-  jet.controls.fire_ex_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/fire-bottle-discharge", 1);
-  jet.controls.fire_ex_node.setBoolValue(jet.controls.fire_ex);
-
-  jet.controls.reverser_arm_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-armed", 1);
-  jet.controls.reverser_arm_node.setBoolValue(jet.controls.reverser_arm);
-
-  jet.controls.reverser_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser-cmd", 1);
-  jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
-
-  jet.controls.starter_cmd_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/starter-cmd", 1);
-  jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
-    
-  jet.controls.thrust_mode_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/thrust-mode", 1);
-  jet.controls.thrust_mode_node.setIntValue(jet.controls.thrust_mode);
-
-  jet.controls.throttle_node = props.globals.getNode("/fcs/throttle-cmd-norm[" ~ n ~ "]", 1);
-  jet.controls.throttle_node.setValue(jet.controls.throttle);
-
-	jet.starter_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/starter", 1);
-
-	jet.fdm_throttle_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/throttle-lever", 1);
-  jet.fdm_reverser_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/reverser", 1);
-
-	#EICAS display
-	jet.n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm", 1);
-	jet.n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/rpm2", 1);
-
-  #YASim FDM values, set to minimum values from XML if engine is off
-	jet.fdm_n1_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n1", 1);
-	jet.fdm_n2_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/n2", 1);
-
-	if (flight_model == "yasim")
-	{
-		jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running-nasal", 1, "BOOL");
-		jet.running_node.setBoolValue(jet.running);
-	}
-	elsif (flight_model == "jsb")
-	{
-    #for jsbsim
-    jet.controls.starter_node = props.globals.getNode("/controls/engines/engine[" ~ n ~ "]/starter", 1);
-		jet.running_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/running");
-	}
-  jet.out_of_fuel_node = props.globals.getNode("/engines/engine[" ~ n ~  "]/out-of-fuel", 1);
-  jet.on_fire_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/on-fire", 1);
-  jet.on_fire_node.setBoolValue(jet.on_fire);
-  jet.serviceable_node = props.globals.getNode("/engines/engine[" ~ n ~ "]/serviceable", 1);
-  jet.serviceable_node.setBoolValue(jet.serviceable);
-
-
-  #instant on
-  jet.on = func
-  {
-    if (flight_model == "yasim")
-    {
-      jet.controls.cutoff = 0;
-      jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
-      jet.out_of_fuel = 0;
-      jet.out_of_fuel_node.setBoolValue(jet.out_of_fuel);
-      jet.n1 = jet.fdm_n1;
-      jet.n2 = jet.fdm_n2;
-      jet.n1_node.setValue(jet.n1);
-      jet.n2_node.setValue(jet.n2);
-      jet.running = 1;
-      jet.running_node.setBoolValue(jet.running);
-      #jet.controls.starter_cmd = 0;
-      #jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
-    }	
-    elsif (flight_model == "jsb")
-    {
-      jet.controls.starter_cmd = 0;
-      jet.controls.cutoff = 0;			
-
-      jet.controls.cutoff_node.setBoolValue(1);
-      jet.controls.starter_node.setBoolValue(1);
-      settimer(func () {
-        jet.controls.cutoff_node.setBoolValue(0);
-      }, 1);
-    }
-  };
+    init: func() {
+        var prefix = "/controls/engines/engine["~me.idx~"]/";
+        me.cutoffN = props.getNode(prefix~"cutoff", 1);
+        me.cutoffN.setBoolValue(me.cutoff);
         
-  jet.update = func
-  {
-    jet.serviceable = jet.serviceable_node.getBoolValue();
-    jet.out_of_fuel = jet.out_of_fuel_node.getBoolValue();
-    jet.fdm_n1 = jet.fdm_n1_node.getValue();
-    jet.fdm_n2 = jet.fdm_n2_node.getValue();
-    jet.controls.cutoff = jet.controls.cutoff_node.getBoolValue();
-    jet.controls.starter_cmd = jet.controls.starter_cmd_node.getBoolValue();
-    jet.controls.throttle = jet.controls.throttle_node.getValue();
-    jet.running = jet.running_node.getBoolValue();
+        me.fire_exN = props.getNode(prefix~"fire-bottle-discharge", 1);
+        me.reverser_armN = props.getNode(prefix~"reverser-armed", 1);
+        me.reverser_cmdN = props.getNode(prefix~"reverser-cmd", 1);
+        
+        me.starter_cmdN = props.getNode(prefix~"starter-cmd", 1);
+        me.starter_cmdN.setBoolValue(me.starter_cmd);
+        
+        me.thrust_modeN = props.getNode(prefix~"thrust-mode", 1);
+        
+        me.throttleN = props.getNode("/fcs/throttle-cmd-norm["~me.idx~"]", 1);
+        
+        me.fdm_throttleN = props.getNode(prefix~"throttle-lever", 1);
+        me.fdm_reverserN = props.getNode(prefix~"reverser", 1);
 
-    var time_delta = getprop_safe("sim/time/delta-sec");
-    # possible states: 
-    # running
-    # starting
-    # off/spin down
-    if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
+        prefix = "/engines/engine["~me.idx~"]/";
+        me.starterN = props.getNode(prefix~"starter", 1);
+        me.sovN = props.getNode(prefix~"sov", 1);
+        me.sovN.setValue(1);        
 
-    if (flight_model == "yasim")
-    {
-      if (jet.running) {
-        jet.starter_node.setValue(0); #write status of starter, used by OHP switch light
-        jet.controls.starter_cmd = 0;
-        jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
-        jet.n1 = jet.fdm_n1;
-        jet.n2 = jet.fdm_n2;
-      }
-      elsif (jet.serviceable and jet.controls.starter_cmd and jet._has_bleed_air()) 
-      {
-        jet.starter_node.setValue(1);
-        jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
-        if (jet.n2 > 25 and jet.controls.cutoff) jet.n2 = 25;
-        if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
-        if (jet.n1 >= jet.fdm_n1) {
-          jet.running = 1;
-          jet.controls.starter_cmd = 0;
-        }
-      }
-      else 
-      {
-        #shutdown: N1 25->0 ~15s; N2 60
-        jet.running = 0;
-        jet.controls.starter_cmd = 0;
-        jet.n1 = math.max(jet.n1 - 1.66 * time_delta, 0);
-        if (jet.n2 > 28) jet.n2 = math.max(jet.n2 - 4 * time_delta, 0);
-        else jet.n2 = math.max(jet.n2 - 1.1 * time_delta, 0);
-        jet.fdm_throttle = 0;
-      }
-      jet.running_node.setBoolValue(jet.running);
-      #jet.fuel_flow_gph = jet.fuel_flow_gph_node.getValue();
-      #jet.fuel_flow_pph_node.setValue(jet.fuel_flow_gph * Engine.fuel_density());
-    }
-    elsif (flight_model == "jsb") 
-    {
-      jet.n1 = jet.fdm_n1;
-      jet.n2 = jet.fdm_n2;
-      if (jet.running) 
-      {
-        jet.controls.starter_cmd = 0;
-        jet.fdm_throttle = jet.fdm_throttle_idle + (1 - jet.fdm_throttle_idle) * jet.controls.throttle;
-      }
-      elsif (jet._has_bleed_air() and jet.controls.starter_cmd) 
-      {
-        jet.controls.starter_node.setValue(1); #activate jsbsim starter
-      }
-    }
-    jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
-    jet.fdm_throttle_node.setDoubleValue(jet.fdm_throttle);
-    #update properties for EICAS 
-    jet.n1_node.setValue(jet.n1);
-    jet.n2_node.setValue(jet.n2);
-  };
+        # EICAS display uses separate nodes for n1,n2 because YASim sets n1,n2 
+        # to minimum values from XML if engine is off 
+        me.n1N = props.getNode(prefix~"rpm", 1);
+        me.n2N = props.getNode(prefix~"rpm2", 1);
 
-  jet.toggle_reversers = func
-  {
-    print("Engine toggle_reversers");
-    jet.controls.throttle = jet.controls.throttle_node.getValue();
-    jet.controls.thrust_mode = jet.controls.thrust_mode_node.getValue();
-    if (jet.controls.throttle <= 0.01 and jet.controls.thrust_mode == 0)
-    {
-        jet.controls.reverser_cmd = !jet.controls.reverser_cmd;
-    }
-    jet.controls.reverser_cmd_node.setBoolValue(jet.controls.reverser_cmd);
-	};
+        #YASim FDM values
+        me.fdm_n1N = props.getNode(prefix~"n1", 1);
+        me.fdm_n2N = props.getNode(prefix~"n2", 1);
 
-
-  jet._has_bleed_air = func
-  {
-		var pressure = 0;
-		if (jet.n == 0) pressure = getprop_safe("systems/pneumatic/pressure-left");
-		if (jet.n == 1) pressure = getprop_safe("systems/pneumatic/pressure-right");
-		return (pressure > 0);
-  }
-
-#-- set listeners for rare events, e.g. not necessary to poll in the update loop
-	setlistener(jet.on_fire_node, func (v)
-	{
-		print("Engine on fire listener");
-		if (v.getBoolValue())
+        if (me.flight_model == "yasim")
         {
-			print("Engine " ~ n ~ " on fire!");
-            jet.serviceable_node.setBoolValue(0);
-        }
-	},0,0);
-
-	setlistener(jet.controls.fire_ex_node, func(v)
-	{
-		print("Engine fire ex listener");
-        if (v.getBoolValue())
+            # with yasim "running" is always reset to true, so unusable here
+            # running-nasal indicates engine is running to other CRJ systems
+            me.runningN = props.getNode(prefix~"running-nasal", 1, "BOOL");
+            me.runningN.setBoolValue(me.running);
+            # yasim uses out-of-fuel to determine if engine is active
+            me.yasimOOFN = props.getNode(prefix~"out-of-fuel", 1, "BOOL");
+            me.yasimOOFN.setBoolValue(!me.running);
+    }
+        elsif (me.flight_model == "jsb")
         {
-			print("Engine " ~ n ~ " fire ext discharge");
-            jet.on_fire_node.setBoolValue(0);
-            jet.serviceable_node.setBoolValue(0);
+            #for jsbsim
+            me.starterN = props.getNode("/controls/engines/engine["~me.idx~"]/starter", 1);
+            me.runningN = props.getNode(prefix~"running",1);
+            props.getNode(prefix~"running-nasal",1).alias(prefix~"running");
+            
         }
-	});
+        # in yasim: !out-of-fuel means running. Fuel system uses "out-of-fuel-nasal"
+        # to indicate if fuel is avail to start/run engine
+        me.out_of_fuelN = props.getNode(prefix~"out-of-fuel-nasal", 1);
+        
+        me.on_fireN = props.getNode(prefix~"on-fire", 1);
+        me.on_fireN.setBoolValue(me.on_fire);
+        
+        me.serviceableN = props.getNode(prefix~"serviceable", 1);
+        me.serviceableN.setBoolValue(me.serviceable);
 
-	setlistener(jet.controls.reverser_cmd_node, func(v)
-	{
-		print("Engine reverser listener");
-        if (v.getBoolValue() and jet.controls.reverser_arm_node.getBoolValue())
-            jet.fdm_reverser_node.setBoolValue(1);
-        else
-            jet.fdm_reverser_node.setBoolValue(0);
-	},0,0);
+        #-- set listeners for rare events,
+        setlistener(me.serviceableN, func(n) {
+            me.serviceable = n.getValue();
+        }, 1, 0);
 
-    return jet;
+        setlistener(me.runningN, func(n) {
+            me.running = n.getValue();
+        }, 1, 0);
+
+        # grab changes from fuel system (CRJ700-fuel.nas)
+        setlistener(me.out_of_fuelN, func(n) {
+            me.out_of_fuel = n.getValue();
+        }, 1, 0);
+
+        setlistener(me.cutoffN, func(n) {
+            me.cutoff = n.getValue();
+        }, 1, 0);
+
+        setlistener(me.starter_cmdN, func(n) {
+            me.starter_cmd = n.getValue();
+        }, 1, 0);
+
+        setlistener(me.on_fireN, func(n) {
+            if (n.getBoolValue())
+            {
+                settimer(func {me.serviceableN.setBoolValue(0); }, 10);
+            }
+        }, 1, 0);
+
+        setlistener(me.fire_exN, func(n) {
+            if (n.getBoolValue())
+            {
+                me.sovN.setBoolValue(0);
+                me.on_fireN.setBoolValue(0);
+                me.serviceableN.setBoolValue(0);
+            }
+        }, 1, 0);
+
+        setlistener(me.reverser_cmdN, func(v) {
+            if (v.getBoolValue() and me.reverser_armN.getBoolValue())
+                me.fdm_reverserN.setBoolValue(1);
+            else
+                me.fdm_reverserN.setBoolValue(0);
+        }, 1, 0);
+    
+        if (me.idx == 0) {
+            setlistener("systems/pneumatic/pressure-left", func(n) {
+                me.has_bleed_air = n.getValue();
+            }, 1, 0);
+        } elsif (me.idx == 1) {
+            setlistener("systems/pneumatic/pressure-right", func(n) {
+                me.has_bleed_air = n.getValue();
+            }, 1, 0);
+        }
+    }, #init
+
+    toggle_reversers: func {
+        print("Engine toggle_reversers");
+        if (me.throttleN.getValue() <= 0.01 and me.thrust_modeN.getValue() == 0) {
+            me.reverser_cmdN.setBoolValue(!me.reverser_cmdN.getBoolValue());
+        }
+    },
+    
+    #instant on
+    on: func {
+        if (me.flight_model == "yasim") {
+          me.cutoffN.setBoolValue(me.cutoff = 0);
+          me.yasimOOFN.setBoolValue(me.out_of_fuel = 0);
+          me.runningN.setBoolValue(me.running = 1);
+          me.n1 = me.fdm_n1;
+          me.n2 = me.fdm_n2;
+          me.n1N.setValue(me.n1);
+          me.n2N.setValue(me.n2);
+        }
+        elsif (me.flight_model == "jsb") {
+          me.starter_cmd = 0;
+          me.cutoff = 0;
+
+          me.cutoffN.setBoolValue(1);
+          me.starterN.setBoolValue(1);
+          settimer(func() {
+            me.cutoffN.setBoolValue(0);
+          }, 1);
+        }
+    },
+
+    update: func {
+        me.fdm_n1 = me.fdm_n1N.getValue();
+        me.fdm_n2 = me.fdm_n2N.getValue();
+        var throttle = me.throttleN.getValue();
+        var fdm_throttle = 0;
+        var time_delta = getprop_safe("sim/time/delta-sec");
+        
+        # possible states:
+        # running
+        # starting
+        # off/spin down
+        if (!me.serviceable or me.out_of_fuel or me.cutoff) {
+            me.running = 0;
+        }
+
+        if (me.flight_model == "yasim") {
+            if (me.running) {
+                fdm_throttle = throttle;
+                me.n1 = me.fdm_n1;
+                me.n2 = me.fdm_n2;
+                #me.starter_cmd = 0;
+            }
+            elsif (me.serviceable and me.starter_cmd and me.has_bleed_air) {
+                me.starterN.setValue(1);
+                me.n2 = math.min(me.n2 + 1.99 * time_delta, me.fdm_n2);
+                if (me.n2 >= 25 and (me.cutoff or me.out_of_fuel)) me.n2 = 25;
+                if (me.n2 > 25) {
+                    # tell yasim engine 'on' to get oil pressure
+                    me.yasimOOFN.setBoolValue(0); 
+                }
+                if (me.n2 > 30) {
+                    me.n1 = math.min(me.n1 + 1.3 * time_delta, me.fdm_n1);
+                }
+                if (me.n1 >= me.fdm_n1) {
+                    me.running = 1;
+                    me.starter_cmd = 0;
+                    me.starterN.setValue(0); #write status of starter, used by OHP switch light
+                }
+            }
+            else {
+                #shutdown: N1 25->0 ~15s; N2 60
+                me.running = 0;
+                me.yasimOOFN.setBoolValue(1); 
+                me.starter_cmd = 0;
+                me.starterN.setValue(0); #write status of starter, used by OHP switch light
+                me.n1 = math.max(me.n1 - 1.66 * time_delta, 0);
+                if (me.n2 > 28) me.n2 = math.max(me.n2 - 4 * time_delta, 0);
+                else me.n2 = math.max(me.n2 - 1.1 * time_delta, 0);
+                fdm_throttle = 0;
+            }
+            me.runningN.setBoolValue(me.running);   # tell EFIS etc. engine on
+        }
+        
+        elsif (me.flight_model == "jsb") {
+            me.n1 = me.fdm_n1;
+            me.n2 = me.fdm_n2;
+            if (me.running) {
+                me.starter_cmd = 0;
+                fdm_throttle = me.fdm_throttle_idle + (1 - me.fdm_throttle_idle) * throttle;
+            }
+            elsif (me.has_bleed_air and me.starter_cmd) {
+                me.starterN.setValue(1); #activate jsbsim starter
+            }
+        }
+        me.starter_cmdN.setBoolValue(me.starter_cmd);
+        me.fdm_throttleN.setDoubleValue(fdm_throttle);
+        #update properties for EICAS
+        me.n1N.setValue(me.n1);
+        me.n2N.setValue(me.n2);
+    },
 };

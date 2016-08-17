@@ -2,32 +2,12 @@
 
 <PropertyList>
 	<name>CRJViews</name>
-
-	<nasal>
-		<open>
-			#
-			#/sim/current-view/view-number does not use the view number but consecutive numbers (0..viewCount)
-			#
-			var indices = {};
-			forindex (var i; view.views) {
-				var n = view.views[i].getIndex();
-				indices[n] = i;
-			}
-			
-			var setViewByIndex = func(n) {
-				setprop("/sim/current-view/view-number", indices[n]);
-			}
-			
-			var me = gui.findElementByName(cmdarg(), "CRJViews");
-		</open>
-	</nasal>
-
 	<color>
 		<red>0.3</red>
 		<green>0.3</green>
 		<blue>0.3</blue>
 		<alpha>0.6</alpha>
-	</color>	
+	</color>
     <layout>vbox</layout>
     <group>
 		<layout>hbox</layout>
@@ -46,7 +26,7 @@
 				<green>0.5</green>
 				<blue>0.5</blue>
 				<alpha>0.8</alpha>
-			</color>	
+			</color>
 			<pref-width>16</pref-width>
 			<pref-height>16</pref-height>
 			<legend>X</legend>
@@ -72,7 +52,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(102);</script>
+				<script>view.setViewByIndex(102);</script>
 			</binding>
 		</button>
 		<button>
@@ -85,7 +65,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(0);</script>
+				<script>view.setViewByIndex(0);</script>
 			</binding>
 		</button>
 		<button>
@@ -98,7 +78,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(103);</script>
+				<script>view.setViewByIndex(103);</script>
 			</binding>
 		</button>
 		<button>
@@ -111,7 +91,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(101);</script>
+				<script>view.setViewByIndex(101);</script>
 			</binding>
 		</button>
 		<button>
@@ -124,7 +104,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(104);</script>
+				<script>view.setViewByIndex(104);</script>
 			</binding>
 		</button>
 		<button>
@@ -137,7 +117,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(109);</script>
+				<script>view.setViewByIndex(109);</script>
 			</binding>
 		</button>
 		<button>
@@ -150,7 +130,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(110);</script>
+				<script>view.setViewByIndex(110);</script>
 			</binding>
 		</button>
 		<button>
@@ -163,7 +143,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(100);</script>
+				<script>view.setViewByIndex(100);</script>
 			</binding>
 		</button>
 		<button>
@@ -176,7 +156,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(120);</script>
+				<script>view.setViewByIndex(120);</script>
 			</binding>
 		</button>
 		<button>
@@ -189,7 +169,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(111);</script>
+				<script>view.setViewByIndex(111);</script>
 			</binding>
 		</button>
 		<button>
@@ -202,10 +182,10 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(121);</script>
+				<script>view.setViewByIndex(121);</script>
 			</binding>
 		</button>
-	</group>	
+	</group>
 	<hrule/>
 	<!-- external -->
 	<group>
@@ -221,7 +201,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(107);</script>
+				<script>view.setViewByIndex(107);</script>
 			</binding>
 		</button>
 		<button>
@@ -234,7 +214,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(108);</script>
+				<script>view.setViewByIndex(108);</script>
 			</binding>
 		</button>
 		<button>
@@ -247,7 +227,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(122);</script>
+				<script>view.setViewByIndex(122);</script>
 			</binding>
 		</button>
 		<button>
@@ -260,7 +240,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(119);</script>
+				<script>view.setViewByIndex(119);</script>
 			</binding>
 		</button>
 		<button>
@@ -273,7 +253,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(123);</script>
+				<script>view.setViewByIndex(123);</script>
 			</binding>
 		</button>
 		<button>
@@ -286,7 +266,7 @@
 			<margin>1</margin>
 			<binding>
 				<command>nasal</command>
-				<script>setViewByIndex(1);</script>
+				<script>view.setViewByIndex(1);</script>
 			</binding>
 		</button>
 	</group>

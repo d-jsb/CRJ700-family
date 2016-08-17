@@ -78,14 +78,6 @@
 			<value>0</value>
 		</set>
 		<set>
-			<property>engines/engine[0]/running</property>
-			<value type="bool">true</value>
-		</set>
-		<set>
-			<property>engines/engine[1]/running</property>
-			<value type="bool">true</value>
-		</set>
-		<set>
 			<property>instrumentation/nav[0]/frequencies/selected-mhz</property>
 			<value>109.55</value>
 		</set>

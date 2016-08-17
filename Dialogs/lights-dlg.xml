@@ -225,6 +225,18 @@
 				<command>dialog-apply</command>
 			</binding>
 		</checkbox>
+
+		<checkbox>
+			<row>3</row>
+			<col>1</col>
+			<halign>left</halign>
+            <label>Panel lights test</label>
+			<live type="bool">true</live>
+            <property>controls/lighting/lt-test</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
 	</group>
 	<group>
 		<layout>table</layout>
@@ -379,21 +391,4 @@
 			</binding>
 		</slider>
 	</group>
-
-	<hrule />
-
-	<group>
-		<layout>vbox</layout>
-
-		<button>
-			<legend>Close</legend>
-			<default>true</default>
-			<key>Esc</key>
-			<padding>10</padding>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-	</group>
-
 </PropertyList>

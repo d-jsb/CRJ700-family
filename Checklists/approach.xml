@@ -100,13 +100,13 @@
 			<condition>
 				<equals>
 					<property>controls/autoflight/nav-source</property>
-					<value>0</value>
+					<value>1</value>
 				</equals>
 			</condition>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/autoflight/nav-source</property>
-				<value>0</value>
+				<value>1</value>
 			</binding>
 		</item>
 		<item>

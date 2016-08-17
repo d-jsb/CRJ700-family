@@ -4,22 +4,23 @@
 <!-- Aircraft property settings common to all variants -->
 
 <PropertyList>
-	<limits>
-		<mtow-rw-m>1610</mtow-rw-m>
-		<mlw-rw-m>1550</mlw-rw-m>
-	</limits>	
-	<sim>
-		<description>Bombardier CRJ700 series</description>
+    <limits>
+        <mtow-rw-m>1610</mtow-rw-m>
+        <mlw-rw-m>1550</mlw-rw-m>
+    </limits>
+    <sim>
+        <description>Bombardier CRJ700 series</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.6.0</aircraft-version>
-		<rating>
-			<FDM type="int">3</FDM>
-			<systems type="int">3</systems>
-			<cockpit type="int">4</cockpit>
-			<model type="int">4</model>
-		</rating>
-        
+        <aircraft-version>2020.1</aircraft-version>
+        <minimum-fg-version>2020.1</minimum-fg-version>
+        <rating>
+            <FDM type="int">3</FDM>
+            <systems type="int">5</systems>
+            <cockpit type="int">4</cockpit>
+            <model type="int">4</model>
+        </rating>
+
         <tags>
             <tag>transport</tag>
             <tag>bombardier</tag>
@@ -28,1342 +29,1194 @@
             <tag>ifr</tag>
             <tag>twin-engine</tag>
             <tag>glass-cockpit</tag>
-		</tags>
-		
-		<startup>
-			<splash-texture>splash.jpg</splash-texture>
-		</startup>
-		
-		<checklists include="Checklists/checklists.xml" />
+        </tags>
+
+        <startup>
+            <splash-texture>splash.jpg</splash-texture>
+        </startup>
+
+        <checklists include="Checklists/checklists.xml" />
         <tutorials include="Tutorials/CRJ700-tutorials.xml" />
-		
-		<config>
-			<hide-welcome-msg type="bool">false</hide-welcome-msg>
-			<allow-autothrottle type="bool">false</allow-autothrottle>
-			<rudder-to-tiller type="bool">false</rudder-to-tiller>
-			<developer type="bool">false</developer>
-			<view-follows-tiller type="bool">false</view-follows-tiller>
-		</config>
-		<rendering>
-			<als-secondary-lights>
- 				<landing-light1-offset-deg>-1</landing-light1-offset-deg>
-				<landing-light2-offset-deg>1</landing-light2-offset-deg>
-			</als-secondary-lights>
-		</rendering>
-		<hitches>
-			<aerotow>
-				<!-- MP enabled prop used to show/hide pushback vehicle. 
-					see property rules -->
-				<is-slave type="bool">0</is-slave>
-			</aerotow>
-		</hitches>
-		<model>
-			<livery>
-				<file>Blank</file>
-				<registration type="string" />
-			</livery>
-			<pushback>
-				<!-- aliased to MP enabled props -->
-				<position-norm alias="/engines/engine[2]/n2" />
-				<enabled type="bool">0</enabled>
-				<kp type="double">0.05</kp>
-				<td type="double">0.00001</td>
-				<ti type="double">10</ti>
-			</pushback>
-			<lights>
-				<no-smoking-sign type="bool">false</no-smoking-sign>
-				<seatbelt-sign type="bool">false</seatbelt-sign>
-				<logo-lightmap type="float">0</logo-lightmap>
-				<wing-lightmap type="bool">false</wing-lightmap>
-				<panel-lightmap type="float">0</panel-lightmap>
-				<cabin-lightmap type="float">0</cabin-lightmap>
-				<taxi-lightmap type="float">0</taxi-lightmap>
-				<landing-left-lightmap type="float">0</landing-left-lightmap>
-				<landing-nose-lightmap type="float">0</landing-nose-lightmap>
-				<landing-right-lightmap type="float">0</landing-right-lightmap>
-			</lights>
-			<yokes type="bool">true</yokes>
-			<door-positions>
-				<pax-left>
-					<position-norm type="float">1</position-norm>
-				</pax-left>
-				<pax-right>
-					<position-norm type="float">0</position-norm>
-				</pax-right>
-				<avionic>
-					<position-norm type="float">0</position-norm>
-				</avionic>
-				<emer-l1>
-					<position-norm type="float">0</position-norm>
-				</emer-l1>
-				<emer-l2>
-					<position-norm type="float">0</position-norm>
-				</emer-l2>
-				<emer-r1>
-					<position-norm type="float">0</position-norm>
-				</emer-r1>
-				<emer-r2>
-					<position-norm type="float">0</position-norm>
-				</emer-r2>
-				<!-- alias doors to unused MP enabled properties -->
-				<fwd-cargo>
-					<position-norm alias="/engines/engine[3]/n1" />
-				</fwd-cargo>
-				<ctr-cargo>
-					<position-norm alias="/engines/engine[3]/n2" />
-				</ctr-cargo>
-				<aft-cargo>
-					<position-norm alias="/engines/engine[3]/rpm" />
-				</aft-cargo>				
-			</door-positions>
-			<sound-enabled type="bool">false</sound-enabled>
 
-			<dimensions>
-				<nose-distance-m>16</nose-distance-m>
-			</dimensions>			
-		</model>
-		
-		<instrumentation>
-			<path>Systems/CRJ700-instrumentation.xml</path>
-		</instrumentation>
-		
-		<systems>
-			<!-- Disable the generic electrical system -->
-			<electrical>
-				<path></path>
-			</electrical>
-			<autopilot>
-				<name>Autopilot</name>
-				<path>Systems/CRJ700-autopilot.xml</path>
-			</autopilot>
-			<autopilot>
-				<name>Flight control system</name>
-				<path>Systems/CRJ700-flight-controls.xml</path>
-			</autopilot>
-			<autopilot>
-				<name>Pushback</name>
-				<path>Systems/pushback.xml</path>
-			</autopilot>
-			<property-rule n="100">
-				<name>Propery rules</name>
-				<path>Systems/CRJ700-property-rules.xml</path>
-			</property-rule>
-			<property-rule n="101">
-				<name>Propery rules AP</name>
-				<path>Systems/CRJ700-ap-rules.xml</path>
-			</property-rule>
-			<property-rule n="102">
-				<name>Propery rules fuel</name>
-				<path>Systems/CRJ700-fuel.xml</path>
-			</property-rule>
-			<property-rule n="103">
-				<name>Propery rules pneumatic</name>
-				<path>Systems/CRJ700-pneumatic.xml</path>
-			</property-rule>
-			<property-rule n="104">
-				<name>Propery rules multiplayer</name>
-				<path>Systems/CRJ700-property-rules-mp.xml</path>
-			</property-rule>
-		</systems>
-		
-		<chase-distance-m type="double">-30</chase-distance-m>
-		
-		<flaps>
-			<current-setting>0</current-setting>
-			<setting>0.000</setting>    <!-- 0 -->
-			<setting>0.022</setting>    <!-- 1 -->
-			<setting>0.177</setting>    <!-- 8 -->
-			<setting>0.444</setting>    <!-- 20 -->
-			<setting>0.666</setting>    <!-- 30 -->
-			<setting>1.000</setting>    <!-- 45 -->
-		</flaps>
-		
-		<weight n="0">
-			<name>Crew</name>
-			<weight-lb>250</weight-lb>
-			<min-lb>120</min-lb>
-			<max-lb>600</max-lb>
-		</weight>
-		<weight n="1">
-			<name>PAX</name>
-			<weight-lb>2000</weight-lb>
-            <min-lb>0</min-lb>
-		</weight>
-		<weight n="2">
-			<name>Main Cargo</name>
-			<weight-lb>500</weight-lb>
-            <min-lb>0</min-lb>
-		</weight>
-		<weight n="3">
-			<name>Aft Cargo</name>
-			<weight-lb>500</weight-lb>
-            <min-lb>0</min-lb>
-		</weight>
-		
-		<help include="CRJ700-help.xml" />
-		
-		<flight-recorder include="Systems/CRJ700-flight-recorder.xml" />
-		
-		<alarms>
-			<master-caution type="bool">false</master-caution>
-			<master-warning type="bool">false</master-warning>
-			<overspeed-warning type="bool">false</overspeed-warning>
-			<altitude-alert type="bool">false</altitude-alert>
-		</alarms>
-		
-		<dimensions>
-			<parkpos-offset-m type="float">0</parkpos-offset-m>
-		</dimensions>
-		
-		<aircraft-class type="string">gate</aircraft-class>
-		<aircraft-operator alias="/sim/model/livery/file" />
-		<aircraft-data>
-			<path>/sim/dimensions/radius-m</path>
-			<path>/sim/dimensions/parkpos-offset-m</path>
-			<path>/sim/aircraft-class</path>
-			<path>/sim/aircraft-operator</path>
-			<path>/sim/view[100]/enabled</path>
-			<path>/sim/view[101]/enabled</path>
-			<path>/sim/config/hide-welcome-msg</path>
-			<path>/sim/config/view-follows-tiller</path>
-			<path>/sim/config/allow-autothrottle</path>
-			<path>/sim/config/rudder-to-tiller</path>
-			<path>/sim/config/mixt-to-speedbrake</path>
-			<path>/sim/config/developer</path>
-			<path>/sim/model/known-version</path>
-			<path>/sim/model/light-cones</path>
-			<path>/sim/model/yokes</path>
-			<path>/sim/weight[0]/weight-lb</path>
-			<path>/sim/weight[1]/weight-lb</path>
-			<path>/sim/weight[2]/weight-lb</path>
-			<path>/sim/weight[3]/weight-lb</path>
-			<path>/controls/gear/enable-tiller</path>
-			<path>/instrumentation/mfd[0]/page</path>
-			<path>/instrumentation/mfd[0]/tcas</path>
-			<path>/instrumentation/mfd[0]/wx</path>
-			<path>/instrumentation/mfd[1]/page</path>
-			<path>/instrumentation/mfd[1]/tcas</path>
-			<path>/instrumentation/mfd[1]/wx</path>
-			<path>/instrumentation/adf[0]/frequencies/selected-khz</path>
-			<path>/instrumentation/adf[0]/frequencies/standby-khz</path>
-			<path>/instrumentation/adf[1]/frequencies/selected-khz</path>
-			<path>/instrumentation/adf[1]/frequencies/standby-khz</path>
-			<path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
-			<path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
-			<path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
-			<path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
-			<path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[0]/radials/selected-deg</path>
-			<path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
-			<path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
-			<path>/instrumentation/nav[1]/radials/selected-deg</path>
-			<path>/instrumentation/use-metric-altitude</path>
-			<path>/instrumentation/use-QNH</path>
-			<path>/instrumentation/altimeter/setting-hpa</path>
-		</aircraft-data>
-		
-		<allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
-		<virtual-cockpit type="bool">true</virtual-cockpit>
-		
-		<menubar>
-			<default>
-				<menu n="100">
-					<enabled type="bool">true</enabled>
-					<item>
-						<label>Autostart</label>
-						<binding>
-							<command>property-toggle</command>
-							<property>sim/model/start-idling</property>
-						</binding>
-					</item>
-					<item>
-						<label>Select Livery</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								aircraft.livery.dialog.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Views</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>CRJViews</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>EICAS control panel</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>eicas</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Lights</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.lights.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Panel light test</label>
-						<binding>
-							<command>property-toggle</command>
-							<property>controls/lighting/lt-test</property>
-						</binding>
-					</item>
-					<item>
-						<label>Air data reference</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.adc.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Failures</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.failures.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Show/hide yokes</label>
-						<binding>
-							<command>property-toggle</command>
-							<property>sim/model/yokes</property>
-						</binding>
-					</item>
-					<item>
-						<name>mpcopilot</name>
-						<label>Select MP Copilot</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type);
-							</script>
-						</binding>
-					</item>
-				<!-- for development -->
-					
-					<!-- 					<item>
-						<name>debug-output</name>
-						<label>Debug output</label>
-						<binding>
-						<command>nasal</command>
-						<script>
-						CRJ700.dialogs.debug.open();
-						</script>
-						</binding>
-						</item>
-						
-						<item>
-						<name>apdev</name>
-						<label>AP development</label>
-						<binding>
-						<command>nasal</command>
-						<script>
-						CRJ700.dialogs.apdev.open();
-						</script>
-						</binding>
-					</item> -->
-					
-					<item>
-						<name>separator</name>
-						<label>--------</label>
-						<enabled>false</enabled>
-					</item>					
-					<item>
-						<label>In-flight start</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.instastart();
-							</script>
-						</binding>
-					</item>
+        <config>
+            <hide-welcome-msg type="bool">false</hide-welcome-msg>
+            <allow-autothrottle type="bool">false</allow-autothrottle>
+            <rudder-to-tiller type="bool">false</rudder-to-tiller>
+            <developer type="bool">false</developer>
+            <view-follows-tiller type="bool">false</view-follows-tiller>
+            <hstab-trim type="bool">1</hstab-trim>
+        </config>
+        <rendering>
+            <als-secondary-lights>
+                <landing-light1-offset-deg>-1</landing-light1-offset-deg>
+                <landing-light2-offset-deg>1</landing-light2-offset-deg>
+            </als-secondary-lights>
+            <pilot-model>
+                <available type="bool">1</available>
+            </pilot-model>
+        </rendering>
+        <hitches>
+            <aerotow>
+                <!-- MP enabled prop used to show/hide pushback vehicle.
+                    see property rules -->
+                <is-slave type="bool">0</is-slave>
+            </aerotow>
+        </hitches>
+        <model>
+            <livery>
+                <file>Blank</file>
+                <registration type="string" />
+            </livery>
+            <pushback>
+                <!-- aliased to MP enabled props -->
+                <position-norm alias="/engines/engine[2]/n2" />
+                <enabled type="bool">0</enabled>
+                <kp type="double">0.05</kp>
+                <td type="double">0.00001</td>
+                <ti type="double">10</ti>
+            </pushback>
+            <lights>
+                <no-smoking-sign type="bool">false</no-smoking-sign>
+                <seatbelt-sign type="bool">false</seatbelt-sign>
+                <logo-lightmap type="float">0</logo-lightmap>
+                <wing-lightmap type="bool">false</wing-lightmap>
+                <panel0-lightmap type="float">0</panel0-lightmap>
+                <panel1-lightmap type="float">0</panel1-lightmap>
+                <panel2-lightmap type="float">0</panel2-lightmap>
+                <cabin-lightmap type="float">0</cabin-lightmap>
+                <taxi-lightmap type="float">0</taxi-lightmap>
+                <landing-left-lightmap type="float">0</landing-left-lightmap>
+                <landing-nose-lightmap type="float">0</landing-nose-lightmap>
+                <landing-right-lightmap type="float">0</landing-right-lightmap>
+            </lights>
+            <yokes type="bool">true</yokes>
+            <door-positions>
+                <pax-left>
+                    <position-norm type="float">1</position-norm>
+                </pax-left>
+                <pax-right>
+                    <position-norm type="float">0</position-norm>
+                </pax-right>
+                <av-bay>
+                    <position-norm type="float">0</position-norm>
+                </av-bay>
+                <emer-l1>
+                    <position-norm type="float">0</position-norm>
+                </emer-l1>
+                <emer-l2>
+                    <position-norm type="float">0</position-norm>
+                </emer-l2>
+                <emer-r1>
+                    <position-norm type="float">0</position-norm>
+                </emer-r1>
+                <emer-r2>
+                    <position-norm type="float">0</position-norm>
+                </emer-r2>
+                <!-- alias doors to unused MP enabled properties -->
+                <fwd-cargo>
+                    <position-norm alias="/engines/engine[3]/n1" />
+                </fwd-cargo>
+                <ctr-cargo>
+                    <position-norm alias="/engines/engine[3]/n2" />
+                </ctr-cargo>
+                <aft-cargo>
+                    <position-norm alias="/engines/engine[3]/rpm" />
+                </aft-cargo>
+            </door-positions>
+            <sound-enabled type="bool">false</sound-enabled>
 
-					<item>
-						<name>crj-config</name>
-						<label>Config</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.config.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<name>welcome-msg</name>
-						<label>Info</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.info.open();
-							</script>
-						</binding>
-					</item>
-				</menu>
-				<menu n="101">
-					<enabled type="bool">true</enabled>
-					<label>Ground ops</label>
-					<item>
-						<label>Fuel/Cargo</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								gui.showWeightDialog();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Doors</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.doors.open();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Pushback</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>pushback</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Tiller steering</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								CRJ700.dialogs.tiller.open();
-							</script>
-						</binding>
-					</item>	
-				</menu>
-				<menu n="102">
-					<label>Development</label>
-					<item>
-						<label>FGPlot</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								<!-- needs the FGPlot nasal scripts in $FGDATA/Nasal/plot -->
-								if (plot.Fgp != nil)
-								var a = plot.Fgp.new(600,201,0).init();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>CRJ debug window</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>debug</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Yasim display</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-								if (FDM.yasim != nil)
-									FDM.yasim.displayMasses();
-							</script>
-						</binding>
-					</item>
-				</menu>
-			</default>
-		</menubar>
-		
-		<multiplay>
-			<generic>
-				<!-- Dual control transmission properties -->
-				<int n="16" type="int">0</int>
-				<int n="17" type="int">0</int>
-				<int n="18" type="int">0</int>
-				<int n="19" type="int">0</int>
-				<string n="16" type="string" />
-				<string n="17" type="string" />
-				<string n="18" type="string" />
-				<string n="19" type="string" />
-			</generic>
-		</multiplay>
-	</sim>
-	
-	<autopilot>
-		<flight-director-serviceable type="bool">true</flight-director-serviceable>
-		<autoflight-serviceable type="bool">true</autoflight-serviceable>
-		<yaw-damper-serviceable type="bool">true</yaw-damper-serviceable>
-		<annunciators>
-			<lat-armed></lat-armed>
-			<vert-armed type="bool">1</vert-armed>
-			<lat-capture>ROLL</lat-capture>
-			<vert-capture>PTCH</vert-capture>
-			<altitude-flash type="bool">false</altitude-flash>
-		</annunciators>
-		<route-manager>
-			<vnav>
-				<climb-speed-kt type="int">400</climb-speed-kt>
-				<descent-speed-kt type="int">300</descent-speed-kt>
-				<climb-vpa-deg type="double">4</climb-vpa-deg>
-				<descent-vpa-deg type="double">3</descent-vpa-deg>
-				<target-altitude-ft type="double">0</target-altitude-ft>
-			</vnav>
-		</route-manager>
-		<ref>
-			<roll-deg type="float">0</roll-deg>
-			<roll-hdg type="float">0</roll-hdg>
-			<alt-hold type="int">0</alt-hold>
-		</ref>
-		<internal>
-			<target-roll-deg>0</target-roll-deg>
-			<target-pitch-deg>0</target-pitch-deg>
-			<target-climb-rate-fpm>0</target-climb-rate-fpm>
-		</internal>
-	</autopilot>
-	
-	<consumables>
-		<fuel>
-			<tank n="0">
-				<name>Left Wing</name>
-				<selected type="bool">false</selected>
-				<level-lbs archive="y">5000</level-lbs>
-				<unusable-gal_us type="float">9.24</unusable-gal_us>
-				<xfer-valve type="bool">false</xfer-valve>
-			</tank>
-			<tank n="1">
-				<name>Right Wing</name>
-				<selected type="bool">false</selected>
-				<level-lbs archive="y">5000</level-lbs>
-				<unusable-gal_us type="float">9.24</unusable-gal_us>
-				<xfer-valve type="bool">false</xfer-valve>
-			</tank>
-			<tank n="2">
-				<name>Center Main</name>
-				<level-lbs archive="y">0</level-lbs>
-				<unusable-gal_us type="float">4.62</unusable-gal_us>
-			</tank>
-		</fuel>
-	</consumables>
-	
-	<controls>
-		<ailerons>
-			<roll-disc type="bool">false</roll-disc>
-			<roll-select type="bool">false</roll-select>
-			<plt-roll type="bool">false</plt-roll>
-			<cplt-roll type="bool">false</cplt-roll>
-		</ailerons>
-		<anti-ice>
-			<wiper type="int">0</wiper>
-			<wiper type="int">0</wiper>
-			<det-test type="bool">false</det-test>
-		</anti-ice>
-		<autoflight>
-			<autopilot>
-				<engage type="bool">false</engage>
-			</autopilot>
-			<flight-director>
-				<engage type="bool">false</engage>
-			</flight-director>
-			<yaw-damper>
-				<engage type="bool">false</engage>
-			</yaw-damper>
-			<yaw-damper>
-				<engage type="bool">false</engage>
-			</yaw-damper>
-			<altitude-select type="double">10000</altitude-select>
-			<autothrottle-engage type="bool">false</autothrottle-engage>
-			<roll-mode type="int">1</roll-mode>
-			<bank-limit-deg type="float">30</bank-limit-deg>
-			<disc-pos type="bool">false</disc-pos>
-			<half-bank type="bool">0</half-bank>
-			<heading-select type="double">360</heading-select>
-			<lat-mode type="int">0</lat-mode>
-			<mach-select type="double">0</mach-select>
-			<nav-source type="int">0</nav-source>
-			<pitch-select type="double">0</pitch-select>
-			<speed-mode type="int">0</speed-mode>
-			<speed-select type="double">200</speed-select>
-			<toga-button type="bool">0</toga-button>
-			<vert-mode type="int">0</vert-mode>
-			<vertical-speed-select type="double">0</vertical-speed-select>
-		</autoflight>
-		<APU>
-			<electronic-control-unit type="bool">false</electronic-control-unit>
-			<fire-switch-armed type="bool">false</fire-switch-armed>
-			<fire-switch-cover type="bool">false</fire-switch-cover>
-			<off-on type="bool">false</off-on>
-		</APU>
-		<ECS>
-			<ram-air type="bool">false</ram-air>
-			<ram-air-cover type="bool">false</ram-air-cover>
-			<emer-depress type="bool">false</emer-depress>
-			<emer-depress-cover type="bool">false</emer-depress-cover>
-			<press-man type="bool">false</press-man>
-			<pack-l-off type="bool">false</pack-l-off>
-			<pack-r-off type="bool">false</pack-r-off>
-			<pack-l-man type="bool">false</pack-l-man>
-			<pack-r-man type="bool">false</pack-r-man>
-		</ECS>
-		<engines>
-			<cont-ignition type="bool">false</cont-ignition>
-			<engine>
-				<fire-bottle-discharge-armed type="bool">false</fire-bottle-discharge-armed>
-				<fire-bottle-discharge-cover type="bool">false</fire-bottle-discharge-cover>
-				<thrust-mode type="int">0</thrust-mode>
-			</engine>
-			<engine>
-				<fire-bottle-discharge-armed type="bool">false</fire-bottle-discharge-armed>
-				<fire-bottle-discharge-cover type="bool">false</fire-bottle-discharge-cover>
-				<thrust-mode type="int">0</thrust-mode>
-			</engine>
-		</engines>
-		<electric>
-			<dc-service-switch type="bool">false</dc-service-switch>
-			<battery-switch type="bool">false</battery-switch>
-			<ac-service-avail type="bool">true</ac-service-avail>
-			<ac-service-selected type="bool">false</ac-service-selected>
-			<ac-service-in-use type="bool">false</ac-service-in-use>
-			<!--
-				the external service panel is not yet added to 3D model (nose right)
-				anyhow, ac-service-selected-ext switch property is already used ;)
-			-->
-			<ac-service-selected-ext type="bool">false</ac-service-selected-ext>
-			<APU-generator type="bool">false</APU-generator>
-			<auto-xfer1 type="bool">true</auto-xfer1>
-			<auto-xfer2 type="bool">true</auto-xfer2>
-			<ac-ess-xfer type="bool">false</ac-ess-xfer>
-			<idg1-cover type="bool">false</idg1-cover>
-			<idg2-cover type="bool">false</idg2-cover>
-			<idg1-disc type="bool">false</idg1-disc>
-			<idg2-disc type="bool">false</idg2-disc>
-			<ADG type="bool">false</ADG>
-		</electric>
-		<flight>
-			<ground-lift-dump type="int">1</ground-lift-dump>
-			<flaps-cmd>0</flaps-cmd>
-			<flaps-start-snd type="bool">false</flaps-start-snd>
-			<flaps-stop-snd type="bool">false</flaps-stop-snd>
-			<slats-cmd>0</slats-cmd>            
+            <dimensions>
+                <nose-distance-m>16</nose-distance-m>
+            </dimensions>
+        </model>
+
+        <instrumentation>
+            <path>Systems/CRJ700-instrumentation.xml</path>
+        </instrumentation>
+
+        <systems>
+            <!-- Disable the generic electrical system -->
+            <electrical>
+                <path></path>
+            </electrical>
+            <autopilot>
+                <name>Autopilot</name>
+                <path>Systems/CRJ700-autopilot.xml</path>
+            </autopilot>
+            <autopilot>
+                <name>Flight control system</name>
+                <path>Systems/CRJ700-flight-controls.xml</path>
+            </autopilot>
+            <autopilot>
+                <name>Pushback</name>
+                <path>Systems/pushback.xml</path>
+            </autopilot>
+            <property-rule n="100">
+                <name>Propery rules</name>
+                <path>Systems/CRJ700-property-rules.xml</path>
+            </property-rule>
+            <property-rule n="101">
+                <name>Propery rules AP</name>
+                <path>Systems/CRJ700-ap-rules.xml</path>
+            </property-rule>
+            <property-rule n="102">
+                <name>Propery rules fuel</name>
+                <path>Systems/CRJ700-fuel.xml</path>
+            </property-rule>
+            <property-rule n="103">
+                <name>Propery rules pneumatic</name>
+                <path>Systems/CRJ700-pneumatic.xml</path>
+            </property-rule>
+            <property-rule n="104">
+                <name>Propery rules hstab</name>
+                <path>Systems/CRJ700-stab-trim.xml</path>
+            </property-rule>
+            <property-rule n="105">
+                <name>Propery rules multiplayer</name>
+                <path>Systems/CRJ700-property-rules-mp.xml</path>
+            </property-rule>
+            <property-rule n="106">
+                <name>AC electrical system</name>
+                <path>Systems/CRJ700-ac-rules.xml</path>
+            </property-rule>
+            <property-rule n="107">
+                <name>DC electrical system</name>
+                <path>Systems/CRJ700-dc-rules.xml</path>
+            </property-rule>
+        </systems>
+
+        <chase-distance-m type="double">-25</chase-distance-m>
+
+        <flaps>
+            <current-setting>0</current-setting>
+            <setting>0.000</setting>    <!-- 0 -->
+            <setting>0.022</setting>    <!-- 1 -->
+            <setting>0.177</setting>    <!-- 8 -->
+            <setting>0.444</setting>    <!-- 20 -->
+            <setting>0.666</setting>    <!-- 30 -->
+            <setting>1.000</setting>    <!-- 45 -->
+        </flaps>
+
+        <weight n="0">
+            <name>Crew</name>
+            <weight-lb>250</weight-lb>
+            <min-lb>120</min-lb>
+            <max-lb>600</max-lb>
+        </weight>
+        <weight n="1">
+            <name>PAX</name>
+            <weight-lb>2000</weight-lb>
+            <min-lb>0</min-lb>
+        </weight>
+        <weight n="2">
+            <name>Main Cargo</name>
+            <weight-lb>500</weight-lb>
+            <min-lb>0</min-lb>
+        </weight>
+        <weight n="3">
+            <name>Aft Cargo</name>
+            <weight-lb>500</weight-lb>
+            <min-lb>0</min-lb>
+        </weight>
+
+        <help include="CRJ700-help.xml" />
+
+        <flight-recorder include="Systems/CRJ700-flight-recorder.xml" />
+
+        <alarms>
+            <overspeed-warning type="bool">false</overspeed-warning>
+            <altitude-alert type="bool">false</altitude-alert>
+        </alarms>
+
+        <dimensions>
+            <parkpos-offset-m type="float">0</parkpos-offset-m>
+        </dimensions>
+
+        <aircraft-class type="string">gate</aircraft-class>
+        <aircraft-operator alias="/sim/model/livery/file" />
+        <aircraft-data>
+            <path>/sim/dimensions/radius-m</path>
+            <path>/sim/dimensions/parkpos-offset-m</path>
+            <path>/sim/aircraft-class</path>
+            <path>/sim/aircraft-operator</path>
+            <path>/sim/view[100]/enabled</path>
+            <path>/sim/view[101]/enabled</path>
+            <path>/sim/config/hide-welcome-msg</path>
+            <path>/sim/config/view-follows-tiller</path>
+            <path>/sim/config/allow-autothrottle</path>
+            <path>/sim/config/rudder-to-tiller</path>
+            <path>/sim/config/mixt-to-speedbrake</path>
+            <path>/sim/config/developer</path>
+            <path>/sim/model/known-version</path>
+            <path>/sim/model/light-cones</path>
+            <path>/sim/model/yokes</path>
+            <path>/sim/weight[0]/weight-lb</path>
+            <path>/sim/weight[1]/weight-lb</path>
+            <path>/sim/weight[2]/weight-lb</path>
+            <path>/sim/weight[3]/weight-lb</path>
+            <path>/controls/gear/enable-tiller</path>
+            <path>/instrumentation/adf[0]/frequencies/selected-khz</path>
+            <path>/instrumentation/adf[0]/frequencies/standby-khz</path>
+            <path>/instrumentation/adf[1]/frequencies/selected-khz</path>
+            <path>/instrumentation/adf[1]/frequencies/standby-khz</path>
+            <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[0]/radials/selected-deg</path>
+            <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[1]/radials/selected-deg</path>
+            <path>/instrumentation/use-metric-altitude</path>
+            <path>/instrumentation/altimeter/setting-hpa</path>
+            <path>/controls/efis/sidepanel/use-QNH</path>
+        </aircraft-data>
+
+        <allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
+        <virtual-cockpit type="bool">true</virtual-cockpit>
+
+        <menubar>
+            <default>
+                <menu n="100">
+                    <enabled type="bool">true</enabled>
+                    <item>
+                        <label>Autostart</label>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>sim/model/start-idling</property>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Select Livery</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                aircraft.livery.dialog.open();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Views</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>CRJViews</dialog-name>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>EICAS control panel</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>eicas</dialog-name>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Lights</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.lights.open();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <name>mpcopilot</name>
+                        <label>Select MP Copilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type);
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <name>speedbooklet</name>
+                        <label>Speedbooklet</label>
+                        <binding>
+                            <command>speedbooklet</command>
+                        </binding>
+                    </item>
+                    <item>
+                        <name>separator</name>
+                        <label>--------</label>
+                        <enabled>false</enabled>
+                    </item>
+                    <item>
+                        <label>In-flight start</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.instastart();
+                            </script>
+                        </binding>
+                    </item>
+
+                    <item>
+                        <name>crj-config</name>
+                        <label>Config</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.config.open();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Failures</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.failures.open();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <name>welcome-msg</name>
+                        <label>Info</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.info.open();
+                            </script>
+                        </binding>
+                    </item>
+                </menu>
+                <menu n="101">
+                    <enabled type="bool">true</enabled>
+                    <label>Ground ops</label>
+                    <item>
+                        <label>Fuel/Cargo</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                gui.showWeightDialog();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Doors</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.doors.open();
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Air data reference</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.adc.open();
+                            </script>
+                        </binding>
+                    </item>                    
+                    <item>
+                        <label>Pushback</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>pushback</dialog-name>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Tiller steering</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                CRJ700.dialogs.tiller.open();
+                            </script>
+                        </binding>
+                    </item>
+                </menu>
+                <menu n="102">
+                    <label>CRJ Dev.</label>
+                    <item>
+                        <label>CRJ developer menu</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>developer</dialog-name>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>CRJ debug window</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>debug</dialog-name>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Reload EFIS</label>
+                        <binding>
+                            <command>nasal-module-reload</command>
+                            <module>CRJ_EFIS</module>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
+        </menubar>
+        <multiplay>
+            <generic>
+                <!-- Dual control transmission properties -->
+                <int n="16" type="int">0</int>
+                <int n="17" type="int">0</int>
+                <int n="18" type="int">0</int>
+                <int n="19" type="int">0</int>
+                <string n="16" type="string" />
+                <string n="17" type="string" />
+                <string n="18" type="string" />
+                <string n="19" type="string" />
+            </generic>
+        </multiplay>
+    </sim>
+
+    <autopilot>
+        <flight-director-serviceable type="bool">true</flight-director-serviceable>
+        <autoflight-serviceable type="bool">true</autoflight-serviceable>
+        <yaw-damper-serviceable type="bool">true</yaw-damper-serviceable>
+        <annunciators>
+            <lat-armed></lat-armed>
+            <vert-armed></vert-armed>
+            <lat-capture>ROLL</lat-capture>
+            <vert-capture>PTCH</vert-capture>
+            <altitude-flash type="bool">false</altitude-flash>
+            <gs-armed type="bool">0</gs-armed>
+        </annunciators>
+        <route-manager>
+            <vnav>
+                <climb-speed-kt type="int">400</climb-speed-kt>
+                <descent-speed-kt type="int">300</descent-speed-kt>
+                <climb-vpa-deg type="double">4</climb-vpa-deg>
+                <descent-vpa-deg type="double">3</descent-vpa-deg>
+                <target-altitude-ft type="double">0</target-altitude-ft>
+            </vnav>
+        </route-manager>
+        <ref>
+            <roll-deg type="float">0</roll-deg>
+            <roll-hdg type="float">0</roll-hdg>
+            <alt-hold type="int">0</alt-hold>
+        </ref>
+        <internal>
+            <target-roll-deg>0</target-roll-deg>
+            <target-pitch-deg>0</target-pitch-deg>
+            <target-climb-rate-fpm>0</target-climb-rate-fpm>
+        </internal>
+        <!-- for canvas ND -->
+        <settings>
+            <heading-bug-deg alias="/controls/autoflight/heading-select"/>
+        </settings>
+    </autopilot>
+
+    <consumables>
+        <fuel>
+            <tank n="0">
+                <name>Left Wing</name>
+                <selected type="bool">false</selected>
+                <level-lbs archive="y">5000</level-lbs>
+                <unusable-gal_us type="float">9.24</unusable-gal_us>
+                <xfer-valve type="bool">false</xfer-valve>
+            </tank>
+            <tank n="1">
+                <name>Right Wing</name>
+                <selected type="bool">false</selected>
+                <level-lbs archive="y">5000</level-lbs>
+                <unusable-gal_us type="float">9.24</unusable-gal_us>
+                <xfer-valve type="bool">false</xfer-valve>
+            </tank>
+            <tank n="2">
+                <name>Center Main</name>
+                <selected type="bool">false</selected>
+                <level-lbs archive="y">100</level-lbs>
+                <unusable-gal_us type="float">4.62</unusable-gal_us>
+            </tank>
+        </fuel>
+    </consumables>
+
+    <controls>
+        <ailerons>
+            <roll-disc type="bool">false</roll-disc>
+            <roll-select type="bool">false</roll-select>
+            <plt-roll type="bool">false</plt-roll>
+            <cplt-roll type="bool">false</cplt-roll>
+        </ailerons>
+        <anti-ice>
+            <wiper type="int">0</wiper>
+            <wiper type="int">0</wiper>
+            <det-test type="bool">false</det-test>
+        </anti-ice>
+        <autoflight>
+            <autopilot>
+                <engage type="bool">false</engage>
+            </autopilot>
+            <flight-director>
+                <engage type="bool">false</engage>
+            </flight-director>
+            <yaw-damper>
+                <engage type="bool">false</engage>
+            </yaw-damper>
+            <yaw-damper>
+                <engage type="bool">false</engage>
+            </yaw-damper>
+            <altitude-select type="double">10000</altitude-select>
+            <autothrottle-engage type="bool">false</autothrottle-engage>
+            <roll-mode type="int">1</roll-mode>
+            <disc-pos type="bool">false</disc-pos>
+            <half-bank type="bool">0</half-bank>
+            <heading-select type="double">360</heading-select>
+            <lat-mode type="int">0</lat-mode>
+            <mach-select type="double">0</mach-select>
+            <!-- <nav-source type="int">0</nav-source> -->
+            <nav-source alias="/controls/efis/sidepanel[0]/nav-src" />
+            <pitch-select type="double">0</pitch-select>
+            <speed-mode type="int">0</speed-mode>
+            <speed-select type="double">180</speed-select>
+            <toga-button type="bool">0</toga-button>
+            <vert-mode type="int">0</vert-mode>
+            <vertical-speed-select type="double">0</vertical-speed-select>
+        </autoflight>
+        <APU>
+            <electronic-control-unit type="bool">false</electronic-control-unit>
+            <fire-switch-armed type="bool">false</fire-switch-armed>
+            <fire-switch-cover type="bool">false</fire-switch-cover>
+            <off-on type="bool">false</off-on>
+        </APU>
+        <ECS>
+            <ram-air type="bool">false</ram-air>
+            <ram-air-cover type="bool">false</ram-air-cover>
+            <emer-depress type="bool">false</emer-depress>
+            <emer-depress-cover type="bool">false</emer-depress-cover>
+            <press-man type="bool">false</press-man>
+            <pack-l-off type="bool">false</pack-l-off>
+            <pack-r-off type="bool">false</pack-r-off>
+            <pack-l-man type="bool">false</pack-l-man>
+            <pack-r-man type="bool">false</pack-r-man>
+        </ECS>
+        <efis>
+            <sidepanel> <!-- Pilot side -->
+                <use-QNH type="bool" archive="y">true</use-QNH>
+                <brg-src0 type="int">1</brg-src0>
+                <brg-src1 type="int">1</brg-src1>
+                <mfd-format type="int">0</mfd-format>
+                <nav-src type="int">1</nav-src>
+                <nav-xside type="bool">false</nav-xside>
+                <range-nm type="int">10</range-nm>
+                <rtb type="int">0</rtb>
+                <tcas type="bool">false</tcas>
+            </sidepanel>
+            <sidepanel> <!-- Copilot side -->
+                <use-QNH type="bool" archive="y">true</use-QNH>
+                <brg-src0 type="int">1</brg-src0>
+                <brg-src1 type="int">1</brg-src1>
+                <mfd-format type="int">0</mfd-format>
+                <nav-src type="int">2</nav-src>
+                <nav-xside type="bool">false</nav-xside>
+                <range-nm type="int">10</range-nm>
+                <rtb type="int">0</rtb>
+                <tcas type="bool">false</tcas>
+            </sidepanel>
+            <src-mfd-pilot type="int">1</src-mfd-pilot>
+            <src-mfd-copilot type="int">1</src-mfd-copilot>
+            <src-attdhdg type="int">1</src-attdhdg>
+            <src-airdata type="int">1</src-airdata>
+            <src-eicas type="int">1</src-eicas>
+            <src-cont type="int">1</src-cont>
+        </efis>
+        <engines>
+            <cont-ignition type="bool">false</cont-ignition>
+            <engine>
+                <fire-bottle-discharge-armed type="bool">false</fire-bottle-discharge-armed>
+                <fire-bottle-discharge-cover type="bool">false</fire-bottle-discharge-cover>
+                <thrust-mode type="int">0</thrust-mode>
+            </engine>
+            <engine>
+                <fire-bottle-discharge-armed type="bool">false</fire-bottle-discharge-armed>
+                <fire-bottle-discharge-cover type="bool">false</fire-bottle-discharge-cover>
+                <thrust-mode type="int">0</thrust-mode>
+            </engine>
+        </engines>
+        <electric>
+            <engine><generator type="bool">false</generator></engine>
+            <engine><generator type="bool">false</generator></engine>
+            <engine><generator type="bool">false</generator></engine>
+            <dc-service-switch type="bool">false</dc-service-switch>
+            <battery-switch type="bool">false</battery-switch>
+            <ac-service-avail type="bool">true</ac-service-avail>
+            <ac-service-selected type="bool">false</ac-service-selected>
+            <ac-service-in-use type="bool">false</ac-service-in-use>
+            <!--
+                the external service panel is not yet added to 3D model (nose right)
+                anyhow, ac-service-selected-ext switch property is already used ;)
+            -->
+            <ac-service-selected-ext type="bool">false</ac-service-selected-ext>
+            <auto-xfer1 type="bool">true</auto-xfer1>
+            <auto-xfer2 type="bool">true</auto-xfer2>
+            <ac-ess-xfer type="bool">false</ac-ess-xfer>
+            <idg1-cover type="bool">false</idg1-cover>
+            <idg2-cover type="bool">false</idg2-cover>
+            <idg1-disc type="bool">false</idg1-disc>
+            <idg2-disc type="bool">false</idg2-disc>
+            <ADG type="bool">false</ADG>
+        </electric>
+        <flight>
+            <ground-lift-dump type="int">1</ground-lift-dump>
+            <flaps-cmd>0</flaps-cmd>
+            <flaps-start-snd type="bool">false</flaps-start-snd>
+            <flaps-stop-snd type="bool">false</flaps-stop-snd>
+            <slats-cmd>0</slats-cmd>
             <hstab-trim>99</hstab-trim> <!-- initialize to out of range for old FG versions -->
-		</flight>
-		<fuel>
-			<gravity-xflow type="bool">0</gravity-xflow>
-			<xflow-left type="bool">0</xflow-left>
-			<xflow-manual type="bool">0</xflow-manual>
-			<xflow-right type="bool">0</xflow-right>
-		</fuel>
-		<gear>
-			<brake-parking type="bool">true</brake-parking>
-			<enable-tiller type="bool">true</enable-tiller>
-			<tiller-steer-deg type="float">0</tiller-steer-deg>
-		</gear>
-		<hydraulic>
-			<system>
-				<!-- 0 = off, 1 = on, 2 = auto -->
-				<pump-a type="bool">true</pump-a>
-				<pump-b type="int">0</pump-b>
-				<hyd-sov-cover type="bool">false</hyd-sov-cover>
-			</system>
-			<system>
-				<pump-a type="bool">true</pump-a>
-				<pump-b type="int">0</pump-b>
-				<hyd-sov-cover type="bool">false</hyd-sov-cover>
-			</system>
-			<system>
-				<!-- pump 3A only on/off, no auto -->
-				<pump-a type="bool">false</pump-a>
-				<pump-b type="int">0</pump-b>
-			</system>
-		</hydraulic>
-		<lighting>
-			<beacon type="bool">false</beacon>
-			<landing-lights n="0" type="bool">false</landing-lights>
-			<landing-lights n="1" type="bool">false</landing-lights>
-			<landing-lights n="2" type="bool">false</landing-lights>
-			<logo-lights type="bool">false</logo-lights>
-			<nav-lights type="bool">false</nav-lights>
-			<strobe type="bool">false</strobe>
-			<taxi-lights type="bool">false</taxi-lights>
-			<wing-lights type="bool">false</wing-lights>
-			<dome type="bool">false</dome>
-			<display-norm type="float">0.8</display-norm>
-			<standby-compass type="bool">false</standby-compass>
-			<panel-norm type="float">0.4</panel-norm>
-			<panel-flood-norm type="float">0.2</panel-flood-norm>
-			<panel-overhead-norm type="float">0.4</panel-overhead-norm>
-			<cabin-norm type="float">0.5</cabin-norm>
-			<ind-lts-norm type="float">1</ind-lts-norm>
-			<ind-lts-dim type="bool">false</ind-lts-dim>
-			<lt-test type="bool">false</lt-test>
-		</lighting>
-		<pneumatic>
-			<cross-bleed type="int">0</cross-bleed>
-			<bleed-valve type="int">1</bleed-valve>
-			<bleed-source type="int">0</bleed-source>
-			<isol type="bool">false</isol>
-		</pneumatic>
-		<switches>
-			<no-smoking-sign type="int">1</no-smoking-sign>
-			<seatbelt-sign type="int">1</seatbelt-sign>
-		</switches>
-	</controls>
-	<eicas>
-        <hstab-trim>--</hstab-trim>
-    </eicas>
-	<engines>
-		<apu>
-			<info>see engine2</info>
-		</apu>
-		<engine n="0">
-			<on-fire type="bool">false</on-fire>
-			<oilp-norm>0</oilp-norm>
-			<starter type="bool">false</starter>
-		</engine>
-		<engine n="1">
-			<on-fire type="bool">false</on-fire>
-			<oilp-norm>0</oilp-norm>
-			<starter type="bool">false</starter>
-		</engine>
-		<!-- engine 2 properties are used to transfer APU rpm and door position via MP -->
-		<engine n="2">
-			<rpm type="float">0</rpm>
-			<n1 type="float">0</n1>
-			<n2 type="float">0</n2>
-			<running type="bool">false</running>
-			<egt-degc type="double">0</egt-degc>
-			<on-fire type="bool">false</on-fire>
-			<serviceable type="bool">true</serviceable>
-			<pump-fail type="bool">false</pump-fail>
-			<SOV-fail type="bool">false</SOV-fail>
-			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
-		</engine>		
-		<!-- engine 3 properties are used to transfer door positions via MP -->
-		<engine n="3">
-			<info>abused for MP door-positions</info>
-		</engine>
-	</engines>
-	
-	<fcs>
-		<autopilot>
-			<throttle-cmd-norm type="double">0</throttle-cmd-norm>
-			<aileron-cmd-norm type="double">0</aileron-cmd-norm>
-		</autopilot>
-		<copilot>
-			<active type="bool">false</active>
-			<!-- These properties are kept aliased to the pilot's controls until they are un-aliased by the dual control system -->
-			<aileron-cmd-norm alias="/controls/flight/aileron" />
-			<elevator-cmd-norm alias="/controls/flight/elevator" />
-			<rudder-cmd-norm alias="/controls/flight/rudder" />
-			<throttle-cmd-norm alias="/controls/engines/engine[0]/throttle" />
-			<throttle-cmd-norm alias="/controls/engines/engine[1]/throttle" />
-			<tiller-steer-deg alias="/controls/gear/tiller-steer-deg" />
-			<brake-left-cmd-norm alias="/controls/gear/brake-left" />
-			<brake-right-cmd-norm alias="/controls/gear/brake-right" />
-		</copilot>
-		<throttle-cmd-norm type="double">0</throttle-cmd-norm>
-		<aileron-cmd-norm type="double">0</aileron-cmd-norm>
-		<tiller-steer-deg type="float">0</tiller-steer-deg>
-		<nose-gear-steer-deg type="double">0</nose-gear-steer-deg>
-		<brake-left-cmd-norm type="float">0</brake-left-cmd-norm>
-		<brake-right-cmd-norm type="float">0</brake-right-cmd-norm>
-		<gear-down type="bool">true</gear-down>
-	</fcs>
-	
-	<gear>
-		<gear n="0">
-			<!-- to initialize sound properly -->
-			<position-norm type="float">1</position-norm>
-			<has-brake type="bool">false</has-brake>
-		</gear>
-		<gear>
-			<has-brake></has-brake>
-		</gear>
-		<gear>
-			<has-brake></has-brake>
-		</gear>
-	</gear>
-	
-	<instrumentation>
-		<use-metric-altitude type="bool" archive="y">false</use-metric-altitude>
-		<use-QNH type="bool" archive="y">true</use-QNH>
-		<adc>
-			<reference>
-				<v1 type="int">130</v1> <!-- takeoff decision speed -->
-				<v2 type="int">145</v2> <!-- takeoff safety speed -->
-				<vr type="int">135</vr> <!-- rotate airspeed -->
-				<vt type="int">180</vt> <!-- target speed -->
-				<dh alias="/instrumentation/mk-viii/inputs/arinc429/decision-height" /> <!-- decision heigt, 0 - 999ft -->
-				<mda type="int">3000</mda> <!-- min descent altitude-->
-			</reference>
-		</adc>
-		<adf>
-			<ident-audible type="bool">true</ident-audible>
-			<volume-norm type="float">0</volume-norm>
-		</adf>
-		<adf>
-			<ident-audible type="bool">true</ident-audible>
-			<volume-norm type="float">0</volume-norm>
-		</adf>
-		<altimeter n="1">
-			<serviceable type="bool">true</serviceable>
-		</altimeter>
-		<altimeter n="2">
-			<serviceable type="bool">true</serviceable>
-		</altimeter>
-		<airspeed-indicator n="1">
-			<serviceable type="bool">true</serviceable>
-		</airspeed-indicator>
-		<airspeed-indicator n="2">
-			<serviceable type="bool">true</serviceable>
-		</airspeed-indicator>
-		<attitude-indicator n="1">
-			<serviceable type="bool">true</serviceable>
-		</attitude-indicator>
-		<attitude-indicator n="2">
-			<serviceable type="bool">true</serviceable>
-		</attitude-indicator>
-		<cdu>
-			<serviceable type="bool">true</serviceable>
-		</cdu>
-		<clock>
-			<time-display-mode type="int">1</time-display-mode>
-			<chronometer-display-mode type="int">0</chronometer-display-mode>
-		</clock>
-		<dme n="0">
-			<frequencies>
-				<source>/instrumentation/nav[0]/frequencies/selected-mhz</source>
-			</frequencies>
-			<serviceable type="bool">true</serviceable>
-			<hold type="bool">false</hold>
-		</dme>		
-		<dme n="1">
-			<frequencies>
-				<source>/instrumentation/nav[1]/frequencies/selected-mhz</source>
-			</frequencies>
-			<serviceable type="bool">true</serviceable>
-			<hold type="bool">false</hold>
-		</dme>
-		<fms>
-			<flight-number type="string" archive="y">1</flight-number>
-			<insert-waypoint-id type="string">-ENTER ID-</insert-waypoint-id>
-			<selected-waypoint type="int">0</selected-waypoint>
-			<swap-waypoint-id type="string">-ENTER NO.-</swap-waypoint-id>
-			<to-ga-maximum-n1 type="double">95</to-ga-maximum-n1>
-			<waypoint-altitude-ft type="double">0</waypoint-altitude-ft>
-		</fms>
-		<eicas>
-			<page type="int">1</page>
-		</eicas>
-		<eicas>
-			<!--page type="int">2</page-->
-			<page type="int">10</page>
-		</eicas>
-		<eicas-messages>
-			<page>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-			</page>
-			<page>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-				<line>
-					<message type="string" />
-					<enabled type="bool">false</enabled>
-					<color-red-norm type="float">1</color-red-norm>
-					<color-green-norm type="float">1</color-green-norm>
-					<color-blue-norm type="float">1</color-blue-norm>
-				</line>
-			</page>
-		</eicas-messages>
-		<nav>
-			<volume type="float">0</volume>
-		</nav>
-		<nav>
-			<volume type="float">0</volume>
-		</nav>
-		<mfd>
-			<page type="int" archive="y">1</page>
-			<tcas type="bool" archive="y">true</tcas>
-			<wx type="bool" archive="y">true</wx>
-		</mfd>
-		<mfd>
-			<page type="int" archive="y">1</page>
-			<tcas type="bool" archive="y">true</tcas>
-			<wx type="bool" archive="y">true</wx>
-		</mfd>
-		<standby>
-			<brightness-norm type="double">0.2</brightness-norm>
-		</standby>
-		<radio-stack>
-			<selected-field type="int">0</selected-field>
-		</radio-stack>
-		<radio-stack>
-			<selected-field type="int">0</selected-field>
-		</radio-stack>
-		<radar-altimeter>
-			<serviceable type="bool">true</serviceable>
-			<antenna>
-				<x-offset-m type="double">-0.986</x-offset-m>
-				<y-offset-m type="double">0</y-offset-m>
-				<z-offset-m type="double">3.72</z-offset-m>
-			</antenna>			
-		</radar-altimeter>
-		<radar-altimeter>
-			<serviceable type="bool">true</serviceable>
-			<radar-altitude-ft-int type="int">0</radar-altitude-ft-int>
-		</radar-altimeter>
-		<transponder>
-			<serviceable type="bool">true</serviceable>
-			<id-code type="int">0</id-code>
-			<standby-id-code type="int">0</standby-id-code>
-		</transponder>
-		<vertical-speed-indicator n="1">
-			<serviceable type="bool">true</serviceable>
-			<indicated-speed-fpm-int type="int">0</indicated-speed-fpm-int>
-		</vertical-speed-indicator>
-		<!-- See http://wiki.flightgear.org/GPWS -->
-		<mk-viii>
-			<serviceable type="bool">true</serviceable>
-			<configuration-module>
-				<category-1 type="int">255</category-1>
-				<category-3 type="int">2</category-3>
-				<category-4 type="int">13</category-4>
-				<category-5 type="int">0</category-5>
-				<category-6 type="int">0</category-6>
-				<category-7 type="int">124</category-7>
-				<category-8 type="int">4</category-8> <!-- radio altimeter source: 3:from yasim, 4: instrumentation/radar-altimeter -->
-				<category-9 type="int">3</category-9>
-				<category-10 type="int">2</category-10>
-				<category-13 type="int">7</category-13>
-				<category-14 type="int">0</category-14>
-			</configuration-module>
-			<inputs>
-				<arinc429>
-					<decision-height-ncd type="bool">false</decision-height-ncd>
-					<decision-height type="double">250</decision-height>
-				</arinc429>
-			</inputs>
-			<speaker>
-				<max-dist>2</max-dist>
-				<reference-dist>1</reference-dist>
-				<volume>0.4</volume>
-			</speaker>
-			<voice>
-				<file-prefix type="string">Sounds/mk-viii/</file-prefix>
-			</voice>
-		</mk-viii>
-		<!-- See http://wiki.flightgear.org/TCAS -->
-		<tcas>
-			<serviceable type="bool">true</serviceable>
-			<inputs>
-				<mode type="int">3</mode>
-			</inputs>
-			<speaker>
-				<max-dist>2</max-dist>
-				<reference-dist>1</reference-dist>
-				<volume>1</volume>
-			</speaker>
-		</tcas>
-		<!-- Ripped from the 777 -->
-		<efis>
-			<inputs>
-				<airport type="bool">true</airport>
-				<range type="int">10</range>
-				<sta type="bool">true</sta>
-				<tfc type="bool">true</tfc>
-				<wpt type="bool">false</wpt>
-			</inputs>
-			<mfd>
-				<mode-num type="int">2</mode-num>
-			</mfd>
-		</efis>
-		<nd>
-			<radar-texture-path type="string">Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-			<symbol-texture-path type="string">Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
-			<symbol-texture-size type="int">512</symbol-texture-size>
-			<font>
-				<color>
-					<red type="float">0.7</red>
-					<green type="float">0.7</green>
-					<blue type="float">0.7</blue>
-					<alpha type="float">1</alpha>
-				</color>
-				<name type="string">helvetica_bold.txf</name>
-				<size type="float">20</size>
-				<line-spacing type="float">0.01</line-spacing>
-			</font>
-			<serviceable type="bool">true</serviceable>
-			<range n="0" alias="/instrumentation/efis/inputs/range"/>
-			<aircraft-heading-up type="bool">true</aircraft-heading-up>
-			<heading-up-deg type="float">0.01</heading-up-deg>
-			<x-center type="float">0.5</x-center>
-			<y-center type="float">0.5</y-center>
-			<line-width type="double">3</line-width>
-		</nd>
-	</instrumentation>
-	
-	<input>
-		<keyboard include="Systems/CRJ700-keybindings.xml" />
-	</input>
-	
-	<surface-positions>
-		<left-wiper-pos-norm type="float">0</left-wiper-pos-norm>
-		<right-wiper-pos-norm type="float">0</right-wiper-pos-norm>
-		<flap-pos-norm>0</flap-pos-norm>
-		<slat-pos-norm>0</slat-pos-norm>
-		<left-speedbrake-pos-norm>0</left-speedbrake-pos-norm>
-		<right-speedbrake-pos-norm>0</right-speedbrake-pos-norm>
-	</surface-positions>
-	
-	<systems>
-		<AC>
-			<system>
-				<position-norm type="float">0</position-norm>
-				<acext-freq>400</acext-freq>
-			</system>
-		</AC>
-		<DC>
-		</DC>
-		<electrical>
-			<!-->Compatibility mapping</!-->
-			<outputs>
-				<adf alias="/systems/DC/outputs/transponder1" />
-				<dme alias="/systems/DC/outputs/dme1" />
-				<efis alias="/systems/DC/outputs/efis" />
-				<fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
-				<fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
-				<gps alias="/systems/DC/outputs/gps1" />
-				<!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC
-					<mk-viii alias="/systems/AC/outputs/egpws" />
-				<mk-viii alias="/systems/DC/outputs/radio-altimeter1" /> -->
-				<nav alias="/systems/DC/outputs/vhf-nav1" />
-				<panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
-				<transponder alias="/systems/DC/outputs/transponder1" />
-			</outputs>
-		</electrical>
-		<fuel>
-			<imbalance-lbs type="float">0</imbalance-lbs>
-			<boost-pump n="0">
-				<running type="bool">false</running>
-				<selected type="bool">false</selected>
-				<serviceable type="bool">true</serviceable>
-			</boost-pump>
-			<boost-pump n="1">
-				<running type="bool">false</running>
-				<selected type="bool">false</selected>
-				<serviceable type="bool">true</serviceable>
-			</boost-pump>
-			<circuit n="0">
-				<name>Left circuit</name>
-				<powered type="bool">false</powered>
-			</circuit>
-			<circuit n="1">
-				<name>Right circuit</name>
-				<powered type="bool">false</powered>
-			</circuit>
-			<gravity-xflow>
-				<open type="bool">0</open>
-				<serviceable type="bool">1</serviceable>
-			</gravity-xflow>
-			<xflow-pump>
-				<serviceable type="bool">true</serviceable>
-				<running type="int">0</running>
-				<inop type="bool">false</inop>
-			</xflow-pump>
-		</fuel>
-		<hydraulic>
-			<system>
-				<name>Hydraulic1</name>
-				<update-enabled type="bool">true</update-enabled>
-				<pump-a-serviceable type="bool">true</pump-a-serviceable>
-				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-running type="int">false</pump-a-running>
-				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
-				<temperature-degc type="int">50</temperature-degc>
-				<quantity-percent type="int">60</quantity-percent>
-			</system>
-			<system>
-				<name>Hydraulic2</name>
-				<update-enabled type="bool">true</update-enabled>
-				<pump-a-serviceable type="bool">true</pump-a-serviceable>
-				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-running type="int">false</pump-a-running>
-				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
-				<temperature-degc type="int">50</temperature-degc>
-				<quantity-percent type="int">60</quantity-percent>
-			</system>
-			<system>
-				<name>Hydraulic3</name>
-				<update-enabled type="bool">true</update-enabled>
-				<pump-a-serviceable type="bool">true</pump-a-serviceable>
-				<pump-b-serviceable type="bool">true</pump-b-serviceable>
-				<pump-a-running type="bool">false</pump-a-running>
-				<pump-b-running type="bool">false</pump-b-running>
-				<value type="int">0</value>
-				<temperature-degc type="int">50</temperature-degc>
-				<quantity-percent type="int">60</quantity-percent>
-			</system>
-			<outputs>
-				<rudder type="bool">true</rudder>
-				<elevator type="bool">true</elevator>
-				<!-- due to current yasim model only aileron - no left/right -->
-				<aileron type="bool">true</aileron>
-				<!--
-					<left-aileron type="bool">true</left-aileron>
-					<right-aileron type="bool">true</right-aileron>
-				-->
-				<left-reverser type="bool">true</left-reverser>
-				<right-reverser type="bool">true</right-reverser>
-				<ob-spoileron type="bool">true</ob-spoileron>
-				<ob-flight-spoiler type="bool">true</ob-flight-spoiler>
-				<ob-ground-spoiler type="bool">true</ob-ground-spoiler>
-				<ib-spoileron type="bool">true</ib-spoileron>
-				<ib-flight-spoiler type="bool">true</ib-flight-spoiler>
-				<ib-ground-spoiler type="bool">true</ib-ground-spoiler>
-				<ob-brakes type="bool">true</ob-brakes>
-				<ib-brakes type="bool">true</ib-brakes>
-				<landing-gear type="bool">true</landing-gear>
-				<landing-gear-alt type="bool">true</landing-gear-alt>
-				<nwsteering type="bool">true</nwsteering>
-			</outputs>
-		</hydraulic>
-		<pneumatic>
-			<pressure-left type="bool">false</pressure-left>
-			<pressure-right type="bool">false</pressure-right>
-			<hp-ground-supply type="bool">false</hp-ground-supply>
-			<cowl-ai-valve-left type="bool">false</cowl-ai-valve-left>
-			<cowl-ai-valve-right type="bool">false</cowl-ai-valve-right>
-			<apu-valve type="bool">false</apu-valve>
-			<isolation-valve type="bool">true</isolation-valve>
-			<ats-left type="bool">false</ats-left>
-			<ats-right type="bool">false</ats-right>
-			<sov-left type="bool">false</sov-left>
-			<sov-right type="bool">false</sov-right>
-			<leak-left type="bool">false</leak-left>
-			<leak-right type="bool">false</leak-right>
-		</pneumatic>
-	</systems>
-	
-	<nasal>
-		<fuel>
+            <hstab-trim-cmd>99</hstab-trim-cmd>
+        </flight>
+        <fuel>
+            <gravity-xflow type="bool">0</gravity-xflow>
+            <xflow-left type="bool">0</xflow-left>
+            <xflow-manual type="bool">0</xflow-manual>
+            <xflow-right type="bool">0</xflow-right>
+        </fuel>
+        <gear>
+            <brake-parking type="bool">true</brake-parking>
+            <enable-tiller type="bool">true</enable-tiller>
+            <tiller-steer-deg type="float">0</tiller-steer-deg>
+        </gear>
+        <hydraulic>
+            <system>
+                <!-- 0 = off, 1 = on, 2 = auto -->
+                <pump-a type="bool">true</pump-a>
+                <pump-b type="int">0</pump-b>
+                <hyd-sov-cover type="bool">false</hyd-sov-cover>
+            </system>
+            <system>
+                <pump-a type="bool">true</pump-a>
+                <pump-b type="int">0</pump-b>
+                <hyd-sov-cover type="bool">false</hyd-sov-cover>
+            </system>
+            <system>
+                <!-- pump 3A only on/off, no auto -->
+                <pump-a type="bool">false</pump-a>
+                <pump-b type="int">0</pump-b>
+            </system>
+        </hydraulic>
+        <lighting>
+            <beacon type="bool">false</beacon>
+            <landing-lights n="0" type="bool">false</landing-lights>
+            <landing-lights n="1" type="bool">false</landing-lights>
+            <landing-lights n="2" type="bool">false</landing-lights>
+            <logo-lights type="bool">false</logo-lights>
+            <nav-lights type="bool">false</nav-lights>
+            <strobe type="bool">false</strobe>
+            <taxi-lights type="bool">false</taxi-lights>
+            <wing-lights type="bool">false</wing-lights>
+            <dome type="bool">false</dome>
+            <display-norm type="float">0.8</display-norm>
+            <standby-compass type="bool">false</standby-compass>
+            <panel-norm type="float">0.4</panel-norm>
+            <panel-flood-norm type="float">0.2</panel-flood-norm>
+            <panel-overhead-norm type="float">0.4</panel-overhead-norm>
+            <cabin-norm type="float">0.5</cabin-norm>
+            <ind-lts-norm type="float">1</ind-lts-norm>
+            <ind-lts-dim type="bool">false</ind-lts-dim>
+            <lt-test type="bool">false</lt-test>
+        </lighting>
+        <lighting>
+            <panel-norm type="float">0.4</panel-norm>
+            <panel-flood-norm type="float">0.2</panel-flood-norm>
+            <display-norm type="float">0.8</display-norm>
+        </lighting>
+        <lighting>
+            <panel-norm type="float">0.4</panel-norm>
+            <panel-flood-norm type="float">0.2</panel-flood-norm>
+            <display-norm type="float">0.8</display-norm>
+        </lighting>
+        <mcp>
+            <fd-pressed type="bool">0</fd-pressed>
+            <ap-pressed type="bool">0</ap-pressed>
+            <disc-pos type="bool">0</disc-pos>
+            <speed-pressed type="bool">0</speed-pressed>
+            <speed-on type="bool">0</speed-on>
+            <appr-pressed type="bool">0</appr-pressed>
+            <appr-on type="bool">0</appr-on>
+            <hdg-pressed type="bool">0</hdg-pressed>
+            <hdg-on type="bool">0</hdg-on>
+            <nav-pressed type="bool">0</nav-pressed>
+            <nav-on type="bool">0</nav-on>
+            <bank-pressed type="bool">0</bank-pressed>
+            <alt-on type="bool">0</alt-on>
+            <alt-pressed type="bool">0</alt-pressed>
+            <vs-pressed type="bool">0</vs-pressed>
+            <vs-on type="bool">0</vs-on>
+        </mcp>
+        <pneumatic>
+            <cross-bleed type="int">0</cross-bleed>
+            <bleed-valve type="int">1</bleed-valve>
+            <bleed-source type="int">0</bleed-source>
+            <isol type="bool">false</isol>
+        </pneumatic>
+        <stab-trim>
+            <ch1-engage type="bool">1</ch1-engage>
+            <ch2-engage type="bool">1</ch2-engage>
+            <mach-trim type="bool">1</mach-trim>
+        </stab-trim>
+        <switches>
+            <no-smoking-sign type="int">1</no-smoking-sign>
+            <seatbelt-sign type="int">1</seatbelt-sign>
+        </switches>
+    </controls>
+
+    <engines>
+        <engine n="0">
+            <on-fire type="bool">false</on-fire>
+            <oilp-norm>0</oilp-norm>
+            <starter type="bool">false</starter>
+        </engine>
+        <engine n="1">
+            <on-fire type="bool">false</on-fire>
+            <oilp-norm>0</oilp-norm>
+            <starter type="bool">false</starter>
+        </engine>
+        <!-- engine 2 properties are used to transfer APU rpm and door position via MP -->
+        <engine n="2">
+            <info>APU</info>
+            <rpm type="float">0</rpm>
+            <n1 type="float">0</n1>
+            <n2 type="float">0</n2>
+            <running type="bool">false</running>
+            <egt-degc type="double">0</egt-degc>
+            <on-fire type="bool">false</on-fire>
+            <serviceable type="bool">true</serviceable>
+            <pump-fail type="bool">false</pump-fail>
+            <SOV-fail type="bool">false</SOV-fail>
+            <!-- <door-norm alias="/engines/engine[2]/n1" /> -->
+        </engine>
+        <!-- engine 3 properties are used to transfer door positions via MP -->
+        <engine n="3">
+            <info>abused for MP door-positions</info>
+        </engine>
+    </engines>
+
+    <fcs>
+        <autopilot>
+            <throttle-cmd-norm type="double">0</throttle-cmd-norm>
+            <aileron-cmd-norm type="double">0</aileron-cmd-norm>
+        </autopilot>
+        <copilot>
+            <active type="bool">false</active>
+            <!-- These properties are kept aliased to the pilot's controls until they are un-aliased by the dual control system -->
+            <aileron-cmd-norm alias="/controls/flight/aileron" />
+            <elevator-cmd-norm alias="/controls/flight/elevator" />
+            <rudder-cmd-norm alias="/controls/flight/rudder" />
+            <throttle-cmd-norm alias="/controls/engines/engine[0]/throttle" />
+            <throttle-cmd-norm alias="/controls/engines/engine[1]/throttle" />
+            <tiller-steer-deg alias="/controls/gear/tiller-steer-deg" />
+            <brake-left-cmd-norm alias="/controls/gear/brake-left" />
+            <brake-right-cmd-norm alias="/controls/gear/brake-right" />
+        </copilot>
+        <throttle-cmd-norm type="double">0</throttle-cmd-norm>
+        <aileron-cmd-norm type="double">0</aileron-cmd-norm>
+        <tiller-steer-deg type="float">0</tiller-steer-deg>
+        <nose-gear-steer-deg type="double">0</nose-gear-steer-deg>
+        <brake-left-cmd-norm type="float">0</brake-left-cmd-norm>
+        <brake-right-cmd-norm type="float">0</brake-right-cmd-norm>
+        <gear-down type="bool">true</gear-down>
+    </fcs>
+
+    <gear>
+        <gear n="0">
+            <!-- to initialize sound properly -->
+            <position-norm type="float">1</position-norm>
+            <has-brake type="bool">false</has-brake>
+        </gear>
+        <gear>
+            <has-brake></has-brake>
+        </gear>
+        <gear>
+            <has-brake></has-brake>
+        </gear>
+    </gear>
+
+    <instrumentation>
+        <use-metric-altitude type="bool" archive="y">false</use-metric-altitude>
+        <adc>
+            <reference>
+                <v1 type="int">130</v1> <!-- takeoff decision speed -->
+                <v2 type="int">145</v2> <!-- takeoff safety speed -->
+                <vr type="int">135</vr> <!-- rotate airspeed -->
+                <vt type="int">180</vt> <!-- target speed -->
+                <dh alias="/instrumentation/mk-viii/inputs/arinc429/decision-height" /> <!-- decision heigt, 0 - 999ft -->
+                <mda type="int">3000</mda> <!-- min descent altitude-->
+            </reference>
+        </adc>
+        <adf>
+            <ident-audible type="bool">true</ident-audible>
+            <volume-norm type="float">0</volume-norm>
+        </adf>
+        <adf>
+            <ident-audible type="bool">true</ident-audible>
+            <volume-norm type="float">0</volume-norm>
+        </adf>
+        <altimeter n="1">
+            <serviceable type="bool">true</serviceable>
+        </altimeter>
+        <altimeter n="2">
+            <serviceable type="bool">true</serviceable>
+        </altimeter>
+        <airspeed-indicator n="1">
+            <serviceable type="bool">true</serviceable>
+        </airspeed-indicator>
+        <airspeed-indicator n="2">
+            <serviceable type="bool">true</serviceable>
+        </airspeed-indicator>
+        <attitude-indicator n="1">
+            <serviceable type="bool">true</serviceable>
+        </attitude-indicator>
+        <attitude-indicator n="2">
+            <serviceable type="bool">true</serviceable>
+        </attitude-indicator>
+        <cdu>
+            <serviceable type="bool">true</serviceable>
+        </cdu>
+        <clock>
+            <time-display-mode type="int">1</time-display-mode>
+            <chronometer-display-mode type="int">0</chronometer-display-mode>
+        </clock>
+        <dme n="0">
+            <frequencies>
+                <source>/instrumentation/nav[0]/frequencies/selected-mhz</source>
+            </frequencies>
+            <serviceable type="bool">true</serviceable>
+            <hold type="bool">false</hold>
+        </dme>
+        <dme n="1">
+            <frequencies>
+                <source>/instrumentation/nav[1]/frequencies/selected-mhz</source>
+            </frequencies>
+            <serviceable type="bool">true</serviceable>
+            <hold type="bool">false</hold>
+        </dme>
+        <eicas>
+            <page type="int">1</page>
+        </eicas>
+        <fms>
+            <flight-number type="string" archive="y">1</flight-number>
+            <insert-waypoint-id type="string">-ENTER ID-</insert-waypoint-id>
+            <selected-waypoint type="int">0</selected-waypoint>
+            <swap-waypoint-id type="string">-ENTER NO.-</swap-waypoint-id>
+            <to-ga-maximum-n1 type="double">95</to-ga-maximum-n1>
+            <waypoint-altitude-ft type="double">0</waypoint-altitude-ft>
+        </fms>
+        <gps>
+            <config>
+                <cdi-max-deflection-nm type="double">5</cdi-max-deflection-nm>
+                <!-- <enable-fly-by type="bool">false<  /enable-fly-by> -->
+            </config>
+        </gps>
+        <nav>
+            <volume type="float">0</volume>
+        </nav>
+        <nav>
+            <volume type="float">0</volume>
+        </nav>
+        <standby>
+            <brightness-norm type="double">0.2</brightness-norm>
+        </standby>
+        <radio-stack>
+            <selected-field type="int">0</selected-field>
+        </radio-stack>
+        <radio-stack>
+            <selected-field type="int">0</selected-field>
+        </radio-stack>
+        <radar-altimeter>
+            <serviceable type="bool">true</serviceable>
+            <antenna>
+                <x-offset-m type="double">-0.986</x-offset-m>
+                <y-offset-m type="double">0</y-offset-m>
+                <z-offset-m type="double">3.72</z-offset-m>
+            </antenna>
+        </radar-altimeter>
+        <radar-altimeter>
+            <serviceable type="bool">true</serviceable>
+            <radar-altitude-ft-int type="int">0</radar-altitude-ft-int>
+        </radar-altimeter>
+        <transponder>
+            <serviceable type="bool">true</serviceable>
+            <id-code type="int">0</id-code>
+            <standby-id-code type="int">0</standby-id-code>
+        </transponder>
+        <vertical-speed-indicator n="1">
+            <serviceable type="bool">true</serviceable>
+            <indicated-speed-fpm-int type="int">0</indicated-speed-fpm-int>
+        </vertical-speed-indicator>
+        <!-- See http://wiki.flightgear.org/GPWS -->
+        <mk-viii>
+            <serviceable type="bool">true</serviceable>
+            <configuration-module>
+                <category-1 type="int">255</category-1>
+                <category-3 type="int">2</category-3>
+                <category-4 type="int">13</category-4>
+                <category-5 type="int">0</category-5>
+                <category-6 type="int">0</category-6>
+                <category-7 type="int">124</category-7>
+                <category-8 type="int">4</category-8> <!-- radio altimeter source: 3:from yasim, 4: instrumentation/radar-altimeter -->
+                <category-9 type="int">3</category-9>
+                <category-10 type="int">2</category-10>
+                <category-13 type="int">7</category-13>
+                <category-14 type="int">0</category-14>
+            </configuration-module>
+            <inputs>
+                <arinc429>
+                    <decision-height-ncd type="bool">false</decision-height-ncd>
+                    <decision-height type="double">250</decision-height>
+                </arinc429>
+            </inputs>
+            <speaker>
+                <max-dist>2</max-dist>
+                <reference-dist>1</reference-dist>
+                <volume>0.4</volume>
+            </speaker>
+            <voice>
+                <file-prefix type="string">Sounds/mk-viii/</file-prefix>
+            </voice>
+        </mk-viii>
+        <!-- See http://wiki.flightgear.org/TCAS -->
+        <tcas>
+            <serviceable type="bool">true</serviceable>
+            <inputs>
+                <mode type="int">3</mode>
+            </inputs>
+            <speaker>
+                <max-dist>2</max-dist>
+                <reference-dist>1</reference-dist>
+                <volume>1</volume>
+            </speaker>
+        </tcas>
+        <efis>
+        </efis>
+        <nd>
+            <radar-texture-path type="string">Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+            <symbol-texture-path type="string">Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
+            <symbol-texture-size type="int">512</symbol-texture-size>
+            <font>
+                <color>
+                    <red type="float">0.7</red>
+                    <green type="float">0.7</green>
+                    <blue type="float">0.7</blue>
+                    <alpha type="float">1</alpha>
+                </color>
+                <name type="string">helvetica_bold.txf</name>
+                <size type="float">20</size>
+                <line-spacing type="float">0.01</line-spacing>
+            </font>
+            <serviceable type="bool">true</serviceable>
+            <range n="0" alias="/instrumentation/efis/mfd[0]/inputs/range"/>
+            <aircraft-heading-up type="bool">true</aircraft-heading-up>
+            <heading-up-deg type="float">0.01</heading-up-deg>
+            <x-center type="float">0.5</x-center>
+            <y-center type="float">0.5</y-center>
+            <line-width type="double">3</line-width>
+        </nd>
+    </instrumentation>
+
+    <input>
+        <keyboard include="Systems/CRJ700-keybindings.xml" />
+    </input>
+
+    <surface-positions>
+        <left-wiper-pos-norm type="float">0</left-wiper-pos-norm>
+        <right-wiper-pos-norm type="float">0</right-wiper-pos-norm>
+        <flap-pos-norm>0</flap-pos-norm>
+        <slat-pos-norm>0</slat-pos-norm>
+        <left-speedbrake-pos-norm>0</left-speedbrake-pos-norm>
+        <right-speedbrake-pos-norm>0</right-speedbrake-pos-norm>
+    </surface-positions>
+
+    <systems>
+        <AC>
+            <system>
+                <position-norm type="float">0</position-norm>
+                <acext-freq>400</acext-freq>
+            </system>
+        </AC>
+        <DC>
+        </DC>
+        <electrical>
+            <!-->Compatibility mapping</!-->
+            <outputs>
+                <adf alias="/systems/DC/outputs/transponder1" />
+                <dme alias="/systems/DC/outputs/dme1" />
+                <efis alias="/systems/DC/outputs/efis" />
+                <fuel-pump alias="/systems/DC/outputs/fuel-pump-left" />
+                <fuel-pump alias="/systems/DC/outputs/fuel-pump-right" />
+                <gps alias="/systems/DC/outputs/gps1" />
+                <!-- CRJ has a EGPWS (enhanced gnd. prox. warning sys. using AC 115V; mk-viii needs DC
+                    <mk-viii alias="/systems/AC/outputs/egpws" />
+                <mk-viii alias="/systems/DC/outputs/radio-altimeter1" /> -->
+                <nav alias="/systems/DC/outputs/vhf-nav1" />
+                <panel-lights alias="/systems/AC/outputs/center-panel-int-lights" />
+                <transponder alias="/systems/DC/outputs/transponder1" />
+            </outputs>
+        </electrical>
+        <fuel>
+            <imbalance type="bool">0</imbalance>
+            <boost-pump n="0">
+                <running type="bool">false</running>
+                <selected type="bool">false</selected>
+                <serviceable type="bool">true</serviceable>
+            </boost-pump>
+            <boost-pump n="1">
+                <running type="bool">false</running>
+                <selected type="bool">false</selected>
+                <serviceable type="bool">true</serviceable>
+            </boost-pump>
+            <circuit n="0">
+                <name>Left circuit</name>
+                <powered type="bool">false</powered>
+            </circuit>
+            <circuit n="1">
+                <name>Right circuit</name>
+                <powered type="bool">false</powered>
+            </circuit>
+            <gravity-xflow>
+                <open type="bool">0</open>
+                <serviceable type="bool">1</serviceable>
+            </gravity-xflow>
+            <xflow-pump>
+                <serviceable type="bool">true</serviceable>
+                <running type="int">0</running>
+                <inop type="bool">false</inop>
+            </xflow-pump>
+        </fuel>
+        <hydraulic>
+            <system>
+                <name>Hydraulic1</name>
+                <update-enabled type="bool">true</update-enabled>
+                <pump-a-serviceable type="bool">true</pump-a-serviceable>
+                <pump-b-serviceable type="bool">true</pump-b-serviceable>
+                <pump-a-running type="int">false</pump-a-running>
+                <pump-b-running type="bool">false</pump-b-running>
+                <value type="int">0</value>
+                <temperature-degc type="int">50</temperature-degc>
+                <quantity-percent type="int">60</quantity-percent>
+            </system>
+            <system>
+                <name>Hydraulic2</name>
+                <update-enabled type="bool">true</update-enabled>
+                <pump-a-serviceable type="bool">true</pump-a-serviceable>
+                <pump-b-serviceable type="bool">true</pump-b-serviceable>
+                <pump-a-running type="int">false</pump-a-running>
+                <pump-b-running type="bool">false</pump-b-running>
+                <value type="int">0</value>
+                <temperature-degc type="int">50</temperature-degc>
+                <quantity-percent type="int">60</quantity-percent>
+            </system>
+            <system>
+                <name>Hydraulic3</name>
+                <update-enabled type="bool">true</update-enabled>
+                <pump-a-serviceable type="bool">true</pump-a-serviceable>
+                <pump-b-serviceable type="bool">true</pump-b-serviceable>
+                <pump-a-running type="bool">false</pump-a-running>
+                <pump-b-running type="bool">false</pump-b-running>
+                <value type="int">0</value>
+                <temperature-degc type="int">50</temperature-degc>
+                <quantity-percent type="int">60</quantity-percent>
+            </system>
+            <outputs>
+                <rudder type="bool">true</rudder>
+                <elevator type="bool">true</elevator>
+                <!-- due to current yasim model only aileron - no left/right -->
+                <aileron type="bool">true</aileron>
+                <!--
+                    <left-aileron type="bool">true</left-aileron>
+                    <right-aileron type="bool">true</right-aileron>
+                -->
+                <left-reverser type="bool">true</left-reverser>
+                <right-reverser type="bool">true</right-reverser>
+                <ob-spoileron type="bool">true</ob-spoileron>
+                <ob-flight-spoiler type="bool">true</ob-flight-spoiler>
+                <ob-ground-spoiler type="bool">true</ob-ground-spoiler>
+                <ib-spoileron type="bool">true</ib-spoileron>
+                <ib-flight-spoiler type="bool">true</ib-flight-spoiler>
+                <ib-ground-spoiler type="bool">true</ib-ground-spoiler>
+                <ob-brakes type="bool">true</ob-brakes>
+                <ib-brakes type="bool">true</ib-brakes>
+                <landing-gear type="bool">true</landing-gear>
+                <landing-gear-alt type="bool">true</landing-gear-alt>
+                <nwsteering type="bool">true</nwsteering>
+            </outputs>
+        </hydraulic>
+        <pneumatic>
+            <pressure-left type="bool">false</pressure-left>
+            <pressure-right type="bool">false</pressure-right>
+            <hp-ground-supply type="bool">false</hp-ground-supply>
+            <cowl-ai-valve-left type="bool">false</cowl-ai-valve-left>
+            <cowl-ai-valve-right type="bool">false</cowl-ai-valve-right>
+            <ats-left type="bool">false</ats-left>
+            <ats-right type="bool">false</ats-right>
+            <sov0 type="bool">false</sov0>
+            <sov1 type="bool">false</sov1>
+            <sov2 type="bool">false</sov2>
+            <sov3 type="bool">false</sov3>
+            <sov4 type="bool">false</sov4>
+            <leak-left type="bool">false</leak-left>
+            <leak-right type="bool">false</leak-right>
+        </pneumatic>
+        <stab-trim>
+            <mcu>
+                <serviceable type="bool">1</serviceable>
+                <engaged type="bool">1</engaged>
+            </mcu>
+            <mcu>
+                <serviceable type="bool">1</serviceable>
+                <engaged type="bool">1</engaged>
+            </mcu>
+            <engaged type="bool">1</engaged>
+        </stab-trim>
+    </systems>
+
+    <nasal>
+        <fuel>
            <file>Nasal/CRJ700-fuel.nas</file>
-		</fuel>
-		
+        </fuel>
         <raas>
             <file>Nasal/raas.nas</file>
-		</raas>
-		<interactive_cdu>
-			<file>Nasal/cdu.nas</file>
-		</interactive_cdu>
-		<CRJ700>
-			<file>Nasal/runway.nas</file>
-			<file>Nasal/classes.nas</file>
-			<file>Nasal/engine.nas</file>
-			
-			<file>Nasal/wiper.nas</file>
-			<file>Nasal/doors.nas</file>
-			<file>Nasal/effects.nas</file>
-			<file>Nasal/lightmaps.nas</file>
-			<file>Nasal/electrical.nas</file>
-			<file>Nasal/hydraulic.nas</file>
-			<file>Nasal/instrumentation.nas</file>
-			
-			<file>Nasal/multiplayer.nas</file>
-			<file>Nasal/vnav.nas</file>
-			<file>Nasal/gui-dialogs.nas</file>
-			<file>Nasal/master.nas</file>
-		</CRJ700>
-		<controls>
-			<file>Nasal/controls.nas</file>
-		</controls>
-		<walk>
-			<file>Nasal/walk.nas</file>
-		</walk>
-		<!-- Dual control -->
-		<dual_control_tools>
-			<file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
-		</dual_control_tools>
-		<aircraft_dual_control>
-			<file>Nasal/CRJ700-dual-control.nas</file>
-		</aircraft_dual_control>
-		<dual_control>
-			<file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
-		</dual_control>
-	</nasal>
-	
+        </raas>
+        <interactive_cdu>
+            <file>Nasal/cdu.nas</file>
+        </interactive_cdu>
+        <CRJ700>
+            <file>Nasal/runway.nas</file>
+            <file>Nasal/classes.nas</file>
+            <file>Nasal/engine.nas</file>
+
+            <file>Nasal/wiper.nas</file>
+            <file>Nasal/doors.nas</file>
+            <file>Nasal/effects.nas</file>
+            <file>Nasal/lightmaps.nas</file>
+            <file>Nasal/electrical.nas</file>
+            <file>Nasal/hydraulic.nas</file>
+            <file>Nasal/instrumentation.nas</file>
+            <file>Nasal/autopilot.nas</file>
+            <file>Nasal/als-lights.nas</file>
+
+            <file>Nasal/multiplayer.nas</file>
+            <file>Nasal/vnav.nas</file>
+            <file>Nasal/gui-dialogs.nas</file>
+            <file>Nasal/master.nas</file>
+            <file>Nasal/crj700-modules.nas</file>
+        </CRJ700>
+        <controls>
+            <file>Nasal/controls.nas</file>
+        </controls>
+        <walk>
+            <file>Nasal/walk.nas</file>
+        </walk>
+        <!-- Dual control -->
+        <dual_control_tools>
+            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+        </dual_control_tools>
+        <aircraft_dual_control>
+            <file>Nasal/CRJ700-dual-control.nas</file>
+        </aircraft_dual_control>
+        <dual_control>
+            <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+        </dual_control>
+    </nasal>
+
 </PropertyList>

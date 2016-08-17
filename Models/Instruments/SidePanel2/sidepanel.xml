@@ -4,269 +4,266 @@
 <!-- Side panel 2 -->
 
 <PropertyList>
+    <path>sidepanel.ac</path>
 
-	<path>sidepanel.ac</path>
+    <params>
+        <lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+        <lightmap-factor />
+        <wiper />
+        <display-lights />
+        <panel-lights />
+        <flood-lights />
+    </params>
 
-	<params>
-		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
-		<wiper>controls/anti-ice/wiper</wiper>
-	</params>
+    <panel-marking-emit>
+        <red>1</red>
+        <green>0.871</green>
+        <blue>0.427</blue>
+    </panel-marking-emit>
 
-	<panel-marking-emit>
-		<red>1</red>
-		<green>0.871</green>
-		<blue>0.427</blue>
-	</panel-marking-emit>
+    <!-- non-emitting elements (for dome light animation) -->
+    <animation>
+        <name>Sidepanel2Elements</name>
+        <object-name>Panel</object-name>
+        <object-name>DisplayLts</object-name>
+        <object-name>FloodLts</object-name>
+        <object-name>FloorLts</object-name>
+        <object-name>Markings</object-name>
+        <object-name>Panel</object-name>
+        <object-name>PanelLts</object-name>
+        <object-name>StallProtect</object-name>
+        <object-name>SwitchSockets</object-name>
+        <object-name>Wiper</object-name>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>Markings</object-name>
+        <condition>
+            <greater-than-equals>
+                <property alias="/params/powerN" />
+                <value>105</value>
+            </greater-than-equals>
+        </condition>
+        <emission>
+            <red alias="/panel-marking-emit/red" />
+            <green alias="/panel-marking-emit/green" />
+            <blue alias="/panel-marking-emit/blue" />
+            <factor-prop alias="/params/panel-lights" />
+        </emission>
+    </animation>
 
-	<!-- Visible only within 1/2 km -->
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>500</max-m>
-	</animation>
-	<!-- non-emitting elements (for dome light animation) -->
-	<animation>
-		<name>Sidepanel2Elements</name>
-		<object-name>Panel</object-name>
-		<object-name>DisplayLts</object-name>
-		<object-name>FloodLts</object-name>
-		<object-name>FloorLts</object-name>
-		<object-name>Markings</object-name>
-		<object-name>Panel</object-name>
-		<object-name>PanelLts</object-name>
-		<object-name>StallProtect</object-name>
-		<object-name>SwitchSockets</object-name>
-		<object-name>Wiper</object-name>
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>Markings</object-name>
-		<condition>
-			<greater-than-equals>
-				<property alias="../../../../params/powerN" />
-				<value>105</value>
-			</greater-than-equals>
-		</condition>
-		<emission>
-			<red alias="../../../panel-marking-emit/red" />
-			<green alias="../../../panel-marking-emit/green" />
-			<blue alias="../../../panel-marking-emit/blue" />
-			<factor-prop>controls/lighting/panel-norm</factor-prop>
-		</emission>
-	</animation>
+    <!-- Lighting -->
+    <animation>
+        <type>pick</type>
+        <object-name>DisplayLts</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/display-lights" />
+                <step>0.05</step>
+                <max>1</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/display-lights" />
+                <step>-0.05</step>
+                <min>0.1</min>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>DisplayLts</object-name>
+        <property alias="/params/display-lights" />
+        <interpolation>
+            <entry><ind>0</ind><dep>140</dep></entry>
+            <entry><ind>1</ind><dep>-140</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.05341</y-m>
+            <z-m>0.03543</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>PanelLts</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/panel-lights" />
+                <step>0.05</step>
+                <max>1</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/panel-lights" />
+                <step>-0.05</step>
+                <min>0.1</min>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>PanelLts</object-name>
+        <property alias="/params/panel-lights" />
+        <interpolation>
+            <entry><ind>0</ind><dep>140</dep></entry>
+            <entry><ind>1</ind><dep>-140</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.01717</y-m>
+            <z-m>0.03543</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>FloodLts</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/flood-lights" />
+                <step>0.05</step>
+                <max>1</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/flood-lights" />
+                <step>-0.05</step>
+                <min>0</min>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>FloodLts</object-name>
+        <property alias="/params/flood-lights" />
+        <interpolation>
+            <entry><ind>0</ind><dep>140</dep></entry>
+            <entry><ind>1</ind><dep>-140</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.01907</y-m>
+            <z-m>0.03543</z-m>
+        </center>
+    </animation>
 
-	<!-- Lighting -->
-	<animation>
-		<type>pick</type>
-		<object-name>DisplayLts</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/display-norm</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/display-norm</property>
-				<step>-0.05</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>DisplayLts</object-name>
-		<property>controls/lighting/display-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>140</dep></entry>
-			<entry><ind>1</ind><dep>-140</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.05341</y-m>
-			<z-m>0.03543</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>PanelLts</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-norm</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-norm</property>
-				<step>-0.05</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>PanelLts</object-name>
-		<property>controls/lighting/panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>140</dep></entry>
-			<entry><ind>1</ind><dep>-140</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.01717</y-m>
-			<z-m>0.03543</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>FloodLts</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-flood-norm</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-flood-norm</property>
-				<step>-0.05</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>FloodLts</object-name>
-		<property>controls/lighting/panel-flood-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>140</dep></entry>
-			<entry><ind>1</ind><dep>-140</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.01907</y-m>
-			<z-m>0.03543</z-m>
-		</center>
-	</animation>
+    <!-- Wiper -->
+    <animation>
+        <type>pick</type>
+        <object-name>Wiper</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/wiper" />
+                <step>1</step>
+                <max>3</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property alias="/params/wiper" />
+                <step>-1</step>
+                <min>0</min>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Wiper</object-name>
+        <property alias="/params/wiper" />
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>-27</dep></entry>
+            <entry><ind>2</ind><dep>-54</dep></entry>
+            <entry><ind>3</ind><dep>-90</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.04304</y-m>
+            <z-m>-0.04106</z-m>
+        </center>
+    </animation>
 
-	<!-- Wiper -->
-	<animation>
-		<type>pick</type>
-		<object-name>Wiper</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/wiper" />
-				<step>1</step>
-				<max>3</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property alias="../../../../params/wiper" />
-				<step>-1</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Wiper</object-name>
-		<property alias="../../params/wiper" />
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-27</dep></entry>
-			<entry><ind>2</ind><dep>-54</dep></entry>
-			<entry><ind>3</ind><dep>-90</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.04304</y-m>
-			<z-m>-0.04106</z-m>
-		</center>
-	</animation>
-
-	<!-- Lightmaps -->
-	<effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image alias="../../../../params/lightmap-texture-path" />
-			</texture>
-		</parameters>
-		<object-name>Panel</object-name>
-	</effect>
-	
-	<!-- Rembrandt !! -->
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Markings</object-name>
-	</effect>
+    <!-- Lightmaps -->
+    <effect>
+        <inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+        <parameters>
+            <lightmap-factor-prop alias="/params/lightmap-factor" />
+            <lightmap-factor n="0">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="1">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="2">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <texture n="3">
+                <image alias="/params/lightmap-texture-path" />
+            </texture>
+        </parameters>
+        <object-name>Panel</object-name>
+    </effect>
+    
+    <!-- Rembrandt !! -->
+    <effect>
+        <name>REMBRANDT transparency</name>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Markings</object-name>
+    </effect>
 
 </PropertyList>

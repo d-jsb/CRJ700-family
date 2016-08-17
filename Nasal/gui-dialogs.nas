@@ -5,6 +5,7 @@ var dialogs = {
     apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", aircraft_path~"autopilot-dev-dlg.xml"),
     autopilot: gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", aircraft_path~"autopilot-dlg.xml"),
     autothrottle: gui.Dialog.new("sim/gui/dialogs/autothrottle/dialog", aircraft_path~"autothrottle-dlg.xml"),
+    canvas_nd: gui.Dialog.new("sim/gui/dialogs/canvas-nd/dialog", aircraft_path~"canvas-nd.xml"),
     config: gui.Dialog.new("sim/gui/dialogs/config-crj700/dialog", aircraft_path~"config-dlg.xml"),
     debug: gui.Dialog.new("sim/gui/dialogs/debug/dialog", aircraft_path~"debug-dlg.xml"),
     developer: gui.Dialog.new("sim/gui/dialogs/developer/dialog", aircraft_path~"developer-dlg.xml"),

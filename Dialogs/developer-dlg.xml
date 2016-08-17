@@ -66,6 +66,20 @@
 					<dialog-name>apdev</dialog-name>
 				</binding>
 			</button>
+            <button>
+                <legend>Batt.</legend>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/electric/battery-switch</property>
+                </binding>
+            </button>            
+            <button>
+                <legend>AC gndsrv.</legend>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/electric/ac-service-selected</property>
+                </binding>
+            </button>
 		</group>
 		<group>
 			<layout>hbox</layout>

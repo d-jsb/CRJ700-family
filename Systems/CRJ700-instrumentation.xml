@@ -49,6 +49,7 @@ file, these values will be used (they are hardcoded).
 		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
 		<static-pressure>/systems/static/pressure-inhg</static-pressure>
 	</airspeed-indicator>
+    <!-- for standby instrument -->
     <airspeed-indicator>
 		<name>airspeed-indicator</name>
 		<number>2</number>
@@ -70,6 +71,7 @@ file, these values will be used (they are hardcoded).
 		<quantum>0</quantum>
 		<tau>0</tau>
 	</altimeter>
+    <!-- for standby instrument -->
     <altimeter>
 		<name>altimeter</name>
 		<number>2</number>
@@ -88,6 +90,7 @@ file, these values will be used (they are hardcoded).
 		<number>1</number>
 		<suction>/systems/vacuum/suction-inhg</suction>
 	</attitude-indicator>
+    <!-- for standby instrument -->
     <attitude-indicator>
 		<name>attitude-indicator</name>
 		<number>2</number>

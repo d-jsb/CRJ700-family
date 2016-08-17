@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    CRJ700-stab-trim.xml - stabilizer trim system
+
+    This file is included in CRJ700-main.xml as <property-rules>, e.g.
+    property rules in this file will be run once per frame.
+-->
+
+<PropertyList>
+    <logic>
+        <name>hstab ch1 engaged</name>
+        <input>
+            <and>
+                <greater-than-equals>
+                    <property>/systems/AC/outputs/pitch-trim1</property>
+                    <value>105</value>
+                </greater-than-equals>
+                <property>controls/stab-trim/ch1-engage</property>
+                <property>systems/stab-trim/mcu[0]/serviceable</property>
+            </and>
+        </input>
+        <output>/systems/stab-trim/mcu[0]/engaged</output>
+    </logic>
+    <logic>
+        <name>hstab ch1 engaged</name>
+        <input>
+            <and>
+                <or>
+                    <greater-than-equals>
+                        <property>/systems/AC/outputs/pitch-trim2-1</property>
+                        <value>105</value>
+                    </greater-than-equals>
+                    <greater-than-equals>
+                        <property>/systems/AC/outputs/pitch-trim2-2</property>
+                        <value>105</value>
+                    </greater-than-equals>
+                </or>
+                <property>controls/stab-trim/ch2-engage</property>
+                <property>systems/stab-trim/mcu[1]/serviceable</property>
+            </and>
+        </input>
+        <output>/systems/stab-trim/mcu[1]/engaged</output>
+    </logic>
+    <logic>
+        <name>hstab engaged</name>
+        <input>
+            <or>
+                <property>/systems/stab-trim/mcu[0]/engaged</property>
+                <property>/systems/stab-trim/mcu[1]/engaged</property>
+            </or>
+        </input>
+        <output>/systems/stab-trim/engaged</output>
+    </logic>
+    <!-- FG < v2018.1 do not support hstab trim, so we fake it -->
+    <filter>
+        <name>hstab surface animation and legacy trim</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>controls/flight/hstab-trim</property>
+                    <value>1</value>
+                </greater-than-equals>
+            </condition>
+            <expression>
+                <prod>
+                    <sum>
+                        <property>controls/flight/elevator-trim</property>
+                        <value>0.8</value>
+                    </sum>
+                    <value>-0.1309</value>
+                </prod>
+            </expression>
+        </input>
+        <input>
+            <property>surface-positions/hstab-yasim-rad</property>
+        </input>
+        <output>surface-positions/hstab-rad</output>
+    </filter>
+    <!-- 
+        hstab sensor read out 
+        map leading edge[+2,-13]deg to [15,0]trim units 
+    -->
+    <filter>
+        <name>eicas-hstab-trim-units</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <difference>
+                    <value>2</value>
+                    <product>
+                        <property>surface-positions/hstab-rad</property>
+                        <value>57.29578</value>
+                    </product>
+                </difference>
+            </expression>
+        </input>
+        <output>instrumentation/eicas/hstab-trim</output>
+    </filter>
+</PropertyList>

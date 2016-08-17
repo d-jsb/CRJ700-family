@@ -4,258 +4,256 @@
 <!-- Radio panel -->
 
 <PropertyList>
-	<path>radiopanel.ac</path>
-
-	<colors>
-		<blue>
-			<red>0.349</red>
-			<green>0.767</green>
-			<blue>0.808</blue>
-		</blue>
-		<green>
-			<red>0.133</red>
-			<green>0.663</green>
-			<blue>0.145</blue>
-		</green>
-		<yellow>
-			<red>1</red>
-			<green>1</green>
-			<blue>0</blue>
-		</yellow>
-		<white>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</white>
-	</colors>
-	<panel-marking-emit>
-		<red>1</red>
-		<green>0.871</green>
-		<blue>0.427</blue>
-	</panel-marking-emit>
-	<button-press>0.0025</button-press>
-	<params>
-		<fontsize-label-l>0.0065</fontsize-label-l>
-		<fontsize-label-s>0.005</fontsize-label-s>
-		<fontsize-readout>0.0075</fontsize-readout>
-		<fontsize-s>0.0055</fontsize-s>
-		<line1>0.07312</line1>
-		<line2>0.066</line2>
-		<line3>0.059</line3>
-		<line4>0.053</line4>
-		<line4a>0.0508</line4a>
-		<line5>0.045</line5>
-		<line6>0.039</line6>
-	</params>
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>5</max-m>
-	</animation>
-	<!-- non-emitting elements (for dome light animation) -->
-	<animation>
-		<name>RadioPanelElements</name>
-		<object-name>1/2</object-name>
-		<object-name>ADF1</object-name>
-		<object-name>ADF2</object-name>
-		<object-name>BigKnob</object-name>
-		<object-name>Display</object-name>
-		<object-name>DME-H</object-name>
-		<object-name>DontWork</object-name>
-		<object-name>Emergency</object-name>
-		<object-name>Ident</object-name>
-		<object-name>L1</object-name>
-		<object-name>L2</object-name>
-		<object-name>L3</object-name>
-		<object-name>L4</object-name>
-		<object-name>Mask</object-name>
-		<object-name>NAV1</object-name>
-		<object-name>NAV2</object-name>
-		<object-name>Panel</object-name>
-		<object-name>R1</object-name>
-		<object-name>R2</object-name>
-		<object-name>R3</object-name>
-		<object-name>R4</object-name>
-		<object-name>RadioKnob</object-name>
-		<object-name>RT-IC</object-name>
-		<object-name>SmallKnob</object-name>
-		<object-name>SwitchSockets</object-name>
-		<object-name>Voice</object-name>		
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>Markings</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/AC/outputs/center-panel-int-lights</property>
-				<value>105</value>
-			</greater-than-equals>
-		</condition>
-		<emission>
-			<red alias="../../../panel-marking-emit/red" />
-			<green alias="../../../panel-marking-emit/green" />
-			<blue alias="../../../panel-marking-emit/blue" />
-			<factor-prop>controls/lighting/panel-norm</factor-prop>
-		</emission>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>NAV1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/nav[0]/volume</property>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>NAV1</object-name>
-		<property>instrumentation/nav[0]/volume</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>45</dep></entry>
-			<entry><ind>1</ind><dep>-135</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.0465</y-m>
-			<z-m>-0.04205</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>NAV2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/nav[1]/volume</property>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>NAV2</object-name>
-		<property>instrumentation/nav[1]/volume</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>45</dep></entry>
-			<entry><ind>1</ind><dep>-135</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.03227</y-m>
-			<z-m>-0.04205</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>ADF1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/adf[0]/volume-norm</property>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>ADF1</object-name>
-		<property>instrumentation/adf[0]/volume-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>45</dep></entry>
-			<entry><ind>1</ind><dep>-135</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.03405</y-m>
-			<z-m>-0.01948</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>ADF2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/adf[1]/volume-norm</property>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>ADF2</object-name>
-		<property>instrumentation/adf[1]/volume-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>45</dep></entry>
-			<entry><ind>1</ind><dep>-135</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.0484</y-m>
-			<z-m>-0.01948</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>DME-H text</object-name>
-		<ambient>
-			<red alias="../../../colors/yellow/red" />
-			<green alias="../../../colors/yellow/green" />
-			<blue alias="../../../colors/yellow/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/yellow/red" />
-			<green alias="../../../colors/yellow/green" />
-			<blue alias="../../../colors/yellow/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/yellow/red" />
-			<green alias="../../../colors/yellow/green" />
-			<blue alias="../../../colors/yellow/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>	
-	<!-- Rembrandt !! -->
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Markings</object-name>
-	</effect>
-
+    <path>radiopanel.ac</path>
+    <params>
+        <fontsize-label-l>0.0065</fontsize-label-l>
+        <fontsize-label-s>0.005</fontsize-label-s>
+        <fontsize-readout>0.0075</fontsize-readout>
+        <fontsize-s>0.0055</fontsize-s>
+        <line1>0.07312</line1>
+        <line2>0.066</line2>
+        <line3>0.059</line3>
+        <line4>0.053</line4>
+        <line4a>0.0508</line4a>
+        <line5>0.045</line5>
+        <line6>0.039</line6>
+        <lightmap-factor />
+        <panel-lights />
+        <display-norm />
+        <powerN />
+    </params>
+    <colors>
+        <blue>
+            <red>0.349</red>
+            <green>0.767</green>
+            <blue>0.808</blue>
+        </blue>
+        <green>
+            <red>0.133</red>
+            <green>0.663</green>
+            <blue>0.145</blue>
+        </green>
+        <yellow>
+            <red>1</red>
+            <green>1</green>
+            <blue>0</blue>
+        </yellow>
+        <white>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+        </white>
+    </colors>
+    <panel-marking-emit>
+        <red>1</red>
+        <green>0.871</green>
+        <blue>0.427</blue>
+    </panel-marking-emit>
+    <button-press>0.0025</button-press>
+    <!-- non-emitting elements (for dome light animation) -->
+    <animation>
+        <name>RadioPanelElements</name>
+        <object-name>1/2</object-name>
+        <object-name>ADF1</object-name>
+        <object-name>ADF2</object-name>
+        <object-name>BigKnob</object-name>
+        <object-name>Display</object-name>
+        <object-name>DME-H</object-name>
+        <object-name>DontWork</object-name>
+        <object-name>Emergency</object-name>
+        <object-name>Ident</object-name>
+        <object-name>L1</object-name>
+        <object-name>L2</object-name>
+        <object-name>L3</object-name>
+        <object-name>L4</object-name>
+        <object-name>Mask</object-name>
+        <object-name>NAV1</object-name>
+        <object-name>NAV2</object-name>
+        <object-name>Panel</object-name>
+        <object-name>R1</object-name>
+        <object-name>R2</object-name>
+        <object-name>R3</object-name>
+        <object-name>R4</object-name>
+        <object-name>RadioKnob</object-name>
+        <object-name>RT-IC</object-name>
+        <object-name>SmallKnob</object-name>
+        <object-name>SwitchSockets</object-name>
+        <object-name>Voice</object-name>        
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>Markings</object-name>
+        <condition>
+            <greater-than-equals>
+                <property>systems/AC/outputs/center-panel-int-lights</property>
+                <value>105</value>
+            </greater-than-equals>
+        </condition>
+        <emission>
+            <red alias="../../../panel-marking-emit/red" />
+            <green alias="../../../panel-marking-emit/green" />
+            <blue alias="../../../panel-marking-emit/blue" />
+            <factor-prop>controls/lighting[2]/panel-norm</factor-prop>
+        </emission>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>NAV1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>instrumentation/nav[0]/volume</property>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>NAV1</object-name>
+        <property>instrumentation/nav[0]/volume</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>45</dep></entry>
+            <entry><ind>1</ind><dep>-135</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.0465</y-m>
+            <z-m>-0.04205</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>NAV2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>instrumentation/nav[1]/volume</property>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>NAV2</object-name>
+        <property>instrumentation/nav[1]/volume</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>45</dep></entry>
+            <entry><ind>1</ind><dep>-135</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.03227</y-m>
+            <z-m>-0.04205</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ADF1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>instrumentation/adf[0]/volume-norm</property>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ADF1</object-name>
+        <property>instrumentation/adf[0]/volume-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>45</dep></entry>
+            <entry><ind>1</ind><dep>-135</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.03405</y-m>
+            <z-m>-0.01948</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ADF2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>instrumentation/adf[1]/volume-norm</property>
+                <value>1</value>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ADF2</object-name>
+        <property>instrumentation/adf[1]/volume-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>45</dep></entry>
+            <entry><ind>1</ind><dep>-135</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.0484</y-m>
+            <z-m>-0.01948</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>DME-H text</object-name>
+        <ambient>
+            <red alias="../../../colors/yellow/red" />
+            <green alias="../../../colors/yellow/green" />
+            <blue alias="../../../colors/yellow/blue" />
+        </ambient>
+        <diffuse>
+            <red alias="../../../colors/yellow/red" />
+            <green alias="../../../colors/yellow/green" />
+            <blue alias="../../../colors/yellow/blue" />
+        </diffuse>
+        <emission>
+            <red alias="../../../colors/yellow/red" />
+            <green alias="../../../colors/yellow/green" />
+            <blue alias="../../../colors/yellow/blue" />
+            <factor-prop alias="/params/display-norm"/>
+        </emission>
+    </animation>    
+    <!-- Rembrandt !! -->
+    <effect>
+        <name>REMBRANDT transparency</name>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Markings</object-name>
+    </effect>
+    
 </PropertyList>

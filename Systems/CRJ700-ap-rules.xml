@@ -1,396 +1,287 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-	Property-rules run only at frame rate, while autopilot rules run at (higher) 
-	FDM rate. If high precision is not needed, use this property-rules file.
-	What is what depends on how the files are included in CRJ700-main.xml
+    CRJ700-ap-rules.xml - Bombardier CRJ700 series autopilot configuration
+
+    This file is included in CRJ700-main.xml as <property-rule>, e.g.
+    property rules in this file will run at frame rate, which is lower than FDM
+    rate.
+    What to put in this file:
+    - Things that depend on an often changing input or multiple inputs but
+      output is not used as input for AP controllers, e.g. annunciators
+
+    see also:
+    - CRJ700-autopilot.xml for rules that run at FDM rate (higher precision)
+    - Nasal/autopilot.nas for handling of MCP switches, logic etc.
 -->
 <PropertyList>
-	<!-- output properties not directly used in AP controllers -->
-	<filter>
-		<name>Altitude preselect deviation</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>controls/autoflight/altitude-select</property>
-			<offset>
-				<property>instrumentation/altimeter[0]/indicated-altitude-ft</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>autopilot/internal/alts-error-ft</output>
-	</filter>
-	<logic>
-		<name>Altitude alert threshold</name>
-		<input>
-			<and>
-				<not-equals>
-					<property>controls/autoflight/vert-mode</property>
-					<value>3</value>
-				</not-equals>
-				<less-than>
-					<property>autopilot/internal/alts-error-ft</property>
-					<value>900</value>
-				</less-than>
-				<greater-than>
-					<property>autopilot/internal/alts-error-ft</property>
-					<value>-900</value>
-				</greater-than>
-			</and>
-		</input>
-		<output>autopilot/internal/alts-threshold</output>
-	</logic>
-	<logic>
-		<name>Altitude capture</name>
-		<input>
-			<and>
-				<less-than>
-					<property>autopilot/internal/alts-error-ft</property>
-					<value>200</value>
-				</less-than>
-				<greater-than>
-					<property>autopilot/internal/alts-error-ft</property>
-					<value>-200</value>
-				</greater-than>
-			</and>
-		</input>
-		<output>autopilot/internal/alts-capture</output>
-	</logic>
-	<logic>
-		<name>ALTS arm</name>
-		<input>
-			<and>
-				<not-equals>
-					<property>controls/autoflight/vert-mode</property>
-					<value>5</value>
-				</not-equals>
-				<or>
-					<not>
-						<property>autopilot/internal/alts-capture</property>
-					</not>
-					<and>
-						<property>autopilot/internal/alts-capture</property>
-						<equals>
-							<property>controls/autoflight/vert-mode</property>
-							<value>1</value>
-						</equals>
-					</and>
-				</or>
-			</and>
-		</input>
-		<output>autopilot/annunciators/vert-armed</output>
-	</logic>
-	<logic>
-		<name>MDA alert</name>
-		<input>
-			<less-than-equals>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<property>instrumentation/adc/reference/mda</property>	
-			</less-than-equals>
-		</input>
-		<output>autopilot/annunciators/mda-alert</output>
-	</logic>
-	<!-- Instrumentation stuff not used in AP controllers -->
+    <logic>
+        <name>Autopilot engaged</name>
+        <input>
+            <and>
+                <property>autopilot/autoflight-serviceable</property>
+                <property>controls/autoflight/autopilot/engage</property>
+                <greater-than>
+                    <property>systems/DC/outputs/afcs-l</property>
+                    <value>15</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/internal/autoflight-engaged</output>
+    </logic>
+    <logic>
+        <name>Flight director engaged</name>
+        <input>
+            <and>
+                <property>autopilot/flight-director-serviceable</property>
+                <property>controls/autoflight/flight-director/engage</property>
+                <greater-than>
+                    <property>systems/DC/outputs/afcs-l</property>
+                    <value>15</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/internal/flight-director-engaged</output>
+    </logic>
+    <logic>
+        <name>Autothrottle engaged</name>
+        <input>
+            <and>
+                <property>sim/config/allow-autothrottle</property>
+                <property>controls/autoflight/autothrottle-engage</property>
+                <greater-than>
+                    <property>systems/DC/outputs/afcs-l</property>
+                    <value>15</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/internal/autothrottle-engaged</output>
+    </logic>
+    <!-- output properties not directly used in AP controllers -->
     <filter>
-		<name>VOR1 heading error computer/normalizer (instrument)</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[0]/heading-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/nav[0]/heading-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
+        <name>Altitude preselect deviation</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>controls/autoflight/altitude-select</property>
+            <offset>
+                <property>instrumentation/altimeter[0]/indicated-altitude-ft</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>autopilot/internal/alts-error-ft</output>
+    </filter>
+    <logic>
+        <name>Altitude selected alert</name>
+        <input>
+            <and>
+                <not-equals>
+                    <property>controls/autoflight/vert-mode</property>
+                    <value>3</value>
+                </not-equals>
+                <less-than>
+                    <property>autopilot/internal/alts-error-ft</property>
+                    <value>900</value>
+                </less-than>
+                <greater-than>
+                    <property>autopilot/internal/alts-error-ft</property>
+                    <value>-900</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/internal/alts-alert</output>
+    </logic>
+    <logic>
+        <name>Altitude capture</name>
+        <input>
+            <and>
+                <less-than>
+                    <property>autopilot/internal/alts-error-ft</property>
+                    <value>200</value>
+                </less-than>
+                <greater-than>
+                    <property>autopilot/internal/alts-error-ft</property>
+                    <value>-200</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/internal/alts-capture</output>
+    </logic>
+    <logic>
+        <name>MDA alert</name>
+        <input>
+            <less-than-equals>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <property>instrumentation/adc/reference/mda</property>
+            </less-than-equals>
+        </input>
+        <output>autopilot/annunciators/mda-alert</output>
+    </logic>
+    
+    <!-- Instrumentation stuff not used in AP controllers -->
     <filter>
-		<name>VOR2 heading error computer/normalizer (instrument)</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[1]/heading-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/nav[1]/heading-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
+        <name>FD pitch indication</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/attitude-indicator/indicated-pitch-deg</property>
+            <offset>
+                <property>autopilot/internal/target-pitch-deg</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>instrumentation/efis/pfd[0]/fd-pitch-deg</output>
+        <period>
+            <min>-30</min>
+            <max>30</max>
+        </period>
+    </filter>
     <filter>
-		<name>ADF1 bearing error computer/normalizer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/adf[0]/indicated-bearing-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/adf[0]/indicated-bearing-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
+        <name>FD roll indication</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>autopilot/internal/target-roll-deg</property>
+        </input>
+        <output>instrumentation/efis/pfd[0]/fd-roll-deg</output>
+    </filter>
     <filter>
-		<name>ADF2 bearing error computer/normalizer</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/adf[1]/indicated-bearing-deg</property>
-			<offset>
-				<property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>instrumentation/adf[1]/indicated-bearing-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
+        <name>VOR1 heading error computer/normalizer (instrument)</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/nav[0]/heading-deg</property>
+            <offset>
+                <property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>instrumentation/nav[0]/heading-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+    </filter>
     <filter>
-		<name>Speed bug difference</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>controls/autoflight/speed-mode</property>
-					<value>0</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>controls/autoflight/speed-select</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/speed-bug-difference-kt</output>
-	</filter>
+        <name>VOR2 heading error computer/normalizer (instrument)</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/nav[1]/heading-deg</property>
+            <offset>
+                <property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>instrumentation/nav[1]/heading-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+    </filter>
     <filter>
-		<name>Mach bug difference</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>controls/autoflight/speed-mode</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/true-speed-kt</property>
-					<div>
-						<prod>
-							<property>instrumentation/airspeed-indicator/true-speed-kt</property>
-							<property>controls/autoflight/mach-select</property>
-						</prod>
-						<property>instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/mach-bug-difference-kt</output>
-	</filter>
+        <name>ADF1 bearing error computer/normalizer</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/adf[0]/indicated-bearing-deg</property>
+            <offset>
+                <property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>instrumentation/adf[0]/indicated-bearing-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+    </filter>
     <filter>
-		<name>Altitude bug difference</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<property>controls/autoflight/altitude-select</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/altitude-bug-difference-ft</output>
-	</filter>
+        <name>ADF2 bearing error computer/normalizer</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/adf[1]/indicated-bearing-deg</property>
+            <offset>
+                <property>instrumentation/heading-indicator[0]/indicated-heading-deg</property>
+                <scale>-1</scale>
+            </offset>
+        </input>
+        <output>instrumentation/adf[1]/indicated-bearing-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+    </filter>
+
     <filter>
-		<name>VNAV altitude difference</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<property>autopilot/route-manager/vnav/target-altitude-ft</property>
-				</dif>
-			</expression>
-		</input>
-		<output>autopilot/internal/vnav-difference-ft</output>
-	</filter>
-	<filter>
-		<name>Half bank disable</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>3</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>7</value>
-					</equals>
-				</or>
-			</condition>
-		</enable>
-		<input>
-			<value>0</value>
-		</input>
-		<output>controls/autoflight/half-bank</output>
-	</filter>		
-	<filter>
-		<name>Bank Limit</name>
-		<debug type="bool">false</debug>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<condition>
-				<or>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>controls/autoflight/lat-mode</property>
-						<value>7</value>
-					</equals>
-				</or>
-			</condition>
-			<value>5</value>
-		</input>
-		<input>
-			<condition>
-				<property>controls/autoflight/half-bank</property>
-			</condition>
-			<value>15</value>
-		</input>
-		<input>
-			<value>30</value>
-		</input>
-		<output>autopilot/internal/bank-limit-deg</output>
-	</filter>
-	
-<!--     <filter>
-		<name>VOR1 radial deviation</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[0]/radials/selected-deg</property>
-			<offset>
-				<property>orientation/heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>autopilot/internal/nav1-radial-deviation-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>	
-    <filter>
-		<name>VOR2 radial deviation</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/nav[1]/radials/selected-deg</property>
-			<offset>
-				<property>orientation/heading-deg</property>
-				<scale>-1</scale>
-			</offset>
-		</input>
-		<output>autopilot/internal/nav2-radial-deviation-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>	 -->
-	<logic>
-		<name>VOR1 captured</name>
-		<input>
-			<and>
-				<greater-than>
-					<property>autopilot/internal/nav1-radial-deviation-deg</property>
-					<value>-5</value>
-				</greater-than>
-				<less-than>
-					<property>autopilot/internal/nav1-radial-deviation-deg</property>
-					<value>5</value>
-				</less-than>
-			</and>
-		</input>
-		<output>autopilot/internal/vor1-captured</output>
-	</logic>
-	<logic>
-		<name>VOR2 captured</name>
-		<input>
-			<and>
-				<greater-than>
-					<property>autopilot/internal/nav2-radial-deviation-deg</property>
-					<value>-5</value>
-				</greater-than>
-				<less-than>
-					<property>autopilot/internal/nav2-radial-deviation-deg</property>
-					<value>5</value>
-				</less-than>
-			</and>
-		</input>
-		<output>autopilot/internal/vor2-captured</output>
-	</logic>	
-	<logic>
-		<name>FMS1 captured</name>
-		<input>
-			<and>
-				<greater-than>
-					<property>autopilot/internal/true-heading-error-deg</property>
-					<value>-5</value>
-				</greater-than>
-				<less-than>
-					<property>autopilot/internal/true-heading-error-deg</property>
-					<value>5</value>
-				</less-than>
-			</and>
-		</input>
-		<output>autopilot/internal/fms1-captured</output>
-	</logic>
+        <name>VNAV altitude difference</name>
+        <debug type="bool">false</debug>
+        <type>gain</type>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                    <property>autopilot/route-manager/vnav/target-altitude-ft</property>
+                </dif>
+            </expression>
+        </input>
+        <output>autopilot/internal/vnav-difference-ft</output>
+    </filter>
+
+    <logic>
+        <name>VOR1 captured</name>
+        <input>
+            <and>
+                <greater-than>
+                    <property>autopilot/internal/nav1-radial-deviation-deg</property>
+                    <value>-5</value>
+                </greater-than>
+                <less-than>
+                    <property>autopilot/internal/nav1-radial-deviation-deg</property>
+                    <value>5</value>
+                </less-than>
+            </and>
+        </input>
+        <output>autopilot/internal/vor1-captured</output>
+    </logic>
+    <logic>
+        <name>VOR2 captured</name>
+        <input>
+            <and>
+                <greater-than>
+                    <property>autopilot/internal/nav2-radial-deviation-deg</property>
+                    <value>-5</value>
+                </greater-than>
+                <less-than>
+                    <property>autopilot/internal/nav2-radial-deviation-deg</property>
+                    <value>5</value>
+                </less-than>
+            </and>
+        </input>
+        <output>autopilot/internal/vor2-captured</output>
+    </logic>
+    <logic>
+        <name>FMS1 captured</name>
+        <input>
+            <and>
+                <greater-than>
+                    <property>autopilot/internal/true-heading-error-deg</property>
+                    <value>-5</value>
+                </greater-than>
+                <less-than>
+                    <property>autopilot/internal/true-heading-error-deg</property>
+                    <value>5</value>
+                </less-than>
+            </and>
+        </input>
+        <output>autopilot/internal/fms1-captured</output>
+    </logic>
 </PropertyList>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!--
+    Copyright 2018, Daniel Meissner (daniel_hl.83@googlemail.com)
+ 
+    This file is part of the Flightgear CRJ700-family.
+
+    The Flightgear CRJ700-family is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    The Flightgear CRJ700-family is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Flightgear CRJ700-family.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<system name="Thrust Reverse">
+    <property alias="/controls/engines/engine/reverser-cmd">systems/reverser/command</property>
+    
+    <channel name="Thrust Reverse">
+    <pure_gain name="Thrust Reverse Position">
+      <input>systems/reverser/command</input>
+      <gain>2.0</gain>
+      <output>systems/reverser/reverser-pos-norm</output>
+    </pure_gain>
+
+    <kinematic name="Thrust Reverse Control Engine 0">
+      <input>systems/reverser/reverser-pos-norm</input>
+      <traverse>
+        <setting>
+          <position>0</position>
+          <time>0</time>
+        </setting>
+        <setting>
+          <position>2.0</position>
+          <time>1.0</time>
+        </setting>
+      </traverse>
+      <output>propulsion/engine[0]/reverser-angle-rad</output>
+    </kinematic>
+
+    <kinematic name="Thrust Reverse Control Engine 1">
+      <input>systems/reverser/reverser-pos-norm</input>
+      <traverse>
+        <setting>
+          <position>0</position>
+          <time>0</time>
+        </setting>
+        <setting>
+          <position>2.0</position>
+          <time>1.0</time>
+        </setting>
+      </traverse>
+      <output>propulsion/engine[1]/reverser-angle-rad</output>
+    </kinematic>
+  </channel>
+
+</system>

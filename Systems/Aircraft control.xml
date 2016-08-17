@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+
+<!--
+    Copyright 2018, Daniel Meissner (daniel_hl.83@googlemail.com)
+ 
+    This file is part of the Flightgear CRJ700-family.
+
+    The Flightgear CRJ700-family is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    The Flightgear CRJ700-family is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Flightgear CRJ700-family.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<system name="Aircraft control">
+
+    <function name="fcs/manual_trim_speed_mach">
+        <description>computes trim servo speed for manual trim dependent on mach speed</description>
+        <table>
+            <independentVar lookup="row">velocities/mach</independentVar>
+            <tableData>
+                0   1.0
+                1   0.1
+            </tableData>
+        </table>
+    </function>
+        
+    <!--<property value="0">fcs/yaw-damper-enable</property>-->
+    
+    
+  
+
+  <channel name="Pitch">
+   <summer name="Pitch Trim Sum">
+      <input>/fcs/elevator-cmd-norm</input>
+      <input>fcs/pitch-trim-cmd-norm</input>
+      <clipto>
+        <min> -1 </min>
+        <max>  1 </max>
+      </clipto>
+   </summer>
+
+   <aerosurface_scale name="Elevator Control">
+      <input>fcs/pitch-trim-sum</input>
+      <range>
+        <min> -0.321 </min>
+        <max>  0.412 </max>
+      </range>
+      <output>fcs/elevator-pos-rad</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="Elevator Normalization">
+      <input>fcs/elevator-pos-rad</input>
+      <domain>
+        <min> -0.321 </min>
+        <max>  0.412 </max>
+      </domain>
+      <range>
+        <min> -1 </min>
+        <max>  1 </max>
+      </range>
+      <output>fcs/elevator-pos-norm</output>
+   </aerosurface_scale>
+  </channel>
+
+  <channel name="Roll">
+   <summer name="Roll Trim Sum">
+      <input>/fcs/aileron-cmd-norm</input>
+      <input>fcs/roll-trim-cmd-norm</input>
+      <clipto>
+        <min> -1 </min>
+        <max>  1 </max>
+      </clipto>
+      </summer>
+
+   <aerosurface_scale name="Left Aileron Control">
+      <input>fcs/roll-trim-sum</input>
+      <range>
+        <min> -0.371 </min>
+        <max>  0.438 </max>
+      </range>
+      <output>fcs/left-aileron-pos-rad</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="Right Aileron Control">
+      <input>fcs/roll-trim-sum</input>
+      <range>
+        <min>  0.371 </min>
+        <max> -0.438 </max>
+      </range>
+      <output>fcs/right-aileron-pos-rad</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="Left Aileron Normalization">
+      <input>fcs/left-aileron-pos-rad</input>
+      <domain>
+        <min> -0.371 </min>
+        <max>  0.438 </max>
+      </domain>
+      <range>
+        <min> -1 </min>
+        <max>  1 </max>
+      </range>
+      <output>fcs/left-aileron-pos-norm</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="Right Aileron Normalization">
+      <input>fcs/right-aileron-pos-rad</input>
+      <domain>
+        <min>  0.371 </min>
+        <max> -0.438 </max>
+      </domain>
+      <range>
+        <min>  1 </min>
+        <max> -1 </max>
+      </range>
+      <output>fcs/right-aileron-pos-norm</output>
+   </aerosurface_scale>
+  </channel>
+
+  <channel name="Yaw">
+      
+      <fcs_function name="fcs/rudder_max_deg_fc">
+          <function>
+              <table>
+                  <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+                  <tableData>
+                      160	33.00
+                      170	27.44
+                      180	23.06
+                      190	19.56
+                      200	16.73
+                      210	14.42
+                      220	12.52
+                      230	10.93
+                      240	9.60
+                      250	8.48
+                      260	7.53
+                      270	6.71
+                      280	6.01
+                      290	5.40
+                      300	4.87
+                      310	4.41
+                      320	4.00
+                      <!-- y = 169326100*x^-3.044394 -->
+                  </tableData>
+              </table>
+          </function>
+      </fcs_function>
+      
+      <switch name="fcs/rudder_max_deg_switch">
+          <default value="33"/>
+          <test logic="AND" value="fcs/rudder_max_deg_fc">
+              /controls/flight/slats-cmd eq 0
+              /gear/gear[1]/wow eq 0
+              /gear/gear[2]/wow eq 0
+          </test>
+      </switch>
+        
+   <aerosurface_scale name="fcs/rudder_max_norm">
+       <input>fcs/rudder_max_deg_switch</input>
+       <domain>
+           <min>-33</min>
+           <max>33</max>
+       </domain>
+       <range>
+           <min>-1</min>
+           <max>1</max>
+       </range>
+   </aerosurface_scale>
+   
+   <pure_gain name="fcs/rudder_max_norm_neg">
+       <input>fcs/rudder_max_norm</input>
+       <gain>-1</gain>
+   </pure_gain>
+   
+   <summer name="Rudder Command Sum">
+      <input>/fcs/rudder-cmd-norm</input>
+      <input>fcs/yaw-trim-cmd-norm</input>
+      <clipto>
+        <min>  -1 </min>
+        <max>   1 </max>
+      </clipto>
+   </summer>
+   
+   <switch name="fcs/yaw-damper-enable">
+        <description>Logic for activation of yaw damper</description>
+        <default value="0" />
+        <test logic="AND" value="1">
+            /gear/gear[1]/wow eq 0
+            /gear/gear[2]/wow eq 0
+            /controls/autoflight/yaw-damper/engage eq 1
+        </test>
+        <test logic="AND" value="1">
+            /gear/gear[1]/wow eq 0
+            /gear/gear[2]/wow eq 0
+            /controls/autoflight/yaw-damper[1]/engage eq 1
+        </test>
+    </switch>
+
+   <scheduled_gain name="Yaw Damper Rate">
+      <input>velocities/r-aero-rad_sec</input>
+      <table>
+        <independentVar lookup="row">velocities/ve-kts</independentVar>
+         <tableData>
+            30     0.00
+            60     -2.00            <!-- attention: minus sign due to differrent rudder deflection direction between yasim and jsbsim model! -->
+         </tableData>
+      </table>
+      <gain>fcs/yaw-damper-enable</gain>
+   </scheduled_gain>
+
+   <summer name="Rudder Sum">
+      <input>fcs/rudder-command-sum</input>
+      <input>fcs/yaw-damper-rate</input>
+      <clipto>
+        <min> -1.1 </min>
+        <max>  1.1 </max>
+      </clipto>
+   </summer>
+
+   
+   <pure_gain name="rudder_sum_clip">
+       <input>fcs/rudder-sum</input>
+       <clipto>
+            <min>fcs/rudder_max_norm_neg</min>
+            <max>fcs/rudder_max_norm</max>
+        </clipto>
+    </pure_gain>
+   
+   <aerosurface_scale name="Rudder Control">
+      <input>fcs/rudder_sum_clip</input>
+      <domain>
+        <min> -1.1 </min>
+        <max>  1.1 </max>
+      </domain>
+      <range>
+        <min> 33 </min>    <!--0.576 rad -->
+        <max> -33 </max>     <!-- attention: minus sign on max value as opposed to min due to differrent rudder deflection direction between yasim and jsbsim model! -->
+      </range>
+      <output>fcs/rudder-pos-deg</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="Rudder Normalization">
+      <input>fcs/rudder-pos-deg</input>
+      <domain>
+        <min> 33 </min>
+        <max> -33 </max>    <!-- attention: minus sign on max value as opposed to min due to differrent rudder deflection direction between yasim and jsbsim model! -->
+      </domain>
+      <range>
+        <min> -1 </min>
+        <max>  1 </max>
+      </range>
+      <output>fcs/rudder-pos-norm</output>
+   </aerosurface_scale>
+  </channel>
+
+
+</system>

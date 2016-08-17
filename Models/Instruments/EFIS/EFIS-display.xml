@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Collins Proline 4 CRT display model
+-->
+
+<PropertyList>
+    <path>EFIS$N.ac</path>
+    <params>
+        <ScreenID>Screen</ScreenID>
+        <name>EFIS$N</name>
+        <powerN>/systems/DC/outputs/mfd1</powerN>
+        <dimN>controls/lighting/display-norm</dimN>
+        <lightmap-texture-path />
+        <lightmap-factor />
+    </params>
+    <animation>
+        <type>pick</type>
+        <object-name alias="/params/name" />
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>CRJ_EFIS.efis.displayWindow($N);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <!-- <name>PFD1</name>  -->
+        <name alias="/params/ScreenID" />
+        <object-name>EFIS_Screen</object-name>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name alias="/params/ScreenID" />
+        <condition>
+            <greater-than>
+                <property alias="/params/powerN" />
+                <value>24</value>
+            </greater-than>
+        </condition>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop alias="/params/dimN" />
+        </emission>
+    </animation>
+    <!-- Lightmaps -->
+    <effect>
+        <inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+        <parameters>
+            <lightmap-factor-prop alias="/params/lightmap-factor"/>
+            <lightmap-factor n="0">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="1">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="2">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <texture n="3">
+                <image alias="/params/lightmap-texture-path" />
+            </texture>
+        </parameters>
+        <object-name>Border</object-name>
+        <object-name>Handle</object-name>
+    </effect>
+</PropertyList>

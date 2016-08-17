@@ -4,1740 +4,1761 @@
 <!-- Control display unit -->
 
 <PropertyList>
+    <path>cdu.ac</path>
+    <params>
+        <lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
+        <panel-lights />
+        <display-norm />
+        <powerN />
+    </params>
+    <small-text-size type="float">0.006</small-text-size>
+    <large-text-size type="float">0.008</large-text-size>
+    <!-- non-emitting elements (for dome light animation) -->
+    <animation>
+        <name>CDUElements</name>
+        <object-name>Keys</object-name>
+        <object-name>+/-</object-name>
+        <object-name>.</object-name>
+        <object-name>/</object-name>
+        <object-name>0</object-name>
+        <object-name>1</object-name>
+        <object-name>2</object-name>
+        <object-name>3</object-name>
+        <object-name>4</object-name>
+        <object-name>5</object-name>
+        <object-name>6</object-name>
+        <object-name>7</object-name>
+        <object-name>8</object-name>
+        <object-name>9</object-name>
+        <object-name>A</object-name>
+        <object-name>ArrowDown</object-name>
+        <object-name>ArrowUp</object-name>
+        <object-name>B</object-name>
+        <object-name>C</object-name>
+        <object-name>CLR</object-name>
+        <object-name>D</object-name>
+        <object-name>DEL</object-name>
+        <object-name>DEP-ARR</object-name>
+        <object-name>DIR-INTC</object-name>
+        <object-name>E</object-name>
+        <object-name>EXEC</object-name>
+        <object-name>F</object-name>
+        <object-name>FIX</object-name>
+        <object-name>FPLN</object-name>
+        <object-name>G</object-name>
+        <object-name>H</object-name>
+        <object-name>HOLD</object-name>
+        <object-name>I</object-name>
+        <object-name>INDEX</object-name>
+        <object-name>J</object-name>
+        <object-name>K</object-name>
+        <object-name>L</object-name>
+        <object-name>L1</object-name>
+        <object-name>L2</object-name>
+        <object-name>L3</object-name>
+        <object-name>L4</object-name>
+        <object-name>L5</object-name>
+        <object-name>L6</object-name>
+        <object-name>LEGS</object-name>
+        <object-name>M</object-name>
+        <object-name>MDCU-MENU</object-name>
+        <object-name>MFD-ADV</object-name>
+        <object-name>MFD-DATA</object-name>
+        <object-name>MFD-MENU</object-name>
+        <object-name>MSG</object-name>
+        <object-name>N</object-name>
+        <object-name>NEXT-PAGE</object-name>
+        <object-name>O</object-name>
+        <object-name>P</object-name>
+        <object-name>PERF</object-name>
+        <object-name>PREV-PAGE</object-name>
+        <object-name>PROG</object-name>
+        <object-name>Q</object-name>
+        <object-name>R</object-name>
+        <object-name>R1</object-name>
+        <object-name>R2</object-name>
+        <object-name>R3</object-name>
+        <object-name>R4</object-name>
+        <object-name>R5</object-name>
+        <object-name>R6</object-name>
+        <object-name>RADIO</object-name>
+        <object-name>S</object-name>
+        <object-name>SEC-FPLN</object-name>
+        <object-name>SP</object-name>
+        <object-name>T</object-name>
+        <object-name>U</object-name>
+        <object-name>V</object-name>
+        <object-name>VNAV</object-name>
+        <object-name>W</object-name>
+        <object-name>X</object-name>
+        <object-name>Y</object-name>
+        <object-name>Z</object-name>
+        <object-name>Case</object-name>
+        <object-name>Display</object-name>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>Keys</object-name>
+        <condition>
+            <greater-than-equals>
+                <property>systems/AC/outputs/center-panel-int-lights</property>
+                <value>105</value>
+            </greater-than-equals>
+        </condition>
+        <emission>
+            <red>0.4</red>
+            <green>0.384</green>
+            <blue>0.171</blue>
+            <factor-prop alias="/params/panel-lights" />
+        </emission>
+    </animation>
 
-	<path>cdu.ac</path>
+    <!-- Display lines -->
+    <model>
+        <name>Line title</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/title/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>center-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/title/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/title/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/title/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.006</y-m>
+            <z-m>0.105</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line page</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/page/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>center-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/page/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/page/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/page/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.037</y-m>
+            <z-m>0.105</z-m>
+        </offsets>
+    </model>
 
-	<params>
-		<lightmap-texture-path>Aircraft/Generic/generic-lightmap.png</lightmap-texture-path>
-	</params>
-	<small-text-size type="float">0.006</small-text-size>
-	<large-text-size type="float">0.008</large-text-size>
+    <model>
+        <name>Line L1</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[0]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[0]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[0]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[0]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.088</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L2</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[1]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[1]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[1]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[1]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.082</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L3</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[2]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[2]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[2]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[2]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.075</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L4</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[3]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[3]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[3]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[3]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.069</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L5</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[4]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[4]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[4]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[4]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.062</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L6</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[5]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[5]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[5]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[5]/col[0]/color-blue-norm</blue-prop>
+                </color>
+            </params>
+            <display-norm alias="/params/display-norm"/>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.056</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L7</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[6]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[6]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[6]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[6]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.05</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L8</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[7]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[7]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[7]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[7]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.044</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L9</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[8]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[8]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[8]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[8]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.037</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L10</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[9]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[9]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[9]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[9]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.031</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L11</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[10]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[10]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[10]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[10]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.043</y-m>
+            <z-m>0.024</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L12</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[11]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[11]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[11]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[11]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0.018</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line L13</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[12]/col[0]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>left-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[12]/col[0]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[12]/col[0]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[12]/col[0]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>-0.05</y-m>
+            <z-m>0</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R1</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[0]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[0]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[0]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[0]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.088</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R2</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[1]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[1]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[1]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[1]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.082</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R3</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[2]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[2]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[2]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[2]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.075</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R4</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[3]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[3]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[3]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[3]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.069</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R5</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[4]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[4]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[4]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[4]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.062</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R6</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[5]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[5]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[5]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[5]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.056</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R7</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[6]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[6]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[6]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[6]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.05</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R8</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[7]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[7]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[7]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[7]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.044</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R9</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[8]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[8]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[8]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[8]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.037</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R10</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[9]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[9]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[9]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[9]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.031</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R11</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[10]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/small-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[10]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[10]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[10]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.043</y-m>
+            <z-m>0.024</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R12</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[11]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[11]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[11]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[11]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0.018</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Line R13</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/row[12]/col[1]/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>right-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/row[12]/col[1]/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/row[12]/col[1]/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/row[12]/col[1]/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0.05</y-m>
+            <z-m>0</z-m>
+        </offsets>
+    </model>
 
-	
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>15</max-m>
-	</animation>
-	<!-- non-emitting elements (for dome light animation) -->
-	<animation>
-		<name>CDUElements</name>
-		<object-name>Keys</object-name>
-		<object-name>+/-</object-name>
-		<object-name>.</object-name>
-		<object-name>/</object-name>
-		<object-name>0</object-name>
-		<object-name>1</object-name>
-		<object-name>2</object-name>
-		<object-name>3</object-name>
-		<object-name>4</object-name>
-		<object-name>5</object-name>
-		<object-name>6</object-name>
-		<object-name>7</object-name>
-		<object-name>8</object-name>
-		<object-name>9</object-name>
-		<object-name>A</object-name>
-		<object-name>ArrowDown</object-name>
-		<object-name>ArrowUp</object-name>
-		<object-name>B</object-name>
-		<object-name>C</object-name>
-		<object-name>CLR</object-name>
-		<object-name>D</object-name>
-		<object-name>DEL</object-name>
-		<object-name>DEP-ARR</object-name>
-		<object-name>DIR-INTC</object-name>
-		<object-name>E</object-name>
-		<object-name>EXEC</object-name>
-		<object-name>F</object-name>
-		<object-name>FIX</object-name>
-		<object-name>FPLN</object-name>
-		<object-name>G</object-name>
-		<object-name>H</object-name>
-		<object-name>HOLD</object-name>
-		<object-name>I</object-name>
-		<object-name>INDEX</object-name>
-		<object-name>J</object-name>
-		<object-name>K</object-name>
-		<object-name>L</object-name>
-		<object-name>L1</object-name>
-		<object-name>L2</object-name>
-		<object-name>L3</object-name>
-		<object-name>L4</object-name>
-		<object-name>L5</object-name>
-		<object-name>L6</object-name>
-		<object-name>LEGS</object-name>
-		<object-name>M</object-name>
-		<object-name>MDCU-MENU</object-name>
-		<object-name>MFD-ADV</object-name>
-		<object-name>MFD-DATA</object-name>
-		<object-name>MFD-MENU</object-name>
-		<object-name>MSG</object-name>
-		<object-name>N</object-name>
-		<object-name>NEXT-PAGE</object-name>
-		<object-name>O</object-name>
-		<object-name>P</object-name>
-		<object-name>PERF</object-name>
-		<object-name>PREV-PAGE</object-name>
-		<object-name>PROG</object-name>
-		<object-name>Q</object-name>
-		<object-name>R</object-name>
-		<object-name>R1</object-name>
-		<object-name>R2</object-name>
-		<object-name>R3</object-name>
-		<object-name>R4</object-name>
-		<object-name>R5</object-name>
-		<object-name>R6</object-name>
-		<object-name>RADIO</object-name>
-		<object-name>S</object-name>
-		<object-name>SEC-FPLN</object-name>
-		<object-name>SP</object-name>
-		<object-name>T</object-name>
-		<object-name>U</object-name>
-		<object-name>V</object-name>
-		<object-name>VNAV</object-name>
-		<object-name>W</object-name>
-		<object-name>X</object-name>
-		<object-name>Y</object-name>
-		<object-name>Z</object-name>
-		<object-name>Case</object-name>
-		<object-name>Display</object-name>
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>Keys</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/AC/outputs/center-panel-int-lights</property>
-				<value>105</value>
-			</greater-than-equals>
-		</condition>
-		<emission>
-			<red>0.4</red>
-			<green>0.384</green>
-			<blue>0.171</blue>
-		</emission>
-	</animation>
+    <model>
+        <name>Line input</name>
+        <path>Models/Instruments/CDU/display-text-value.xml</path>
+        <overlay>
+            <params>
+                <property>instrumentation/cdu/display/input/value</property>
+                <format>%s</format>
+                <character-size alias="/large-text-size" />
+                <alignment>center-center</alignment>
+                <color>
+                    <red-prop>instrumentation/cdu/display/input/color-red-norm</red-prop>
+                    <green-prop>instrumentation/cdu/display/input/color-green-norm</green-prop>
+                    <blue-prop>instrumentation/cdu/display/input/color-blue-norm</blue-prop>
+                </color>
+                <display-norm alias="/params/display-norm"/>
+            </params>
+        </overlay>
+        <offsets>
+            <x-m>0.0001</x-m>
+            <y-m>0</y-m>
+            <z-m>0.008</z-m>
+        </offsets>
+    </model>
 
-	<!-- Display lines -->
-	<model>
-		<name>Line title</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/title/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>center-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/title/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/title/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/title/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.006</y-m>
-			<z-m>0.105</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line page</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/page/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>center-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/page/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/page/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/page/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.037</y-m>
-			<z-m>0.105</z-m>
-		</offsets>
-	</model>
+    <animation>
+        <name>Lines</name>
+        <type>select</type>
+        <object-name>Line title</object-name>
+        <object-name>Line page</object-name>
+        <object-name>Line L1</object-name>
+        <object-name>Line L2</object-name>
+        <object-name>Line L3</object-name>
+        <object-name>Line L4</object-name>
+        <object-name>Line L5</object-name>
+        <object-name>Line L6</object-name>
+        <object-name>Line L7</object-name>
+        <object-name>Line L8</object-name>
+        <object-name>Line L9</object-name>
+        <object-name>Line L10</object-name>
+        <object-name>Line L11</object-name>
+        <object-name>Line L12</object-name>
+        <object-name>Line L13</object-name>
+        <object-name>Line R1</object-name>
+        <object-name>Line R2</object-name>
+        <object-name>Line R3</object-name>
+        <object-name>Line R4</object-name>
+        <object-name>Line R5</object-name>
+        <object-name>Line R6</object-name>
+        <object-name>Line R7</object-name>
+        <object-name>Line R8</object-name>
+        <object-name>Line R9</object-name>
+        <object-name>Line R10</object-name>
+        <object-name>Line R11</object-name>
+        <object-name>Line R12</object-name>
+        <object-name>Line R13</object-name>
+        <object-name>Line input</object-name>
+        <condition>
+            <property>sim/current-view/internal</property>
+            <greater-than-equals>
+                <property alias="/params/powerN" />
+                <value>15</value>
+            </greater-than-equals>
+        </condition>
+    </animation>
 
-	<model>
-		<name>Line L1</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[0]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[0]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[0]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[0]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.088</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L2</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[1]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[1]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[1]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[1]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.082</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L3</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[2]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[2]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[2]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[2]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.075</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L4</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[3]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[3]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[3]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[3]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.069</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L5</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[4]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[4]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[4]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[4]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.062</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L6</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[5]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[5]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[5]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[5]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.056</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L7</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[6]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[6]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[6]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[6]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.05</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L8</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[7]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[7]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[7]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[7]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.044</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L9</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[8]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[8]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[8]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[8]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.037</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L10</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[9]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[9]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[9]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[9]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.031</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L11</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[10]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[10]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[10]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[10]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.043</y-m>
-			<z-m>0.024</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L12</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[11]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[11]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[11]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[11]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0.018</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line L13</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[12]/col[0]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>left-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[12]/col[0]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[12]/col[0]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[12]/col[0]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>-0.05</y-m>
-			<z-m>0</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R1</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[0]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[0]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[0]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[0]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.088</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R2</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[1]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[1]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[1]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[1]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.082</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R3</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[2]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[2]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[2]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[2]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.075</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R4</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[3]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[3]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[3]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[3]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.069</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R5</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[4]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[4]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[4]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[4]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.062</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R6</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[5]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[5]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[5]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[5]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.056</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R7</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[6]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[6]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[6]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[6]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.05</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R8</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[7]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[7]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[7]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[7]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.044</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R9</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[8]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[8]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[8]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[8]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.037</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R10</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[9]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[9]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[9]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[9]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.031</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R11</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[10]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../small-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[10]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[10]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[10]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.043</y-m>
-			<z-m>0.024</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R12</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[11]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[11]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[11]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[11]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0.018</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>Line R13</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/row[12]/col[1]/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>right-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/row[12]/col[1]/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/row[12]/col[1]/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/row[12]/col[1]/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0.05</y-m>
-			<z-m>0</z-m>
-		</offsets>
-	</model>
+    <!-- Interactive keys -->
+    <animation>
+        <type>pick</type>
+        <object-name>L1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(1, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(3, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(5, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L4</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(7, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L5</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(9, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L6</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(11, 0);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(1, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(3, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(5, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R4</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(7, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R5</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(9, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R6</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.run_line(11, 1);
+                </script>
+            </binding>
+        </action>
+    </animation>
 
-	<model>
-		<name>Line input</name>
-		<path>Models/Instruments/CDU/display-text-value.xml</path>
-		<overlay>
-			<params>
-				<property>instrumentation/cdu/display/input/value</property>
-				<format>%s</format>
-				<character-size alias="../../../../large-text-size" />
-				<alignment>center-center</alignment>
-				<color>
-					<red-prop>instrumentation/cdu/display/input/color-red-norm</red-prop>
-					<green-prop>instrumentation/cdu/display/input/color-green-norm</green-prop>
-					<blue-prop>instrumentation/cdu/display/input/color-blue-norm</blue-prop>
-				</color>
-			</params>
-		</overlay>
-		<offsets>
-			<x-m>0.0001</x-m>
-			<y-m>0</y-m>
-			<z-m>0.008</z-m>
-		</offsets>
-	</model>
+    <animation>
+        <type>pick</type>
+        <object-name>FPLN</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("flightplan");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>INDEX</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("index");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>LEGS</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("legs-1");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>VNAV</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("vnav");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ArrowUp</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.scroll_down();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ArrowDown</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.scroll_up();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>PREV-PAGE</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.previous_page();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>NEXT-PAGE</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.next_page();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>EXEC</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    interactive_cdu.RouteManager.activate();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>RADIO</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("radio-tuning-1");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>PERF</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.go_to_page("perf");
+                </script>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<name>Lines</name>
-		<type>select</type>
-		<object-name>Line title</object-name>
-		<object-name>Line page</object-name>
-		<object-name>Line L1</object-name>
-		<object-name>Line L2</object-name>
-		<object-name>Line L3</object-name>
-		<object-name>Line L4</object-name>
-		<object-name>Line L5</object-name>
-		<object-name>Line L6</object-name>
-		<object-name>Line L7</object-name>
-		<object-name>Line L8</object-name>
-		<object-name>Line L9</object-name>
-		<object-name>Line L10</object-name>
-		<object-name>Line L11</object-name>
-		<object-name>Line L12</object-name>
-		<object-name>Line L13</object-name>
-		<object-name>Line R1</object-name>
-		<object-name>Line R2</object-name>
-		<object-name>Line R3</object-name>
-		<object-name>Line R4</object-name>
-		<object-name>Line R5</object-name>
-		<object-name>Line R6</object-name>
-		<object-name>Line R7</object-name>
-		<object-name>Line R8</object-name>
-		<object-name>Line R9</object-name>
-		<object-name>Line R10</object-name>
-		<object-name>Line R11</object-name>
-		<object-name>Line R12</object-name>
-		<object-name>Line R13</object-name>
-		<object-name>Line input</object-name>
-		<condition>
-			<!-- Instrument elements only visible inside -->
-			<and>
-				<property>sim/current-view/internal</property>
-				<greater-than-equals>
-					<property alias="../../../../../params/powerN" />
-					<value>15</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("1");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("2");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("3");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>4</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("4");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>5</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("5");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>6</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("6");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>7</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("7");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>8</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("8");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>9</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("9");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>.</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input(".");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>0</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("0");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>+/-</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.invert_input();
+                </script>
+            </binding>
+        </action>
+    </animation>
 
-	<!-- Interactive keys -->
-	<animation>
-		<type>pick</type>
-		<object-name>L1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(1, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(3, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(5, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L4</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(7, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L5</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(9, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L6</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(11, 0);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(1, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(3, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(5, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R4</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(7, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R5</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(9, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R6</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.run_line(11, 1);
-				</script>
-			</binding>
-		</action>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>A</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("A");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>B</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("B");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>C</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("C");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>D</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("D");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>E</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("E");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>F</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("F");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>G</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("G");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>H</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("H");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>I</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("I");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>J</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("J");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>K</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("K");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("L");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>M</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("M");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>N</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("N");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>O</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("O");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>P</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("P");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Q</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("Q");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("R");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>S</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("S");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>T</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("T");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>U</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("U");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>V</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("V");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>W</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("W");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>X</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("X");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Y</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("Y");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Z</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("Z");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>SP</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input(" ");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>DEL</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.delete_input();
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>/</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.input("/");
+                </script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CLR</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    CRJ700.cdu1.clear_input();
+                </script>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>FPLN</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("flightplan");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>INDEX</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("index");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>LEGS</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("legs-1");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>VNAV</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("vnav");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>ArrowUp</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.scroll_down();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>ArrowDown</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.scroll_up();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>PREV-PAGE</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.previous_page();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>NEXT-PAGE</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.next_page();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>EXEC</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					interactive_cdu.RouteManager.activate();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>RADIO</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("radio-tuning-1");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>PERF</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.go_to_page("perf");
-				</script>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("1");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("2");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("3");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>4</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("4");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>5</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("5");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>6</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("6");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>7</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("7");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>8</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("8");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>9</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("9");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>.</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input(".");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>0</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("0");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>+/-</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.invert_input();
-				</script>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>A</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("A");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>B</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("B");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>C</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("C");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>D</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("D");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>E</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("E");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>F</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("F");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>G</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("G");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>H</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("H");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>I</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("I");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>J</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("J");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>K</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("K");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("L");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>M</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("M");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>N</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("N");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>O</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("O");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>P</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("P");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>Q</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("Q");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("R");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>S</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("S");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>T</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("T");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>U</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("U");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>V</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("V");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>W</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("W");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>X</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("X");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>Y</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("Y");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>Z</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("Z");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>SP</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input(" ");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>DEL</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.delete_input();
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>/</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.input("/");
-				</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>CLR</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>
-					CRJ700.cdu1.clear_input();
-				</script>
-			</binding>
-		</action>
-	</animation>
-
-	<!-- Lightmaps -->
-	<effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image alias="../../../../params/lightmap-texture-path" />
-			</texture>
-		</parameters>
-		<object-name>Case</object-name>
-	</effect>
+    <!-- Lightmaps -->
+    <effect>
+        <inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+        <parameters>
+            <lightmap-factor-prop>sim/model/lights/panel2-lightmap</lightmap-factor-prop>
+            <lightmap-factor n="0">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="1">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="2">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <texture n="3">
+                <image alias="/params/lightmap-texture-path" />
+            </texture>
+        </parameters>
+        <object-name>Case</object-name>
+    </effect>
 
 </PropertyList>

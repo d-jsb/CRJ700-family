@@ -6,6 +6,7 @@
 <PropertyList>
 	<params>
 		<powerN>systems/DC/outputs/clock1</powerN>
+        <lightmap-factor/>        
 	</params>
 
 	<path>clock.ac</path>
@@ -22,12 +23,6 @@
 		</white>
 	</colors>
 
-	<!-- Visible only within 1/2 km -->
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>5</max-m>
-	</animation>
 	<!-- non-emitting elements (for dome light animation) -->
 	<animation>
 		<name>ClockElements</name>
@@ -441,7 +436,7 @@
 			<and>
 				<property>sim/current-view/internal</property>
 				<greater-than-equals>
-					<property alias="../../../../../params/powerN" />
+					<property alias="/params/powerN" />
 					<value>15</value>
 				</greater-than-equals>
 			</and>
@@ -542,7 +537,7 @@
 	<effect>
 		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+			<lightmap-factor-prop alias="/params/lightmap-factor"/>
 			<lightmap-factor n="0">
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
@@ -553,7 +548,7 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image alias="../../../../params/lightmap-texture-path" />
+				<image alias="/params/lightmap-texture-path" />
 			</texture>
 		</parameters>
 		<object-name>Bezel</object-name>

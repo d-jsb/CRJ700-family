@@ -7,21 +7,15 @@
 
 	<path>compass.ac</path>
 
-	<!-- Visible only within 1/2 km -->
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>50</max-m>
-	</animation>
 	<!-- non-emitting elements (for dome light animation) -->
 	<animation>
 		<name>CompassElements</name>
 		<object-name>Airplane</object-name>
 		<object-name>Case</object-name>
 		<object-name>InnerCase</object-name>
-		<object-name>Ring</object-name>		
+		<object-name>Ring</object-name>
 	</animation>
-	
+
 	<animation>
 		<type>material</type>
 		<object-name>Airplane</object-name>

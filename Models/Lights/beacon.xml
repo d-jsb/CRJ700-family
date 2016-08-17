@@ -1,71 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <PropertyList>
-
 	<path>rednav.ac</path>
 
-	<animation>
+    <params>
+        <power-source>systems/DC/outputs/beacon</power-source>
+        <x-m />
+        <y-m />
+        <z-m />
+    </params>
+
+    <animation>
 		<type>select</type>
 		<condition>
-			<and>
-				<not>
-					<property>sim/current-view/internal</property>
-				</not>
-				<greater-than>
-					<property>systems/DC/outputs/beacon</property>
-					<value>15</value>
-				</greater-than>
-			</and>
-		</condition>
-	</animation>
+            <not>
+                <property>sim/current-view/internal</property>
+            </not>
+			<greater-than>
+                <property alias="/params/power-source" />
+				<value>15</value>
+            </greater-than>
+        </condition>
+    </animation>
 
 	<animation>
 		<type>billboard</type>
-	</animation>
-	
-	<animation>
-		<type>light</type>
-		<light-type>point</light-type>
-		<object-name>Sphere</object-name>
-		<nopreview />
+    </animation>
+
+	<light>
+		<type>point</type>
 		<position>
-			<x>0</x>
-			<y>0</y>
-			<z>0</z>
-		</position>
+            <x alias="/params/x-m" />
+            <y alias="/params/y-m" />
+            <z alias="/params/z-m" />
+        </position>
 		<ambient>
 			<r>0.03</r>
 			<g>0.03</g>
 			<b>0.03</b>
 			<a>1.0</a>
-		</ambient>
+        </ambient>
 		<diffuse>
 			<r>1.0</r>
 			<g>0.2</g>
 			<b>0.2</b>
 			<a>1.0</a>
-		</diffuse>
+        </diffuse>
 		<specular>
 			<r>0.7</r>
 			<g>0.7</g>
 			<b>0.7</b>
 			<a>1.0</a>
-		</specular>
+        </specular>
 		<attenuation>
 			<c>1.0</c>
 			<l>0.002</l>
 			<q>0.005</q>
-		</attenuation>
-		<exponent>2.0</exponent>
-		<near-m>0.0001</near-m>
-		<far-m>79</far-m>
-		<cutoff>110</cutoff>
-	</animation>
-	
-	<effect>
-		<name>REMBRANDT transparency</name>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Light</object-name>
-	</effect>
-
+        </attenuation>
+		<range-m>110</range-m>
+    </light>
 </PropertyList>

@@ -232,14 +232,17 @@ Here's what a finished line might look like:
 
 # CREATING THE MODEL FILE
 
-A CDU model is just like any other model file, except for some pick animations. Use OSGText for the display (see $FG_ROOT/Docs/README.osgtext). Each line uses the following properties, so setup your OSGText accordingly:
+A CDU model is just like any other model file, except for some pick animations. 
+Use OSGText for the display (see $FG_ROOT/Docs/README.osgtext). Each line uses 
+the following properties, so setup your OSGText accordingly:
 
 	{/path/to/your/CDU/node}/display/row[R]/col[C]/value		- the text value of this line
 	{/path/to/your/CDU/node}/display/row[R]/col[C]/color-red	- red color value
 	{/path/to/your/CDU/node}/display/row[R]/col[C]/color-green	- green color value
 	{/path/to/your/CDU/node}/display/row[R]/col[C]/color-blue	- blue color value
 
-Add pick animations to your buttons. The following nasal functions can be used to interact with your CDU:
+Add pick animations to your buttons. The following nasal functions can be used 
+to interact with your CDU:
 
 	{CDU object}.goToPage([page])					- go to another page
 	{CDU object}.previousPage()					- go to the previous page in the current page group (if any)

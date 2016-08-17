@@ -4,1045 +4,1044 @@
 <!-- Left radio panel -->
 
 <PropertyList>
+    <foo include="radiopanel-main.xml" omit-node="y" />
 
-	<foo include="radiopanel-main.xml" omit-node="y" />
+    <text>
+        <name>COM1 text</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-l" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>COM1</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.01269</y-m>
+            <z-m alias="/params/line1" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>COM1 active</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>ACT</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line1" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>COM1 standby</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>PRE</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line1" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>COM1 active frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/comm[0]/frequencies/selected-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line2" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>COM1 standby frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line2" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>COM1 standby frequency</object-name>
+        <condition>
+            <not>
+                <equals>
+                    <property>instrumentation/radio-stack[0]/selected-field</property>
+                    <value>4</value>
+                </equals>
+            </not>
+        </condition>
+    </animation>
+    <text>
+        <name>COM1 standby frequency selected</name>
+        <type>number-value</type>
+        <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <draw-boundingbox type="bool">true</draw-boundingbox>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line2" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>COM1 standby frequency selected</object-name>
+        <condition>
+            <equals>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>4</value>
+            </equals>
+        </condition>
+    </animation>
+    <text>
+        <name>NAV1 text</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-l" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>NAV1</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.01269</y-m>
+            <z-m alias="/params/line3" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>NAV1 active</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>ACT</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line3" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>NAV1 standby</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>PRE</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line3" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>NAV1 active frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/nav[0]/frequencies/selected-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line4" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>NAV1 standby frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line4" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>NAV1 standby frequency</object-name>
+        <condition>
+            <not>
+                <equals>
+                    <property>instrumentation/radio-stack[0]/selected-field</property>
+                    <value>5</value>
+                </equals>
+            </not>
+        </condition>
+    </animation>
+    <text>
+        <name>NAV1 standby frequency selected</name>
+        <type>number-value</type>
+        <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <draw-boundingbox type="bool">true</draw-boundingbox>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line4" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>NAV1 standby frequency selected</object-name>
+        <condition>
+            <equals>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>5</value>
+            </equals>
+        </condition>
+    </animation>
+    <text>
+        <name>DME frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/dme[0]/frequencies/selected-mhz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>right-center</alignment>
+        <character-size alias="/params/fontsize-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%3.3f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.011</y-m>
+            <z-m alias="/params/line4a" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>DME-H text</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>left-center</alignment>
+        <character-size alias="/params/fontsize-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>H</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.011</y-m>
+            <z-m alias="/params/line4a" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text> 
+    <animation>
+        <type>select</type>
+        <object-name>DME frequency</object-name>
+        <object-name>DME-H text</object-name>
+        <condition>
+            <equals>
+                <property>instrumentation/dme[0]/hold</property>
+                <value>1</value>
+            </equals>
+        </condition>    
+    </animation>
+    <text>
+        <name>ADF1 text</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-l" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>ADF1</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line5" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>ADF1 active frequency</name>
+        <type>number-value</type>
+        <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%4.1f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line6" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>ADF1 active frequency</object-name>
+        <condition>
+            <not>
+                <equals>
+                    <property>instrumentation/radio-stack[0]/selected-field</property>
+                    <value>2</value>
+                </equals>
+            </not>
+        </condition>
+    </animation>
+    <text>
+        <name>ADF1 active frequency selected</name>
+        <type>number-value</type>
+        <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-readout" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <draw-boundingbox type="bool">true</draw-boundingbox>
+        <font>Helvetica.txf</font>
+        <format>%4.1f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m alias="/params/line6" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>ADF1 active frequency selected</object-name>
+        <condition>
+            <equals>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>2</value>
+            </equals>
+        </condition>
+    </animation>
+    <text>
+        <name>TCAS</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-l" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>TCAS</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line5" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>TCAS status</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>AUTO REL</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>0.00724</y-m>
+            <z-m alias="/params/line6" />
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>ATC</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-label-l" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>ATC</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m>0.03162</z-m>
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>ATC code</name>
+        <type>number-value</type>
+        <property>instrumentation/transponder/id-code</property>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <format>%04.f</format>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m>0.02554</z-m>
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>ATC Standby</name>
+        <type>literal</type>
+        <axis-alignment>yz-plane</axis-alignment>
+        <alignment>center-bottom</alignment>
+        <character-size alias="/params/fontsize-s" />
+        <character-aspect-ratio>1</character-aspect-ratio>
+        <font>Helvetica.txf</font>
+        <text>STBY</text>
+        <offsets>
+            <x-m>-0.0006</x-m>
+            <y-m>-0.03381</y-m>
+            <z-m>0.020</z-m>
+        </offsets>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>material</type>
+        <object-name>TCAS status</object-name>
+        <object-name>ATC Standby</object-name>
+        <ambient>
+            <red alias="../../../colors/blue/red" />
+            <green alias="../../../colors/blue/green" />
+            <blue alias="../../../colors/blue/blue" />
+        </ambient>
+        <diffuse>
+            <red alias="../../../colors/blue/red" />
+            <green alias="../../../colors/blue/green" />
+            <blue alias="../../../colors/blue/blue" />
+        </diffuse>
+        <emission>
+            <red alias="../../../colors/blue/red" />
+            <green alias="../../../colors/blue/green" />
+            <blue alias="../../../colors/blue/blue" />
+            <factor-prop alias="/params/display-norm"/>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>COM1 active frequency</object-name>
+        <object-name>NAV1 active frequency</object-name>
+        <object-name>ADF1 active frequency</object-name>
+        <object-name>DME frequency</object-name>
+        <ambient>
+            <red alias="../../../colors/green/red" />
+            <green alias="../../../colors/green/green" />
+            <blue alias="../../../colors/green/blue" />
+        </ambient>
+        <diffuse>
+            <red alias="../../../colors/green/red" />
+            <green alias="../../../colors/green/green" />
+            <blue alias="../../../colors/green/blue" />
+        </diffuse>
+        <emission>
+            <red alias="../../../colors/green/red" />
+            <green alias="../../../colors/green/green" />
+            <blue alias="../../../colors/green/blue" />
+            <factor-prop alias="/params/display-norm"/>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>COM1 text</object-name>
+        <object-name>COM1 active</object-name>
+        <object-name>COM1 standby</object-name>
+        <object-name>COM1 standby frequency</object-name>
+        <object-name>COM1 standby frequency selected</object-name>
+        <object-name>NAV1 text</object-name>
+        <object-name>NAV1 active</object-name>
+        <object-name>NAV1 standby</object-name>
+        <object-name>NAV1 standby frequency</object-name>
+        <object-name>NAV1 standby frequency selected</object-name>
+        <object-name>ADF1 text</object-name>
+        <object-name>ADF1 active frequency selected</object-name>
+        <object-name>TCAS</object-name>
+        <object-name>ATC</object-name>
+        <object-name>ATC code</object-name>
+        <ambient>
+            <red alias="../../../colors/white/red" />
+            <green alias="../../../colors/white/green" />
+            <blue alias="../../../colors/white/blue" />
+        </ambient>
+        <diffuse>
+            <red alias="../../../colors/white/red" />
+            <green alias="../../../colors/white/green" />
+            <blue alias="../../../colors/white/blue" />
+        </diffuse>
+        <emission>
+            <red alias="../../../colors/white/red" />
+            <green alias="../../../colors/white/green" />
+            <blue alias="../../../colors/white/blue" />
+            <factor-prop alias="/params/display-norm"/>
+        </emission>
+    </animation>
 
-	<text>
-		<name>COM1 text</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-l" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>COM1</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.01269</y-m>
-			<z-m alias="/params/line1" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>COM1 active</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>ACT</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line1" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>COM1 standby</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>PRE</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line1" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>COM1 active frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/comm[0]/frequencies/selected-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line2" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>COM1 standby frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line2" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>COM1 standby frequency</object-name>
-		<condition>
-			<not>
-				<equals>
-					<property>instrumentation/radio-stack[0]/selected-field</property>
-					<value>4</value>
-				</equals>
-			</not>
-		</condition>
-	</animation>
-	<text>
-		<name>COM1 standby frequency selected</name>
-		<type>number-value</type>
-		<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<draw-boundingbox type="bool">true</draw-boundingbox>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line2" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>COM1 standby frequency selected</object-name>
-		<condition>
-			<equals>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>4</value>
-			</equals>
-		</condition>
-	</animation>
-	<text>
-		<name>NAV1 text</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-l" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>NAV1</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.01269</y-m>
-			<z-m alias="/params/line3" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>NAV1 active</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>ACT</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line3" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>NAV1 standby</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>PRE</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line3" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>NAV1 active frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/nav[0]/frequencies/selected-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line4" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>NAV1 standby frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line4" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>NAV1 standby frequency</object-name>
-		<condition>
-			<not>
-				<equals>
-					<property>instrumentation/radio-stack[0]/selected-field</property>
-					<value>5</value>
-				</equals>
-			</not>
-		</condition>
-	</animation>
-	<text>
-		<name>NAV1 standby frequency selected</name>
-		<type>number-value</type>
-		<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<draw-boundingbox type="bool">true</draw-boundingbox>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line4" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>NAV1 standby frequency selected</object-name>
-		<condition>
-			<equals>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>5</value>
-			</equals>
-		</condition>
-	</animation>
-	<text>
-		<name>DME frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/dme[0]/frequencies/selected-mhz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>right-center</alignment>
-		<character-size alias="/params/fontsize-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%3.3f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.011</y-m>
-			<z-m alias="/params/line4a" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>DME-H text</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>left-center</alignment>
-		<character-size alias="/params/fontsize-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>H</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.011</y-m>
-			<z-m alias="/params/line4a" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>	
-	<animation>
-		<type>select</type>
-		<object-name>DME frequency</object-name>
-		<object-name>DME-H text</object-name>
-		<condition>
-			<equals>
-				<property>instrumentation/dme[0]/hold</property>
-				<value>1</value>
-			</equals>
-		</condition>	
-	</animation>
-	<text>
-		<name>ADF1 text</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-l" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>ADF1</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line5" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>ADF1 active frequency</name>
-		<type>number-value</type>
-		<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%4.1f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line6" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>ADF1 active frequency</object-name>
-		<condition>
-			<not>
-				<equals>
-					<property>instrumentation/radio-stack[0]/selected-field</property>
-					<value>2</value>
-				</equals>
-			</not>
-		</condition>
-	</animation>
-	<text>
-		<name>ADF1 active frequency selected</name>
-		<type>number-value</type>
-		<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-readout" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<draw-boundingbox type="bool">true</draw-boundingbox>
-		<font>Helvetica.txf</font>
-		<format>%4.1f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m alias="/params/line6" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>select</type>
-		<object-name>ADF1 active frequency selected</object-name>
-		<condition>
-			<equals>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
-	<text>
-		<name>TCAS</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-l" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>TCAS</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line5" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>TCAS status</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>AUTO REL</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>0.00724</y-m>
-			<z-m alias="/params/line6" />
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>ATC</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-label-l" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>ATC</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m>0.03162</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>ATC code</name>
-		<type>number-value</type>
-		<property>instrumentation/transponder/id-code</property>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<format>%04.f</format>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m>0.02554</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>ATC Standby</name>
-		<type>literal</type>
-		<axis-alignment>yz-plane</axis-alignment>
-		<alignment>center-bottom</alignment>
-		<character-size alias="/params/fontsize-s" />
-		<character-aspect-ratio>1</character-aspect-ratio>
-		<font>Helvetica.txf</font>
-		<text>STBY</text>
-		<offsets>
-			<x-m>-0.0006</x-m>
-			<y-m>-0.03381</y-m>
-			<z-m>0.020</z-m>
-		</offsets>
-		<font-resolution>
-			<width type="int">32</width>
-			<height type="int">32</height>
-		</font-resolution>
-	</text>
-	<animation>
-		<type>material</type>
-		<object-name>TCAS status</object-name>
-		<object-name>ATC Standby</object-name>
-		<ambient>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>COM1 active frequency</object-name>
-		<object-name>NAV1 active frequency</object-name>
-		<object-name>ADF1 active frequency</object-name>
-		<object-name>DME frequency</object-name>
-		<ambient>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
-	<animation>
-		<type>material</type>
-		<object-name>COM1 text</object-name>
-		<object-name>COM1 active</object-name>
-		<object-name>COM1 standby</object-name>
-		<object-name>COM1 standby frequency</object-name>
-		<object-name>COM1 standby frequency selected</object-name>
-		<object-name>NAV1 text</object-name>
-		<object-name>NAV1 active</object-name>
-		<object-name>NAV1 standby</object-name>
-		<object-name>NAV1 standby frequency</object-name>
-		<object-name>NAV1 standby frequency selected</object-name>
-		<object-name>ADF1 text</object-name>
-		<object-name>ADF1 active frequency selected</object-name>
-		<object-name>TCAS</object-name>
-		<object-name>ATC</object-name>
-		<object-name>ATC code</object-name>
-		<ambient>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-		</ambient>
-		<diffuse>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-		</diffuse>
-		<emission>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
-			<factor-prop>controls/lighting/display-norm</factor-prop>
-		</emission>
-	</animation>
+    <animation>
+        <name>Text</name>
+        <object-name>TCAS status</object-name>
+        <object-name>COM1 active frequency</object-name>
+        <object-name>NAV1 active frequency</object-name>
+        <object-name>ADF1 active frequency</object-name>
+        <object-name>COM1 text</object-name>
+        <object-name>COM1 active</object-name>
+        <object-name>COM1 standby</object-name>
+        <object-name>COM1 standby frequency</object-name>
+        <object-name>COM1 standby frequency selected</object-name>
+        <object-name>NAV1 text</object-name>
+        <object-name>NAV1 active</object-name>
+        <object-name>NAV1 standby</object-name>
+        <object-name>NAV1 standby frequency</object-name>
+        <object-name>NAV1 standby frequency selected</object-name>
+        <object-name>DME frequency</object-name>
+        <object-name>DME-H text</object-name>
+        <object-name>ADF1 text</object-name>
+        <object-name>ADF1 active frequency selected</object-name>
+        <object-name>TCAS</object-name>
+        <object-name>ATC</object-name>
+        <object-name>ATC code</object-name>
+        <object-name>ATC Standby</object-name>
+    </animation>
+    <!-- Instrument elements only visible inside -->
+    <animation>
+        <type>select</type>
+        <object-name>Markings</object-name>
+        <object-name>Text</object-name>
+        <condition>
+            <and>
+                <property>sim/current-view/internal</property>
+                <greater-than-equals>
+                    <property alias="/params/powerN" />
+                    <value>22</value>
+                </greater-than-equals>
+            </and>
+        </condition>
+    </animation>
 
-	<animation>
-		<name>Text</name>
-		<object-name>TCAS status</object-name>
-		<object-name>COM1 active frequency</object-name>
-		<object-name>NAV1 active frequency</object-name>
-		<object-name>ADF1 active frequency</object-name>
-		<object-name>COM1 text</object-name>
-		<object-name>COM1 active</object-name>
-		<object-name>COM1 standby</object-name>
-		<object-name>COM1 standby frequency</object-name>
-		<object-name>COM1 standby frequency selected</object-name>
-		<object-name>NAV1 text</object-name>
-		<object-name>NAV1 active</object-name>
-		<object-name>NAV1 standby</object-name>
-		<object-name>NAV1 standby frequency</object-name>
-		<object-name>NAV1 standby frequency selected</object-name>
-		<object-name>DME frequency</object-name>
-		<object-name>DME-H text</object-name>
-		<object-name>ADF1 text</object-name>
-		<object-name>ADF1 active frequency selected</object-name>
-		<object-name>TCAS</object-name>
-		<object-name>ATC</object-name>
-		<object-name>ATC code</object-name>
-		<object-name>ATC Standby</object-name>
-	</animation>
-	<!-- Instrument elements only visible inside -->
-	<animation>
-		<type>select</type>
-		<object-name>Markings</object-name>
-		<object-name>Text</object-name>
-		<condition>
-			<and>
-				<property>sim/current-view/internal</property>
-				<greater-than-equals>
-					<property>systems/DC/outputs/rtu1</property>
-					<value>22</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>1</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>2</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>L4</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>3</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-swap</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>4</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/comm[0]/frequencies/selected-mhz</property>
+                <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>4</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-swap</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>5</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/nav[0]/frequencies/selected-mhz</property>
+                <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>5</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>6</value>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>R4</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/radio-stack[0]/selected-field</property>
+                <value>7</value>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>DME-H</object-name>
+        <action>
+            <button>0</button>
+            <repeatable type="bool">false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/dme[0]/hold</property>
+            </binding>          
+            <binding>
+                <command>property-assign</command>
+                <property>controls/radio-stack[0]/ani/dmeh-pressed</property>
+                <value>1</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/radio-stack[0]/ani/dmeh-pressed</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </action>
+        <hovered><binding>
+            <command>set-tooltip</command>
+            <tooltip-id>dmeh0</tooltip-id>
+            <label>DME-H</label>
+        </binding></hovered>    
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>DME-H</object-name>
+        <property>controls/radio-stack[0]/ani/dmeh-pressed</property>
+        <factor alias="/button-press" />
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>     
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>BigKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+                <step>100</step>
+                <max>1720</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>3</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/transponder/id-code</property>
+                <step>100</step>
+                <max>9999</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>4</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+                <step>1</step>
+                <max>136.975</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>5</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+                <step>1</step>
+                <max>117.95</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+                <step>-100</step>
+                <min>150</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>3</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/transponder/id-code</property>
+                <step>-100</step>
+                <min>0</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>4</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+                <step>-1</step>
+                <min>118</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>5</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+                <step>-1</step>
+                <min>108</min>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>SmallKnob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+                <step>1</step>
+                <max>1720</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>3</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/transponder/id-code</property>
+                <step>1</step>
+                <max>9999</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>4</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+                <step>0.005</step>
+                <max>136.975</max>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>5</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+                <step>0.05</step>
+                <max>117.95</max>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable type="bool">true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>2</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/adf[0]/frequencies/selected-khz</property>
+                <step>-1</step>
+                <min>150</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>3</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/transponder/id-code</property>
+                <step>-1</step>
+                <min>0</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>4</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/comm[0]/frequencies/standby-mhz</property>
+                <step>-0.005</step>
+                <min>118</min>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <condition>
+                    <equals>
+                        <property>instrumentation/radio-stack[0]/selected-field</property>
+                        <value>5</value>
+                    </equals>
+                </condition>
+                <property>instrumentation/nav[0]/frequencies/standby-mhz</property>
+                <step>-0.05</step>
+                <min>108</min>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>L1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>0</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>2</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>L4</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>3</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-swap</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<property>instrumentation/comm[0]/frequencies/selected-mhz</property>
-				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>4</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-swap</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<property>instrumentation/nav[0]/frequencies/selected-mhz</property>
-				<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>5</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>6</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>R4</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/radio-stack[0]/selected-field</property>
-				<value>7</value>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>DME-H</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>instrumentation/dme[0]/hold</property>
-			</binding>			
-			<binding>
-				<command>property-assign</command>
-				<property>controls/radio-stack[0]/ani/dmeh-pressed</property>
-				<value>1</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/radio-stack[0]/ani/dmeh-pressed</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
-		</action>
-		<hovered><binding>
-			<command>set-tooltip</command>
-			<tooltip-id>dmeh0</tooltip-id>
-			<label>DME-H</label>
-		</binding></hovered>	
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>DME-H</object-name>
-		<property>controls/radio-stack[0]/ani/dmeh-pressed</property>
-		<factor alias="/button-press" />
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>		
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>BigKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-				<step>100</step>
-				<max>1720</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>3</value>
-					</equals>
-				</condition>
-				<property>instrumentation/transponder/id-code</property>
-				<step>100</step>
-				<max>9999</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-				<step>1</step>
-				<max>136.975</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-				<step>1</step>
-				<max>117.95</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-				<step>-100</step>
-				<min>150</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>3</value>
-					</equals>
-				</condition>
-				<property>instrumentation/transponder/id-code</property>
-				<step>-100</step>
-				<min>0</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-				<step>-1</step>
-				<min>118</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-				<step>-1</step>
-				<min>108</min>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>SmallKnob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-				<step>1</step>
-				<max>1720</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>3</value>
-					</equals>
-				</condition>
-				<property>instrumentation/transponder/id-code</property>
-				<step>1</step>
-				<max>9999</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-				<step>0.005</step>
-				<max>136.975</max>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-				<step>0.05</step>
-				<max>117.95</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>2</value>
-					</equals>
-				</condition>
-				<property>instrumentation/adf[0]/frequencies/selected-khz</property>
-				<step>-1</step>
-				<min>150</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>3</value>
-					</equals>
-				</condition>
-				<property>instrumentation/transponder/id-code</property>
-				<step>-1</step>
-				<min>0</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<property>instrumentation/comm[0]/frequencies/standby-mhz</property>
-				<step>-0.005</step>
-				<min>118</min>
-			</binding>
-			<binding>
-				<command>property-adjust</command>
-				<condition>
-					<equals>
-						<property>instrumentation/radio-stack[0]/selected-field</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<property>instrumentation/nav[0]/frequencies/standby-mhz</property>
-				<step>-0.05</step>
-				<min>108</min>
-			</binding>
-		</action>
-	</animation>
-
-	<!-- Lightmaps -->
-	<effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
-		<parameters>
-			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
-			<lightmap-factor n="0">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="1">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<lightmap-factor n="2">
-				<use alias="../../lightmap-factor-prop" />
-			</lightmap-factor>
-			<texture n="3">
-				<image>Models/Effects/Lightmaps/radiopanel-left-lightmap.png</image>
-			</texture>
-		</parameters>
-		<object-name>Panel</object-name>
-	</effect>
+    <!-- Lightmaps -->
+    <effect>
+        <inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+        <parameters>
+            <lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
+            <lightmap-factor n="0">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="1">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <lightmap-factor n="2">
+                <use alias="../../lightmap-factor-prop" />
+            </lightmap-factor>
+            <texture n="3">
+                <image>Models/Effects/Lightmaps/radiopanel-left-lightmap.png</image>
+            </texture>
+        </parameters>
+        <object-name>Panel</object-name>
+    </effect>
 
 </PropertyList>
