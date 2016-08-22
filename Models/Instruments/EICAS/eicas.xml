@@ -917,7 +917,7 @@ page 10 Doors
 	<text>
 		<name>FF1</name>
 		<type>number-value</type>
-		<property>engines/engine[0]/fuel-flow_pph</property>
+		<property>engines/engine[0]/fuel-flow-pph</property>
 		<scale alias="../../lb-to-kg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
@@ -938,7 +938,7 @@ page 10 Doors
 	<text>
 		<name>FF2</name>
 		<type>number-value</type>
-		<property>engines/engine[1]/fuel-flow_pph</property>
+		<property>engines/engine[1]/fuel-flow-pph</property>
 		<scale alias="../../lb-to-kg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>

@@ -274,4 +274,32 @@
 		</input>
 		<output>systems/fuel/xflow-pump/inop</output>
 	</logic>	
+	<filter>
+		<name>fuel-flow-pph-0</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<prod>
+					<property>engines/engine[0]/fuel-flow-gph</property>
+					<value>6.72</value>
+				</prod>
+			</expression>
+		</input>
+		<output>engines/engine[0]/fuel-flow-pph</output>
+	</filter>	
+	<filter>
+		<name>fuel-flow-pph-1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<prod>
+					<property>engines/engine[1]/fuel-flow-gph</property>
+					<value>6.72</value>
+				</prod>
+			</expression>
+		</input>
+		<output>engines/engine[1]/fuel-flow-pph</output>
+	</filter>	
 </PropertyList>
