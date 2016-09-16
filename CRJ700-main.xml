@@ -49,7 +49,8 @@
 		</rendering>
 		<hitches>
 			<aerotow>
-				<!-- MP enabled prop used to show/hide pushback vehicle -->
+				<!-- MP enabled prop used to show/hide pushback vehicle. 
+					see property rules -->
 				<is-slave type="bool">0</is-slave>
 			</aerotow>
 		</hitches>
@@ -61,7 +62,7 @@
 			<pushback>
 				<!-- aliased to MP enabled props -->
 				<position-norm alias="/engines/engine[2]/n2" />
-				<enabled alias="/sim/hitches/aerotow/is-slave" />
+				<enabled type="bool">0</enabled>
 				<kp type="double">0.05</kp>
 				<td type="double">0.00001</td>
 				<ti type="double">10</ti>
