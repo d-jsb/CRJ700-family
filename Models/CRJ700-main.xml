@@ -41,7 +41,7 @@ var model_dict = {
     ]
 };
 var variant = model.getNode("sim/model/variant").getValue();
-var livery_update = aircraft.livery_update.new("Liveries/"
+var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/"
                                                ~ model_dict[model_name][variant]);
 
 # Animated jetways.
