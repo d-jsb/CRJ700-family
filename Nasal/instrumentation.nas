@@ -3,7 +3,7 @@
 ###########################
 
 ## Control display unit (CDU)
-var cdu1 = interactive_cdu.Cdu.new("instrumentation/cdu", "Systems/CRJ700-cdu.xml");
+var cdu1 = interactive_cdu.Cdu.new("instrumentation/cdu", "Aircraft/CRJ700-family/Systems/CRJ700-cdu.xml");
 
 ## Autopilot
 
@@ -426,8 +426,8 @@ var Eicas_messages =
         }
     }
 };
-var eicas_messages_page1 = Eicas_messages.new("instrumentation/eicas-messages/page[0]", "Systems/CRJ700-EICAS-1.xml", 12);
-var eicas_messages_page2 = Eicas_messages.new("instrumentation/eicas-messages/page[1]", "Systems/CRJ700-EICAS-2.xml", 13);
+var eicas_messages_page1 = Eicas_messages.new("instrumentation/eicas-messages/page[0]", "Aircraft/CRJ700-family/Systems/CRJ700-EICAS-1.xml", 12);
+var eicas_messages_page2 = Eicas_messages.new("instrumentation/eicas-messages/page[1]", "Aircraft/CRJ700-family/Systems/CRJ700-EICAS-2.xml", 13);
 
 ## MFDs
 var Mfd =

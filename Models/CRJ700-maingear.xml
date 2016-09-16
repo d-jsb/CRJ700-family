@@ -517,7 +517,7 @@
 	<!-- Reflection shaders -->
 	<effect>
 		<name>Aircraft dirty reflect</name>
-		<inherits-from>Models/Effects/CRJ700dirtyreflect</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700dirtyreflect</inherits-from>
 		<object-name>LGLowerStrut</object-name>
 		<object-name>RGLowerStrut</object-name>
 	</effect>

@@ -108,7 +108,7 @@
 	
     <panel>
 		<name>Radar</name>
-		<path>Models/Instruments/MFD/radar0.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MFD/radar0.xml</path>
 		<top-left>
 			<x-m>0</x-m>
 			<y-m>-0.07338</y-m>
@@ -1982,7 +1982,7 @@
 	
     <!-- Lightmaps -->
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
