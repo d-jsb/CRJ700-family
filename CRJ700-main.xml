@@ -47,14 +47,21 @@
 				<landing-light2-offset-deg>1</landing-light2-offset-deg>
 			</als-secondary-lights>
 		</rendering>
+		<hitches>
+			<aerotow>
+				<!-- MP enabled prop used to show/hide pushback vehicle -->
+				<is-slave type="bool">0</is-slave>
+			</aerotow>
+		</hitches>
 		<model>
 			<livery>
 				<file>Blank</file>
 				<registration type="string" />
 			</livery>
 			<pushback>
+				<!-- aliased to MP enabled props -->
 				<position-norm alias="/engines/engine[2]/n2" />
-				<enabled type="bool">0</enabled>
+				<enabled alias="/sim/hitches/aerotow/is-slave" />
 				<kp type="double">0.05</kp>
 				<td type="double">0.00001</td>
 				<ti type="double">10</ti>

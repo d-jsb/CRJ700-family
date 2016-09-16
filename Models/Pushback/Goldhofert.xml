@@ -4,6 +4,8 @@
 	<path>Goldhofert.ac</path>
 	<params>
 		<max-nw-degree>-80</max-nw-degree>
+		<position>engines/engine[2]/n2</position>
+		<visible>sim/hitches/aerotow/is-slave</visible>
 	</params>
 	
 	<!-- Trucks models and artworks courtesy of XPGoodWay Team
@@ -141,7 +143,7 @@
 	<animation>
 		<type>select</type>
 		<condition>
-			<property>sim/model/pushback/enabled</property>
+			<property alias="/params/visible" />
 			<property>gear/gear[0]/wow</property>
 		</condition>
 	</animation>
@@ -150,7 +152,7 @@
 		<type>rotate</type>
 		<condition>
 			<greater-than>
-				<property>sim/model/pushback/position-norm</property>
+				<property alias="/params/position" />
 				<value>0.99</value>
 			</greater-than>
 		</condition>
@@ -171,7 +173,7 @@
 	<!-- change heading of the pushback when driving the arc -->
 	<animation>
 		<type>rotate</type>
-		<property>sim/model/pushback/position-norm</property>
+		<property alias="/params/position" />
 		<factor>-90</factor>
 		<offset-deg>90</offset-deg>
 		<center>
@@ -201,7 +203,7 @@
 	<!-- precalculated sin and asin to move the pushback on a 90deg arc, 25m radius -->
 	<animation>
 		<type>translate</type>
-		<property>sim/model/pushback/position-norm</property>
+		<property alias="/params/position" />
 		<interpolation>
 			<entry><ind>1.000000</ind><dep>0.000000</dep></entry>
 			<entry><ind>0.950000</ind><dep>1.961477</dep></entry>
