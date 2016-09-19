@@ -172,8 +172,8 @@ var startup = func {
 		["controls/electric/engine[1]/generator", 1, 1.5],
 		["controls/engines/engine[0]/cutoff", 0, 0.1],
 		["controls/engines/engine[1]/cutoff", 0, 2],
-		["/consumables/fuel/tank[0]/selected", 1, 0.4],
-		["/consumables/fuel/tank[1]/selected", 1, 0.8],
+		["systems/fuel/boost-pump[0]/selected", 1, 0.4],
+		["systems/fuel/boost-pump[1]/selected", 1, 0.8],
 		["/controls/engines/engine[0]/starter", 1, 37],
 		["/controls/engines/engine[1]/starter", 1, 38],
 		["controls/pneumatic/bleed-source", 0, 0.8],
@@ -209,8 +209,8 @@ var shutdown = func
 		["controls/electric/engine[1]/generator", 0, 1.5],
 		["controls/engines/engine[0]/cutoff", 1, 0.0],
 		["controls/engines/engine[1]/cutoff", 1, 2],
-		["/consumables/fuel/tank[0]/selected", 0, 0.4],
-		["/consumables/fuel/tank[1]/selected", 0, 0.8],
+		["systems/fuel/boost-pump[0]/selected", 0, 0.4],
+		["systems/fuel/boost-pump[1]/selected", 0, 0.8],
 		["controls/lighting/beacon", 0, 0.8],
 		["controls/hydraulic/system[0]/pump-b", 0, 0.1],
 		["controls/hydraulic/system[2]/pump-a", 0, 0.3],							
@@ -249,8 +249,8 @@ var instastart = func
 {
 	if (getprop("position/altitude-agl-ft") < 500 and !getprop("/sim/config/developer"))
 		return;
-	setprop("/consumables/fuel/tank[0]/selected", 1);
-	setprop("/consumables/fuel/tank[1]/selected", 1);
+	setprop("systems/fuel/boost-pump[0]/selected", 1);
+	setprop("systems/fuel/boost-pump[1]/selected", 1);
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);

@@ -70,18 +70,18 @@
 			<value>OFF</value>
 			<condition>
 				<and>
-					<not><property>/consumables/fuel/tank[0]/selected</property></not>
-					<not><property>/consumables/fuel/tank[1]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[0]/selected</property></not>
+					<not><property>systems/fuel/boost-pump[1]/selected</property></not>
 				</and>			
 			</condition>
 			<binding>
 				<command>property-assign</command>
-				<property>/consumables/fuel/tank[0]/selected</property>
+				<property>systems/fuel/boost-pump[0]/selected</property>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>/consumables/fuel/tank[1]/selected</property>
+				<property>systems/fuel/boost-pump[1]/selected</property>
 				<value>0</value>
 			</binding>
 		</item>	

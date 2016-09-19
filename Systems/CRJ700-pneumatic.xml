@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-	CRJ700 family pneumatic system 
-	
-	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
-	What is what depends on how the files are included in CRJ700-main.xml
+	CRJ700 family pneumatic system
 
+	bleed-valve = 0 (closed)
+	If external bleed is used, all bleed (source) valves must be closed to 
+	prevent damage to engines/apu.
+	
+	bleed-valve = 1 (automatic)
+	normal operation
+	
+	bleed-valve = 2 (manual)
+	Pilot manually selects bleed source
+	
 -->
 <PropertyList>
 	<logic>
@@ -50,10 +57,16 @@
 						<property>controls/pneumatic/bleed-valve</property>
 						<value>2</value> 
 					</equals>
-					<equals>
-						<property>controls/pneumatic/bleed-source</property>
-						<value>3</value> 
-					</equals>
+					<or>
+						<equals>
+							<property>controls/pneumatic/bleed-source</property>
+							<value>0</value> 
+						</equals>
+						<equals>
+							<property>controls/pneumatic/bleed-source</property>
+							<value>3</value> 
+						</equals>
+					</or>
 				</and>
 			</or>
 		</input>
@@ -75,10 +88,16 @@
 						<property>controls/pneumatic/bleed-valve</property>
 						<value>2</value> 
 					</equals>
-					<equals>
-						<property>controls/pneumatic/bleed-source</property>
-						<value>1</value> 
-					</equals>
+					<or>
+						<equals>
+							<property>controls/pneumatic/bleed-source</property>
+							<value>0</value> 
+						</equals>
+						<equals>
+							<property>controls/pneumatic/bleed-source</property>
+							<value>1</value> 
+						</equals>
+					</or>
 				</and>
 			</or>
 		</input>
@@ -88,7 +107,7 @@
 		<name>Isolation valve open</name>
 		<input>
 			<or>
-				<equals><!-- all bleed src. closed, for use with ext. ground source -->
+				<equals>
 					<property>controls/pneumatic/bleed-valve</property>
 					<value>0</value> 
 				</equals>
@@ -97,6 +116,8 @@
 						<property>controls/pneumatic/bleed-valve</property>
 						<value>1</value> 
 					</equals>
+					<not><property>systems/pneumatic/leak-left</property></not>
+					<not><property>systems/pneumatic/leak-right</property></not>
 				</and>
 				<and><!-- manual -->
 					<equals>
@@ -133,6 +154,7 @@
 	</logic>
 	<logic>
 		<name>Pressure right</name>
+		<debug type="bool">true</debug>
 		<input>
 			<or>
 				<and>
@@ -155,6 +177,6 @@
 				</and>
 			</or>
 		</input>
-		<output>systems/pneumatic/pressure-left</output>
+		<output>systems/pneumatic/pressure-right</output>
 	</logic>
 </PropertyList>

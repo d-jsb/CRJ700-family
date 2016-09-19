@@ -501,7 +501,7 @@
 		</color>
 		<condition>
 			<greater-than>
-				<property>consumables/fuel/imbalance-lbs</property>
+				<property>systems/fuel/imbalance-lbs</property>
 				<value>800</value>
 			</greater-than>
 		</condition>

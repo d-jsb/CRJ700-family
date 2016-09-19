@@ -67,11 +67,11 @@
 			<value type="bool">false</value>
 		</set>
  -->		<set>
-			<property>consumables/fuel/tank[0]/selected</property>
+			<property>systems/fuel/boost-pump[0]/selected</property>
 			<value type="bool">false</value>
 		</set>
 		<set>
-			<property>consumables/fuel/tank[1]/selected</property>
+			<property>systems/fuel/boost-pump[1]/selected</property>
 			<value type="bool">false</value>
 		</set>
 		<set>
@@ -314,7 +314,7 @@
 	</step>
 
 	<step>
-		<message>Switch the bleed air source to APU so we can start the engines.</message>
+		<message>Set the bleed valves to AUTO.</message>
 		<view>
 			<heading-offset-deg>305.1</heading-offset-deg>
 			<pitch-offset-deg>25.2</pitch-offset-deg>
@@ -325,16 +325,16 @@
 			<field-of-view>32.8</field-of-view>
 		</view>
 		<marker>
-				<x-m>-13.5075</x-m>
-				<y-m>0.0425</y-m>
-				<z-m>-0.1767</z-m>
+				<x-m>-13.5112</x-m>
+				<y-m>-0.0455</y-m>
+				<z-m>-0.1768</z-m>
 				<scale>2.0833</scale>
 		</marker>
 		<exit>
 			<condition>
 				<equals>
-					<property>controls/pneumatic/bleed-source</property>
-					<value>2</value>
+					<property>controls/pneumatic/bleed-valve</property>
+					<value>1</value>
 				</equals>
 			</condition>
 		</exit>
@@ -359,16 +359,51 @@
 		<exit>
 			<condition>
 				<and>
-					<property>/consumables/fuel/tank[0]/selected</property>
-					<property>/consumables/fuel/tank[1]/selected</property>
+					<property>/systems/fuel/boost-pump[0]/selected</property>
+					<property>/systems/fuel/boost-pump[1]/selected</property>
 				</and>
 			</condition>
+		</exit>
+	</step>
+
+	<step>
+		<message>
+		Now let's start the engines. Activate an engine starter by clicking the start button.
+		Bleed air will run the starter and accelerate the N2 stage.
+		</message>
+		<view>
+			<heading-offset-deg>314.5</heading-offset-deg>
+			<pitch-offset-deg>21.0</pitch-offset-deg>
+			<roll-offset-deg>0.0</roll-offset-deg>
+			<x-offset-m>-0.5</x-offset-m>
+			<y-offset-m>-0.5</y-offset-m>
+			<z-offset-m>-13.1</z-offset-m>
+			<field-of-view>40</field-of-view>
+		</view>
+		<marker>
+			<x-m>-13.5825</x-m>
+			<y-m>-0.0408</y-m>
+			<z-m>-0.2108</z-m>
+			<scale>2.5667</scale>
+		</marker>
+		<exit>
+			<condition>
+				<or>
+					<property>controls/engines/engine[0]/starter</property>
+					<property>controls/engines/engine[1]/starter</property>
+				</or>
+			</condition>
+			<set>
+				<property>instrumentation/eicas[1]/page</property>
+				<value>4</value>
+			</set>
 		</exit>
 	</step>
 	
 	<step>
 		<message>
-			Click the thrust levers to set them to idle. This will allow fuel to flow to the engines.
+		At ~20% N2 thust lever must be set from cutoff to idle to allow fuel flow.			
+		Click the thrust levers to set them to idle. 
 		</message>
 		<view>
 			<heading-offset-deg>314.5</heading-offset-deg>
@@ -398,41 +433,9 @@
 			</condition>
 		</exit>
 	</step>
-
+	
 	<step>
-		<message>Now let's start the engines. Activate an engine starter by clicking the start button.</message>
-		<view>
-			<heading-offset-deg>314.5</heading-offset-deg>
-			<pitch-offset-deg>21.0</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.5</x-offset-m>
-			<y-offset-m>-0.5</y-offset-m>
-			<z-offset-m>-13.1</z-offset-m>
-			<field-of-view>40</field-of-view>
-		</view>
-		<marker>
-			<x-m>-13.5825</x-m>
-			<y-m>-0.0408</y-m>
-			<z-m>-0.2108</z-m>
-			<scale>2.5667</scale>
-		</marker>
-		<exit>
-			<condition>
-				<or>
-					<property>controls/engines/engine[0]/starter</property>
-					<property>controls/engines/engine[1]/starter</property>
-				</or>
-			</condition>
-			<set>
-				<property>instrumentation/eicas[1]/page</property>
-				<value>4</value>
-			</set>
-		</exit>
-	</step>
-
-	<step>
-		<message>Bleed air will run the starter and accelerate the N2 stage.
-		At 20% N2 thust lever must be set from cutoff to idle to allow fuel flow.
+		<message>
 		Now wait for the engines to spool up to about 20% N1 and become responsive.
 		</message>
 		<interval>30</interval>
