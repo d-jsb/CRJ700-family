@@ -85,12 +85,11 @@
 	<!-- Pushback -->
 	<model>
 		<name>Pushback</name>
-		<path>Models/Airport/Pushback/Goldhofert.xml</path>
-		<overlay>
-			<params>
-				<max-nw-degree>-80</max-nw-degree>
-			</params>
-		</overlay>
+		<path>Models/Pushback/Goldhofert.xml</path>
+		<condition>
+			 <property>sim/model/pushback/enabled</property>
+			 <property>gear/gear[0]/wow</property>		
+		</condition>
 		<offsets>
 			<x-m>-17.523</x-m>
 			<y-m>0</y-m>
@@ -973,11 +972,14 @@
 			</texture>
 		</parameters>
 		<object-name>Fuselage.001</object-name>
+		<object-name>Belly</object-name>
+		<object-name>Belly.001</object-name>
 		<object-name>LeftDoor</object-name>
 		<object-name>RightDoor</object-name>
 		<object-name>APUDoor</object-name>
 		<object-name>CargoDoorFwd</object-name>
 		<object-name>CargoDoorCtr</object-name>
+		<object-name>CargoDoorAft</object-name>
 		<object-name>GearNDoorLInt</object-name>
 		<object-name>GearNDoorCInt</object-name>
 		<object-name>GearNDoorRInt</object-name>
@@ -989,6 +991,7 @@
 		<object-name>Rudder</object-name>
 		<object-name>ElevatorL</object-name>
 		<object-name>ElevatorR</object-name>
+		<object-name>EnginePylons</object-name>
 	</effect>
 
 	<foo include="CRJ700-main.xml" omit-node="y" />
