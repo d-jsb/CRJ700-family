@@ -282,7 +282,7 @@
 		<message>The APU will now spool up. During this time, "APU START" will appear on the EICAS.</message>
 		<exit>
 			<condition>
-				<property>engines/apu/running</property>
+				<property>engines/engine[2]/running</property>
 			</condition>
 		</exit>
 	</step>

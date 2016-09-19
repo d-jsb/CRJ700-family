@@ -41,7 +41,7 @@
 			<blue alias="../../../colors/red/blue" />
 		</color>
 		<condition>
-			<property>engines/apu/on-fire</property>
+			<property>engines/engine[2]/on-fire</property>
 		</condition>
 	</message>
 	<message>

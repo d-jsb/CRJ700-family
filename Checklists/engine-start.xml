@@ -94,7 +94,7 @@
 			<condition>
 				<and>
 					<property>/controls/APU/off-on</property>
-					<property>/engines/apu/running</property>
+					<property>/engines/engine[2]/running</property>
 				</and>
 			</condition>
 		</item>		

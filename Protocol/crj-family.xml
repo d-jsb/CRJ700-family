@@ -7,11 +7,11 @@
             <var_separator>:</var_separator>
             <chunk>
                 <type>bool</type>
-                <node>/engines/apu/running</node>
+                <node>/engines/engine[2]/running</node>
             </chunk>
             <chunk>
                 <type>float</type>
-                <node>/engines/apu/rpm</node>
+                <node>/engines/engine[2]/rpm</node>
             </chunk>
             <chunk>
                 <type>bool</type>
@@ -23,7 +23,7 @@
             </chunk>
             <chunk>
                 <type>bool</type>
-                <node>/engines/apu/serviceable</node>
+                <node>/engines/engine[2]/serviceable</node>
             </chunk>
             <chunk>
                 <type>bool</type>
@@ -250,11 +250,11 @@
             <var_separator>:</var_separator>
             <chunk>
                 <type>bool</type>
-                <node>/engines/apu/running</node>
+                <node>/engines/engine[2]/running</node>
             </chunk>
             <chunk>
                 <type>float</type>
-                <node>/engines/apu/rpm</node>
+                <node>/engines/engine[2]/rpm</node>
             </chunk>
             <chunk>
                 <type>bool</type>
@@ -266,7 +266,7 @@
             </chunk>
             <chunk>
                 <type>bool</type>
-                <node>/engines/apu/serviceable</node>
+                <node>/engines/engine[2]/serviceable</node>
             </chunk>
             <chunk>
                 <type>bool</type>

@@ -475,19 +475,34 @@
 	<consumables>
 		<fuel>
 			<tank n="0">
-				<name>LH Wing</name>
+				<name>Left Wing</name>
 				<selected type="bool">false</selected>
 				<level-lbs archive="y">5000</level-lbs>
+				<unusable-gal_us type="float">9.24</unusable-gal_us>
+				<xfer-valve type="bool">false</xfer-valve>
 			</tank>
 			<tank n="1">
-				<name>RH Wing</name>
+				<name>Right Wing</name>
 				<selected type="bool">false</selected>
 				<level-lbs archive="y">5000</level-lbs>
+				<unusable-gal_us type="float">9.24</unusable-gal_us>
+				<xfer-valve type="bool">false</xfer-valve>
 			</tank>
 			<tank n="2">
 				<name>Center Main</name>
 				<level-lbs archive="y">0</level-lbs>
+				<unusable-gal_us type="float">4.62</unusable-gal_us>
 			</tank>
+			<boost-pump n="0">
+				<running type="bool">false</running>
+				<selected type="bool">false</selected>
+				<serviceable type="bool">true</serviceable>
+			</boost-pump>
+			<boost-pump n="1">
+				<running type="bool">false</running>
+				<selected type="bool">false</selected>
+				<serviceable type="bool">true</serviceable>
+			</boost-pump>
 		</fuel>
 	</consumables>
 	
@@ -656,13 +671,7 @@
 	
 	<engines>
 		<apu>
-			<egt-degc type="double">0</egt-degc>
-			<rpm type="double">0</rpm>
-			<on-fire type="bool">false</on-fire>
-			<serviceable type="bool">true</serviceable>
-			<pump-fail type="bool">false</pump-fail>
-			<SOV-fail type="bool">false</SOV-fail>
-			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
+			<info>see engine2</info>
 		</apu>
 		<engine n="0">
 			<on-fire type="bool">false</on-fire>
@@ -676,9 +685,17 @@
 			<n1 type="float">0</n1>
 			<n2 type="float">0</n2>
 			<running type="bool">false</running>
+			<egt-degc type="double">0</egt-degc>
+			<on-fire type="bool">false</on-fire>
+			<serviceable type="bool">true</serviceable>
+			<pump-fail type="bool">false</pump-fail>
+			<SOV-fail type="bool">false</SOV-fail>
+			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
 		</engine>		
 		<!-- engine 3 properties are used to transfer door positions via MP -->
-		<engine n="3"></engine>
+		<engine n="3">
+			<info>abused for MP door-positions</info>
+		</engine>
 	</engines>
 	
 	<fcs>
@@ -1219,6 +1236,10 @@
 	</systems>
 	
 	<nasal>
+		<fuel>
+           <file>Nasal/CRJ700-fuel.nas</file>
+		</fuel>
+		
         <raas>
             <file>Aircraft/CRJ700-family/Nasal/raas.nas</file>
 		</raas>

@@ -238,7 +238,7 @@
 		<name>APU fire</name>
 		<path>Effects/enginefire.xml</path>
 		<condition>
-			<property>engines/apu/on-fire</property>
+			<property>engines/engine[2]/on-fire</property>
 		</condition>
 		<offsets>
 			<x-m>12.5</x-m>

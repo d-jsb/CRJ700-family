@@ -58,4 +58,17 @@
             </default>
         </menubar>
     </sim>
+	<consumables>
+		<fuel>
+			<tank n="0">
+				<unusable-gal_us type="float">15</unusable-gal_us>
+			</tank>
+			<tank n="1">
+				<unusable-gal_us type="float">15</unusable-gal_us>
+			</tank>
+			<tank n="2">
+				<unusable-gal_us type="float">7.5</unusable-gal_us>
+			</tank>
+		</fuel>
+	</consumables>
 </PropertyList>

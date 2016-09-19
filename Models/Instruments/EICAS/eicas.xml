@@ -1558,7 +1558,7 @@ page 10 Doors
 	<text>
 		<name>APU EGT</name>
 		<type>number-value</type>
-		<property>engines/apu/egt-degc</property>
+		<property>engines/engine[2]/egt-degc</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -1635,7 +1635,7 @@ page 10 Doors
 	<text>
 		<name>APU DOOR</name>
 		<type>string-value</type>
-		<property>engines/apu/door-msg</property>
+		<property>engines/engine[2]/door-msg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -1657,7 +1657,7 @@ page 10 Doors
 		<object-name>APU DOOR</object-name>
 		<condition>
 			<equals>
-				<property>engines/apu/door-msg</property>
+				<property>engines/engine[2]/door-msg</property>
 				<value>----</value>
 			</equals>
 		</condition>
@@ -1683,7 +1683,7 @@ page 10 Doors
 		<object-name>APU DOOR</object-name>
 		<condition>
 			<not><equals>
-				<property>engines/apu/door-msg</property>
+				<property>engines/engine[2]/door-msg</property>
 				<value>----</value>
 			</equals></not>
 		</condition>
@@ -7931,7 +7931,7 @@ DIR BUS</text>
 	<animation>
 		<type>rotate</type>
 		<object-name>APUEGT</object-name>
-		<property>engines/apu/egt-degc</property>
+		<property>engines/engine[2]/egt-degc</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>180</dep></entry>
 			<entry><ind>600</ind><dep>-58</dep></entry>
