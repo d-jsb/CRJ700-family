@@ -4,6 +4,17 @@
 	What is what depends on how the files are included in CRJ700-main.xml
 -->
 <PropertyList>
+	<logic>
+		<name>Pushback enable</name>
+		<input>
+			<and>
+				<property>/sim/model/pushback/enabled</property>
+				<property>/gear/gear[0]/wow</property>				
+			</and>
+		</input>
+		<!-- abuse MP enabled prop to make pushback visible in MP -->
+		<output>/sim/hitches/aerotow/is-slave</output>
+	</logic>
 	<filter>
 		<name>mixt2speedbrake</name>
 		<type>gain</type>
