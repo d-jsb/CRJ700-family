@@ -513,7 +513,7 @@
 			<blue alias="../../../colors/white/blue" />
 		</color>
 		<condition>
-			<property>controls/pneumatic/ram-air-turbine</property>
+			<property>controls/ECS/ram-air</property>
 		</condition>
 	</message>
 	<message>

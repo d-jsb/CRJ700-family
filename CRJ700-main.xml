@@ -660,8 +660,6 @@
 			<bleed-valve type="int">1</bleed-valve>
 			<bleed-source type="int">0</bleed-source>
 			<isol type="bool">false</isol>
-			<ram-air-turbine type="bool">false</ram-air-turbine>
-			<ram-air-turbine-cover type="bool">false</ram-air-turbine-cover>
 		</pneumatic>
 		<switches>
 			<no-smoking-sign type="int">1</no-smoking-sign>
