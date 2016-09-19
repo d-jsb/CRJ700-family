@@ -374,9 +374,9 @@ Engine.Jet = func(n)
 
         var time_delta = getprop_safe("sim/time/delta-sec");
 		# possible states: 
-		# off/spin down
-		# starting
 		# running
+		# starting
+		# off/spin down
 		if (!jet.serviceable or jet.out_of_fuel or jet.controls.cutoff)	jet.running = 0;
 		
 		if (jet.running) {
@@ -385,7 +385,7 @@ Engine.Jet = func(n)
 			jet.n1 = jet.fdm_n1;
 			jet.n2 = jet.fdm_n2;
 		}
-		elsif (jet.serviceable and !jet.out_of_fuel and jet.controls.starter and jet._has_bleed_air()) {
+		elsif (jet.serviceable and jet.controls.starter and jet._has_bleed_air()) {
 			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
 			if (jet.n2 > 25 and jet.controls.cutoff) jet.n2 = 25;
 			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
