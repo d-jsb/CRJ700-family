@@ -99,5 +99,25 @@
 				<value>0</value>
 			</binding>
 		</item>
+		<item>
+			<name>Fuel xflow</name>
+			<value>AUTO</value>
+			<marker>
+				<x-m>-13.4355</x-m>
+				<y-m>0.0000</y-m>
+				<z-m>-0.1331</z-m>
+				<scale>1.0000</scale>
+			</marker>
+			<condition>
+				<and>
+					<not><property>controls/fuel/xflow-manual</property></not>
+				</and>
+			</condition>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/fuel/xflow-manual</property>
+				<value>0</value>
+			</binding>
+		</item>				
 	</page>
 </PropertyList>

@@ -334,6 +334,7 @@ Engine.Jet = func(n)
         jet.n2_node.setValue(jet.n2);
 		jet.running = 1;
         jet.running_node.setBoolValue(jet.running);
+		jet.out_of_fuel_node.setBoolValue(0);
 		jet.controls.starter = 0;
         jet.controls.starter_node.setBoolValue(jet.controls.starter);
 	};
@@ -407,22 +408,6 @@ Engine.Jet = func(n)
 		if (jet.n == 1) pressure = getprop_safe("systems/pneumatic/pressure-right");
 		
 		return (pressure > 0);
-	
-		var bleed_source = getprop("/controls/pneumatic/bleed-source");
-		var apu_rpm = getprop_safe("/engines/engine[2]/rpm");
-		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");
-		var eng2_rpm = getprop_safe("/engines/engine[1]/rpm");
-		#print("Bleed source " ~ bleed_source~" a:"~apu_rpm~" 1:"~eng1_rpm~" 2:"~eng2_rpm);
-        # both engines
-        if (bleed_source == 0) return eng1_rpm > 20 or eng2_rpm > 20;
-        # right engine
-        elsif (bleed_source == 1) return eng2_rpm > 20;
-        # APU
-        elsif (bleed_source == 2) return apu_rpm >= 100;
-        # left engine
-        elsif (bleed_source == 3) return eng1_rpm > 20;
-        # invalid value, return 0
-        return 0;
     }
 
 #-- set listeners for rare events, e.g. not necessary to poll in the update loop

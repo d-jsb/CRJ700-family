@@ -251,6 +251,8 @@ var instastart = func
 		return;
 	setprop("systems/fuel/boost-pump[0]/selected", 1);
 	setprop("systems/fuel/boost-pump[1]/selected", 1);
+	setprop("systems/fuel/boost-pump[0]/running", 1);
+	setprop("systems/fuel/boost-pump[1]/running", 1);
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
