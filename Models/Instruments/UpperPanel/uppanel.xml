@@ -43,7 +43,7 @@
 	</animation>
 	<model>
 		<name>Compass</name>
-		<path>Models/Instruments/Compass/compass.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Compass/compass.xml</path>
 		<offsets>
 			<x-m>0.003</x-m>
 			<y-m>0</y-m>

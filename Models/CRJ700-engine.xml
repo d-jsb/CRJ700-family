@@ -15,13 +15,13 @@
 	</params>
 
 	<model>
-		<path>Models/Effects/enginefire.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Effects/enginefire.xml</path>
 		<condition>
 			<property alias="../../../params/on-fire" />
 		</condition>
 	</model>
 	<model>
-		<path>Models/Effects/contrail.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Effects/contrail.xml</path>
 		<overlay>
 			<params>
 				<n1 alias="../../../../params/n1" />
@@ -75,13 +75,13 @@
 	<!-- Reflection shaders -->
 	<effect>
 		<name>Aircraft reflect</name>
-		<inherits-from>Models/Effects/CRJ700reflect</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700reflect</inherits-from>
 		<object-name>Nacelle</object-name>
 		<object-name>Reverser</object-name>
 	</effect>
 	<effect>
 		<name>Aircraft dirty reflect</name>
-		<inherits-from>Models/Effects/CRJ700dirtyreflect</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700dirtyreflect</inherits-from>
 		<object-name>Intake</object-name>
 	</effect>
 

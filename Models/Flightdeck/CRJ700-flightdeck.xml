@@ -46,7 +46,7 @@
 	
     <!-- Pilot-side instruments -->
     <model>
-		<path>Models/Instruments/PFD/pfd.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 		<overlay>
 			<params>
 				<powerN>/systems/DC/outputs/pfd1</powerN>
@@ -59,7 +59,7 @@
 				<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</indicated-vertical-speed-fpm>
 				<radar-altitude-ft>instrumentation/radar-altimeter[0]/radar-altitude-ft</radar-altitude-ft>
 				<altimeter-setting-inhg>instrumentation/altimeter[0]/setting-inhg</altimeter-setting-inhg>
-				<lightmap-texture-path>Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-left-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -75,7 +75,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/MFD/mfd.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 		<overlay>
 			<params>
 				<powerN>/systems/DC/outputs/mfd1</powerN>
@@ -85,7 +85,7 @@
 				<indicated-heading-deg>instrumentation/heading-indicator[0]/indicated-heading-deg</indicated-heading-deg>
 				<true-airspeed-kt>instrumentation/airspeed-indicator[0]/true-speed-kt</true-airspeed-kt>
 				<radar-range>instrumentation/efis/inputs/range</radar-range>
-				<lightmap-texture-path>Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-left-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -101,11 +101,11 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/EICAS/eicas.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 		<overlay>
 			<params>
 				<page>instrumentation/eicas[0]/page</page>
-				<lightmap-texture-path>Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-left-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -116,11 +116,11 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/Clock/clock.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
 		<overlay>
 			<params>
 				<powerN>systems/DC/outputs/clock1</powerN>
-				<lightmap-texture-path>Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-left-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -131,14 +131,14 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
 		<overlay>
 			<params>
 				<mfd-tcas>instrumentation/mfd[0]/tcas</mfd-tcas>
 				<mfd-wx>instrumentation/mfd[0]/wx</mfd-wx>
 				<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
 				<radar-range>instrumentation/efis/inputs/range</radar-range>
-				<lightmap-texture-path>Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-left-lightmap.png</lightmap-texture-path>
 				<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
 			</params>
 		</overlay>
@@ -150,11 +150,11 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
 		<overlay>
 			<params>
 				<wiper>controls/anti-ice/wiper[0]</wiper>
-				<lightmap-texture-path>Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-left-lightmap.png</lightmap-texture-path>
 				<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
 			</params>
 		</overlay>
@@ -166,7 +166,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/SidePanel2/nws.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/nws.xml</path>
 		<overlay>
 			<params>
 				<powerN>systems/AC/outputs/pilot-panel-int-lights</powerN>
@@ -180,10 +180,10 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/CDU/cdu.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
 		<overlay>
 			<params>
-				<lightmap-texture-path>Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-left-lightmap.png</lightmap-texture-path>
 				<powerN>systems/DC/outputs/bus1</powerN>
 			</params>
 		</overlay>
@@ -195,7 +195,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/RadioPanel/radiopanel-left.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-left.xml</path>
 		<offsets>
 			<x-m>-1.311</x-m>
 			<y-m>-0.157</y-m>
@@ -206,7 +206,7 @@
 	
     <!-- Shared instruments -->
     <model>
-		<path>Models/Instruments/MCP/mcp.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MCP/mcp.xml</path>
 		<overlay>
 			<params>
 				<powerN>systems/AC/outputs/center-panel-int-lights</powerN>
@@ -219,7 +219,7 @@
 		</offsets>
 	</model>
 	<model>
-		<path>Models/Instruments/OHP/ohpanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/OHP/ohpanel.xml</path>
 		<overlay>
 			<params>
 				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
@@ -233,7 +233,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/UpperPanel/uppanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/UpperPanel/uppanel.xml</path>
 		<overlay>
 			<params>
 				<powerN>systems/AC/outputs/ohp-int-lights</powerN>
@@ -246,7 +246,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/Standby/standby.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Standby/standby.xml</path>
 		<overlay>
 			<params>
 				<indicated-pitch-deg>instrumentation/attitude-indicator[1]/indicated-pitch-deg</indicated-pitch-deg>
@@ -268,7 +268,7 @@
 	
     <!-- Copilot-side instruments -->
     <model>
-		<path>Models/Instruments/PFD/pfd.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/PFD/pfd.xml</path>
 		<overlay>
 			<params>
 				<powerN>/systems/DC/outputs/pfd2</powerN>
@@ -281,7 +281,7 @@
 				<indicated-vertical-speed-fpm>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</indicated-vertical-speed-fpm>
 				<radar-altitude-ft>instrumentation/radar-altimeter[1]/radar-altitude-ft</radar-altitude-ft>
 				<altimeter-setting-inhg>instrumentation/altimeter[1]/setting-inhg</altimeter-setting-inhg>
-				<lightmap-texture-path>Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pfd-right-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -292,7 +292,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/MFD/mfd.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/MFD/mfd.xml</path>
 		<overlay>
 			<params>
 				<powerN>/systems/DC/outputs/mfd2</powerN>
@@ -302,7 +302,7 @@
 				<indicated-heading-deg>instrumentation/heading-indicator[1]/indicated-heading-deg</indicated-heading-deg>
 				<true-airspeed-kt>instrumentation/airspeed-indicator[2]/true-speed-kt</true-airspeed-kt>
 				<radar-range>instrumentation/radar[1]/range</radar-range>
-				<lightmap-texture-path>Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mfd-right-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -313,12 +313,12 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/EICAS/eicas.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/EICAS/eicas.xml</path>
 		<overlay>
 			<params>
 				<powerN>/systems/DC/outputs/eicas-disp</powerN>
 				<page>instrumentation/eicas[1]/page</page>
-				<lightmap-texture-path>Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/eicas-right-lightmap.png</lightmap-texture-path>
 			</params>
 		</overlay>
 		<offsets>
@@ -329,10 +329,10 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/Clock/clock.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/Clock/clock.xml</path>
 		<overlay>
 			<params>
-				<lightmap-texture-path>Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/clock-right-lightmap.png</lightmap-texture-path>
 				<powerN>systems/DC/outputs/clock2</powerN>
 			</params>
 		</overlay>
@@ -344,14 +344,14 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/SidePanel1/sidepanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel1/sidepanel.xml</path>
 		<overlay>
 			<params>
 				<mfd-tcas>instrumentation/mfd[1]/tcas</mfd-tcas>
 				<mfd-wx>instrumentation/mfd[1]/wx</mfd-wx>
 				<mfd-page>instrumentation/efis/mfd/mode-num</mfd-page>
 				<radar-range>instrumentation/radar[1]/range</radar-range>
-				<lightmap-texture-path>Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel1-right-lightmap.png</lightmap-texture-path>
 				<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
 			</params>
 		</overlay>
@@ -363,11 +363,11 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/SidePanel2/sidepanel.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/SidePanel2/sidepanel.xml</path>
 		<overlay>
 			<params>
 				<wiper>controls/anti-ice/wiper[1]</wiper>
-				<lightmap-texture-path>Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/sidepanel2-right-lightmap.png</lightmap-texture-path>
 				<powerN>systems/AC/outputs/copilot-panel-int-lights</powerN>
 			</params>
 		</overlay>
@@ -379,10 +379,10 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/CDU/cdu.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/cdu.xml</path>
 		<overlay>
 			<params>
-				<lightmap-texture-path>Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
+				<lightmap-texture-path>Aircraft/CRJ700-family/Models/Effects/Lightmaps/cdu-right-lightmap.png</lightmap-texture-path>
 				<powerN>systems/DC/outputs/bus2</powerN>
 			</params>
 		</overlay>
@@ -394,7 +394,7 @@
 		</offsets>
 	</model>
     <model>
-		<path>Models/Instruments/RadioPanel/radiopanel-right.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Instruments/RadioPanel/radiopanel-right.xml</path>
 		<offsets>
 			<x-m>-1.311</x-m>
 			<y-m>0.157</y-m>
@@ -3445,7 +3445,7 @@
 	
     <!-- Lightmaps -->
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
@@ -3458,13 +3458,13 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image>Models/Effects/Lightmaps/mainpanel-lightmap.png</image>
+				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/mainpanel-lightmap.png</image>
 			</texture>
 		</parameters>
 		<object-name>MainPanel</object-name>
 	</effect>
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
@@ -3477,13 +3477,13 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image>Models/Effects/Lightmaps/pedestal-lightmap.png</image>
+				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/pedestal-lightmap.png</image>
 			</texture>
 		</parameters>
 		<object-name>PedestalTop</object-name>
 	</effect>
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
@@ -3496,13 +3496,13 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image>Models/Effects/Lightmaps/asilimits-left-lightmap.png</image>
+				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-left-lightmap.png</image>
 			</texture>
 		</parameters>
 		<object-name>LeftASIPlacard</object-name>
 	</effect>
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
@@ -3515,13 +3515,13 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image>Models/Effects/Lightmaps/asilimits-right-lightmap.png</image>
+				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/asilimits-right-lightmap.png</image>
 			</texture>
 		</parameters>
 		<object-name>RightASIPlacard</object-name>
 	</effect>
     <effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
@@ -3534,7 +3534,7 @@
 				<use alias="../../lightmap-factor-prop" />
 			</lightmap-factor>
 			<texture n="3">
-				<image>Models/Effects/Lightmaps/airvent-lightmap.png</image>
+				<image>Aircraft/CRJ700-family/Models/Effects/Lightmaps/airvent-lightmap.png</image>
 			</texture>
 		</parameters>
 		<object-name>AirVents</object-name>

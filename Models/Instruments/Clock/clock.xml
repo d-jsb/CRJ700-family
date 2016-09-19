@@ -540,7 +540,7 @@
 
 	<!-- Lightmaps -->
 	<effect>
-		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">

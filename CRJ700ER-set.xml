@@ -8,13 +8,14 @@
         <description>Bombardier CRJ700ER (with tutorials)</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
+        <aircraft-version>1.5.2</aircraft-version>
 		
 		<variant-of>CRJ700</variant-of>
         <flight-model>yasim</flight-model>
         <aero>CRJ700ER</aero>
 		
         <model>
-            <path>Models/CRJ700.xml</path>
+            <path>Aircraft/CRJ700-family/Models/CRJ700.xml</path>
             <variant type="int">1</variant>
             <door>
                 <position-x-m type="float">-11.519</position-x-m>
@@ -36,7 +37,7 @@
 		</model>
 		
 		<sound>
-			<path>Sounds/CRJ700-sounds.xml</path>
+			<path>Aircraft/CRJ700-family/Sounds/CRJ700-sounds.xml</path>
 		</sound>
 		
         <dimensions>

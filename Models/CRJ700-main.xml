@@ -14,7 +14,7 @@ var model_name = split(".", split("/", model_path)[-1])[0];
 
 # Animations.
 var mp_export = model.getNode("sim/multiplay/generic");
-var mp_export_def = io.read_properties("Systems/CRJ700-multiplayer.xml");
+var mp_export_def = io.read_properties("Aircraft/CRJ700-family/Systems/CRJ700-multiplayer.xml");
 foreach (var ref; mp_export_def.getChildren("reference"))
 {
     var export_prop = mp_export.getChild(ref.getNode("type").getValue(), ref.getNode("index").getValue(), 1);
