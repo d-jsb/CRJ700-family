@@ -15,7 +15,7 @@
         <aero>CRJ900</aero>
 		
 		<model>
-            <path>Aircraft/CRJ700-family/Models/CRJ900.xml</path>
+            <path>Models/CRJ900.xml</path>
             <variant type="int">0</variant>
             <door>
                 <position-x-m type="float">-13.459</position-x-m>
@@ -37,7 +37,7 @@
 		</model>
 		
 		<sound>
-			<path>Aircraft/CRJ700-family/Sounds/CRJ900-sounds.xml</path>
+			<path>Sounds/CRJ900-sounds.xml</path>
 		</sound>
 		
 		<dimensions>
