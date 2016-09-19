@@ -387,7 +387,7 @@ Engine.Jet = func(n)
 		}
 		elsif (jet.serviceable and !jet.out_of_fuel and jet.controls.starter and jet._has_bleed_air()) {
 			jet.n2 = math.min(jet.n2 + 1.99 * time_delta, jet.fdm_n2);
-			if (jet.n2 > 25 and jet.controls.cutoff) jet.controls.starter = 0;
+			if (jet.n2 > 25 and jet.controls.cutoff) jet.n2 = 25;
 			if (jet.n2 > 32) jet.n1 = math.min(jet.n1 + 1.0 * time_delta, jet.fdm_n1);
 			if (jet.n1 >= jet.fdm_n1) {
 				jet.running = 1;
