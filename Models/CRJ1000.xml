@@ -85,7 +85,7 @@
 	<!-- Pushback -->
 	<model>
 		<name>Pushback</name>
-		<path>Models/Pushback/Goldhofert.xml</path>
+		<path>Aircraft/CRJ700-family/Models/Pushback/Goldhofert.xml</path>
 		<condition>
 			 <property>sim/model/pushback/enabled</property>
 			 <property>gear/gear[0]/wow</property>		
