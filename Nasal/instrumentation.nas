@@ -259,7 +259,7 @@ var flash_alt_bug = func()
 var altitude_alert = func(n) 
 {
 	var vm = getprop("controls/autoflight/vert-mode");
-	if (n.getBoolValue() and vm != 1 and vm != 3)
+	if (n.getBoolValue() and vm != 1 and vm != 3 and vm != 5)
 	{
 		#print("ALT alert ");
 		setprop("sim/alarms/altitude-alert", 1);
