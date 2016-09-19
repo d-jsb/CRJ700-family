@@ -5,6 +5,29 @@
 -->
 <PropertyList>
 	<filter>
+		<name>mixt2speedbrake</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>sim/config/mixt-to-speedbrake</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<dif>
+					<value>1</value>
+					<property>controls/engines/engine/mixture</property>
+				</dif>
+			</expression>
+		</input>
+		<output>controls/flight/speedbrake</output>
+	</filter>
+	<filter>
 		<name>dhptr</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>

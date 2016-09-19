@@ -63,6 +63,15 @@
 		</checkbox>	
 		<checkbox>
 			<halign>left</halign>
+			<label>Mixture lever controls speedbrake</label>
+			<property>sim/config/mixt-to-speedbrake</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>	
+		<checkbox>
+			<halign>left</halign>
 			<label>Developer mode</label>
 			<property>sim/config/developer</property>
 			<binding>
