@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	CRJ700 family pneumatic system 
+	
+	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
+	What is what depends on how the files are included in CRJ700-main.xml
+
+-->
+<PropertyList>
+	<logic>
+		<name>APU valve open</name>
+		<input>
+			<or>
+				<and>
+					<equals><!-- automatic -->
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>1</value> 
+					</equals>
+					<property>engines/engine[2]/running</property>
+					<not><property>engines/engine[0]/running-nasal</property></not>
+					<not><property>engines/engine[1]/running-nasal</property></not>
+				</and>
+				<and><!-- manual -->
+					<equals>
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>2</value> 
+					</equals>
+					<equals>
+						<property>controls/pneumatic/bleed-source</property>
+						<value>2</value> 
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/apu-valve</output>
+	</logic>
+	<logic>
+		<name>Left engine SOV open</name>
+		<input>
+			<or>
+				<and>
+					<equals><!-- automatic -->
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>1</value> 
+					</equals>
+					<property>engines/engine[0]/running-nasal</property>
+				</and>
+				<and><!-- manual -->
+					<equals>
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>2</value> 
+					</equals>
+					<equals>
+						<property>controls/pneumatic/bleed-source</property>
+						<value>3</value> 
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/sov-left</output>
+	</logic>	
+	<logic>
+		<name>Right engine SOV open</name>
+		<input>
+			<or>
+				<and>
+					<equals><!-- automatic -->
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>1</value> 
+					</equals>
+					<property>engines/engine[1]/running-nasal</property>
+				</and>
+				<and><!-- manual -->
+					<equals>
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>2</value> 
+					</equals>
+					<equals>
+						<property>controls/pneumatic/bleed-source</property>
+						<value>1</value> 
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/sov-right</output>
+	</logic>	
+	<logic>
+		<name>Isolation valve open</name>
+		<input>
+			<or>
+				<equals><!-- all bleed src. closed, for use with ext. ground source -->
+					<property>controls/pneumatic/bleed-valve</property>
+					<value>0</value> 
+				</equals>
+				<and>
+					<equals><!-- automatic -->
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>1</value> 
+					</equals>
+				</and>
+				<and><!-- manual -->
+					<equals>
+						<property>controls/pneumatic/bleed-valve</property>
+						<value>2</value> 
+					</equals>
+					<property>controls/pneumatic/isol</property>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/isolation-valve</output>
+	</logic>
+	<logic>
+		<name>Pressure left</name>
+		<input>
+			<or>
+				<property>systems/pneumatic/hp-ground-supply</property>
+				<and>
+					<property>systems/pneumatic/apu-valve</property>
+					<property>engines/engine[2]/running</property>
+				</and>
+				<and>
+					<property>systems/pneumatic/sov-left</property>
+					<property>engines/engine[0]/running-nasal</property>
+				</and>
+				<and>
+					<property>systems/pneumatic/sov-right</property>
+					<property>engines/engine[1]/running-nasal</property>
+					<property>systems/pneumatic/isolation-valve</property>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/pressure-left</output>
+	</logic>
+	<logic>
+		<name>Pressure right</name>
+		<input>
+			<or>
+				<and>
+					<property>systems/pneumatic/hp-ground-supply</property>
+					<property>systems/pneumatic/isolation-valve</property>
+				</and>
+				<and>
+					<property>systems/pneumatic/apu-valve</property>
+					<property>engines/engine[2]/running</property>
+					<property>systems/pneumatic/isolation-valve</property>
+				</and>
+				<and>
+					<property>systems/pneumatic/sov-left</property>
+					<property>engines/engine[0]/running-nasal</property>
+					<property>systems/pneumatic/isolation-valve</property>
+				</and>
+				<and>
+					<property>systems/pneumatic/sov-right</property>
+					<property>engines/engine[1]/running-nasal</property>
+				</and>
+			</or>
+		</input>
+		<output>systems/pneumatic/pressure-left</output>
+	</logic>
+</PropertyList>

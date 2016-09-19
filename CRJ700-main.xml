@@ -141,8 +141,16 @@
 				<path>Aircraft/CRJ700-family/Systems/CRJ700-property-rules.xml</path>
 			</property-rule>
 			<property-rule n="101">
-				<name>Propery rules</name>
+				<name>Propery rules AP</name>
 				<path>Aircraft/CRJ700-family/Systems/CRJ700-ap-rules.xml</path>
+			</property-rule>
+			<property-rule n="102">
+				<name>Propery rules fuel</name>
+				<path>Aircraft/CRJ700-family/Systems/CRJ700-fuel.xml</path>
+			</property-rule>
+			<property-rule n="103">
+				<name>Propery rules pneumatic</name>
+				<path>Aircraft/CRJ700-family/Systems/CRJ700-pneumatic.xml</path>
 			</property-rule>
 		</systems>
 		
@@ -667,6 +675,7 @@
 			<rpm type="float">0</rpm>
 			<n1 type="float">0</n1>
 			<n2 type="float">0</n2>
+			<running type="bool">false</running>
 		</engine>		
 		<!-- engine 3 properties are used to transfer door positions via MP -->
 		<engine n="3"></engine>
@@ -1192,6 +1201,21 @@
 				<nwsteering type="bool">true</nwsteering>
 			</outputs>
 		</hydraulic>
+		<pneumatic>
+			<pressure-left type="bool">false</pressure-left>
+			<pressure-right type="bool">false</pressure-right>
+			<hp-ground-supply type="bool">false</hp-ground-supply>
+			<cowl-ai-valve-left type="bool">false</cowl-ai-valve-left>
+			<cowl-ai-valve-right type="bool">false</cowl-ai-valve-right>
+			<apu-valve type="bool">false</apu-valve>
+			<isolation-valve type="bool">true</isolation-valve>
+			<ats-left type="bool">false</ats-left>
+			<ats-right type="bool">false</ats-right>
+			<sov-left type="bool">false</sov-left>
+			<sov-right type="bool">false</sov-right>
+			<leak-left type="bool">false</leak-left>
+			<leak-right type="bool">false</leak-right>
+		</pneumatic>
 	</systems>
 	
 	<nasal>

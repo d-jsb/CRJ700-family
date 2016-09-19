@@ -299,7 +299,7 @@ Engine.Apu = func() {
 #
 Engine.Jet = func(n)
 {
-    var jet = {serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
+    var jet = {n : n, serviceable: 1, fdm_throttle: 0, fdm_reverser: 0, n1: 0, n2: 0, fdm_n1: 0, fdm_n2: 0, running: 0, on_fire: 0, out_of_fuel: 0};
     jet.fdm_throttle_idle = 0.01;
 
     jet.controls = {cutoff: 0, fire_ex: 0, reverser_arm: 0, reverser_cmd: 0, starter: 0, thrust_mode: 0, throttle: 0};
@@ -427,6 +427,12 @@ Engine.Jet = func(n)
 
     jet._has_bleed_air = func
     {
+		var pressure = 0;
+		if (jet.n == 0) pressure = getprop_safe("systems/pneumatic/pressure-left");
+		if (jet.n == 1) pressure = getprop_safe("systems/pneumatic/pressure-right");
+		
+		return (pressure > 0);
+	
 		var bleed_source = getprop("/controls/pneumatic/bleed-source");
 		var apu_rpm = getprop_safe("/engines/engine[2]/rpm");
 		var eng1_rpm = getprop_safe("/engines/engine[0]/rpm");

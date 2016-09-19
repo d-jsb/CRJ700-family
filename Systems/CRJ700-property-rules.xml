@@ -35,23 +35,6 @@
 		<output>instrumentation/altimeter/mda-deviation</output>
 	</filter>	
 	<filter>
-		<name>fuel-imbalance</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<abs>
-					<dif>
-						<property>consumables/fuel/tank[0]/level-lbs</property>
-						<property>consumables/fuel/tank[1]/level-lbs</property>
-					</dif>
-				</abs>
-			</expression>
-		</input>
-		<output>consumables/fuel/imbalance-lbs</output>
-	</filter>
-	<filter>
 		<name>alt-ref-deviation</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
