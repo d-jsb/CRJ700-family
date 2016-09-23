@@ -138,7 +138,7 @@ var pilot_send_S_properties =
 	"controls/electric/APU-generator",
 	"controls/electric/engine[1]/generator",
 	"controls/pneumatic/bleed-source",
-	"controls/pneumatic/ram-air-turbine",
+	"controls/pneumatic/bleed-valve",
 	"controls/APU/electronic-control-unit",
 	"controls/APU/off-on"
 ];

@@ -309,7 +309,7 @@
 		<output>autopilot/internal/bank-limit-deg</output>
 	</filter>
 	
-    <filter>
+<!--     <filter>
 		<name>VOR1 radial deviation</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
@@ -344,7 +344,7 @@
 			<min>-180</min>
 			<max>180</max>
 		</period>
-	</filter>	
+	</filter>	 -->
 	<logic>
 		<name>VOR1 captured</name>
 		<input>

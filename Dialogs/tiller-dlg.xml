@@ -49,6 +49,15 @@
 		</binding>
 		<live type="bool">true</live>
 	</checkbox>	
+	<checkbox>
+		<halign>left</halign>
+		<label>Rudder pedals to tiller (GS&lt;20)</label>
+		<property>sim/config/rudder-to-tiller</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live type="bool">true</live>
+	</checkbox>	
 	<text>
 		<label>XX.X degrees</label>
 		<visible>

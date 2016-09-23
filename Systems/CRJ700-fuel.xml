@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
+	What is what depends on how the files are included in CRJ700-main.xml
+-->
+<PropertyList>
+	<filter>
+		<name>fuel-imbalance</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<abs>
+					<dif>
+						<property>consumables/fuel/tank[0]/level-lbs</property>
+						<property>consumables/fuel/tank[1]/level-lbs</property>
+					</dif>
+				</abs>
+			</expression>
+		</input>
+		<output>systems/fuel/imbalance-lbs</output>
+	</filter>
+	<!-- xfer valves control fuel transfer from center tank to wing tanks -->
+	<filter>
+		<name>Left xfer valve </name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<and>
+					<less-than>
+						<property>consumables/fuel/tank[0]/level-norm</property>
+						<value>0.93</value>
+					</less-than>
+					<greater-than>
+						<property>consumables/fuel/tank[2]/level-gal_us</property>
+						<property>consumables/fuel/tank[2]/unusable-gal_us</property>
+					</greater-than>
+				</and>
+			</condition>
+			<value>1</value>
+		</input>		
+		<input>
+			<condition>
+				<or>
+					<greater-than>
+						<property>consumables/fuel/tank[0]/level-norm</property>
+						<value>0.97</value>
+					</greater-than>
+					<less-than-equals>
+						<property>consumables/fuel/tank[2]/level-gal_us</property>
+						<property>consumables/fuel/tank[2]/unusable-gal_us</property>
+					</less-than-equals>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>
+			<property>consumables/fuel/tank[0]/xfer-valve</property>
+		</input>
+		<output>consumables/fuel/tank[0]/xfer-valve</output>
+	</filter>
+	<filter>
+		<name>Right xfer valve </name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<and>
+					<less-than>
+						<property>consumables/fuel/tank[1]/level-norm</property>
+						<value>0.93</value>
+					</less-than>
+					<greater-than>
+						<property>consumables/fuel/tank[2]/level-gal_us</property>
+						<property>consumables/fuel/tank[2]/unusable-gal_us</property>
+					</greater-than>
+				</and>
+			</condition>
+			<value>1</value>
+		</input>		
+		<input>
+			<condition>
+				<or>
+					<greater-than>
+						<property>consumables/fuel/tank[1]/level-norm</property>
+						<value>0.97</value>
+					</greater-than>
+					<less-than-equals>
+						<property>consumables/fuel/tank[2]/level-gal_us</property>
+						<property>consumables/fuel/tank[2]/unusable-gal_us</property>
+					</less-than-equals>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>
+			<property>consumables/fuel/tank[1]/xfer-valve</property>
+		</input>
+		<output>consumables/fuel/tank[1]/xfer-valve</output>
+	</filter>
+	<logic>
+		<name>Left fuel pump</name>
+		<input>
+			<property>systems/fuel/boost-pump[0]/serviceable</property>
+			<property>systems/fuel/boost-pump[0]/selected</property>
+			
+			<not><property>engines/engine[0]/running-nasal</property></not>
+			<or>
+				<property>controls/engines/engine[0]/starter</property>
+				<greater-than>
+					<property>systems/fuel/imbalance-lbs</property>
+					<value>800</value>
+				</greater-than>
+			</or>
+		</input>
+		<output>systems/fuel/boost-pump[0]/running</output>
+	</logic>	
+	<logic>
+		<name>Right fuel pump</name>
+		<input>
+			<property>systems/fuel/boost-pump[1]/serviceable</property>
+			<property>systems/fuel/boost-pump[1]/selected</property>
+			
+			<not><property>engines/engine[1]/running-nasal</property></not>
+			<or>
+				<property>controls/engines/engine[1]/starter</property>
+				<greater-than>
+					<property>systems/fuel/imbalance-lbs</property>
+					<value>800</value>
+				</greater-than>
+		</or>
+		</input>
+		<output>systems/fuel/boost-pump[1]/running</output>
+	</logic>	
+	<logic>
+		<name>Left fuel circuit powered</name>
+		<input>
+			<or>
+				<property>engines/engine[0]/running-nasal</property>
+				<property>systems/fuel/boost-pump[0]/running</property>
+				<property>systems/fuel/boost-pump[1]/running</property>
+			</or>
+		</input>
+		<output>systems/fuel/circuit[0]/powered</output>
+	</logic>	
+	<logic>
+		<name>Right fuel circuit powered</name>
+		<input>
+			<or>
+				<property>engines/engine[1]/running-nasal</property>
+				<property>systems/fuel/boost-pump[0]/running</property>
+				<property>systems/fuel/boost-pump[1]/running</property>
+			</or>
+		</input>
+		<output>systems/fuel/circuit[1]/powered</output>
+	</logic>	
+	<!-- 
+	xflow: balance left and right wing tanks
+	When a fuel imbalance of 200lbs exists, the fuel computer activates the xflow pump
+	In case of a pump fault, the crew can use the gravity xflow.
+	-->
+	<filter>
+		<name>gravity-xflow</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<property>systems/fuel/gravity-xflow/serviceable</property>
+			</condition>
+			<property>controls/fuel/gravity-xflow</property>
+		</input>
+		<input>
+			<property>systems/fuel/gravity-xflow/open</property>
+		</input>
+		<output>systems/fuel/gravity-xflow/open</output>
+	</filter>	
+	<logic>
+		<name>gravity-xflow fail</name>
+		<input>
+			<or>
+				<and>
+					<property>controls/fuel/gravity-xflow</property>				
+					<not><property>systems/fuel/gravity-xflow/open</property></not>
+				</and>
+				<and>
+					<not><property>controls/fuel/gravity-xflow</property></not>
+					<property>systems/fuel/gravity-xflow/open</property>
+				</and>
+			</or>
+		</input>
+		<output>systems/fuel/gravity-xflow/fail</output>
+	</logic>		
+
+	<filter>
+		<name>xflow pump</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition><!-- to left -->
+				<property>systems/fuel/xflow-pump/serviceable</property>
+				<property>systems/AC/outputs/xflow-pump</property>
+				<or>
+					<and><!-- automatic -->
+						<not><property>controls/fuel/xflow-manual</property></not>
+						<greater-than>
+							<expression>
+								<dif>
+									<property>consumables/fuel/tank[1]/level-lbs</property>
+									<property>consumables/fuel/tank[0]/level-lbs</property>
+								</dif>
+							</expression>
+							<value>200</value>
+						</greater-than>			
+					</and>
+					<and>
+						<property>controls/fuel/xflow-manual</property>
+						<property>controls/fuel/xflow-left</property>
+						<not><property>controls/fuel/xflow-right</property></not>
+					</and>
+				</or>
+			</condition>
+			<value>-1</value>
+		</input>		
+		<input>
+			<condition><!-- to right -->
+				<property>systems/fuel/xflow-pump/serviceable</property>
+				<property>systems/AC/outputs/xflow-pump</property>
+				<or>
+					<and><!-- automatic -->
+						<not><property>controls/fuel/xflow-manual</property></not>
+						<greater-than>
+							<expression>
+								<dif>
+									<property>consumables/fuel/tank[0]/level-lbs</property>
+									<property>consumables/fuel/tank[1]/level-lbs</property>
+								</dif>
+							</expression>
+							<value>200</value>
+						</greater-than>
+					</and>
+					<and>
+						<property>controls/fuel/xflow-manual</property>
+						<property>controls/fuel/xflow-right</property>
+						<not><property>controls/fuel/xflow-left</property></not>
+					</and>
+				</or>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<value>0</value>
+		</input>
+		<output>systems/fuel/xflow-pump/running</output>
+	</filter>	
+	<logic>
+		<name>xflow-pump inop</name>
+		<input>
+			<or>
+				<and>
+					<property>controls/fuel/xflow-left</property>
+					<property>controls/fuel/xflow-right</property>
+				</and>
+				<and>
+					<property>controls/fuel/xflow-left</property>
+					<not><property>systems/fuel/xflow-pump/serviceable</property></not>
+				</and>
+				<and>
+					<property>controls/fuel/xflow-right</property>
+					<not><property>systems/fuel/xflow-pump/serviceable</property></not>
+				</and>
+			</or>
+		</input>
+		<output>systems/fuel/xflow-pump/inop</output>
+	</logic>	
+</PropertyList>

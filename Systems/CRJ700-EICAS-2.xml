@@ -106,7 +106,62 @@
 			<blue alias="../../../colors/green/blue" />
 		</color>
 		<condition>
-			<property>controls/fuel/gravity-xflow</property>
+			<property>systems/fuel/gravity-xflow/open</property>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">GRAV XFLOW FAIL</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>systems/fuel/gravity-xflow/fail</property>
+		</condition>
+	</message>
+	
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">L XFLOW ON</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/fuel/xflow-pump/running</property>
+				<value>-1</value>
+			</equals>
+		</condition>
+	</message>
+		<message>
+		<priority type="int">1</priority>
+		<text type="string">R XFLOW ON</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<equals>
+				<property>systems/fuel/xflow-pump/running</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</message>
+	<message>
+		<priority type="int">1</priority>
+		<text type="string">MAN XFLOW</text>
+		<color>
+			<red alias="../../../colors/white/red" />
+			<green alias="../../../colors/white/green" />
+			<blue alias="../../../colors/white/blue" />
+		</color>
+		<condition>
+			<property>controls/fuel/xflow-manual</property>
 		</condition>
 	</message>
 	<message>
@@ -369,7 +424,7 @@
 				<property>gear/serviceable</property>
 			</not>
 		</condition>
-	</message>
+		</message>
 	<message>
 		<priority type="int">1</priority>
 		<text type="string">R MLG fault</text>
@@ -513,7 +568,7 @@
 			<blue alias="../../../colors/white/blue" />
 		</color>
 		<condition>
-			<property>controls/pneumatic/ram-air-turbine</property>
+			<property>controls/ECS/ram-air</property>
 		</condition>
 	</message>
 	<message>

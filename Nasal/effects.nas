@@ -20,6 +20,8 @@ var Switch_sound = {
         }
         return m;
     },
+
+	#sound is called for each property change
     sound: func
     {
         var soundid = me.soundid += 1;
@@ -42,6 +44,7 @@ var Switch_sound = {
             me._setstoptimer_(soundid);
         }
     },
+	
     _setstoptimer_: func(soundid)
     {
         settimer(func
@@ -53,6 +56,8 @@ var Switch_sound = {
 };
 var sound_flapslever = Switch_sound.new("sim/sound/flaps-lever", 0.18,
    "controls/flight/flaps");
+var sound_gearlever = Switch_sound.new("sim/sound/gear-lever", 0.5,
+   "controls/gear/gear-lever-moved");
 var sound_passalert = Switch_sound.new("sim/sound/passenger-sign", 2,
    "sim/model/lights/no-smoking-sign",
    "sim/model/lights/seatbelt-sign");
@@ -140,9 +145,9 @@ var sound_switchlightclick = Switch_sound.new("sim/sound/swl-click", 0.1,
 	 "controls/electric/auto-xfer2",
 	 "controls/hydraulic/system[0]/pump-a",
 	 "controls/hydraulic/system[1]/pump-a",		
-	 "consumables/fuel/tank[0]/selected",
+	 "systems/fuel/boost-pump[0]/selected",
 	 "controls/fuel/gravity-xflow",
-	 "consumables/fuel/tank[1]/selected",
+	 "systems/fuel/boost-pump[1]/selected",
 	 "controls/fuel/xflow-left",
 	 "controls/fuel/xflow-manual",
 	 "controls/fuel/xflow-right",

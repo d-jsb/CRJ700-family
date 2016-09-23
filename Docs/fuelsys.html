@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<title>FlightGear CRJ700 fuel system</title>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="Files/styles.css">
+	</head>
+	<body>
+		<h1>CRJ700 Series fuel system</h1>
+
+		<p id="author">
+		Written by D-JSB in 06/2016
+		</p>
+
+		<h3>Overview</h3>
+
+		<p>
+		 The CRJ700 series aircrafts have three fuel tanks: left wing, right wing 
+		 and center tank for long range flights. 
+		 Electrical fuel pumps, engine driven pumps and ejectors 
+		 will supply fuel to the engines and transfer fuel between the tanks. 
+		 The collector tanks are not modelled as they do not become visible in the simulation.
+		</p>
+		<p>
+		 A fuel computer controls the tanks and fuel transfer. 
+		 Fuel will be automatically transfer from the centre tank to the wing 
+		 tanks to keep the wing tanks level between 93% to 97%.
+		 The powered crossflow pump is used to balance fuel between left 
+		 and right wing tank automatically. 
+		 The crew can override this by selecting manual cross flow and selecting 
+		 either to left or to right direction.
+		</p>
+		<p>
+		In case of a failure of the automatic fuel system, the crew can select 
+		the gravity xflow open to balance the fuel between left and right wing.
+		</p>
+		<p class="warn">
+		The EICAS page for the fuel system is not yet implemented.
+		</p>
+		<h3>Normal operation</h3>
+		<p>
+		On the OHP you will find some switchlights to control and monitor the fuel system.
+		Before engine start, the two fuel pumps must be armed. The will activate then 
+		as needed automatically.
+		For take of, the automatic xflow must be deactivated by selecting manual xflow 
+		(NOT gravity xflow, which must be closed for take off!).		
+		</p>
+		<p>
+		
+		</p>
+
+	</body>
+</html>

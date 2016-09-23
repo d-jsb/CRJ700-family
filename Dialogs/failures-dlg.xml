@@ -53,7 +53,7 @@
 		</checkbox>
 		<checkbox>
 			<label>APU</label>
-			<property>engines/apu/on-fire</property>
+			<property>engines/engine[2]/on-fire</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>
@@ -75,16 +75,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>APU</label>
-			<property>engines/apu/serviceable</property>
-			<binding>
-			<command>dialog-apply</command>
-			</binding>
-			<live type="bool">true</live>
-		</checkbox>
-		<checkbox>
-			<halign>left</halign>
-			<label>Ram air turbine</label>
-			<property>systems/ram-air-turbine/serviceable</property>
+			<property>engines/engine[2]/serviceable</property>
 			<binding>
 			<command>dialog-apply</command>
 			</binding>

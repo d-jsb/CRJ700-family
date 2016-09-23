@@ -10,7 +10,7 @@ positions or are almost the same position for C700/900/1000.
 		<!-- Flaps -->
 		<flaps>
 			<name>Flaps in transit</name>
-			<path>Aircraft/CRJ700-family/Sounds/flaps.wav</path>
+			<path>Sounds/flaps.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -28,7 +28,7 @@ positions or are almost the same position for C700/900/1000.
 		</flaps>
 		<flapsStop>
 			<name>Flaps stopping</name>
-			<path>Aircraft/CRJ700-family/Sounds/flaps-stop1.wav</path>
+			<path>Sounds/flaps-stop1.wav</path>
 			<mode>once</mode>
 			<property>controls/flight/flaps-stop-snd</property>
 			<position>
@@ -41,7 +41,7 @@ positions or are almost the same position for C700/900/1000.
 		</flapsStop>
 		<slats>
 			<name>Slats in transit</name>
-			<path>Aircraft/CRJ700-family/Sounds/slats.wav</path>
+			<path>Sounds/slats.wav</path>
 			<mode>in-transit</mode>		
 			<property>surface-positions/slat-pos-norm</property>
 			<position>
@@ -55,7 +55,7 @@ positions or are almost the same position for C700/900/1000.
 		<!-- Speedbrakes/spoilers hydraulics -->
 <!-- 		<speedbrake>
 			<name>Left speedbrake in transit</name>
-			<path>Aircraft/CRJ700-family/Sounds/spoilers.wav</path>
+			<path>Sounds/spoilers.wav</path>
 			<mode>in-transit</mode>
 			<property>surface-positions/left-speedbrake-pos-norm</property>
 			<volume>
@@ -69,7 +69,7 @@ positions or are almost the same position for C700/900/1000.
 		</speedbrake>
 		<speedbrake>
 			<name>Right speedbrake in transit</name>
-			<path>Aircraft/CRJ700-family/Sounds/spoilers.wav</path>
+			<path>Sounds/spoilers.wav</path>
 			<mode>in-transit</mode>
 			<property>surface-positions/right-speedbrake-pos-norm</property>
 			<volume>
@@ -112,7 +112,7 @@ positions or are almost the same position for C700/900/1000.
 		<sign>
 			<name>Passenger sign</name>
 			<mode>once</mode>
-			<path>Aircraft/CRJ700-family/Sounds/cabinalert.wav</path>
+			<path>Sounds/cabinalert.wav</path>
 			<condition>
 				<and>
 					<property>sim/sound/passenger-sign</property>
@@ -124,7 +124,7 @@ positions or are almost the same position for C700/900/1000.
 		<alarm>
 			<name>Master warning</name>
 			<mode>looped</mode>
-			<path>Aircraft/CRJ700-family/Sounds/warning.wav</path>
+			<path>Sounds/warning.wav</path>
 			<condition>
 				<property>sim/alarms/master-warning</property>
 			</condition>
@@ -132,7 +132,7 @@ positions or are almost the same position for C700/900/1000.
 		<alarm>
 			<name>Overspeed alarm</name>
 			<mode>looped</mode>
-			<path>Aircraft/CRJ700-family/Sounds/overspeed.wav</path>
+			<path>Sounds/overspeed.wav</path>
 			<condition>
 				<property>sim/alarms/overspeed-alarm</property>
 			</condition>
@@ -141,7 +141,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>Autopilot disconnect</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/autopilot-disconnect.wav</path>
+			<path>Sounds/autopilot-disconnect.wav</path>
 			<condition>
 				<equals>
 					<property>controls/autoflight/autopilot/engage</property>     
@@ -155,7 +155,7 @@ positions or are almost the same position for C700/900/1000.
 		<altitude-alert>
 			<name>Altitude alert</name>
 			<mode>once</mode>
-			<path>Aircraft/CRJ700-family/Sounds/c-chord.wav</path>
+			<path>Sounds/c-chord.wav</path>
 			<condition>
 				<property>sim/alarms/altitude-alert</property>
 			</condition>
@@ -168,7 +168,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>80 knots</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/80kt.wav</path>
+			<path>Sounds/80kt.wav</path>
 			<condition>
 				<and>
 					<or>
@@ -195,7 +195,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>V1</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/v1.wav</path>
+			<path>Sounds/v1.wav</path>
 			<condition>
 				<and>
 					<or>
@@ -222,7 +222,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>Vr</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/vr.wav</path>
+			<path>Sounds/vr.wav</path>
 			<condition>
 				<and>
 					<or>
@@ -249,7 +249,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>V2</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/v2.wav</path>
+			<path>Sounds/v2.wav</path>
 			<condition>
 				<and>
 					<less-than>
@@ -271,7 +271,7 @@ positions or are almost the same position for C700/900/1000.
 			<name>Positive climb rate</name>
 			<mode>once</mode>
 			<type>avionics</type>
-			<path>Aircraft/CRJ700-family/Sounds/proc.wav</path>
+			<path>Sounds/proc.wav</path>
 			<condition>
 				<and>
 					<less-than>
@@ -302,33 +302,25 @@ positions or are almost the same position for C700/900/1000.
 			</condition>
 		</callout>
 		
-		<avionics>
-			<name>avionics fan and noise</name>
-			<path>Sounds/avionics-400Hz.wav</path>
-			<mode>looped</mode>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>systems/electrical/outputs/efis</property>
-					<value>0</value>
-				</greater-than>
-			</condition>
-			<position>
-				<x>-17</x>
-				<y>0.01</y>
-				<z>-1.95</z>
-			</position>	
-			<volume>
-				<factor>0.2</factor>
-				<max>0.5</max>
-			</volume>
-			<reference-dist>1.2</reference-dist>
-			<max-dist>5</max-dist>
-		</avionics>
 		<!-- generic wind -->
 		<wind>
+			<name>Cockpit aircon</name>
+			<path>Sounds/cockpit-aircon.wav</path>
+			<mode>looped</mode>
+		    <condition>
+				<property>sim/current-view/internal</property>
+				<or>
+					<property>systems/pneumatic/pressure-left</property>
+					<property>systems/pneumatic/pressure-right</property>
+				</or>
+			</condition>
+		    <volume>
+				<factor>0.35</factor>
+			</volume>
+		</wind>  
+		<wind>
 			<name>Wind</name>
-			<path>Aircraft/CRJ700-family/Sounds/wind.wav</path>
+			<path>Sounds/wind.wav</path>
 			<mode>looped</mode>
 		    <condition>
 				<greater-than>
@@ -355,7 +347,7 @@ positions or are almost the same position for C700/900/1000.
 
 		<turbL>
 			<name>Turbulence Speedbrake L lowspeed</name>
-			<path>Aircraft/CRJ700-family/Sounds/air-brakes.wav</path>
+			<path>Sounds/air-brakes.wav</path>
 			<mode>looped</mode>
 			<condition>
 				<and>
@@ -383,7 +375,7 @@ positions or are almost the same position for C700/900/1000.
 		</turbL>    
 		<turbL>
 			<name>Turbulence Speedbrake L highspeed</name>
-			<path>Aircraft/CRJ700-family/Sounds/air-brakes.wav</path>
+			<path>Sounds/air-brakes.wav</path>
 			<mode>looped</mode>
 			<condition>
 				<and>
@@ -411,7 +403,7 @@ positions or are almost the same position for C700/900/1000.
 
 		<turbR>
 			<name>Turbulence Speedbrake R lowspeed</name>
-			<path>Aircraft/CRJ700-family/Sounds/air-brakes.wav</path>
+			<path>Sounds/air-brakes.wav</path>
 			<mode>looped</mode>
 			<condition>
 				<and>
@@ -442,7 +434,7 @@ positions or are almost the same position for C700/900/1000.
 		</turbR> 
 		<turbR>
 			<name>Turbulence Speedbrake R highspeed</name>
-			<path>Aircraft/CRJ700-family/Sounds/air-brakes.wav</path>
+			<path>Sounds/air-brakes.wav</path>
 			<mode>looped</mode>
 			<condition>
 				<and>
@@ -470,7 +462,7 @@ positions or are almost the same position for C700/900/1000.
 		<!-- main gear -->
 		<gear>
 			<name>Left main gear touchdown</name>
-			<path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
+			<path>Sounds/squeaking-main.wav</path>
 			<mode>once</mode>
 			<condition>
 				<property>gear/gear[1]/wow</property>
@@ -491,7 +483,7 @@ positions or are almost the same position for C700/900/1000.
 		</gear>
 		<gear>
 			<name>Left main gear touchdown 2</name>
-			<path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
+			<path>Sounds/touchdown-vibrations.wav</path>
 			<mode>once</mode>
 			<condition>
 				<property>gear/gear[1]/wow</property>
@@ -512,7 +504,7 @@ positions or are almost the same position for C700/900/1000.
 		</gear>
 		<gear>
 			<name>Right main gear touchdown</name>
-			<path>Aircraft/CRJ700-family/Sounds/squeaking-main.wav</path>
+			<path>Sounds/squeaking-main.wav</path>
 			<mode>once</mode>
 			<condition>
 				<property>gear/gear[2]/wow</property>
@@ -533,7 +525,7 @@ positions or are almost the same position for C700/900/1000.
 		</gear>
 		<gear>
 			<name>Right main gear touchdown 2</name>
-			<path>Aircraft/CRJ700-family/Sounds/touchdown-vibrations.wav</path>
+			<path>Sounds/touchdown-vibrations.wav</path>
 			<mode>once</mode>
 			<condition>
 				<property>gear/gear[2]/wow</property>
@@ -555,7 +547,7 @@ positions or are almost the same position for C700/900/1000.
 		<rumble><!-- main internal -->
 			<name>Main gear rumble</name>
 			<mode>looped</mode>
-			<path>Aircraft/CRJ700-family/Sounds/roll.wav</path>
+			<path>Sounds/roll.wav</path>
 			<condition>
 				<and>
 					<or>
@@ -582,7 +574,7 @@ positions or are almost the same position for C700/900/1000.
 		
 		<gear><!-- gear up/dn; should be replaced with better sounds -->
 			<name>Gear in transit</name>
-			<path>Aircraft/CRJ700-family/Sounds/gear.wav</path>
+			<path>Sounds/gear.wav</path>
 			<mode>in-transit</mode>
 			<property>gear/gear[0]/position-norm</property>
 			<volume>

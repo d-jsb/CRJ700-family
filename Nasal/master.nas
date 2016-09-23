@@ -138,11 +138,17 @@ setlistener("sim/signals/fdm-initialized", func
 	gravity_xflow = aircraft.crossfeed_valve.new(0.5, "controls/fuel/gravity-xflow", 0, 1);
 	if (getprop("/sim/time/sun-angle-rad") > 1.57) 
 		setprop("controls/lighting/dome", 1);
+
+	setprop("consumables/fuel/tank[0]/level-lbs", 2000);
+	setprop("consumables/fuel/tank[1]/level-lbs", 2000);
+	setprop("consumables/fuel/tank[2]/level-lbs", 100);
+	
 	fast_loop.start();
 	slow_loop.start();
 	settimer(func {
 		setprop("sim/model/sound-enabled",1);
 		print("Sound on.");
+		gui.showWeightDialog();
 		}, 3);
 }, 0, 0);
 
@@ -166,8 +172,8 @@ var startup = func {
 		["controls/electric/engine[1]/generator", 1, 1.5],
 		["controls/engines/engine[0]/cutoff", 0, 0.1],
 		["controls/engines/engine[1]/cutoff", 0, 2],
-		["/consumables/fuel/tank[0]/selected", 1, 0.4],
-		["/consumables/fuel/tank[1]/selected", 1, 0.8],
+		["systems/fuel/boost-pump[0]/selected", 1, 0.4],
+		["systems/fuel/boost-pump[1]/selected", 1, 0.8],
 		["/controls/engines/engine[0]/starter", 1, 37],
 		["/controls/engines/engine[1]/starter", 1, 38],
 		["controls/pneumatic/bleed-source", 0, 0.8],
@@ -203,13 +209,15 @@ var shutdown = func
 		["controls/electric/engine[1]/generator", 0, 1.5],
 		["controls/engines/engine[0]/cutoff", 1, 0.0],
 		["controls/engines/engine[1]/cutoff", 1, 2],
-		["/consumables/fuel/tank[0]/selected", 0, 0.4],
-		["/consumables/fuel/tank[1]/selected", 0, 0.8],
+		["systems/fuel/boost-pump[0]/selected", 0, 0.4],
+		["systems/fuel/boost-pump[1]/selected", 0, 0.8],
 		["controls/lighting/beacon", 0, 0.8],
 		["controls/hydraulic/system[0]/pump-b", 0, 0.1],
 		["controls/hydraulic/system[2]/pump-a", 0, 0.3],							
 		["controls/hydraulic/system[2]/pump-b", 0, 0.1],
 		["controls/hydraulic/system[1]/pump-b", 0, 0.3],
+		["controls/autoflight/yaw-damper/engage", 0, 0.5],
+		["controls/autoflight/yaw-damper/engage[1]", 0, 0.5],
 	];
 	var exec = func (idx)
 	{
@@ -241,8 +249,10 @@ var instastart = func
 {
 	if (getprop("position/altitude-agl-ft") < 500 and !getprop("/sim/config/developer"))
 		return;
-	setprop("/consumables/fuel/tank[0]/selected", 1);
-	setprop("/consumables/fuel/tank[1]/selected", 1);
+	setprop("systems/fuel/boost-pump[0]/selected", 1);
+	setprop("systems/fuel/boost-pump[1]/selected", 1);
+	setprop("systems/fuel/boost-pump[0]/running", 1);
+	setprop("systems/fuel/boost-pump[1]/running", 1);
     setprop("controls/electric/battery-switch", 1);
     setprop("controls/electric/engine[0]/generator", 1);
     setprop("controls/electric/engine[1]/generator", 1);
@@ -258,21 +268,18 @@ var instastart = func
 
 	setprop("/controls/gear/brake-parking", 0);
 	setprop("/controls/lighting/strobe", 1);
-};
+	setprop("/controls/autoflight/yaw-damper/engage", 1);
+	setprop("/controls/autoflight/yaw-damper[1]/engage", 1);
+	};
 
 ## Prevent the gear from being retracted on the ground
 setlistener("controls/gear/gear-down", func(v)
 {
-    if (!v.getBoolValue())
+    if (getprop("gear/on-ground")) 
     {
-        var on_ground = 0;
-        foreach (var gear; props.globals.getNode("gear").getChildren("gear"))
-        {
-            var wow = gear.getNode("wow", 0);
-            if (wow != nil and wow.getBoolValue()) on_ground = 1;
-        }
-        if (on_ground) v.setBoolValue(1);
-    }
+		v.setBoolValue(1);
+	}
+	else setprop("controls/gear/gear-lever-moved", v.getBoolValue());
 }, 0, 0);
 
 var reload_checklists = func()

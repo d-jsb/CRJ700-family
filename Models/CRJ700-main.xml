@@ -8,6 +8,7 @@
     <nasal>
         <!-- Nasal code executed for multiplayer models. -->
         <load>
+print("--BEGIN-- CRJ700 MP model code");
 var model = cmdarg();
 var model_path = model.getNode("sim/model/path").getValue();
 var model_name = split(".", split("/", model_path)[-1])[0];
@@ -41,8 +42,14 @@ var model_dict = {
     ]
 };
 var variant = model.getNode("sim/model/variant").getValue();
-var livery_update = aircraft.livery_update.new("Liveries/"
-                                               ~ model_dict[model_name][variant]);
+
+if (model_name == nil or variant == nil)
+{
+	print("CRJ700 family (MP model): model name or variant not available (",model_name,", ",variant,")");
+}
+else 
+	var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/"~ model_dict[model_name][variant]);
+                                               
 
 # Animated jetways.
 var jetway_dict = {
@@ -69,6 +76,7 @@ model.getNode("door[0]/position-x-m", 1).setDoubleValue(jetway_dict[model_name][
 model.getNode("door[0]/position-y-m", 1).setDoubleValue(jetway_dict[model_name][1]);
 model.getNode("door[0]/position-z-m", 1).setDoubleValue(jetway_dict[model_name][2]);
 model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_name][3]);
+print("--END-- CRJ700 MP model code");
         </load>
         <unload>
             livery_update.stop();

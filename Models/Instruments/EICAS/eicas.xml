@@ -1263,6 +1263,41 @@ page 10 Doors
 			<height type="int">32</height>
 		</font-resolution>
 	</text>
+	<animation>
+		<type>material</type>
+		<object-name>Left tank fuel</object-name>
+		<object-name>Center tank fuel</object-name>
+		<object-name>Right tank fuel</object-name>
+		<object-name>Total fuel 2</object-name>
+		<condition>
+			<or>
+				<greater-than>
+					<property>systems/fuel/imbalance-lbs</property>
+					<value>800</value>
+				</greater-than>
+				<less-than>
+					<property>consumables/fuel/total-fuel-lbs</property>
+					<value>900</value>					
+				</less-than>
+			</or>			
+		</condition>
+		<ambient>
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
+		</ambient>
+		<diffuse>
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
+		</diffuse>
+		<emission>
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
+			<factor-prop>controls/lighting/display-norm</factor-prop>
+		</emission>
+	</animation>	
 	<!-- End page 1 text -->
 	<!-- Begin page 2 text -->
 	<text>
@@ -1558,7 +1593,7 @@ page 10 Doors
 	<text>
 		<name>APU EGT</name>
 		<type>number-value</type>
-		<property>engines/apu/egt-degc</property>
+		<property>engines/engine[2]/egt-degc</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -1635,7 +1670,7 @@ page 10 Doors
 	<text>
 		<name>APU DOOR</name>
 		<type>string-value</type>
-		<property>engines/apu/door-msg</property>
+		<property>engines/engine[2]/door-msg</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
 		<character-size>0.008</character-size>
@@ -1657,7 +1692,7 @@ page 10 Doors
 		<object-name>APU DOOR</object-name>
 		<condition>
 			<equals>
-				<property>engines/apu/door-msg</property>
+				<property>engines/engine[2]/door-msg</property>
 				<value>----</value>
 			</equals>
 		</condition>
@@ -1683,7 +1718,7 @@ page 10 Doors
 		<object-name>APU DOOR</object-name>
 		<condition>
 			<not><equals>
-				<property>engines/apu/door-msg</property>
+				<property>engines/engine[2]/door-msg</property>
 				<value>----</value>
 			</equals></not>
 		</condition>
@@ -7170,19 +7205,19 @@ DIR BUS</text>
 		<object-name>HydReverserL</object-name>
 		<object-name>HydReverserR</object-name>
 		<ambient>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/amber/red" />
-			<green alias="../../../colors/amber/green" />
-			<blue alias="../../../colors/amber/blue" />
+			<red alias="/colors/amber/red" />
+			<green alias="/colors/amber/green" />
+			<blue alias="/colors/amber/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
@@ -7196,19 +7231,19 @@ DIR BUS</text>
 		<object-name>PageDoorsTitle</object-name>
 		<object-name>PageHydraulicTitle</object-name>
 		<ambient>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
+			<red alias="/colors/blue/red" />
+			<green alias="/colors/blue/green" />
+			<blue alias="/colors/blue/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
+			<red alias="/colors/blue/red" />
+			<green alias="/colors/blue/green" />
+			<blue alias="/colors/blue/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/blue/red" />
-			<green alias="../../../colors/blue/green" />
-			<blue alias="../../../colors/blue/blue" />
+			<red alias="/colors/blue/red" />
+			<green alias="/colors/blue/green" />
+			<blue alias="/colors/blue/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>	
@@ -7228,15 +7263,15 @@ DIR BUS</text>
 		<object-name>N22 text</object-name>
 		<object-name>FF1</object-name>
 		<object-name>FF2</object-name>
+		<object-name>Left tank fuel</object-name>
+		<object-name>Center tank fuel</object-name>
+		<object-name>Right tank fuel</object-name>
+		<object-name>Total fuel 2</object-name>
 		<object-name>Oil temp 1</object-name>
 		<object-name>Oil temp 2</object-name>
 		<object-name>Oil temp2</object-name>
 		<object-name>Oil pressure 1</object-name>
 		<object-name>Oil pressure 2</object-name>
-		<object-name>Left tank fuel</object-name>
-		<object-name>Center tank fuel</object-name>
-		<object-name>Right tank fuel</object-name>
-		<object-name>Total fuel 2</object-name>
 		<object-name>Stabilizer trim value</object-name>
 		<object-name>APU RPM</object-name>
 		<object-name>APU EGT</object-name>
@@ -7289,19 +7324,19 @@ DIR BUS</text>
 		<object-name>DCMainBattV</object-name>
 		<object-name>DCMainBattA</object-name>
 		<ambient>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
+			<red alias="/colors/green/red" />
+			<green alias="/colors/green/green" />
+			<blue alias="/colors/green/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
+			<red alias="/colors/green/red" />
+			<green alias="/colors/green/green" />
+			<blue alias="/colors/green/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/green/red" />
-			<green alias="../../../colors/green/green" />
-			<blue alias="../../../colors/green/blue" />
+			<red alias="/colors/green/red" />
+			<green alias="/colors/green/green" />
+			<blue alias="/colors/green/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
@@ -7391,19 +7426,19 @@ DIR BUS</text>
 		<object-name>DCAPUBattBusText</object-name>
 		<object-name>DCMainBattBusText</object-name>		
 		<ambient>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="/colors/white/red" />
+			<green alias="/colors/white/green" />
+			<blue alias="/colors/white/blue" />
 		</ambient>
 		<diffuse>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="/colors/white/red" />
+			<green alias="/colors/white/green" />
+			<blue alias="/colors/white/blue" />
 		</diffuse>
 		<emission>
-			<red alias="../../../colors/white/red" />
-			<green alias="../../../colors/white/green" />
-			<blue alias="../../../colors/white/blue" />
+			<red alias="/colors/white/red" />
+			<green alias="/colors/white/green" />
+			<blue alias="/colors/white/blue" />
 			<factor-prop>controls/lighting/display-norm</factor-prop>
 		</emission>
 	</animation>
@@ -7839,6 +7874,7 @@ DIR BUS</text>
 		<z-min>1</z-min>
 		<z-max>1</z-max>
 	</animation>
+
 	<!-- trim -->
 	<animation>
 		<type>rotate</type>
@@ -7931,7 +7967,7 @@ DIR BUS</text>
 	<animation>
 		<type>rotate</type>
 		<object-name>APUEGT</object-name>
-		<property>engines/apu/egt-degc</property>
+		<property>engines/engine[2]/egt-degc</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>180</dep></entry>
 			<entry><ind>600</ind><dep>-58</dep></entry>

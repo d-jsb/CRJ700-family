@@ -4,6 +4,40 @@
 	What is what depends on how the files are included in CRJ700-main.xml
 -->
 <PropertyList>
+	<logic>
+		<name>Pushback enable</name>
+		<input>
+			<and>
+				<property>/sim/model/pushback/enabled</property>
+				<property>/gear/gear[0]/wow</property>				
+			</and>
+		</input>
+		<!-- abuse MP enabled prop to make pushback visible in MP -->
+		<output>/sim/hitches/aerotow/is-slave</output>
+	</logic>
+	<filter>
+		<name>mixt2speedbrake</name>
+		<type>gain</type>
+		<debug type="bool">false</debug>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>sim/config/mixt-to-speedbrake</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<dif>
+					<value>1</value>
+					<property>controls/engines/engine/mixture</property>
+				</dif>
+			</expression>
+		</input>
+		<output>controls/flight/speedbrake</output>
+	</filter>
 	<filter>
 		<name>dhptr</name>
 		<type>gain</type>
@@ -34,23 +68,7 @@
 		</input>
 		<output>instrumentation/altimeter/mda-deviation</output>
 	</filter>	
-	<filter>
-		<name>fuel-imbalance</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<abs>
-					<dif>
-						<property>consumables/fuel/tank[0]/level-lbs</property>
-						<property>consumables/fuel/tank[1]/level-lbs</property>
-					</dif>
-				</abs>
-			</expression>
-		</input>
-		<output>consumables/fuel/imbalance-lbs</output>
-	</filter>
+	
 	<filter>
 		<name>alt-ref-deviation</name>
 		<type>gain</type>
@@ -197,7 +215,7 @@
 		<name>Master warning alarm</name>
 		<input>
 			<or>
-				<property>engines/apu/on-fire</property>
+				<property>engines/engine[2]/on-fire</property>
 				<property>engines/engine[0]/on-fire</property>
 				<property>engines/engine[1]/on-fire</property>
 			</or>

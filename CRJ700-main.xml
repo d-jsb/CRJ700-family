@@ -9,7 +9,7 @@
 		<description>Bombardier CRJ700 series</description>
         <author>Ryan Miller, Henning S.</author>
         <status>production</status>
-        <aircraft-version>1.5.2</aircraft-version>
+        <aircraft-version>1.6.0</aircraft-version>
 		<rating>
 			<FDM type="int">3</FDM>
 			<systems type="int">3</systems>
@@ -28,7 +28,7 @@
 		</tags>
 		
 		<startup>
-			<splash-texture>Aircraft/CRJ700-family/splash.jpg</splash-texture>
+			<splash-texture>splash.jpg</splash-texture>
 		</startup>
 		
 		<checklists include="Checklists/checklists.xml" />
@@ -47,12 +47,20 @@
 				<landing-light2-offset-deg>1</landing-light2-offset-deg>
 			</als-secondary-lights>
 		</rendering>
+		<hitches>
+			<aerotow>
+				<!-- MP enabled prop used to show/hide pushback vehicle. 
+					see property rules -->
+				<is-slave type="bool">0</is-slave>
+			</aerotow>
+		</hitches>
 		<model>
 			<livery>
 				<file>Blank</file>
 				<registration type="string" />
 			</livery>
 			<pushback>
+				<!-- aliased to MP enabled props -->
 				<position-norm alias="/engines/engine[2]/n2" />
 				<enabled type="bool">0</enabled>
 				<kp type="double">0.05</kp>
@@ -116,7 +124,7 @@
 		</model>
 		
 		<instrumentation>
-			<path>Aircraft/CRJ700-family/Systems/CRJ700-instrumentation.xml</path>
+			<path>Systems/CRJ700-instrumentation.xml</path>
 		</instrumentation>
 		
 		<systems>
@@ -126,23 +134,31 @@
 			</electrical>
 			<autopilot>
 				<name>Autopilot</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-autopilot.xml</path>
+				<path>Systems/CRJ700-autopilot.xml</path>
 			</autopilot>
 			<autopilot>
 				<name>Flight control system</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-flight-controls.xml</path>
+				<path>Systems/CRJ700-flight-controls.xml</path>
 			</autopilot>
 			<autopilot>
 				<name>Pushback</name>
-				<path>Aircraft/CRJ700-family/Systems/pushback.xml</path>
+				<path>Systems/pushback.xml</path>
 			</autopilot>
 			<property-rule n="100">
 				<name>Propery rules</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-property-rules.xml</path>
+				<path>Systems/CRJ700-property-rules.xml</path>
 			</property-rule>
 			<property-rule n="101">
-				<name>Propery rules</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-ap-rules.xml</path>
+				<name>Propery rules AP</name>
+				<path>Systems/CRJ700-ap-rules.xml</path>
+			</property-rule>
+			<property-rule n="102">
+				<name>Propery rules fuel</name>
+				<path>Systems/CRJ700-fuel.xml</path>
+			</property-rule>
+			<property-rule n="103">
+				<name>Propery rules pneumatic</name>
+				<path>Systems/CRJ700-pneumatic.xml</path>
 			</property-rule>
 		</systems>
 		
@@ -196,6 +212,7 @@
 			<path>/sim/config/view-follows-tiller</path>
 			<path>/sim/config/allow-autothrottle</path>
 			<path>/sim/config/rudder-to-tiller</path>
+			<path>/sim/config/mixt-to-speedbrake</path>
 			<path>/sim/config/developer</path>
 			<path>/sim/model/known-version</path>
 			<path>/sim/model/light-cones</path>
@@ -467,18 +484,23 @@
 	<consumables>
 		<fuel>
 			<tank n="0">
-				<name>LH Wing</name>
+				<name>Left Wing</name>
 				<selected type="bool">false</selected>
 				<level-lbs archive="y">5000</level-lbs>
+				<unusable-gal_us type="float">9.24</unusable-gal_us>
+				<xfer-valve type="bool">false</xfer-valve>
 			</tank>
 			<tank n="1">
-				<name>RH Wing</name>
+				<name>Right Wing</name>
 				<selected type="bool">false</selected>
 				<level-lbs archive="y">5000</level-lbs>
+				<unusable-gal_us type="float">9.24</unusable-gal_us>
+				<xfer-valve type="bool">false</xfer-valve>
 			</tank>
 			<tank n="2">
 				<name>Center Main</name>
 				<level-lbs archive="y">0</level-lbs>
+				<unusable-gal_us type="float">4.62</unusable-gal_us>
 			</tank>
 		</fuel>
 	</consumables>
@@ -584,6 +606,7 @@
 			<slats-cmd>0</slats-cmd>
 		</flight>
 		<fuel>
+			<gravity-xflow type="bool">0</gravity-xflow>
 			<xflow-left type="bool">0</xflow-left>
 			<xflow-manual type="bool">0</xflow-manual>
 			<xflow-right type="bool">0</xflow-right>
@@ -637,8 +660,6 @@
 			<bleed-valve type="int">1</bleed-valve>
 			<bleed-source type="int">0</bleed-source>
 			<isol type="bool">false</isol>
-			<ram-air-turbine type="bool">false</ram-air-turbine>
-			<ram-air-turbine-cover type="bool">false</ram-air-turbine-cover>
 		</pneumatic>
 		<switches>
 			<no-smoking-sign type="int">1</no-smoking-sign>
@@ -648,13 +669,7 @@
 	
 	<engines>
 		<apu>
-			<egt-degc type="double">0</egt-degc>
-			<rpm type="double">0</rpm>
-			<on-fire type="bool">false</on-fire>
-			<serviceable type="bool">true</serviceable>
-			<pump-fail type="bool">false</pump-fail>
-			<SOV-fail type="bool">false</SOV-fail>
-			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
+			<info>see engine2</info>
 		</apu>
 		<engine n="0">
 			<on-fire type="bool">false</on-fire>
@@ -667,9 +682,18 @@
 			<rpm type="float">0</rpm>
 			<n1 type="float">0</n1>
 			<n2 type="float">0</n2>
+			<running type="bool">false</running>
+			<egt-degc type="double">0</egt-degc>
+			<on-fire type="bool">false</on-fire>
+			<serviceable type="bool">true</serviceable>
+			<pump-fail type="bool">false</pump-fail>
+			<SOV-fail type="bool">false</SOV-fail>
+			<!-- <door-norm alias="/engines/engine[2]/n1" /> -->
 		</engine>		
 		<!-- engine 3 properties are used to transfer door positions via MP -->
-		<engine n="3"></engine>
+		<engine n="3">
+			<info>abused for MP door-positions</info>
+		</engine>
 	</engines>
 	
 	<fcs>
@@ -1071,8 +1095,8 @@
 			</mfd>
 		</efis>
 		<nd>
-			<radar-texture-path type="string">Aircraft/CRJ700-family/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-			<symbol-texture-path type="string">Aircraft/CRJ700-family/Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
+			<radar-texture-path type="string">Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+			<symbol-texture-path type="string">Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
 			<symbol-texture-size type="int">512</symbol-texture-size>
 			<font>
 				<color>
@@ -1134,6 +1158,36 @@
 				<transponder alias="/systems/DC/outputs/transponder1" />
 			</outputs>
 		</electrical>
+		<fuel>
+			<imbalance-lbs type="float">0</imbalance-lbs>
+			<boost-pump n="0">
+				<running type="bool">false</running>
+				<selected type="bool">false</selected>
+				<serviceable type="bool">true</serviceable>
+			</boost-pump>
+			<boost-pump n="1">
+				<running type="bool">false</running>
+				<selected type="bool">false</selected>
+				<serviceable type="bool">true</serviceable>
+			</boost-pump>
+			<circuit n="0">
+				<name>Left circuit</name>
+				<powered type="bool">false</powered>
+			</circuit>
+			<circuit n="1">
+				<name>Right circuit</name>
+				<powered type="bool">false</powered>
+			</circuit>
+			<gravity-xflow>
+				<open type="bool">0</open>
+				<serviceable type="bool">1</serviceable>
+			</gravity-xflow>
+			<xflow-pump>
+				<serviceable type="bool">true</serviceable>
+				<running type="int">0</running>
+				<inop type="bool">false</inop>
+			</xflow-pump>
+		</fuel>
 		<hydraulic>
 			<system>
 				<name>Hydraulic1</name>
@@ -1192,44 +1246,63 @@
 				<nwsteering type="bool">true</nwsteering>
 			</outputs>
 		</hydraulic>
+		<pneumatic>
+			<pressure-left type="bool">false</pressure-left>
+			<pressure-right type="bool">false</pressure-right>
+			<hp-ground-supply type="bool">false</hp-ground-supply>
+			<cowl-ai-valve-left type="bool">false</cowl-ai-valve-left>
+			<cowl-ai-valve-right type="bool">false</cowl-ai-valve-right>
+			<apu-valve type="bool">false</apu-valve>
+			<isolation-valve type="bool">true</isolation-valve>
+			<ats-left type="bool">false</ats-left>
+			<ats-right type="bool">false</ats-right>
+			<sov-left type="bool">false</sov-left>
+			<sov-right type="bool">false</sov-right>
+			<leak-left type="bool">false</leak-left>
+			<leak-right type="bool">false</leak-right>
+		</pneumatic>
 	</systems>
 	
 	<nasal>
+		<fuel>
+           <file>Nasal/CRJ700-fuel.nas</file>
+		</fuel>
+		
         <raas>
-            <file>Aircraft/CRJ700-family/Nasal/raas.nas</file>
+            <file>Nasal/raas.nas</file>
 		</raas>
 		<interactive_cdu>
-			<file>Aircraft/CRJ700-family/Nasal/cdu.nas</file>
+			<file>Nasal/cdu.nas</file>
 		</interactive_cdu>
 		<CRJ700>
-			<file>Aircraft/CRJ700-family/Nasal/runway.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/classes.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/engine.nas</file>
+			<file>Nasal/runway.nas</file>
+			<file>Nasal/classes.nas</file>
+			<file>Nasal/engine.nas</file>
 			
-			<file>Aircraft/CRJ700-family/Nasal/wiper.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/doors.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/effects.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/electrical.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/hydraulic.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/instrumentation.nas</file>
+			<file>Nasal/wiper.nas</file>
+			<file>Nasal/doors.nas</file>
+			<file>Nasal/effects.nas</file>
+			<file>Nasal/electrical.nas</file>
+			<file>Nasal/hydraulic.nas</file>
+			<file>Nasal/instrumentation.nas</file>
 			
-			<file>Aircraft/CRJ700-family/Nasal/multiplayer.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/vnav.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/gui-dialogs.nas</file>
-			<file>Aircraft/CRJ700-family/Nasal/master.nas</file>
+			<file>Nasal/multiplayer.nas</file>
+			<file>Nasal/vnav.nas</file>
+			<file>Nasal/gui-dialogs.nas</file>
+			<file>Nasal/master.nas</file>
 		</CRJ700>
 		<controls>
-			<file>Aircraft/CRJ700-family/Nasal/controls.nas</file>
+			<file>Nasal/controls.nas</file>
 		</controls>
 		<walk>
-			<file>Aircraft/CRJ700-family/Nasal/walk.nas</file>
+			<file>Nasal/walk.nas</file>
 		</walk>
 		<!-- Dual control -->
 		<dual_control_tools>
 			<file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
 		</dual_control_tools>
 		<aircraft_dual_control>
-			<file>Aircraft/CRJ700-family/Nasal/CRJ700-dual-control.nas</file>
+			<file>Nasal/CRJ700-dual-control.nas</file>
 		</aircraft_dual_control>
 		<dual_control>
 			<file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>

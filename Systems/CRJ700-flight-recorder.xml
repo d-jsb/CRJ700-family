@@ -73,11 +73,11 @@
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>engines/apu/egt-degc</property>
+				<property>engines/engine[2]/egt-degc</property>
 			</signal>
 			<signal>
 				<type>bool</type>
-				<property>engines/apu/on-fire</property>
+				<property>engines/engine[2]/on-fire</property>
 			</signal>
 			<!-- Lighting controls -->
 			<signal>

@@ -931,9 +931,7 @@
 		<enable>
 			<condition>
 				<and>
-					<not>
-						<property>sim/config/rudder-to-tiller</property>
-					</not>
+					<property>gear/gear[0]/wow</property>
 					<less-than-equals>
 						<expression>
 							<abs>
@@ -943,10 +941,18 @@
 						<value>8</value>
 					</less-than-equals>
 					<or>
+						<not>
+							<property>sim/config/rudder-to-tiller</property>
+						</not>
+						<greater-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>20</value>
+						</greater-than>
+					</or>
+					<or>
 						<property>sim/model/pushback/linked</property>
 						<property>controls/gear/enable-tiller</property>
 					</or>
-					<property>gear/gear[0]/wow</property>
 				</and>
 			</condition>
 		</enable>
@@ -965,6 +971,7 @@
 			<condition>
 				<and>
 					<property>sim/config/rudder-to-tiller</property>
+					<property>gear/gear[0]/wow</property>
 					<less-than-equals>
 						<expression>
 							<abs>
@@ -977,7 +984,10 @@
 						<property>sim/model/pushback/linked</property>
 						<property>controls/gear/enable-tiller</property>
 					</or>
-					<property>gear/gear[0]/wow</property>
+					<less-than-equals>
+						<property>/velocities/groundspeed-kt</property>
+						<value>20</value>
+					</less-than-equals>
 				</and>
 			</condition>
 		</enable>

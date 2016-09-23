@@ -54,8 +54,26 @@
 		</checkbox>	
 		<checkbox>
 			<halign>left</halign>
-			<label>Rudder pedals to tiller (allow full 80 deg nose wheel steering)</label>
+			<label>Rudder pedals to tiller (full 80 deg nose wheel steering below 20kt)</label>
 			<property>sim/config/rudder-to-tiller</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>	
+		<checkbox>
+			<halign>left</halign>
+			<label>View follows tiller</label>
+			<property>sim/config/view-follows-tiller</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<live type="bool">true</live>
+		</checkbox>	
+		<checkbox>
+			<halign>left</halign>
+			<label>Mixture lever controls speedbrake</label>
+			<property>sim/config/mixt-to-speedbrake</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>

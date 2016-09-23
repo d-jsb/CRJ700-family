@@ -75,11 +75,11 @@
 			<value type="bool">false</value>
 		</set>
 		<set>
-			<property>consumables/fuel/tank[0]/selected</property>
+			<property>systems/fuel/boost-pump[0]/selected</property>
 			<value type="bool">false</value>
 		</set>
 		<set>
-			<property>consumables/fuel/tank[1]/selected</property>
+			<property>systems/fuel/boost-pump[1]/selected</property>
 			<value type="bool">false</value>
 		</set>
 		<set>
@@ -101,9 +101,9 @@
 				{
 					setprop("controls/engines/engine[0]/cutoff", 1);
 					setprop("controls/engines/engine[1]/cutoff", 1);
-					setprop("consumables/fuel/tank[0]/level-lbs", 80);
-					setprop("consumables/fuel/tank[1]/level-lbs", 80);
-					setprop("consumables/fuel/tank[2]/level-lbs", 70);
+					setprop("consumables/fuel/tank[0]/level-lbs", 180);
+					setprop("consumables/fuel/tank[1]/level-lbs", 180);
+					setprop("consumables/fuel/tank[2]/level-lbs", 140);
 				}, 0);
 			]]></script>
 		</nasal>
@@ -402,7 +402,7 @@
 						<value>5000</value>
 					</greater-than-equals>
 					<less-than>
-						<property>consumables/fuel/imbalance-lbs</property>
+						<property>systems/fuel/imbalance-lbs</property>
 						<value>800</value>
 					</less-than>
 				</and>
