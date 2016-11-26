@@ -156,11 +156,11 @@
 
 	<!-- Fuel and payload -->
 	<!-- Left wing tank -->
-	<tank x="-1" y="4.8" z="-1.9" jet="true" capacity="8621" />
+	<tank x="-1.69" y="5.62" z="-1.99" jet="true" capacity="8621" />
 	<!-- Right wing tank -->
-	<tank x="-1" y="-4.8" z="-1.9" jet="true" capacity="8621" />
+	<tank x="-1.69" y="-5.62" z="-1.99" jet="true" capacity="8621" />
 	<!-- Center tank -->
-	<tank x="3.5" y="0.0" z="-2.2" jet="true" capacity="5298" />
+	<tank x="0.0" y="0.0" z="-2.2" jet="true" capacity="5298" />
 
 	<!-- Ballast to adjust center of gravity -->
 	<!-- Redistribute the mass toward the nose -->

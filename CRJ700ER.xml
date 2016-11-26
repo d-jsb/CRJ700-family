@@ -160,7 +160,7 @@
 	<!-- Right wing tank -->
 	<tank x="-0.8" y="-4.8" z="-1.9" jet="true" capacity="9124" />
 	<!-- Center tank -->
-	<tank x="1.5" y="0.0" z="-2.2" jet="true" capacity="5607" />
+	<tank x="0.329" y="0.0" z="-2.2" jet="true" capacity="5607" />
 
 	<!-- Ballast to adjust center of gravity -->
 	<!-- Redistribute the mass toward the nose -->
