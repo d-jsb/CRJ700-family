@@ -186,7 +186,7 @@ print("--END-- CRJ700 MP model code");
 	
     <!-- Tutorial marker -->
     <model>
-        <path>Models/Aircraft/marker.xml</path>
+        <path>Aircraft/Generic/marker.xml</path>
     </model>
 
     <!-- Hide windshield in interior views with virtual cockpit off -->
