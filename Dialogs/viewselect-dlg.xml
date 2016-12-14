@@ -129,6 +129,19 @@
 		</button>
 		<button>
 			<row>3</row>
+			<col>1</col>
+			<name>109</name>
+			<legend>Jump</legend>
+			<pref-height>21</pref-height>
+			<pref-width>45</pref-width>
+			<margin>1</margin>
+			<binding>
+				<command>nasal</command>
+				<script>setViewByIndex(109);</script>
+			</binding>
+		</button>
+		<button>
+			<row>3</row>
 			<col>0</col>
 			<name>110</name>
 			<legend>Wnd</legend>
@@ -141,7 +154,7 @@
 			</binding>
 		</button>
 		<button>
-			<row>3</row>
+			<row>4</row>
 			<col>1</col>
 			<name>100</name>
 			<legend>Cabin</legend>
