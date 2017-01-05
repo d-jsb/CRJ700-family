@@ -449,6 +449,37 @@
 						</binding>
 					</item>	
 				</menu>
+				<menu n="102">
+					<label>Development</label>
+					<item>
+						<label>FGPlot</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								<!-- needs the FGPlot nasal scripts in $FGDATA/Nasal/plot -->
+								if (plot.Fgp != nil)
+								var a = plot.Fgp.new(600,201,0).init();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>CRJ debug window</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>debug</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Yasim display</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								if (FDM.yasim != nil)
+									FDM.yasim.displayMasses();
+							</script>
+						</binding>
+					</item>
+				</menu>
 			</default>
 		</menubar>
 		
