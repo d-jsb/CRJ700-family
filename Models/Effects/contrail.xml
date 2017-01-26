@@ -1,48 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Particle contrail from the 737-300 -->
-
 <PropertyList>
-
 	<params>
 		<n1>engines/engine[0]/n1</n1>
 	</params>
-
 	<particlesystem>
 		<name>contrail</name>
 		<type>normal</type>
 		<texture>smoke.png</texture>
 		<emissive>false</emissive>
 		<lighting>true</lighting>
-
 		<offsets>
 			<x-m>0</x-m>
 			<y-m>0</y-m>
 			<z-m>0</z-m>
 		</offsets>
-
 		<condition>
 			<and>
 				<property>environment/contrail</property>
 				<greater-than>
-					<property alias="../../../../../params/n1" />
+					<property alias="/params/n1" />
 					<value>20</value>
 				</greater-than>
 			</and>
 		</condition>
-
 		<attach>world</attach>
-
 		<placer>
 			<type>point</type>
 		</placer>
-
 		<shooter>
 			<theta-min-deg>80</theta-min-deg>
 			<theta-max-deg>100</theta-max-deg>
 			<phi-min-deg>-10.0</phi-min-deg>
 			<phi-max-deg>10.0</phi-max-deg>
-
 			<speed-mps>
 				<value>0.01</value>
 				<spread>20</spread>
@@ -56,19 +46,16 @@
 				<z-max-deg-sec> 20 </z-max-deg-sec>
 			</rotation-speed>
 		</shooter>
-
 		<counter>
 			<particles-per-sec>
-				<property>/velocities/airspeed-kt</property>
+				<property>velocities/airspeed-kt</property>
 				<factor>0.25</factor>
 				<offset>10</offset>
 				<!--<value>600</value>-->
 				<spread>50</spread>
 			</particles-per-sec>
 		</counter>
-
 		<align>billboard</align>
-
 		<particle>
 			<start>
 				<color>
@@ -114,13 +101,10 @@
 			<mass-kg>0.01</mass-kg>
 			<radius-m>0.1</radius-m>
 		</particle>
-
 		<program>
 			<fluid>air</fluid>
 			<gravity>true</gravity>
 			<wind>true</wind>
 		</program>
-
 	</particlesystem>
-
 </PropertyList>
