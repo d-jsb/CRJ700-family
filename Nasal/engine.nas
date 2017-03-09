@@ -339,35 +339,37 @@ Engine.Jet = func(n)
   jet.serviceable_node.setBoolValue(jet.serviceable);
 
 
-	#instant on
-	jet.on = func
-	{
-		if (flight_model == "yasim")
-		{
-			jet.controls.cutoff = 0;
-			jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
-			jet.n1 = jet.fdm_n1;
-			jet.n2 = jet.fdm_n2;
-			jet.n1_node.setValue(jet.n1);
-			jet.n2_node.setValue(jet.n2);
-			jet.running = 1;
-			jet.running_node.setBoolValue(jet.running);
-			jet.controls.starter_cmd = 0;
-			jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
-		}	
-		elsif (flight_model == "jsb")
-		{
-			jet.controls.starter_cmd = 0;
-			jet.controls.cutoff = 0;			
+  #instant on
+  jet.on = func
+  {
+    if (flight_model == "yasim")
+    {
+      jet.controls.cutoff = 0;
+      jet.controls.cutoff_node.setBoolValue(jet.controls.cutoff);
+      jet.out_of_fuel = 0;
+      jet.out_of_fuel_node.setBoolValue(jet.out_of_fuel);
+      jet.n1 = jet.fdm_n1;
+      jet.n2 = jet.fdm_n2;
+      jet.n1_node.setValue(jet.n1);
+      jet.n2_node.setValue(jet.n2);
+      jet.running = 1;
+      jet.running_node.setBoolValue(jet.running);
+      #jet.controls.starter_cmd = 0;
+      #jet.controls.starter_cmd_node.setBoolValue(jet.controls.starter_cmd);
+    }	
+    elsif (flight_model == "jsb")
+    {
+      jet.controls.starter_cmd = 0;
+      jet.controls.cutoff = 0;			
 
-			jet.controls.cutoff_node.setBoolValue(1);
-			jet.controls.starter_node.setBoolValue(1);
-			settimer(func () {
-				jet.controls.cutoff_node.setBoolValue(0);
-			}, 1);
-		}
-	};
-
+      jet.controls.cutoff_node.setBoolValue(1);
+      jet.controls.starter_node.setBoolValue(1);
+      settimer(func () {
+        jet.controls.cutoff_node.setBoolValue(0);
+      }, 1);
+    }
+  };
+        
   jet.update = func
   {
     jet.serviceable = jet.serviceable_node.getBoolValue();
