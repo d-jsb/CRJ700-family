@@ -103,8 +103,8 @@ var pilot_send_S_properties =
 	"controls/engines/engine[1]/thrust-mode",
 	"controls/engines/engine[0]/reverser-armed",
 	"controls/engines/engine[1]/reverser-armed",
-	"controls/engines/engine[0]/starter",
-	"controls/engines/engine[1]/starter",
+	"controls/engines/engine[0]/starter-cmd",
+	"controls/engines/engine[1]/starter-cmd",
 	"controls/flight/speedbrake",
 	"controls/flight/ground-lift-dump",
 	# instrumentation

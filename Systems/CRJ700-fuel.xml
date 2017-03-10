@@ -108,7 +108,7 @@
 			
 			<not><property>engines/engine[0]/running-nasal</property></not>
 			<or>
-				<property>controls/engines/engine[0]/starter</property>
+				<property>controls/engines/engine[0]/starter-cmd</property>
 				<greater-than>
 					<property>systems/fuel/imbalance-lbs</property>
 					<value>800</value>
@@ -125,7 +125,7 @@
 			
 			<not><property>engines/engine[1]/running-nasal</property></not>
 			<or>
-				<property>controls/engines/engine[1]/starter</property>
+				<property>controls/engines/engine[1]/starter-cmd</property>
 				<greater-than>
 					<property>systems/fuel/imbalance-lbs</property>
 					<value>800</value>

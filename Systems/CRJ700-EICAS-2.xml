@@ -189,7 +189,7 @@
 			<blue alias="../../../colors/green/blue" />
 		</color>
 		<condition>
-			<property>controls/engines/engine[0]/starter</property>
+			<property>controls/engines/engine[0]/starter-cmd</property>
 		</condition>
 	</message>
 	<message>
@@ -201,7 +201,7 @@
 			<blue alias="../../../colors/green/blue" />
 		</color>
 		<condition>
-			<property>controls/engines/engine[1]/starter</property>
+			<property>controls/engines/engine[1]/starter-cmd</property>
 		</condition>
 	</message>
 	<message>
@@ -449,8 +449,8 @@
 		</color>
 		<condition>
 			<and>
-				<property>controls/engines/engine[0]/starter</property>
-				<property>controls/engines/engine[1]/starter</property>
+				<property>controls/engines/engine[0]/starter-cmd</property>
+				<property>controls/engines/engine[1]/starter-cmd</property>
 			</and>
 		</condition>
 	</message>
@@ -521,7 +521,7 @@
 		</color>
 		<condition>
 			<and>
-				<property>controls/engines/engine[0]/starter</property>
+				<property>engines/engine[0]/starter</property>
 				<greater-than>
 					<property>engines/engine[0]/rpm</property>
 					<value>0</value>
@@ -539,7 +539,7 @@
 		</color>
 		<condition>
 			<and>
-				<property>controls/engines/engine[1]/starter</property>
+				<property>engines/engine[1]/starter</property>
 				<greater-than>
 					<property>engines/engine[1]/rpm</property>
 					<value>0</value>

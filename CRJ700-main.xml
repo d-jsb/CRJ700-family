@@ -673,9 +673,13 @@
 		</apu>
 		<engine n="0">
 			<on-fire type="bool">false</on-fire>
+			<oilp-norm>0</oilp-norm>
+			<starter type="bool">false</starter>
 		</engine>
 		<engine n="1">
 			<on-fire type="bool">false</on-fire>
+			<oilp-norm>0</oilp-norm>
+			<starter type="bool">false</starter>
 		</engine>
 		<!-- engine 2 properties are used to transfer APU rpm and door position via MP -->
 		<engine n="2">
