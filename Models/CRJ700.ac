@@ -18785,6 +18785,11 @@ refs 3
 50 0.686094 0.841088
 kids 0
 OBJECT poly
+name "CargoDoorFwd"
+numvert 0
+numsurf 0
+kids 0
+OBJECT poly
 name "CargoDoorCtr"
 texture "CRJ700-Blank.png"
 texrep 1 1
