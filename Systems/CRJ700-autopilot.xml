@@ -701,7 +701,7 @@
 		<output>controls/flight/elevator-trim</output>
 		<config>
 			<Kp>-0.05</Kp>
-			<Ti>-0.10</Ti>
+			<Ki>-0.001</Ki>
 		</config>
 		<min>-1</min>
 		<max>1</max>
