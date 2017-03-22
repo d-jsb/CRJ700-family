@@ -1,5 +1,5 @@
 ## Aircraft-specific dialogs
-var aircraft_path = "Aircraft/CRJ700-family/"~"Dialogs/";
+var aircraft_path = "Dialogs/";
 var dialogs = {
     adc: gui.Dialog.new("sim/gui/dialogs/adc/dialog", aircraft_path~"adc-dlg.xml"),
     apdev: gui.Dialog.new("sim/gui/dialogs/apdev/dialog", aircraft_path~"autopilot-dev-dlg.xml"),

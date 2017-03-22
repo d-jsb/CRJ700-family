@@ -2,7 +2,7 @@
 
 <PropertyList>
 	<name>Effects/CRJ700-lightmap</name>
-	<inherits-from>Effects/model-combined-deferred</inherits-from>
+	<inherits-from>/Effects/model-combined-deferred</inherits-from>
 	<parameters>
 		<!-- Light map -->
 		<lightmap-enabled type="int">1</lightmap-enabled>

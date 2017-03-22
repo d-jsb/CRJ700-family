@@ -3,7 +3,7 @@
 ###########################
 
 ## Livery select
-aircraft.livery.init("Aircraft/CRJ700-family/Models/Liveries/" ~ getprop("sim/aircraft"));
+aircraft.livery.init("Models/Liveries/" ~ getprop("sim/aircraft"));
 
 ## Switch sounds
 var Switch_sound = {

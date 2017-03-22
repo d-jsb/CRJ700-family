@@ -121,7 +121,7 @@
 	<!-- Display lines -->
 	<model>
 		<name>Line title</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/title/value</property>
@@ -143,7 +143,7 @@
 	</model>
 	<model>
 		<name>Line page</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/page/value</property>
@@ -166,7 +166,7 @@
 
 	<model>
 		<name>Line L1</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[0]/col[0]/value</property>
@@ -188,7 +188,7 @@
 	</model>
 	<model>
 		<name>Line L2</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[1]/col[0]/value</property>
@@ -210,7 +210,7 @@
 	</model>
 	<model>
 		<name>Line L3</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[2]/col[0]/value</property>
@@ -232,7 +232,7 @@
 	</model>
 	<model>
 		<name>Line L4</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[3]/col[0]/value</property>
@@ -254,7 +254,7 @@
 	</model>
 	<model>
 		<name>Line L5</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[4]/col[0]/value</property>
@@ -276,7 +276,7 @@
 	</model>
 	<model>
 		<name>Line L6</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[5]/col[0]/value</property>
@@ -298,7 +298,7 @@
 	</model>
 	<model>
 		<name>Line L7</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[6]/col[0]/value</property>
@@ -320,7 +320,7 @@
 	</model>
 	<model>
 		<name>Line L8</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[7]/col[0]/value</property>
@@ -342,7 +342,7 @@
 	</model>
 	<model>
 		<name>Line L9</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[8]/col[0]/value</property>
@@ -364,7 +364,7 @@
 	</model>
 	<model>
 		<name>Line L10</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[9]/col[0]/value</property>
@@ -386,7 +386,7 @@
 	</model>
 	<model>
 		<name>Line L11</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[10]/col[0]/value</property>
@@ -408,7 +408,7 @@
 	</model>
 	<model>
 		<name>Line L12</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[11]/col[0]/value</property>
@@ -430,7 +430,7 @@
 	</model>
 	<model>
 		<name>Line L13</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[12]/col[0]/value</property>
@@ -452,7 +452,7 @@
 	</model>
 	<model>
 		<name>Line R1</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[0]/col[1]/value</property>
@@ -474,7 +474,7 @@
 	</model>
 	<model>
 		<name>Line R2</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[1]/col[1]/value</property>
@@ -496,7 +496,7 @@
 	</model>
 	<model>
 		<name>Line R3</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[2]/col[1]/value</property>
@@ -518,7 +518,7 @@
 	</model>
 	<model>
 		<name>Line R4</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[3]/col[1]/value</property>
@@ -540,7 +540,7 @@
 	</model>
 	<model>
 		<name>Line R5</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[4]/col[1]/value</property>
@@ -562,7 +562,7 @@
 	</model>
 	<model>
 		<name>Line R6</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[5]/col[1]/value</property>
@@ -584,7 +584,7 @@
 	</model>
 	<model>
 		<name>Line R7</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[6]/col[1]/value</property>
@@ -606,7 +606,7 @@
 	</model>
 	<model>
 		<name>Line R8</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[7]/col[1]/value</property>
@@ -628,7 +628,7 @@
 	</model>
 	<model>
 		<name>Line R9</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[8]/col[1]/value</property>
@@ -650,7 +650,7 @@
 	</model>
 	<model>
 		<name>Line R10</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[9]/col[1]/value</property>
@@ -672,7 +672,7 @@
 	</model>
 	<model>
 		<name>Line R11</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[10]/col[1]/value</property>
@@ -694,7 +694,7 @@
 	</model>
 	<model>
 		<name>Line R12</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[11]/col[1]/value</property>
@@ -716,7 +716,7 @@
 	</model>
 	<model>
 		<name>Line R13</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/row[12]/col[1]/value</property>
@@ -739,7 +739,7 @@
 
 	<model>
 		<name>Line input</name>
-		<path>Aircraft/CRJ700-family/Models/Instruments/CDU/display-text-value.xml</path>
+		<path>Models/Instruments/CDU/display-text-value.xml</path>
 		<overlay>
 			<params>
 				<property>instrumentation/cdu/display/input/value</property>
@@ -1721,7 +1721,7 @@
 
 	<!-- Lightmaps -->
 	<effect>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">
