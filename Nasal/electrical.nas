@@ -446,7 +446,7 @@ var dc_buses = [
 		["landing-lights[2]", "controls/lighting/landing-lights[2]"],
 		["ohp-lights", "controls/lighting/ind-lts-norm"],
 		"passenger-signs", 
-		"standby-instrument",
+		["standby-instrument", "controls/lighting/standby-compass"],
 		"vhf-com1", 
 		]),
 	DCBus.new(6, "Utility", []),

@@ -161,6 +161,8 @@ var startup = func {
     var id = startid;
 	
 	var items = [
+		["controls/engines/engine[0]/cutoff", 1, 0.1],
+		["controls/engines/engine[0]/cutoff", 1, 1],
 		["controls/electric/battery-switch", 1, 0.8],
 		["controls/lighting/nav-lights", 1, 0.4],
 		["controls/lighting/beacon", 1, 0.8],
@@ -170,12 +172,12 @@ var startup = func {
 		["controls/electric/engine[0]/generator", 1, 0.3],
 		["controls/electric/APU-generator", 1, 0.3],
 		["controls/electric/engine[1]/generator", 1, 1.5],
-		["controls/engines/engine[0]/cutoff", 0, 0.1],
-		["controls/engines/engine[1]/cutoff", 0, 2],
 		["systems/fuel/boost-pump[0]/selected", 1, 0.4],
 		["systems/fuel/boost-pump[1]/selected", 1, 0.8],
-		["/controls/engines/engine[0]/starter", 1, 37],
-		["/controls/engines/engine[1]/starter", 1, 38],
+		["/controls/engines/engine[0]/starter-cmd", 1, 7],
+		["controls/engines/engine[0]/cutoff", 0, 30],
+		["/controls/engines/engine[1]/starter-cmd", 1, 8],
+		["controls/engines/engine[1]/cutoff", 0, 30],
 		["controls/pneumatic/bleed-source", 0, 0.8],
 		["controls/APU/off-on", 0, 1],
 		["controls/lighting/taxi-lights", 1, 0.8],
@@ -264,13 +266,14 @@ var instastart = func
 	setprop("controls/hydraulic/system[0]/pump-b", 2);
 	setprop("controls/hydraulic/system[1]/pump-b", 2);
 	setprop("controls/hydraulic/system[2]/pump-b", 2);
-	setprop("controls/hydraulic/system[2]/pump-a", 1);							
+	setprop("controls/hydraulic/system[2]/pump-a", 1);
+	setprop("/systems/AC/system/adg-position-norm", 0);
 
 	setprop("/controls/gear/brake-parking", 0);
 	setprop("/controls/lighting/strobe", 1);
 	setprop("/controls/autoflight/yaw-damper/engage", 1);
 	setprop("/controls/autoflight/yaw-damper[1]/engage", 1);
-	};
+};
 
 ## Prevent the gear from being retracted on the ground
 setlistener("controls/gear/gear-down", func(v)
@@ -278,7 +281,7 @@ setlistener("controls/gear/gear-down", func(v)
     if (getprop("gear/on-ground")) 
     {
 		v.setBoolValue(1);
-	}
+        }
 	else setprop("controls/gear/gear-lever-moved", v.getBoolValue());
 }, 0, 0);
 

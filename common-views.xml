@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 	CRJ700 family common views 
-	z-offset-m will be adjusted automatically for cockpit views n=0,100-109 
-	see master.nas	
 -->
 
 <PropertyList>

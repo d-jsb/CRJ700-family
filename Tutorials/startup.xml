@@ -389,8 +389,8 @@
 		<exit>
 			<condition>
 				<or>
-					<property>controls/engines/engine[0]/starter</property>
-					<property>controls/engines/engine[1]/starter</property>
+					<property>controls/engines/engine[0]/starter-cmd</property>
+					<property>controls/engines/engine[1]/starter-cmd</property>
 				</or>
 			</condition>
 			<set>
