@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+property rules for multiplayer stuff  
+-->
+<PropertyList>
+  <logic>
+    <name>Pushback enable</name>
+    <input>
+      <and>
+        <property>/sim/model/pushback/enabled</property>
+        <property>/gear/gear[0]/wow</property>				
+      </and>
+    </input>
+    <!-- abuse MP enabled prop to make pushback visible in MP -->
+    <output>/sim/hitches/aerotow/is-slave</output>
+  </logic>
+
+</PropertyList>
