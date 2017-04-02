@@ -160,6 +160,10 @@
 				<name>Propery rules pneumatic</name>
 				<path>Systems/CRJ700-pneumatic.xml</path>
 			</property-rule>
+			<property-rule n="104">
+				<name>Propery rules multiplayer</name>
+				<path>Systems/CRJ700-property-rules-mp.xml</path>
+			</property-rule>
 		</systems>
 		
 		<chase-distance-m type="double">-30</chase-distance-m>
