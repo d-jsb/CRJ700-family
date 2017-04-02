@@ -5,7 +5,7 @@
 	<path>landing-bare.ac</path>
 
 	<params>
-		<source>systems/DC/outputs/landing-lights</source>
+		<power-source>systems/DC/outputs/landing-lights</power-source>
 	</params>
 
 	<animation>
@@ -15,7 +15,7 @@
 				<property>sim/current-view/internal</property>
 				<or>
 					<greater-than>
-						<property alias="../../../../../../params/source" />
+						<property alias="params/power-source" />
 						<value>22</value>
 					</greater-than>
 					<greater-than>
