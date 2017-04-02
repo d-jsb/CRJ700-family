@@ -2,6 +2,7 @@
 
 <PropertyList>
 	<path>Goldhofert.ac</path>
+  <nopreview />
 	<params>
 		<max-nw-degree>-80</max-nw-degree>
 		<position>engines/engine[2]/n2</position>
