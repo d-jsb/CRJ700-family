@@ -45,11 +45,14 @@ var variant = model.getNode("sim/model/variant").getValue();
 
 if (model_name == nil or variant == nil)
 {
-	print("CRJ700 family (MP model): model name or variant not available (",model_name,", ",variant,")");
+  print("CRJ700 family (MP model): model name or variant not available (",model_name,", ",variant,")");
 }
 else 
-	var livery_update = aircraft.livery_update.new("Models/Liveries/"~ model_dict[model_name][variant]);
-                                               
+  var livery_update = aircraft.livery_update.new("Models/Liveries/"~ model_dict[model_name][variant]);
+
+io.include("Nasal/CRJ700-mp-model.nas");
+var CRJ700_mp = CRJ700_mp_model.new(model);
+CRJ700_mp.start();
 
 # Animated jetways.
 var jetway_dict = {
@@ -80,6 +83,7 @@ print("--END-- CRJ700 MP model code");
         </load>
         <unload>
             livery_update.stop();
+            CRJ700_mp.stop();
         </unload>
     </nasal>
 
