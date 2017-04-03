@@ -82,8 +82,8 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
 print("--END-- CRJ700 MP model code");
         </load>
         <unload>
-            livery_update.stop();
-            CRJ700_mp.stop();
+            if (livery_update != nil) livery_update.stop();
+            if (CRJ700_mp != nil) CRJ700_mp.stop();
         </unload>
     </nasal>
 
