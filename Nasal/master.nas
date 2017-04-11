@@ -39,7 +39,7 @@ if (getprop("/sim/flight-model") == "null")
 {
 	is_slave = 1;
 }
-
+print("CRJ700 master.nas (slave = "~is_slave~")");
 # Engines and APU.
 var apu = CRJ700.Engine.Apu();
 var engines = [
@@ -115,17 +115,9 @@ var fast_loop = Loop(0, func {
 	wipers[1].update();
 });
 
-var slow_loop = Loop(3, func {
-	# Electrical.
-	#rat1.update();
-
-	# Instruments.
+var slow_loop = Loop(2, func {
 	update_tat;
-	
-	# Multiplayer.
 	update_copilot_ints();
-
-	# Model.
 	update_lightmaps();
 	update_pass_signs();
 });

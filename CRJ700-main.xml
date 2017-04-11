@@ -1290,6 +1290,7 @@
 			<file>Nasal/wiper.nas</file>
 			<file>Nasal/doors.nas</file>
 			<file>Nasal/effects.nas</file>
+			<file>Nasal/lightmaps.nas</file>
 			<file>Nasal/electrical.nas</file>
 			<file>Nasal/hydraulic.nas</file>
 			<file>Nasal/instrumentation.nas</file>
