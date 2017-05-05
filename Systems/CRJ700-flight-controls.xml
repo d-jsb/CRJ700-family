@@ -881,6 +881,7 @@
 			</u_max>
 		</config>
 	</pid-controller>
+  
 	<!-- 3 : Max -->
 	<!-- Keeps throttles at 100% power -->
 	<filter>
@@ -901,15 +902,16 @@
 		</input>
 		<output>fcs/throttle-cmd-norm[0]</output>
 	</filter>
+  
 	<filter>
-		<name>Engine 1 maximum controller</name>
+		<name>Engine 2 maximum controller</name>
 		<type>gain</type>
 		<debug type="bool">false</debug>
 		<gain>1</gain>
 		<enable>
 			<condition>
 				<equals>
-					<property>controls/engines/engine[0]/thrust-mode</property>
+					<property>controls/engines/engine[1]/thrust-mode</property>
 					<value>3</value>
 				</equals>
 			</condition>

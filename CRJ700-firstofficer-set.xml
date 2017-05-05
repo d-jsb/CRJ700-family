@@ -11,7 +11,7 @@
 		<status>early-production</status>
 		<aircraft-version>1.1.0</aircraft-version>
 		<flight-model>null</flight-model>
-	  <variant-of>CRJ700</variant-of>
+		<!-- <variant-of>CRJ700</variant-of> -->
 
 		<model>
 			<path>Aircraft/CRJ700-family/Models/CRJ700-firstofficer.xml</path>
@@ -29,7 +29,7 @@
 			</electrical>
 			<autopilot>
 				<name>Flight control system (copilot)</name>
-				<path>Aircraft/CRJ700-family/Systems/CRJ700-copilot-flight-controls.xml</path>
+				<path>Systems/CRJ700-copilot-flight-controls.xml</path>
 			</autopilot>
 		</systems>
 
@@ -74,7 +74,7 @@
 				</dual-control>
 			</dialogs>
 		</gui>
-
+		
 		<aircraft-data>
 			<path>/sim/view[100]/enabled</path>
 			<path>/sim/view[101]/enabled</path>
@@ -84,7 +84,7 @@
 
 		<allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
 		<virtual-cockpit type="bool">true</virtual-cockpit>
-
+		
 		<menubar>
 			<default>
 				<menu n="100">
@@ -142,7 +142,7 @@
 			</generic>
 		</multiplay>
 	</sim>
-
+	
 	<controls>
 		<engines>
 			<arm-reversers type="bool">false</arm-reversers>
@@ -170,23 +170,23 @@
 
 	<nasal>
 		<CRJ700>
-			<file>Aircraft/CRJ700-family/Nasal/systems-copilot.nas</file>
+			<file>Nasal/systems-copilot.nas</file>
 			<script>
 				gui.menuEnable("autopilot", 0);
 			</script>
 		</CRJ700>
 		<controls>
-			<file>Aircraft/CRJ700-family/Nasal/controls.nas</file>
+			<file>Nasal/controls.nas</file>
 		</controls>
 		<walk>
-			<file>Aircraft/CRJ700-family/Nasal/walk.nas</file>
+			<file>Nasal/walk.nas</file>
 		</walk>
 		<!-- Dual control -->
 		<dual_control_tools>
 			<file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
 		</dual_control_tools>
 		<aircraft_dual_control>
-			<file>Aircraft/CRJ700-family/Nasal/CRJ700-dual-control.nas</file>
+			<file>Nasal/CRJ700-dual-control.nas</file>
 		</aircraft_dual_control>
 		<dual_control>
 			<file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>

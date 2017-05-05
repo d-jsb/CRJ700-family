@@ -18,7 +18,7 @@ page 10 Doors
 	<path>eicas.ac</path>
 
 	<params>
-		<powerN>/systems/DC/outputs/eicas-disp</powerN>
+		<powerN>systems/DC/outputs/eicas-disp</powerN>
 		<page>instrumentation/eicas/page</page>
 		<hyd-sym-size>0.078125</hyd-sym-size>
 		<hyd-lines-charsize>0.006</hyd-lines-charsize>
@@ -917,7 +917,7 @@ page 10 Doors
 	<text>
 		<name>FF1</name>
 		<type>number-value</type>
-		<property>engines/engine[0]/fuel-flow_pph</property>
+		<property>engines/engine[0]/fuel-flow-pph</property>
 		<scale alias="../../lb-to-kg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
@@ -938,7 +938,7 @@ page 10 Doors
 	<text>
 		<name>FF2</name>
 		<type>number-value</type>
-		<property>engines/engine[1]/fuel-flow_pph</property>
+		<property>engines/engine[1]/fuel-flow-pph</property>
 		<scale alias="../../lb-to-kg" />
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
@@ -8320,7 +8320,7 @@ DIR BUS</text>
 					<property>systems/AC/system/acext-value</property>
 					<value alias="/AC-volt-min" />
 				</greater-than-equals>
-				<property>/controls/electric/ac-service-in-use</property>
+				<property>controls/electric/ac-service-in-use</property>
 				<not><or>
 					<and>
 						<property>controls/electric/engine[0]/generator</property>
@@ -8409,7 +8409,7 @@ DIR BUS</text>
 		<object-name>DCLineAPUBatt</object-name>
 		<condition>
 			<greater-than-equals>
-				<property>/systems/DC/system/apu-battery-value</property>
+				<property>systems/DC/system/apu-battery-value</property>
 				<value>18</value>
 			</greater-than-equals>
 		</condition>
@@ -8973,7 +8973,7 @@ DIR BUS</text>
 	
 	<!-- Lightmaps -->
 	<effect>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700lightmap</inherits-from>
+		<inherits-from>Models/Effects/CRJ700lightmap</inherits-from>
 		<parameters>
 			<lightmap-factor-prop>sim/model/lights/panel-lightmap</lightmap-factor-prop>
 			<lightmap-factor n="0">

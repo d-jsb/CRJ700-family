@@ -37,7 +37,7 @@
 		</model>
 		
 		<sound>
-			<path>Aircraft/CRJ700-family/Sounds/CRJ700-sounds.xml</path>
+			<path>Sounds/CRJ700-sounds.xml</path>
 		</sound>
 		
         <dimensions>

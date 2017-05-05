@@ -160,6 +160,10 @@
 				<name>Propery rules pneumatic</name>
 				<path>Systems/CRJ700-pneumatic.xml</path>
 			</property-rule>
+			<property-rule n="104">
+				<name>Propery rules multiplayer</name>
+				<path>Systems/CRJ700-property-rules-mp.xml</path>
+			</property-rule>
 		</systems>
 		
 		<chase-distance-m type="double">-30</chase-distance-m>
@@ -534,7 +538,7 @@
 			<autothrottle-engage type="bool">false</autothrottle-engage>
 			<roll-mode type="int">1</roll-mode>
 			<bank-limit-deg type="float">30</bank-limit-deg>
-			<disengage-pos-norm type="int">0</disengage-pos-norm>
+			<disc-pos type="bool">false</disc-pos>
 			<half-bank type="bool">0</half-bank>
 			<heading-select type="double">360</heading-select>
 			<lat-mode type="int">0</lat-mode>
@@ -673,9 +677,13 @@
 		</apu>
 		<engine n="0">
 			<on-fire type="bool">false</on-fire>
+			<oilp-norm>0</oilp-norm>
+			<starter type="bool">false</starter>
 		</engine>
 		<engine n="1">
 			<on-fire type="bool">false</on-fire>
+			<oilp-norm>0</oilp-norm>
+			<starter type="bool">false</starter>
 		</engine>
 		<!-- engine 2 properties are used to transfer APU rpm and door position via MP -->
 		<engine n="2">

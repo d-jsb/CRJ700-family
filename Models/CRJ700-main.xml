@@ -15,7 +15,7 @@ var model_name = split(".", split("/", model_path)[-1])[0];
 
 # Animations.
 var mp_export = model.getNode("sim/multiplay/generic");
-var mp_export_def = io.read_properties("Aircraft/CRJ700-family/Systems/CRJ700-multiplayer.xml");
+var mp_export_def = io.read_properties("Systems/CRJ700-multiplayer.xml");
 foreach (var ref; mp_export_def.getChildren("reference"))
 {
     var export_prop = mp_export.getChild(ref.getNode("type").getValue(), ref.getNode("index").getValue(), 1);
@@ -45,11 +45,14 @@ var variant = model.getNode("sim/model/variant").getValue();
 
 if (model_name == nil or variant == nil)
 {
-	print("CRJ700 family (MP model): model name or variant not available (",model_name,", ",variant,")");
+  print("CRJ700 family (MP model): model name or variant not available (",model_name,", ",variant,")");
 }
 else 
-	var livery_update = aircraft.livery_update.new("Aircraft/CRJ700-family/Models/Liveries/"~ model_dict[model_name][variant]);
-                                               
+  var livery_update = aircraft.livery_update.new("Models/Liveries/"~ model_dict[model_name][variant]);
+
+io.include("Nasal/CRJ700-mp-model.nas");
+var CRJ700_mp = CRJ700_mp_model.new(model);
+CRJ700_mp.start();
 
 # Animated jetways.
 var jetway_dict = {
@@ -79,7 +82,8 @@ model.getNode("door[0]/jetway-hood-deg", 1).setDoubleValue(jetway_dict[model_nam
 print("--END-- CRJ700 MP model code");
         </load>
         <unload>
-            livery_update.stop();
+            if (livery_update != nil) livery_update.stop();
+            if (CRJ700_mp != nil) CRJ700_mp.stop();
         </unload>
     </nasal>
 

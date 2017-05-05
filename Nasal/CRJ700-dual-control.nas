@@ -28,7 +28,7 @@ var fireControl = func(n)
 ######################################################################
 # Pilot/copilot aircraft identifiers. Used by dual_control.
 var pilot_type = nil;
-var copilot_type = "Aircraft/CRJ700-family/Models/CRJ700-firstofficer.xml";
+var copilot_type = "Models/CRJ700-firstofficer.xml";
 
 props.globals.initNode("/sim/remote/pilot-callsign", "", "STRING");
 
@@ -103,8 +103,8 @@ var pilot_send_S_properties =
 	"controls/engines/engine[1]/thrust-mode",
 	"controls/engines/engine[0]/reverser-armed",
 	"controls/engines/engine[1]/reverser-armed",
-	"controls/engines/engine[0]/starter",
-	"controls/engines/engine[1]/starter",
+	"controls/engines/engine[0]/starter-cmd",
+	"controls/engines/engine[1]/starter-cmd",
 	"controls/flight/speedbrake",
 	"controls/flight/ground-lift-dump",
 	# instrumentation

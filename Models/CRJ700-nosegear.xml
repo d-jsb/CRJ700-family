@@ -9,7 +9,7 @@
 
 	<model>
 		<name>Landing light</name>
-		<path>Aircraft/CRJ700-family/Models/Lights/landing-nose.xml</path>
+		<path>Models/Lights/landing-nose.xml</path>
 		<offsets>
 			<x-m>-0.11</x-m>
 			<y-m>0.047</y-m>
@@ -198,7 +198,7 @@
 	<!-- Reflection shaders -->
 	<effect>
 		<name>Aircraft dirty reflect</name>
-		<inherits-from>Aircraft/CRJ700-family/Models/Effects/CRJ700dirtyreflect</inherits-from>
+		<inherits-from>Models/Effects/CRJ700dirtyreflect</inherits-from>
 		<object-name>NGLowerStrut</object-name>
 	</effect>
 

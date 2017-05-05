@@ -126,6 +126,11 @@
 	<model>
 		<name>Rear strobe light</name>
 		<path>Lights/strobe.xml</path>
+		<overlay>
+			<params>
+				<power-source>systems/DC/outputs/rear-ac-light</power-source>
+			</params>
+		</overlay>
 		<offsets>
 			<x-m>18.921</x-m>
 			<y-m>0</y-m>
@@ -164,7 +169,7 @@
 		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/DC/outputs/landing-lights[0]</source>
+				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
 			</params>
 		</overlay>
 		<offsets>
@@ -178,7 +183,7 @@
 		<path>Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/DC/outputs/landing-lights[0]</source>
+				<power-source>systems/DC/outputs/landing-lights[0]</power-source>
 			</params>
 		</overlay>
 		<offsets>
@@ -210,7 +215,7 @@
 		<path>Lights/landing-wing.xml</path>
 		<overlay>
 			<params>
-				<source>systems/DC/outputs/landing-lights[2]</source>
+				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
 			</params>
 		</overlay>
 		<offsets>
@@ -224,7 +229,7 @@
 		<path>Lights/landing-wing-inside.xml</path>
 		<overlay>
 			<params>
-				<source>systems/DC/outputs/landing-lights[2]</source>
+				<power-source>systems/DC/outputs/landing-lights[2]</power-source>
 			</params>
 		</overlay>
 		<offsets>

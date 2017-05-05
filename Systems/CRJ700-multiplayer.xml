@@ -56,7 +56,7 @@
 	<reference>
 		<type>int</type>
 		<index type="int">9</index>
-		<property>systems/DC/outputs/strobe</property>
+		<property>systems/DC/outputs/wing-ac-lights</property>
 	</reference>
 	<!-- dual control-shared instruments -->
 	<reference>

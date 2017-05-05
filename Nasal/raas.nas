@@ -215,7 +215,7 @@ var TakeoffRunwayAnnounceClass = {
 
         var apt = airportinfo();
         var self_heading = getprop("/orientation/heading-deg");
-        var gear_agl_ft = getprop("/position/gear-agl-ft");
+        var gear_agl_ft = getprop("/instrumentation/radar-altimeter/radar-altitude-ft");
 
         var approaching_runways = {};
         var approaching_runways_airborne = {};
@@ -486,7 +486,7 @@ var LandingRunwayAnnounceClass = {
         }
 
         var groundspeed = getprop("/velocities/groundspeed-kt");
-        var gear_agl_ft = getprop("/position/gear-agl-ft");
+        var gear_agl_ft = getprop("/instrumentation/radar-altimeter/radar-altitude-ft");
 
         # Reset the maximum groundspeed. This is needed if the aircraft
         # does a rejected takeoff and then decides to do another takeoff

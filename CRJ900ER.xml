@@ -16,7 +16,8 @@
 	<approach speed="115" aoa="4.0" fuel="0.6">
 		<control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.7" />
 		<control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.7" />
-		<control-setting axis="/controls/flight/flaps" value="1.0" />
+		<control-setting axis="/controls/flight/flaps-cmd" value="1.0" />
+		<control-setting axis="/controls/flight/slats-cmd" value="1.0" />
 		<control-setting axis="/fcs/gear-down" value="1.0" />
 		<solve-weight idx="0" weight="600.0" />
 		<solve-weight idx="1" weight="10.0" />
@@ -25,7 +26,8 @@
 	<cruise speed="560" alt="35000" fuel="0.8">
 		<control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95" />
 		<control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95" />
-		<control-setting axis="/controls/flight/flaps" value="0.0" />
+		<control-setting axis="/controls/flight/flaps-cmd" value="0.0" />
+		<control-setting axis="/controls/flight/slats-cmd" value="0.0" />
 		<control-setting axis="/fcs/gear-down" value="0.0" />
 		<solve-weight idx="0" weight="600.0" />
 		<solve-weight idx="1" weight="22150.0" />

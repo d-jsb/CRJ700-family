@@ -61,12 +61,12 @@
 				<script>
 					var model = getprop("sim/gui/dialogs/dual-control/dialog/selected-model");
 					
-					var setN = io.read_properties("Aircraft/CRJ700-family/" ~ model ~ "-set.xml");
+					var setN = io.read_properties("" ~ model ~ "-set.xml");
 					setprop("sim/view[0]/config/z-offset-m", setN.getNode("sim/view[0]/config/z-offset-m").getValue());
 					setprop("sim/view[100]/config/z-offset-m", setN.getNode("sim/view[100]/config/z-offset-m").getValue());
 					setprop("sim/view[101]/config/z-offset-m", setN.getNode("sim/view[101]/config/z-offset-m").getValue());
 					
-					aircraft_dual_control.pilot_type = "Aircraft/CRJ700-family/Models/" ~ model ~ ".xml";
+					aircraft_dual_control.pilot_type = "Models/" ~ model ~ ".xml";
 					dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
 				</script>
 			</binding>

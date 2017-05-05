@@ -3,7 +3,7 @@
 ###########################
 
 ## Livery select
-aircraft.livery.init("Aircraft/CRJ700-family/Models/Liveries/" ~ getprop("sim/aircraft"));
+aircraft.livery.init("Models/Liveries/" ~ getprop("sim/aircraft"));
 
 ## Switch sounds
 var Switch_sound = {
@@ -154,8 +154,8 @@ var sound_switchlightclick = Switch_sound.new("sim/sound/swl-click", 0.1,
 	 "controls/APU/electronic-control-unit",
 	 "controls/APU/off-on",
 	 "controls/engines/cont-ignition",
-	 "controls/engines/engine[0]/starter",
-	 "controls/engines/engine[1]/starter",
+	 "controls/engines/engine[0]/starter-cmd",
+	 "controls/engines/engine[1]/starter-cmd",
 	 "controls/ECS/ram-air",
 	 "controls/ECS/emer-depress",
 	 "controls/ECS/press-man",
