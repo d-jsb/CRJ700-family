@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Conviasa new</name>
+				<texture>Liveries/CRJ700/YV1111.png</texture>
+				<registration>YV1111</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

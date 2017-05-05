@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+		<sim>
+				<model>
+						<livery>
+								<name>Adria Airways</name>
+								<texture>Liveries/CRJ900LR/ADR.png</texture>
+								<registration>S5-AAK</registration>
+						</livery>
+				</model>
+		</sim>
+
+</PropertyList>

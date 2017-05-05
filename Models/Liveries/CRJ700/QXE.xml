@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Horizon Air</name>
+				<texture>Liveries/CRJ700/QXE.png</texture>
+				<registration>N606QX</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

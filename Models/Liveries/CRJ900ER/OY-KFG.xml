@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>SAS Scandinavian Airlines (Maria Viking)</name>
+				<texture>Liveries/CRJ900ER/OY-KFG.png</texture>
+				<registration>OY-KFG</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Scandinavian Airlines</name>
+				<texture>Liveries/CRJ900/SAS.png</texture>
+				<registration>OY-KFA</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

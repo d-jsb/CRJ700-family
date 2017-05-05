@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Tunisair Express</name>
+				<texture>Liveries/CRJ900/TUX.png</texture>
+				<registration>TS-ISA</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

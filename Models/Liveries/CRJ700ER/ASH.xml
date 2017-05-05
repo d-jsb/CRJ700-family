@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>United Express (Mesa Airlines)</name>
+				<texture>Liveries/CRJ700ER/ASH.png</texture>
+				<registration>N513MJ</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

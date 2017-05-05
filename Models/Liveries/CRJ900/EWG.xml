@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Eurowings</name>
+				<texture>Liveries/CRJ900/EWG.png</texture>
+				<registration>D-ACNM</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+		<sim>
+				<model>
+						<livery>
+								<name>Jazz Air (Star Alliance)</name>
+								<texture>Liveries/CRJ700ER/C-FUJZ.png</texture>
+								<registration>C-FUJZ</registration>
+						</livery>
+				</model>
+		</sim>
+
+</PropertyList>

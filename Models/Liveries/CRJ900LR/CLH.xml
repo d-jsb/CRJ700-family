@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Lufthansa Regional</name>
+				<texture>Liveries/CRJ900LR/CLH.png</texture>
+				<registration>D-ACKE</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

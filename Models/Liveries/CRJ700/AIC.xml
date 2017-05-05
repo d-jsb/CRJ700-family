@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Air India</name>
+				<texture>Liveries/CRJ700/AIC.png</texture>
+				<registration>VT-RJB</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

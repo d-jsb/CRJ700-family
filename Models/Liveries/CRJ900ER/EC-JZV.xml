@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Air Nostrum</name>
+				<texture>Liveries/CRJ900ER/EC-JZV.png</texture>
+				<registration>EC-JZV</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

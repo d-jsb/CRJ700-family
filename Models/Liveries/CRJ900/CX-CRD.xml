@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Pluna (Purple)</name>
+				<texture>Liveries/CRJ900/CX-CRD.png</texture>
+				<registration>CX-CRD</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

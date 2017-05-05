@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>HOP!</name>
+				<texture>Liveries/CRJ1000/HOP.png</texture>
+				<registration>F-HMLN</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>

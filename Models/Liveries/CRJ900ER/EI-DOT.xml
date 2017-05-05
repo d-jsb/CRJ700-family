@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Alitalia (still in AirOne livery)</name>
+				<texture>Liveries/CRJ900ER/EI-DOT.png</texture>
+				<registration>EI-DOT</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>
