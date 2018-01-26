@@ -1437,14 +1437,13 @@ page 10 Doors
 	<text>
 		<name>Stabilizer trim value</name>
 		<type>number-value</type>
-		<property>controls/flight/elevator-trim</property>
-		<scale>-100</scale>
+		<property>eicas/hstab-trim</property>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>left-center</alignment>
-		<character-size>0.008</character-size>
+		<character-size>0.009</character-size>
 		<character-aspect-ratio>1.2</character-aspect-ratio>
 		<font>Helvetica.txf</font>
-		<format>%+-03.0f%%</format>
+		<format>%02.1f</format>
 		<offsets>
 			<x-m>0.0001</x-m>
 			<y-m>0.05324</y-m>
@@ -7896,8 +7895,9 @@ DIR BUS</text>
 		<type>translate</type>
 		<object-name>ElevatorTrim</object-name>
 		<object-name>Stabilizer trim value</object-name>
-		<property>controls/flight/elevator-trim</property>
-		<factor>0.0117</factor>
+		<property>eicas/hstab-trim</property>
+		<factor>0.00156</factor>
+        <offset-m>-0.0117</offset-m>
 		<axis>
 			<x>0</x>
 			<y>0</y>

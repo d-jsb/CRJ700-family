@@ -91,6 +91,9 @@
 		<control-input axis="/fcs/elevator-cmd-norm" control="FLAP0" />
 		<control-input axis="/controls/flight/elevator-trim" control="FLAP0" />
 		<control-output control="FLAP0"  prop="/surface-positions/elevator-pos-norm" />
+        <control-input axis="/controls/flight/hstab-trim" control="INCIDENCE" />
+        <control-speed control="INCIDENCE" transition-time="20" />
+        <control-output control="INCIDENCE"  prop="/surface-positions/hstab-yasim-rad" />
 	</hstab>
 
 	<!-- Vertical stabilizers -->

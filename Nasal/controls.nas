@@ -10,7 +10,7 @@ incAileron = func(v, a)
         while (x <= 0) x += 360;
         return x;
     };
-	print("incAileron ");
+    print("incAileron ");
     if (props.globals.getNode("controls/autoflight/autopilot/engage", 1).getBoolValue())
     {
         var lat_mode = props.globals.getNode("controls/autoflight/lat-mode", 1).getValue();
@@ -22,11 +22,11 @@ incAileron = func(v, a)
                 # incAileron() was only designed to adjust autopilot heading settings
                 # so for roll, just hardcode an increment of 1
                 var roll_step = 1.0;
-				if (a < 0) roll_step = -1.0;
-				fgcommand("property-adjust", props.Node.new(
-							  { property: "autopilot/ref/roll-deg",
-								step: roll_step
-							  }));
+                if (a < 0) roll_step = -1.0;
+                fgcommand("property-adjust", props.Node.new(
+                              { property: "autopilot/ref/roll-deg",
+                                step: roll_step
+                              }));
             }
             elsif (roll_mode == 0)
             {
@@ -60,8 +60,8 @@ incElevator = func(v, a)
             # incElevator() was only designed to adjust autopilot altitude settings
             # so for pitch, just hardcode an increment of 1
             var pitch_step = 1.0;
-			if (a < 0) pitch_step = -1.0;
-			fgcommand("property-adjust", props.Node.new({property: "controls/autoflight/pitch-select",step: pitch_step}));
+            if (a < 0) pitch_step = -1.0;
+            fgcommand("property-adjust", props.Node.new({property: "controls/autoflight/pitch-select",step: pitch_step}));
         }
         elsif (mode == 1)
         {
@@ -94,7 +94,7 @@ incThrottle = func(v, a)
             # incThrottle() was only designed to adjust autopilot IAS settings
             # so for Mach, just hardcode an increment of .01
             var mach_step = 0.01;
-			if (a < 0) mach_step = -0.01;
+            if (a < 0) mach_step = -0.01;
             fgcommand("property-adjust", props.Node.new({property: "controls/autoflight/mach-select",step: mach_step}));
         }
     }
@@ -124,12 +124,12 @@ var stepGroundDump = func(v)
 
 var stepTiller = func(v)
 {
-		fgcommand("property-adjust", props.Node.new({property: "controls/gear/tiller-steer-deg",step: v,min: -80,max: 80 }));
+        fgcommand("property-adjust", props.Node.new({property: "controls/gear/tiller-steer-deg",step: v,min: -80,max: 80 }));
 };
 
 var setTiller = func(v)
 {
-		fgcommand("property-assign", props.Node.new({property: "controls/gear/tiller-steer-deg",value: v}));
+        fgcommand("property-assign", props.Node.new({property: "controls/gear/tiller-steer-deg",value: v}));
 };
 
 var toggleArmReversers = func
@@ -140,7 +140,7 @@ var toggleArmReversers = func
 
 var reverseThrust = func
 {
-	if (getprop("systems/hydraulic/outputs/left-reverser")) CRJ700.engines[0].toggle_reversers();
+    if (getprop("systems/hydraulic/outputs/left-reverser")) CRJ700.engines[0].toggle_reversers();
     if (getprop("systems/hydraulic/outputs/right-reverser")) CRJ700.engines[1].toggle_reversers();
 };
 
@@ -162,14 +162,14 @@ var incThrustModes = func(v)
             }
             else
             {
-				fgcommand("property-adjust", props.Node.new({property: mode.getPath(),step: v,min: 0,max: 3}));
+                fgcommand("property-adjust", props.Node.new({property: mode.getPath(),step: v,min: 0,max: 3}));
             }
         }
     }
 };
 
-#-- slats/flaps handling -- 
-# wrap default handler: 
+#-- slats/flaps handling --
+# wrap default handler:
 # flaps cmd > 0.022 (= 1 deg) will be postponed until slats are fully extended
 # flaps cmd = 0 will retract flaps and only after this retract slats to 0
 # flap-stop1.wav 1.326s ~3.567deg (norm: 0.079273)
@@ -184,71 +184,73 @@ var has_slats = getprop("sim/model/has-slats");
 var _flapsDown = controls.flapsDown;
 
 controls.flapsDown = func(step) {
-	_flapsDown(step);
+    _flapsDown(step);
     var curr = getprop("sim/flaps/current-setting");
-	var f_pos = getprop("surface-positions/flap-pos-norm");
-	var s_pos = getprop("surface-positions/slat-pos-norm");
-	var has_power = getprop("/systems/AC/outputs/flaps-a") or getprop("/systems/AC/outputs/flaps-b");
-	#print("Flaps CMD ("~has_slats~"): "~curr~" f:"~f_pos~" s:"~s_pos);
+    var f_pos = getprop("surface-positions/flap-pos-norm");
+    var s_pos = getprop("surface-positions/slat-pos-norm");
+    var has_power = getprop("/systems/AC/outputs/flaps-a") or getprop("/systems/AC/outputs/flaps-b");
+    #print("Flaps CMD ("~has_slats~"): "~curr~" f:"~f_pos~" s:"~s_pos);
 
-	if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
-	# command slats if flaps are retracted (1deg counts as retracted to have EICAS show "1" while extending flaps) (and slats are not moving; <- reality check needed)
-	#if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
-	if (has_power and has_slats and f_pos <= step1_norm) {
-		setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);	
-	}
-	#command flaps if slats are extended or model has no slats 
-	if (has_power and (s_pos == 1.0 or !has_slats)) {
-		var f_cmd = getprop("controls/flight/flaps");
-		setprop("controls/flight/flaps-cmd", f_cmd);
-		# flap sound; 1deg move is to short so skip it
-		var diff = f_pos - f_cmd;
-		if (diff < 0) diff = -diff;
-		if (diff > step1_norm)	
-			setprop("controls/flight/flaps-start-snd",1);
-	}
+    if (step != 0)	setprop("controls/flight/flaps-stop-snd",0); #abort stop sound
+    # command slats if flaps are retracted (1deg counts as retracted to have EICAS show "1" while extending flaps) (and slats are not moving; <- reality check needed)
+    #if (f_pos <= step1_norm and (s_pos == 0 or s_pos == 1)) {
+    if (has_power and has_slats and f_pos <= step1_norm) {
+        setprop("controls/flight/slats-cmd", curr > 0 ? 1 : 0);
+    }
+    #command flaps if slats are extended or model has no slats
+    if (has_power and (s_pos == 1.0 or !has_slats)) {
+        var f_cmd = getprop("controls/flight/flaps");
+        setprop("controls/flight/flaps-cmd", f_cmd);
+        # flap sound; 1deg move is to short so skip it
+        var diff = f_pos - f_cmd;
+        if (diff < 0) diff = -diff;
+        if (diff > step1_norm)
+            setprop("controls/flight/flaps-start-snd",1);
+    }
 };
 
 # monitor slats; trigger flaps handler when slats are fully extended
 setlistener("surface-positions/slat-pos-norm", func (n) {
-	var pos = n.getValue();
-	if (pos == 1.0) {
-		#print("slats " ~ pos);
-		settimer(func { flapsDown(0); }, 1);
-	}	
-	if (pos == 0) {
-		#print("slats " ~ pos);
-		flapsDown(0);
-	}	
-}, 0, 0);			
+    var pos = n.getValue();
+    if (pos == 1.0) {
+        #print("slats " ~ pos);
+        settimer(func { flapsDown(0); }, 1);
+    }
+    if (pos == 0) {
+        #print("slats " ~ pos);
+        flapsDown(0);
+    }
+}, 0, 0);
 
 # monitor flaps; trigger flaps handler to retract slats
 setlistener("surface-positions/flap-pos-norm", func (n) {
-	var pos = n.getValue();
-	var target = getprop("controls/flight/flaps");
-	# calculate when to switch flaps sound
-	var diff = target - pos;
-	if (diff < 0) diff = -diff;
-	if (diff < stoptime) {
-		setprop("controls/flight/flaps-start-snd",0);
-		if (diff > step1_norm){
-			setprop("controls/flight/flaps-stop-snd",1);
-		}
-	}
-	# call cmd handler to check slats
-	if (pos <= step1_norm) {
-		settimer(func { flapsDown(0); }, 1);
-	}	
-}, 0, 0);			
+    var pos = n.getValue();
+    var target = getprop("controls/flight/flaps");
+    # calculate when to switch flaps sound
+    var diff = target - pos;
+    if (diff < 0) diff = -diff;
+    if (diff < stoptime) {
+        setprop("controls/flight/flaps-start-snd",0);
+        if (diff > step1_norm){
+            setprop("controls/flight/flaps-stop-snd",1);
+        }
+    }
+    # call cmd handler to check slats
+    if (pos <= step1_norm) {
+        settimer(func { flapsDown(0); }, 1);
+    }
+}, 0, 0);
 
 
 ## elevator trim handler
-## hack to deactivate trim on hydraulic fault.
-## could not get the YAsim to work with a different property for elevator-trim :(
-
 var _elevatorTrim = controls.elevatorTrim;
+var TRIM_RATE = 0.01745;
 
 controls.elevatorTrim = func(x) {
-	if (getprop("/systems/hydraulic/outputs/elevator") > 0)
-		_elevatorTrim(x);
+    if (getprop("/systems/hstab/powered")) {
+        if (getprop("/controls/flight/hstab-trim") >= 1)
+            _elevatorTrim(x);
+        else 
+            slewProp("/controls/flight/hstab-trim", x * TRIM_RATE);
+    }
 };

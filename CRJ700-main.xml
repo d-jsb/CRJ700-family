@@ -621,7 +621,8 @@
 			<flaps-cmd>0</flaps-cmd>
 			<flaps-start-snd type="bool">false</flaps-start-snd>
 			<flaps-stop-snd type="bool">false</flaps-stop-snd>
-			<slats-cmd>0</slats-cmd>
+			<slats-cmd>0</slats-cmd>            
+            <hstab-trim>99</hstab-trim> <!-- initialize to out of range for old FG versions -->
 		</flight>
 		<fuel>
 			<gravity-xflow type="bool">0</gravity-xflow>
@@ -684,7 +685,9 @@
 			<seatbelt-sign type="int">1</seatbelt-sign>
 		</switches>
 	</controls>
-	
+	<eicas>
+        <hstab-trim>--</hstab-trim>
+    </eicas>
 	<engines>
 		<apu>
 			<info>see engine2</info>

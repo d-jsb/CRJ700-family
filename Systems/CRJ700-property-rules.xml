@@ -1,215 +1,282 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-	Property-rules run only at frame rate, while autopilot rules run at FDM rate.
-	What is what depends on how the files are included in CRJ700-main.xml
+    Property-rules run only at frame rate, while autopilot rules run at FDM rate.
+    What is what depends on how the files are included in CRJ700-main.xml
 -->
 <PropertyList>
-	<filter>
+    <filter>
     <!-- for users with throttle quadrant ;) -->
-		<name>mixt2speedbrake</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>sim/config/mixt-to-speedbrake</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<dif>
-					<value>1</value>
-					<property>controls/engines/engine/mixture</property>
-				</dif>
-			</expression>
-		</input>
-		<output>controls/flight/speedbrake</output>
-	</filter>
-	<filter>
-		<name>dhptr</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-				<property>instrumentation/adc/reference/dh</property>
-				<property>instrumentation/radar-altimeter/radar-altitude-ft</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/radar-altimeter/dh-deviation</output>
-	</filter>
-	<filter>
-		<name>mdaptr</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<property>instrumentation/adc/reference/mda</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/altimeter/mda-deviation</output>
-	</filter>	
-	
-	<filter>
-		<name>alt-ref-deviation</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<abs><dif>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<property>environment/metar/pressure-inhg</property>
-				</dif></abs>
-			</expression>
-		</input>
-		<output>instrumentation/altimeter/ref-deviation</output>
-	</filter>
-	<filter>
-		<name>VS scaler</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
-			<scale>0.001</scale>
-		</input>
-		<output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
-	</filter>
-	<filter>
-		<name>SpeedTape</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>40</value>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/airspeed-indicator/ias-40</output>
-	</filter>
-	<filter>
-		<name>V1marker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/v1</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/v1-diff</output>
-	</filter>
-	<filter>
-		<name>VRmarker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/vr</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/vr-diff</output>
-	</filter>	
-	<filter>
-		<name>V2marker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/v2</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/v2-diff</output>
-	</filter>	
-	<filter>
-		<name>VTmarker</name>
-		<type>gain</type>
-		<debug type="bool">false</debug>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<property>instrumentation/adc/reference/vt</property>
-				</dif>
-			</expression>
-		</input>
-		<output>instrumentation/adc/vt-diff</output>
-	</filter>
-	<logic>
-		<name>On ground</name>
-		<input>
-			<or>
-				<property>/gear/gear[0]/wow</property>
-				<property>/gear/gear[1]/wow</property>
-				<property>/gear/gear[2]/wow</property>
-			</or>
-		</input>
-		<output>/gear/on-ground</output>
-	</logic>	
-	<!-- Alarm logic -->
-	<logic>
-		<name>Overspeed alarm</name>
-		<input>
-			<or>
-				<!-- 3 kts greater than Vmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
-					<value>338</value>
-				</greater-than-equals>
-				<!-- 0.01 Mach greater than Mmo -->
-				<greater-than-equals>
-					<property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
-					<value>0.86</value>
-				</greater-than-equals>
-			</or>
-		</input>
-		<output>sim/alarms/overspeed-alarm</output>
-	</logic>
-	<logic>
-		<name>Master caution alarm</name>
-		<input>
-			<or>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-				<property>sim/alarms/overspeed-alarm</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-caution</output>
-	</logic>
-	<logic>
-		<name>Master warning alarm</name>
-		<input>
-			<or>
-				<property>engines/engine[2]/on-fire</property>
-				<property>engines/engine[0]/on-fire</property>
-				<property>engines/engine[1]/on-fire</property>
-			</or>
-		</input>
-		<output>sim/alarms/master-warning</output>
-	</logic>
+        <name>mixt2speedbrake</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <enable>
+            <condition>
+                <equals>
+                    <property>sim/config/mixt-to-speedbrake</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <expression>
+                <dif>
+                    <value>1</value>
+                    <property>controls/engines/engine/mixture</property>
+                </dif>
+            </expression>
+        </input>
+        <output>controls/flight/speedbrake</output>
+    </filter>
+    <logic>
+        <name>hstab powered</name>
+        <input>
+            <or>
+                <greater-than-equals>
+                    <property>/systems/AC/outputs/pitch-trim1</property>
+                    <value>105</value>
+                </greater-than-equals>
+                <greater-than-equals>
+                    <property>/systems/AC/outputs/pitch-trim2-1</property>
+                    <value>105</value>
+                </greater-than-equals>
+                <greater-than-equals>
+                    <property>/systems/AC/outputs/pitch-trim2-2</property>
+                    <value>105</value>
+                </greater-than-equals>
+            </or>
+        </input>
+        <output>/systems/hstab/powered</output>
+    </logic>
+    <filter>
+        <name>legacy trim</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <!-- FG < v2018.1 do not support hstab trim, so we fake it -->
+            <condition>
+                <greater-than-equals>
+                    <property>controls/flight/hstab-trim</property>
+                    <value>0.99</value>
+                </greater-than-equals>
+            </condition>        
+            <expression>
+                <prod>
+                    <sum>
+                        <property>controls/flight/elevator-trim</property>
+                        <value>0.8</value>
+                    </sum>
+                    <value>-0.1309</value>
+                </prod>
+            </expression>
+        </input>
+        <input>
+            <property>surface-positions/hstab-yasim-rad</property>
+        </input>
+        <output>surface-positions/hstab-rad</output>
+    </filter>
+    <filter>
+        <name>eicas-hstab-trim-units</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <!-- map [+2,-13]deg to [0,15]trim units -->
+        <input>
+            <expression>
+                <sum>
+                    <product>
+                        <property>surface-positions/hstab-rad</property>
+                        <value>-57.29578</value>
+                    </product>                            
+                    <value>2</value>
+                </sum>
+            </expression>
+        </input>    
+        <output>eicas/hstab-trim</output>
+    </filter>
+    <filter>
+        <name>dhptr</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                <property>instrumentation/adc/reference/dh</property>
+                <property>instrumentation/radar-altimeter/radar-altitude-ft</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/radar-altimeter/dh-deviation</output>
+    </filter>
+    <filter>
+        <name>mdaptr</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <property>instrumentation/adc/reference/mda</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/altimeter/mda-deviation</output>
+    </filter>
+    
+    <filter>
+        <name>alt-ref-deviation</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <abs><dif>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <property>environment/metar/pressure-inhg</property>
+                </dif></abs>
+            </expression>
+        </input>
+        <output>instrumentation/altimeter/ref-deviation</output>
+    </filter>
+    <filter>
+        <name>VS scaler</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+            <scale>0.001</scale>
+        </input>
+        <output>instrumentation/vertical-speed-indicator/indicated-speed-scaled</output>
+    </filter>
+    <filter>
+        <name>SpeedTape</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <value>40</value>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/airspeed-indicator/ias-40</output>
+    </filter>
+    <filter>
+        <name>V1marker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/v1</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/v1-diff</output>
+    </filter>
+    <filter>
+        <name>VRmarker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/vr</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/vr-diff</output>
+    </filter>	
+    <filter>
+        <name>V2marker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/v2</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/v2-diff</output>
+    </filter>	
+    <filter>
+        <name>VTmarker</name>
+        <type>gain</type>
+        <debug type="bool">false</debug>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <dif>
+                    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                    <property>instrumentation/adc/reference/vt</property>
+                </dif>
+            </expression>
+        </input>
+        <output>instrumentation/adc/vt-diff</output>
+    </filter>
+    <logic>
+        <name>On ground</name>
+        <input>
+            <or>
+                <property>/gear/gear[0]/wow</property>
+                <property>/gear/gear[1]/wow</property>
+                <property>/gear/gear[2]/wow</property>
+            </or>
+        </input>
+        <output>/gear/on-ground</output>
+    </logic>	
+    <!-- Alarm logic -->
+    <logic>
+        <name>Overspeed alarm</name>
+        <input>
+            <or>
+                <!-- 3 kts greater than Vmo -->
+                <greater-than-equals>
+                    <property>instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
+                    <value>338</value>
+                </greater-than-equals>
+                <!-- 0.01 Mach greater than Mmo -->
+                <greater-than-equals>
+                    <property>instrumentation/airspeed-indicator[0]/indicated-mach</property>
+                    <value>0.86</value>
+                </greater-than-equals>
+            </or>
+        </input>
+        <output>sim/alarms/overspeed-alarm</output>
+    </logic>
+    <logic>
+        <name>Master caution alarm</name>
+        <input>
+            <or>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                <property>sim/alarms/overspeed-alarm</property>
+            </or>
+        </input>
+        <output>sim/alarms/master-caution</output>
+    </logic>
+    <logic>
+        <name>Master warning alarm</name>
+        <input>
+            <or>
+                <property>engines/engine[2]/on-fire</property>
+                <property>engines/engine[0]/on-fire</property>
+                <property>engines/engine[1]/on-fire</property>
+            </or>
+        </input>
+        <output>sim/alarms/master-warning</output>
+    </logic>
 </PropertyList>

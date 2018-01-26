@@ -775,11 +775,8 @@
 		<object-name>ElevatorL</object-name>
 		<object-name>ElevatorR</object-name>
 		<object-name>Hstabs</object-name>
-		<property>controls/flight/elevator-trim</property>
-		<interpolation>
-			<entry><ind>-1</ind><dep>4</dep></entry>
-			<entry><ind>1</ind><dep>-11</dep></entry>
-		</interpolation>
+		<property>surface-positions/hstab-rad</property>
+        <factor>57.297</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
