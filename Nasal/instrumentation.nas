@@ -233,6 +233,356 @@ var nav_annunciator = func ()
 setlistener("autopilot/internal/vor1-captured", nav_annunciator, 0, 0);
 setlistener("autopilot/internal/vor2-captured", nav_annunciator, 0, 0);
 
+var mk_coords = func (lat, lon)
+{
+    var c = geo.Coord.new();
+    c.set_latlon(lat, lon);
+    return c;
+}
+
+var fdm_set_target_radial = func (radial)
+{
+    if (radial == 'auto' or radial == '') {
+        setprop("autopilot/internal/target/radial", -1);
+        setprop("autopilot/internal/target/capmode", "homing");
+    }
+    else {
+        setprop("autopilot/internal/target/radial", radial);
+        setprop("autopilot/internal/target/capmode", "intercept");
+    }
+}
+
+var get_std_turn_radius = func (airspeed) {
+    return airspeed / (15 * math.pi);
+}
+
+var fdm_configure_hold = func (fp, mode, phase)
+{
+    if (fp == nil) return;
+    var wpid = fp.current;
+    var wp = fp.getWP(wpid);
+    if (wp == nil) return;
+    var my_coords = mk_coords(
+        getprop("position/latitude-deg"),
+        getprop("position/longitude-deg"));
+    var wp_coords = mk_coords(wp.lat, wp.lon);
+    var target_dist = my_coords.distance_to(wp_coords) * M2NM;
+    var my_course = getprop("orientation/track-deg");
+    var pattern_speed = 230; # TODO: get real speed
+    var turn_radius = get_std_turn_radius(pattern_speed);
+    var leg_len_nm = 4; # arbitrary default
+    if (!wp.hold_is_distance) {
+        leg_len_nm = wp.hold_time_or_distance * pattern_speed / 3600;
+    }
+    else {
+        leg_len_nm = wp.hold_time_or_distance;
+    }
+    var radial_fwd = wp.hold_inbound_radial;
+    var radial_rev = geo.normdeg(radial_fwd + 180);
+    var diagonal_angle = R2D * math.atan2(2 * turn_radius, leg_len_nm);
+    var diagonal_fwd = radial_fwd;
+    if (wp.hold_is_left_handed) {
+        diagonal_fwd = geo.normdeg(radial_fwd - diagonal_angle);
+    }
+    else {
+        diagonal_fwd = geo.normdeg(radial_fwd + diagonal_angle);
+    }
+    var diagonal_rev = geo.normdeg(diagonal_fwd + 180);
+
+    var mapping =
+            { "hold":
+                { "inbound": [ "F", radial_fwd ]
+                , "outbound": [ "O", radial_rev ]
+                }
+            , "direct":
+                { "approach": [ "F", 'auto' ]
+                , "outbound": [ "O", radial_rev ]
+                }
+            , "teardrop":
+                { "approach": [ "F", 'auto' ]
+                , "diagonal": [ "O", diagonal_rev ]
+                },
+            , "parallel":
+                { "approach": [ "F", 'auto' ]
+                , "reverse": [ "X", radial_rev ]
+                , "diagonal": [ "F", diagonal_fwd ]
+                }
+            };
+
+    var selection = mapping[mode][phase];
+    var target = selection[0];
+    var radial = selection[1];
+
+    var target_coords = mk_coords(wp.lat, wp.lon);
+    if (target == "X" or target == "O") {
+        target_coords.apply_course_distance(radial_rev, leg_len_nm * NM2M);
+    }
+    if (target == "O") {
+        if (wp.hold_is_left_handed) {
+            target_coords.apply_course_distance(radial_fwd - 90, 2 * turn_radius * NM2M);
+        }
+        else {
+            target_coords.apply_course_distance(radial_fwd + 90, 2 * turn_radius * NM2M);
+        }
+    }
+    setprop("autopilot/internal/target/lat", target_coords.lat());
+    setprop("autopilot/internal/target/lon", target_coords.lon());
+    fdm_set_target_radial(radial);
+    setprop("autopilot/internal/target/id", wpid);
+    setprop("autopilot/internal/target/mode", mode);
+    setprop("autopilot/internal/target/phase", phase);
+    # no turn anticipation in pattern
+    setprop("autopilot/internal/target/anticipate", 0);
+}
+
+var fdm_configure_target = func (fp, wpid)
+{
+    if (fp == nil) return;
+    var wp = fp.getWP(wpid);
+    if (wp == nil) return;
+    if (wp.fly_type == "Hold") {
+        var my_coords = mk_coords(
+            getprop("position/latitude-deg"),
+            getprop("position/longitude-deg"));
+        var wp_coords = mk_coords(wp.lat, wp.lon);
+        var target_bearing = my_coords.course_to(wp_coords);
+        var my_course = getprop("orientation/track-deg");
+        var turn_heading = geo.normdeg180(target_bearing - my_course);
+
+        if (math.abs(turn_heading) >= 85) {
+            # We're moving away from the fix; this means we've already entered
+            # the holding area.
+            # So we will decide our hold entry procedure based on current
+            # heading relative to the holding radial, and we will jump directly
+            # to the second phase of the hold entry pattern.
+            var heading_diff = wp.hold_inbound_radial - my_course;
+            if (wp.hold_is_left_handed) {
+                heading_diff = -heading_diff;
+            }
+            if (math.abs(heading_diff) <= 90) {
+                # direct entry
+                fdm_configure_hold(fp, "hold", "outbound");
+            }
+            else if (heading_diff > 0) {
+                # parallel entry
+                fdm_configure_hold(fp, "parallel", "reverse");
+            }
+            else {
+                # teardrop entry
+                fdm_configure_hold(fp, "teardrop", "diagonal");
+            }
+        }
+        else {
+            # We're moving towards the fix; this means we have yet to enter the
+            # holding area, so we will start with the approach phase of the
+            # holding entry pattern.
+            var heading_diff = wp.hold_inbound_radial - target_bearing;
+            if (wp.hold_is_left_handed) {
+                heading_diff = -heading_diff;
+            }
+            if (math.abs(heading_diff) <= 90) {
+                # direct entry
+                fdm_configure_hold(fp, "direct", "approach");
+            }
+            else if (heading_diff > 0) {
+                # parallel entry
+                fdm_configure_hold(fp, "parallel", "approach");
+            }
+            else {
+                # teardrop entry
+                fdm_configure_hold(fp, "teardrop", "approach");
+            }
+        }
+    }
+    else {
+        var leg_bearing = wp.leg_bearing;
+        setprop("autopilot/internal/target/lat", wp.lat);
+        setprop("autopilot/internal/target/lon", wp.lon);
+        fdm_set_target_radial(leg_bearing);
+        setprop("autopilot/internal/target/id", wpid);
+        setprop("autopilot/internal/target/mode", "normal");
+        setprop("autopilot/internal/target/phase", "approach");
+        if (wp.fly_type == "flyBy") {
+            if (wpid + 1 >= fp.getPlanSize()) {
+                # last leg in plan, nothing to anticipate
+                setprop("autopilot/internal/target/anticipate", 0);
+            }
+            else {
+                var next_wp = fp.getWP(wpid + 1);
+                if (next_wp.fly_type == "Hold") {
+                    # approaching a holding pattern, no turn anticipation
+                    setprop("autopilot/internal/target/anticipate", 0);
+                }
+                else {
+                    # next leg is a normal one, enable turn anticipation
+                    setprop("autopilot/internal/target/anticipate", math.abs(next_wp.leg_bearing - wp.leg_bearing));
+                }
+            }
+        }
+        else {
+            # current leg is a fly-over, no turn anticipation
+            setprop("autopilot/internal/target/anticipate", 0);
+        }
+    }
+}
+
+var fdm_course_update = func ()
+{
+    if (getprop("autopilot/internal/target/lat") == nil or
+        getprop("autopilot/internal/target/lon") == nil)
+        return;
+    # get target coords
+    var target_fix = mk_coords(
+            getprop("autopilot/internal/target/lat"),
+            getprop("autopilot/internal/target/lon"));
+
+    # get aircraft position
+    var my_coords = mk_coords(
+        getprop("position/latitude-deg"),
+        getprop("position/longitude-deg"));
+    var my_course = getprop("orientation/track-deg");
+
+    # relative position towards fix
+    var target_course = my_coords.course_to(target_fix);
+    var target_dist = my_coords.distance_to(target_fix) * M2NM;
+    var capmode = getprop("autopilot/internal/target/capmode");
+    setprop("autopilot/internal/target/course", target_course);
+    setprop("autopilot/internal/target/dist", target_dist);
+    # default is to home in on the target wp
+    var course = target_course;
+    var airspeed = getprop("velocities/airspeed-kt");
+    var turn_radius = get_std_turn_radius(airspeed);
+    setprop("autopilot/internal/target/turn_radius", turn_radius);
+
+    if (capmode == "intercept" and target_dist > turn_radius) {
+        var target_radial = getprop("autopilot/internal/target/radial");
+        setprop("autopilot/internal/target/effective-radial", target_radial);
+
+        var bearing_err = geo.normdeg180(target_radial - target_course);
+        setprop("autopilot/internal/target/bearing_err", bearing_err);
+
+        var track_err = math.sin(D2R * bearing_err) * target_dist;
+        setprop("autopilot/internal/target/track_err", track_err);
+
+        if (math.abs(track_err) < 0.1 or
+            math.sgn(track_err) == math.sgn(geo.normdeg180(my_heading - target_radial))) {
+            # moving away from the target, or already on track; just align to
+            # target radial
+            course = target_radial;
+        }
+        else {
+            # moving towards the target; calculate interception course
+            var cos_course_err = math.max(math.cos(60), (turn_radius - math.abs(track_err)) / turn_radius);
+            var course_err = math.acos(cos_course_err) * R2D;
+            setprop("autopilot/internal/target/course_err", course_err);
+            if (track_err > 0) {
+                course = target_radial - course_err;
+            }
+            else {
+                course = target_radial + course_err;
+            }
+        }
+    }
+    else {
+        setprop("autopilot/internal/target/effective-radial", geo.normdeg(target_course));
+    }
+    setprop("autopilot/internal/target-crs", geo.normdeg(course));
+    setprop("autopilot/internal/target/effective-crs", geo.normdeg(course));
+}
+
+var fdm_next_target = func (fp)
+{
+    var mode = getprop("autopilot/internal/target/mode");
+    var phase = getprop("autopilot/internal/target/phase");
+
+    if (mode == "hold") {
+        if (phase == "outbound") {
+            fdm_configure_hold(fp, "hold", "inbound");
+        }
+        else {
+            fdm_configure_hold(fp, "hold", "outbound");
+        }
+    }
+    else if (mode == "parallel") {
+        if (phase == "approach") {
+            fdm_configure_hold(fp, "parallel", "reverse");
+        }
+        else if (phase == "reverse") {
+            fdm_configure_hold(fp, "parallel", "diagonal");
+        }
+        else {
+            # diagonal
+            fdm_configure_hold(fp, "hold", "inbound");
+        }
+    }
+    else if (mode == "teardrop") {
+        if (phase == "approach") {
+            fdm_configure_hold(fp, "teardrop", "diagonal");
+        }
+        else {
+            # diagonal
+            fdm_configure_hold(fp, "hold", "inbound");
+        }
+    }
+    else if (mode == "direct") {
+        fdm_configure_hold(fp, "hold", "outbound");
+    }
+    else {
+        # assume mode "normal"
+        var wpid = getprop("autopilot/internal/target/id");
+        fp.current = wpid + 1;
+    }
+}
+
+var fdm_update_target = func (fp)
+{
+    if (getprop("autopilot/internal/target/lat") == nil or
+        getprop("autopilot/internal/target/lon") == nil)
+        return;
+    var my_coords = mk_coords(
+        getprop("position/latitude-deg"),
+        getprop("position/longitude-deg"));
+    var target_coords = mk_coords(
+        getprop("autopilot/internal/target/lat"),
+        getprop("autopilot/internal/target/lon"));
+    var airspeed = getprop("velocities/airspeed-kt");
+    var turn_radius = get_std_turn_radius(airspeed);
+    var capmode = getprop("autopilot/internal/target/capmode");
+    var leg_bearing = 'auto';
+    if (capmode == "intercept") {
+        leg_bearing = getprop("autopilot/internal/target/radial");
+    }
+    var turn_anticipation_dist = 0;
+    if (leg_bearing != 'auto') {
+        var anticipation_angle = getprop("autopilot/internal/target/anticipate");
+        if (math.abs(anticipation_angle) > 90) {
+            turn_anticipation_dist = turn_radius;
+        }
+        else {
+            turn_anticipation_dist =
+                turn_radius *
+                    math.tan(0.5 * D2R * math.abs(anticipation_angle));
+        }
+    }
+    var target_dist =
+            my_coords.distance_to(target_coords) * M2NM;
+    if (target_dist <= turn_anticipation_dist or target_dist < 0.1) {
+        fdm_next_target(fp);
+    }
+}
+
+var fdm_update = func ()
+{
+    var fp = flightplan();
+    var configured_wpid = getprop("autopilot/internal/target/id");
+    var current_wpid = fp.current;
+    if (configured_wpid != current_wpid) {
+        fdm_configure_target(fp, current_wpid);
+    }
+    fdm_update_target(fp);
+    fdm_course_update();
+}
+
 var vs_annunciator = func () 
 {
 	var ref = sprintf("%1.1f", getprop("controls/autoflight/vertical-speed-select")/1000);
