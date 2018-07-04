@@ -175,5 +175,7 @@
         <weight x="14.94" y="0.0" z="-1.0" mass-prop="/sim/weight[0]/weight-lb" solve-weight="1" idx="0" />
         <!-- PAX/Cargo -->
         <weight x="3.5" y="0.0" z="-1.0" mass-prop="/sim/weight[1]/weight-lb" solve-weight="1" idx="1" />
+        <weight x="5" y="0.0" z="-2.0" mass-prop="/sim/weight[2]/weight-lb" solve-weight="1" idx="2" />
+        <weight x="-5" y="0.0" z="-2.0" mass-prop="/sim/weight[3]/weight-lb" solve-weight="1" idx="3" />
 
 </airplane>
