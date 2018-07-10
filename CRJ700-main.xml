@@ -527,6 +527,12 @@
 			<target-roll-deg>0</target-roll-deg>
 			<target-pitch-deg>0</target-pitch-deg>
 			<target-climb-rate-fpm>0</target-climb-rate-fpm>
+
+            <!-- need to initialize these to avoid NaN in PID controller: -->
+            <fms>
+                <track-error-norm>0</track-error-norm>
+                <track-error-norm-lookahead>0</track-error-norm-lookahead>
+            </fms>
 		</internal>
 	</autopilot>
 	
