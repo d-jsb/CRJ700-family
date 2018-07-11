@@ -645,6 +645,46 @@
 		</config>
 	</pi-simple-controller>	
     <!-- Pitch and roll controllers -->
+    <pid-controller>
+        <name>Vertical speed to pitch controller</name>
+        <debug type="bool">false</debug>
+        <enable>
+            <condition>
+                <or>
+                    <equals>
+                        <property>controls/autoflight/vert-mode</property>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property>controls/autoflight/vert-mode</property>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property>controls/autoflight/vert-mode</property>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </condition>
+        </enable>
+        <input>
+            <property>instrumentation/vertical-speed-indicator[0]/indicated-speed-fpm</property>
+        </input>
+        <reference>
+            <property>autopilot/internal/target-climb-rate-fpm</property>
+        </reference>
+        <output>autopilot/internal/target-pitch-deg</output>
+        <config>
+            <Kp>0.005</Kp>
+            <Ti>9</Ti>
+            <Td>0.55</Td>
+            <beta>0.5</beta>
+            <gamma>0.3</gamma>
+        </config>
+        <min>-10</min>
+        <max>10</max>
+    </pid-controller>
+
+    <!--
     <pi-simple-controller>
 		<name>Vertical speed to pitch controller</name>
 		<debug type="bool">false</debug>
