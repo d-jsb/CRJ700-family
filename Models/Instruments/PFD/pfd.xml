@@ -659,6 +659,7 @@
 		<type>number-value</type>
 		<property alias="../../params/indicated-altitude-ft" />
 		<scale>0.001</scale>
+		<offset>0.025</offset>
 		<truncate type="bool">true</truncate>
 		<axis-alignment>yz-plane</axis-alignment>
 		<alignment>right-center</alignment>
