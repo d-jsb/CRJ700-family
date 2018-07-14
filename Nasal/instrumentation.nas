@@ -248,8 +248,8 @@ var update_fms_info = func()
     var course_to_wp = courseAndDist[0];
     var dist_to_wp = courseAndDist[1];
     var track_error_deg = geo.normdeg180(wp0.leg_bearing - course_to_wp);
-    var cdi_deflection = math.clamp(-track_error_deg, -10, 10);
     var track_error = math.sin(track_error_deg * D2R) * dist_to_wp;
+    var cdi_deflection = math.clamp(-track_error * 3, -10, 10);
     var suggested_intercept_heading = geo.normdeg(course_to_wp + 3.0 * cdi_deflection);
     var turn_radius = getprop("velocities/groundspeed-kt") / (30 * math.pi);
     setprop("autopilot/internal/fms/course", wp0.leg_bearing);
