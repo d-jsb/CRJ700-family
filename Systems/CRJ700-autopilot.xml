@@ -22,7 +22,7 @@
     /controls/autoflight/lat-mode           lateral mode
     /controls/autoflight/vert-mode          vertical mode
     /controls/autoflight/speed-mode         speed mode
-    /controls/autoflight/nav-sour
+    /controls/autoflight/nav-source         nav mode
 
 
     Speed modes:
