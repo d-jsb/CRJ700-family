@@ -109,6 +109,7 @@ var fast_loop = Loop(0, func {
 	# Instruments.
 	eicas_messages_page1.update();
 	eicas_messages_page2.update();
+	CRJ700.update_fms_info();
 
 	# Model.
 	wipers[0].update();
