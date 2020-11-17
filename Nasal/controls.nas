@@ -111,12 +111,6 @@ incThrottle = func(v, a)
     }
 };
 
-var cycleSpeedbrake = func(offset=1)
-{
-    var vals = [0,0.25,0.5,0.75,1];
-    fgcommand("property-cycle", props.Node.new({property: "controls/flight/speedbrake",value: vals, offset: offset}));
-};
-
 var stepGroundDump = func(v)
 {
     fgcommand("property-adjust", props.Node.new({property: "controls/flight/ground-lift-dump",step: v,min: 0,max: 2}));

@@ -25,14 +25,14 @@
 		<binding>
 			<command>nasal</command>
 			<script>
-				controls.cycleSpeedbrake(1);
+				controls.stepSpoilers(1);
             </script>
         </binding>
 		<mod-shift>
 			<binding>
 				<command>nasal</command>
 				<script>
-					controls.cycleSpeedbrake(-1);
+					controls.stepSpoilers(-1);
                 </script>
             </binding>
         </mod-shift>

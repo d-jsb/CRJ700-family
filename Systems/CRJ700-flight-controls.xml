@@ -422,7 +422,7 @@
 						<property>controls/flight/ground-lift-dump</property>
 						<value>2</value><!-- manual arm -->
 					</equals>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/spoilers</property>
 				</and>
 				<and>
 					<equals>
@@ -531,7 +531,7 @@
 		<input>
 			<expression>
 				<max>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/spoilers</property>
 					<property>controls/flight/spoilers-ground-cmd</property>
 					<property>controls/flight/left-spoileron-cmd-norm</property>
 				</max>
@@ -552,7 +552,7 @@
 		<input>
 			<expression>
 				<max>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/spoilers</property>
 					<property>controls/flight/spoilers-ground-cmd</property>
 					<property>controls/flight/right-spoileron-cmd-norm</property>
 				</max>
@@ -573,7 +573,7 @@
 		<input>
 			<expression>
 				<max>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/spoilers</property>
 					<property>controls/flight/spoilers-ground-cmd</property>
 					<property>controls/flight/left-spoileron-cmd-norm</property>
 				</max>
@@ -594,7 +594,7 @@
 		<input>
 			<expression>
 				<max>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/spoilers</property>
 					<property>controls/flight/spoilers-ground-cmd</property>
 					<property>controls/flight/right-spoileron-cmd-norm</property>
 				</max>

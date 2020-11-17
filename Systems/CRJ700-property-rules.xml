@@ -340,7 +340,7 @@
                 </dif>
             </expression>
         </input>
-        <output>controls/flight/speedbrake</output>
+        <output>controls/flight/spoilers</output>
     </filter>
     <filter>
         <name>dhptr</name>

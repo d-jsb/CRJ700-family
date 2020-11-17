@@ -2258,7 +2258,7 @@
             <repeatable type="bool">false</repeatable>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/flight/speedbrake</property>
+                <property>controls/flight/spoilers</property>
                 <step>0.25</step>
                 <max>1</max>
             </binding>
@@ -2268,7 +2268,7 @@
             <repeatable type="bool">false</repeatable>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/flight/speedbrake</property>
+                <property>controls/flight/spoilers</property>
                 <step>-0.25</step>
                 <min>0</min>
             </binding>
@@ -2277,7 +2277,7 @@
     <animation>
         <type>rotate</type>
         <object-name>SpeedbrakeLever</object-name>
-        <property>controls/flight/speedbrake</property>
+        <property>controls/flight/spoilers</property>
         <interpolation>
             <entry><ind>0</ind><dep>-43</dep></entry>
             <entry><ind>0.25</ind><dep>-23</dep></entry>

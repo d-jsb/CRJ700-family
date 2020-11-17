@@ -105,7 +105,7 @@ var pilot_send_S_properties =
 	"controls/engines/engine[1]/reverser-armed",
 	"controls/engines/engine[0]/starter-cmd",
 	"controls/engines/engine[1]/starter-cmd",
-	"controls/flight/speedbrake",
+	"controls/flight/spoilers",
 	"controls/flight/ground-lift-dump",
 	# instrumentation
 	"instrumentation/use-metric-altitude",
@@ -141,7 +141,7 @@ var copilot_send_properties =
 	"controls/flight/flaps-down",
 	"controls/gear/gear-down",
 	"controls/gear/brake-parking-toggle",
-	"controls/flight/speedbrake-cycle",
+	"controls/flight/spoilers-cycle",
 	"controls/flight/ground-lift-dump-up",
 	"controls/flight/ground-lift-dump-down",
 	"controls/engines/arm-reversers",
@@ -228,7 +228,7 @@ var get_pilot_decoders = func(copilot)
 			},
 			func(v)
 			{
-				if (v) controls.cycleSpeedbrake();
+				if (v) controls.cycleSpoilers();
 			},
 			func(v)
 			{
@@ -457,7 +457,7 @@ var set_copilot_wrappers = func(pilot)
 	{
 		if (v) fireControl(copilot_send_properties[3]);
 	};
-	controls.cycleSpeedbrake = func
+	controls.cycleSpoilers = func
 	{
 		fireControl(copilot_send_properties[4]);
 	};
