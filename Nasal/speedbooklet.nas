@@ -33,7 +33,7 @@ var Speedtable = {
         append(me.tables, speeds);
         return me;
     },
-    
+
     setMLW: func(w) {
         me.MLW = int(w);
         return me;
@@ -42,7 +42,7 @@ var Speedtable = {
     getMLW: func() {
         return me.MLW;
     },
-    
+
     isOverMLW: func(w) {
         return (w > me.MLW) ? 1 : 0;
     },
@@ -50,11 +50,11 @@ var Speedtable = {
     getNumberOfPages: func() {
         return size(me.tables);
     },
-    
+
     getPage: func(i) {
         return me.tables[i];
     },
-    
+
     findWeight: func(weight) {
         var lo = 0;
         var hi = 999000;
@@ -75,7 +75,7 @@ var _interpolate = func(x, x0, x1, v0, v1) {
     return v0 + x * (v1-v0)/(x1-x0);
 }
 
-var speedtables = { 
+var speedtables = {
     "CRJ7": Speedtable.new("CRJ700"),
     "CRJ9": Speedtable.new("CRJ900"),
     "CRJ1": Speedtable.new("CRJ1000"),
@@ -139,10 +139,10 @@ for (var i=0; i <= (kg1-25000)/dkg; i += 1) {
     var kg = kg0 + i * dkg;
     var speeds = {
         weight: kg,
-        v1_8:  _interpolate(kg, kg0, kg1, 120, 150), 
+        v1_8:  _interpolate(kg, kg0, kg1, 120, 150),
         vr_8:  _interpolate(kg, kg0, kg1, 122, 152),
         v2_8:  _interpolate(kg, kg0, kg1, 134, 161),
-        v1_20: _interpolate(kg, kg0, kg1, 111, 140), 
+        v1_20: _interpolate(kg, kg0, kg1, 111, 140),
         vr_20: _interpolate(kg, kg0, kg1, 115, 141),
         v2_20: _interpolate(kg, kg0, kg1, 125, 147),
         vt:    _interpolate(kg, kg0, kg1, 169, 204),
@@ -200,7 +200,7 @@ var Booklet =
         call(canvas.SVGCanvas.del, [], me, var err = []);
         return nil;
     },
-    
+
     nextPage: func() {
         if (me._pageN.getValue() < me.speedtable.getNumberOfPages() - 1) {
             me._pageN.increment();
@@ -216,18 +216,18 @@ var Booklet =
         }
         return me;
     },
-    
+
     update: func() {
         var number = me._pageN.getValue();
         var speeds = me.speedtable.getPage(number);
         foreach (var key; keys(speeds)) {
             if (vecindex(me.svg_keys, key) != nil)
-                me[key].setText(sprintf("%d", speeds[key]));
+                me.updateTextElement(key, sprintf("%d", speeds[key]));
         }
         me["overweight"].setVisible(me.speedtable.isOverMLW(speeds.weight));
-        me["tonns"].setText(sprintf("%d", int(speeds.weight/1000)));
-        me["kilogram"].setText(sprintf("%03d", math.mod(speeds.weight, 1000)));
-        me["page"].setText(sprintf("%2d", number + 1));
+        me.updateTextElement("tonns", sprintf("%d", int(speeds.weight/1000)));
+        me.updateTextElement("kilogram", sprintf("%03d", math.mod(speeds.weight, 1000)));
+        me.updateTextElement("page", sprintf("%2d", number + 1));
     },
 
 };
