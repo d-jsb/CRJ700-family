@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<model>
+			<livery>
+				<name>Lufthansa Cityline D-ACND</name>
+				<texture>Liveries/CRJ900LR/DLH-ND.png</texture>
+				<registration>D-ACND</registration>
+			</livery>
+		</model>
+	</sim>
+
+</PropertyList>
